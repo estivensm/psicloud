@@ -29,9 +29,29 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+   gem 'pg'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+#gem para acceder a los servicios de google
+gem 'google-api-client', '0.8.2', require: 'google/api_client'
+
+#gem para acceder a google calendar
+gem 'google_calendar', '~> 0.6.2'
+
+#gem para el manejo de usuarios
+gem 'devise', '~> 4.3'
+
+#gem para autenticacion de usuarios con google
+gem 'omniauth-google-oauth2'
+
+#jquery para rails 
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+
+#bootstrap
+gem 'bootstrap-sass', '~> 3.3.6'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,7 +68,17 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+
 end
+
+
+group :production do
+   gem 'rails_12factor'
+ 
+  
+end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
