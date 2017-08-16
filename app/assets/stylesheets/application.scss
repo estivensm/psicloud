@@ -1,2 +1,12 @@
-@import "bootstrap-sprockets";
+@import "bootstrap-mincer";
 @import "bootstrap";
+
+.navbar-brand img
+{
+	width:150px;
+}
+
+.navbar-brand 
+{
+	padding: 0px 15px;
+}
