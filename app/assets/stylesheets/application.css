@@ -11,7 +11,7 @@
 
 
    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
- url('http://www.consultorsalud.com/sites/consultorsalud/files/salud-mental.jpg')no-repeat center top;
+ url('https://c1.staticflickr.com/1/640/32932852872_39ed7b004d_o.jpg')no-repeat center top;
   background-size: cover;
 
 
@@ -44,6 +44,7 @@
         padding:10px;
       }
       label
-     
+      {
+      
       }
     }
