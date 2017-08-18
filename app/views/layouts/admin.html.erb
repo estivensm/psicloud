@@ -51,7 +51,7 @@
                </form>-->
                <ul class="nav navbar-nav navbar-right">
                   <li><a href="#">Link</a></li>
-                  <li style = "height: 51px;margin-left: 20px;margin-right: 15px;" > <%= (image_tag Account.where(admin_user: current_user.admin_user).first.logo_url(:logo))  %></li>
+                  <li style = "height: 51px;margin-left: 20px;margin-right: 15px;" > <%= (image_tag Account.where(admin_user: current_user.admin_user).first.logo_url(:logo)) if Account.where(admin_user: current_user.admin_user).first.logo? %></li>
                   <li class="dropdown">
                      <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.names  %> </span><span style = "color:gray" class="caret"></span></a>
                       <ul class="dropdown-menu">
