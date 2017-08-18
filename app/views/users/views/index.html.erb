@@ -27,7 +27,7 @@
             <tbody>
                <% @users.each do |user|%>
                <tr>
-                  <td><%=user.email%></td>
+                  <td><%=user.email%> <%=user.company%></td>
                   <td><%=user.names%></td>
                   <td><%=user.last_names%></td>
                   <td><%=user.document%></td>
