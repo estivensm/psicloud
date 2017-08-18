@@ -10,10 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816012722) do
+ActiveRecord::Schema.define(version: 20170817195553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "phone"
+    t.string "email"
+    t.string "logo"
+    t.integer "admin_user"
+    t.integer "users_quantity"
+    t.integer "file_size"
+    t.string "account_type"
+    t.boolean "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "second_name"
+    t.string "first_last_name"
+    t.string "second_last_name"
+    t.date "birth_date"
+    t.integer "age"
+    t.string "document_type"
+    t.string "document"
+    t.string "occupation"
+    t.string "profession"
+    t.string "phone"
+    t.string "address"
+    t.string "email"
+    t.string "contact_name"
+    t.string "contact_phone"
+    t.string "contact_relationship"
+    t.string "gender"
+    t.string "civil_status"
+    t.string "blood_type"
+    t.string "ethnic_group"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "eps_id"
+    t.integer "count"
+    t.integer "agreement_id"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "movil"
+    t.string "city"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -46,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170816012722) do
     t.boolean "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

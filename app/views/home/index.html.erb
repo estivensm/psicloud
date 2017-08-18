@@ -1,32 +1,63 @@
-
-
 <div class="container">
-  <h2>Basic Table</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-    </tbody>
-  </table>
+	
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+	
+
+<div class="padding">
+    <div class="full col-sm-12 search-p">
+      <!-- content -->
+      <div class="row">
+        <!-- main col left -->
+        <div class="col-sm-12">
+          <header class="sb-page-header" style = "padding-bottom:0px!important">
+            <div class="">
+              <%= form_tag root_path, :method =>
+              'get', remote: true, class: 'js-filter' do %>
+     
+                <% flash.each do |name, msg| %>
+                  <%= content_tag :div, msg, class: "alert alert-success" %>
+                  <% end %>
+                  <div >
+                    <h2 style = "color:#969696 !important;font-size:45px!important;text-align:center!important">Buscar Paciente</h2>
+
+     
+                    <div class="row">
+                      <div class="col-md-8 col-md-offset-2">
+                        <div class="" id="">
+                          <%= text_field_tag :search, nil, :placeholder =>
+                          "Ingresa Nombre o Cedula", :class => 'form-control query' , style: "height: 34px !important;"%>
+
+                        </div>
+                         <br>
+                         
+                          <div class="row">
+                            <div class="col-md-12" style = "text-align:center">
+                              <%= link_to 'Nuevo Paciente', new_patient_path , :class=>"btn btn-primary btn-lg Cr js-filter"%></div>
+                          </div>
+                        
+                      </div>
+                    </div>
+                    <br>
+                  </div>
+                <% end %>
+                 
+            </div>    
+          </header>
+          <br/>
+
+          <div class = "personal">
+            <div class="row">
+              <div class="col-md-12 jm">
+                <%= render partial: "personas" %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>        
+
+  </div>
+  </div>
+	
 </div>

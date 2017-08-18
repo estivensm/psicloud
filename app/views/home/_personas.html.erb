@@ -1,0 +1,74 @@
+<% if @pacientes != nil%>
+
+  <% if @pacientes.count != 0%>
+  <span class="btn btn-link btn-xs pull-right ">
+   <%= will_paginate @pacientes%>
+  </span>  
+  <% @pacientes.each do |paciente| %>
+
+
+<div class="row pat" style = "background:whitesmoke;padding:10px">
+<div class="col-md-2 text-center" >
+   <%= paciente.avatar? ? image_tag(paciente.avatar_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
+</div>
+ <div class="col-md-10" style ="margin-top: 20px;">
+  <span style = "font-size:18px!important;margin-right:10px;color:gray">
+              <%= paciente.first_name %>
+              <%= paciente.second_name %>
+              <%= paciente.first_last_name %>
+         
+            </span>
+            <br>
+ <span style = "font-size:14px!important;margin-right:10px;color:gray">
+           CC :
+            <%= paciente.document %>
+            </span>
+
+       <%= link_to '| Ver Paciente ' , patient_path(paciente), :class =>
+            "marg" %>
+</div>
+ 
+
+
+  
+
+</div>
+
+
+    
+    <script>
+    $('.Cr').show();
+ 
+  </script>
+    <hr>
+  <% end %>
+  <% else %>
+  <div class="jumbotron text-center">
+  <h1>¡Lo sentimos!</h1>
+  <p>No hay Pacientes registrados con los criterios de busqueda ingresados</p>
+  <p>  <%= link_to 'Nuevo Paciente', new_patient_path , :class=>"btn btn-primary btn-lg"%></p>
+  <script>
+    $('.Cr').hide();
+
+  </script>
+</div>
+  <% end %>
+
+  <%else%>
+ 
+  <script>
+    $('.Cr').show();
+    
+  </script>
+
+<% end %>
+
+
+<style>
+.pat img
+{
+    width: 80px;
+    border-radius: 40px;
+}
+  
+</style>

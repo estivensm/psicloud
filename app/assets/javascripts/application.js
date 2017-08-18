@@ -18,4 +18,23 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on('turbolinks:load',function() {
+$('.next_page a').html("Siguiente");
+  $('.prev a').html("Anterior");
+
+
+
+	$(".js-filter").on("ajax:success",function(n,e,o,t){
+		$(".personal").html(e)})
+	,$(".query").on("keyup",function(n){
+
+
+		$(".js-filter").submit()
+
+
+})
+
+
+
+});
 

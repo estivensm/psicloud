@@ -1,0 +1,42 @@
+<div class="container">
+   <div class="row" >
+      <div class = "row title-table">
+         <div class = "col-md-6">
+            <p>Usuarios <span class="label label-primary"><%=@users.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @users, :entry_name => 'Usuarios' %></span> </p>
+         </div>
+         <div class = "col-md-4 paginate text-left title-table1">
+            <%= will_paginate @users%>
+         </div>
+         <div class = "col-md-2">
+            <%= link_to 'Nuevo', new_user_path, remote: true, class: "btn btn-primary"  %>
+         </div>
+      </div>
+      <hr class="hr">
+      <div class = "row">
+         <table class="table">
+            <thead>
+               <tr class = "tr-table">
+                  <th>Email</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Cedula</th>
+                  <th>Registro Medico</th>
+                  <th>Rol</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% @users.each do |user|%>
+               <tr>
+                  <td><%=user.email%></td>
+                  <td><%=user.names%></td>
+                  <td><%=user.last_names%></td>
+                  <td><%=user.document%></td>
+                  <td><%=user.medical_record%></td>
+                  <td><%=user.rol_id%></td>
+               </tr>
+               <%end%>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>

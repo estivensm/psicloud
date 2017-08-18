@@ -51,8 +51,16 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 #bootstrap
 gem 'twitter-bootstrap-rails', '~> 4.0'
 
+#manejo de archivos
+gem 'carrierwave', '~> 0.11.2'
 
+gem 'will_paginate',           '3.1.0'
+#Fronend
+gem 'bootstrap-will_paginate', '0.0.10'
+#Ver los campos en los modelos
+gem 'annotate'
 
+gem "mini_magick"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

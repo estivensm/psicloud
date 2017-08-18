@@ -1,0 +1,269 @@
+
+
+<div class="container">
+<br>
+<h1 class="h1-tittle"><%=action_type%> Paciente</h1>
+
+<div class = "row row-form">
+  <br>
+<%= form_with(model: patient, local: true) do |form| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="row">
+<div class="col-md-12">
+<h3>Informacion Basica</h3>
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Primer Nombre" %>
+    <%= form.text_field :first_name, id: :patient_first_name, class: "form-control" %>
+  </div>
+</div>
+  <div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Segundo Nmbre" %>
+    <%= form.text_field :second_name, id: :patient_second_name , class: "form-control"%>
+  </div>
+
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Primer Apellido" %>
+    <%= form.text_field :first_last_name, id: :patient_first_last_name, class: "form-control" %>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Segundo Apellido" %>
+    <%= form.text_field :second_last_name, id: :patient_second_last_name , class: "form-control"%>
+  </div>
+</div>
+
+
+
+
+<div class="col-md-3">
+  <div class="form-group">
+    <%val1 = "" 
+ action_name == "edit" ? val1 = @patient.document_type : val1 = "" %>
+    <%= form.label "Tipo de Documento" %>
+     <%= form.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control'}%>
+  </div>
+</div>
+  <div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Documento" %>
+    <%= form.text_field :document, id: :patient_document , class: "form-control" %>
+  </div>
+
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+     <%= form.label "Fecha de Nacimiento" %>
+    <%= form.date_field :birth_date, id: :patient_birth_date  , class: "form-control"%>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+   <%= form.label "Edad" %>
+    <%= form.number_field :age, id: :patient_age , class: "form-control" %>
+</div>
+</div>
+
+</div>
+<hr>
+<div class="col-md-12">
+<h3>Informacion Basica</h3>
+</div>
+
+<div class="row">
+
+<div class="col-md-3">
+<div class="form-group">
+    <%= form.label "Ciudad de Residencia" %>
+    <%= form.text_field :city, id: :patient_city , class: "form-control"%>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+   <%= form.label "Direccion de Residencia" %>
+    <%= form.text_field :address, id: :patient_address , class: "form-control" %>
+</div>
+</div>
+  <div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Telefono Fijo" %>
+    <%= form.text_field :phone, id: :patient_phone , class: "form-control" %>
+  </div>
+
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+     <%= form.label "Telefono Movil" %>
+    <%= form.text_field :movil, id: :patient_movil  , class: "form-control"%>
+  </div>
+</div>
+
+
+
+<div class="col-md-3">
+<div class="form-group">
+    <%= form.label "Email" %>
+    <%= form.text_field :email, id: :patient_email , class: "form-control"%>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+   <%= form.label "Ocupacion" %>
+    <%= form.text_field :occupation, id: :patient_occupation , class: "form-control" %>
+</div>
+</div>
+  <div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Profesion" %>
+    <%= form.text_field :profession, id: :patient_profession , class: "form-control" %>
+  </div>
+
+</div>
+
+
+
+
+</div>
+
+<hr>
+<div class="col-md-12">
+<h3>Informacion Basica</h3>
+</div>
+<div class="row">
+
+<div class="col-md-3">
+<div class="form-group">
+    <%val1 = "" 
+ action_name == "edit" ? val1 = @patient.gender : val1 = "" %>
+    <%= form.label "Genero" %>
+     <%= form.select 'gender', options_for_select(["Hombre", "Mujer", "Indeterminado"], val1), {},{:class => 'form-control'}%>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+   <%= form.label "Estado Civil" %>
+    <%= form.text_field :civil_status, id: :patient_civil_status , class: "form-control" %>
+</div>
+</div>
+  <div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Grupo Sanguineo" %>
+    <%= form.text_field :blood_type, id: :patient_blood_type , class: "form-control" %>
+  </div>
+
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+     <%= form.label "Grupo Etnico" %>
+    <%= form.text_field :ethnic_group, id: :patient_ethnic_group  , class: "form-control"%>
+  </div>
+</div>
+
+
+
+<div class="col-md-3">
+<div class="form-group">
+    <%= form.label "Eps" %>
+    <%= form.text_field :eps_id, id: :patient_eps_id , class: "form-control"%>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+   <%= form.label "Convenio" %>
+    <%= form.text_field :agreement_id, id: :patient_agreement_id , class: "form-control" %>
+</div>
+</div>
+  <div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Foto" %>
+    <%= form.file_field :avatar, id: :patient_avatar , class: "form-control" %>
+  </div>
+
+</div>
+
+
+
+
+</div>
+
+
+
+<hr>
+<div class="col-md-12">
+<h3>Informacion de Contacto</h3>
+</div>
+<div class="row">
+
+<div class="col-md-3">
+<div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :contact_name, id: :contact_name , class: "form-control"%>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+   <%= form.label "Telefono" %>
+    <%= form.text_field :contact_phone, id: :patient_contact_phone , class: "form-control" %>
+</div>
+</div>
+  <div class="col-md-3">
+  <div class="form-group">
+    <%= form.label "Parentesco" %>
+    <%= form.text_field :contact_relationship, id: :patient_contact_relationship , class: "form-control" %>
+  </div>
+
+</div>
+
+<%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+<%= form.hidden_field :admin_user ,:value =>  current_user.id %>
+
+
+
+
+</div>
+<hr>
+<br>
+<div class="row text-center">
+<div class="col-md-12">
+   <div class="actions">
+    <%= form.submit "Guardar", class: "btn-lg btn-primary btn-form" %>
+
+    
+  </div>
+  </div>
+  </div>
+
+  
+
+
+<%end%>
+
+
+</div>
+  
+</div>
+
+
+

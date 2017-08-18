@@ -1,0 +1,48 @@
+
+
+
+
+<div class="container">
+   <div class="row" >
+      <div class = "row title-table">
+         <div class = "col-md-6">
+            <p>Pacientes <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
+         </div>
+         <div class = "col-md-4 paginate text-left title-table1">
+            <%= will_paginate @patients%>
+         </div>
+         <div class = "col-md-2">
+            <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary"  %>
+         </div>
+      </div>
+      <hr class="hr">
+      <div class = "row">
+         <table class="table">
+            <thead>
+               <tr class = "tr-table">
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Document</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.first_name %> <%= patient.second_name %></td>
+        <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
+         <td><%= patient.document_type%>: <%= patient.document%></td>
+        <td><%= patient.birth_date %></td>
+        <td><%= link_to 'Show', patient %></td>
+        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+               </tr>
+               <%end%>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
