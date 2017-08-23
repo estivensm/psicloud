@@ -1,16 +1,23 @@
 <div class="container">
       <div class="row">
     
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 toppad" >
    
    
           <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
+            <div class="panel-heading" style="background: #3b84a7;color:white">
+              <h3 class="panel-title" style="font-size: 25px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="padding-top: 40px;">
               <div class="row img">
-                <div class="col-md-12 col-lg-12 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url(:logo)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
+                <div class="col-md-4 col-lg-4 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url(:logo)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
+                <div class="col-md-6 col-lg-6 info-p" > 
+                <p><strong>Documento: </strong> <%= @patient.document_type%>: <%= @patient.document%> </p>
+                 <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
+                  <p><strong>Edad: </strong><%= @patient.age%> </p>
+                  <p><strong>Genero: </strong><%= @patient.gender%> </p>
+
+                 </div>
                 
                 <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
                   <dl>
@@ -24,24 +31,14 @@
                     <dd>Male</dd>
                   </dl>
                 </div>-->
+
                 <div class=" col-md-12 col-lg-12 " style = "margin-top:10px;"> 
-                  <table class="table table-user-information">
+
+
+
+                  <table class="table table-user-information" style = "margin-bottom:0px !important">
                     <tbody>
-                      <tr>
-                        <th>Documento:</th>
-                        <td><%= @patient.document_type%>: <%= @patient.document%></td>
-                        <th>Fecha de Nacimiento:</th>
-                        <td><%= @patient.birth_date%> </td>
-                      </tr>
-                      <tr>
-                        
-                      </tr>
-                      <tr>
-                        <th>Edad:</th>
-                        <td> <%= @patient.age%> Años</td>
-                         <th>Genero:</th>
-                        <td> <%= @patient.gender%></td>
-                      </tr>
+                     
                      
                       <tr>
                         <th>Ocumpacion:</th>
@@ -59,32 +56,43 @@
                       </tr>
                       
                        <tr>
-                      <th>Telefono Fijo / Movil:</th>
-                        <td><%= @patient.phone%> / <%= @patient.movil%></td>
-                          <th>Email:</th>
-                        <td><%= @patient.email%></td>
+                      <th>Telefono Fijo:</th>
+                        <td><%= @patient.movil%></td>
+                        <th>Telefono Movil:</th>
+                        <td><%= @patient.movil%></td>
+                         
                         
                            
                       </tr>
                         <tr>
+                         <th>Email:</th>
+                        <td><%= @patient.email%></td>
                       <th>Estado Civil:</th>
                         <td><%= @patient.civil_status%> </td>
-                          <th>Grupo Etnico:</th>
-                        <td><%= @patient.ethnic_group%></td>
+              
                         
                            
                       </tr>
                       <tr>
+                                  <th>Grupo Etnico:</th>
+                        <td><%= @patient.ethnic_group%></td>
                       <th>EPS:</th>
                         <td><%= @patient.eps_id%> </td>
-                          <th>Convenio:</th>
-                        <td><%= @patient.agreement_id%></td>
+                        
                         
                            
                       </tr>
                         <tr>
+                          <th>Convenio:</th>
+                        <td><%= @patient.agreement_id%></td>
                       <th>Nombre Contacto:</th>
                         <td><%= @patient.contact_name%> (<%=@patient.contact_relationship%>) </td>
+                  
+                        
+                           
+                      </tr>
+                          <tr>
+                  
                           <th>Telefono del Contacto:</th>
                         <td><%= @patient.contact_phone%></td>
                         
@@ -96,8 +104,8 @@
                   </table>
                   <div class="row">
                     <div class="col-md-12 text-center">
-                      <a href="#" class="btn btn-primary">Crear Historia Clinica</a>
-                  <a href="#" class="btn btn-primary">Ver Historia Clinica</a>
+                     <!-- <a href="#" class="btn btn-primary">Crear Historia Clinica</a>
+                  <a href="#" class="btn btn-primary">Ver Historia Clinica</a>-->
                       
                     </div>
                   </div>
@@ -117,6 +125,67 @@
             
           </div>
         </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 toppad" >
+
+
+<div id="exTab2"> 
+<ul class="nav nav-tabs">
+      <li class="active">
+        <a  href="#1" data-toggle="tab">Historia Clinica</a>
+      </li>
+      <li><a href="#2" data-toggle="tab">Seguimientos</a>
+      </li>
+      <li><a href="#3" data-toggle="tab">Documentos Adjunto</a>
+      </li>
+       <li><a href="#4" data-toggle="tab">Proxima Cita</a>
+      </li>
+    </ul>
+
+      <div class="tab-content ">
+        <div class="tab-pane active" id="1">
+         
+          <%if @hs != nil%>
+          <div class="descnum">
+          <h3>1. Motivo de consulta</h3>
+           <p><%= @hs.consultation_reason %></p>
+          <hr>
+          <h3>2. Estado Actual</h3>
+           <p><%= @hs.actual_state %></p>
+<hr>
+            <h3>3. Hipotesis diagnostical</h3>
+           <p><%= @hs.diagnostic_hypothesis %></p>
+<hr>
+            <h3>4. Objetivo Terapeoutico</h3>
+           <p><%= @hs.therapeutic_goal %></p>
+<hr>
+            <h3>5. Tipo de Tratamiento</h3>
+           <p><%= @hs.type_of_treatment %></p>
+
+</div>
+          <%else%>
+          <br><br>
+                  <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary"%>
+
+          <%end%>
+
+
+
+
+        </div>
+        <div class="tab-pane" id="2">
+          <h3>Notice the gap between the content and tab after applying a background color</h3>
+        </div>
+        <div class="tab-pane" id="3">
+          <h3>add clearfix to tab-content (see the css)</h3>
+        </div>
+         <div class="tab-pane" id="4">
+          <h3>add clearfix to tab-content (see the css)</h3>
+        </div>
+      </div>
+  </div>
+
+            
+          </div>
       </div>
     </div>
 
@@ -162,9 +231,19 @@
 }
 .img img
 {
-  width: 100px;
+  width: 110px;
+  border-radius: 60px;
 }
-
+h3
+{
+  font-size:20px;
+ 
+      color: #3b84a7;
+}
+.info-p p
+{
+  font-size: 14px;
+}
 </style>
 
 <script>

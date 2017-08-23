@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
  
-  resources :patients
+ 
+  resources :patients do 
+     resources :clinic_histories
+
+  end
   resources :accounts
   root 'home#index'
 

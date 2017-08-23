@@ -15,9 +15,7 @@
               <%= form_tag root_path, :method =>
               'get', remote: true, class: 'js-filter' do %>
      
-                <% flash.each do |name, msg| %>
-                  <%= content_tag :div, msg, class: "alert alert-success" %>
-                  <% end %>
+                
                   <div >
                     <h2 style = "color:#969696 !important;font-size:45px!important;text-align:center!important">Buscar Paciente</h2>
 
@@ -26,7 +24,7 @@
                       <div class="col-md-8 col-md-offset-2">
                         <div class="" id="">
                           <%= text_field_tag :search, nil, :placeholder =>
-                          "Ingresa Nombre o Cedula", :class => 'form-control query' , style: "height: 34px !important;"%>
+                          "Ingresa Nombre o Cedula", :class => 'form-control query' , style: "height: 40px !important; border-radius: 4px !Important;"%>
 
                         </div>
                          <br>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817195553) do
+ActiveRecord::Schema.define(version: 20170818163703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,24 @@ ActiveRecord::Schema.define(version: 20170817195553) do
     t.integer "file_size"
     t.string "account_type"
     t.boolean "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clinic_histories", force: :cascade do |t|
+    t.integer "clinic_history_id"
+    t.integer "count"
+    t.text "consultation_reason"
+    t.text "actual_state"
+    t.text "diagnostic_hypothesis"
+    t.text "therapeutic_goal"
+    t.integer "quantity_appointment"
+    t.string "frequency_appointment"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "patient_id"
+    t.text "type_of_treatment"
+    t.text "description_appointment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

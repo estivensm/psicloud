@@ -1,5 +1,5 @@
 class Patient < ApplicationRecord
-
+     has_many :clinic_histories   
 	 mount_uploader :avatar, AvatarPatientUploader  
 
 	def self.search(search)

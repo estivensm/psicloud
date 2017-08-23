@@ -5,11 +5,13 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     @patients = Patient.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 3)
+ 
   end
 
   # GET /patients/1
   # GET /patients/1.json
   def show
+      @hs = @patient.clinic_histories.first
   end
 
   # GET /patients/new

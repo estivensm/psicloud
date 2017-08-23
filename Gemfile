@@ -61,6 +61,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'annotate'
 
 gem "mini_magick"
+
+gem 'active_decorator', '~> 0.7.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

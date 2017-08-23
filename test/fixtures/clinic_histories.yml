@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clinic_history_id: 1
+  count: 1
+  consultation_reason: MyText
+  actual_state: MyText
+  diagnostic_hypothesis: MyText
+  therapeutic_goal: MyText
+  quantity_appointment: 
+  frequency_appointment: MyString
+  user_id: 1
+  admin_user: 1
+  patient_id: 1
+  type_of_treatment: MyText
+  description_appointment: MyText
+
+two:
+  clinic_history_id: 1
+  count: 1
+  consultation_reason: MyText
+  actual_state: MyText
+  diagnostic_hypothesis: MyText
+  therapeutic_goal: MyText
+  quantity_appointment: 
+  frequency_appointment: MyString
+  user_id: 1
+  admin_user: 1
+  patient_id: 1
+  type_of_treatment: MyText
+  description_appointment: MyText

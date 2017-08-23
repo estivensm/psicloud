@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Clinic history:</strong>
+  <%= @clinic_history.clinic_history_id %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @clinic_history.count %>
+</p>
+
+<p>
+  <strong>Consultation reason:</strong>
+  <%= @clinic_history.consultation_reason %>
+</p>
+
+<p>
+  <strong>Actual state:</strong>
+  <%= @clinic_history.actual_state %>
+</p>
+
+<p>
+  <strong>Diagnostic hypothesis:</strong>
+  <%= @clinic_history.diagnostic_hypothesis %>
+</p>
+
+<p>
+  <strong>Therapeutic goal:</strong>
+  <%= @clinic_history.therapeutic_goal %>
+</p>
+
+<p>
+  <strong>Quantity appointment:</strong>
+  <%= @clinic_history.quantity_appointment %>
+</p>
+
+<p>
+  <strong>Frequency appointment:</strong>
+  <%= @clinic_history.frequency_appointment %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @clinic_history.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @clinic_history.admin_user %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @clinic_history.patient_id %>
+</p>
+
+<p>
+  <strong>Type of treatment:</strong>
+  <%= @clinic_history.type_of_treatment %>
+</p>
+
+<p>
+  <strong>Description appointment:</strong>
+  <%= @clinic_history.description_appointment %>
+</p>
+
+<%= link_to 'Edit', edit_clinic_history_path(@clinic_history) %> |
+<%= link_to 'Back', clinic_histories_path %>

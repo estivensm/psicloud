@@ -58,7 +58,7 @@
     <%val1 = "" 
  action_name == "edit" ? val1 = @patient.document_type : val1 = "" %>
     <%= form.label "Tipo de Documento" %>
-     <%= form.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control'}%>
+     <%= form.select 'document_type', options_for_select(@patient.select_documento, val1), {},{:class => 'form-control'}%>
   </div>
 </div>
   <div class="col-md-3">
@@ -152,10 +152,11 @@
 
 <div class="col-md-3">
 <div class="form-group">
-    <%val1 = "" 
- action_name == "edit" ? val1 = @patient.gender : val1 = "" %>
+
     <%= form.label "Genero" %>
-     <%= form.select 'gender', options_for_select(["Hombre", "Mujer", "Indeterminado"], val1), {},{:class => 'form-control'}%>
+     <%val1 = "" 
+ action_name == "edit" ? val1 = @patient.gender : val1 = "" %>
+     <%= form.select 'gender', options_for_select(@patient.select_genero, val1), {},{:class => 'form-control'}%>
   </div>
 </div>
 
@@ -168,7 +169,9 @@
   <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Grupo Sanguineo" %>
-    <%= form.text_field :blood_type, id: :patient_blood_type , class: "form-control" %>
+    <%val1 = "" 
+ action_name == "edit" ? val1 = @patient.blood_type : val1 = "" %>
+     <%= form.select 'blood_type', options_for_select(@patient.select_sangre, val1), {},{:class => 'form-control'}%>
   </div>
 
 </div>
@@ -237,7 +240,7 @@
 </div>
 
 <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
-<%= form.hidden_field :admin_user ,:value =>  current_user.id %>
+<%= form.hidden_field :user_id ,:value =>  current_user.id %>
 
 
 
@@ -264,6 +267,5 @@
 </div>
   
 </div>
-
 
 
