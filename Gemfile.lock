@@ -94,6 +94,8 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     google-api-client (0.8.2)
@@ -288,6 +290,7 @@ DEPENDENCIES
   carrierwave (~> 0.11.2)
   coffee-rails (~> 4.2)
   devise (~> 4.3)
+  font-awesome-rails
   google-api-client (= 0.8.2)
   google_calendar (~> 0.6.2)
   jbuilder (~> 2.5)

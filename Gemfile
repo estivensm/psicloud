@@ -59,7 +59,7 @@ gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 #Ver los campos en los modelos
 gem 'annotate'
-
+gem "font-awesome-rails"
 gem "mini_magick"
 
 gem 'active_decorator', '~> 0.7.1'

@@ -10,7 +10,7 @@ class ClinicHistoriesController < ApplicationController
   # GET /clinic_histories/1
   # GET /clinic_histories/1.json
   def show
-  
+  @patient = Patient.find(params[:patient_id])
   end
 
   # GET /clinic_histories/new
@@ -21,6 +21,7 @@ class ClinicHistoriesController < ApplicationController
 
   # GET /clinic_histories/1/edit
   def edit
+    @patient = Patient.find(params[:patient_id])
   end
 
   # POST /clinic_histories

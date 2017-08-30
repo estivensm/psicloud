@@ -4,8 +4,14 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
 *= require_self
+*= require font-awesome
 *= require_tree .
 */
+
+body
+{
+  font-family: 'Poppins' , sans-serif !important;
+}
 .application
 {
 
@@ -65,4 +71,21 @@
     margin: 0px;
        
     color: #b9b9b9;
+}
+.navbar
+{
+  margin-bottom: 0px !important;
+}
+
+.second-navbar
+{
+  background: #2a4979 !important;
+  margin-bottom: 50px !important;
+}
+
+
+.second-navbar .navbar-nav>li>a
+
+{
+  color:white !important;
 }

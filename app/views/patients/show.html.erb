@@ -1,7 +1,7 @@
 <div class="container">
       <div class="row">
     
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 toppad" >
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xs-offset-0 col-sm-offset-0 toppad" >
    
    
           <div class="panel panel-info">
@@ -10,13 +10,23 @@
             </div>
             <div class="panel-body" style="padding-top: 40px;">
               <div class="row img">
-                <div class="col-md-4 col-lg-4 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url(:logo)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
-                <div class="col-md-6 col-lg-6 info-p" > 
-                <p><strong>Documento: </strong> <%= @patient.document_type%>: <%= @patient.document%> </p>
+                <div class="col-md-3 col-lg-3 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url(:logo)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
+                <div class="col-md-7 col-lg-7 info-p" > 
+                <p><strong> <%= @patient.document_type%>: </strong><%= @patient.document%> </p>
                  <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
                   <p><strong>Edad: </strong><%= @patient.age%> </p>
                   <p><strong>Genero: </strong><%= @patient.gender%> </p>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Ver mas</button>
+                 </div>
 
+                 <div class="col-md-12 col-lg-12 info-p" style= "padding:20px;text-align: center;" > 
+                  <hr>
+                <p style = "font-size:16px"><i class="fa fa-calendar" aria-hidden="true"></i><strong> Proxima Cita: </strong>&nbsp;  3 de julio de 2016  &nbsp; <%= link_to  root_path , :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i> 
+               <% end %>&nbsp;<%= link_to  root_path , :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i> 
+               <% end %></p>
+              
                  </div>
                 
                 <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
@@ -32,86 +42,7 @@
                   </dl>
                 </div>-->
 
-                <div class=" col-md-12 col-lg-12 " style = "margin-top:10px;"> 
-
-
-
-                  <table class="table table-user-information" style = "margin-bottom:0px !important">
-                    <tbody>
-                     
-                     
-                      <tr>
-                        <th>Ocumpacion:</th>
-                        <td><%= @patient.occupation%></td>
-                         <th>Profesion:</th>
-                        <td><%= @patient.profession%></td>
-                      </tr>
-                   
-                         
-                        <tr>
-                        <th>Ciudad:</th>
-                        <td><%= @patient.city%></td>
-                        <th>Direccion:</th>
-                        <td><%= @patient.address%></td>
-                      </tr>
-                      
-                       <tr>
-                      <th>Telefono Fijo:</th>
-                        <td><%= @patient.movil%></td>
-                        <th>Telefono Movil:</th>
-                        <td><%= @patient.movil%></td>
-                         
-                        
-                           
-                      </tr>
-                        <tr>
-                         <th>Email:</th>
-                        <td><%= @patient.email%></td>
-                      <th>Estado Civil:</th>
-                        <td><%= @patient.civil_status%> </td>
-              
-                        
-                           
-                      </tr>
-                      <tr>
-                                  <th>Grupo Etnico:</th>
-                        <td><%= @patient.ethnic_group%></td>
-                      <th>EPS:</th>
-                        <td><%= @patient.eps_id%> </td>
-                        
-                        
-                           
-                      </tr>
-                        <tr>
-                          <th>Convenio:</th>
-                        <td><%= @patient.agreement_id%></td>
-                      <th>Nombre Contacto:</th>
-                        <td><%= @patient.contact_name%> (<%=@patient.contact_relationship%>) </td>
-                  
-                        
-                           
-                      </tr>
-                          <tr>
-                  
-                          <th>Telefono del Contacto:</th>
-                        <td><%= @patient.contact_phone%></td>
-                        
-                           
-                      </tr>
-
-                     
-                    </tbody>
-                  </table>
-                  <div class="row">
-                    <div class="col-md-12 text-center">
-                     <!-- <a href="#" class="btn btn-primary">Crear Historia Clinica</a>
-                  <a href="#" class="btn btn-primary">Ver Historia Clinica</a>-->
-                      
-                    </div>
-                  </div>
-                
-                 
-                </div>
+         
               </div>
             </div>
                  <div class="panel-footer">
@@ -125,7 +56,7 @@
             
           </div>
         </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 toppad" >
+          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xs-offset-0 col-sm-offset-0 toppad" >
 
 
 <div id="exTab2"> 
@@ -146,6 +77,7 @@
          
           <%if @hs != nil%>
           <div class="descnum">
+          <%= link_to "Ver Historia Clinica", patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary"%>
           <h3>1. Motivo de consulta</h3>
            <p><%= @hs.consultation_reason %></p>
           <hr>
@@ -231,7 +163,12 @@
 }
 .img img
 {
-  width: 110px;
+  width: 90px;
+  border-radius: 60px;
+}
+.img1 img
+{
+  width: 120px;
   border-radius: 60px;
 }
 h3
@@ -283,3 +220,128 @@ h3
     });
 });
 </script>
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="panel-heading" style="color:#3b84a7">
+              <h3 class="panel-title" style="font-size: 25px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
+            </div>        </div>
+        <div class="modal-body">
+                    <div class="" >
+   
+   
+          <div class="panel panel-info">
+           
+            <div class="panel-body" style="padding-top: 40px;">
+              <div class="row img1">
+                <div class="col-md-4 col-lg-4 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url(:logo)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
+                <div class="col-md-6 col-lg-6 info-p" > 
+                <p><strong>Documento: </strong> <%= @patient.document_type%>: <%= @patient.document%> </p>
+                 <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
+                  <p><strong>Edad: </strong><%= @patient.age%> </p>
+                  <p><strong>Genero: </strong><%= @patient.gender%> </p>
+                 </div>
+                
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+
+                <div class=" col-md-12 col-lg-12 " style = "margin-top:10px;"> 
+
+
+
+                  <table class="table table-user-information" style = "margin-bottom:0px !important">
+                    <tbody>
+                     
+                     
+                      <tr>
+                        <th>Ocumpacion:</th>
+                        <td><%= @patient.occupation%></td>
+                         <th>Profesion:</th>
+                        <td><%= @patient.profession%></td>
+                        <th>Ciudad:</th>
+                        <td><%= @patient.city%></td>
+                      </tr>
+                   
+                         
+                        <tr>
+                        
+                        <th>Direccion:</th>
+                        <td><%= @patient.address%></td>
+                         <th>Telefono Fijo:</th>
+                        <td><%= @patient.movil%></td>
+                        <th>Telefono Movil:</th>
+                        <td><%= @patient.movil%></td>
+                      </tr>
+                      
+                       
+                        <tr>
+                         <th>Email:</th>
+                        <td><%= @patient.email%></td>
+                      <th>Estado Civil:</th>
+                        <td><%= @patient.civil_status%> </td>
+                         <th>Grupo Etnico:</th>
+                        <td><%= @patient.ethnic_group%></td>
+              
+                        
+                           
+                      </tr>
+                      <tr>
+                                 
+                      <th>EPS:</th>
+                        <td><%= @patient.eps_id%> </td>
+                         <th>Convenio:</th>
+                        <td><%= @patient.agreement_id%></td>
+                      <th>Nombre Contacto:</th>
+                        <td><%= @patient.contact_name%> (<%=@patient.contact_relationship%>) </td>
+                  
+                        
+                           
+                      </tr>
+                     
+                          <tr>
+                  
+                          <th>Telefono del Contacto:</th>
+                        <td><%= @patient.contact_phone%></td>
+                        
+                           
+                      </tr>
+
+                     
+                    </tbody>
+                  </table>
+                 
+                 
+                </div>
+              </div>
+            </div>
+               
+          </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

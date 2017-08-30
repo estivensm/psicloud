@@ -65,5 +65,4 @@
   <%= @clinic_history.description_appointment %>
 </p>
 
-<%= link_to 'Edit', edit_clinic_history_path(@clinic_history) %> |
-<%= link_to 'Back', clinic_histories_path %>
+ <%= link_to "editar Historia Clinica", edit_patient_clinic_history_path(@patient.id,@clinic_history), class: "btn btn-primary"%>

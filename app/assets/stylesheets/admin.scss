@@ -116,6 +116,7 @@ height: 29px !important;
  .jumbotron {
 
      background-color: white !important;
+     padding-top:0px !important;
 }  
 label
 {
@@ -126,9 +127,9 @@ label
 .h1-tittle
 {
     
-    color: #ffffff;
+    color: gray;
 
-    background: #3b84a7 !important;
+    
     display: inline;
     padding: 2px 30px;
         font-size: 30px;
@@ -137,10 +138,18 @@ label
 }
 .row-form h3
 {
-  color: #3b84a7 !important;
-  
-    margin-top:0px !important;
-    font-family: 'Days One', sans-serif;
+
+    background: #3b84a7;
+    color: white;
+    /* margin-bottom: 4px !important; */
+    /* display: inline; */
+    padding: 3px 17px;
+    margin-left: 10px;
+    width: 322px;
+    margin: 0px;
+    margin-left: 10px;
+    border-radius: 8px 8px 0px 0px;
+
 }
 
 hr
@@ -149,14 +158,44 @@ hr
 }
 
 
-.area
+
+
+.active1 
 {
-  height:100px !important;
+     background: #17c1ca !important;
+  color:white!important;
+       border: 3px solid !important;
+
 }
 
-.descnum
+.active1 a
 {
-  max-height: 550px !important;
-    overflow: auto;
-    height: 550px;
+     background:none !important;
+
+}
+
+.li
+{
+      text-align: center;
+    width: 140px;
+  
+    
+}
+
+.na
+{
+ 
+}
+
+.area
+{
+      height: 100px !important;
+
+}
+
+@media (max-width: 900px) {
+    .li {
+          text-align: left !important;
+
+    }
 }

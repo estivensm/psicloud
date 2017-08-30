@@ -52,4 +52,28 @@ else
      return "Editar"
     end
 end
+
+
+
+
+def menu
+          
+  @menu = ["","","","",""]
+  if  controller.controller_name == "home" 
+        @menu = ["active1","na","na","na","na"]
+     elsif controller.controller_name == "views"
+        @menu = ["na","active1","na","na","na"]
+     elsif controller.controller_name == "patients"
+        @menu = ["na","na","active1","na","na"]
+     elsif controller.controller_name == "clinic_histories"
+        @menu = ["na","na","na","active1","na"]
+     else
+        @menu = ["na","na","na","na","active1"]
+  end
+
+  return @menu
+
+end
+
+
 end

@@ -32,7 +32,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   end
 
   version :logo do
-    process resize_to_fill: [150, 50]
+    process resize_to_fill: [100, 30]
   end
  
   version :square do

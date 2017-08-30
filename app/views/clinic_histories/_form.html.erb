@@ -1,10 +1,11 @@
 
 <div class="container">
-<br>
-<h1 class="h1-tittle"><%=action_type%> Historia Clinica</h1>
+
 
 <div class = "row row-form">
-  <br>
+  <h1 class="h1-tittle"><%=action_type%> Historia Clinica</h1>
+
+  <br><br><br>
 
 <%= form_for([@patient, @clinic_history], :html => { :id => "signup" })  do |form| %>
   <% if @clinic_history.errors.any? %>
@@ -27,20 +28,22 @@
 
 
 
-<div class="col-md-6">
+<div class="col-md-10 col-md-offset-1">
 <h3>1. Motivo de consulta</h3>
     <div class="form-group">
-    <%= form.label "Descripcion" %>
+    
     <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area" %>
   </div>
+  <hr>
+  <br>
 <h3>2. Estado Actual</h3>
   <div class="form-group">
-    <%= form.label "Descripcion" %>
+  
     <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area"  %>
   </div>
 <h3>3. Hipotesis Diagnostica</h3>
    <div class="form-group">
-    <%= form.label "Descripcion" %>
+    
     <%= form.text_area :diagnostic_hypothesis, id: :clinic_history_diagnostic_hypothesis, class: "form form-control area"  %>
   </div>
   
@@ -48,47 +51,6 @@
 
 </div>
 
-<div class="col-md-6">
-  <h3>4 .Objetivo del Tratamientol</h3>
-    <div class="form-group">
-    <%= form.label "Descripcion" %>
-    <%= form.text_area :therapeutic_goal, id: :clinic_history_therapeutic_goal , class: "form form-control area" %>
-  </div>
-    <h3>5. Tipo de Tratamiento</h3>
-    <div class="form-group">
-    <%= form.label "Descripcion" %>
-    <%= form.text_area :type_of_treatment, id: :clinic_history_type_of_treatment, class: "form form-control area" %>
-  </div>
-
-<h3>7 .Tiempo probable de atención y frecuencia en citas</h3>
-<div class="form-group">
-    <%= form.label "Descripcion" %>
-    <%= form.text_area :description_appointment, id: :clinic_history_description_appointment, class: "form form-control area" %>
-  </div>
-<div class="row">
-<div class="col-md-6">
-
-  
-  <div class="field">
-    <%= form.label "Cantidad de Citas" %>
-    <%= form.number_field :quantity_appointment, id: :clinic_history_quantity_appointment %>
-  </div>
-</div>
-<div class="col-md-6">
-
-  <div class="form-group">
-     <%val1 = "" 
- action_name == "edit" ? val1 = @clinic_history.frequency_appointment : val1 = "" %>
-    <%= form.label "Frecuencia" %>
-     <%= form.select 'frequency_appointment', options_for_select(["Semanal", "Mensual", "Anual"], val1), {},{:class => 'form-control'}%>
-  </div>
-
-
-  
-</div>
-</div>
-  
-</div>
 
 
 
@@ -121,3 +83,8 @@
 </div>
   
 </div>
+
+<style>
+
+  
+</style>
