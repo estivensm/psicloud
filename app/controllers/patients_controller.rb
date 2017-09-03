@@ -27,7 +27,9 @@ class PatientsController < ApplicationController
   # POST /patients.json
   def create
     @patient = Patient.new(patient_params)
-
+    datau = @patient.data
+    @patient.data = ""
+    @patient.avatar = convert_data_uri_to_upload(datau)
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
@@ -44,6 +46,10 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
+        datau = @patient.data
+        @patient.data = ""
+        @patient.avatar = convert_data_uri_to_upload(datau)
+        @patient.save
         format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @patient }
       else
@@ -71,6 +77,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:first_name, :second_name, :first_last_name, :second_last_name, :birth_date, :age, :document_type, :document, :occupation, :profession, :phone, :address, :email, :contact_name, :contact_phone, :gender, :contact_relationship, :civil_status, :blood_type,:ethnic_group, :user_id, :admin_user,:eps_id,:count,:agreement_id,:avatar,:city,:movil )
+      params.require(:patient).permit(:first_name, :second_name, :first_last_name, :second_last_name, :birth_date, :age, :document_type, :document, :occupation, :profession, :phone, :address, :email, :contact_name, :contact_phone, :gender, :contact_relationship, :civil_status, :blood_type,:ethnic_group, :user_id, :admin_user,:eps_id,:count,:agreement_id,:avatar,:city,:movil,:data )
     end
 end

@@ -1,0 +1,51 @@
+
+<div class="modal fade bs-example-modal-img" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title" id="exampleModalLabel">
+     User Avatar
+    </h4>
+   </div>
+ 
+    <div class="modal-body">
+     <div class="form-group">
+      <%= form.file_field :avatar, id: :patient_avatar, :class => 'form-control',  :accept => 'image/png,image/gif,image/jpeg' %>
+     <%= form.hidden_field :data, class: "hd"%>
+     </div>
+     <div class="row form-set">
+      <div class="col-md-6">
+ 
+          <div class="imageBox" id="avatarBox">
+              <div class="thumbBox"></div>
+              <div class="spinner" style="display: none">
+               Loading...
+              </div>
+          </div>
+ 
+          <div class="action">
+              <input type="button" id="btnZoomIn" class="btnZoomIn avatar btn btn-default" value="+">
+              <input type="button" id="btnZoomOut" class="btnZoomOut avatar btn btn-default" value="-">
+              <input type="button" id="btnCrop" class="btnCrop avatar btn btn-default" value="Crop">
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="cropped croppedAvatar">
+            <!--PLACE DEFAULT IMAGE-->
+            <image src="<%= @hola %>" style="width:100%;" id="avatar-c" class="thumbnail" />
+          </div>
+          <div class="action">
+              <button type="button" class="btn btn-default pull-right" data-dismiss="modal" aria-label="Close">
+               Close
+              </button>
+          </div>
+      </div>
+     </div>
+    </div>
+ 
+  </div>
+ </div>
+</div>

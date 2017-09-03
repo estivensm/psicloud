@@ -198,10 +198,30 @@
 </div>
 </div>
   <div class="col-md-3">
-  <div class="form-group">
-    <%= form.label "Foto" %>
-    <%= form.file_field :avatar, id: :patient_avatar , class: "form-control" %>
-  </div>
+  
+
+
+
+<% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" %>
+ <image  src="<%=@hola%>" style="width:50%;display:inline-block" id="avatar" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-img" />
+
+
+<button type="button" class="camBtn btn btn-primary" data-toggle="modal" data-type="1" data-target="#camMod">
+  <i class="glyphicon glyphicon-camera" style = "font-size:30px; text-align: center;"></i>
+</button>
+
+
+<%= render 'modal_crop', form: form %>
+
+
+
+
+
+
+
+
+
+
 
 </div>
 
@@ -267,5 +287,291 @@
 </div>
   
 </div>
+
+<div class="modal fade" id="camMod" tabindex="-1" role="dialog" aria-labelledby="camMLb">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Use Camera</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-12 well text-center">
+              <video id="video" width="440" height="280" autoplay></video>
+              <canvas id="canvas" width="640" height="480" class="hide"></canvas>
+            </div>
+            <div class="text-center">
+              <a class="btn btn-primary" id="snap" data-dismiss="modal"  data-type='1'>Snap Photo</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<style type="text/css">
+.imageBox{
+    position: relative;
+    height: 400px;
+    width: 400px;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+.imageBox .thumbBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+.imageBox .spinner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}
+.cropped{
+ border: 1px solid #d3d3d3;
+ height: 400px;
+ width: 400px;
+ vertical-align:  middle;
+ text-align: center;
+}
+.action{
+ text-align: center;padding-top: 5px;
+}
+</style>
+
+<script type='text/javascript'>
+
+$(document).on('turbolinks:load',function() {
+ 
+     var options =
+     {
+         thumbBox: '.thumbBox',
+         spinner: '.spinner',
+         imgSrc: '<%=@hola%>'
+     }
+ 
+    
+  var cropper = $('.imageBox').cropbox(options);
+
+
+  $("#patient_avatar").on('change', function(){
+         var reader = new FileReader();
+         reader.onload = function(e) {
+             options.imgSrc = e.target.result;
+            
+             cropper = $('#avatarBox').cropbox(options);
+         }
+         reader.readAsDataURL(this.files[0]);
+         this.files = [];
+     });
+ 
+ 
+     // Crop handler.
+     $('.btnCrop').on('click', function(){
+      var img = cropper.getDataURL();
+      console.log(img);
+
+
+
+      // Place the cropped image's datafile.
+         $('.croppedAvatar').html('<img src="'+img+'" width="100%">');
+ 
+         // Place it to the default image. The one that triggers the modal.
+         $('#avatar').attr('src', img);
+         $('.hd').val(img);
+ 
+
+
+
+         // Place the datafile value in the hidden field
+  $('#avatar_datafile').val(img);       
+     });
+ 
+     $('.btnZoomIn').on('click', function(){        
+      cropper.zoomIn();         
+     });
+ 
+     $('.btnZoomOut').on('click', function(){         
+      cropper.zoomOut();         
+     });
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ var localstream;
+  var canvas   = document.getElementById("canvas");
+  var context  = canvas.getContext("2d");
+  var video    = document.getElementById("video");
+  var videoObj = { "video": true };
+ 
+  // for checking of camera and getting the stream.
+  var loadChecking = function(){
+    console.log("Video capture: ");
+    if(navigator.getUserMedia) {
+      navigator.getUserMedia(videoObj, function(stream) {
+        stream.getTracks()[0].stop();
+        console.log("Video capture1: ");
+      }, errBack);
+    } else if(navigator.webkitGetUserMedia) {
+      navigator.webkitGetUserMedia(videoObj, function(stream){
+        stream.getTracks()[0].stop();
+        console.log("Video capture2: ");
+      }, errBack);
+    }
+    else if(navigator.mozGetUserMedia) {
+      navigator.mozGetUserMedia(videoObj, function(stream){
+        stream.getTracks()[0].stop();
+        console.log("Video capture3: ");
+      }, errBack);
+    }
+  };
+ 
+  // error handling.
+  var errBack  = function(error) {
+    $('.camBtn').hide(); // in case camera does not exists. hide the button.
+    console.log("Video capture error: ", error.code);
+  };
+ 
+  // initiate function to detect.
+  loadChecking();
+
+
+
+
+
+
+// Load streaming once the modal opens.
+$('#camMod').on('show.bs.modal', function (e) {
+        console.log("Video capture8: ");
+  var button = $(e.relatedTarget);
+  $("#snap").data('type', button.data('type'));
+  // Put video listeners into place
+  if(navigator.getUserMedia) { // Standard
+    navigator.getUserMedia(videoObj, function(stream) {
+      console.log("Video capture4: ");
+      video.src   = stream;
+      localstream = stream;
+      video.play();
+    }, errBack);
+  } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+    navigator.webkitGetUserMedia(videoObj, function(stream){
+      console.log("Video capture5: ");
+      video.src   = window.URL.createObjectURL(stream);
+      localstream = stream;
+      video.play();
+    }, errBack);
+  }
+  else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+    navigator.mozGetUserMedia(videoObj, function(stream){
+      console.log("Video capture6: ");
+      video.src   = window.URL.createObjectURL(stream);
+      localstream = stream;
+      video.play();
+    }, errBack);
+  }
+  console.log("camera on");
+}).on('hide.bs.modal', function(e){
+  video.pause();
+  video.src = '';
+  if(localstream)
+    localstream.getTracks()[0].stop();
+  console.log('camera off');
+});
+ 
+
+
+// Draw the image based on the streaming to a canvas.
+$("#snap").click(function(){
+
+  context.drawImage(video, 0, 0, 640, 480);
+ 
+  // convert the content of the canvas to Data URI
+  $datauri = $("#canvas")[0].toDataURL();
+
+  $('#avatar').attr('src',$datauri);
+   $('.hd').attr('value',$datauri);
+   $('#avatar-c').attr('src',$datauri);
+   $('#avatarBox').attr('style', "background-image: url(" + "'" + $datauri + "'" + ")");
+
+ 
+
+    var options1 =
+     {
+         thumbBox: '.thumbBox',
+         spinner: '.spinner',
+         imgSrc: $datauri
+     }
+     var cropper = $('.imageBox').cropbox(options1);
+
+  // From here you can place it on your hidden field
+ $("#avatar_datafile").val($datauri);
+ 
+ // [Optional] I prefer to close the modal once this is done. 
+  $('#camMod').modal('hide')
+});
+
+
+
+
+
+
+
+
+
+ });
+ 
+
+
+
+
+</script>
 
 
