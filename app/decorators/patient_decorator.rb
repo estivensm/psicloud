@@ -9,6 +9,22 @@ module PatientDecorator
     ]
   end
 
+    def select_estado_civil
+    [
+      ['Soltero', 'Soltero'],
+      ['Casado', 'Casado'],
+      ['Union Libre', 'Union Libre']
+    ]
+  end
+
+  def select_grupo_etnico
+    [
+      ['Ninguno', 'Ninguno'],
+      ['Mestizo', 'Meztizo'],
+      ['Afro Desendiente', 'Afro Desendiente']
+    ]
+  end
+
 	
 	def select_documento
 		[
@@ -39,4 +55,26 @@ module PatientDecorator
  	]
 	end
 
+
+    def select_tools
+    [
+      ['Entrevista Clinica', 'Entrevista Clinica'],
+      ['Observación', 'Observación'],
+      ['Test proyectivo', 'Test proyectivo'],
+      ['Test Objetivo', 'Test Objetivo'],
+      ['Escalas de evaluación o inventarios', 'Escalas de evaluación o inventarios'],
+      ['Cuestionarios', 'Cuestionarios'],
+      ['Genograma', 'Genograma']
+    ]
+  end
+
+  def select_type
+    [
+      ['Psicologico', 'Psicologico'],
+      ['Psiquiatricos', 'Psiquiatricos'],
+      ['Toxicos', 'Toxicos'],
+      ['Medicos', 'Medicos'],
+
+    ]
+  end
 end

@@ -1,11 +1,11 @@
 
-<div class="container">
+
 
 
 <div class = "row row-form">
-  <h1 class="h1-tittle"><%=action_type%> Historia Clinica</h1>
+  
 
-  <br><br><br>
+
 
 <%= form_for([@patient, @clinic_history], :html => { :id => "signup" })  do |form| %>
   <% if @clinic_history.errors.any? %>
@@ -24,7 +24,7 @@
 
 
 
-<div class="row">
+<div class="row step1">
 
 
 
@@ -41,10 +41,10 @@
   
     <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area"  %>
   </div>
-<h3>3. Hipotesis Diagnostica</h3>
+<h3>3. Dinamica Familiar</h3>
    <div class="form-group">
     
-    <%= form.text_area :diagnostic_hypothesis, id: :clinic_history_diagnostic_hypothesis, class: "form form-control area"  %>
+    <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area"  %>
   </div>
   
 
@@ -82,9 +82,3 @@
 <% end %>
 </div>
   
-</div>
-
-<style>
-
-  
-</style>

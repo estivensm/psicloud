@@ -43,6 +43,12 @@ def get_account
   
 end
 
+def get_diagnostic
+
+  Diagnostic.all
+  
+end
+
 
 def action_type
     

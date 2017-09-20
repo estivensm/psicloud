@@ -30,6 +30,7 @@ class PatientsController < ApplicationController
     datau = @patient.data
     @patient.data = ""
     @patient.avatar = convert_data_uri_to_upload(datau)
+    @patient.age = Date.today.year - @patient.birth_date.year
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
@@ -40,6 +41,12 @@ class PatientsController < ApplicationController
       end
     end
   end
+
+
+
+
+
+
 
   # PATCH/PUT /patients/1
   # PATCH/PUT /patients/1.json

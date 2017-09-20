@@ -89,9 +89,9 @@ background: #f2f2f2;
 
 
 .form-control {
-height: 29px !important;
+
     border: 1px solid #a2a2a2 !important;
-    border-radius: 0px !important;
+
     font-weight: 200;
     background: #fbfbfb !important;
 
@@ -103,7 +103,7 @@ height: 29px !important;
     margin-top: 4px;
     background: #white;
     /* border: 3px solid #3aa7da; */
-    box-shadow: #969595 0px 0px 22px;
+    /*box-shadow: #969595 0px 0px 22px;*/
 }
 
 .btn-form
@@ -127,25 +127,27 @@ label
 .h1-tittle
 {
     
-    color: gray;
+    color:#38b5af;
 
     
-    display: inline;
+    margin:0px;
     padding: 2px 30px;
-        font-size: 30px;
+    font-size: 30px;
     border-radius: 5px 5px 0px 0px;
     font-family: 'Days One', sans-serif;
+    text-align:center;
+
 }
 .row-form h3
 {
 
-    background: #3b84a7;
+   /* background: #3b84a7;*/
     color: white;
     /* margin-bottom: 4px !important; */
     /* display: inline; */
     padding: 3px 17px;
     margin-left: 10px;
-    width: 322px;
+   /* width: 500px;*/
     margin: 0px;
     margin-left: 10px;
     border-radius: 8px 8px 0px 0px;
@@ -198,4 +200,23 @@ hr
           text-align: left !important;
 
     }
+}
+
+
+.step1 h3
+{
+  
+  color:gray;
+}
+
+
+.imgedit img
+{
+  width:100px;
+      border: 3px solid #38b5af;
+}
+  
+.edit-active
+{
+ background-color: #17c1ca !important; 
 }

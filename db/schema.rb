@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903233907) do
+ActiveRecord::Schema.define(version: 20170920023915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(version: 20170903233907) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "backgrounds", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "patient_id"
+    t.integer "clinic_history_id"
+    t.text "description"
+    t.string "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "type_background"
+    t.string "clase"
+  end
+
   create_table "clinic_histories", force: :cascade do |t|
     t.integer "clinic_history_id"
     t.integer "count"
@@ -44,6 +57,31 @@ ActiveRecord::Schema.define(version: 20170903233907) do
     t.integer "patient_id"
     t.text "type_of_treatment"
     t.text "description_appointment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "family_dinamic"
+  end
+
+  create_table "clinic_histories_diagnostics", id: false, force: :cascade do |t|
+    t.bigint "clinic_history_id"
+    t.bigint "diagnostic_id"
+    t.index ["clinic_history_id"], name: "index_clinic_histories_diagnostics_on_clinic_history_id"
+    t.index ["diagnostic_id"], name: "index_clinic_histories_diagnostics_on_diagnostic_id"
+  end
+
+  create_table "clinic_history_diagnostic", id: false, force: :cascade do |t|
+    t.bigint "clinic_history_id"
+    t.bigint "diagnostic_id"
+    t.index ["clinic_history_id"], name: "index_clinic_history_diagnostic_on_clinic_history_id"
+    t.index ["diagnostic_id"], name: "index_clinic_history_diagnostic_on_diagnostic_id"
+  end
+
+  create_table "diagnostics", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,6 +118,18 @@ ActiveRecord::Schema.define(version: 20170903233907) do
     t.string "movil"
     t.string "city"
     t.text "data"
+  end
+
+  create_table "tool_tests", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "patient_id"
+    t.integer "clinic_history_id"
+    t.string "type_tool"
+    t.text "description"
+    t.string "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

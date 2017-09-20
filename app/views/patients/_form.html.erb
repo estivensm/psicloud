@@ -2,11 +2,11 @@
 
 <div class="container">
 <br>
-<h1 class="h1-tittle"><%=action_type%> Paciente</h1>
+
 
 <div class = "row row-form">
   <br>
-<%= form_with(model: patient, local: true) do |form| %>
+<%= form_with(model: patient, local: true, id:"form") do |form| %>
   <% if patient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
@@ -18,7 +18,7 @@
       </ul>
     </div>
   <% end %>
-
+<h1 class="h1-tittle"><%=action_type%> Paciente</h1>
 
 <div class="row">
 <div class="col-md-12">
@@ -27,31 +27,31 @@
 <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Primer Nombre" %>
-    <%= form.text_field :first_name, id: :patient_first_name, class: "form-control" %>
+    <%= form.text_field :first_name, id: :patient_first_name, class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 </div>
   <div class="col-md-3">
   <div class="form-group">
-    <%= form.label "Segundo Nmbre" %>
-    <%= form.text_field :second_name, id: :patient_second_name , class: "form-control"%>
+    <%= form.label "Segundo Nombre" %>
+    <%= form.text_field :second_name, id: :patient_second_name , class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 
 </div>
 <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Primer Apellido" %>
-    <%= form.text_field :first_last_name, id: :patient_first_last_name, class: "form-control" %>
+    <%= form.text_field :first_last_name, id: :patient_first_last_name, class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 </div>
 <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Segundo Apellido" %>
-    <%= form.text_field :second_last_name, id: :patient_second_last_name , class: "form-control"%>
+    <%= form.text_field :second_last_name, id: :patient_second_last_name , class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 </div>
 
-
-
+</div>
+<div class="row">
 
 <div class="col-md-3">
   <div class="form-group">
@@ -64,23 +64,27 @@
   <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Documento" %>
-    <%= form.text_field :document, id: :patient_document , class: "form-control" %>
+    <%= form.text_field :document, id: :patient_document , class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
 </div>
-<div class="col-md-3">
-  <div class="form-group">
-     <%= form.label "Fecha de Nacimiento" %>
-    <%= form.date_field :birth_date, id: :patient_birth_date  , class: "form-control"%>
+<div class="col-md-6 sir">
+ <div class="form-group">
+             <%= form.label "Fecha de Nacimiento" %><br>
+              <%= form.date_select :birth_date,{
+                        :start_year =>
+              Time.now.year,
+                        :end_year => 1900,
+                        :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+                        :use_short_month => true,
+                        :order => [:day, :month, :year],
+                        :prompt => {:month => 'Mes', :day => 'Dia', :year => 'Año'}},
+                        {:class => 'year form-control line1 required',
+                        :id => 'patient_birth_date' , :title => "Es un Campo Obligatorio" }
+                      %>
+            </div>
+         
   </div>
-</div>
-<div class="col-md-3">
-  <div class="form-group">
-   <%= form.label "Edad" %>
-    <%= form.number_field :age, id: :patient_age , class: "form-control" %>
-</div>
-</div>
-
 </div>
 <hr>
 <div class="col-md-12">
@@ -121,7 +125,7 @@
 <div class="col-md-3">
 <div class="form-group">
     <%= form.label "Email" %>
-    <%= form.text_field :email, id: :patient_email , class: "form-control"%>
+    <%= form.email_field :email, id: :patient_email , class: "form-control"%>
   </div>
 </div>
 
@@ -163,7 +167,10 @@
 <div class="col-md-3">
   <div class="form-group">
    <%= form.label "Estado Civil" %>
-    <%= form.text_field :civil_status, id: :patient_civil_status , class: "form-control" %>
+   
+    <%val1 = "" 
+ action_name == "edit" ? val1 = @patient.civil_status : val1 = "" %>
+     <%= form.select 'civil_status', options_for_select(@patient.select_estado_civil, val1), {},{:class => 'form-control'}%>
 </div>
 </div>
   <div class="col-md-3">
@@ -178,7 +185,8 @@
 <div class="col-md-3">
   <div class="form-group">
      <%= form.label "Grupo Etnico" %>
-    <%= form.text_field :ethnic_group, id: :patient_ethnic_group  , class: "form-control"%>
+   
+    <%= form.select 'ethnic_group', options_for_select(@patient.select_grupo_etnico, val1), {},{:class => 'form-control'}%>
   </div>
 </div>
 
@@ -202,19 +210,6 @@
 
 
 
-<% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" %>
- <image  src="<%=@hola%>" style="width:50%;display:inline-block" id="avatar" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-img" />
-
-
-<button type="button" class="camBtn btn btn-primary" data-toggle="modal" data-type="1" data-target="#camMod">
-  <i class="glyphicon glyphicon-camera" style = "font-size:30px; text-align: center;"></i>
-</button>
-
-
-<%= render 'modal_crop', form: form %>
-
-
-
 
 
 
@@ -233,31 +228,79 @@
 
 
 <hr>
-<div class="col-md-12">
-<h3>Informacion de Contacto</h3>
-</div>
+
 <div class="row">
 
 <div class="col-md-3">
 <div class="form-group">
-    <%= form.label "Nombre" %>
+    <%= form.label "Nombre de Contacto" %>
     <%= form.text_field :contact_name, id: :contact_name , class: "form-control"%>
   </div>
 </div>
 
 <div class="col-md-3">
   <div class="form-group">
-   <%= form.label "Telefono" %>
+   <%= form.label "Telefono de Contacto" %>
     <%= form.text_field :contact_phone, id: :patient_contact_phone , class: "form-control" %>
 </div>
 </div>
   <div class="col-md-3">
   <div class="form-group">
-    <%= form.label "Parentesco" %>
+    <%= form.label "Parentesco del Contacto" %>
     <%= form.text_field :contact_relationship, id: :patient_contact_relationship , class: "form-control" %>
   </div>
 
 </div>
+  <div class="col-md-3">
+  
+
+
+
+
+
+
+
+
+
+
+
+</div></div>
+<hr>
+<div class="row">
+  <div class="col-md-12 text-center">
+  
+
+
+
+<% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "/assets/avatar.png" %>
+ <image  src="<%=@hola%>" style="width:12%;display:inline-block" id="avatar" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-img" />
+<br>
+
+<button type="button" class="adjBtn" data-toggle="modal" data-type="1" data-target="#modal-image">
+  <i class="glyphicon glyphicon-paperclip" style = "font-size:30px; text-align: center;"></i>
+</button>
+<button type="button" class="camBtn" data-toggle="modal" data-type="1" data-target="#camMod">
+  <i class="glyphicon glyphicon-camera" style = "font-size:30px; text-align: center;"></i>
+</button>
+
+<%= render 'modal_crop', form: form %>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
 
 <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
 <%= form.hidden_field :user_id ,:value =>  current_user.id %>
@@ -295,7 +338,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Use Camera</h4>
+        <h4 class="modal-title" id="myModalLabel">Camara</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -305,7 +348,7 @@
               <canvas id="canvas" width="640" height="480" class="hide"></canvas>
             </div>
             <div class="text-center">
-              <a class="btn btn-primary" id="snap" data-dismiss="modal"  data-type='1'>Snap Photo</a>
+              <a class="btn btn-primary" id="snap" data-dismiss="modal"  data-type='1'>Tomar Foto</a>
               
             </div>
           </div>
@@ -317,65 +360,47 @@
 
 
 
-
-
-
-<style type="text/css">
-.imageBox{
-    position: relative;
-    height: 400px;
-    width: 400px;
-    border:1px solid #aaa;
-    background: #fff;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    cursor:move;
+<style>
+#patient_birth_date
+{
+  width:30% !important;
+  display: inline-block;
 }
-.imageBox .thumbBox{
+.error
+{
+  color: red !important;
+}
+#patient_birth_date-error
+{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200px;
-    height: 200px;
-    margin-top: -100px;
-    margin-left: -100px;
-    border: 1px solid rgb(102, 102, 102);
-    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
-    background: none repeat scroll 0% 0% transparent;
-}
-.imageBox .spinner{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    line-height: 400px;
-    background: rgba(0,0,0,0.7);
-}
-.cropped{
- border: 1px solid #d3d3d3;
- height: 400px;
- width: 400px;
- vertical-align:  middle;
- text-align: center;
-}
-.action{
- text-align: center;padding-top: 5px;
-}
+    top: 62px;
+    left: 24px;
+ } 
 </style>
+
+
+
 
 <script type='text/javascript'>
 
 $(document).on('turbolinks:load',function() {
  
+
+$(document).ready(function(){
+  $('#form').validate();
+})
+
+
+
+
      var options =
      {
          thumbBox: '.thumbBox',
          spinner: '.spinner',
          imgSrc: '<%=@hola%>'
      }
- 
+   $('.btnCrop1').hide();
+  $('.btnCrop').show();
     
   var cropper = $('.imageBox').cropbox(options);
 
@@ -386,16 +411,20 @@ $(document).on('turbolinks:load',function() {
              options.imgSrc = e.target.result;
             
              cropper = $('#avatarBox').cropbox(options);
+             $('.btnCrop1').hide();
+  $('.btnCrop').show();
          }
          reader.readAsDataURL(this.files[0]);
          this.files = [];
+           
+   
      });
  
  
      // Crop handler.
      $('.btnCrop').on('click', function(){
       var img = cropper.getDataURL();
-      console.log(img);
+      console.log(options.imgSrc + "alejandro");
 
 
 
@@ -424,27 +453,37 @@ $(document).on('turbolinks:load',function() {
 
 
 
+  //Convierte en mayuscula la primera letra.
+        $('#patient_first_name').change(function()
+
+        {
+        $(this).val($(this).val().replace(/\b\w/g, l => l.toUpperCase()))
+        }
+        )
+        $('#patient_second_name').change(function()
+
+        {
+        $(this).val($(this).val().replace(/\b\w/g, l => l.toUpperCase()))
+        }
+        )
+        $('#patient_first_last_name').change(function()
+
+        {
+        $(this).val($(this).val().replace(/\b\w/g, l => l.toUpperCase()))
+        }
+        )
+        $('#patient_second_last_name').change(function()
+
+        {
+        $(this).val($(this).val().replace(/\b\w/g, l => l.toUpperCase()))
+        }
+        )
 
 
+  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ // Apertura de Camara
 
  var localstream;
   var canvas   = document.getElementById("canvas");
@@ -538,8 +577,8 @@ $("#snap").click(function(){
 
   $('#avatar').attr('src',$datauri);
    $('.hd').attr('value',$datauri);
-   $('#avatar-c').attr('src',$datauri);
-   $('#avatarBox').attr('style', "background-image: url(" + "'" + $datauri + "'" + ")");
+   $('.croppedAvatar').html('<img src="'+$datauri+'" width="100%">');
+  
 
  
 
@@ -549,18 +588,53 @@ $("#snap").click(function(){
          spinner: '.spinner',
          imgSrc: $datauri
      }
-     var cropper = $('.imageBox').cropbox(options1);
-
+     cropper1 = $('.imageBox').cropbox(options1);
+ console.log(cropper1 + "corepre");
   // From here you can place it on your hidden field
  $("#avatar_datafile").val($datauri);
  
  // [Optional] I prefer to close the modal once this is done. 
   $('#camMod').modal('hide')
+  $('#modal-image').modal('show')
+  $('.btnCrop').hide();
+  $('.btnCrop1').show();
 });
 
 
+$('.btnCrop1').on('click', function(){
+  console.log(cropper1 + "corepre");
+      var img1 = cropper1.getDataURL();
+      
+
+console.log("hollaaaa")
+      // Place the cropped image's datafile.
+         $('.croppedAvatar').html('<img src="'+img1+'" width="100%">');
+ 
+         // Place it to the default image. The one that triggers the modal.
+         $('#avatar').attr('src', img1);
+         $('.hd').val(img1);
+ 
 
 
+
+     
+     });
+ 
+     $('.btnZoomIn').on('click', function(){        
+      cropper1.zoomIn();         
+     });
+ 
+     $('.btnZoomOut').on('click', function(){         
+      cropper1.zoomOut();         
+     });
+
+  $('.adjBtn').on('click', function(){        
+      $('#patient_avatar').show();         
+     });
+ 
+     $('.camBtn').on('click', function(){         
+       $('#patient_avatar').hide();        
+     });
 
 
 

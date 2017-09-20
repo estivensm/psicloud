@@ -31,7 +31,7 @@ class ClinicHistoriesController < ApplicationController
  @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @clinic_history.save
-        format.html { redirect_to patient_clinic_histories_path(@patient), notice: 'Clinic history was successfully created.' }
+        format.html { redirect_to  patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' }
         format.json { render :show, status: :created, location: @clinic_history }
       else
         format.html { render :new }
@@ -43,9 +43,11 @@ class ClinicHistoriesController < ApplicationController
   # PATCH/PUT /clinic_histories/1
   # PATCH/PUT /clinic_histories/1.json
   def update
+     @patient = Patient.find(params[:patient_id])
+
     respond_to do |format|
       if @clinic_history.update(clinic_history_params)
-        format.html { redirect_to @clinic_history, notice: 'Clinic history was successfully updated.' }
+        format.html { redirect_to patient_clinic_history_path(@patient.id,@clinic_history.id), notice: 'Clinic history was successfully updated.' }
         format.json { render :show, status: :ok, location: @clinic_history }
       else
         format.html { render :edit }
@@ -64,6 +66,33 @@ class ClinicHistoriesController < ApplicationController
     end
   end
 
+
+  def update_step3
+      
+      @history = ClinicHistory.find(params[:id])
+      
+
+          if @history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis])
+               
+              params[:diagnostic_ids].each do |diag|
+                
+                @history.diagnostics << Diagnostic.find(diag)
+
+              end
+
+
+               redirect_to patient_clinic_history_path(@history.patient_id,@history.id)
+          end
+      
+  end
+  def step3
+
+      @history = ClinicHistory.find(params[:id])
+       @patient = Patient.find(@history.patient_id)
+         
+      
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clinic_history
@@ -73,6 +102,6 @@ class ClinicHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_history_params
-      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment, :user_id, :admin_user, :patient_id, :type_of_treatment, :description_appointment)
+      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment, :user_id, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :family_dinamic)
     end
 end

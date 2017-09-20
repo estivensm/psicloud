@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
      has_many :clinic_histories   
 	 mount_uploader :avatar, AvatarPatientUploader  
+	 
 
 	def self.search(search)
     where("(first_name || ' ' || second_name || ' ' || first_last_name  || ' ' || second_last_name) like '%#{search}%'  or 

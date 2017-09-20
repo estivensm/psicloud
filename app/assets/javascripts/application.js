@@ -14,7 +14,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery
+//= require jquery.validate
+//= require chosen-jquery
+//= require jquery.validate.additional-methods
 //= require turbolinks
 //= require_tree .
 

@@ -29,7 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-   gem 'pg'
+gem 'pg'
+gem 'jquery-validation-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -61,7 +62,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'annotate'
 gem "font-awesome-rails"
 gem "mini_magick"
-
+gem 'chosen-rails'
 gem 'active_decorator', '~> 0.7.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
