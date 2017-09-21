@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <script>
+      function number_pages() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+  </head>
+  <body onload="number_pages()">
+  
+
+<div class="info">
+  
+
+ 
+
+</div>
+  </body>
+</html>
+<style>
+.info
+{
+ 
+	margin-top: 20px !important;
+}
+ .table1
+    {
+
+        color: #7a7a7a;
+        font-size:12px;
+        padding-left: 20px;
+    padding-right: 20px;
+    
+
+
+
+    }
+  .table1 td, th
+  {
+        padding: 6px 20px;
+    border: 1px solid gray;
+  }
+</style>
+

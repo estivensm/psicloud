@@ -1,133 +1,77 @@
-
-
-
-
-
 <div class="container">
-
-<h1 class="h1-tittle imgedit" ><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%>  <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>
- <%= link_to "Primera Fase", edit_patient_clinic_history_path(@history.patient_id,@history.id), class: "btn btn-primary" , style: "margin-left: 10%;" %>
-
+<h1 class="h1-tittle imgedit" ><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%>  <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1>
+<br>
+<%= link_to "Primera Fase", edit_patient_clinic_history_path(@history.patient_id,@history.id), class: "btn btn-primary" , style: "margin-left: 10%;" %>
 <%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@history.patient_id,@history.id), class: "btn btn-primary"%>
 <%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@history.patient_id,@history.id), class: "btn btn-primary"%>
-
-
-  <%= link_to "Segunda Fase", patient_step3_path(@history.patient_id,@history.id), class: "btn btn-primary edit-active"%>
+<%= link_to "Segunda Fase", patient_step3_path(@history.patient_id,@history.id), class: "btn btn-primary edit-active"%>
 <hr>
-
-
 <div class = "row row-form">
-  
-
-
-
-<%= form_tag patient_update_step3_path(@history), method: :patch do %>
-  <% if @history.errors.any? %>
-    <div id="error_explanation">
+   <%= form_tag patient_update_step3_path(@history), method: :patch do %>
+   <% if @history.errors.any? %>
+   <div id="error_explanation">
       <h2><%= pluralize(@history.errors.count, "error") %> prohibited this clinic_history from being saved:</h2>
-
       <ul>
-      <% @history.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+         <% @history.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
       </ul>
-    </div>
-  <% end %>
-
-
-
-
-
-<div class="row step1">
-
-
-
-
-<div class="col-md-10 col-md-offset-1">
-<h3>6. Diagnostico</h3>
-<br>
-
- 
-   <div class="col-md-12">
-    <div class="form-group">
-  <%=label_tag "Descripcion" %>
-    <%= text_area_tag :diagnostic_hypothesis, @history.diagnostic_hypothesis , class: "form-control area" %>
-  </div>
-           <div class="form-group">
-     <%=label_tag "Manual Diagnóstico " %> <span style="color:#888888  !important;font-weight: bold">DSMV</span>       
-      <%= select_tag 'diagnostic_ids', options_for_select(get_diagnostic.collect{ |u| ["#{u.count} - #{u.name}", u.id] },{:selected=>@history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
-            </div> 
-
-  </div>
-
-<div class="col-md-12">
-<br>
-<hr>
-<h3>8. Objetivo Terapeoutico</h3>
-<br>
-    <div class="form-group">
-  
-    <%= text_area_tag :therapeutic_goal, @history.therapeutic_goal , class: "form-control area" %>
-  </div>
-  </div>
- 
-  <div class="col-md-12">
-  <br>
-  <hr>
-<h3>9. Tipo de Tratamiento</h3>
-<br>
-  <div class="form-group">
-  
-   
-    <%= text_area_tag :type_of_treatment, @history.type_of_treatment , class: "form-control area" %>
-  </div>
-
    </div>
-
-
+   <% end %>
+   <div class="row step1">
+      <div class="col-md-10 col-md-offset-1">
+         <h3>6. Diagnostico</h3>
+         <br>
+         <div class="col-md-12">
+            <div class="form-group">
+               <%=label_tag "Descripcion" %>
+               <%= text_area_tag :diagnostic_hypothesis, @history.diagnostic_hypothesis , class: "form-control area" %>
+            </div>
+            <div class="form-group">
+               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">DSMV</span>       
+               <%= select_tag 'diagnostic_ids', options_for_select(get_diagnostic.collect{ |u| ["#{u.count} - #{u.name}", u.id] },{:selected=>@history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
+            </div>
+         </div>
+         <div class="col-md-12">
+            <br>
+            <hr>
+            <h3>8. Objetivo Terapeoutico</h3>
+            <br>
+            <div class="form-group">
+               <%= text_area_tag :therapeutic_goal, @history.therapeutic_goal , class: "form-control area" %>
+            </div>
+         </div>
+         <div class="col-md-12">
+            <br>
+            <hr>
+            <h3>9. Tipo de Tratamiento</h3>
+            <br>
+            <div class="form-group">
+               <%= text_area_tag :type_of_treatment, @history.type_of_treatment , class: "form-control area" %>
+            </div>
+         </div>
+      </div>
+      <div class="row text-center">
+         <div class="col-md-12">
+            <div class="actions">
+               <%=  submit_tag "Guardar", class: "btn-lg btn-primary btn-form" %>
+            </div>
+         </div>
+      </div>
+      <% end %>
+   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
- <div class="row text-center">
-<div class="col-md-12">
-   <div class="actions">
-    <%=  submit_tag "Guardar", class: "btn-lg btn-primary btn-form" %>
-
-    
-  </div>
-  </div>
-  </div>
-<% end %>
-</div>
-  
-</div>
-
-
 <script>
-  $(document).on('turbolinks:load',function() {
-  $('.chosen-select1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
-          width: '850px;',
-          placeholder_text_single: "Seleccione una opción",
-          placeholder_text_multiple: "Seleccione una varias opciones"
-
-        });
-        });
+   $(document).on('turbolinks:load',function() {
+   $('.chosen-select1').chosen(
+         {
+   
+           allow_single_deselect: true,
+           no_results_text: 'No hay resultados',
+           width: '850px;',
+           placeholder_text_single: "Seleccione una opción",
+           placeholder_text_multiple: "Seleccione una varias opciones"
+   
+         });
+         });
 </script>

@@ -77,6 +77,7 @@
          
           <%if @hs != nil%>
           <div class="descnum">
+          <br>
           <%= link_to "Ver Historia Clinica", patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary"%>
           <h3>1. Motivo de consulta</h3>
            <p><%= @hs.consultation_reason %></p>

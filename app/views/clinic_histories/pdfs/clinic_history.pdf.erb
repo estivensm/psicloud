@@ -1,0 +1,210 @@
+ <table class="table1">
+        <tr style = "height:100px">
+         <td class="" style = "width:20%"><%=  wicked_pdf_image_tag (get_account1.logo_url), style: "width:150px;"%></td>
+         <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold">FORMATO DE HISTORIA CLINICA <br> <br><%=get_account1.name.upcase %></td>
+         <td class="text-center" style = "width:20%;font-size:40px;text-align: center">#<%=@clinic_history.id%></td>
+      </tr>
+
+  </table>
+<br><br>
+
+<table class="table1">
+   <tr>
+      <th colspan="4">
+         <h2 class= "h2" style="text-align: left!important">1. Datos del Paciente</h2>
+      </th>
+   </tr>
+   <tr>
+      <td> <strong> Nombres</strong><br> <%=@patient.first_name%> <%=@patient.second_name%> </td>
+      <td> <strong>Apellidos</strong><br> <%=@patient.first_last_name%> <%=@patient.second_last_name%> </td>
+      <td> <strong>Documento</strong><br> <%=  type_document(@patient.document_type)%> -  <%=@patient.document%> 
+      <td> <strong>Fecha de Nacimiento</strong><br> <%=@patient.birth_date%> </td>
+      </td>
+   </tr>
+   <tr>
+      <td> <strong>Edad</strong> <br><%=@patient.age%> </td>
+      <td> <strong>Ciudad</strong> <br><%=@patient.city%> </td>
+      <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>
+      <td> <strong>Telefono fijo</strong><br> <%=@patient.movil%> </td>
+   </tr>
+   <tr>
+      <td> <strong>Telefono Movil</strong> <br><%= @patient.movil%> </td>
+      <td> <strong>Email</strong><br> <%=@patient.email%> </td>
+      <td> <strong>Ocupación</strong><br> <%=@patient.occupation%> </td>
+      <td> <strong>Profesión</strong> <br><%= @patient.profession%> </td>
+   </tr>
+   <tr>
+      <td> <strong>Genero</strong> <br><%= @patient.gender%> </td>
+      <td> <strong>Estado Civil</strong><br> <%=@patient.civil_status%> </td>
+      <td> <strong>Grupo sanguineo</strong><br> <%=@patient.blood_type%> </td>
+      <td> <strong>Grupo Etnico</strong> <br><%= @patient.ethnic_group%> </td>
+   </tr>
+   <tr>
+      <td> <strong>Eps</strong> <br>EPS </td>
+      <td> <strong>Convenio</strong><br> Convenio </td>
+      <td> <strong>Nombre Contacto</strong> <br><%= @patient.contact_name%> </td>
+      <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
+   </tr>
+   <tr>
+      <td> <strong>Parentesco del Contacto</strong><br> <%=@patient.contact_relationship%> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+   </tr>
+   </tbody>
+</table>
+<br>
+<br>
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">2. Motivo de Counsulta</h2>
+      </th>
+   </tr>
+   <tr>
+      <td> <%=@clinic_history.consultation_reason%></td>
+   </tr>
+</table>
+<br>
+<br>
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">3. Estado actual del paciente</h2>
+      </th>
+   </tr>
+   <tr>
+      <td> <%=@clinic_history.consultation_reason%></td>
+   </tr>
+</table>
+<br>
+<br>
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">4. Dinamica familiar</h2>
+      </th>
+   </tr>
+   <tr>
+      <td> <%=@clinic_history.consultation_reason%></td>
+   </tr>
+</table>
+<br>
+<br>
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">5. Antecedentes</h2>
+      </th>
+   </tr>
+  
+   <tr>
+      <td>
+      <h2><strong>Personales</strong></h2>
+      <%@clinic_history.backgrounds.where(clase: "Personal").each do |ch|%>  
+
+      <strong>Tipo:</strong> <%=ch.type_background %> <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+       <%end%>
+       <h2><strong>Familiares</strong></h2>
+      <%@clinic_history.backgrounds.where(clase: "Familiar").each do |ch|%>  
+
+      <strong>Tipo:</strong> <%=ch.type_background %> <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+       <%end%> </td>  
+      
+   </tr>
+  
+</table>
+<br>
+<br>
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">6. Herramientas de evaluacion</h2>
+      </th>
+   </tr>
+  
+   <tr>
+      <td>
+      
+      <%@clinic_history.tool_tests.each do |ch|%>  
+
+      <strong>Tipo:</strong> <%=ch.type_tool %> <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+       <%end%>
+        
+      
+   </tr>
+  
+</table>
+<br><br>
+
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">7. Hipotesis diagnostica</h2>
+      </th>
+   </tr>
+  
+   <tr>
+      <td>
+      <strong>Descripción: </strong><br><%=@clinic_history.diagnostic_hypothesis%><br><br>
+      <strong>DSMV:</strong><br>
+      <%@clinic_history.diagnostics.each do |ch|%>  
+      
+      - <%=ch.name%><br>
+       <%end%>
+        
+      
+   </tr>
+  
+</table>
+<br><br>
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">8. Objetivo terapeoutico</h2>
+      </th>
+   </tr>
+   <tr>
+      <td> <%=@clinic_history.therapeutic_goal%></td>
+   </tr>
+</table>
+<br><br>
+<table class="table1">
+   <tr>
+      <th>
+         <h2 class= "h2" style="text-align: left!important">9. Tipo de Tratamiento</h2>
+      </th>
+   </tr>
+   <tr>
+      <td> <%=@clinic_history.type_of_treatment%></td>
+   </tr>
+</table>
+
+<style>
+   .info
+   {
+   border:1px solid #cecece;
+   }
+   .table1
+   {
+   border-collapse: collapse;
+   color: #7a7a7a;
+   font-size:12px;
+   width:1100px;font-size:18px;
+   }
+   .table1 td, th
+   {
+   padding: 6px 20px;
+   width:25%;
+   border:1px solid #cecece;
+   }
+
+   .tit
+   {
+   font-size: 22px;
+   }
+   .h2
+   {
+   color:gray;
+   }
+</style>

@@ -11,7 +11,39 @@ class ClinicHistoriesController < ApplicationController
   # GET /clinic_histories/1.json
   def show
   @patient = Patient.find(params[:patient_id])
+
+  respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => @clinic_history.patient.first_name + @clinic_history.patient.first_last_name,
+        header: { right: '[page] of [topage]' },
+        :template => 'clinic_histories/pdfs/clinic_history.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 0
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
   end
+
+
+
+
+  
 
   # GET /clinic_histories/new
   def new
@@ -73,12 +105,18 @@ class ClinicHistoriesController < ApplicationController
       
 
           if @history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis])
-               
+              @history.diagnostics.destroy_all
+            if params[:diagnostic_ids] != nil  
               params[:diagnostic_ids].each do |diag|
                 
                 @history.diagnostics << Diagnostic.find(diag)
-
+                
               end
+              
+          
+              
+
+            end
 
 
                redirect_to patient_clinic_history_path(@history.patient_id,@history.id)

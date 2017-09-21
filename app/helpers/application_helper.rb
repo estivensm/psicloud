@@ -42,12 +42,25 @@ def get_account
   Account.where(admin_user: current_user.admin_user).first.id
   
 end
+def get_account1
+
+  Account.where(admin_user: current_user.admin_user).first
+  
+end
 
 def get_diagnostic
 
   Diagnostic.all
   
 end
+
+
+  def type_document(type)
+
+    type == "Cedula de Ciudadania" ? "C.C" : type
+      
+      
+  end
 
 
 def action_type

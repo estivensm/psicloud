@@ -64,6 +64,10 @@ gem "font-awesome-rails"
 gem "mini_magick"
 gem 'chosen-rails'
 gem 'active_decorator', '~> 0.7.1'
+gem 'wicked_pdf'
+gem 'roo'
+gem 'wkhtmltopdf-binary'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

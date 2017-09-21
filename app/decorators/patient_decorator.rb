@@ -1,5 +1,7 @@
 module PatientDecorator
 
+
+
 	
   def select_genero
   	[
@@ -71,9 +73,9 @@ module PatientDecorator
   def select_type
     [
       ['Psicologico', 'Psicologico'],
-      ['Psiquiatricos', 'Psiquiatricos'],
-      ['Toxicos', 'Toxicos'],
-      ['Medicos', 'Medicos'],
+      ['Psiquiatrico', 'Psiquiatrico'],
+      ['Toxico', 'Toxico'],
+      ['Medico', 'Medico'],
 
     ]
   end
