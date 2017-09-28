@@ -3,6 +3,7 @@ Rails.application.routes.draw do
  
  
 
+  
   get 'tool_tests/index'
 
   get 'tool_tests/show'
@@ -14,13 +15,24 @@ Rails.application.routes.draw do
   resources :patients do 
      resources :clinic_histories do 
         
+      resources :tracings
+        
         get "backgrounds", to: "backgrounds#index", as: "backgrounds" 
         get "backgrounds/:clase/new", to: "backgrounds#new", as: "new_backgrounds" 
         post "backgrounds/create", to: "backgrounds#create", as: "create_background" 
+        get "backgrounds/edit/:id", to: "backgrounds#edit", as: "edit_backgrounds" 
+        patch "backgrounds/update", to: "backgrounds#update", as: "update_backgrounds" 
+        delete "backgrounds/destroy/:id", to: "backgrounds#destroy", as: "destroy_backgrounds"
+
+        
 
         get "tool_tests", to: "tool_tests#index", as: "tool_tests" 
         get "tool_tests/new", to: "tool_tests#new", as: "new_tool_tests" 
         post "tool_tests/create", to: "tool_tests#create", as: "create_tool_test" 
+        get "tool_tests/edit/:id", to: "tool_tests#edit", as: "edit_tool_test" 
+        patch "tool_tests/update", to: "tool_tests#update", as: "update_tool_test" 
+        delete "tool_tests/destroy/:id", to: "tool_tests#destroy", as: "destroy_tool_test"
+
      
      
      end

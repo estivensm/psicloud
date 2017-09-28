@@ -1,0 +1,49 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Crear Seguimiento</h4>
+      </div>
+
+         <div class="modal-body">
+
+<%= form_for([@patient,@clinic_history,tracing]) do |form| %>
+  <% if tracing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tracing.errors.count, "error") %> prohibited this tracing from being saved:</h2>
+
+      <ul>
+      <% tracing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+<%= form.hidden_field :user_id ,:value =>  current_user.id %>
+<%= form.hidden_field :patient_id ,:value =>  @patient.id %>
+<%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
+
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :tracing_description, class: "form form-control area" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :attachment %>
+    <%= form.file_field :attachment, id: :tracing_attachment, class: "form form-control" %>
+  </div>
+
+  <div class="modal-footer text-center">
+       
+        <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+
+<% end %>
+</div>
+  </div>
+</div>
+</div>

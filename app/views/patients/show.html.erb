@@ -106,7 +106,39 @@
 
         </div>
         <div class="tab-pane" id="2">
-          <h3>Notice the gap between the content and tab after applying a background color</h3>
+          <br><br>
+          <%if @hs != nil%>
+          <%if @hs.tracings.count != 0%>
+          <div class="row">
+          <div class="col-md-12 text-right">
+            <%= link_to "Ver Seguimientos", patient_clinic_history_tracings_path(@patient.id,@hs ), class: "btn btn-primary"%>
+          </div>
+            
+          </div>
+                  
+                  <br>
+                  <h3>Ultimos Seguimientos</h3>
+                   <br>
+                     <% @hs.tracings.last(2).each do |tracing|  %>
+                      <div class="row">
+                      <div class="col-md-3">
+                        <p><%= get_date(tracing.created_at)%></p>
+                      </div>
+                       <div class="col-md-6">
+                        <p><%=tracing.description%></p>
+                      </div>
+                       <div class="col-md-3">
+                        <p><%= (link_to "Adjunto", tracing.attachment_url) if tracing.attachment_url %></p>
+                      </div>
+                    
+                  </div><hr>
+                  <%end%>
+                  <%else%>
+                  <h2 class="text-center color-gray1">No hay ninugun seguimiento <br> <br> <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary"%></h2>
+                  
+                  <%end%>
+                <%end%> 
+
         </div>
         <div class="tab-pane" id="3">
           <h3>add clearfix to tab-content (see the css)</h3>

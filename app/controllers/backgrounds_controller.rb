@@ -31,8 +31,28 @@ end
 
 
 def edit
+    @background = Background.find(params[:id])
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+  end
+
+  def update
+       @background = Background.find(params[:background])
+        if @background.update(description: params[:description],type_background:params[:type_background],attachment: params[:attachment])
+           
+            redirect_to patient_clinic_history_backgrounds_path(params[:patient_id],params[:clinic_history_id])
+  end
+  end
+
+  def destroy
+    @background = Background.find(params[:id])
+    if @background.destroy
+           
+            redirect_to patient_clinic_history_backgrounds_path(params[:patient_id],params[:clinic_history_id])
+    end
+
     
-end
+  end
 
 
 

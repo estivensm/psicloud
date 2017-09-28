@@ -85,3 +85,7 @@
 </div>
   
 </div>
+
+
+
+rails g migration Tracing admin_user:integer user_id:integer patient_id:integer clinic_history_id:integer description:text attachment tracing_type

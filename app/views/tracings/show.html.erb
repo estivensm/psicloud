@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @tracing.admin_user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tracing.user_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @tracing.patient_id %>
+</p>
+
+<p>
+  <strong>Clinic history:</strong>
+  <%= @tracing.clinic_history_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tracing.description %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @tracing.attachment %>
+</p>
+
+<p>
+  <strong>Tracing type:</strong>
+  <%= @tracing.tracing_type %>
+</p>
+
+<%= link_to 'Edit', edit_tracing_path(@tracing) %> |
+<%= link_to 'Back', tracings_path %>

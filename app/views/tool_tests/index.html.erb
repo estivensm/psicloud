@@ -1,34 +1,55 @@
 <div class="container">
 <h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>  
-
+<div class="menu-history">
  <%= link_to "Primera Fase", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary" ,style: "margin-left: 10%;"%>
 
   <%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary"%>
   <%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary edit-active"%>
 
   <%= link_to "Segunda Fase", patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary"%>
-<hr>
+
+   <%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary"%>
+
+	
+</div>
 
 <div class="row antecedentes">
+<br>
+<br>
 <div class="col-md-12 descnum2" style="border-right:1px solid gray">
-	<h3><i class="fa fa-user" aria-hidden="true"> </i>Herramientas de Evaluacion</h3>
-<%= link_to '+', patient_clinic_history_new_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "crear"  %>
+<div class="col-md-6">
+		<h3><i class="fa fa-user" aria-hidden="true"> </i>Herramientas de Evaluacion</h3>
+</div>
+<div class="col-md-6 text-right">
+		<%= link_to 'Nueva Herramienta', patient_clinic_history_new_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
+</div>
+
 	<table class="table">
 		
 		<thead>
-			<tr>
-				<th>Tipo</th>
-				<th>Descripcion</th>
-				<th>Adjunto</th>
+			<tr class = "tr-table">
+				<th style="width: 20%">Tipo</th>
+				<th style="width: 35%">Descripcion</th>
+				<th style="width: 35%">Adjunto</th>
+				<th style="width: 10%"></th>
 
 			</tr>
 		</thead>
 		<tbody>
-				<% @clinic_history.tool_tests.each do |back|%>
+				<% @clinic_history.tool_tests.each do |tool|%>
 			<tr>
-				<td><%= back.type_tool %></td>
-				<td><%= back.description %></td>
-				<td><%= (link_to "Archivo", back.attachment_url, class: "linka") if back.attachment_url%></td>
+				<td><%= tool.type_tool %></td>
+				<td><%= tool.description %></td>
+				<td><%= (link_to "#{tool.attachment.file.filename}", tool.attachment_url, class: "linka") if tool.attachment_url%></td>
+
+				<td><%= link_to patient_clinic_history_edit_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id), remote: true, class: "icon" do %>
+				<i class="fa fa-pencil" aria-hidden="true"></i>
+				<%end%>
+
+					<%= link_to  patient_clinic_history_destroy_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
+					 <i class="fa fa-trash" aria-hidden="true"></i>
+					<%end%>
+				</td>
 			</tr>
 			<%end%>
 		</tbody>
@@ -40,27 +61,3 @@
 
 </div>
 
-<style>
-
-.antecedentes h3
-{
-	color: gray;
-	text-align: center;
-	display: inline-block;
-	margin-right: 10px;
-}
-.descnum2
-{
-  max-height: 350px !important;
-    overflow: auto;
-    height: 350px;
-}
-.crear
-{
-	font-size: 20px;
-	    padding: 1px 10px;
-    color: white;
-    background: #428bca;
-}
-	
-</style>
