@@ -39,11 +39,40 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+     devise :database_authenticatable, :registerable,
+       :recoverable, :rememberable, :trackable, :validatable,
+       :omniauthable, :omniauth_providers => [:google_oauth2]
   mount_uploader :avatar, AvatarUploader  
   after_create :crear_admin
 
+    def self.find_for_google_oauth2(auth)
+    data = auth.info
+    puts "holaaaaaaaaaaaaaaaaaaaaaaaaajajajajajaj"
+    if User.where(email: auth.info.email).exists?
+        user = User.where(email: auth.info.email).first do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.password = "alejo0906"
+      end
+      user.token = auth.credentials.token
+      user.refresh_token = auth.credentials.refresh_token
+      user.save
+      return user
+    else
+
+       user = User.new do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.password = "alejo0906"
+      end
+      user.token = auth.credentials.token
+      user.refresh_token = auth.credentials.refresh_token
+      user.save
+      return user
+    end
+  end
 
 
         def crear_admin
@@ -59,3 +88,7 @@ class User < ApplicationRecord
         end
 
 end
+
+
+
+    

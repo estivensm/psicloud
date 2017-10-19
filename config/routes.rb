@@ -4,6 +4,7 @@ Rails.application.routes.draw do
  
 
   
+ 
   get 'tool_tests/index'
 
   get 'tool_tests/show'
@@ -11,8 +12,15 @@ Rails.application.routes.draw do
   get 'tool_tests/new'
 
   get 'tool_tests/edit'
+  
 
+
+  get "citas", to: "appointments#citas", as: "citas"
+  get "citas_admin", to: "appointments#citas_admin", as: "citas_admin"
+  get "appointments/get_appointments", to: "appointments#get_appointments"
   resources :patients do 
+     resources :appointments 
+
      resources :clinic_histories do 
         
       resources :tracings
@@ -45,7 +53,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   #User
-  devise_for :users
+  devise_for :users,
+:controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   devise_scope :user do 
     get "users/index", to: "users/views#index", as: "users_index"
     get '/users/new', to: 'users/views#new_user', as: "new_user"

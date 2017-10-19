@@ -33,18 +33,17 @@ gem 'pg'
 gem 'jquery-validation-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'jquery-ui-rails'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 #gem para acceder a los servicios de google
-gem 'google-api-client', '0.8.2', require: 'google/api_client'
 
-#gem para acceder a google calendar
-gem 'google_calendar', '~> 0.6.2'
 
 #gem para el manejo de usuarios
 gem 'devise', '~> 4.3'
 
 #gem para autenticacion de usuarios con google
-gem 'omniauth-google-oauth2'
+
 
 #jquery para rails 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
@@ -67,6 +66,10 @@ gem 'active_decorator', '~> 0.7.1'
 gem 'wicked_pdf'
 gem 'roo'
 gem 'wkhtmltopdf-binary'
+gem 'google-api-client', '0.8.2', require: 'google/api_client'
+gem 'google_calendar', '~> 0.6.2'
+gem 'omniauth-google-oauth2'
+gem 'jquery-datetimepicker-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

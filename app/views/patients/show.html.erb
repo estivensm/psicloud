@@ -144,7 +144,31 @@
           <h3>add clearfix to tab-content (see the css)</h3>
         </div>
          <div class="tab-pane" id="4">
-          <h3>add clearfix to tab-content (see the css)</h3>
+<br><br>
+         <%if @patient.appointments.count != 0%>
+         <%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style:"margin-right:40px;"%>
+         <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary"%><br><br>
+              <% @patient.appointments.last(2).each do |appointment|  %>
+                      <div class="row">
+                      <div class="col-md-5">
+                        <p><%= appointment.start_datetime %></p>
+                      </div>
+                       <div class="col-md-7">
+                        <p><%=appointment.observations%></p>
+                      </div>
+                       
+                    
+                  </div><hr>
+                  <%end%>
+            
+
+
+
+          <%else%>
+                <h2 class="text-center color-gray1">El Paciente no tiene citas<br> <br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary"%></h2>     
+            
+
+          <%end%>  
         </div>
       </div>
   </div>

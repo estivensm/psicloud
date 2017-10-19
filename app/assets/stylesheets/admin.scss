@@ -265,3 +265,19 @@ div.nobreak { page-break-inside: avoid; }
 {
   color:gray;
 }
+
+.field_date
+{
+  font-size: 20px;
+  color:#187191;
+}
+#event_date_event
+{
+margin: 0px 10px;
+    width: 110px;
+    text-align: center;
+}
+.date_select
+{
+  display:inline-flex !important;
+}

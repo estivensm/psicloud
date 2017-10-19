@@ -84,8 +84,10 @@ def menu
         @menu = ["na","active1","na","na","na"]
      elsif controller.controller_name == "patients"
         @menu = ["na","na","active1","na","na"]
-     elsif controller.controller_name == "clinic_histories"
+     elsif controller.controller_name == "appointments"
         @menu = ["na","na","na","active1","na"]
+     elsif controller.controller_name == "clinic_histories"
+        @menu = ["na","na","active1","na","na"]
      else
         @menu = ["na","na","na","na","active1"]
   end

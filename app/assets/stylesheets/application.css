@@ -6,6 +6,9 @@
 *= require_self
 *= require patients
 *= require chosen
+*= require jquery.datetimepicker
+*= require fullcalendar
+*= require jquery-ui
 *= require font-awesome
 *= require_tree .
 */

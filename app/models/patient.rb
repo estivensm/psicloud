@@ -37,7 +37,8 @@
 #
 
 class Patient < ApplicationRecord
-     has_many :clinic_histories   
+     has_many :clinic_histories  
+     has_many :appointments 
 	 mount_uploader :avatar, AvatarPatientUploader  
 	 
 

@@ -11,7 +11,7 @@ class ClinicHistoriesController < ApplicationController
   # GET /clinic_histories/1.json
   def show
   @patient = Patient.find(params[:patient_id])
-
+ 
   respond_to do |format|
       format.html
       format.pdf do

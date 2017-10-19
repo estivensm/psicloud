@@ -33,7 +33,7 @@
   <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Segundo Nombre" %>
-    <%= form.text_field :second_name, id: :patient_second_name , class: "form-control required", :title => "Es un Campo Obligatorio"%>
+    <%= form.text_field :second_name, id: :patient_second_name , class: "form-control", :title => "Es un Campo Obligatorio"%>
   </div>
 
 </div>
@@ -96,27 +96,27 @@
 <div class="col-md-3">
 <div class="form-group">
     <%= form.label "Ciudad de Residencia" %>
-    <%= form.text_field :city, id: :patient_city , class: "form-control"%>
+    <%= form.text_field :city, id: :patient_city , class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 </div>
 
 <div class="col-md-3">
   <div class="form-group">
    <%= form.label "Direccion de Residencia" %>
-    <%= form.text_field :address, id: :patient_address , class: "form-control" %>
+    <%= form.text_field :address, id: :patient_address , class: "form-control required", :title => "Es un Campo Obligatorio"%>
 </div>
 </div>
   <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Telefono Fijo" %>
-    <%= form.text_field :phone, id: :patient_phone , class: "form-control" %>
+    <%= form.text_field :phone, id: :patient_phone ,class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
 </div>
 <div class="col-md-3">
   <div class="form-group">
      <%= form.label "Telefono Movil" %>
-    <%= form.text_field :movil, id: :patient_movil  , class: "form-control"%>
+    <%= form.text_field :movil, id: :patient_movil  , class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 </div>
 
@@ -125,20 +125,20 @@
 <div class="col-md-3">
 <div class="form-group">
     <%= form.label "Email" %>
-    <%= form.email_field :email, id: :patient_email , class: "form-control"%>
+    <%= form.email_field :email, id: :patient_email ,class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 </div>
 
 <div class="col-md-3">
   <div class="form-group">
    <%= form.label "Ocupacion" %>
-    <%= form.text_field :occupation, id: :patient_occupation , class: "form-control" %>
+    <%= form.text_field :occupation, id: :patient_occupation , class: "form-control required", :title => "Es un Campo Obligatorio" %>
 </div>
 </div>
   <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Profesion" %>
-    <%= form.text_field :profession, id: :patient_profession , class: "form-control" %>
+    <%= form.text_field :profession, id: :patient_profession , class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 
 </div>
@@ -195,14 +195,14 @@
 <div class="col-md-3">
 <div class="form-group">
     <%= form.label "Eps" %>
-    <%= form.text_field :eps_id, id: :patient_eps_id , class: "form-control"%>
+    <%= form.text_field :eps_id, id: :patient_eps_id ,class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 </div>
 
 <div class="col-md-3">
   <div class="form-group">
    <%= form.label "Convenio" %>
-    <%= form.text_field :agreement_id, id: :patient_agreement_id , class: "form-control" %>
+    <%= form.text_field :agreement_id, id: :patient_agreement_id , class: "form-control"%>
 </div>
 </div>
   <div class="col-md-3">
@@ -234,20 +234,20 @@
 <div class="col-md-3">
 <div class="form-group">
     <%= form.label "Nombre de Contacto" %>
-    <%= form.text_field :contact_name, id: :contact_name , class: "form-control"%>
+    <%= form.text_field :contact_name, id: :contact_name , class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 </div>
 
 <div class="col-md-3">
   <div class="form-group">
    <%= form.label "Telefono de Contacto" %>
-    <%= form.text_field :contact_phone, id: :patient_contact_phone , class: "form-control" %>
+    <%= form.text_field :contact_phone, id: :patient_contact_phone , class: "form-control required", :title => "Es un Campo Obligatorio"%>
 </div>
 </div>
   <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Parentesco del Contacto" %>
-    <%= form.text_field :contact_relationship, id: :patient_contact_relationship , class: "form-control" %>
+    <%= form.text_field :contact_relationship, id: :patient_contact_relationship , class: "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 
 </div>
@@ -272,7 +272,7 @@
 
 
 
-<% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "/assets/avatar.png" %>
+<% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "http://downloadicons.net/sites/default/files/user-male-icon-95260.png" %>
  <image  src="<%=@hola%>" style="width:12%;display:inline-block" id="avatar" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-img" />
 <br>
 
