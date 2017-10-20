@@ -272,7 +272,7 @@
 
 
 
-<% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "http://downloadicons.net/sites/default/files/user-male-icon-95260.png" %>
+<% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "" %>
  <image  src="<%=@hola%>" style="width:12%;display:inline-block" id="avatar" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-img" />
 <br>
 
