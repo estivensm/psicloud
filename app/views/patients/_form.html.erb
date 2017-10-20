@@ -533,15 +533,7 @@ $('#camMod').on('show.bs.modal', function (e) {
   var button = $(e.relatedTarget);
   $("#snap").data('type', button.data('type'));
   // Put video listeners into place
-  if(navigator.getUserMedia) { // Standard
-    navigator.getUserMedia(videoObj, function(stream) {
-      console.log("Video capture4: ");
-      video.src   = stream;
-      localstream = stream;
-      video.play();
-      console.log("aqui")
-    }, errBack);
-  } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+if(navigator.webkitGetUserMedia) { // WebKit-prefixed
     navigator.webkitGetUserMedia(videoObj, function(stream){
       console.log("Video capture5: ");
       video.src   = window.URL.createObjectURL(stream);
