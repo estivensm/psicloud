@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @hpc.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @hpc.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @hpc.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @hpc.admin_user %>
+</p>
+
+<%= link_to 'Edit', edit_hpc_path(@hpc) %> |
+<%= link_to 'Back', hpcs_path %>

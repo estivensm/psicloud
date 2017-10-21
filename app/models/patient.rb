@@ -39,7 +39,9 @@
 class Patient < ApplicationRecord
      has_many :clinic_histories  
      has_many :appointments 
-	 mount_uploader :avatar, AvatarPatientUploader  
+     belongs_to :hpc
+     belongs_to :agreement
+	   mount_uploader :avatar, AvatarPatientUploader  
 	 
 
 	def self.search(search)

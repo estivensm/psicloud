@@ -222,7 +222,9 @@ hr
   
 .edit-active
 {
- background-color: #17c1ca !important; 
+background-color: #ffffff !important;
+    color: gray !important;
+    border-radius: 0px !Important;
 }
 
 
@@ -281,3 +283,16 @@ margin: 0px 10px;
 {
   display:inline-flex !important;
 }
+
+
+
+.noactive
+{
+
+    background: #2e7dab !important;
+    color: white;
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid rgba(12, 12, 12, 0.51);
+    border-radius: 0px !important;
+ }  

@@ -176,17 +176,18 @@
   <div class="col-md-3">
   <div class="form-group">
     <%= form.label "Grupo Sanguineo" %>
-    <%val1 = "" 
- action_name == "edit" ? val1 = @patient.blood_type : val1 = "" %>
-     <%= form.select 'blood_type', options_for_select(@patient.select_sangre, val1), {},{:class => 'form-control'}%>
+    <%val2 = "" 
+ action_name == "edit" ? val2 = @patient.blood_type : val2 = "" %>
+     <%= form.select 'blood_type', options_for_select(@patient.select_sangre, val2), {},{:class => 'form-control'}%>
   </div>
 
 </div>
 <div class="col-md-3">
   <div class="form-group">
      <%= form.label "Grupo Etnico" %>
-   
-    <%= form.select 'ethnic_group', options_for_select(@patient.select_grupo_etnico, val1), {},{:class => 'form-control'}%>
+   <%val3 = "" 
+ action_name == "edit" ? val3 = @patient.ethnic_group : val3 = "" %>
+    <%= form.select 'ethnic_group', options_for_select(@patient.select_grupo_etnico, val3), {},{:class => 'form-control'}%>
   </div>
 </div>
 
@@ -195,14 +196,22 @@
 <div class="col-md-3">
 <div class="form-group">
     <%= form.label "Eps" %>
-    <%= form.text_field :eps_id, id: :patient_eps_id ,class: "form-control required", :title => "Es un Campo Obligatorio"%>
+    <%= form.select :hpc_id,
+                 get_hpc.map { |u| [u.name, u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch source'  }
+                  %>
   </div>
 </div>
 
 <div class="col-md-3">
   <div class="form-group">
    <%= form.label "Convenio" %>
-    <%= form.text_field :agreement_id, id: :patient_agreement_id , class: "form-control"%>
+   <%= form.select :agreement_id,
+                 get_ag.map { |u| [u.name, u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch source'  }
+                  %>
 </div>
 </div>
   <div class="col-md-3">
@@ -384,7 +393,21 @@
 <script type='text/javascript'>
 
 $(document).on('turbolinks:load',function() {
- 
+
+  $('.chosen-select1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No hay resultados',
+          width: '250px;',
+          placeholder_text_single: "Seleccione una opción",
+          placeholder_text_multiple: "Seleccione una varias opciones"
+
+        });
+
+
+
+
 
 $(document).ready(function(){
   $('#form').validate();

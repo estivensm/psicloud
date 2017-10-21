@@ -35,6 +35,8 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
+  
+
     client = Google::APIClient.new
       client.authorization.access_token = current_user.token
       service = client.discovered_api('calendar', 'v3')
@@ -42,11 +44,7 @@ class AppointmentsController < ApplicationController
       result = client.execute(:api_method => service.events.get, :parameters => {'calendarId' => 'alejovelez10@gmail.com', 'eventId' => @appointment.google_event_id } )
 
       event = result.data
-      puts event.id
-      puts event.start.dateTime
-      puts event.end.dateTime
-      puts event.description
-      puts event.location
+
   end
 
   # GET /appointments/new
@@ -147,6 +145,6 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:start_datetime, :end_datetime, :observations, :place, :patient_id, :admin_user, :user_id, :attachment, :duration, :name)
+      params.require(:appointment).permit(:start_datetime, :end_datetime, :observations, :place, :patient_id, :admin_user, :user_id, :attachment, :duration, :name, :state)
     end
 end

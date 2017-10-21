@@ -1,0 +1,42 @@
+
+<div class="container">
+   <div class="row" >
+      <div class = "row title-table">
+         <div class = "col-md-6">
+            <p>EPS <span class="label label-primary"><%=@hpcs.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @hpcs, :entry_name => 'Eps' %></span> </p>
+         </div>
+         <div class = "col-md-4 paginate text-left title-table1">
+            <%= will_paginate @hpcs%>
+         </div>
+         <div class = "col-md-2">
+            <%= link_to 'Nueva EPS', new_hpc_path,remote:true, class: "btn btn-primary"  %>
+         </div>
+      </div>
+      <hr class="hr">
+      <div class = "row">
+         <table class="table">
+            <thead>
+               <tr class = "tr-table">
+      <th>Nombre</th>
+      <th>Descripción</th>
+
+
+      <th width="10%" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hpcs.each do |hpc| %>
+      <tr>
+         <td><%= hpc.name %></td>
+        <td><%= hpc.description %></td>
+        <td><%= link_to 'Show', hpc %></td>
+        <td><%= link_to 'Edit', edit_hpc_path(hpc), remote:true %></td>
+        <td><%= link_to 'Destroy', hpc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+               </tr>
+               <%end%>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>

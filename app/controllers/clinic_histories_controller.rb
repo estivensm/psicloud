@@ -119,7 +119,7 @@ class ClinicHistoriesController < ApplicationController
             end
 
 
-               redirect_to patient_clinic_history_path(@history.patient_id,@history.id)
+               redirect_to patient_step3_path(@history.patient_id,@history.id)
           end
       
   end

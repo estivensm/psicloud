@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003040634) do
+ActiveRecord::Schema.define(version: 20171021161749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20171003040634) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "agreements", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.float "percent"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "appointments", force: :cascade do |t|
     t.datetime "start_datetime"
     t.datetime "end_datetime"
@@ -44,6 +54,7 @@ ActiveRecord::Schema.define(version: 20171003040634) do
     t.integer "duration"
     t.string "name"
     t.string "google_event_id"
+    t.string "state"
   end
 
   create_table "backgrounds", force: :cascade do |t|
@@ -102,6 +113,15 @@ ActiveRecord::Schema.define(version: 20171003040634) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "hpcs", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "first_name"
     t.string "second_name"
@@ -125,7 +145,6 @@ ActiveRecord::Schema.define(version: 20171003040634) do
     t.string "ethnic_group"
     t.integer "user_id"
     t.integer "admin_user"
-    t.integer "eps_id"
     t.integer "count"
     t.integer "agreement_id"
     t.string "avatar"
@@ -134,6 +153,7 @@ ActiveRecord::Schema.define(version: 20171003040634) do
     t.string "movil"
     t.string "city"
     t.text "data"
+    t.integer "hpc_id"
   end
 
   create_table "tool_tests", force: :cascade do |t|

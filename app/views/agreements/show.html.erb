@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @agreement.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @agreement.description %>
+</p>
+
+<p>
+  <strong>Percent:</strong>
+  <%= @agreement.percent %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @agreement.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @agreement.admin_user %>
+</p>
+
+<%= link_to 'Edit', edit_agreement_path(@agreement) %> |
+<%= link_to 'Back', agreements_path %>

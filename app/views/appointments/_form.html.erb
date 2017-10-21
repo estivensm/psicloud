@@ -57,8 +57,14 @@
     <%= form.text_area :observations, id: :appointment_observations, class: "form form-control"  %>
   </div>
 
-
-
+<%val1 = "" 
+ action_name == "edit" ? val1 = "" : val1 = "display:none" %>
+    <div class="form-group" style="<%=val1%>">
+     <%= form.label "Estado" %>
+   <%val3 = "" 
+ action_name == "edit" ? val3 = @appointment.state : val3 = "Vigente" %>
+    <%= form.select 'state', options_for_select(["Vigente","Vencida", "Cancelada", "Realizada"], val3), {},{:class => 'form-control'}%>
+  </div>
 
 
 

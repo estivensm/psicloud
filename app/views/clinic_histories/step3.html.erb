@@ -1,14 +1,14 @@
 <div class="container">
-<h1 class="h1-tittle imgedit" ><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%>  <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1>
+<h1 class="h1-tittle imgedit" ><%= link_to "Volver", patient_path(@history.patient_id), class: "btn btn-primary " , style: "margin-right: 10%;" %><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%>  <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1>
 <br>
 <div class="menu-history">
    
 
-<%= link_to "Primera Fase", edit_patient_clinic_history_path(@history.patient_id,@history.id), class: "btn btn-primary" , style: "margin-left: 10%;" %>
-<%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@history.patient_id,@history.id), class: "btn btn-primary"%>
-<%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@history.patient_id,@history.id), class: "btn btn-primary"%>
+<%= link_to "Primera Fase", edit_patient_clinic_history_path(@history.patient_id,@history.id), class: "btn btn-primary noactive" , style: "margin-left: 10%;" %>
+<%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@history.patient_id,@history.id), class: "btn btn-primary noactive"%>
+<%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@history.patient_id,@history.id), class: "btn btn-primary noactive"%>
 <%= link_to "Segunda Fase", patient_step3_path(@history.patient_id,@history.id), class: "btn btn-primary edit-active"%>
- <%= link_to "Seguimientos", patient_clinic_history_tracings_path(@history.patient_id,@history.id), class: "btn btn-primary"%>
+ <%= link_to "Seguimientos", patient_clinic_history_tracings_path(@history.patient_id,@history.id), class: "btn btn-primary noactive"%>
 </div>
 <div class = "row row-form">
    <%= form_tag patient_update_step3_path(@history), method: :patch do %>

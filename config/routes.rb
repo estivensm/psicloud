@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   
  
+  resources :hpcs
+  resources :agreements
   get 'tool_tests/index'
 
   get 'tool_tests/show'
@@ -12,7 +14,8 @@ Rails.application.routes.draw do
   get 'tool_tests/new'
 
   get 'tool_tests/edit'
-  
+
+
 
 
   get "citas", to: "appointments#citas", as: "citas"
@@ -47,6 +50,8 @@ Rails.application.routes.draw do
      
      patch "update_step3/:id", to: "clinic_histories#update_step3", as: "update_step3"
      get "step3/:id", to: "clinic_histories#step3", as: "step3"
+     get 'consentimiento_informado', to: "patients#consentimiento_informado", as: "consentimiento_informado"
+  
 
   end
   resources :accounts

@@ -12,6 +12,8 @@ class PatientsController < ApplicationController
   # GET /patients/1.json
   def show
       @hs = @patient.clinic_histories.first
+        @appointment_l = Appointment.where(state: "Vigente").last
+    
   end
 
   # GET /patients/new
@@ -76,6 +78,38 @@ class PatientsController < ApplicationController
     end
   end
 
+
+  def consentimiento_informado
+@patient = Patient.find(params[:patient_id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "hola",
+        header: { right: '[page] of [topage]' },
+        :template => 'patients/pdfs/consentimiento_informado.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 15
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
@@ -84,6 +118,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:first_name, :second_name, :first_last_name, :second_last_name, :birth_date, :age, :document_type, :document, :occupation, :profession, :phone, :address, :email, :contact_name, :contact_phone, :gender, :contact_relationship, :civil_status, :blood_type,:ethnic_group, :user_id, :admin_user,:eps_id,:count,:agreement_id,:avatar,:city,:movil,:data )
+      params.require(:patient).permit(:first_name, :second_name, :first_last_name, :second_last_name, :birth_date, :age, :document_type, :document, :occupation, :profession, :phone, :address, :email, :contact_name, :contact_phone, :gender, :contact_relationship, :civil_status, :blood_type,:ethnic_group, :user_id, :admin_user,:hpc_id,:count,:agreement_id,:avatar,:city,:movil,:data )
     end
 end
