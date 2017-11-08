@@ -1,0 +1,162 @@
+<%= form_with(model: three_child_history, local: true) do |form| %>
+  <% if three_child_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(three_child_history.errors.count, "error") %> prohibited this three_child_history from being saved:</h2>
+
+      <ul>
+      <% three_child_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :destete %>
+    <%= form.text_field :destete, id: :three_child_history_destete %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gustos_alimentos %>
+    <%= form.text_field :gustos_alimentos, id: :three_child_history_gustos_alimentos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dejado_alimentacion %>
+    <%= form.text_field :dejado_alimentacion, id: :three_child_history_dejado_alimentacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_alimentacion %>
+    <%= form.text_field :tipo_alimentacion, id: :three_child_history_tipo_alimentacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reaccion_defecacion %>
+    <%= form.text_field :reaccion_defecacion, id: :three_child_history_reaccion_defecacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :succion_dedo %>
+    <%= form.text_field :succion_dedo, id: :three_child_history_succion_dedo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :masturbacion %>
+    <%= form.text_field :masturbacion, id: :three_child_history_masturbacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duerme_con %>
+    <%= form.text_field :duerme_con, id: :three_child_history_duerme_con %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visto_acto_sexual %>
+    <%= form.text_field :visto_acto_sexual, id: :three_child_history_visto_acto_sexual %>
+  </div>
+
+  <div class="field">
+    <%= form.label :conocimientos_sexualidad %>
+    <%= form.text_field :conocimientos_sexualidad, id: :three_child_history_conocimientos_sexualidad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :informacion_sexual %>
+    <%= form.text_field :informacion_sexual, id: :three_child_history_informacion_sexual %>
+  </div>
+
+  <div class="field">
+    <%= form.label :menarquia %>
+    <%= form.number_field :menarquia, id: :three_child_history_menarquia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :experiencia_menarquia %>
+    <%= form.text_field :experiencia_menarquia, id: :three_child_history_experiencia_menarquia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :polucion %>
+    <%= form.number_field :polucion, id: :three_child_history_polucion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :experiencia_polucion %>
+    <%= form.text_field :experiencia_polucion, id: :three_child_history_experiencia_polucion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fue_informado %>
+    <%= form.text_field :fue_informado, id: :three_child_history_fue_informado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reacciones_emocionales %>
+    <%= form.text_field :reacciones_emocionales, id: :three_child_history_reacciones_emocionales %>
+  </div>
+
+  <div class="field">
+    <%= form.label :noviazgo %>
+    <%= form.text_field :noviazgo, id: :three_child_history_noviazgo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aceptacion_noviazgo %>
+    <%= form.text_field :aceptacion_noviazgo, id: :three_child_history_aceptacion_noviazgo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sintomas_neuroticos %>
+    <%= form.text_field :sintomas_neuroticos, id: :three_child_history_sintomas_neuroticos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion_sintomas %>
+    <%= form.text_field :descripcion_sintomas, id: :three_child_history_descripcion_sintomas %>
+  </div>
+
+  <div class="field">
+    <%= form.label :responsable_disiplina %>
+    <%= form.text_field :responsable_disiplina, id: :three_child_history_responsable_disiplina %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comportamientos_molestos %>
+    <%= form.text_field :comportamientos_molestos, id: :three_child_history_comportamientos_molestos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipos_de_castigo %>
+    <%= form.text_field :tipos_de_castigo, id: :three_child_history_tipos_de_castigo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :observaciones %>
+    <%= form.text_field :observaciones, id: :three_child_history_observaciones %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :three_child_history_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admini_user %>
+    <%= form.number_field :admini_user, id: :three_child_history_admini_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :patient_id %>
+    <%= form.number_field :patient_id, id: :three_child_history_patient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :clinic_history_id %>
+    <%= form.number_field :clinic_history_id, id: :three_child_history_clinic_history_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

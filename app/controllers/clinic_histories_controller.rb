@@ -60,9 +60,13 @@ class ClinicHistoriesController < ApplicationController
   # POST /clinic_histories.json
   def create
     @clinic_history = ClinicHistory.new(clinic_history_params)
- @patient = Patient.find(params[:patient_id])
+    @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @clinic_history.save
+        if @patient.age < 14
+          @clinic_history.child_history = true
+          @clinic_history.save
+        end
         format.html { redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' }
         format.json { render :show, status: :created, location: @clinic_history }
       else

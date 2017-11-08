@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Three Child Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Destete</th>
+      <th>Gustos alimentos</th>
+      <th>Dejado alimentacion</th>
+      <th>Tipo alimentacion</th>
+      <th>Reaccion defecacion</th>
+      <th>Succion dedo</th>
+      <th>Masturbacion</th>
+      <th>Duerme con</th>
+      <th>Visto acto sexual</th>
+      <th>Conocimientos sexualidad</th>
+      <th>Informacion sexual</th>
+      <th>Menarquia</th>
+      <th>Experiencia menarquia</th>
+      <th>Polucion</th>
+      <th>Experiencia polucion</th>
+      <th>Fue informado</th>
+      <th>Reacciones emocionales</th>
+      <th>Noviazgo</th>
+      <th>Aceptacion noviazgo</th>
+      <th>Sintomas neuroticos</th>
+      <th>Descripcion sintomas</th>
+      <th>Responsable disiplina</th>
+      <th>Comportamientos molestos</th>
+      <th>Tipos de castigo</th>
+      <th>Observaciones</th>
+      <th>User</th>
+      <th>Admini user</th>
+      <th>Patient</th>
+      <th>Clinic history</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @three_child_histories.each do |three_child_history| %>
+      <tr>
+        <td><%= three_child_history.destete %></td>
+        <td><%= three_child_history.gustos_alimentos %></td>
+        <td><%= three_child_history.dejado_alimentacion %></td>
+        <td><%= three_child_history.tipo_alimentacion %></td>
+        <td><%= three_child_history.reaccion_defecacion %></td>
+        <td><%= three_child_history.succion_dedo %></td>
+        <td><%= three_child_history.masturbacion %></td>
+        <td><%= three_child_history.duerme_con %></td>
+        <td><%= three_child_history.visto_acto_sexual %></td>
+        <td><%= three_child_history.conocimientos_sexualidad %></td>
+        <td><%= three_child_history.informacion_sexual %></td>
+        <td><%= three_child_history.menarquia %></td>
+        <td><%= three_child_history.experiencia_menarquia %></td>
+        <td><%= three_child_history.polucion %></td>
+        <td><%= three_child_history.experiencia_polucion %></td>
+        <td><%= three_child_history.fue_informado %></td>
+        <td><%= three_child_history.reacciones_emocionales %></td>
+        <td><%= three_child_history.noviazgo %></td>
+        <td><%= three_child_history.aceptacion_noviazgo %></td>
+        <td><%= three_child_history.sintomas_neuroticos %></td>
+        <td><%= three_child_history.descripcion_sintomas %></td>
+        <td><%= three_child_history.responsable_disiplina %></td>
+        <td><%= three_child_history.comportamientos_molestos %></td>
+        <td><%= three_child_history.tipos_de_castigo %></td>
+        <td><%= three_child_history.observaciones %></td>
+        <td><%= three_child_history.user_id %></td>
+        <td><%= three_child_history.admini_user %></td>
+        <td><%= three_child_history.patient_id %></td>
+        <td><%= three_child_history.clinic_history_id %></td>
+        <td><%= link_to 'Show', three_child_history %></td>
+        <td><%= link_to 'Edit', edit_three_child_history_path(three_child_history) %></td>
+        <td><%= link_to 'Destroy', three_child_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Three Child History', new_three_child_history_path %>

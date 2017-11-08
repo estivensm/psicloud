@@ -14,11 +14,16 @@ class PersonalHistoriesController < ApplicationController
 
   # GET /personal_histories/new
   def new
+
     @personal_history = PersonalHistory.new
+        @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   end
 
   # GET /personal_histories/1/edit
   def edit
+        @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   end
 
   # POST /personal_histories

@@ -1,5 +1,6 @@
 
 <div class="container">
+<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>  
 <%= render 'form' %>
 
 </div>

@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destete: MyString
+  gustos_alimentos: MyString
+  dejado_alimentacion: MyString
+  tipo_alimentacion: MyString
+  reaccion_defecacion: MyString
+  succion_dedo: MyString
+  masturbacion: MyString
+  duerme_con: MyString
+  visto_acto_sexual: MyString
+  conocimientos_sexualidad: MyString
+  informacion_sexual: MyString
+  menarquia: 1
+  experiencia_menarquia: MyString
+  polucion: 1
+  experiencia_polucion: MyString
+  fue_informado: MyString
+  reacciones_emocionales: MyString
+  noviazgo: MyString
+  aceptacion_noviazgo: MyString
+  sintomas_neuroticos: MyString
+  descripcion_sintomas: MyString
+  responsable_disiplina: MyString
+  comportamientos_molestos: MyString
+  tipos_de_castigo: MyString
+  observaciones: MyString
+  user_id: 1
+  admini_user: 1
+  patient_id: 1
+  clinic_history_id: 1
+
+two:
+  destete: MyString
+  gustos_alimentos: MyString
+  dejado_alimentacion: MyString
+  tipo_alimentacion: MyString
+  reaccion_defecacion: MyString
+  succion_dedo: MyString
+  masturbacion: MyString
+  duerme_con: MyString
+  visto_acto_sexual: MyString
+  conocimientos_sexualidad: MyString
+  informacion_sexual: MyString
+  menarquia: 1
+  experiencia_menarquia: MyString
+  polucion: 1
+  experiencia_polucion: MyString
+  fue_informado: MyString
+  reacciones_emocionales: MyString
+  noviazgo: MyString
+  aceptacion_noviazgo: MyString
+  sintomas_neuroticos: MyString
+  descripcion_sintomas: MyString
+  responsable_disiplina: MyString
+  comportamientos_molestos: MyString
+  tipos_de_castigo: MyString
+  observaciones: MyString
+  user_id: 1
+  admini_user: 1
+  patient_id: 1
+  clinic_history_id: 1

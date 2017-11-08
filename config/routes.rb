@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   
 
+ 
   resources :hpcs
   resources :agreements
   get 'tool_tests/index'
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
         resources :personal_histories
         resources :two_child_histories
         resources :child_general_dates
+        resources :three_child_histories
           resources :tracings
         
         get "backgrounds", to: "backgrounds#index", as: "backgrounds" 
