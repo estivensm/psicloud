@@ -16,6 +16,6 @@
 #
 
 class Background < ApplicationRecord
-	belongs_to :clinic_history
+	belongs_to :clinic_history, inverse_of: :backgrounds
     mount_uploader :attachment, AttachmentBackgroundUploader  
 end

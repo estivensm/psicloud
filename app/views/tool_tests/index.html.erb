@@ -3,7 +3,7 @@
 <div class="menu-history">
  <%= link_to "Primera Fase", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: "margin-left: 10%;"%>
 
-  <%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+
   <%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary edit-active"%>
 
   <%= link_to "Segunda Fase", patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>

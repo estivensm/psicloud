@@ -4,7 +4,7 @@ Rails.application.routes.draw do
  
 
   
- 
+
   resources :hpcs
   resources :agreements
   get 'tool_tests/index'
@@ -23,10 +23,12 @@ Rails.application.routes.draw do
   get "appointments/get_appointments", to: "appointments#get_appointments"
   resources :patients do 
      resources :appointments 
-
+     
      resources :clinic_histories do 
-        
-      resources :tracings
+        resources :personal_histories
+        resources :two_child_histories
+        resources :child_general_dates
+          resources :tracings
         
         get "backgrounds", to: "backgrounds#index", as: "backgrounds" 
         get "backgrounds/:clase/new", to: "backgrounds#new", as: "new_backgrounds" 
@@ -55,6 +57,7 @@ Rails.application.routes.draw do
 
   end
   resources :accounts
+
   root 'home#index'
 
   #User

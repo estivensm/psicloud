@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Child General Dates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Father name</th>
+      <th>Father age</th>
+      <th>Father birthday</th>
+      <th>Father job</th>
+      <th>Father addictions</th>
+      <th>Father relationship</th>
+      <th>Mother name</th>
+      <th>Mother age</th>
+      <th>Mother birthday</th>
+      <th>Mother job</th>
+      <th>Mother addictionsmother relationship</th>
+      <th>Parents realationship</th>
+      <th>Reasons relationship</th>
+      <th>Parents reaction</th>
+      <th>Patient</th>
+      <th>Admin user</th>
+      <th>User</th>
+      <th>Account</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @child_general_dates.each do |child_general_date| %>
+      <tr>
+        <td><%= child_general_date.father_name %></td>
+        <td><%= child_general_date.father_age %></td>
+        <td><%= child_general_date.father_birthday %></td>
+        <td><%= child_general_date.father_job %></td>
+        <td><%= child_general_date.father_addictions %></td>
+        <td><%= child_general_date.father_relationship %></td>
+        <td><%= child_general_date.mother_name %></td>
+        <td><%= child_general_date.mother_age %></td>
+        <td><%= child_general_date.mother_birthday %></td>
+        <td><%= child_general_date.mother_job %></td>
+        <td><%= child_general_date.mother_addictionsmother_relationship %></td>
+        <td><%= child_general_date.parents_realationship %></td>
+        <td><%= child_general_date.reasons_relationship %></td>
+        <td><%= child_general_date.parents_reaction %></td>
+        <td><%= child_general_date.patient_id %></td>
+        <td><%= child_general_date.admin_user %></td>
+        <td><%= child_general_date.user_id %></td>
+        <td><%= child_general_date.account_id %></td>
+        <td><%= link_to 'Show', child_general_date %></td>
+        <td><%= link_to 'Edit', edit_child_general_date_path(child_general_date) %></td>
+        <td><%= link_to 'Destroy', child_general_date, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Child General Date', new_child_general_date_path %>

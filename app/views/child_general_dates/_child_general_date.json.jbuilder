@@ -1,0 +1,2 @@
+json.extract! child_general_date, :id, :father_name, :father_age, :father_birthday, :father_job, :father_addictions, :father_relationship, :mother_name, :mother_age, :mother_birthday, :mother_job, :mother_addictionsmother_relationship, :parents_realationship, :reasons_relationship, :parents_reaction, :patient_id, :admin_user, :user_id, :account_id, :created_at, :updated_at
+json.url child_general_date_url(child_general_date, format: :json)

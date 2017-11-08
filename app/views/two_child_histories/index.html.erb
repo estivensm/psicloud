@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Two Child Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nivel escolar</th>
+      <th>Indice academico</th>
+      <th>Escuela</th>
+      <th>Adaptacion escolar</th>
+      <th>Problemas escolares</th>
+      <th>Gustos escolares</th>
+      <th>Disgustos escolares</th>
+      <th>Tareas</th>
+      <th>Utiles escolares</th>
+      <th>Problemas materias</th>
+      <th>Relacion maestro</th>
+      <th>Relacion companeros</th>
+      <th>Frecuencia amigos</th>
+      <th>Edad amigos</th>
+      <th>Tipo juegos</th>
+      <th>Actividades mismo sexo</th>
+      <th>Actividades otro sexo</th>
+      <th>Pelea</th>
+      <th>Motivo felicidad</th>
+      <th>Motivo tristeza</th>
+      <th>Motivo enojo</th>
+      <th>Motivos pregunta</th>
+      <th>Habitos</th>
+      <th>Admin user</th>
+      <th>User</th>
+      <th>Patient</th>
+      <th>Clinic history</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @two_child_histories.each do |two_child_history| %>
+      <tr>
+        <td><%= two_child_history.nivel_escolar %></td>
+        <td><%= two_child_history.indice_academico %></td>
+        <td><%= two_child_history.escuela %></td>
+        <td><%= two_child_history.adaptacion_escolar %></td>
+        <td><%= two_child_history.problemas_escolares %></td>
+        <td><%= two_child_history.gustos_escolares %></td>
+        <td><%= two_child_history.disgustos_escolares %></td>
+        <td><%= two_child_history.tareas %></td>
+        <td><%= two_child_history.utiles_escolares %></td>
+        <td><%= two_child_history.problemas_materias %></td>
+        <td><%= two_child_history.relacion_maestro %></td>
+        <td><%= two_child_history.relacion_companeros %></td>
+        <td><%= two_child_history.frecuencia_amigos %></td>
+        <td><%= two_child_history.edad_amigos %></td>
+        <td><%= two_child_history.tipo_juegos %></td>
+        <td><%= two_child_history.actividades_mismo_sexo %></td>
+        <td><%= two_child_history.actividades_otro_sexo %></td>
+        <td><%= two_child_history.pelea %></td>
+        <td><%= two_child_history.motivo_felicidad %></td>
+        <td><%= two_child_history.motivo_tristeza %></td>
+        <td><%= two_child_history.motivo_enojo %></td>
+        <td><%= two_child_history.motivos_pregunta %></td>
+        <td><%= two_child_history.habitos %></td>
+        <td><%= two_child_history.admin_user %></td>
+        <td><%= two_child_history.user_id %></td>
+        <td><%= two_child_history.patient_id %></td>
+        <td><%= two_child_history.clinic_history_id %></td>
+        <td><%= link_to 'Show', two_child_history %></td>
+        <td><%= link_to 'Edit', edit_two_child_history_path(two_child_history) %></td>
+        <td><%= link_to 'Destroy', two_child_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Two Child History', new_two_child_history_path %>

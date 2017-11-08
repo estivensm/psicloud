@@ -37,6 +37,7 @@ gem 'jquery-ui-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 #gem para acceder a los servicios de google
+gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 
 
 #gem para el manejo de usuarios

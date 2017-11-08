@@ -32,7 +32,35 @@ class PatientsController < ApplicationController
     datau = @patient.data
     @patient.data = ""
     @patient.avatar = convert_data_uri_to_upload(datau)
-    @patient.age = Date.today.year - @patient.birth_date.year
+    age = @patient.age = Date.today.year - @patient.birth_date.year
+    amonth = Date.today.month
+    bmonth = @patient.birth_date.month
+    aday = Date.today.day
+    bday = @patient.birth_date.day
+    if amonth < bmonth
+      @patient.age = age -1  
+      @patient.birthdate_month = bmonth - amonth + 12
+      @patient.birthdate_day = aday
+    elsif amonth == bmonth
+        if aday < bday
+          @patient.age = age -1
+            @patient.birthdate_month = 11
+            @patient.birthdate_day = aday
+        else
+          @patient.age = age
+          @patient.birthdate_month = 0
+          @patient.birthdate_day = aday - bday
+        end    
+    else
+      @patient.age = age
+      @patient.birthdate_month = amonth -bmonth
+      @patient.birthdate_day = aday
+    end    
+
+
+
+        
+
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
@@ -53,8 +81,38 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1
   # PATCH/PUT /patients/1.json
   def update
+
+
     respond_to do |format|
+          
       if @patient.update(patient_params)
+        age = @patient.age = Date.today.year - @patient.birth_date.year
+    amonth = Date.today.month
+    bmonth = @patient.birth_date.month
+    aday = Date.today.day
+    bday = @patient.birth_date.day
+    if amonth < bmonth
+      @patient.age = age -1  
+      @patient.birthdate_month = 12 - bmonth - amonth  
+      @patient.birthdate_day = aday
+    elsif amonth == bmonth
+      "aquiiiiiiiiiiiiiiiiiiii"
+        if aday < bday
+          "1111111"
+          @patient.age = age -1
+            @patient.birthdate_month = 11
+            @patient.birthdate_day = aday
+        else
+      "2222222222222"
+          @patient.age = age
+          @patient.birthdate_month = 0
+          @patient.birthdate_day = aday - bday
+        end    
+    else
+      @patient.age = age
+      @patient.birthdate_month = amonth -bmonth
+      @patient.birthdate_day = aday
+    end  
         datau = @patient.data
         @patient.data = ""
         @patient.avatar = convert_data_uri_to_upload(datau)
@@ -118,6 +176,10 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:first_name, :second_name, :first_last_name, :second_last_name, :birth_date, :age, :document_type, :document, :occupation, :profession, :phone, :address, :email, :contact_name, :contact_phone, :gender, :contact_relationship, :civil_status, :blood_type,:ethnic_group, :user_id, :admin_user,:hpc_id,:count,:agreement_id,:avatar,:city,:movil,:data )
+      params.require(:patient).permit(:first_name, :second_name, :first_last_name, :second_last_name, :birth_date, :age, :document_type, :document, :occupation, :profession, :phone, :address, :email, :contact_name, :contact_phone, :gender, :contact_relationship, :civil_status, :blood_type,:ethnic_group, :user_id, :admin_user,:hpc_id,:count,:agreement_id,:avatar,:city,:movil,:data,:birthdate_month,:birthdate_day,:school_grade )
     end
 end
+
+
+
+

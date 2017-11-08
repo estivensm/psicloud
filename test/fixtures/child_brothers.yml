@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sexo: MyString
+  edad: MyString
+  birthdate: MyString
+  relationship: MyString
+  observations: MyString
+  child_general_date_id: 1
+
+two:
+  name: MyString
+  sexo: MyString
+  edad: MyString
+  birthdate: MyString
+  relationship: MyString
+  observations: MyString
+  child_general_date_id: 1

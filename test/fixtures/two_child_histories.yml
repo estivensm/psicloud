@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nivel_escolar: MyString
+  indice_academico: MyString
+  escuela: MyString
+  adaptacion_escolar: MyString
+  problemas_escolares: MyString
+  gustos_escolares: MyString
+  disgustos_escolares: MyString
+  tareas: MyString
+  utiles_escolares: MyString
+  problemas_materias: MyString
+  relacion_maestro: MyString
+  relacion_companeros: MyString
+  frecuencia_amigos: MyString
+  edad_amigos: MyString
+  tipo_juegos: MyString
+  actividades_mismo_sexo: MyString
+  actividades_otro_sexo: MyString
+  pelea: MyString
+  motivo_felicidad: MyString
+  motivo_tristeza: MyString
+  motivo_enojo: MyString
+  motivos_pregunta: MyString
+  habitos: MyString
+  admin_user: 1
+  user_id: 1
+  patient_id: 1
+  clinic_history_id: 1
+
+two:
+  nivel_escolar: MyString
+  indice_academico: MyString
+  escuela: MyString
+  adaptacion_escolar: MyString
+  problemas_escolares: MyString
+  gustos_escolares: MyString
+  disgustos_escolares: MyString
+  tareas: MyString
+  utiles_escolares: MyString
+  problemas_materias: MyString
+  relacion_maestro: MyString
+  relacion_companeros: MyString
+  frecuencia_amigos: MyString
+  edad_amigos: MyString
+  tipo_juegos: MyString
+  actividades_mismo_sexo: MyString
+  actividades_otro_sexo: MyString
+  pelea: MyString
+  motivo_felicidad: MyString
+  motivo_tristeza: MyString
+  motivo_enojo: MyString
+  motivos_pregunta: MyString
+  habitos: MyString
+  admin_user: 1
+  user_id: 1
+  patient_id: 1
+  clinic_history_id: 1

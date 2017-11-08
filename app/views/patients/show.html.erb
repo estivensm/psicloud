@@ -2,8 +2,9 @@
    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xs-offset-0 col-sm-offset-0 toppad" >
          <div class="panel panel-info">
-            <div class="panel-heading" style="background: #3b84a7;color:white">
-               <h3 class="panel-title" style="font-size: 25px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
+            <div class="panel-heading" style="        background: #f9f9f9;
+    color: #808080;">
+               <h3 class="panel-title" style="font-size: 20px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
             </div>
             <div class="panel-body" style="padding-top: 40px;">
                <div class="row img">
@@ -11,14 +12,22 @@
                   <div class="col-md-7 col-lg-7 info-p" >
                      <p><strong> <%= @patient.document_type%>: </strong><%= @patient.document%> </p>
                      <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
-                     <p><strong>Edad: </strong><%= @patient.age%> </p>
+       
+                            <% year = @patient.age == 1 ? "Año" : " Años"
+                              month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+                              day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+                            %>
+                           <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
                      <p><strong>Genero: </strong><%= @patient.gender%> </p>
                      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Ver mas</button>
                   </div>
                   <div class="col-md-12 col-lg-12 info-p" style= "padding:20px;text-align: center;" >
                      <hr>
 
-                     <%= link_to "Consentimiento Informado pdf", patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary" %>
+                     <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                     <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                      Consentimiento Informado
+                     <%end%>
 
 
 
@@ -47,7 +56,7 @@
             <div class="panel-footer">
                <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                <span class="pull-right">
-               <a href="/patients/<%=@patient.id%>/edit" data-original-title=">Editar este usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+               <a href="/patients/<%=@patient.id%>/edit" data-original-title="Editar este usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
                <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/patients/2" data-original-title="Borrar este Usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                </span>
             </div>
@@ -70,7 +79,11 @@
                   <%if @hs != nil%>
                   <div class="descnum">
                      <br>
-                     <%= link_to "Ver Historia Clinica", patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary"%>
+                     <p class="text-right">
+                     <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary" do%>
+                        <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
+                     <%end%>
+                     </p>
                      <h3>1. Motivo de consulta</h3>
                      <p><%= @hs.consultation_reason %></p>
                      <hr>
@@ -88,6 +101,7 @@
                   </div>
                   <%else%>
                   <br><br>
+              
                   <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary"%>
                   <%end%>
                </div>
@@ -273,7 +287,11 @@
                         <div class="col-md-6 col-lg-6 info-p" >
                            <p><strong>Documento: </strong> <%= @patient.document_type%>: <%= @patient.document%> </p>
                            <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
-                           <p><strong>Edad: </strong><%= @patient.age%> </p>
+                            <% year = @patient.age == 1 ? "Año" : " Años"
+                              month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+                              day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+                            %>
+                           <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
                            <p><strong>Genero: </strong><%= @patient.gender%> </p>
                         </div>
                         <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>

@@ -48,7 +48,8 @@ body
        background: white;
 
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+   border-left: 8px solid #5bc0de;
+    border-right: 8px solid #5bc0de;
     border-radius: 4px;
       p
       {
@@ -93,4 +94,48 @@ body
 
 {
   color:white !important;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+        color: #fff !important;
+    background-color: #17c1ca !important;
+    border-color: #46b8da !important;
+}
+.btn-primary {
+  color: #fff !important;
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+.btn-primary:focus {
+  color: #fff !important;
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+.btn-primary:hover {
+  color: #fff !important;
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+.panel-info {
+    border-color: #d8d8d8 !important;
+}
+.panel-info>.panel-heading {
+      
+    border-color: #d4d4d4 !important;
+}
+
+.nav-tabs>li>a:hover {
+    background: #2a4979 !important;
+    color: white;
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid rgba(12, 12, 12, 0.51);
+    border-radius: 0px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: #555;
+    background-color: #fff !important;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
 }

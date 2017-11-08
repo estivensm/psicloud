@@ -1,0 +1,347 @@
+
+<div class="container">
+<br>
+
+
+<div class = "row row-form">
+  <br>
+<%= nested_form_for([@patient, @clinic_history, child_general_date]) do |form| %>
+
+  <% if child_general_date.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(child_general_date.errors.count, "error") %> prohibited this child_general_date from being saved:</h2>
+
+      <ul>
+      <% child_general_date.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+
+<div class="col-md-4">
+  <div class="form-group">
+    <%= form.label "Nombre del padre"%>
+    <%= form.text_field :father_name, id: :child_general_date_father_name, class: "form form-control" %>
+  </div>
+</div>
+<div class="col-md-5 sir">
+
+   <div class="form-group">
+             <%= form.label "Fecha de Nacimiento del Padre" %><br>
+              <%= form.date_select :father_birthday,{
+                        :start_year =>
+              Time.now.year,
+                        :end_year => 1900,
+                        :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+                        :use_short_month => true,
+                        :order => [:day, :month, :year],
+                        :prompt => {:month => 'Mes', :day => 'Dia', :year => 'Año'}},
+                        {:class => 'year form-control line1 required',
+                        :id => 'father_birthday' , :title => "Es un Campo Obligatorio" }
+                      %>
+            </div>
+ </div>
+<div class="col-md-3">
+ <div class="field">
+    <%= form.label "Ocupacion del Padre" %>
+    <%= form.text_field :father_job, id: :child_general_date_father_job, class: "form form-control" %>
+  </div>
+    </div>
+   </div>
+    <div class="row">
+      <div class="col-md-8">
+   <div class="form-group acc1">
+               <label for="">Relacion del Padre con el Niño</label><br>
+               <label class="radio-inline">
+               <%= form.radio_button :father_relationship, 'Estable', class: 'rb cksi check1' %><span style = "margin-left:5px">Estable</span>
+               </label>
+              <label class="radio-inline">
+               <%= form.radio_button :father_relationship, 'Inestable', class: 'rb ckno check1' %><span style = "margin-left:5px">Inestable</span>
+                </label>
+                  <label class="radio-inline">
+               <%= form.radio_button :father_relationship, 'Conflictiva', class: 'rb ckno check1' %><span style = "margin-left:5px">Conflictiva</span>
+                </label>
+                  <label class="radio-inline">
+               <%= form.radio_button :father_relationship, 'Mucha Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Mucha </span>
+                </label>
+                 <label class="radio-inline">
+               <%= form.radio_button :father_relationship, 'Poca Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Poca </span>
+                </label>
+                    <label class="radio-inline">
+               <%= form.radio_button :father_relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Ninguna Comunicacion</span>
+                </label>
+    </div>
+    </div>
+<div class="col-md-4">
+ <div class="field">
+    <%= form.label "Adicciones del padre" %>
+    <%= form.text_area :father_addictions, id: :child_general_date_father_addictions, class: "form form-control" %>
+
+  </div></div>
+
+    </div>
+  <br>
+ <hr>
+
+ <div class="row">
+
+<div class="col-md-4">
+  <div class="form-group">
+    <%= form.label "Nombre de la madre"%>
+   <%= form.text_field :mother_name, id: :child_general_date_mother_name, class: "form form-control" %>
+  </div>
+</div>
+<div class="col-md-5 sir">
+
+   <div class="form-group">
+             <%= form.label "Fecha de Nacimiento de la madre" %><br>
+              <%= form.date_select :mother_birthday,{
+                        :start_year =>
+              Time.now.year,
+                        :end_year => 1900,
+                        :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+                        :use_short_month => true,
+                        :order => [:day, :month, :year],
+                        :prompt => {:month => 'Mes', :day => 'Dia', :year => 'Año'}},
+                        {:class => 'year form-control line1 required',
+                        :id => 'father_birthday' , :title => "Es un Campo Obligatorio" }
+                      %>
+            </div>
+ </div>
+
+
+ <div class="col-md-3">
+ <div class="field">
+    <%= form.label "Ocupacion de la madre" %>
+    <%= form.text_field :mother_job, id: :child_general_date_mother_job, class: "form form-control" %>
+  </div>
+    </div>
+      </div>
+<div class="row">
+  <div class="col-md-8">
+   <div class="form-group acc1">
+               <label for="">Relacion de la madre con el Niño</label><br>
+               <label class="radio-inline">
+               <%= form.radio_button :mother_relationship, 'Estable', class: 'rb cksi check1' %><span style = "margin-left:5px">Estable</span>
+               </label>
+              <label class="radio-inline">
+               <%= form.radio_button :mother_relationship, 'Inestable', class: 'rb ckno check1' %><span style = "margin-left:5px">Inestable</span>
+                </label>
+                  <label class="radio-inline">
+               <%= form.radio_button :mother_relationship, 'Conflictiva', class: 'rb ckno check1' %><span style = "margin-left:5px">Conflictiva</span>
+                </label>
+                  <label class="radio-inline">
+               <%= form.radio_button :mother_relationship, 'Mucha Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Mucha </span>
+                </label>
+                 <label class="radio-inline">
+               <%= form.radio_button :mother_relationship, 'Poca Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Poca </span>
+                </label>
+                    <label class="radio-inline">
+               <%= form.radio_button :mother_relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Ninguna Comunicacion</span>
+                </label>
+    </div>
+    </div>
+ <div class="col-md-4">
+ <div class="field">
+    <%= form.label "Adicciones de la madre" %>
+    <%= form.text_area :mother_addictions, id: :child_general_date_mother_addictions, class: "form form-control" %>
+
+  </div>
+  </div>
+
+  
+
+
+    </div>
+
+    <br>
+<hr>
+
+  
+
+  <div class="row">
+  <div class="col-md-8">
+  
+
+
+     <div class="form-group acc1">
+               <label for="">Relacion Entre los padres</label><br>
+               <label class="radio-inline" style="margin-left: 10px;
+">
+               <%= form.radio_button :parents_realationship, 'Buena', class: 'rb cksi check1' %><span style = "margin-left:5px">Buena</span>
+               </label>
+              <label class="radio-inline">
+               <%= form.radio_button :parents_realationship, 'Regular', class: 'rb ckno check1' %><span style = "margin-left:5px">Regular</span>
+                </label>
+                  <label class="radio-inline">
+               <%= form.radio_button :parents_realationship, 'Mala', class: 'rb ckno check1' %><span style = "margin-left:5px">Mala</span>
+                </label>
+                  <label class="radio-inline">
+               <%= form.radio_button :parents_realationship, 'Divorciados', class: 'rb ckno check1' %><span style = "margin-left:5px">Divorciados </span>
+                </label>
+                 <label class="radio-inline">
+               <%= form.radio_button :parents_realationship, 'Separados', class: 'rb ckno check1' %><span style = "margin-left:5px">Separados </span>
+                </label>
+                    <label class="radio-inline">
+               <%= form.radio_button :parents_realationship, 'Abandono total de un miembro', class: 'rb ckno check1' %><span style = "margin-left:5px">Abandono total de un miembro</span>
+                </label>
+    </div>
+
+
+
+  </div>
+  <div class="col-md-4">
+  <div class="field">
+    <%= form.label "Especificar Razones" %>
+    <%= form.text_area :reasons_relationship, id: :child_general_date_reasons_relationship , class: "form form-control"%>
+  </div>
+   </div>
+</div>
+<br><hr>
+
+   <div class="row">
+ <div class="col-md-8">
+  <div class="field">
+    <%= form.label "Reaccion de los padres ante el problema del niño" %>
+    <%= form.text_area :parents_reaction, id: :child_general_date_parents_reaction, class: "form form-control" %>
+  </div>
+</div></div>
+<hr>
+<div class="row">
+<br>
+  <h2 class = "" style = "margin :0px 0px 5px 0;color:gray">Hermanos</h2>
+<br>
+      <%= form.fields_for :child_brothers do |contact|  %>
+      <div class="clearfix" style="margin-bottom: 30px;">
+         <div class="col-md-12" >
+            <div class="col-md-2 pdd" >
+               <%= contact.link_to_remove do %>
+               <i style = "    color: #e74b09;
+                  font-size: 18px;
+                  margin-left: 0px;
+                  position: relative;
+                  left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+               <%= contact.label "Nombre" %>
+               <%= contact.text_field :name, :class => 'form-control' %>
+            </div>
+              <div class="col-md-3 pdd" >
+               <%= contact.label "Sexo" %>
+               <%= contact.text_field :sexo, :class => 'form-control' %>
+            </div>
+              <div class="col-md-2 pdd" >
+               <%= contact.label "Edad" %>
+               <%= contact.number_field :edad, :class => 'form-control' %>
+            </div>
+          <div class="col-md-12 pdd" style= "margin-top:10px;">
+    <div class="form-group acc1">
+               <label for="">Relacion con el Niño</label><br>
+               <label class="radio-inline">
+               <%= contact.radio_button :relationship, 'Estable', class: 'rb cksi check1' %><span style = "margin-left:10px">Estable</span>
+               </label>
+              <label class="radio-inline">
+               <%= contact.radio_button :relationship, 'Inestable', class: 'rb ckno check1' %><span style = "margin-left:10px">Inestable</span>
+                </label>
+                  <label class="radio-inline">
+               <%= contact.radio_button :relationship, 'Conflictiva', class: 'rb ckno check1' %><span style = "margin-left:10px">Conflictiva</span>
+                </label>
+                  <label class="radio-inline">
+               <%= contact.radio_button :relationship, 'Mucha Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:10px">Mucha </span>
+                </label>
+                 <label class="radio-inline">
+               <%= contact.radio_button :relationship, 'Poca Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:10px">Poca </span>
+                </label>
+                    <label class="radio-inline">
+               <%= contact.radio_button :relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:10px">Ninguna Comunicacion</span>
+                </label>
+    </div>  </div>
+
+
+
+
+
+            <%= contact.hidden_field :child_general_date_id, :value=> @child_general_date.id %>
+         </div>
+
+      </div><hr>
+      <%end%>
+      <div class="col-md-12" style="
+         margin-bottom: 25px;">
+         <%= form.link_to_add "Agregar Hermano", :child_brothers, :class => 'btn btn-primary top10'  %>
+      </div>
+   </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+<%= form.hidden_field :user_id ,:value =>  current_user.id %>
+<%= form.hidden_field :patient_id ,:value =>  @patient.id %>
+<%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
+
+<br><hr>
+
+   <div class="row text-center">
+<div class="col-md-12">
+   <div class="actions">
+    <%= form.submit "Guardar", class: "btn-lg btn-primary btn-form" %>
+
+    
+  </div>
+  </div>
+  </div>
+<% end %>
+
+</div>
+  
+</div>
+
+
+<style>
+#father_birthday
+{
+  width:30% !important;
+  display: inline-block;
+}
+.error
+{
+  color: red !important;
+}
+#father_birthday-error
+{
+    position: absolute;
+    top: 62px;
+    left: 24px;
+ } 
+ #mother_birthday
+{
+  width:30% !important;
+  display: inline-block;
+}
+.error
+{
+  color: red !important;
+}
+#mother_birthday-error
+{
+    position: absolute;
+    top: 62px;
+    left: 24px;
+ } 
+</style>
+
+

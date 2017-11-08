@@ -16,6 +16,7 @@
 //= require jquery-ui
 //= require moment 
 //= require fullcalendar
+//= require jquery_nested_form
 //= require twitter/bootstrap
 //= require jquery.validate
 //= require chosen-jquery

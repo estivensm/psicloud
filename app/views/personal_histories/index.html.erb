@@ -1,0 +1,77 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Personal Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Embarazo</th>
+      <th>Hijo deseado</th>
+      <th>Dificultades prenatales</th>
+      <th>Periodo prenatal</th>
+      <th>Parto</th>
+      <th>Peso nacimiento</th>
+      <th>Talla nacimiento</th>
+      <th>Latencia materna</th>
+      <th>Biberon</th>
+      <th>Semisolidos</th>
+      <th>Solidos</th>
+      <th>Problemas alimentacion</th>
+      <th>Dificultad dormir</th>
+      <th>Reacciones</th>
+      <th>Edad gateo</th>
+      <th>Edad pie</th>
+      <th>Edad caminar</th>
+      <th>Inicio lenguaje</th>
+      <th>Enfermedades medicas</th>
+      <th>Hospitalizacion cirugias</th>
+      <th>Problemas visoperceptivomotores</th>
+      <th>Accout</th>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Patient</th>
+      <th>Clinic history</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @personal_histories.each do |personal_history| %>
+      <tr>
+        <td><%= personal_history.embarazo %></td>
+        <td><%= personal_history.hijo_deseado %></td>
+        <td><%= personal_history.dificultades_prenatales %></td>
+        <td><%= personal_history.periodo_prenatal %></td>
+        <td><%= personal_history.parto %></td>
+        <td><%= personal_history.peso_nacimiento %></td>
+        <td><%= personal_history.talla_nacimiento %></td>
+        <td><%= personal_history.latencia_materna %></td>
+        <td><%= personal_history.biberon %></td>
+        <td><%= personal_history.semisolidos %></td>
+        <td><%= personal_history.solidos %></td>
+        <td><%= personal_history.problemas_alimentacion %></td>
+        <td><%= personal_history.dificultad_dormir %></td>
+        <td><%= personal_history.reacciones %></td>
+        <td><%= personal_history.edad_gateo %></td>
+        <td><%= personal_history.edad_pie %></td>
+        <td><%= personal_history.edad_caminar %></td>
+        <td><%= personal_history.inicio_lenguaje %></td>
+        <td><%= personal_history.enfermedades_medicas %></td>
+        <td><%= personal_history.hospitalizacion_cirugias %></td>
+        <td><%= personal_history.problemas_visoperceptivomotores %></td>
+        <td><%= personal_history.accout_id %></td>
+        <td><%= personal_history.user_id %></td>
+        <td><%= personal_history.admin_user %></td>
+        <td><%= personal_history.patient_id %></td>
+        <td><%= personal_history.clinic_history_id %></td>
+        <td><%= link_to 'Show', personal_history %></td>
+        <td><%= link_to 'Edit', edit_personal_history_path(personal_history) %></td>
+        <td><%= link_to 'Destroy', personal_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Personal History', new_personal_history_path %>

@@ -128,19 +128,25 @@ label
     color: #888888  !important;
    
 }
-.h1-tittle
-{
-    
-    color:#38b5af;
-
-    
-    margin:0px;
-    padding: 2px 30px;
+.h1-tittle {
+    color: #949494;
+    background: #efefef;
+    margin: 0px;
+    padding: 11px 30px;
     font-size: 30px;
     border-radius: 5px 5px 0px 0px;
     font-family: 'Days One', sans-serif;
-    text-align:center;
-
+    text-align: center;
+}
+.h2-tittle {
+    color: #969696;
+    /* background: #efefef; */
+    margin: 0px;
+    padding: 11px 30px;
+    font-size: 30px;
+    border-radius: 5px 5px 0px 0px;
+    font-family: 'Days One', sans-serif;
+    text-align: center;
 }
 .row-form h3
 {
@@ -168,9 +174,9 @@ hr
 
 .active1 
 {
-     background: #17c1ca !important;
-  color:white!important;
-       border: 3px solid !important;
+background: #5bc0de !important;
+    color: white !important;
+    border: 3px solid !important;
 
 }
 
@@ -217,7 +223,7 @@ hr
 .imgedit img
 {
   width:100px;
-      border: 3px solid #38b5af;
+    
 }
   
 .edit-active

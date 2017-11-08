@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/ryanb/nested_form.git
+  revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
+  specs:
+    nested_form (0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -322,6 +328,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_magick
   momentjs-rails
+  nested_form!
   omniauth-google-oauth2
   pg
   puma (~> 3.7)

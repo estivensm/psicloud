@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  embarazo: MyString
+  hijo_deseado: MyString
+  dificultades_prenatales: MyText
+  periodo_prenatal: MyString
+  parto: MyString
+  peso_nacimiento: 1.5
+  talla_nacimiento: 1.5
+  latencia_materna: 1
+  biberon: 1
+  semisolidos: MyString
+  solidos: MyString
+  problemas_alimentacion: MyString
+  dificultad_dormir: MyString
+  reacciones: MyString
+  edad_gateo: 1
+  edad_pie: 1
+  edad_caminar: 1
+  inicio_lenguaje: 1
+  enfermedades_medicas: MyString
+  hospitalizacion_cirugias: MyString
+  problemas_visoperceptivomotores: MyString
+  accout_id: 1
+  user_id: 1
+  admin_user: 1
+  patient_id: 1
+  clinic_history_id: 1
+
+two:
+  embarazo: MyString
+  hijo_deseado: MyString
+  dificultades_prenatales: MyText
+  periodo_prenatal: MyString
+  parto: MyString
+  peso_nacimiento: 1.5
+  talla_nacimiento: 1.5
+  latencia_materna: 1
+  biberon: 1
+  semisolidos: MyString
+  solidos: MyString
+  problemas_alimentacion: MyString
+  dificultad_dormir: MyString
+  reacciones: MyString
+  edad_gateo: 1
+  edad_pie: 1
+  edad_caminar: 1
+  inicio_lenguaje: 1
+  enfermedades_medicas: MyString
+  hospitalizacion_cirugias: MyString
+  problemas_visoperceptivomotores: MyString
+  accout_id: 1
+  user_id: 1
+  admin_user: 1
+  patient_id: 1
+  clinic_history_id: 1

@@ -39,10 +39,11 @@
 class Patient < ApplicationRecord
      has_many :clinic_histories  
      has_many :appointments 
+     has_many :child_general_dates
      belongs_to :hpc
      belongs_to :agreement
 	   mount_uploader :avatar, AvatarPatientUploader  
-	 
+	   
 
 	def self.search(search)
     where("(first_name || ' ' || second_name || ' ' || first_last_name  || ' ' || second_last_name) like '%#{search}%'  or 
@@ -51,4 +52,6 @@ class Patient < ApplicationRecord
       email like '%#{search}%' or 
       document like '%#{search}%'").order(:id)
   end
+
+
 end

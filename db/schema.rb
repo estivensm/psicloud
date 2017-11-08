@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021161749) do
+ActiveRecord::Schema.define(version: 20171104225341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,43 @@ ActiveRecord::Schema.define(version: 20171021161749) do
     t.datetime "updated_at", null: false
     t.string "type_background"
     t.string "clase"
+  end
+
+  create_table "child_brothers", force: :cascade do |t|
+    t.string "name"
+    t.string "sexo"
+    t.string "edad"
+    t.string "birthdate"
+    t.string "relationship"
+    t.string "observations"
+    t.integer "child_general_date_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "child_general_dates", force: :cascade do |t|
+    t.string "father_name"
+    t.integer "father_age"
+    t.date "father_birthday"
+    t.string "father_job"
+    t.string "father_addictions"
+    t.string "father_relationship"
+    t.string "mother_name"
+    t.integer "mother_age"
+    t.string "mother_job"
+    t.string "parents_realationship"
+    t.string "reasons_relationship"
+    t.string "parents_reaction"
+    t.integer "patient_id"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "mother_addictions"
+    t.string "mother_relationship"
+    t.date "mother_birthday"
+    t.integer "clinic_history_id"
   end
 
   create_table "clinic_histories", force: :cascade do |t|
@@ -154,6 +191,52 @@ ActiveRecord::Schema.define(version: 20171021161749) do
     t.string "city"
     t.text "data"
     t.integer "hpc_id"
+    t.integer "birthdate_month"
+    t.integer "birthdate_day"
+    t.string "school_grade"
+  end
+
+  create_table "personal_backgrounds", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "patient_id"
+    t.integer "clinic_history_id"
+    t.string "attachement"
+    t.string "description"
+    t.string "type_background"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "personal_histories", force: :cascade do |t|
+    t.string "embarazo"
+    t.string "hijo_deseado"
+    t.text "dificultades_prenatales"
+    t.string "periodo_prenatal"
+    t.string "parto"
+    t.float "peso_nacimiento"
+    t.float "talla_nacimiento"
+    t.integer "latencia_materna"
+    t.integer "biberon"
+    t.string "semisolidos"
+    t.string "solidos"
+    t.string "problemas_alimentacion"
+    t.string "dificultad_dormir"
+    t.string "reacciones"
+    t.integer "edad_gateo"
+    t.integer "edad_pie"
+    t.integer "edad_caminar"
+    t.integer "inicio_lenguaje"
+    t.string "enfermedades_medicas"
+    t.string "hospitalizacion_cirugias"
+    t.string "problemas_visoperceptivomotores"
+    t.integer "accout_id"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "patient_id"
+    t.integer "clinic_history_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tool_tests", force: :cascade do |t|
@@ -176,6 +259,44 @@ ActiveRecord::Schema.define(version: 20171021161749) do
     t.text "description"
     t.string "attachment"
     t.string "tracing_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "two_child_histories", force: :cascade do |t|
+    t.string "nivel_escolar"
+    t.string "indice_academico"
+    t.string "escuela"
+    t.string "adaptacion_escolar"
+    t.string "problemas_escolares"
+    t.string "gustos_escolares"
+    t.string "disgustos_escolares"
+    t.string "tareas"
+    t.string "utiles_escolares"
+    t.string "problemas_materias"
+    t.string "relacion_maestro"
+    t.string "relacion_companeros"
+    t.string "frecuencia_amigos"
+    t.string "edad_amigos"
+    t.string "tipo_juegos"
+    t.string "actividades_mismo_sexo"
+    t.string "actividades_otro_sexo"
+    t.string "pelea"
+    t.string "motivo_felicidad"
+    t.string "motivo_tristeza"
+    t.string "motivo_enojo"
+    t.string "motivos_pregunta"
+    t.string "habitos"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.integer "patient_id"
+    t.integer "clinic_history_id"
+    t.string "tiempo_libre"
+    t.string "hace_solo"
+    t.string "no_gusta"
+    t.string "deportes"
+    t.string "juegos"
+    t.string "programa_tv"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

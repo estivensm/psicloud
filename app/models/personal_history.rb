@@ -1,0 +1,2 @@
+class PersonalHistory < ApplicationRecord
+end

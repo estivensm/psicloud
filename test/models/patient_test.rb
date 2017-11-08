@@ -25,7 +25,6 @@
 #  ethnic_group         :string
 #  user_id              :integer
 #  admin_user           :integer
-#  eps_id               :integer
 #  count                :integer
 #  agreement_id         :integer
 #  avatar               :string
@@ -34,6 +33,10 @@
 #  movil                :string
 #  city                 :string
 #  data                 :text
+#  hpc_id               :integer
+#  birthdate_month      :integer
+#  birthdate_day        :integer
+#  school_grade         :string
 #
 
 require 'test_helper'

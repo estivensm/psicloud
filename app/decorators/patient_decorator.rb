@@ -1,7 +1,15 @@
 module PatientDecorator
 
 
+ def select_grado
+    [
+      ['Jardin', 'Jardin'],
+      ['Prescolar', 'Prescolar'],
+      ['Transición', 'Transición'],
+      ['Primero de Primaria', 'Primero de Primaria'],
 
+    ]
+  end
 	
   def select_genero
   	[

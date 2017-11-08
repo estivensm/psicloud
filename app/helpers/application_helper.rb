@@ -65,6 +65,28 @@ def get_ag
 end
 
 
+def select_relacion
+    [
+      ['Estable', 'Estable'],
+      ['Inestable', 'Inestable'],
+      ['Conflictiva', 'Conflictiva'],
+      ['Mucha', 'Mucha'],
+       ['Poca', 'Poca'],
+        ['Nada', 'Nada']
+
+    ]
+  end
+  def select_relacion_parents
+    [
+      ['Buena', 'Buena'],
+      ['Regular', 'Regular'],
+      ['Mala', 'Mala'],
+      ['Separados ', 'Separados'],
+       ['Divorciados', 'Divorciados'],
+        ['Abandono total de un miembro', 'Abandono total de un miembro']
+
+    ]
+  end
 
 
 

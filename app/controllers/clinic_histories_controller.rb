@@ -63,7 +63,7 @@ class ClinicHistoriesController < ApplicationController
  @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @clinic_history.save
-        format.html { redirect_to  patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' }
+        format.html { redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' }
         format.json { render :show, status: :created, location: @clinic_history }
       else
         format.html { render :new }
@@ -79,7 +79,7 @@ class ClinicHistoriesController < ApplicationController
 
     respond_to do |format|
       if @clinic_history.update(clinic_history_params)
-        format.html { redirect_to patient_clinic_history_path(@patient.id,@clinic_history.id), notice: 'Clinic history was successfully updated.' }
+        format.html { redirect_to patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully updated.' }
         format.json { render :show, status: :ok, location: @clinic_history }
       else
         format.html { render :edit }
@@ -101,7 +101,7 @@ class ClinicHistoriesController < ApplicationController
 
   def update_step3
       
-      @history = ClinicHistory.find(params[:id])
+      @clinic_history = ClinicHistory.find(params[:id])
       
 
           if @history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis])
@@ -119,14 +119,14 @@ class ClinicHistoriesController < ApplicationController
             end
 
 
-               redirect_to patient_step3_path(@history.patient_id,@history.id)
+               redirect_to patient_step3_path(@clinic_history.patient_id,@history.id)
           end
       
   end
   def step3
 
-      @history = ClinicHistory.find(params[:id])
-       @patient = Patient.find(@history.patient_id)
+      @clinic_history = ClinicHistory.find(params[:id])
+       @patient = Patient.find(@clinic_history.patient_id)
          
       
   end
@@ -140,6 +140,6 @@ class ClinicHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_history_params
-      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment, :user_id, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :family_dinamic)
+      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment, :user_id, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :family_dinamic,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
     end
 end

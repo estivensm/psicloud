@@ -1,0 +1,2 @@
+json.extract! personal_history, :id, :embarazo, :hijo_deseado, :dificultades_prenatales, :periodo_prenatal, :parto, :peso_nacimiento, :talla_nacimiento, :latencia_materna, :biberon, :semisolidos, :solidos, :problemas_alimentacion, :dificultad_dormir, :reacciones, :edad_gateo, :edad_pie, :edad_caminar, :inicio_lenguaje, :enfermedades_medicas, :hospitalizacion_cirugias, :problemas_visoperceptivomotores, :accout_id, :user_id, :admin_user, :patient_id, :clinic_history_id, :created_at, :updated_at
+json.url personal_history_url(personal_history, format: :json)

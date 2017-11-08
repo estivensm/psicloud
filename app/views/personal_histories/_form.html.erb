@@ -1,0 +1,147 @@
+<%= form_with(model: personal_history, local: true) do |form| %>
+  <% if personal_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(personal_history.errors.count, "error") %> prohibited this personal_history from being saved:</h2>
+
+      <ul>
+      <% personal_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :embarazo %>
+    <%= form.text_field :embarazo, id: :personal_history_embarazo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hijo_deseado %>
+    <%= form.text_field :hijo_deseado, id: :personal_history_hijo_deseado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dificultades_prenatales %>
+    <%= form.text_area :dificultades_prenatales, id: :personal_history_dificultades_prenatales %>
+  </div>
+
+  <div class="field">
+    <%= form.label :periodo_prenatal %>
+    <%= form.text_field :periodo_prenatal, id: :personal_history_periodo_prenatal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parto %>
+    <%= form.text_field :parto, id: :personal_history_parto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :peso_nacimiento %>
+    <%= form.text_field :peso_nacimiento, id: :personal_history_peso_nacimiento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :talla_nacimiento %>
+    <%= form.text_field :talla_nacimiento, id: :personal_history_talla_nacimiento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latencia_materna %>
+    <%= form.number_field :latencia_materna, id: :personal_history_latencia_materna %>
+  </div>
+
+  <div class="field">
+    <%= form.label :biberon %>
+    <%= form.number_field :biberon, id: :personal_history_biberon %>
+  </div>
+
+  <div class="field">
+    <%= form.label :semisolidos %>
+    <%= form.text_field :semisolidos, id: :personal_history_semisolidos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :solidos %>
+    <%= form.text_field :solidos, id: :personal_history_solidos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :problemas_alimentacion %>
+    <%= form.text_field :problemas_alimentacion, id: :personal_history_problemas_alimentacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dificultad_dormir %>
+    <%= form.text_field :dificultad_dormir, id: :personal_history_dificultad_dormir %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reacciones %>
+    <%= form.text_field :reacciones, id: :personal_history_reacciones %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edad_gateo %>
+    <%= form.number_field :edad_gateo, id: :personal_history_edad_gateo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edad_pie %>
+    <%= form.number_field :edad_pie, id: :personal_history_edad_pie %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edad_caminar %>
+    <%= form.number_field :edad_caminar, id: :personal_history_edad_caminar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inicio_lenguaje %>
+    <%= form.number_field :inicio_lenguaje, id: :personal_history_inicio_lenguaje %>
+  </div>
+
+  <div class="field">
+    <%= form.label :enfermedades_medicas %>
+    <%= form.text_field :enfermedades_medicas, id: :personal_history_enfermedades_medicas %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hospitalizacion_cirugias %>
+    <%= form.text_field :hospitalizacion_cirugias, id: :personal_history_hospitalizacion_cirugias %>
+  </div>
+
+  <div class="field">
+    <%= form.label :problemas_visoperceptivomotores %>
+    <%= form.text_field :problemas_visoperceptivomotores, id: :personal_history_problemas_visoperceptivomotores %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accout_id %>
+    <%= form.number_field :accout_id, id: :personal_history_accout_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :personal_history_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_user %>
+    <%= form.number_field :admin_user, id: :personal_history_admin_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :patient_id %>
+    <%= form.number_field :patient_id, id: :personal_history_patient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :clinic_history_id %>
+    <%= form.number_field :clinic_history_id, id: :personal_history_clinic_history_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

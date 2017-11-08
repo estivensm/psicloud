@@ -1,0 +1,2 @@
+class TwoChildHistory < ApplicationRecord
+end
