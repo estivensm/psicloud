@@ -51,7 +51,8 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
 #bootstrap
 gem 'twitter-bootstrap-rails', '~> 4.0'
-
+gem 'fog', '~> 1.38'
+gem 'figaro'
 #manejo de archivos
 gem 'carrierwave', '~> 0.11.2'
 

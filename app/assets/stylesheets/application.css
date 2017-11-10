@@ -101,7 +101,7 @@ label
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
         color: #fff !important;
-    background-color: #5bc0de !important
+    background-color: #5bc0de !important;
     border-color: #46b8da !important;
 }
 .btn-primary {
