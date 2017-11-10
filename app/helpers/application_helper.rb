@@ -117,7 +117,7 @@ def menu
   if  controller.controller_name == "home" 
         @menu = ["active1","na","na","na","na"]
      elsif controller.controller_name == "views"
-        @menu = ["na","active1","na","na","na"]
+        @menu = ["na","na","na","na","active1"]
      elsif controller.controller_name == "patients"
         @menu = ["na","na","active1","na","na"]
      elsif controller.controller_name == "appointments"

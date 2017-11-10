@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
 
   	 if params[:search].present?
-        @pacientes = Patient.search(params[:search]).page(params[:page]).per_page(8)
+        @pacientes = Patient.where(user_id: current_user.id).search(params[:search]).page(params[:page]).per_page(10)
     end
 
 

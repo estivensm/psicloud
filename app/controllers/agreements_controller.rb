@@ -4,7 +4,7 @@ class AgreementsController < ApplicationController
   # GET /agreements
   # GET /agreements.json
   def index
-    @agreements = Agreement.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 3)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
 
   end
 
@@ -29,7 +29,7 @@ class AgreementsController < ApplicationController
 
     respond_to do |format|
       if @agreement.save
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
+        format.html { redirect_to agreements_url, notice: 'Agreement was successfully created.' }
         format.json { render :show, status: :created, location: @agreement }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class AgreementsController < ApplicationController
   def update
     respond_to do |format|
       if @agreement.update(agreement_params)
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
+        format.html { redirect_to agreements_url, notice: 'Agreement was successfully updated.' }
         format.json { render :show, status: :ok, location: @agreement }
       else
         format.html { render :edit }

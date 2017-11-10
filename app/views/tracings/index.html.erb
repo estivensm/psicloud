@@ -3,17 +3,20 @@
 
 <h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>  
 <div class="menu-history">
- <%= link_to "Primera Fase", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: "margin-left: 10%;"%>
 
-  <%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-  <%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+<%if @clinic_history.child_history%>
+  <%=render "menu_child"%>
+    <%else%>  
+    <%=render "menu"%>
+<%end%> 
 
-  <%= link_to "Segunda Fase", patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-  <%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary edit-active"%>
+
+ 
 
   
 </div>
-   <div class="row antecedentes" >
+   <div class="row antecedentes" style = "padding: 10px 45px;
+">
 <br>
 <br>
       <div class = "row title-table">

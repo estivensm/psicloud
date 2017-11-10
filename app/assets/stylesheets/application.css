@@ -27,7 +27,10 @@ body
 
 
 }
-
+label
+{
+  text-transform: none !important;
+}
 .navbar-brand img
 {
 	width:130px;
@@ -98,7 +101,7 @@ body
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
         color: #fff !important;
-    background-color: #17c1ca !important;
+    background-color: #5bc0de !important
     border-color: #46b8da !important;
 }
 .btn-primary {
@@ -138,4 +141,9 @@ body
     border: 1px solid #ddd;
     border-bottom-color: transparent;
     cursor: default;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+   color: #fff !important;
+    background-color: #5bc0de !important;
 }

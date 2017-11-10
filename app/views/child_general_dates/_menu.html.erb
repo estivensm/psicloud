@@ -1,0 +1,17 @@
+ 
+ <%= link_to "Primer Contacto", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: ""%>
+
+
+
+
+<%= link_to "Htas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+
+
+
+
+<%= link_to "Segunda Fase", patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+
+
+
+
+<%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>

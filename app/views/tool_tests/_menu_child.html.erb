@@ -1,18 +1,5 @@
 
-<div class="container">
-<div class="row">
-<!--<div class="col-md-10">
-	<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1>
 
-</div>
-	<div class="col-md-2">
-	<h1 class="h1-tittle imgedit"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1>
-</div>
-</div>-->
-<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>
-
-<div class= "menu-history">
-	
  <%= link_to "Primer Contacto", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: ""%>
 
 
@@ -25,11 +12,11 @@
 
 <%= link_to "H. Personal P2", edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), class: "btn btn-primary noactive"%>
 
-<%= link_to "H. Personal P3", edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary edit-active"%>
+<%= link_to "H. Personal P3", edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary noactive"%>
 
 
 
-<%= link_to "Htas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+<%= link_to "Htas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary edit-active"%>
 
 
 
@@ -40,12 +27,3 @@
 
 
 <%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-
-
-
-
-  </div>
-
-<%= render 'form', three_child_history: @three_child_history %>
-
-  </div>

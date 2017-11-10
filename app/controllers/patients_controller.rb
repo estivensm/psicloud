@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 3)
+    @patients = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 3)
  
   end
 
@@ -12,7 +12,7 @@ class PatientsController < ApplicationController
   # GET /patients/1.json
   def show
       @hs = @patient.clinic_histories.first
-        @appointment_l = Appointment.where(state: "Vigente").last
+        @appointment_l = @patient.appointments.where(state: "Vigente").last
     
   end
 

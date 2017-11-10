@@ -79,25 +79,38 @@
                   <%if @hs != nil%>
                   <div class="descnum">
                      <br>
-                     <p class="text-right">
+                     <div class="row">
+                     <div class="col-md-8">
+                         <h2>Inforacion Principal</h2> 
+                       </div>
+                       <div class="col-md-4 text-right">
+                         <%= link_to  edit_patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary" do%>
+                        <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i>
+                     <%end%>
                      <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary" do%>
                         <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
                      <%end%>
-                     </p>
-                     <h3>1. Motivo de consulta</h3>
+                       </div>    
+                     </div>
+
+                   
+                     <div class="descnum1">
+                        <h4>Motivo de consulta</h3><hr>
                      <p><%= @hs.consultation_reason %></p>
-                     <hr>
-                     <h3>2. Estado Actual</h3>
-                     <p><%= @hs.actual_state %></p>
-                     <hr>
-                     <h3>3. Hipotesis diagnostical</h3>
-                     <p><%= @hs.diagnostic_hypothesis %></p>
-                     <hr>
-                     <h3>4. Objetivo Terapeoutico</h3>
-                     <p><%= @hs.therapeutic_goal %></p>
-                     <hr>
-                     <h3>5. Tipo de Tratamiento</h3>
-                     <p><%= @hs.type_of_treatment %></p>
+                     </div>
+                    
+                    <div class="descnum1">
+                     <h4> Estado Actual</h3><hr>
+                     <p><%= @hs.actual_state %></p>  </div>
+                     <div class="descnum1">
+                     <h4> Hipotesis diagnostical</h3><hr>
+                     <p><%= @hs.diagnostic_hypothesis %></p>  </div>
+                     <div class="descnum1">
+                     <h4> Objetivo Terapeoutico</h3><hr>
+                     <p><%= @hs.therapeutic_goal %></p>  </div>
+                <div class="descnum1" >
+                     <h4> Tipo de Tratamiento</h3><hr>
+                     <p><%= @hs.type_of_treatment %></p>  </div>
                   </div>
                   <%else%>
                   <br><br>
@@ -184,6 +197,22 @@
    </div>
 </div>
 <style>
+.descnum1
+{
+      padding: 10px;
+  background: #f7f7f7;
+  margin-bottom: 5px;
+}
+.descnum1 h4
+{
+         color: #5d5d5d !important;
+
+}
+.descnum1 p
+{
+         margin-left: 30px;
+      
+}
    .user-row {
    margin-bottom: 14px;
    }
@@ -362,7 +391,7 @@
 
 <style>
 .nav-tabs>li>a {
-    background: #2a4979;
+        background: #277394;
     color: white;
     margin-right: 2px;
     line-height: 1.42857143;

@@ -1,4 +1,10 @@
-<%= form_with(model: two_child_history, local: true) do |form| %>
+<div class="container">
+<br>
+
+
+<div class = "row row-form">
+  <br>
+<%= form_for([@patient, @clinic_history, two_child_history]) do |form| %>
   <% if two_child_history.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(two_child_history.errors.count, "error") %> prohibited this two_child_history from being saved:</h2>
@@ -10,143 +16,231 @@
       </ul>
     </div>
   <% end %>
+<h2 style="margin:0px 20px;color:gray"> Historia Personal</h2>
+<hr>
+<h3 style="margin:0px 0px 20px 20px;color:gray">Antecedentes Escolares</h3>
 
-  <div class="field">
-    <%= form.label :nivel_escolar %>
-    <%= form.text_field :nivel_escolar, id: :two_child_history_nivel_escolar %>
+
+<div class="row">
+    <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label "Nivel Escolar" %>
+            <%= form.text_field :nivel_escolar, id: :two_child_history_nivel_escolar, class: "form form-control" %>
+          </div>
+    </div>
+       <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label "Indice academico" %>
+            <%= form.text_field :indice_academico, id: :two_child_history_indice_academico, class: "form form-control" %>
+          </div>
+    </div>
+    <div class="col-md-4">
+          <div class="form-group">
+            <%= form.label "Escuela" %>
+            <%= form.text_field :escuela, id: :two_child_history_escuela, class: "form form-control" %>
+          </div>
+    </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Cómo fue el proceso de adaptación a la escuela ?" %>
+            <%= form.text_field :adaptacion_escolar, id: :two_child_history_adaptacion_escolar, class: "form form-control" %>
+          </div>
+    </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label "Problemas escolares (académicos), (conductales)" %>
+            <%= form.text_field :problemas_escolares, id: :two_child_history_problemas_escolares, class: "form form-control" %>
+          </div>
+    </div>
+            <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Qué le gusta mas de la escuela ?" %>
+            <%= form.text_field :gustos_escolares, id: :two_child_history_gustos_escolares, class: "form form-control" %>
+          </div>
+    </div>
+     <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Qué no le gusta de la escuela ?" %>
+            <%= form.text_field :disgustos_escolares, id: :two_child_history_disgustos_escolares, class: "form form-control" %>
+          </div>
+    </div>
+         <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Cómo es con las tareas ?" %>
+            <%= form.text_field :tareas, id: :two_child_history_tareas, class: "form form-control" %>
+          </div>
+    </div>
+         <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Cómo maneja los útiles escolares ?" %>
+            <%= form.text_field :utiles_escolares, id: :two_child_history_utiles_escolares, class: "form form-control" %>
+          </div>
+    </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Qué problemas posee a nivel de lectura, escritura, cálculo ?" %>
+            <%= form.text_field :problemas_materias, id: :two_child_history_problemas_materias, class: "form form-control" %>
+          </div>
+    </div>
+       <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Cómo ser ralaciona con la maestra ?" %>
+            <%= form.text_field :relacion_maestro, id: :two_child_history_relacion_maestro, class: "form form-control" %>
+          </div>
+    </div>   <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Cómo ser ralaciona con los compañeros ?" %>
+            <%= form.text_field :relacion_companeros, id: :two_child_history_relacion_companeros, class: "form form-control" %>
+          </div>
+    </div>
+
+
+</div>
+<hr>
+<div class="row"> <div class="col-md-12">
+
+<h3 style="margin:0px 0px 20px 20px;color:gray">Aspectos de Socialización y afectivos</h3>
+
+</div></div>
+
+
+<div class="row">
+ <div class="col-md-12">
+          <div class="form-group">
+             <%= form.label "¿Hace amigos con facilidad? (comunicativo, poco comunicativo, participa en grupo, tendencia al aislamiento, pasivo, agresivo, dependiente, independiente)" %>
+            <%= form.text_field :frecuencia_amigos, id: :two_child_history_frecuencia_amigos, class: "form form-control" %>
+          </div>
+    </div>
+     <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "De que edad son los niños con los que se realciona ?" %>
+            <%= form.text_field :edad_amigos, id: :two_child_history_edad_amigos, class: "form form-control" %>
+          </div>
+    </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Qué tipos de juegos realiza ?" %>
+            <%= form.text_field :tipo_juegos, id: :two_child_history_tipo_juegos, class: "form form-control" %>
+          </div>
+    </div>
+     <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Qué hace con otros niños del mismo sexo ?" %>
+            <%= form.text_field :actividades_mismo_sexo, id: :two_child_history_actividades_mismo_sexo, class: "form form-control" %>
+          </div>
+    </div>
+     <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Cómo se realciona con los niños de otro sexo ?" %>
+            <%= form.text_field :actividades_otro_sexo, id: :two_child_history_actividades_otro_sexo, class: "form form-control" %>
+          </div>
+    </div>
+     <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Por qué se pelea con otros niños ?" %>
+            <%= form.text_field :pelea, id: :two_child_history_pelea, class: "form form-control" %>
+          </div>
+    </div>
+       <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Qué lo hace feliz ?" %>
+            <%= form.text_field :motivo_felicidad, id: :two_child_history_motivo_felicidad, class: "form form-control" %>
+          </div>
+    </div>
+    <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Qué lo entristece ?" %>
+            <%= form.text_field :motivo_tristeza, id: :two_child_history_motivo_tristeza, class: "form form-control" %>
+          </div>
+    </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            ¿ <%= form.label "Qué lo enoja ?" %>
+            <%= form.text_field :motivo_enojo, id: :two_child_history_motivo_enojo, class: "form form-control" %>
+          </div>
+    </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Sobre que aspectos de la vida pregunta constantemente?" %>
+            <%= form.text_field :motivos_pregunta, id: :two_child_history_motivos_pregunta, class: "form form-control" %>
+          </div>
+    </div>
+ 
+       <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Qué tan bien se baña, se viste, come, duerme, en la actualidad ?" %>
+            <%= form.text_field :habitos, id: :two_child_history_habitos, class: "form form-control" %>
+          </div>
+    </div>
+ 
+    </div>
+
+
+
+
+
+<div class="row"><div class="col-md-12">
+
+<h3 style="margin:0px 0px 20px 20px;color:gray">Intereses y pasatiempos</h3>
+
+</div>
+</div>
+
+
+ <div class="row">
+
+    <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Qué le gusta hacer en su tiempo libre?" %>
+            <%= form.text_field :tiempo_libre, id: :two_child_tiempo_libre, class: "form form-control" %>
+          </div>
+    </div>
+    <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Qué hace cuando esta solo?" %>
+            <%= form.text_field :hace_solo, id: :two_child_hace_solo, class: "form form-control" %>
+          </div>
+    </div>
+      <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Qué no le gusta hacer?" %>
+            <%= form.text_field :no_gusta, id: :two_child_no_gusta, class: "form form-control" %>
+          </div>
+    </div>
+          <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Cuales son sus juegos favoritos? ¿ Alguan vez a jugado al doctor, mamá y papá" %>
+            <%= form.text_field :deportes, id: :two_child_deportes, class: "form form-control" %>
+          </div>
+    </div>
+          <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Qué tipo de deportes le gustan?" %>
+            <%= form.text_field :juegos, id: :two_child_juegos, class: "form form-control" %>
+          </div>
+    </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            ¿ <%= form.label "Qué programas de televisión mira?" %>
+            <%= form.text_field :programa_tv, id: :two_child_programa_tv, class: "form form-control" %>
+          </div>
+    </div>
+
+
+
+
+
+  <div class="row text-center">
+<div class="col-md-12">
+   <div class="actions">
+    <%= form.submit "Guardar", class: "btn-lg btn-primary btn-form" %>
+
+    
   </div>
-
-  <div class="field">
-    <%= form.label :indice_academico %>
-    <%= form.text_field :indice_academico, id: :two_child_history_indice_academico %>
   </div>
-
-  <div class="field">
-    <%= form.label :escuela %>
-    <%= form.text_field :escuela, id: :two_child_history_escuela %>
-  </div>
-
-  <div class="field">
-    <%= form.label :adaptacion_escolar %>
-    <%= form.text_field :adaptacion_escolar, id: :two_child_history_adaptacion_escolar %>
-  </div>
-
-  <div class="field">
-    <%= form.label :problemas_escolares %>
-    <%= form.text_field :problemas_escolares, id: :two_child_history_problemas_escolares %>
-  </div>
-
-  <div class="field">
-    <%= form.label :gustos_escolares %>
-    <%= form.text_field :gustos_escolares, id: :two_child_history_gustos_escolares %>
-  </div>
-
-  <div class="field">
-    <%= form.label :disgustos_escolares %>
-    <%= form.text_field :disgustos_escolares, id: :two_child_history_disgustos_escolares %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tareas %>
-    <%= form.text_field :tareas, id: :two_child_history_tareas %>
-  </div>
-
-  <div class="field">
-    <%= form.label :utiles_escolares %>
-    <%= form.text_field :utiles_escolares, id: :two_child_history_utiles_escolares %>
-  </div>
-
-  <div class="field">
-    <%= form.label :problemas_materias %>
-    <%= form.text_field :problemas_materias, id: :two_child_history_problemas_materias %>
-  </div>
-
-  <div class="field">
-    <%= form.label :relacion_maestro %>
-    <%= form.text_field :relacion_maestro, id: :two_child_history_relacion_maestro %>
-  </div>
-
-  <div class="field">
-    <%= form.label :relacion_companeros %>
-    <%= form.text_field :relacion_companeros, id: :two_child_history_relacion_companeros %>
-  </div>
-
-  <div class="field">
-    <%= form.label :frecuencia_amigos %>
-    <%= form.text_field :frecuencia_amigos, id: :two_child_history_frecuencia_amigos %>
-  </div>
-
-  <div class="field">
-    <%= form.label :edad_amigos %>
-    <%= form.text_field :edad_amigos, id: :two_child_history_edad_amigos %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tipo_juegos %>
-    <%= form.text_field :tipo_juegos, id: :two_child_history_tipo_juegos %>
-  </div>
-
-  <div class="field">
-    <%= form.label :actividades_mismo_sexo %>
-    <%= form.text_field :actividades_mismo_sexo, id: :two_child_history_actividades_mismo_sexo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :actividades_otro_sexo %>
-    <%= form.text_field :actividades_otro_sexo, id: :two_child_history_actividades_otro_sexo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pelea %>
-    <%= form.text_field :pelea, id: :two_child_history_pelea %>
-  </div>
-
-  <div class="field">
-    <%= form.label :motivo_felicidad %>
-    <%= form.text_field :motivo_felicidad, id: :two_child_history_motivo_felicidad %>
-  </div>
-
-  <div class="field">
-    <%= form.label :motivo_tristeza %>
-    <%= form.text_field :motivo_tristeza, id: :two_child_history_motivo_tristeza %>
-  </div>
-
-  <div class="field">
-    <%= form.label :motivo_enojo %>
-    <%= form.text_field :motivo_enojo, id: :two_child_history_motivo_enojo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :motivos_pregunta %>
-    <%= form.text_field :motivos_pregunta, id: :two_child_history_motivos_pregunta %>
-  </div>
-
-  <div class="field">
-    <%= form.label :habitos %>
-    <%= form.text_field :habitos, id: :two_child_history_habitos %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin_user %>
-    <%= form.number_field :admin_user, id: :two_child_history_admin_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :two_child_history_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :patient_id %>
-    <%= form.number_field :patient_id, id: :two_child_history_patient_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :clinic_history_id %>
-    <%= form.number_field :clinic_history_id, id: :two_child_history_clinic_history_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>
+</div>
+  
+</div>

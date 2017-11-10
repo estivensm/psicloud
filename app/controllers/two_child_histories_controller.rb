@@ -15,10 +15,14 @@ class TwoChildHistoriesController < ApplicationController
   # GET /two_child_histories/new
   def new
     @two_child_history = TwoChildHistory.new
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   end
 
   # GET /two_child_histories/1/edit
   def edit
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   end
 
   # POST /two_child_histories

@@ -1,3 +1,9 @@
+<div class="container">
+<br>
+
+
+<div class = "row row-form">
+  <br>
 <%= form_for([@patient, @clinic_history, personal_history]) do |form| %>
   <% if personal_history.errors.any? %>
     <div id="error_explanation">
@@ -10,138 +16,170 @@
       </ul>
     </div>
   <% end %>
+<h2 style="margin:0px 20px;color:gray"> Historia Personal</h2>
+<hr>
+<h3 style="margin:0px 0px 20px 20px;color:gray">Antecedentes</h3>
 
-  <div class="field">
-    <%= form.label :embarazo %>
-    <%= form.text_field :embarazo, id: :personal_history_embarazo %>
+<div class="row">
+    <div class="col-md-8">
+          <div class="form-group">
+            <%= form.label "Embarazo" %>
+            <%= form.text_field :embarazo, id: :personal_history_embarazo, class: "form form-control" %>
+          </div>
+    </div>
+    <div class="col-md-4">
+     
+           <div class="form-group acc1">
+               <label for="">Hijo Deseado</label><br>
+               <label class="radio-inline">
+               <%= form.radio_button :hijo_deseado, 'Si', class: 'rb cksi check1' %><span style = "margin-left:5px">Si</span>
+               </label>
+              <label class="radio-inline">
+               <%= form.radio_button :hijo_deseado, 'No', class: 'rb ckno check1' %><span style = "margin-left:5px">No</span>
+                </label>
+    
+    </div>
+    </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label "Dificultades Prenatales (Médicas, Intentos de aborto, Psicológicas)" %>
+            <%= form.text_field :dificultades_prenatales, id: :personal_history_dificultades_prenatales, class: "form form-control" %>
+          </div>
+       </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label "Periodo Prenatal Parto: (Normal, Anoxia, Cordon umbilical, Placenta, Malformación,Ictericia, Prelactancia materna)" %>
+            <%= form.text_field :periodo_prenatal, id: :personal_history_periodo_prenatal, class: "form form-control" %>
+          </div>
+       </div>
+      
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Peso al Nacer (Libras)" %>
+            <%= form.number_field :peso_nacimiento, id: :personal_history_peso_nacimiento, class: "form form-control" %>
+          </div>
+       </div>
+       <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Talla nacimiento (cms)" %>
+            <%= form.number_field :talla_nacimiento, id: :personal_history_talla_nacimiento, class: "form form-control" %>
+          </div>
+       </div>
+       <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Lactancia Materna Hasta (Meses)" %>
+            <%= form.number_field :latencia_materna, id: :latencia_materna, class: "form form-control" %>
+          </div>
+       </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Con biberon hasta (Meses)" %>
+            <%= form.number_field :latencia_materna, id: :latencia_materna, class: "form form-control" %>
+          </div>
+       </div>
+       <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label "Tipos de Solidos Introducidos" %>
+            <%= form.text_field :semisolidos, id: :personal_history_semisolidos, class: "form form-control" %>
+          </div>
+       </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label "Con biberon hasta (Meses)" %>
+            <%= form.text_field :solidos, id: :personal_history_solidos, class: "form form-control" %>
+          </div>
+       </div>
+
+       <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label "Problemas de Alimentacion al nacer y hasta el primer año" %>
+            <%= form.text_field :problemas_alimentacion, id: :personal_history_problemas_alimentacion, class: "form form-control" %>
+          </div>
+       </div>
+      <div class="col-md-8">
+          <div class="form-group">
+            <%= form.label "Dificultades para dormir" %>
+            <%= form.text_field :dificultad_dormir, id: :personal_history_dificultad_dormir, class: "form form-control" %>
+          </div>
+       </div>
+        <div class="col-md-4">
+          <div class="form-group acc1">
+               <label for="">Reacciones del niño</label><br>
+               <label class="radio-inline">
+               <%= form.radio_button :reacciones, 'Tranquilo', class: 'rb cksi check1' %><span style = "margin-left:5px">Tranquilo</span>
+               </label>
+              <label class="radio-inline">
+               <%= form.radio_button :reacciones, 'Inquieto', class: 'rb ckno check1' %><span style = "margin-left:5px">Inquieto</span>
+                </label>
+    
+            </div>
+ 
+
+       </div>
+         </div>
+         <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Edad de gateo (Meses)" %>
+            <%= form.number_field :edad_gateo, id: :personal_history_edad_gateo, class: "form form-control" %>
+          </div>
+       </div>
+         <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Edad de ponerse en pie (Meses)" %>
+            <%= form.number_field :edad_gateo, id: :personal_history_edad_gateo, class: "form form-control" %>
+          </div>
+       </div>
+         <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Edad de caminar (Meses)" %>
+            <%= form.number_field :edad_caminar, id: :personal_history_edad_caminar, class: "form form-control" %>
+          </div>
+       </div>
+       <div class="col-md-3">
+          <div class="form-group">
+            <%= form.label "Inicio del Lenguaje" %>
+            <%= form.number_field :inicio_lenguaje, id: :personal_history_inicio_lenguaje, class: "form form-control" %>
+          </div>
+       </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label "Enfermedades Medicas" %>
+            <%= form.text_field :enfermedades_medicas, id: :personal_history_enfermedades_medicas, class: "form form-control" %>
+          </div>
+       </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label "Hospitalizaciones y cirugias" %>
+            <%= form.text_field :hospitalizacion_cirugias, id: :personal_history_hospitalizacion_cirugias, class: "form form-control" %>
+          </div>
+       </div>  <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label "Problemas visoperceptivomotores" %>
+            <%= form.text_field :problemas_visoperceptivomotores, id: :personal_history_problemas_visoperceptivomotores, class: "form form-control" %>
+          </div>
+       </div>
+
+
+
+  
+</div>
+  
+
+
+
+
+  <div class="row text-center">
+<div class="col-md-12">
+   <div class="actions">
+    <%= form.submit "Guardar", class: "btn-lg btn-primary btn-form" %>
+
+    
   </div>
-
-  <div class="field">
-    <%= form.label :hijo_deseado %>
-    <%= form.text_field :hijo_deseado, id: :personal_history_hijo_deseado %>
   </div>
-
-  <div class="field">
-    <%= form.label :dificultades_prenatales %>
-    <%= form.text_area :dificultades_prenatales, id: :personal_history_dificultades_prenatales %>
-  </div>
-
-  <div class="field">
-    <%= form.label :periodo_prenatal %>
-    <%= form.text_field :periodo_prenatal, id: :personal_history_periodo_prenatal %>
-  </div>
-
-  <div class="field">
-    <%= form.label :parto %>
-    <%= form.text_field :parto, id: :personal_history_parto %>
-  </div>
-
-  <div class="field">
-    <%= form.label :peso_nacimiento %>
-    <%= form.text_field :peso_nacimiento, id: :personal_history_peso_nacimiento %>
-  </div>
-
-  <div class="field">
-    <%= form.label :talla_nacimiento %>
-    <%= form.text_field :talla_nacimiento, id: :personal_history_talla_nacimiento %>
-  </div>
-
-  <div class="field">
-    <%= form.label :latencia_materna %>
-    <%= form.number_field :latencia_materna, id: :personal_history_latencia_materna %>
-  </div>
-
-  <div class="field">
-    <%= form.label :biberon %>
-    <%= form.number_field :biberon, id: :personal_history_biberon %>
-  </div>
-
-  <div class="field">
-    <%= form.label :semisolidos %>
-    <%= form.text_field :semisolidos, id: :personal_history_semisolidos %>
-  </div>
-
-  <div class="field">
-    <%= form.label :solidos %>
-    <%= form.text_field :solidos, id: :personal_history_solidos %>
-  </div>
-
-  <div class="field">
-    <%= form.label :problemas_alimentacion %>
-    <%= form.text_field :problemas_alimentacion, id: :personal_history_problemas_alimentacion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dificultad_dormir %>
-    <%= form.text_field :dificultad_dormir, id: :personal_history_dificultad_dormir %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reacciones %>
-    <%= form.text_field :reacciones, id: :personal_history_reacciones %>
-  </div>
-
-  <div class="field">
-    <%= form.label :edad_gateo %>
-    <%= form.number_field :edad_gateo, id: :personal_history_edad_gateo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :edad_pie %>
-    <%= form.number_field :edad_pie, id: :personal_history_edad_pie %>
-  </div>
-
-  <div class="field">
-    <%= form.label :edad_caminar %>
-    <%= form.number_field :edad_caminar, id: :personal_history_edad_caminar %>
-  </div>
-
-  <div class="field">
-    <%= form.label :inicio_lenguaje %>
-    <%= form.number_field :inicio_lenguaje, id: :personal_history_inicio_lenguaje %>
-  </div>
-
-  <div class="field">
-    <%= form.label :enfermedades_medicas %>
-    <%= form.text_field :enfermedades_medicas, id: :personal_history_enfermedades_medicas %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hospitalizacion_cirugias %>
-    <%= form.text_field :hospitalizacion_cirugias, id: :personal_history_hospitalizacion_cirugias %>
-  </div>
-
-  <div class="field">
-    <%= form.label :problemas_visoperceptivomotores %>
-    <%= form.text_field :problemas_visoperceptivomotores, id: :personal_history_problemas_visoperceptivomotores %>
-  </div>
-
-  <div class="field">
-    <%= form.label :accout_id %>
-    <%= form.number_field :accout_id, id: :personal_history_accout_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :personal_history_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin_user %>
-    <%= form.number_field :admin_user, id: :personal_history_admin_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :patient_id %>
-    <%= form.number_field :patient_id, id: :personal_history_patient_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :clinic_history_id %>
-    <%= form.number_field :clinic_history_id, id: :personal_history_clinic_history_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>
+
+</div>
+  
+</div>
