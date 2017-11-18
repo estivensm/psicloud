@@ -78,7 +78,7 @@ end
 
           if !@clinic_history.child_history
           
-          redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' 
+          redirect_to  patient_path(@clinic_history.patient_id), notice: 'Clinic history was successfully created.' 
            
             else
           
