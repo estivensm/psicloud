@@ -62,7 +62,6 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
     @patient = Patient.find(params[:patient_id])
-    @cita_con = current_user.names
     respond_to do |format|
       if @appointment.save
 
@@ -77,7 +76,7 @@ class AppointmentsController < ApplicationController
               te.hour < 10 ? horat = "0" : horat = ""
               enddate = "#{te.year}-#{te.month}-#{te.day}T#{horat}#{te.hour}:#{mint}#{te.min}:00-05:00"
               @event = {
-            'summary' => @cita_con,
+            'summary' => 'Cita con ' + current_user.names,
             'description' => @appointment.observations,
             'location' => @appointment.place,
             'start' => { 'dateTime' => startdate },
