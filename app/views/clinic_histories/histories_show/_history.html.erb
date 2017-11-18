@@ -1,4 +1,10 @@
-
+<div class="row">
+    <div class="col-md-12" style="padding-left: 50px;">
+        <%= link_to "inicio", root_path%><span> | </span> 
+        <%= link_to "pacientes", patients_path%> <span> | </span> 
+        <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
+    </div>
+</div>
   <div class="row no-marging"  ">
   <div class="col-md-12 text-right">
    <%= link_to edit_patient_clinic_history_path(@patient.id,@clinic_history), class: "btn btn-primary icon" do%>
