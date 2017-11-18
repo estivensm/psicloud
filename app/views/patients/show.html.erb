@@ -1,3 +1,11 @@
+
+<div class="row">
+    <div class="col-md-12" style="padding-left: 50px;">
+        <%= link_to "inicio", root_path%><span> | </span> 
+        <%= link_to "pacientes", patients_path%>
+      
+    </div>
+</div>
 <div class="container">
    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xs-offset-0 col-sm-offset-0 toppad" >
@@ -23,12 +31,29 @@
                   </div>
                   <div class="col-md-12 col-lg-12 info-p" style= "padding:20px;text-align: center;" >
                      <hr>
+                          <%if @patient.age >= 18%>
 
                      <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
                      <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
                       Consentimiento Informado
                      <%end%>
 
+                     <%elsif @patient.age >= 12 &&  @patient.age < 18%>
+
+                        <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                     <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                      Consentimiento Informado
+                     <%end%>
+                          
+                          <%else%>
+                              
+                                
+                        <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                     <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                      Consentimiento Informado
+                     <%end%>
+
+                          <%end%>
 
 
                      

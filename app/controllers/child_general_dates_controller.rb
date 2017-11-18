@@ -29,10 +29,11 @@ class ChildGeneralDatesController < ApplicationController
   # POST /child_general_dates.json
   def create
     @child_general_date = ChildGeneralDate.new(child_general_date_params)
-
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     respond_to do |format|
       if @child_general_date.save
-        format.html { redirect_to patient_path(@child_general_date.patient_id), notice: 'Child general date was successfully created.' }
+        format.html { redirect_to edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), notice: 'Child general date was successfully created.' }
         format.json { render :show, status: :created, location: @child_general_date }
       else
         format.html { render :new }
@@ -44,9 +45,11 @@ class ChildGeneralDatesController < ApplicationController
   # PATCH/PUT /child_general_dates/1
   # PATCH/PUT /child_general_dates/1.json
   def update
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     respond_to do |format|
       if @child_general_date.update(child_general_date_params)
-        format.html { redirect_to patient_path(@child_general_date.patient_id), notice: 'Child general date was successfully updated.' }
+        format.html { redirect_to edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), notice: 'Child general date was successfully updated.' }
         format.json { render :show, status: :ok, location: @child_general_date }
       else
         format.html { render :edit }

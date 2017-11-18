@@ -16,7 +16,7 @@ class PersonalHistoriesController < ApplicationController
   def new
 
     @personal_history = PersonalHistory.new
-        @patient = Patient.find(params[:patient_id])
+    @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   end
 
@@ -30,10 +30,11 @@ class PersonalHistoriesController < ApplicationController
   # POST /personal_histories.json
   def create
     @personal_history = PersonalHistory.new(personal_history_params)
-
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     respond_to do |format|
       if @personal_history.save
-        format.html { redirect_to @personal_history, notice: 'Personal history was successfully created.' }
+        format.html { redirect_to edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), notice: 'Personal history was successfully created.' }
         format.json { render :show, status: :created, location: @personal_history }
       else
         format.html { render :new }
@@ -45,9 +46,11 @@ class PersonalHistoriesController < ApplicationController
   # PATCH/PUT /personal_histories/1
   # PATCH/PUT /personal_histories/1.json
   def update
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     respond_to do |format|
       if @personal_history.update(personal_history_params)
-        format.html { redirect_to @personal_history, notice: 'Personal history was successfully updated.' }
+        format.html { redirect_to edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), notice: 'Personal history was successfully updated.' }
         format.json { render :show, status: :ok, location: @personal_history }
       else
         format.html { render :edit }

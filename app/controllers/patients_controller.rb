@@ -159,7 +159,7 @@ class PatientsController < ApplicationController
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb'
+                     :template => 'layouts/pdf_footer_ci.html.erb'
                   }
                },
         :show_as_html => params[:debug].present?
@@ -167,6 +167,71 @@ class PatientsController < ApplicationController
     end
     
   end
+
+  def consentimiento_informado_adolescentes
+
+@patient = Patient.find(params[:patient_id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "hola",
+        header: { right: '[page] of [topage]' },
+        :template => 'patients/pdfs/consentimiento_informado_adolescentes.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 15
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer_cim.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
+    
+  end
+
+
+def consentimiento_informado_menores
+@patient = Patient.find(params[:patient_id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "hola",
+        header: { right: '[page] of [topage]' },
+        :template => 'patients/pdfs/consentimiento_informado_menores.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 15
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer_cim.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
+    
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

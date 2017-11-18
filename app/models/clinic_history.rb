@@ -19,6 +19,7 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  family_dinamic          :text
+#  child_history           :boolean
 #
 
 class ClinicHistory < ApplicationRecord
@@ -29,10 +30,10 @@ class ClinicHistory < ApplicationRecord
     has_one  :three_child_history , dependent: :destroy
 	has_many :backgrounds , inverse_of: :clinic_history, dependent: :destroy
     has_many :personal_backgrounds , inverse_of: :clinic_history, dependent: :destroy
-	has_many :tool_tests
-	has_many :tracings
+	has_many :tool_tests , dependent: :destroy
+	has_many :tracings , dependent: :destroy
 	has_and_belongs_to_many :diagnostics, dependent: :destroy
-    after_save :create_familiar_history
+    after_create :create_familiar_history
   
     accepts_nested_attributes_for :backgrounds, :allow_destroy => true
     accepts_nested_attributes_for :personal_backgrounds, :allow_destroy => true

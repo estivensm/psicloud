@@ -1,0 +1,78 @@
+<%a = get_date_array(Time.now)%>
+<h5 style="text-align:center;margin: 0px 20px 50px 20px;">
+CONSENTIMIENTO INFORMADO PARA ADOLESCENTES (12 A 18 AÑOS)
+
+</h5>
+
+<p style="text-align: justify;font-size: 13px;padding: 20px 50px;">
+Este tipo de consentimiento lo da y lo firma el usuario en primera persona, sin la intervención de un tercero.
+<br><br>
+Este tipo de consentimiento lo da y lo firma el usuario en primera persona, sin la intervención de un tercero.
+Nosotros, obrando en calidad de representantes legales del menor <strong style="border-bottom: 1px solid gray"><%= @patient.first_name %> <%= @patient.second_name %> <%= @patient.first_last_name %> <%= @patient.second_name %> </strong>Identificado (a) con la T.I <strong style="border-bottom: 1px solid gray"><%=@patient.document%></strong>  	                                  
+y en conjunto con él (ella), certificamos que hemos comprendido que la información que reciba el psicólogo es de carácter confidencial y que lo podrá revelar<sup>1</sup> si durante la evaluación o tratamiento, el profesional detecta de manera clara que hay un evidente daño para el consultante o para terceros (se explicará quién es el destinatario potencial de la información en caso de verse la necesidad de revelarla, y el manejo de la información y las consecuencias de la misma. En caso de ambientes legales, se hará especial énfasis en la no autoincriminación y la no observancia del secreto profesional). Se nos indicó que el procedimiento a seguir es (especificar de manera clara y comprensible el procedimiento que se va a seguir. Si es necesario, antes de la intervención terapéutica, indicar que se hará una evaluación donde se aplicarán pruebas, estas se deberán listar aclarando el objeto de cada una de ellas. Asimismo, se indicará la impresión diagnóstica, en el caso de que aplique. Si el psicólogo tiene una impresión diagnóstica en los términos de OSM o de la CIE, así sea tentativa, se lo hará saber al consultante indicándole que tipo de tratamiento se llevará a cabo, explicándole en qué consiste este: desensibilización sistemática, restructuración cognoscitiva, habilidades sociales y comunicación asertiva, etcétera) y el posible tiempo que lleve el tratamiento. También se nos indicó que podemos revocar el consentimiento o dar por terminada en cualquier momento la relación entre el psicólogo y nuestro(a) hijo(a), cuando lo consideremos pertinente, sin que ello implique ningún tipo de consecuencias para nosotros.
+
+<br><br>
+Una vez leído y comprendido el procedimiento que se seguirá, se firma el presente consentimiento el día <strong><%= a[0]%></strong> del mes de <strong><%= a[2]%> </strong> de  <strong><%= a[4]%>, en la ciudad de Medellín.
+
+</p>
+
+<br><br>
+<table style="text-align: justify;font-size: 12px;padding: 20px 50px;width: 100%;margin-left: 50px"">
+	
+	<thead>
+		<tr>
+			<th>Firma del padre<sup>2</sup></th>
+			<th>Firma de la madre</th></tr>
+			<tr>
+			<th>CC</th>
+			<th>CC</th>
+		</tr>
+		</tr>
+	</thead>
+	<tbody>
+		
+	</tbody>
+</table>
+<br><br><br>
+<table style="text-align: justify;font-size: 12px;padding: 20px 50px;width: 100%;margin-left: 50px">
+	
+	<thead>
+		<tr>
+			<th>Firma del/la adolescente<sup>3</sup></th>
+			<th>Firma del psicólogo</th>
+			</tr>
+            
+            <tr>
+			<th>T.I</th>
+			<th>CC</th>
+			</tr>
+
+			<tr>
+            <th></th>
+            <th>T.P</th>    
+			</tr>
+
+			
+
+			
+		
+	</thead>
+	<tbody>
+		
+	</tbody>
+</table>
+
+<br>
+<br>
+
+
+
+
+
+<style>
+th
+{
+	width: 50%;
+}
+	
+</style>

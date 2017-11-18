@@ -36,9 +36,9 @@
         <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
          <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>
-        <td><%= link_to 'Show', patient %></td>
-        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', patient %></td>
+        <td><%= link_to 'Editar', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Borrar', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                </tr>
                <%end%>
             </tbody>

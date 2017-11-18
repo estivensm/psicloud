@@ -29,10 +29,11 @@ class TwoChildHistoriesController < ApplicationController
   # POST /two_child_histories.json
   def create
     @two_child_history = TwoChildHistory.new(two_child_history_params)
-
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     respond_to do |format|
       if @two_child_history.save
-        format.html { redirect_to @two_child_history, notice: 'Two child history was successfully created.' }
+        format.html { redirect_to edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), notice: 'Two child history was successfully created.' }
         format.json { render :show, status: :created, location: @two_child_history }
       else
         format.html { render :new }
@@ -44,9 +45,11 @@ class TwoChildHistoriesController < ApplicationController
   # PATCH/PUT /two_child_histories/1
   # PATCH/PUT /two_child_histories/1.json
   def update
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     respond_to do |format|
       if @two_child_history.update(two_child_history_params)
-        format.html { redirect_to @two_child_history, notice: 'Two child history was successfully updated.' }
+        format.html { redirect_to edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), notice: 'Two child history was successfully updated.' }
         format.json { render :show, status: :ok, location: @two_child_history }
       else
         format.html { render :edit }

@@ -1,0 +1,211 @@
+
+  <div class="row no-marging"  ">
+  <div class="col-md-12 text-right">
+   <%= link_to edit_patient_clinic_history_path(@patient.id,@clinic_history), class: "btn btn-primary icon" do%>
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+    <%end%>
+     <%= link_to patient_clinic_history_path(@patient.id,@clinic_history , :format => "pdf"), class: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="50px" alt="">
+   <%end%>
+    
+  </div>
+    
+  </div>
+ <table class="table1">
+        <tr style = "height:100px">
+         <td class="text-center" style = "width:20%"><%=(image_tag (get_account1.logo_url), style: "width:100px;") if get_account1.logo_url%></td>
+         <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold">FORMATO DE HISTORIA CLINICA <br><%=get_account1.name.upcase %><br>#<%=@clinic_history.id%> </td>
+         <td class="text-center imgedit" style = "width:20%;font-size:40px;text-align: center"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></td>
+      </tr>
+
+  </table>
+<h3 class="h3">1. Datos del Paciente</h3>
+<table class="table table-responsive">
+        <tr>
+      <td> <strong> Nombres</strong><br> <%=@patient.first_name%> <%=@patient.second_name%> </td>
+      <td> <strong>Apellidos</strong><br> <%=@patient.first_last_name%> <%=@patient.second_last_name%> </td>
+      <td> <strong>Documento</strong><br> <%=  type_document(@patient.document_type)%> -  <%=@patient.document%> 
+      <td> <strong>Fecha de Nacimiento:</strong><br> <%=@patient.birth_date%> </td>
+      
+      </td>
+
+    </tr>
+     <tr>
+      <% year = @patient.age == 1 ? "Año" : " Años"
+          month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+          day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+       %>
+      <td> <strong>Edad:</strong> <br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></td>
+      <td> <strong>Ciudad:</strong> <br><%=@patient.city%> </td>
+       <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>  
+       <td> <strong>Telefono fijo:</strong><br> <%=@patient.movil%> </td>
+    </tr>
+     <tr>
+          
+      <td> <strong>Telefono Movil:</strong> <br><%= @patient.movil%> </td>
+      <td> <strong>Email</strong><br> <%=@patient.email%> </td>
+      <td> <strong>Ocupación:</strong><br> <%=@patient.occupation%> </td>
+      <td> <strong>Profesión:</strong> <br><%= @patient.profession%> </td>
+
+    </tr>
+     <tr>
+          
+      <td> <strong>Genero:</strong> <br><%= @patient.gender%> </td>
+      <td> <strong>Estado Civil</strong><br> <%=@patient.civil_status%> </td>
+      <td> <strong>Grupo sanguineo:</strong><br> <%=@patient.blood_type%> </td>
+      <td> <strong>Grupo Etnico:</strong> <br><%= @patient.ethnic_group%> </td>
+
+    </tr>
+    <tr>
+          
+      <td> <strong>Eps:</strong> <br>EPS </td>
+      <td> <strong>Convenio</strong><br> Convenio </td>
+       <td> <strong>Nombre Contacto:</strong> <br><%= @patient.contact_name%> </td>
+      <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
+      
+
+    </tr>
+    <tr>
+          
+
+      <td> <strong>Parentesco del Contacto</strong><br> <%=@patient.contact_relationship%> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+
+    </tr>
+  </tbody>
+</table>
+
+
+
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">2. Motivo de Counsulta</h3>
+  <p><%=@clinic_history.consultation_reason%></p>
+</div>
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">3. Estado actual del paciente</h3>
+  <p><%=@clinic_history.actual_state%></p>
+</div>
+
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">4. Dinamica familiar</h3>
+  <p><%=@clinic_history.family_dinamic%></p>
+</div>
+
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">5. Antecedentes</h3>
+  <h4><strong>Personales</strong></h4>
+      <%@clinic_history.personal_backgrounds.each do |ch|%>  
+
+      <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
+      <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,ch.attachement_url if ch.attachement_url%>
+      <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+       <%end%>
+       <h4><strong>Familiares</strong></h4>
+      <%@clinic_history.backgrounds.each do |ch|%>  
+      
+      <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
+      <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,ch.attachment_url if ch.attachment_url%>
+      <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+       <%end%>
+</div>
+
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">6. Herramientas de evaluación</h3>
+  <h4><strong>Personales</strong></h4>
+      <%@clinic_history.tool_tests.each do |ch|%>  
+
+      <strong>Tipo:</strong> <%=ch.type_tool %> &nbsp;
+      <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,ch.attachment_url if ch.attachment_url%>
+      <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+       <%end%>
+   
+</div>
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">7. Hipotesis diagnostica</h3>
+  <strong>Descripcion</strong><br>
+  <%=@clinic_history.diagnostic_hypothesis%><br><br>
+  <strong>DSMV</strong><br>
+      <%@clinic_history.diagnostics.each do |ch|%>  
+    -  <%=ch.name%><br>
+       <%end%>
+   
+</div>
+
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">8. Objetivo terapeoutico</h3>
+  <p><%=@clinic_history.therapeutic_goal%></p>
+</div>
+
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">9. Tipo de Tratamiento</h3>
+  <p><%=@clinic_history.type_of_treatment%></p>
+</div>
+
+
+<div class = "fields_history">
+<hr>
+  <h3 class= "color-gray">5. Seguimientos</h3>
+
+      <%@clinic_history.tracings.each do |tr|%>  
+
+      <strong>Fecha:</strong> <%=tr.created_at %> &nbsp;
+      <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,tr.attachment_url if tr.attachment_url%>
+      <br><strong>Descripción:</strong> <%=tr.description%><br><br>
+       <%end%>
+
+</div>
+
+
+
+
+  <style>
+.fields_history
+{
+  color:gray;
+  width: 80%;
+  margin-left:10%;
+  
+}
+
+.table
+{
+  width: 80%;
+  margin-left:10%;
+  margin-bottom: 20px !important;
+}
+.h3
+{
+  color: #17c1ca;
+  width: 80%;
+  margin-left:10%;
+  
+}
+.fields_history h3
+{
+  color: #17c1ca;
+}
+
+    .table1
+   {
+   border-collapse: collapse;
+   color: #7a7a7a;
+   font-size:12px;
+    width: 80%;
+  margin-left:10%;
+   }   
+     .table1 td, th
+   {
+   padding: 6px 20px;
+   width:25%;
+   border:1px solid #cecece;
+   }
+  </style>

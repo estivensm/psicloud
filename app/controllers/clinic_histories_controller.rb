@@ -11,7 +11,13 @@ class ClinicHistoriesController < ApplicationController
   # GET /clinic_histories/1.json
   def show
   @patient = Patient.find(params[:patient_id])
- 
+  if @clinic_history.child_history
+  @fchild = @clinic_history.child_general_date
+  @schild = @clinic_history.personal_history
+  @tchild = @clinic_history.two_child_history
+  @fochild = @clinic_history.three_child_history
+end
+
   respond_to do |format|
       format.html
       format.pdf do
@@ -20,7 +26,7 @@ class ClinicHistoriesController < ApplicationController
         :template => 'clinic_histories/pdfs/clinic_history.pdf.erb',
         :layout => 'pdf.html.erb',
         margin: {
-                    top: 0
+                    top: 10
                      },
         :header => {
                   :spacing => 5,
@@ -63,11 +69,24 @@ class ClinicHistoriesController < ApplicationController
     @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @clinic_history.save
+
         if @patient.age < 14
           @clinic_history.child_history = true
           @clinic_history.save
         end
-        format.html { redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' }
+        format.html { 
+
+          if !@clinic_history.child_history
+          
+          redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' 
+           
+            else
+          
+          redirect_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), notice: 'Clinic history was successfully created.' 
+
+
+            end
+        }
         format.json { render :show, status: :created, location: @clinic_history }
       else
         format.html { render :new }
@@ -83,7 +102,18 @@ class ClinicHistoriesController < ApplicationController
 
     respond_to do |format|
       if @clinic_history.update(clinic_history_params)
-        format.html { redirect_to patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully updated.' }
+        format.html { 
+               if !@clinic_history.child_history
+          
+          redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' 
+           
+            else
+          
+          redirect_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), notice: 'Clinic history was successfully created.' 
+
+
+            end
+        }
         format.json { render :show, status: :ok, location: @clinic_history }
       else
         format.html { render :edit }
@@ -106,14 +136,14 @@ class ClinicHistoriesController < ApplicationController
   def update_step3
       
       @clinic_history = ClinicHistory.find(params[:id])
-      
+      @patient = Patient.find(@clinic_history.patient_id)
 
-          if @history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis])
-              @history.diagnostics.destroy_all
+          if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis])
+              @clinic_history.diagnostics.destroy_all
             if params[:diagnostic_ids] != nil  
               params[:diagnostic_ids].each do |diag|
                 
-                @history.diagnostics << Diagnostic.find(diag)
+                @clinic_history.diagnostics << Diagnostic.find(diag)
                 
               end
               
@@ -122,8 +152,9 @@ class ClinicHistoriesController < ApplicationController
 
             end
 
+               redirect_to patient_path(@clinic_history.patient_id)
 
-               redirect_to patient_step3_path(@clinic_history.patient_id,@history.id)
+               #redirect_to patient_step3_path(@clinic_history.patient_id,@clinic_history.id)
           end
       
   end
@@ -144,6 +175,6 @@ class ClinicHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_history_params
-      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment, :user_id, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :family_dinamic,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
+      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :family_dinamic,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
     end
 end

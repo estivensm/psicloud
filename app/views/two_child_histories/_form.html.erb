@@ -25,7 +25,11 @@
     <div class="col-md-4">
           <div class="form-group">
             <%= form.label "Nivel Escolar" %>
-            <%= form.text_field :nivel_escolar, id: :two_child_history_nivel_escolar, class: "form form-control" %>
+           
+
+            <%val4 = "" 
+ action_name == "edit" ? val4 = @two_child_history.nivel_escolar : val4 = "" %>
+     <%= form.select 'nivel_escolar', options_for_select((['Jardin','Prescolar','Transición','Primero de Primaria']), val4), {},{:class => 'form-control'}%>
           </div>
     </div>
        <div class="col-md-4">
@@ -111,13 +115,13 @@
             <%= form.text_field :frecuencia_amigos, id: :two_child_history_frecuencia_amigos, class: "form form-control" %>
           </div>
     </div>
-     <div class="col-md-12">
+     <div class="col-md-6">
           <div class="form-group">
             ¿ <%= form.label "De que edad son los niños con los que se realciona ?" %>
             <%= form.text_field :edad_amigos, id: :two_child_history_edad_amigos, class: "form form-control" %>
           </div>
     </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="form-group">
             ¿ <%= form.label "Qué tipos de juegos realiza ?" %>
             <%= form.text_field :tipo_juegos, id: :two_child_history_tipo_juegos, class: "form form-control" %>
@@ -160,14 +164,14 @@
           </div>
     </div>
 
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="form-group">
             ¿ <%= form.label "Sobre que aspectos de la vida pregunta constantemente?" %>
             <%= form.text_field :motivos_pregunta, id: :two_child_history_motivos_pregunta, class: "form form-control" %>
           </div>
     </div>
  
-       <div class="col-md-12">
+       <div class="col-md-6">
           <div class="form-group">
             ¿ <%= form.label "Qué tan bien se baña, se viste, come, duerme, en la actualidad ?" %>
             <%= form.text_field :habitos, id: :two_child_history_habitos, class: "form form-control" %>
@@ -209,14 +213,14 @@
           </div>
     </div>
           <div class="col-md-12">
-          <div class="form-group">
-            ¿ <%= form.label "Cuales son sus juegos favoritos? ¿ Alguan vez a jugado al doctor, mamá y papá" %>
+          <div class="form-group">Qué tipo de deportes le gustan
+            ¿ <%= form.label "Qué tipo de deportes le gustan?" %>
             <%= form.text_field :deportes, id: :two_child_deportes, class: "form form-control" %>
           </div>
     </div>
           <div class="col-md-12">
           <div class="form-group">
-            ¿ <%= form.label "Qué tipo de deportes le gustan?" %>
+            ¿ <%= form.label "Cuales son sus juegos favoritos? ¿ Alguan vez a jugado al doctor, mamá y papá ?" %>
             <%= form.text_field :juegos, id: :two_child_juegos, class: "form form-control" %>
           </div>
     </div>

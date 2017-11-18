@@ -40,9 +40,8 @@
 #
 
 class Patient < ApplicationRecord
-     has_many :clinic_histories  
-     has_many :appointments 
-     has_many :child_general_dates
+     has_many :clinic_histories  , dependent: :destroy
+     has_many :appointments , dependent: :destroy
      belongs_to :hpc
      belongs_to :agreement
 	   mount_uploader :avatar, AvatarPatientUploader  

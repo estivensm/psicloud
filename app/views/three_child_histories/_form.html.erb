@@ -18,18 +18,18 @@
   <% end %>
 <h2 style="margin:0px 20px;color:gray"> Historia Personal</h2>
 <hr>
-<h3 style="margin:0px 0px 20px 20px;color:gray">Antecedentes</h3>
+<h3 style="margin:0px 0px 20px 20px;color:gray">Desarrollo Psicosexual</h3>
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
           <div class="form-group">
             <%= form.label "Destete" %>
             <%= form.text_field :destete, id: :three_child_history_destete, class: "form form-control" %>
           </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8">
           <div class="form-group">
             ¿<%= form.label "Qué tipos de alimentos prefiere ?" %>
             <%= form.text_field :gustos_alimentos, id: :three_child_history_gustos_alimentos, class: "form form-control" %>
@@ -43,13 +43,13 @@
     </div>
      <div class="col-md-6">
           <div class="form-group">
-            <%= form.label "¿Control Anal, Vesical diurno, Vesical nocturno, Tecnica" %>
+            <%= form.label "¿Control Anal, Vesical diurno, Vesical nocturno, Tecnica?" %>
             <%= form.text_field :tipo_alimentacion, id: :three_child_history_tipo_alimentacion, class: "form form-control" %>
           </div>
     </div>
          <div class="col-md-12">
           <div class="form-group">
-            <%= form.label "¿Que reacción posee ante la defacación ? (asco, verguenza, miedo, agrado, desagrado)" %>
+            <%= form.label "¿Que reacción posee ante la defacación ? (asco, verguenza, miedo, agrado, desagrado)?" %>
             <%= form.text_field :reaccion_defecacion, id: :three_child_history_reaccion_defecacion, class: "form form-control" %>
           </div>
     </div>
@@ -91,7 +91,9 @@
             <%= form.text_field :informacion_sexual, id: :three_child_history_informacion_sexual, class: "form form-control" %>
           </div>
     </div>
-
+<div class="col-md-12">
+  <h3 style="margin:0px 0px 20px 20px;color:gray">Preadolescencia y Adolescencia</h3>
+</div>
 <div class="col-md-6">
           <div class="form-group">
             <%= form.label "Menarquia" %>
@@ -101,7 +103,7 @@
 
 <div class="col-md-6">
           <div class="form-group">
-            <%= form.label "Esperiencia menarquia" %>
+            <%= form.label "experiencia menarquia" %>
             <%= form.text_field :experiencia_menarquia, id: :three_child_history_experiecia_menarquia, class: "form form-control" %>
           </div>
     </div>
@@ -129,7 +131,7 @@
 
 <div class="col-md-6">
           <div class="form-group">
-            <%= form.label "reacciones emocionales propias de la adolescencia" %>
+            <%= form.label "Reacciones emocionales propias de la adolescencia: (Extrovertido, Timido, Ansioso, voluntarioso, malumorado,labil)" %>
             <%= form.text_field :reacciones_emocionales, id: :three_child_history_reacciones_emocionales, class: "form form-control" %>
           </div>
     </div>
@@ -145,7 +147,7 @@
 
 <div class="col-md-6">
           <div class="form-group">
-            <%= form.label "aceptacion familiar o restricción familiar ante el noviazgo"%>            
+            <%= form.label "Aceptacion familiar o restricción familiar ante el noviazgo"%>            
             <%= form.text_field :aceptacion_noviazgo, id: :three_child_history_aceptacion_noviazgo, class: "form form-control" %>
 
           </div>
@@ -160,7 +162,7 @@
 
 <div class="col-md-6">
           <div class="form-group">
-            <%= form.label "descripcion_sintomas neuroticos"%>            
+            <%= form.label "Descripcion sintomas neuroticos"%>            
             <%= form.text_field :descripcion_sintomas, id: :three_child_history_descripcion_sintomas, class: "form form-control" %>
 
           </div>

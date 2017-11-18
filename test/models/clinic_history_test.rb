@@ -19,6 +19,7 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  family_dinamic          :text
+#  child_history           :boolean
 #
 
 require 'test_helper'
