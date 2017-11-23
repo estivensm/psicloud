@@ -20,6 +20,7 @@
 #  updated_at              :datetime         not null
 #  family_dinamic          :text
 #  child_history           :boolean
+#  codigo                  :string
 #
 
 class ClinicHistory < ApplicationRecord
@@ -39,7 +40,8 @@ class ClinicHistory < ApplicationRecord
     accepts_nested_attributes_for :personal_backgrounds, :allow_destroy => true
 
     def create_familiar_history
-        patient = Patient.find(self.patient_id)    
+        patient = Patient.find(self.patient_id)
+        self.created_date = Time.now    
     	if patient.age < 14 
             
             ChildGeneralDate.create(user_id: self.user_id, admin_user: self.admin_user, patient_id: self.patient_id, clinic_history_id:self.id)

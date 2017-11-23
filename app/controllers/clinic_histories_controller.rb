@@ -69,11 +69,12 @@ end
     @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @clinic_history.save
-
+       
         if @patient.age < 14
           @clinic_history.child_history = true
-          @clinic_history.save
+           @clinic_history.save
         end
+
         format.html { 
 
           if !@clinic_history.child_history
@@ -175,6 +176,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_history_params
-      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :family_dinamic,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
+      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id,:created_date, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :family_dinamic,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
     end
 end

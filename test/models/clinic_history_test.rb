@@ -20,6 +20,7 @@
 #  updated_at              :datetime         not null
 #  family_dinamic          :text
 #  child_history           :boolean
+#  codigo                  :string
 #
 
 require 'test_helper'
