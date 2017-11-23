@@ -136,13 +136,6 @@ ActiveRecord::Schema.define(version: 20171123194930) do
     t.index ["diagnostic_id"], name: "index_clinic_histories_diagnostics_on_diagnostic_id"
   end
 
-  create_table "clinic_history_diagnostic", id: false, force: :cascade do |t|
-    t.bigint "clinic_history_id"
-    t.bigint "diagnostic_id"
-    t.index ["clinic_history_id"], name: "index_clinic_history_diagnostic_on_clinic_history_id"
-    t.index ["diagnostic_id"], name: "index_clinic_history_diagnostic_on_diagnostic_id"
-  end
-
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "subjet"
@@ -197,10 +190,10 @@ ActiveRecord::Schema.define(version: 20171123194930) do
     t.integer "count"
     t.integer "agreement_id"
     t.string "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "movil"
     t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "data"
     t.integer "hpc_id"
     t.integer "birthdate_month"
