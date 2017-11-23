@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Diagnostic.create({"count"=>1, "name"=>"Trastornos del desarrollo neurológico"})
-Diagnostic.create({"count"=>2, "name"=>"Trastornos del estado de ánimo"})
-Diagnostic.create({"count"=>3, "name"=>"Espectro de la esquizofrenia"})
-Diagnostic.create({"count"=>4, "name"=>"Trastornos del estado de ánimo"})
-Diagnostic.create({"count"=>5, "name"=>"Trastornos de ansiedad"})
-Diagnostic.create({"count"=>6, "name"=>"Trastorno obsesivo-compulsivo y otros relacionados"})
-Diagnostic.create({"count"=>7, "name"=>"Trastornos relacionados con traumas y factores de estrés"})
+Diagnostic.create({"count"=>2, "name"=>"Espectro de la esquizofrenia"})
+Diagnostic.create({"count"=>3, "name"=>"Trastornos del estado de ánimo"})
+Diagnostic.create({"count"=>4, "name"=>"Trastornos de ansiedad"})
+Diagnostic.create({"count"=>5, "name"=>"Trastorno obsesivo-compulsivo y otros relacionados"})
+Diagnostic.create({"count"=>6, "name"=>"Trastornos relacionados con traumas y factores de estrés"})
+Diagnostic.create({"count"=>7, "name"=>"Trastornos disociativos"})
 Diagnostic.create({"count"=>8, "name"=>"Trastorno de síntomas somáticos y otros relacionados"})
 Diagnostic.create({"count"=>9, "name"=>"Trastornos de la conducta alimentaria y de la ingesta de alimentos"})
 Diagnostic.create({"count"=>10, "name"=>"Trastornos del sueño-vigilia"})
@@ -24,6 +24,10 @@ Diagnostic.create({"count"=>15, "name"=>"Trastornos parafílicos"})
 Diagnostic.create({"count"=>16, "name"=>"Trastornos cognitivos"})
 Diagnostic.create({"count"=>17, "name"=>"Trastornos mentales debidos a enfermedad médica, no clasificados en otros apartados"})
 Diagnostic.create({"count"=>18, "name"=>"Trastornos relacionados con sustancias"})
+
+
+
+
 
 
 
