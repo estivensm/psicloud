@@ -35,7 +35,7 @@
 <div class="col-md-5">
 
   <div class="form-group date_select">
-         <%= form.datetime_select :created_date,{
+         <%= form.date_select :created_date,{
             :start_year =>
             Time.now.year + 1,
             :end_year => 1900,
@@ -273,3 +273,7 @@
 <% end %>
 </div>
   
+
+
+
+ALTER ROLE postgresql-animate-55257 SET timezone = 'America/Los_Angeles';
