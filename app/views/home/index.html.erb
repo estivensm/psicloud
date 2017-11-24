@@ -17,7 +17,7 @@
                   </div>
                   <div class="col-md-8" style="color:gray">
                   <%if @cita != nil%>
-                   <span style="font-size:15px;">Cita mas cercana</span><br>
+                   <span style="font-size:18px;font-weight: bold">Cita mas cercana</span><br>
                    <span style="font-size:15px;"><%=@cita.patient.first_name%> <%=@cita.patient.first_last_name%> &nbsp; <%=link_to "Ver", patient_path(@cita.patient.id) %></span><br>
                    
                    <% a =  get_date_array(Appointment.last.start_datetime)%>

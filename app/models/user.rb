@@ -81,6 +81,7 @@ class User < ApplicationRecord
               self.admin_user = self.id
               self.count = 1
                Account.create(name: self.company, admin_user: self.id)
+               Hpc.create(name: "Particular", admin_user: self.id,user_id: self.id)
             
                 
             end  

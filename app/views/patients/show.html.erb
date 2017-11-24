@@ -1,17 +1,15 @@
-
 <div class="row">
-    <div class="col-md-12" style="padding-left: 50px;">
-        <%= link_to "inicio", root_path%><span> | </span> 
-        <%= link_to "pacientes", patients_path%>
-      
-    </div>
+   <div class="col-md-12" style="padding-left: 50px;">
+      <%= link_to "inicio", root_path%><span> | </span> 
+      <%= link_to "pacientes", patients_path%>
+   </div>
 </div>
-<div class="container">
+<div class="container-fluid">
    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xs-offset-0 col-sm-offset-0 toppad" >
          <div class="panel panel-info">
             <div class="panel-heading" style="        background: #f9f9f9;
-    color: #808080;">
+               color: #808080;">
                <h3 class="panel-title" style="font-size: 20px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
             </div>
             <div class="panel-body" style="padding-top: 40px;">
@@ -20,49 +18,38 @@
                   <div class="col-md-7 col-lg-7 info-p" >
                      <p><strong> <%= @patient.document_type%>: </strong><%= @patient.document%> </p>
                      <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
-       
-                            <% year = @patient.age == 1 ? "Año" : " Años"
-                              month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
-                              day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
-                            %>
-                           <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
+                     <% year = @patient.age == 1 ? "Año" : " Años"
+                        month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+                        day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+                        %>
+                     <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
                      <p><strong>Genero: </strong><%= @patient.gender%> </p>
                      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Ver mas</button>
                   </div>
                   <div class="col-md-12 col-lg-12 info-p" style= "padding:20px;text-align: center;" >
                      <hr>
-                          <%if @patient.age >= 18%>
-
+                     <%if @patient.age >= 18%>
                      <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
                      <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
-                      Consentimiento Informado
+                     Consentimiento Informado
                      <%end%>
-
                      <%elsif @patient.age >= 12 &&  @patient.age < 18%>
-
-                        <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                     <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
                      <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
-                      Consentimiento Informado
+                     Consentimiento Informado
                      <%end%>
-                          
-                          <%else%>
-                              
-                                
-                        <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                     <%else%>
+                     <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
                      <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
-                      Consentimiento Informado
+                     Consentimiento Informado
                      <%end%>
-
-                          <%end%>
-
-
-                     
+                     <%end%>
                      <!--<p style = "font-size:16px"><i class="fa fa-calendar" aria-hidden="true"></i><strong> Proxima Cita: </strong>&nbsp;  3 de julio de 2016  &nbsp; <%= link_to  root_path , :class => "opciones" do %>
                         <i class="fa fa-pencil" aria-hidden="true"></i> 
                         <% end %>&nbsp;<%= link_to  root_path , :class => "opciones" do %>
                         <i class="fa fa-trash" aria-hidden="true"></i> 
                         <% end %>
-                     </p>-->
+                        </p>-->
                   </div>
                   <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
                      <dl>
@@ -78,12 +65,10 @@
                      </div>-->
                </div>
             </div>
-            <div class="panel-footer">
-               <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-               <span class="pull-right">
-               <a href="/patients/<%=@patient.id%>/edit" data-original-title="Editar este usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-               <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/patients/2" data-original-title="Borrar este Usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-               </span>
+            <div class="panel-footer text-right">
+               <%= link_to  patient_path(@patient.id), class: "btnl btn-warning" do%>
+               <i class="fa fa-pencil" style = "font-size:20px;"  aria-hidden="true"></i>
+               <%end%>
             </div>
          </div>
       </div>
@@ -95,7 +80,6 @@
                </li>
                <li><a href="#2" data-toggle="tab">Seguimientos</a>
                </li>
-             
                <li><a href="#4" data-toggle="tab">Proxima Cita</a>
                </li>
             </ul>
@@ -105,47 +89,61 @@
                   <div class="descnum">
                      <br>
                      <div class="row">
-                     <div class="col-md-8">
-                         <h2>Información Principal</h2> 
-                       </div>
-                       <div class="col-md-4 text-right">
-                         <%= link_to  edit_patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary" do%>
-                        <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i>
-                     <%end%>
-                     <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btn btn-primary" do%>
-                        <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
-                     <%end%>
-                       </div>    
+                        <div class="col-md-8">
+                           <h2>Información Principal</h2>
+                        </div>
+                        <div class="col-md-4 text-right">
+                           <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-primary" do%>
+                           <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
+                           <%end%>
+                           <%= link_to  edit_patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-warning" do%>
+                           <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i>
+                           <%end%>
+                        </div>
                      </div>
-
-                   
                      <div class="descnum1">
-                        <h4>Motivo de consulta</h3><hr>
-                     <p><%= @hs.consultation_reason %></p>
+                        <h4>
+                        Motivo de consulta</h3>
+                        <hr>
+                        <p><%= @hs.consultation_reason %></p>
                      </div>
-                    
-                    <div class="descnum1">
-                     <h4> Estado Actual</h3><hr>
-                     <p><%= @hs.actual_state %></p>  </div>
                      <div class="descnum1">
-                     <h4> Hipotesis diagnostical</h3><hr>
-                     <p><%= @hs.diagnostic_hypothesis %></p>  </div>
+                        <h4>
+                        Estado Actual</h3>
+                        <hr>
+                        <p><%= @hs.actual_state %></p>
+                     </div>
                      <div class="descnum1">
-                     <h4> Objetivo Terapeoutico</h3><hr>
-                     <p><%= @hs.therapeutic_goal %></p>  </div>
-                <div class="descnum1" >
-                     <h4> Tipo de Tratamiento</h3><hr>
-                     <p><%= @hs.type_of_treatment %></p>  </div>
+                        <h4>
+                        Hipotesis diagnostical</h3>
+                        <hr>
+                        <p><%= @hs.diagnostic_hypothesis %></p>
+                     </div>
+                     <div class="descnum1">
+                        <h4>
+                        Objetivo Terapeoutico</h3>
+                        <hr>
+                        <p><%= @hs.therapeutic_goal %></p>
+                     </div>
+                     <div class="descnum1" >
+                        <h4>
+                        Tipo de Tratamiento</h3>
+                        <hr>
+                        <p><%= @hs.type_of_treatment %></p>
+                     </div>
                   </div>
                   <%else%>
-                  <br><br>
-              
-                  <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary"%>
+                  <br><br><br>
+                  <div class="alert-info" style="padding:20px;">
+                               <h2 class="text-center" >No se ha crado la Historia Clinica <br><br> <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary", style: "font-size:20px"%></h2>
+                  </div>
+       
                   <%end%>
                </div>
                <div class="tab-pane" id="2">
                   <br><br>
                   <%if @hs != nil%>
+
                   <%if @hs.tracings.count != 0%>
                   <div class="row">
                      <div class="col-md-12 text-right">
@@ -170,9 +168,14 @@
                   <hr>
                   <%end%>
                   <%else%>
-                  <h2 class="text-center color-gray1">No hay ninugun seguimiento <br> <br> <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary"%></h2>
+                <div class="alert-info" style="padding:20px;">
+                  <h2 class="text-center">No hay ninugun seguimiento <br>  <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary", style: "font-size:20px"%></h2>
                   <%end%>
-                  <%end%> 
+                        </div>
+                  <%else%>
+                   <div class="alert-info" style="padding:20px;">
+     <h2 class="text-center" >No hay seguimientos ya que no existe la Historia Clinica</h2>
+                  <%end%>  
                </div>
                <div class="tab-pane" id="3">
                   <h3>add clearfix to tab-content (see the css)</h3>
@@ -213,8 +216,10 @@
                   <hr>
                   <%end%>
                   <%else%>
-                  <h2 class="text-center color-gray1">El Paciente no tiene citas<br> <br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary"%> <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary"%></h2>
+                      <div class="alert-info" style="padding:20px;">
+                  <h2 class="text-center">El Paciente no tiene citas<br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style: "font-size:20px"%> <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary", style: "font-size:20px"%></h2>
                   <%end%>  
+                  </div>
                </div>
             </div>
          </div>
@@ -222,22 +227,20 @@
    </div>
 </div>
 <style>
-.descnum1
-{
-      padding: 10px;
-  background: #f7f7f7;
-  margin-bottom: 5px;
-}
-.descnum1 h4
-{
-         color: #5d5d5d !important;
-
-}
-.descnum1 p
-{
-         margin-left: 30px;
-      
-}
+   .descnum1
+   {
+   padding: 10px;
+   background: #f7f7f7;
+   margin-bottom: 5px;
+   }
+   .descnum1 h4
+   {
+   color: #5d5d5d !important;
+   }
+   .descnum1 p
+   {
+   margin-left: 30px;
+   }
    .user-row {
    margin-bottom: 14px;
    }
@@ -341,10 +344,10 @@
                         <div class="col-md-6 col-lg-6 info-p" >
                            <p><strong>Documento: </strong> <%= @patient.document_type%>: <%= @patient.document%> </p>
                            <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
-                            <% year = @patient.age == 1 ? "Año" : " Años"
+                           <% year = @patient.age == 1 ? "Año" : " Años"
                               month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
                               day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
-                            %>
+                              %>
                            <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
                            <p><strong>Genero: </strong><%= @patient.gender%> </p>
                         </div>
@@ -413,15 +416,13 @@
       </div>
    </div>
 </div>
-
 <style>
-.nav-tabs>li>a {
-        background: #277394;
-    color: white;
-    margin-right: 2px;
-    line-height: 1.42857143;
-    border: 1px solid rgba(12, 12, 12, 0.51);
-     border-radius: 0px;
-}
-  
+   .nav-tabs>li>a {
+   background: #277394;
+   color: white;
+   margin-right: 2px;
+   line-height: 1.42857143;
+   border: 1px solid rgba(12, 12, 12, 0.51);
+   border-radius: 0px;
+   }
 </style>

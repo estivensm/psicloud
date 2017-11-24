@@ -22,10 +22,12 @@
                <tr class = "tr-table">
       <th>Nombres</th>
       <th>Apellidos</th>
+      <th>Documento</th>
       <th>Fecha de Nacimiento</th>
-      <th>Document</th>
+      <th>Edad</th>
 
-      <th colspan="3"></th>
+
+      <th>Acciones</th>
     </tr>
   </thead>
 
@@ -36,9 +38,20 @@
         <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
          <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>
-        <td><%= link_to 'Ver', patient %></td>
-        <td><%= link_to 'Editar', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Borrar', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <td><%= patient.age %> Años</td>
+        <td><%= link_to  patient, class: "btnl btn-primary" do%>
+             <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
+             <%end%>
+      
+          <%= link_to  edit_patient_path(patient), class: "btnl btn-warning" do%>
+             <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
+             <%end%>
+
+       
+      <%= link_to  patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btnl btn-danger" do%>
+             <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
+             <%end%>
+</td>
                </tr>
                <%end%>
             </tbody>
