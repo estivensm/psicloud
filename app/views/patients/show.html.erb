@@ -171,12 +171,13 @@
                 <div class="alert-info" style="padding:20px;">
                   <h2 class="text-center">No hay ninugun seguimiento <br>  <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary", style: "font-size:20px"%></h2>
                   <%end%>
-                        </div>
+                </div>
                   <%else%>
                    <div class="alert-info" style="padding:20px;">
-     <h2 class="text-center" >No hay seguimientos ya que no existe la Historia Clinica</h2>
+     <h2 class="text-center" >No hay seguimientos ya que no existe la Historia Clinica</h2> </div>
                   <%end%>  
-               </div>
+              
+                </div>
                <div class="tab-pane" id="3">
                   <h3>add clearfix to tab-content (see the css)</h3>
                </div>
