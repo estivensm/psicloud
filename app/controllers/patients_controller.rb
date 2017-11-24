@@ -4,6 +4,8 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
+    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @patients = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 3)
  
   end
@@ -11,6 +13,8 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
+    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
       @hs = @patient.clinic_histories.first
         @appointment_l = @patient.appointments.where(state: "Vigente").last
     
@@ -18,11 +22,15 @@ class PatientsController < ApplicationController
 
   # GET /patients/new
   def new
+    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @patient = Patient.new
   end
 
   # GET /patients/1/edit
   def edit
+   @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
+   @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
   end
 
   # POST /patients
@@ -231,6 +239,23 @@ def consentimiento_informado_menores
     end
     
   end
+
+  def create_hpc
+  
+   a =  Hpc.new(name:params[:name],user_id:current_user.id, admin_user:current_user.admin_user)
+   a.save
+   @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+
+end
+
+ def create_agreement
+  
+   a =  Agreement.new(name:params[:name],user_id:current_user.id, admin_user:current_user.admin_user)
+   a.save
+   @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
+
+ end
+
 
 
   private

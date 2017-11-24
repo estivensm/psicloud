@@ -1,7 +1,22 @@
 class HomeController < ApplicationController
 	 before_action :authenticate_user!
   def index
+    @clinic_history = ClinicHistory.where(user_id: current_user.id).where(child_history: false)
+    @clinic_history1 = ClinicHistory.where(user_id: current_user.id).where(child_history: true)
+    
+    @mes = Array.new
+    @mes1 = Array.new
+    12.times.each do |mes|
+    	
+        @mes <<  @clinic_history.where('extract(month  from created_date) = ?', (mes+ 1)).count
+        @mes1 <<  @clinic_history1.where('extract(month  from created_date) = ?', (mes+ 1)).count
 
+    end    
+
+    
+     
+
+    @cita = Appointment.where(user_id: current_user.id).last
   	 if params[:search].present?
         @pacientes = Patient.where(user_id: current_user.id).search(params[:search]).page(params[:page]).per_page(10)
     end

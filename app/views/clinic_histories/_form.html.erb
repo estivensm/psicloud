@@ -129,12 +129,13 @@
             </div>
         
 
-
+<%if action_name == "new"%>
 <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
 <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
 <%= contact.hidden_field :patient_id ,:value =>  @patient.id %>
+ <%end%> 
 <%= contact.hidden_field :codigo ,:value =>  @patient.document %>
-           
+         
          </div>
 
       </div><hr>

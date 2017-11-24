@@ -1,0 +1,38 @@
+<select class="form-control sel pri chosen-select1 mg1" name="patient[hpc_id]" id="hpc_id">
+
+<% @hpcs.each do  |hpc|%>
+   <%if action_name == "edit"%>
+        <%if hpc.id == @patient.hpc_id%>
+            <option selected="selected" value="<%=hpc.id%>"><%=hpc.name%></option>
+        <%else%>
+            <option value="<%=hpc.id%>"><%=hpc.name%></option>
+        <%end%>
+   <%else%>
+        <option value="<%=hpc.id%>"><%=hpc.name%></option>
+    <%end%> 
+<%end%>
+</select>
+
+    <button type="button" class="bt " data-toggle="modal" data-target="#myModal_hpc"><i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+
+
+<style>
+.bt
+{
+    padding: 0px 0px;
+    background: white;
+    color: #46b8da;
+    border: none;
+} 
+</style>
+
+<script>
+  $('.bt').click(function() {
+    // body...
+
+   $('#name_hpc').val("");
+  
+ 
+  });
+</script>

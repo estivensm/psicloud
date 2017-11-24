@@ -1,0 +1,12 @@
+$('#myModal_agreement').modal('hide');
+
+       $('.field_agreement').html('<%= j render "field_agreement", agreements: @agreements %>');
+        $('.pri').addClass("chosen-select1");
+
+         $('.chosen-select1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '230px'
+        });

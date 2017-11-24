@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'tool_tests/edit'
 
+  post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
+  post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
 
 
 

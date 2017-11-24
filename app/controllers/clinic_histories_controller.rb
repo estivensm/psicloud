@@ -73,6 +73,10 @@ end
         if @patient.age < 14
           @clinic_history.child_history = true
            @clinic_history.save
+        else
+        
+          @clinic_history.child_history = false
+          @clinic_history.save
         end
 
         format.html { 

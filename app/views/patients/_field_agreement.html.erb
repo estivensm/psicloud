@@ -1,0 +1,37 @@
+<select class="form-control sel pri chosen-select1 mg1" name="patient[agreement_id]" id="agreement_id">
+<% @agreements.each do  |agreement|%>
+   <%if action_name == "edit"%>
+        <%if agreement.id == @patient.agreement_id%>
+        <option selected="selected" value="<%=agreement.id%>"><%=agreement.name%></option>
+        <%else%>
+        <option value="<%=agreement.id%>"><%=agreement.name%></option>
+        <%end%>
+   <%else%>
+        <option value="<%=agreement.id%>"><%=agreement.name%></option>
+    <%end%> 
+<%end%>
+</select>
+
+    <button type="button" class="bt " data-toggle="modal" data-target="#myModal_agreement"><i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+
+
+<style>
+.bt
+{
+    padding: 0px 0px;
+    background: white;
+    color: #46b8da;
+    border: none;
+} 
+</style>
+
+<script>
+  $('.bt').click(function() {
+    // body...
+
+   $('#name_agreement').val("");
+  
+ 
+  });
+</script>

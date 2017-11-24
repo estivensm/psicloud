@@ -1,8 +1,42 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+
+
+
 
 <div class="container search-cont">
 	
 <div class="row">
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-6">
+<div class="row" style="    padding: 24px;
+    background: gainsboro;">
+  <div class="col-md-4 text-right">
+                     <img style = "width:95px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
+                  </div>
+                  <div class="col-md-8" style="color:gray">
+                  <%if @cita != nil%>
+                   <span style="font-size:15px;">Cita mas cercana</span><br>
+                   <span style="font-size:15px;"><%=@cita.patient.first_name%> <%=@cita.patient.first_last_name%> &nbsp; <%=link_to "Ver", patient_path(@cita.patient.id) %></span><br>
+                   
+                   <% a =  get_date_array(Appointment.last.start_datetime)%>
+                     
+                     <span style="font-size:40px;"><%=a[5] %></span><br>
+                     <span style="font-size:15px;"><%=a[1]%> <%= a[0] %> de <%= a[2]%> de <%= a[4] %></span>
+                     <%else%>
+                     <span style="font-size:15px;position: relative;
+                        top: 50px;">No hay citas programadas</span>
+                     <%end%>  
+                     
+                  </div>
+</div>
+    
+
+
+<div id="container" style="min-width: 310px; height: 300px; margin: 50px auto"></div>
+</div>
+<div class="col-md-6">
 	
 
 <div class="padding">
@@ -60,3 +94,67 @@
   </div>
 	
 </div>
+
+
+
+<script>
+$(document).on('turbolinks:load',function() {
+  Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Pacientes atendidos por mes'
+    },
+
+    xAxis: {
+        categories: [
+            'Ene',
+            'Feb',
+            'Mar',
+            'Abr',
+            'May',
+            'Jun',
+            'Jul',
+            'Ago',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dic'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Pacientes'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Mayores',
+        data: [<%@mes.each do |item| %><%=item%>,<%end%>
+                    
+         ]
+
+    }, {
+        name: 'Menores',
+        data: [<%@mes1.each do |item| %><%=item%>,<%end%>]
+
+    }]
+});
+  });
+</script>

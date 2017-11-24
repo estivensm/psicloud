@@ -1,0 +1,35 @@
+<div id="myModal_agreement" class="modal fade">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Crear EPS</h4>
+      </div>
+ <div class="modal-body">
+      <%= form_tag create_agreement_path, method: :post, remote:true do %>
+        <div class="form form-group">
+          
+        
+        <label for="">Nombre</label>
+      
+        <%=text_field_tag :name,nil , id: "name_agreement", class:"form form-control"%>
+        </div>
+        <%= submit_tag "guardar", class:"btn btn-primary"%>
+        <%end%>
+
+
+
+  </div>
+
+
+
+      <div class="modal-footer text-center">
+       
+        
+           </div>
+
+
+  
+  </div>
+</div>
+</div>

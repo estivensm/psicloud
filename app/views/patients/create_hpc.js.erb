@@ -1,0 +1,12 @@
+$('#myModal_hpc').modal('hide');
+
+       $('.field_hpc').html('<%= j render "field_hpc", hpcs: @hpcs %>');
+        $('.pri').addClass("chosen-select1");
+
+         $('.chosen-select1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '230px'
+        });
