@@ -169,9 +169,9 @@
                   <%end%>
                   <%else%>
                 <div class="alert-info" style="padding:20px;">
-                  <h2 class="text-center">No hay ninugun seguimiento <br>  <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary", style: "font-size:20px"%></h2>
+                  <h2 class="text-center">No hay ninugun seguimiento <br>  <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary", style: "font-size:20px"%></h2>  </div>
                   <%end%>
-                </div>
+              
                   <%else%>
                    <div class="alert-info" style="padding:20px;">
      <h2 class="text-center" >No hay seguimientos ya que no existe la Historia Clinica</h2> </div>
@@ -218,9 +218,9 @@
                   <%end%>
                   <%else%>
                       <div class="alert-info" style="padding:20px;">
-                  <h2 class="text-center">El Paciente no tiene citas<br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style: "font-size:20px"%> <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary", style: "font-size:20px"%></h2>
+                  <h2 class="text-center">El Paciente no tiene citas<br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style: "font-size:20px"%> <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary", style: "font-size:20px"%></h2>  </div>
                   <%end%>  
-                  </div>
+                
                </div>
             </div>
          </div>
