@@ -1,5 +1,6 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
 
 
 
@@ -34,7 +35,7 @@
     
 
 
-<div id="container" style="min-width: 310px; height: 300px; margin: 50px auto"></div>
+<canvas id="myChart" width="400" height="200" style = "margin-top:50px;"></canvas>
 </div>
 <div class="col-md-6">
 	
@@ -157,4 +158,55 @@ $(document).on('turbolinks:load',function() {
     }]
 });
   });
+</script>
+
+
+
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Ene',
+            'Feb',
+            'Mar',
+            'Abr',
+            'May',
+            'Jun',
+            'Jul',
+            'Ago',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dic'],
+        
+        datasets: [{
+            label: 'Pacientes',
+            data: [<%@mes.each do |item| %><%=item%>,<%end%>],
+            backgroundColor: [<%@mes.each do |item| %>"rgba(54, 162, 235, 0.5)",<%end%>
+            ],
+            borderColor: [
+                <%@mes.each do |item| %>"rgba(54, 162, 235, 0.5)",<%end%>
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        tooltip: {
+          backgroundColor: "blue"
+        },
+        scales: {
+             yAxes: [{
+            ticks: {
+                max: 5,
+                min: 0,
+                stepSize: 1
+            }
+        }]
+        }
+    }
+});
+
+
 </script>
