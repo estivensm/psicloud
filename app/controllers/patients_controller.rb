@@ -6,7 +6,7 @@ class PatientsController < ApplicationController
   def index
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-    @patients = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 3)
+    @patients = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 20)
  
   end
 
