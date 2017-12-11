@@ -28,10 +28,10 @@
 <br>
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p>Seguimientos <span class="label label-primary"><%=@tracings.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tracings, :entry_name => 'Seguimientos' %></span> </p>
+            <p>Seguimientos <span class="label label-primary"><%=@clinic_history.tracings.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinic_history.tracings, :entry_name => 'Seguimientos' %></span> </p>
          </div>
          <div class = "col-md-4 paginate text-left title-table1">
-            <%= will_paginate @tracings%>
+            <%= will_paginate @clinic_history.tracings%>
          </div>
          <div class = "col-md-2">
             <%= link_to 'Nuevo Seguimiento', new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), remote:true, class: "btn btn-primary"  %>
