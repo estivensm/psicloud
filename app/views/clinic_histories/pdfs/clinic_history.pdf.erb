@@ -25,7 +25,7 @@
       <td> <strong>Edad</strong> <br><%=@patient.age%> </td>
       <td> <strong>Ciudad</strong> <br><%=@patient.city%> </td>
       <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>
-      <td> <strong>Telefono fijo</strong><br> <%=@patient.movil%> </td>
+      <td> <strong>Telefono fijo</strong><br> <%=@patient.phone%> </td>
    </tr>
    <tr>
       <td> <strong>Telefono Movil</strong> <br><%= @patient.movil%> </td>
@@ -40,8 +40,8 @@
       <td> <strong>Grupo Etnico</strong> <br><%= @patient.ethnic_group%> </td>
    </tr>
    <tr>
-      <td> <strong>Eps</strong> <br>EPS </td>
-      <td> <strong>Convenio</strong><br> Convenio </td>
+      <td> <strong>Eps</strong> <br><%= @patient.hpc.name if @patient.hpc%>  </td>
+      <td> <strong>Convenio</strong><br> <%= @patient.agreement.name if @patient.agreement%>  </td>
       <td> <strong>Nombre Contacto</strong> <br><%= @patient.contact_name%> </td>
       <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
    </tr>
@@ -802,7 +802,7 @@
 <table class="table1">
    <tr>
       <th>
-         <h2 class= "h2" style="text-align: left!important"> Seguimiento</h2>
+         <h2 class= "h2" style="text-align: left!important"> Seguimiento y observaciones</h2>
       </th>
    </tr>
   

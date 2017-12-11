@@ -43,7 +43,7 @@
       <td> <strong>Edad:</strong> <br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></td>
       <td> <strong>Ciudad:</strong> <br><%=@patient.city%> </td>
        <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>  
-       <td> <strong>Telefono fijo:</strong><br> <%=@patient.movil%> </td>
+       <td> <strong>Telefono fijo:</strong><br> <%=@patient.phone%> </td>
     </tr>
      <tr>
           
@@ -63,8 +63,8 @@
     </tr>
     <tr>
           
-      <td> <strong>Eps:</strong> <br>EPS </td>
-      <td> <strong>Convenio</strong><br> Convenio </td>
+      <td> <strong>Eps:</strong> <br><%= @patient.hpc.name if @patient.hpc%> </td>
+      <td> <strong>Convenio</strong><br> <%= @patient.agreement.name if @patient.agreement%> </td>
        <td> <strong>Nombre Contacto:</strong> <br><%= @patient.contact_name%> </td>
       <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
       
@@ -159,7 +159,7 @@
 
 <div class = "fields_history">
 <hr>
-  <h3 class= "color-gray">5. Seguimientos</h3>
+  <h3 class= "color-gray">10. Seguimientosy Obervaciones </h3>
 
       <%@clinic_history.tracings.each do |tr|%>  
 
