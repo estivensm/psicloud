@@ -69,6 +69,19 @@ end
     @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @clinic_history.save
+
+      num = @patient.clinic_histories.maximum(:count)
+      if num != nil
+      num = num + 1
+
+    else
+        num = 1
+    end
+    code= "#{@patient.document}-#{num}" 
+    @clinic_history.codigo = code
+    @clinic_history.count = num
+
+
        
         if @patient.age < 14
           @clinic_history.child_history = true
