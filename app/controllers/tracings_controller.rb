@@ -7,7 +7,8 @@ class TracingsController < ApplicationController
   def index
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
-    @tracings = Tracing.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 3)
+    @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 3)
+    
   end
 
   # GET /tracings/1
