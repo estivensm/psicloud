@@ -1,12 +1,31 @@
 
 
 
+<% if action_name == "index" 
+  a = "btn btn-primary"
+  b = ""
+else
+  b = "btn btn-primary"
+  a = ""
+
+  end%>
 
 <div class="container">
+<%if current_user.rol.show_all_patient%>
+<div class="row">
+  <div class = "col-md-6">
+  
+            <%= link_to 'Mis Pacientes', patients_path, class: "#{a}"  %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to 'Todos los Pacientes', all_patients_path, class: "#{b}"  %>
+            
+         </div>
+</div>
+<%end%>
+<br>
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p>Pacientes <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
+            <p><%=action_name == "index" ? "Mis " : "Todos los " %>Pacientes <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
          </div>
          <div class = "col-md-4 paginate text-left title-table1">
             <%= will_paginate @patients%>
@@ -39,18 +58,21 @@
          <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>
          <td><%= patient.age %> Años</td>
-        <td><%= link_to  patient, class: "btnl btn-primary" do%>
+        <td>
+        <%if current_user.rol.show_patient%>
+        <%= link_to  patient, class: "btnl btn-primary" do %>
              <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
-      
+      <%end%>
+        <%if current_user.rol.edit_patient%>
           <%= link_to  edit_patient_path(patient), class: "btnl btn-warning" do%>
              <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
-
-       
+<%end%>
+       <%if current_user.rol.delete_patient%>
       <%= link_to  patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btnl btn-danger" do%>
              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%>
+             <%end%><%end%>
 </td>
                </tr>
                <%end%>

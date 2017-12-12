@@ -10,6 +10,14 @@ class PatientsController < ApplicationController
  
   end
 
+
+  def all_patients
+    
+   
+    @patients = Patient.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
+    render "index"
+  end
+
   # GET /patients/1
   # GET /patients/1.json
   def show
@@ -22,6 +30,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/new
   def new
+    @users = User.where(admin_user: current_user.admin_user)
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @patient = Patient.new
@@ -29,6 +38,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
+   @users = User.all
    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
   end

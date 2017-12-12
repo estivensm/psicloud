@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212182654) do
+ActiveRecord::Schema.define(version: 20171212220101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,6 +277,12 @@ ActiveRecord::Schema.define(version: 20171212182654) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "default"
+    t.boolean "show_all_user"
+    t.boolean "show_all_patient"
+    t.boolean "show_all_hc"
+    t.boolean "show_all_cita"
+    t.boolean "show_all_doc"
+    t.boolean "show_all_rol"
   end
 
   create_table "three_child_histories", force: :cascade do |t|

@@ -39,6 +39,11 @@
     <p></p>
   
     </div>
+      <div class="col-md-2 text-center">
+     
+    <p>Ver Todos</p>
+  
+    </div>
      <div class="col-md-2 text-center">
      
     <p>Ver</p>
@@ -71,6 +76,11 @@
     <p>Usuarios</p>
   
     </div>
+    <div class="col-md-2 text-center">
+     
+     <%= form.check_box :show_all_user, id: :rol_show_user %>
+  
+    </div>
      <div class="col-md-2 text-center">
      
      <%= form.check_box :show_user, id: :rol_show_user %>
@@ -101,6 +111,11 @@
     <div class="col-md-2">
      
     <p>Pacientes</p>
+  
+    </div>
+       <div class="col-md-2 text-center">
+     
+     <%= form.check_box :show_all_patient, id: :rol_show_user %>
   
     </div>
      <div class="col-md-2 text-center">
@@ -137,6 +152,11 @@
     </div>
      <div class="col-md-2 text-center">
      
+     <%= form.check_box :show_all_hc, id: :rol_show_user %>
+  
+    </div>
+     <div class="col-md-2 text-center">
+     
      <%= form.check_box :show_hc, id: :rol_show_hc %>
   
     </div>
@@ -165,6 +185,11 @@
     <div class="col-md-2">
      
     <p>Citas</p>
+  
+    </div>
+     <div class="col-md-2 text-center">
+     
+     <%= form.check_box :show_all_cita, id: :rol_show_user %>
   
     </div>
      <div class="col-md-2 text-center">
@@ -201,6 +226,11 @@
     </div>
      <div class="col-md-2 text-center">
      
+     <%= form.check_box :show_all_doc, id: :rol_show_user %>
+  
+    </div>
+     <div class="col-md-2 text-center">
+     
         <%= form.check_box :show_doc, id: :rol_show_doc %>
   
     </div>
@@ -228,6 +258,11 @@
     <div class="col-md-2">
      
     <p>Roles</p>
+  
+    </div>
+     <div class="col-md-2 text-center">
+     
+     <%= form.check_box :show_all_rol, id: :rol_show_user %>
   
     </div>
      <div class="col-md-2 text-center">

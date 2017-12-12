@@ -38,13 +38,13 @@
             
   
             <tr class = "tr-table">
-            <th></th>
-      <td class="text-center" style="border-right: 1px solid gray;border-left: 1px solid gray">Usuario</th>
-      <td  class="text-center" style="border-left: 1px solid gray">Paciente</th>
-      <td  class="text-center" style="border-left: 1px solid gray">Historia Clinica</th>
-      <td  class="text-center" style="border-left: 1px solid gray">Citas</th>
-      <td class="text-center" style="border-left: 1px solid gray">Documentos</th>
-      <td  class="text-center" style="border-left: 1px solid gray">Roles</th>
+            <td></th>
+      <td class="text-center" style="border-left: 1px solid gray">Ver Todos</td>
+      <td  class="text-center" style="border-left: 1px solid gray">Ver</th>
+      <td  class="text-center" style="border-left: 1px solid gray">Crear</th>
+      <td  class="text-center" style="border-left: 1px solid gray">Editar</th>
+      <td class="text-center" style="border-left: 1px solid gray">Eliminar</th>
+     
      
 
 
@@ -52,45 +52,53 @@
     </tr>
               
       <tr class = "tr-table" >
-       <td ><i class="fa fa-eye color-gray icon" aria-hidden="true"></i></th> 
+       <td >Usuarios</th> 
+        <td><%= get_state(rol.show_all_user).html_safe %></td>
         <td><%= get_state(rol.show_user).html_safe %></td>
-         <td><%= get_state(rol.show_patient).html_safe  %></td>
-          <td><%= get_state(rol.show_hc).html_safe  %></td>
-           <td><%= get_state(rol.show_cita).html_safe  %></td>
-             <td><%= get_state(rol.show_doc).html_safe  %></td>
-             <td><%= get_state(rol.show_rol).html_safe  %></td></tr>
-     <tr class = "tr-table">
-       <td s><i class="fa fa-plus-square-o color-gray icon" aria-hidden="true"></i></th>
-         <td><%= get_state(rol.create_user).html_safe  %></td> <td><%= get_state(rol.create_patient).html_safe  %></td><td><%= get_state(rol.create_hc).html_safe  %></td> <td><%= get_state(rol.create_cita).html_safe  %></td>  <td><%= get_state(rol.create_doc).html_safe  %></td>  <td><%= get_state(rol.create_rol).html_safe  %></td>
-        </tr>
-     <tr class = "tr-table">
-       <td ><i class="fa fa-pencil color-gray icon" aria-hidden="true"></i></th>  <td><%= get_state(rol.edit_user).html_safe  %></td>     <td><%= get_state(rol.edit_patient).html_safe  %></td> <td><%= get_state(rol.edit_hc).html_safe  %></td><td><%= get_state(rol.edit_cita).html_safe  %></td>        <td><%= get_state(rol.edit_doc).html_safe  %></td>        <td><%= get_state(rol.edit_rol).html_safe  %></td></tr>
-       <tr class = "tr-table">
-       <td ><i class="fa fa-trash color-gray icon" aria-hidden="true"></i></th> 
-            
-      
-        <td><%= get_state(rol.delete_user).html_safe  %></td>
-       
-       
-    
-        <td><%= get_state(rol.delete_patient).html_safe  %></td>
-       
-        
-       
-        <td><%= get_state(rol.delete_hc).html_safe  %></td>
-       
-       
-        
-        <td><%= get_state(rol.delete_cita).html_safe  %></td>
-      
-      
-
-        <td><%= get_state(rol.delete_doc).html_safe  %></td>
-        
-      
-
-        <td><%= get_state(rol.delete_rol).html_safe  %></td>
-       </tr>
+         <td><%= get_state(rol.create_user).html_safe  %></td>
+          <td><%= get_state(rol.edit_user).html_safe  %></td>
+           <td><%= get_state(rol.delete_user).html_safe  %></td>
+    </tr>
+     <tr class = "tr-table" >
+       <td >Pacientes</th> 
+        <td><%= get_state(rol.show_all_patient).html_safe %></td>
+        <td><%= get_state(rol.show_patient).html_safe %></td>
+         <td><%= get_state(rol.create_patient).html_safe  %></td>
+          <td><%= get_state(rol.edit_patient).html_safe  %></td>
+           <td><%= get_state(rol.delete_patient).html_safe  %></td>
+    </tr>
+     <tr class = "tr-table" >
+       <td >Historias Clinicas</th> 
+        <td><%= get_state(rol.show_all_hc).html_safe %></td>
+        <td><%= get_state(rol.show_hc).html_safe %></td>
+         <td><%= get_state(rol.create_hc).html_safe  %></td>
+          <td><%= get_state(rol.edit_hc).html_safe  %></td>
+           <td><%= get_state(rol.delete_hc).html_safe  %></td>
+    </tr>
+     <tr class = "tr-table" >
+       <td >Citas</th> 
+        <td><%= get_state(rol.show_all_cita).html_safe %></td>
+        <td><%= get_state(rol.show_cita).html_safe %></td>
+         <td><%= get_state(rol.create_cita).html_safe  %></td>
+          <td><%= get_state(rol.edit_cita).html_safe  %></td>
+           <td><%= get_state(rol.delete_cita).html_safe  %></td>
+    </tr>
+      <tr class = "tr-table" >
+       <td >Documentos</th> 
+        <td><%= get_state(rol.show_all_doc).html_safe %></td>
+        <td><%= get_state(rol.show_doc).html_safe %></td>
+         <td><%= get_state(rol.create_doc).html_safe  %></td>
+          <td><%= get_state(rol.edit_doc).html_safe  %></td>
+           <td><%= get_state(rol.delete_doc).html_safe  %></td>
+    </tr>
+       <tr class = "tr-table" >
+       <td >Roles</th> 
+        <td><%= get_state(rol.show_all_rol).html_safe %></td>
+        <td><%= get_state(rol.show_rol).html_safe %></td>
+         <td><%= get_state(rol.create_rol).html_safe  %></td>
+          <td><%= get_state(rol.edit_rol).html_safe  %></td>
+           <td><%= get_state(rol.delete_rol).html_safe  %></td>
+    </tr>
    
   </thead>
 

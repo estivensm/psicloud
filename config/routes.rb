@@ -20,12 +20,13 @@ Rails.application.routes.draw do
 
   post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
   post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
-
+  
 
 
   get "citas", to: "appointments#citas", as: "citas"
   get "citas_admin", to: "appointments#citas_admin", as: "citas_admin"
   get "appointments/get_appointments", to: "appointments#get_appointments"
+  get "all_patients", to: "patients#all_patients", as: "all_patients"
   resources :patients do 
      resources :appointments 
      
