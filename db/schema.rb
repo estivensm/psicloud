@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123194930) do
+ActiveRecord::Schema.define(version: 20171212182654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,41 @@ ActiveRecord::Schema.define(version: 20171123194930) do
     t.integer "clinic_history_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rols", force: :cascade do |t|
+    t.boolean "show_user"
+    t.boolean "create_user"
+    t.boolean "edit_user"
+    t.boolean "delete_user"
+    t.boolean "show_patient"
+    t.boolean "create_patient"
+    t.boolean "edit_patient"
+    t.boolean "delete_patient"
+    t.boolean "show_hc"
+    t.boolean "create_hc"
+    t.boolean "edit_hc"
+    t.boolean "delete_hc"
+    t.boolean "show_cita"
+    t.boolean "create_cita"
+    t.boolean "edit_cita"
+    t.boolean "delete_cita"
+    t.boolean "show_doc"
+    t.boolean "create_doc"
+    t.boolean "edit_doc"
+    t.boolean "delete_doc"
+    t.boolean "show_rol"
+    t.boolean "create_rol"
+    t.boolean "edit_rol"
+    t.boolean "delete_rol"
+    t.boolean "configuracion"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "default"
   end
 
   create_table "three_child_histories", force: :cascade do |t|

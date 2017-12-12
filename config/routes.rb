@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
 
  
+  resources :rols
   resources :contacts
   resources :hpcs
   resources :agreements

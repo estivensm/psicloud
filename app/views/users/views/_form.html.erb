@@ -22,6 +22,15 @@
     <%= text_field_tag :email, nil,:class => 'form-control' %>
   </div>
 
+<div class="form-group">
+    <%= label_tag "Rol" %>
+    <%= select_tag 'rol_id', options_for_select(@rols.collect{ |u| ["#{u.name}", u.id] }), {:multiple => false,class: 'form-control chosen-select1'}%>
+  </div>
+
+
+
+
+
             
 
 
@@ -74,7 +83,17 @@
 
 </style>
 
-
 <script>
-
+   $(document).on('turbolinks:load',function() {
+   $('.chosen-select1').chosen(
+         {
+   
+           allow_single_deselect: true,
+           no_results_text: 'No hay resultados',
+           width: '850px;',
+           placeholder_text_single: "Seleccione una opción",
+           placeholder_text_multiple: "Seleccione una varias opciones"
+   
+         });
+         });
 </script>

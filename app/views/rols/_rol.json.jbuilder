@@ -1,0 +1,2 @@
+json.extract! rol, :id, :show_user, :create_user, :edit_user, :delete_user, :show_patient, :create_patient, :edit_patient, :delete_patient, :show_hc, :create_hc, :edit_hc, :delete_hc, :show_cita, :create_cita, :edit_cita, :delete_cita, :show_doc, :create_doc, :edit_doc, :delete_doc, :show_rol, :create_rol, :edit_rol, :delete_rol, :configuracion, :admin_user, :user_id, :name, :description, :created_at, :updated_at
+json.url rol_url(rol, format: :json)

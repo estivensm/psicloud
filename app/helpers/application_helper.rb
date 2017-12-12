@@ -1,5 +1,15 @@
 module ApplicationHelper
 	
+
+def get_state(state)
+
+  state == true ? a = "<i class='fa fa-check' aria-hidden='true'></i>" : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+  
+end
+
+
+
+  
 def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end

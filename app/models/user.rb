@@ -39,6 +39,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+     belongs_to :rol
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,
        :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -79,9 +80,11 @@ class User < ApplicationRecord
 
             if self.account
               self.admin_user = self.id
+
               self.count = 1
                Account.create(name: self.company, admin_user: self.id)
                Hpc.create(name: "Particular", admin_user: self.id,user_id: self.id)
+               Agreement.create(name: "Particular", admin_user: self.id,user_id: self.id)
             
                 
             end  
@@ -93,3 +96,6 @@ end
 
 
     
+
+
+

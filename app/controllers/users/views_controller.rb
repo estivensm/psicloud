@@ -7,11 +7,12 @@ class Users::ViewsController < Devise::RegistrationsController
 
     def new_user
         u = User.find(current_user.id)
+        @rols = Rol.where(admin_user: current_user.admin_user).or(Rol.where(default:true))
     end
 
     def create_user
         maximum = User.where(admin_user: current_user.admin_user).maximum(:count) + 1 
-        @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user], company:params[:company],account: false, count: maximum)
+        @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user], company:params[:company],account: false, count: maximum,rol_id:params[:rol_id])
         if @user.save
            
             redirect_to users_index_path

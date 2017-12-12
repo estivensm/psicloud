@@ -147,3 +147,6 @@ rails g migration Tracing admin_user:integer user_id:integer patient_id:integer 
          </div>
          <!-- /.container-fluid -->
       </nav>     
+
+
+

@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  show_user: false
+  create_user: false
+  edit_user: false
+  delete_user: false
+  show_patient: false
+  create_patient: false
+  edit_patient: false
+  delete_patient: false
+  show_hc: false
+  create_hc: false
+  edit_hc: false
+  delete_hc: false
+  show_cita: false
+  create_cita: false
+  edit_cita: false
+  delete_cita: false
+  show_doc: false
+  create_doc: false
+  edit_doc: false
+  delete_doc: false
+  show_rol: false
+  create_rol: false
+  edit_rol: false
+  delete_rol: false
+  configuracion: false
+  admin_user: 1
+  user_id: 1
+  name: MyString
+  description: MyText
+
+two:
+  show_user: false
+  create_user: false
+  edit_user: false
+  delete_user: false
+  show_patient: false
+  create_patient: false
+  edit_patient: false
+  delete_patient: false
+  show_hc: false
+  create_hc: false
+  edit_hc: false
+  delete_hc: false
+  show_cita: false
+  create_cita: false
+  edit_cita: false
+  delete_cita: false
+  show_doc: false
+  create_doc: false
+  edit_doc: false
+  delete_doc: false
+  show_rol: false
+  create_rol: false
+  edit_rol: false
+  delete_rol: false
+  configuracion: false
+  admin_user: 1
+  user_id: 1
+  name: MyString
+  description: MyText

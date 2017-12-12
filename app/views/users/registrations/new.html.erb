@@ -21,6 +21,7 @@
   
 
   <%= f.hidden_field :account, :value => true %>
+  <%= f.hidden_field :rol_id, :value => Rol.where(default: true).last.id %>
  
   
 
