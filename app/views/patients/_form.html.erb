@@ -441,8 +441,8 @@
            console.log("Video capture2: ");
          }, errBack);
        }
-       else if(navigator.mozGetUserMedia) {
-         navigator.mozGetUserMedia(videoObj, function(stream){
+       else if(navigator.mediaDevices.getUserMedia) {
+         navigator.mediaDevices.getUserMedia(videoObj, function(stream){
            stream.getTracks()[0].stop();
            console.log("Video capture3: ");
          }, errBack);
@@ -478,8 +478,8 @@
          console.log("aquiiiiiiii")
        }, errBack);
      }
-     else if(navigator.mozGetUserMedia) { // Firefox-prefixed
-       navigator.mozGetUserMedia(videoObj, function(stream){
+     else if(navigator.mediaDevices.getUserMedia) { // Firefox-prefixed
+       navigator.mediaDevices.getUserMedia(videoObj, function(stream){
          console.log("Video capture6: ");
          video.src   = window.URL.createObjectURL(stream);
          localstream = stream;
