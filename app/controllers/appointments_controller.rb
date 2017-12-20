@@ -20,14 +20,39 @@ class AppointmentsController < ApplicationController
   end 
 
 
+  respond_to :json
+  def get_appointments_admin
+    @appointment = Appointment.where( admin_user: current_user.admin_user)
+    events = []
+    @appointment.each do |task|
+      
+        @color = "#17c1ca"
+
+        events << {:id => task.id, :title => "#{task.patient.first_name} #{task.patient.first_last_name} ", :start => "#{task.start_datetime.to_date}" , :color => "#{@color}", :url =>"patients/#{task.patient_id}"}
+    end
+    puts events.to_json.to_s
+      render plain: events.to_json.to_s
+  end 
+
+
+
+
+
   def index
       @patient = Patient.find(params[:patient_id])
-    @appointments = @patient.appointments.page(params[:page]).per_page(8)
+     @appointments = @patient.appointments.page(params[:page]).per_page(8)
   end
+
 
   def citas
     
-    @appointments = Appointment.where(user_id: current_user.id).page(params[:page]).per_page(8)
+    @appointments = Appointment.where(user_id: current_user.id).page(params[:page]).per_page(20)
+    
+  end
+
+  def citas_admin
+    
+    @appointments = Appointment.where(admin_user: current_user.admin_user).page(params[:page]).per_page(20)
     
   end
 
