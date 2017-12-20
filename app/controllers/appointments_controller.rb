@@ -62,13 +62,14 @@ class AppointmentsController < ApplicationController
   def show
   
 
-    client = Google::APIClient.new
-      client.authorization.access_token = current_user.token
-      service = client.discovered_api('calendar', 'v3')
 
-      result = client.execute(:api_method => service.events.get, :parameters => {'calendarId' => 'alejovelez10@gmail.com', 'eventId' => @appointment.google_event_id } )
+    #client = Google::APIClient.new
+      #client.authorization.access_token = current_user.token
+      #service = client.discovered_api('calendar', 'v3')
 
-      event = result.data
+      #result = client.execute(:api_method => service.events.get, :parameters => {'calendarId' => 'alejovelez10@gmail.com', 'eventId' => @appointment.google_event_id } )
+
+      #event = result.data
 
   end
 

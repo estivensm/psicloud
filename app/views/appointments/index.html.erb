@@ -5,7 +5,7 @@
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p>Citas <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span> </p>
+            <p>Citas de <%= @patient.first_name %> <%= @patient.first_last_name %> <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span> </p>
          </div>
          <div class = "col-md-4 paginate text-left title-table1">
             <%= will_paginate @appointments%>
@@ -35,21 +35,28 @@
      <% @appointments.each do |appointment| %>
       <tr>
        <td><%= get_date_hora(appointment.start_datetime) %></td>
-        <td><%= appointment.observations %></td>
+       <td><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></td>
+     
         <td><%= appointment.place %></td>
-        <td><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></td>
-        <td><%= link_to  patient_appointment_path(appointment.patient_id, appointment), class: "btnl btn-primary" do%>
+           <td><%= appointment.observations %></td>
+        <td>
+
+        <%if current_user.rol.show_cita %>
+       <%= link_to  patient_appointment_path(appointment.patient_id, appointment), class: "btnl btn-primary" do%>
              <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
-      
+      <%end%>
+         <%if current_user.rol.edit_cita%>
           <%= link_to  edit_patient_appointment_path(appointment.patient_id, appointment), remote:true , class: "btnl btn-warning" do%>
              <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
-
-       
+<%end%>
+        <%if current_user.rol.delete_cita%>
       <%= link_to  patient_appointment_path(appointment.patient_id, appointment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btnl btn-danger" do%>
              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%></td>
+             <%end%>
+ <%end%>
+             </td>
       </tr>
                <%end%>
             </tbody>
