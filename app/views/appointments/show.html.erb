@@ -1,11 +1,16 @@
 <div class="container">
-  
+  <div class="row">
+   <div class="col-md-12" style="padding-left: 50px;">
+      <%= link_to "inicio", root_path%><span> | </span> 
+      <%= link_to "Citas", citas_path%>
+   </div>
+</div>
 
 <br><br><div class="row">
                        <div class="col-md-4 ">
                      <p>
   <strong style="font-size:20px">Paciente:</strong>
-  <%= @appointment.patient.first_name %> <%= @appointment.patient.first_last_name %>
+ <span style="font-size:20px"> <%= @appointment.patient.first_name %> <%= @appointment.patient.first_last_name %></span>
 </p>
 
 
