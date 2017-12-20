@@ -31,7 +31,8 @@ else
             <%= will_paginate @patients%>
          </div>
          <div class = "col-md-2">
-            <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary"  %>
+
+            <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
          </div>
       </div>
       <hr class="hr">

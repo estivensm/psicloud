@@ -21,6 +21,7 @@
 #  family_dinamic          :text
 #  child_history           :boolean
 #  codigo                  :string
+#  created_date            :datetime
 #
 
 require 'test_helper'
