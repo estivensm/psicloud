@@ -30,7 +30,7 @@
       <%end%>
       <%= link_to  rol, method: :delete, data: { confirm: 'Are you sure?' } do%>
       <i class="fa fa-trash color-gray icon" aria-hidden="true"></i>
-      <%end%></span></h3>
+      <%end%></span> <span style="font-size:20px;float: right;">Configuracion <%= get_state(rol.configuracion).html_safe %></span></h3>
          </div>
        </div>
          <table class="table" style = "    border: 1px solid #e8e8e8;">
@@ -51,14 +51,7 @@
 
     </tr>
               
-      <tr class = "tr-table" >
-       <td >Usuarios</th> 
-        <td><%= get_state(rol.show_all_user).html_safe %></td>
-        <td><%= get_state(rol.show_user).html_safe %></td>
-         <td><%= get_state(rol.create_user).html_safe  %></td>
-          <td><%= get_state(rol.edit_user).html_safe  %></td>
-           <td><%= get_state(rol.delete_user).html_safe  %></td>
-    </tr>
+    
      <tr class = "tr-table" >
        <td >Pacientes</th> 
         <td><%= get_state(rol.show_all_patient).html_safe %></td>
@@ -91,14 +84,7 @@
           <td><%= get_state(rol.edit_doc).html_safe  %></td>
            <td><%= get_state(rol.delete_doc).html_safe  %></td>
     </tr>
-       <tr class = "tr-table" >
-       <td >Roles</th> 
-        <td><%= get_state(rol.show_all_rol).html_safe %></td>
-        <td><%= get_state(rol.show_rol).html_safe %></td>
-         <td><%= get_state(rol.create_rol).html_safe  %></td>
-          <td><%= get_state(rol.edit_rol).html_safe  %></td>
-           <td><%= get_state(rol.delete_rol).html_safe  %></td>
-    </tr>
+     
    
   </thead>
 
