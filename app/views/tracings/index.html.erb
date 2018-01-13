@@ -60,7 +60,7 @@
         <td><%= (link_to "#{tracing.attachment.file.filename}", tracing.attachment_url) if tracing.attachment_url %></td>
 
                 <td>   
-       <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), class:"icon" do %>
+       <%= link_to  edit_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing),remote:true ,class:"icon" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
                     <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon" do %>
         <i class="fa fa-trash" aria-hidden="true"></i><%end%></td>
