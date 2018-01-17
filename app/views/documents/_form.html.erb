@@ -1,0 +1,56 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Subir Formato</h4>
+      </div>
+
+         <div class="modal-body">
+<%= form_with(model: document, local: true) do |form| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Nombre del Formato" %>
+    <%= form.text_field :name, id: :document_name, class: "form form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Adjunto" %>
+    <%= form.file_field :file, id: :document_file %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_area :description, id: :document_description, class: "form form-control" %>
+  </div>
+
+
+
+
+  <%if action_name == "new"%>
+<%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+<%= form.hidden_field :user_id ,:value =>  current_user.id %>
+<%end%>
+
+<div class="modal-footer text-center">
+       
+        <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+<% end %>
+</div>
+  </div>
+</div>
+</div>
+

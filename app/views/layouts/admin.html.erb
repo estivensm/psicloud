@@ -14,6 +14,7 @@
       <%= csrf_meta_tags %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
 
@@ -56,6 +57,12 @@
                                 <li class="<%=@menu[3]%> li"><%= link_to citas_path,:class => "" do %>
                            <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i>
                             <span class = "color-gray">Citas</span>
+                           <% end %>
+                        </li>
+
+                         <li class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
+                           <i class="fa fa-file-text-o"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
+                            <span class = "color-gray">Formatos</span>
                            <% end %>
                         </li>
 

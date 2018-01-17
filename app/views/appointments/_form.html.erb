@@ -23,14 +23,22 @@
 
   <div class="modal-body">
 <div class="row">
-               <div class="col-md-6">
-                  <%= form.label "Fecha del Evento" %><br>
-                  <div class="form-group">
-                     <%= form.text_field :start_datetime, class: "datetimepicker" %>
-                  </div>
-               </div>
-            
+   <div class="col-md-12">
+      <%= form.label "Fecha" %><br>
+      <div class="form-group date_select">
+         <%= form.datetime_select :start_datetime,{
+            :start_year =>
+            Time.now.year + 1,
+            :end_year => 1900,
+            :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+            :use_short_month => true,
+            :order => [:day, :month, :year]},
+            {:class => 'year form-control line1 required',
+            :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
+            %>
+      </div>
    </div>
+</div>
 
 <div class="row">
 <div class="col-md-5">

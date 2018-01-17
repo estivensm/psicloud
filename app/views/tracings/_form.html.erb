@@ -20,11 +20,12 @@
       </ul>
     </div>
   <% end %>
+  <%if action_name == "new"%>
 <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
 <%= form.hidden_field :user_id ,:value =>  current_user.id %>
 <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
 <%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
-
+  <% end %>
 
   <div class="form-group">
     <%= form.label :description %>
