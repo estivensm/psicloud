@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy, :send_history]
   before_action :authenticate_user!
   # GET /patients
   # GET /patients.json
@@ -21,11 +21,14 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
-    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
-    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-      @hs = @patient.clinic_histories.first
+      
+       
+        @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+        @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
+        @hs = @patient.clinic_histories.first
         @appointment_l = @patient.appointments.where(state: "Vigente").last
-    
+         
+      
   end
 
   # GET /patients/new
@@ -42,6 +45,8 @@ class PatientsController < ApplicationController
    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
   end
+
+
 
   # POST /patients
   # POST /patients.json
@@ -265,6 +270,19 @@ end
    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
 
  end
+
+
+
+
+  def send_history
+
+      
+      current_user_mailer = current_user
+      @patient = Patient.find(params[:id])
+      SendHistoryMailer.send_mailer(@patient,params[:email], params[:asunto] ,params[:descripcion],current_user_mailer).deliver
+      redirect_to patient_path(@patient.id) , notice: 'La Historia Clinica se envio correctamente' 
+  end 
+
 
 
 

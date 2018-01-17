@@ -104,6 +104,7 @@
                            <h2>Información Principal</h2>
                         </div>
                         <div class="col-md-4 text-right">
+                               <button type="button" class="btnl btn-info" data-toggle="modal" data-target="#send-mail"><i class="fa fa-envelope" style = "font-size:30px;"  aria-hidden="true"></i></button>
                            <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-primary" do%>
                            <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
                            <%end%>
@@ -112,6 +113,7 @@
                            <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i>
                            <%end%>
                            <%end%>
+
                         </div>
                      </div>
                      <div class="descnum1">
@@ -437,6 +439,8 @@
       </div>
    </div>
 </div>
+
+<%= render 'form_send_history' , patient: @patient %>
 <style>
    .nav-tabs>li>a {
    background: #277394;

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
   post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
   
-
+  post "send_history", to: "patients#send_history", as: "send_history"
 
   get "citas", to: "appointments#citas", as: "citas"
   get "citas_admin", to: "appointments#citas_admin", as: "citas_admin"
