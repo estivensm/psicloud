@@ -16,10 +16,50 @@ class ClinicHistoriesController < ApplicationController
   @schild = @clinic_history.personal_history
   @tchild = @clinic_history.two_child_history
   @fochild = @clinic_history.three_child_history
+ 
 end
-
+   @pdf = "basico"
   respond_to do |format|
       format.html
+      format.pdf do
+        render :pdf => @clinic_history.patient.first_name + @clinic_history.patient.first_last_name,
+        header: { right: '[page] of [topage]' },
+        :template => 'clinic_histories/pdfs/clinic_history.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
+  end
+
+  def pdf_completo
+  @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+  @patient = Patient.find(params[:patient_id])
+  if @clinic_history.child_history
+  @fchild = @clinic_history.child_general_date
+  @schild = @clinic_history.personal_history
+  @tchild = @clinic_history.two_child_history
+  @fochild = @clinic_history.three_child_history
+ 
+end
+ @pdf = "completo"
+  respond_to do |format|
+     
       format.pdf do
         render :pdf => @clinic_history.patient.first_name + @clinic_history.patient.first_last_name,
         header: { right: '[page] of [topage]' },

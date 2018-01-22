@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get 'tool_tests/edit'
 
+
   post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
   post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
   
@@ -37,8 +38,9 @@ Rails.application.routes.draw do
         resources :two_child_histories
         resources :child_general_dates
         resources :three_child_histories
-          resources :tracings
+        resources :tracings
         
+        get "pdf_completo", to: "clinic_histories#pdf_completo", as: "pdf_completo"
         get "backgrounds", to: "backgrounds#index", as: "backgrounds" 
         get "backgrounds/:clase/new", to: "backgrounds#new", as: "new_backgrounds" 
         post "backgrounds/create", to: "backgrounds#create", as: "create_background" 

@@ -8,13 +8,17 @@
 
 <div class="row no-marging"  ">
    <div class="col-md-12 text-right">
-      <%= link_to edit_patient_clinic_history_path(@patient.id,@clinic_history), class: "btn btn-primary icon" do%>
+   
+      <%= link_to patient_clinic_history_path(@patient.id,@clinic_history , :format => "pdf")  , class: "" ,target: :_blank do%>PDF Completo<img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+      <%end%>&nbsp;&nbsp;
+        <%= link_to patient_clinic_history_pdf_completo_path(@patient.id,@clinic_history , :format => "pdf")  , class: "" ,target: :_blank do%>PDF Infomrmacion General<img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+      <%end%> &nbsp;&nbsp;
+        <%= link_to edit_patient_clinic_history_path(@patient.id,@clinic_history), class: "btn btn-primary icon" do%>
       <i class="fa fa-pencil" aria-hidden="true"></i>
-      <%end%>
-      <%= link_to patient_clinic_history_path(@patient.id,@clinic_history , :format => "pdf"), class: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="50px" alt="">
       <%end%>
    </div>
 </div>
+<br>
 <table class="table1">
    <tr style = "height:100px">
       <td class="text-center" style = "width:20%"><%=(image_tag (get_account1.logo_url), style: "width:100px;") if get_account1.logo_url%></td>
@@ -760,7 +764,7 @@
 <div class = "fields_history">
    <hr>
    <h3 class= "color-gray"> Herramientas de evaluación</h3>
-   <h4><strong>Personales</strong></h4>
+  
    <%@clinic_history.tool_tests.each do |ch|%>  
    <strong>Tipo:</strong> <%=ch.type_tool %> &nbsp;
    <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,ch.attachment_url if ch.attachment_url%>

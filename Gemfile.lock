@@ -63,6 +63,7 @@ GEM
     bindex (0.5.0)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    brakeman (4.1.1)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.15.1)
@@ -451,6 +452,7 @@ DEPENDENCIES
   active_decorator (~> 0.7.1)
   annotate
   bootstrap-will_paginate (= 0.0.10)
+  brakeman
   byebug
   capybara (~> 2.13)
   carrierwave (~> 0.11.2)
