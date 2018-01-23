@@ -153,7 +153,7 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1
   # DELETE /appointments/1.json
   def destroy
-     unless @@appointment.google_event_id.nil?
+     unless @appointment.google_event_id.nil?
       client = Google::APIClient.new
       client.authorization.refresh_token = current_user.refresh_token
       client.authorization.access_token = current_user.token
