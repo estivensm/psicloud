@@ -32,7 +32,7 @@ storage (Rails.env.production? ? :fog : :file)
   end
 
   version :logo do
-    process resize_to_fill: [100, 30]
+    process resize_to_fill: [128, 58]
   end
  
   version :square do
