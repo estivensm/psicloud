@@ -107,7 +107,7 @@ class AppointmentsController < ApplicationController
             'location' => @appointment.place,
             'start' => { 'dateTime' => startdate },
             'end' => {'dateTime' => enddate  },
-            'attendees' => [ { "email" => @patient.email } ] }
+            'attendees' => [ { "email" => @current_user.email } ] }
 
             client = Google::APIClient.new
             client.authorization.refresh_token = current_user.refresh_token
