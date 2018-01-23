@@ -155,6 +155,16 @@ class AppointmentsController < ApplicationController
   def destroy
 
     @appointment.destroy
+    unless @event.google_event_id.nil?
+      client = Google::APIClient.new
+      client.authorization.refresh_token = current_user.refresh_token
+      client.authorization.access_token = current_user.token
+      service = client.discovered_api('calendar', 'v3')
+
+      result = client.execute(:api_method => service.events.delete,
+                              :parameters => {'calendarId' => current_user.email, 'eventId' => @appointment.google_event_id})
+    end
+  end
     respond_to do |format|
       format.html { redirect_to patient_appointments_path(@patient.id), notice: 'Appointment was successfully destroyed.' }
       format.json { head :no_content }
