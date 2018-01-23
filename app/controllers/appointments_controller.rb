@@ -102,7 +102,7 @@ class AppointmentsController < ApplicationController
               te.hour < 10 ? horat = "0" : horat = ""
               enddate = "#{te.year}-#{te.month}-#{te.day}T#{horat}#{te.hour}:#{mint}#{te.min}:00-05:00"
               @event = {
-            'summary' => 'Cita con ' + current_user.names,
+            'summary' => 'Cita con ' + @patient.first_name,
             'description' => @appointment.observations,
             'location' => @appointment.place,
             'start' => { 'dateTime' => startdate },
