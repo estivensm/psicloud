@@ -164,7 +164,7 @@ class AppointmentsController < ApplicationController
       result = client.execute(:api_method => service.events.delete,
                               :parameters => {'calendarId' => current_user.email, 'eventId' => @appointment.google_event_id})
     end
-  end
+ 
     respond_to do |format|
       format.html { redirect_to patient_appointments_path(@patient.id), notice: 'Appointment was successfully destroyed.' }
       format.json { head :no_content }
