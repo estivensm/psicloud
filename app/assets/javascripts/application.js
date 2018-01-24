@@ -105,8 +105,6 @@ buttonText:{
 
 
 
-
-
 $('.next_page a').html("Siguiente");
   $('.prev a').html("Anterior");
 
@@ -115,7 +113,16 @@ $('.next_page a').html("Siguiente");
 	$(".js-filter").on("ajax:success",function(n,e,o,t){
 		$(".personal").html(e)})
 	,$(".query").on("keyup",function(n){
+        if ($(".query").val() != "")
 
+{
+    $(".info").hide();
+
+}
+else
+{
+     $(".info").show();
+}
 
 		$(".js-filter").submit()
 

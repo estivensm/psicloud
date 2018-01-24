@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     
      
 
-    @cita = Appointment.where(user_id: current_user.id).last
+    @citas = Appointment.where(user_id: current_user.id)
   	 if params[:search].present?
         @pacientes = Patient.where(user_id: current_user.id).search(params[:search]).page(params[:page]).per_page(10)
     end

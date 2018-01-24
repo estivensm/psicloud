@@ -6,10 +6,10 @@
 
 
 
-<div class="container search-cont">
+<div class="container-fluid search-cont">
 	
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-12">
   
 
 <div class="padding">
@@ -25,11 +25,11 @@
      
                 
                   <div >
-                    <h2 style = "color:#969696 !important;font-size:45px!important;text-align:center!important">Buscar Paciente</h2>
+                    <h2 style = "margin-top:50px;color:white !important;font-size:45px!important;text-align:center!important">Buscar Paciente</h2>
 
      
                     <div class="row">
-                      <div class="col-md-8 col-md-offset-2">
+                      <div class="col-md-6 col-md-offset-3">
                         <div class="" id="">
                           <%= text_field_tag :search, nil, :placeholder =>
                           "Ingresa Nombre o Cedula", :class => 'form-control query' , style: "height: 40px !important; border-radius: 4px !Important;"%>
@@ -52,12 +52,7 @@
           </header>
           <br/>
 
-          <div class = "personal">
-            <div class="row">
-              <div class="col-md-12 jm">
-                <%= render partial: "personas" %></div>
-            </div>
-          </div>
+        
         </div>
       </div>
     </div>
@@ -65,41 +60,55 @@
 
   </div>
 
-
+</div></div>
+<div class="container">
+<br>
+<div class="row">
+              <div class="col-md-8 col-md-offset-2 jm">
+<div class = "personal">
+            <div class="row">
+              <div class="col-md-12 jm">
+                <%= render partial: "personas" %></div>
+            </div>
+          </div>
+             </div>
+          </div>
+<div class="row info">
+<div class="col-md-12">
 <div class="col-md-6">
-<div class="row" style="    padding: 24px;
-    background: gainsboro;">
-  <div class="col-md-4 text-right">
-                     <img style = "width:95px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
-                  </div>
-                  <div class="col-md-8" style="color:gray">
-                  <%if @cita != nil%>
-                   <span style="font-size:18px;font-weight: bold">Cita mas cercana</span><br>
-                   <span style="font-size:15px;"><%=@cita.patient.first_name%> <%=@cita.patient.first_last_name%> &nbsp; <%=link_to "Ver", patient_path(@cita.patient.id) %></span><br>
-                   
-                   <% a =  get_date_array(Appointment.last.start_datetime)%>
-                     
-                     <span style="font-size:40px;"><%=a[5] %></span><br>
-                     <span style="font-size:15px;"><%=a[1]%> <%= a[0] %> de <%= a[2]%> de <%= a[4] %></span>
-                     <%else%>
-                     <span style="font-size:15px;position: relative;
-                        top: 50px;">No hay citas programadas</span>
-                     <%end%>  
-                     
-                  </div>
+<p style = "margin-top:30px;font-size:20px;">Proximas citas</p>
+<% @citas.last(3).each do |cita|%>
+ <div class="alert alert-info" role="alert">
+    <%=get_date_hora(cita.start_datetime)%>
 </div>
+<%end%>
+</div>
+<div class="col-md-6">
+  <canvas id="myChart" width="400" height="200" style = "margin-top:30px;"></canvas>
+</div>
+
+</div>
+
     
 
 
-<canvas id="myChart" width="400" height="200" style = "margin-top:50px;"></canvas>
-</div>
 
   </div>
 	
 </div>
 
 
-
+<style>
+.search-cont
+{
+   background: linear-gradient( rgba(138, 184, 212, 0.58), rgba(81, 161, 185, 0.6) ), url('http://www.centrocrescere.com/wp-content/uploads/2017/02/psicologo-por-email-banner.jpg')no-repeat center top;
+    background-size: cover;
+}
+.second-navbar {
+    background: #277394 !important;
+    margin-bottom: 0px !important;
+}
+</style>
 
 
 
