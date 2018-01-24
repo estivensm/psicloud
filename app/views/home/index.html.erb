@@ -76,10 +76,10 @@
 <div class="row info">
 <div class="col-md-12">
 <div class="col-md-6">
-<p style = "margin-top:30px;font-size:20px;">Proximas citas</p>
+<p style = "margin-top:30px;font-size:20px;">   <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i> Proximas citas </p>
 <% @citas.last(3).each do |cita|%>
  <div class="alert alert-info" role="alert">
-    <%=get_date_hora(cita.start_datetime)%>
+    <span style="font-size:20px"><%=cita.patient.first_name%></span> <%=get_date_hora(cita.start_datetime)%>
 </div>
 <%end%>
 </div>
