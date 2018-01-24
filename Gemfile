@@ -42,7 +42,7 @@ gem "brakeman", :require => false
 
 #gem para el manejo de usuarios
 gem 'devise', '~> 4.3'
-
+gem 'newrelic_rpm'
 #gem para autenticacion de usuarios con google
 
 
