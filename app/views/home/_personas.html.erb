@@ -1,9 +1,14 @@
 <% if @pacientes != nil%>
 
   <% if @pacientes.count != 0%>
-  <span class="btn btn-link btn-xs pull-right ">
+ <div class="row">
+ <div class="col-md-12 text-right">
    <%= will_paginate @pacientes%>
-  </span>  
+ </div>
+   
+ </div>
+   
+ 
   <% @pacientes.each do |paciente| %>
 
 

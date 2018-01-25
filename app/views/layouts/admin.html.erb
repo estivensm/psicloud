@@ -93,7 +93,7 @@
                         </li>
                         <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
-                           <span style = "color:gray!important" >Ver Usuario</span>
+                           <span style = "color:gray!important" >Editar Usuario</span>
                            <% end %>
                         </li>
                      </ul>
@@ -111,7 +111,7 @@
          </div>
          <!-- /.container-fluid -->
       </nav>
-       <%= flash_messages %>
+       <!--<%= flash_messages %>-->
       <%= yield %>
    </body>
 </html>
