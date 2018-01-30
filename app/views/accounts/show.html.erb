@@ -15,70 +15,71 @@
    
 </div>
 <hr class = "hr">
-<div class="row show-user company" >
-   <div class="col-md-5">
-     
-      <div class="col-md-10 col-md-offset-1">
-      <h4>Logo</h4>
+<div class="row">
+<div class="col-md-6 cuadro2">
+  <h4>Logo</h4>
        <%= @account.logo? ? image_tag(@account.logo_url(:medium)) : ""  %>
-      <h4>Nombre</h4>
-         <h2><%= @account.name %></h2><br>
-          <h4>Informacion General</h4>
-         <p><strong>Telefono:</strong> <%= @account.phone %></p>
-         <p><strong>Direccion:</strong> <%= @account.address %></p>
-         <br>
-         <p><%= link_to 'Editar', edit_account_path(@account), remote: true, class: "btn btn-primary btn-lg" %></p>
-      </div>
-   </div>
-   <div class="col-md-7">
+
+      
+  
+      <h4>Informacion General</h4>
+        <p><strong>Nombre:</strong> <%= @account.name %></p>
+        <p><strong>Email:</strong> <%= @account.email %></p>
+        <p><strong>Telefono:</strong> <%= @account.phone %></p>
+        <p><strong>Direccion:</strong> <%= @account.address %></p>
+         
+      
+  
+</div>
+  <div class="col-md-6 cuadro1">
+  <h4>Plan</h4>
+        <p>Tipo: <span><%=@account.account_type.name%></span></p>
+        
+        <p><i class="fa fa-user" aria-hidden="true"></i> Usuarios:  <span><%=@account.account_type.users%></span></p>
+        <p><i class="fa fa-database" aria-hidden="true"></i> Almacenamiento: <span><%=@account.account_type.file_size%> GB</span></p>
+</div>
+</div>
+<div class="row show-user company" >
    
-      
-      
-      <div class="col-md-10 cuadro1">
-        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OlxPUgBPAUgtf9szCHOhaN_A2moHDszXs1ChXxTaoxPGqGK6jg" alt=""> Almacenamiento <span></span></p>
-
-      </div>
-      <div class="col-md-10 cuadro1">
-        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeZ0XmsB1Quoj6F9llD0yjOrPQPl_SdlGOuk6gusx6FmWs27X1Xg" alt=""> Usuarios Activos <span></span></p>
-
-      </div>
-     
-
-      
+   
+   <div class="col-md-12 text-center">
+      <%= link_to 'Editar', edit_account_path(@account), remote: true, class: "btn btn-primary btn-lg" %>
+       <%= link_to 'Inicio', root_path, remote: true, class: "btn btn-default btn-lg" %>
      
    </div>
 </div>
 </div>
 <style>
-   .cuadro
-   {
-   color: white;
-    /* padding: 5px; */
   
-   }
-   .cuadro p
+   .cuadro2 p
    {
-   color: #0db497;
-   padding-top: 5px;
-   font-size: 13px;
+     color: #50aad4;
+     padding-top: 5px;
+     font-size: 20px;
    
    }
    .cuadro1 img
    {
-      width: 100px;
+      width: 40px;
    }
    .cuadro1
    {
    color: white;
     /* padding: 5px; */
 
-    margin-top: 10px;
+    
+   }
+    .cuadro1 i
+   {
+      font-size: 30px;
+
+    
    }
    .cuadro1 p
    {
    color: #50aad4;
    padding-top: 5px;
-   font-size: 30px;
+   font-size: 20px;
   
    }
     .fas

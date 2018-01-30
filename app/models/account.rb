@@ -18,5 +18,6 @@
 #
 
 class Account < ApplicationRecord
+	belongs_to :account_type
 	mount_uploader :logo, LogoUploader 
 end

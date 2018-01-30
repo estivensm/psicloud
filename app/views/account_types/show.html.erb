@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @account_type.name %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= @account_type.users %>
+</p>
+
+<p>
+  <strong>File size:</strong>
+  <%= @account_type.file_size %>
+</p>
+
+<%= link_to 'Edit', edit_account_type_path(@account_type) %> |
+<%= link_to 'Back', account_types_path %>

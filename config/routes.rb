@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
 
  
+  resources :account_types
   resources :documents
   resources :rols
   resources :contacts

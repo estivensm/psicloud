@@ -10,22 +10,25 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+      @account_type= AccountType.all
   end
 
   # GET /accounts/new
   def new
     @account = Account.new
+    @account_type= AccountType.all
   end
 
   # GET /accounts/1/edit
   def edit
+    @account_type= AccountType.all
   end
 
   # POST /accounts
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
-
+    @account_type= AccountType.all
     respond_to do |format|
       if @account.save
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
@@ -73,6 +76,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:name, :address, :phone, :email, :logo, :admin_user, :users_quantity, :file_size, :account_type, :remove_logo)
+      params.require(:account).permit(:name, :address, :phone, :email, :logo, :nit,:admin_user,:account_type_id, :users_quantity, :file_size, :account_type, :remove_logo, :file_size_add,:users_quantity_add,:file_size_now,:users_quantity_now)
     end
 end
