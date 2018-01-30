@@ -43,6 +43,7 @@ class AccountsController < ApplicationController
   # PATCH/PUT /accounts/1
   # PATCH/PUT /accounts/1.json
   def update
+    @account_type= AccountType.all
     respond_to do |format|
       if @account.update(account_params)
          if params[:remove_logo]
