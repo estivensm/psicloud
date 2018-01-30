@@ -23,7 +23,7 @@
       
   
       <h4>Informacion General</h4>
-        <p><strong>Nombre:</strong> <%= @account.name %></p>
+        <p><strong>Nombre:</strong> <%= @account.name  %></p>
         <p><strong>Email:</strong> <%= @account.email %></p>
         <p><strong>Telefono:</strong> <%= @account.phone %></p>
         <p><strong>Direccion:</strong> <%= @account.address %></p>
@@ -33,10 +33,10 @@
 </div>
   <div class="col-md-6 cuadro1">
   <h4>Plan</h4>
-        <p>Tipo: <span><%=@account.account_type.name%></span></p>
+        <p>Tipo: <span><%=@account.account_type.name if @account.account_type.name %></span></p>
         
-        <p><i class="fa fa-user" aria-hidden="true"></i> Usuarios:  <span><%=@account.account_type.users%></span></p>
-        <p><i class="fa fa-database" aria-hidden="true"></i> Almacenamiento: <span><%=@account.account_type.file_size%> GB</span></p>
+        <p><i class="fa fa-user" aria-hidden="true"></i> Usuarios:  <span><%=@account.account_type.users if @account.account_type.users%></span></p>
+        <p><i class="fa fa-database" aria-hidden="true"></i> Almacenamiento: <span><%=@account.account_type.file_size if @account.account_type.file_size%> GB</span></p>
 </div>
 </div>
 <div class="row show-user company" >
