@@ -10,4 +10,3 @@ end
 
 
 
-User.create(aprobado_login: "Si", email: "sistemas@aerosanidadsas.com", nombre_usuario:"caro12345",nombres:"Carolina", apellidos: "Arroyave", tipo_documento:"Cedula de Ciudadania", documento:"1017156114", rol_id:1, password:"Alejo0906", password_confirmation:"Alejo0906")
