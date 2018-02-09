@@ -41,37 +41,39 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
-                                  <li  class="<%=@menu[0]%> li"><%= link_to root_path,:class => "" do %>
-                           <i class="fa fa-home color-gray icon" aria-hidden="true"></i>
+                                  <li   class="<%=@menu[0]%> li w100"><%= link_to root_path,:class => "" do %>
+                           <i class="fa fa-home color-gray icon" aria-hidden="true"></i><br>
                           <span class = "color-gray">Inicio</span>
                            <% end %>
                         </li>
           
 
-                         <li class="<%=@menu[2]%> li"><%= link_to patients_path,:class => "" do %>
-                           <i class="fa fa-address-card-o icon" color-gray icon" aria-hidden="true"></i>
+                         <li  class="<%=@menu[2]%> li w110"><%= link_to patients_path,:class => "" do %>
+                           <i class="fa fa-address-card-o icon" color-gray icon" aria-hidden="true"></i><br>
                             <span class = "color-gray">Pacientes</span>
                            <% end %>
                         </li>
 
-                                <li class="<%=@menu[3]%> li"><%= link_to citas_path,:class => "" do %>
-                           <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i>
+                                <li class="<%=@menu[3]%> li w80"><%= link_to citas_path,:class => "" do %>
+                           <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i><br>
+
                             <span class = "color-gray">Citas</span>
                            <% end %>
                         </li>
 
-                         <li class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
-                           <i class="fa fa-file-text-o"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
+                         <li  class="<%=@menu[5]%> li w110"><%= link_to documents_path,:class => "" do %>
+                           <i class="fa fa-file-text-o"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i><br>
                             <span class = "color-gray">Formatos</span>
                            <% end %>
                         </li>
 
                   
                  <%if current_user.rol.configuracion%>
-                  <li class="dropdown <%=@menu[4]%>" >
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i> Configuración<span class="caret"></span></a>
+                  <li class="dropdown <%=@menu[4]%> li1 w130"  >
+                     <a href="#" style="padding: 5px 0px !important;
+" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i> <br>Configuración<span class="caret"></span></a>
                      <ul class="dropdown-menu">
-                        <li><%= link_to "Usuarios", users_index_path %></li>
+                        <li ><%= link_to "Usuarios", users_index_path %></li>
                         <li><%= link_to "Roles", rols_path %></li>
                         <li><%= link_to "EPS", hpcs_path %></li>
                         <li><%= link_to "Convenio", agreements_path %></li>
@@ -81,10 +83,10 @@
                   <%end%>
                </ul>
               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" ><i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a></li>
-              <li style = "height: 51px;margin-left: 20px;margin-right: 15px;" > <%= (image_tag Account.where(admin_user: current_user.admin_user).first.logo_url , style: "width:150px;height:60px") if Account.where(admin_user: current_user.admin_user).first.logo? %></li>
+                  <li class="hidden-xs hidden-sm"><a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" ><i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a></li>
+              <li class="hidden-xs hidden-sm" style = "height: 51px;margin-left: 20px;margin-right: 15px;" class="l1"> <%= (image_tag Account.where(admin_user: current_user.admin_user).first.logo_url , style: "width:150px;height:60px") if Account.where(admin_user: current_user.admin_user).first.logo? %></li>
                   <li class="dropdown">
-                     <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.names  %> <span class="caret"></span></a>
+                     <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 5px 0px !important;text-align:center"> <i class="fa fa-user"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i><br><%=current_user.names  %> <span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
@@ -118,6 +120,28 @@
 
 
 <style>
+.w100
+{
+
+width: 100px;
+}
+.w110
+{
+
+width: 110px;
+}
+.w130
+{
+
+  width: 130px;
+}
+.w80
+{
+
+  width: 80px;
+
+}
+
 .icon
 {
    font-size:20px !important;
@@ -132,4 +156,22 @@
     {
           margin-top: 10px;
     }
+
+.li a
+{
+      padding: 5px 0px !important;
+
+}
+
+@media (max-width: 900px)
+{
+.li {
+     text-align: center !important; 
+     width: 100%;
+}
+.li1 {
+     text-align: center !important; 
+     width: 100%;
+}
+}
 </style>
