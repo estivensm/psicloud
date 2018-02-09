@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130013159) do
+ActiveRecord::Schema.define(version: 20180202155310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(version: 20180130013159) do
     t.boolean "child_history"
     t.string "codigo"
     t.datetime "created_date"
+    t.boolean "first_contact_state"
+    t.boolean "outcome_state"
   end
 
   create_table "clinic_histories_diagnostics", id: false, force: :cascade do |t|

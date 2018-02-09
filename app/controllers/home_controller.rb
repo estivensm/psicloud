@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
 	 before_action :authenticate_user!
   def index
-    @clinic_history = ClinicHistory.where(user_id: current_user.id).where(child_history: false)
-    @clinic_history1 = ClinicHistory.where(user_id: current_user.id)
+    @clinic_history = ClinicHistory.where(user_id: current_user.id).where(child_history: false).where('extract(year  from created_date) = ?', (Time.now.year))
+    @clinic_history1 = ClinicHistory.where(user_id: current_user.id).where('extract(year  from created_date) = ?', (Time.now.year))
     
     @mes = Array.new
     @mes1 = Array.new

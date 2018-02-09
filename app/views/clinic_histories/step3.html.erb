@@ -63,6 +63,10 @@
             </div>
          </div>
       </div>
+      <%if action_name == "step3"%>
+    <%= hidden_field_tag "outcome_state" ,:value =>true %>
+<%end%>
+
       <div class="row text-center">
          <div class="col-md-12">
             <div class="actions">
@@ -86,4 +90,19 @@
    
          });
          });
+
+
+
+</script>
+<script>
+  
+  if ("<%=action_name%>" == "step3" && <%=@clinic_history.outcome_state%> ) 
+  {
+    $("textarea").attr('disabled','disabled');
+    $("select").attr('disabled','disabled');
+    
+    
+  
+
+  }
 </script>

@@ -51,7 +51,7 @@
 
   
 </div>  <br>
-<h3> Motivo de consulta</h3>
+<h3> Motivo de Consulta</h3>
 
     <div class="form-group">
     
@@ -86,6 +86,7 @@
       <div class="clearfix" style="margin-bottom: 30px;">
          <div class="col-md-12" >
             <div class="col-md-1 pdd" >
+
               <%= contact.link_to_remove do %>
                <i style = "    color: #e74b09;
                   font-size: 18px;
@@ -158,6 +159,7 @@
       <%= form.fields_for :personal_backgrounds do |contact|  %>
       <div class="clearfix" style="margin-bottom: 30px;">
          <div class="col-md-12" >
+
           <div class="col-md-1" >
                <%= contact.link_to_remove do %>
                <i style = "    color: #e74b09;
@@ -254,7 +256,9 @@
 <%= form.hidden_field :user_id ,:value =>  current_user.id %>
 <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
 
-
+<%if action_name == "new"%>
+    <%= form.hidden_field :first_contact_state ,:value =>  true %>
+<%end%>
 
 
 
@@ -265,6 +269,7 @@
  <div class="row text-center">
 <div class="col-md-12">
    <div class="actions">
+   <br>
     <%= form.submit "Guardar", class: "btn-lg btn-primary btn-form" %>
 
     
@@ -285,3 +290,18 @@
 }
   
 </style>
+
+
+
+<script>
+  
+  if ("<%=action_name%>" == "edit" && <%=@clinic_history.first_contact_state%> ) 
+  {
+    $("textarea").attr('disabled','disabled');
+    $("input[type=radio").attr('disabled','disabled');
+    $(".fa-trash").hide();
+    
+  
+
+  }
+</script>
