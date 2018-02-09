@@ -131,7 +131,7 @@ var myChart = new Chart(ctx, {
             'Dic'],
         
         datasets: [{
-            label: 'Pacientes',
+            label: 'Historias Clinicas en el año Actual',
             data: [<%@mes.each do |item| %><%=item%>,<%end%>],
             backgroundColor: [<%@mes.each do |item| %>"rgba(54, 162, 235, 0.5)",<%end%>
             ],
