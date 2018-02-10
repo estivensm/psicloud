@@ -10,6 +10,9 @@
        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
         <meta name="turbolinks-cache-control" content="no-cache">
         <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/122/Sin-t_tulo-1.png' %>
+
+
+
        
       <%= csrf_meta_tags %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,6 +20,9 @@
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
+         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 
    </head>
    <body class="admin">
@@ -58,6 +64,12 @@
                            <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i><br>
 
                             <span class = "color-gray">Citas</span>
+                           <% end %>
+                        </li>
+                        <li class="<%=@menu[6]%> li w110"><%= link_to stats_path,:class => "" do %>
+                           <i class="fa fa-bar-chart-o icon" color-gray icon" aria-hidden="true"></i><br>
+
+                            <span class = "color-gray">Estadisticas</span>
                            <% end %>
                         </li>
 
@@ -123,7 +135,7 @@
 .w100
 {
 
-width: 100px;
+width: 110px;
 }
 .w110
 {
@@ -133,12 +145,12 @@ width: 110px;
 .w130
 {
 
-  width: 130px;
+  width: 110px;
 }
 .w80
 {
 
-  width: 80px;
+  width: 90px;
 
 }
 

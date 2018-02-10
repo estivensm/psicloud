@@ -1,0 +1,207 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-12">
+<h2 style="    color: #b9b9b9;
+    font-weight: bold;
+    margin-left: 25px;
+    font-size: 40px;
+}">ESTADISTICAS</h2>
+</div>	
+</div>
+    <div class="row">
+        
+        <div class="col-md-6">
+        <h3 style="    color: white;
+    background: #25aed2;
+    font-weight: bold;
+    text-align: center;">HISTORIAS CLINICAS POR MES</h3>
+        	 <canvas id="myChart1" width="300" height="100" style = "margin-top:30px;"></canvas>
+        </div>
+
+        <div class="col-md-6">
+                <h3 style="    color: white;
+    background: #25aed2;
+    font-weight: bold;
+    text-align: center;">EDAD</h3>
+        	 <canvas id="myChart2" width="300" height="100" style = "margin-top:30px;"></canvas>
+        </div>
+
+        <div class="col-md-6">
+                <h3 style="    color: white;
+    background: #25aed2;
+    font-weight: bold;
+    text-align: center;">GENERO</h3>
+        	 <canvas id="myChart3" width="300" height="100" style = "margin-top:30px;"></canvas>
+        </div>
+
+        <div class="col-md-6">
+        <h3 style="    color: white;
+    background: #25aed2;
+    font-weight: bold;
+    text-align: center;">ESTADO</h3>
+        	 <canvas id="myChart4" width="300" height="100" style = "margin-top:30px;"></canvas>
+        </div>
+    	
+    </div>
+	    
+</div>
+
+<script>
+/////Historias Clinicas en el año Actual
+var ctx = document.getElementById("myChart1");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Ene',
+            'Feb',
+            'Mar',
+            'Abr',
+            'May',
+            'Jun',
+            'Jul',
+            'Ago',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dic'],
+        
+        datasets: [{
+            label: 'Historias Clinicas en el año Actual',
+            data: [<%@mes.each do |item| %><%=item%>,<%end%>],
+            backgroundColor: [<%@mes.each do |item| %>"rgba(54, 162, 235, 0.5)",<%end%>
+            ],
+            borderColor: [
+                <%@mes.each do |item| %>"rgba(54, 162, 235, 0.5)",<%end%>
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        tooltip: {
+          backgroundColor: "blue"
+        },
+        scales: {
+             yAxes: [{
+            ticks: {
+                max: 5,
+                min: 0,
+                stepSize: 1
+            }
+        }]
+        }
+    }
+});
+
+/////////////////////Genero
+
+	var ctx1 = document.getElementById("myChart2");
+    data1 = {
+    datasets: [{
+        data: [<%=@pacientes_menores%>,<%=@pacientes_adolecentes%>, <%=@pacientes_mayores%>],
+        backgroundColor: [
+            "#29d7e2",
+            "#2f94bf",
+            "#145158",
+            
+        ]
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Menores (0 a 12)',
+        'Adolescentes(13 a 18)',
+        'Adultos (Mayor a 18)'
+    ]
+    };
+
+    var options = {        
+    percentageInnerCutout: 40,
+    showAllTooltips: false
+};
+
+
+
+
+
+	var myPieChart1 = new Chart(ctx1,{
+    type: 'pie',
+    data: data1,
+    options:options
+    
+});
+
+
+
+
+
+
+
+
+	var ctx2 = document.getElementById("myChart3");
+    data2 = {
+    datasets: [{
+        data: [<%=@pacientes_masculinos%>,<%=@pacientes_femeninos%>, <%=@pacientes_transexuales%>],
+        backgroundColor: [
+            "#43c177",
+            "#22633d",
+            "#163523",
+           
+        ]
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Masculino',
+        'Femenino',
+        'Transexuales'
+    ]
+    };
+
+    var options = {        
+
+};
+
+
+	var myPieChart1 = new Chart(ctx2,{
+    type: 'pie',
+    data: data2,
+    options:options
+    
+});
+
+
+
+	var ctx3 = document.getElementById("myChart4");
+    data3 = {
+    datasets: [{
+        data: [<%=@pacientes_activos%>,<%=@pacientes_inactivos%>],
+        backgroundColor: [
+            "#d28314",
+            "#f5bd6e",
+            
+           
+        ]
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Activo',
+        'Inactivo',
+        
+    ]
+    };
+
+    var options = {        
+
+};
+
+
+	var myPieChart1 = new Chart(ctx3,{
+    type: 'pie',
+    data: data3,
+    options:options
+    
+});
+
+</script>

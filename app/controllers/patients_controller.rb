@@ -1,15 +1,50 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy, :send_history]
   before_action :authenticate_user!
+
+  
   # GET /patients
   # GET /patients.json
   def index
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @patients = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 20)
- 
+    @patientspdf = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 20)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "Pacientes",
+        header: { right: '[page] of [topage]' },
+        :template => 'patients/pdfs/patients.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
   end
 
+  def csv
+    @patients = Patient.where(admin_user: current_user.admin_user)
+    respond_to do |format|
+       format.csv { send_data @patients.to_csv, filename: "patients.csv" }
+      
+  end
+  end
 
   def all_patients
     
@@ -282,6 +317,13 @@ end
       SendHistoryMailer.send_mailer(@patient,params[:email], params[:asunto] ,params[:descripcion],current_user_mailer).deliver
       redirect_to patient_path(@patient.id) , notice: 'La Historia Clinica se envio correctamente' 
   end 
+
+  def change_state
+    
+    params[:value] == "true" ? val = true : val = false 
+    Patient.find(params[:id]).update(state: val)
+  
+  end
 
 
 

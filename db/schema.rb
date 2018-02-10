@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202155310) do
+ActiveRecord::Schema.define(version: 20180209203455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(version: 20180202155310) do
     t.integer "birthdate_month"
     t.integer "birthdate_day"
     t.string "school_grade"
+    t.boolean "state"
   end
 
   create_table "personal_backgrounds", force: :cascade do |t|

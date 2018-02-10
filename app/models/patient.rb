@@ -44,10 +44,10 @@ class Patient < ApplicationRecord
      has_many :appointments , dependent: :destroy
      belongs_to :hpc
      belongs_to :agreement
-	   mount_uploader :avatar, AvatarPatientUploader  
-	   
+     mount_uploader :avatar, AvatarPatientUploader  
+     
 
-	def self.search(search)
+  def self.search(search)
     where("(first_name || ' ' || second_name || ' ' || first_last_name  || ' ' || second_last_name) like '%#{search}%'  or 
       first_name like '%#{search.capitalize}%' or 
       second_name like '%#{search.capitalize}%' or 
@@ -56,5 +56,44 @@ class Patient < ApplicationRecord
       document like '%#{search}%'").order(:id)
   end
 
+
+
+    def self.to_csv()
+          attributes = %w{PrimerNombre SegundoNombre PrimerApellido SegundoApellido TipoDocumento document}
+            CSV.generate(headers: true) do |csv|
+              csv <<  attributes
+              all.each do |patient|
+               csv << attributes.map{ |attr| patient.send(attr) }
+              end
+            end
+        end  
+
+        def PrimerNombre
+          "#{first_name}"
+        end
+        
+        def SegundoNombre
+          "#{second_name}"
+        end
+
+        def PrimerApellido
+          "#{first_last_name}"
+        end
+
+        def SegundoApellido
+          "#{second_last_name}"
+        end
+
+        def TipoDocumento
+          "#{document_type}"
+        end
+
+        def Documento
+
+          "#{document}"
+          
+        end
+
+     
 
 end

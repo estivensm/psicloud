@@ -1,3 +1,5 @@
+
+
 <div class="row">
    <div class="col-md-12" style="padding-left: 50px;">
       <%= link_to "inicio", root_path%><span> | </span> 
@@ -65,7 +67,8 @@
                      </div>-->
                </div>
             </div>
-            <div class="panel-footer text-right">
+            <div class="panel-footer text-right"><input type="checkbox" id="toggle-1">
+
                <%= link_to  edit_patient_path(@patient.id), class: "btnl btn-warning" do%>
                <i class="fa fa-pencil" style = "font-size:20px;"  aria-hidden="true"></i>
                <%end%>
@@ -451,3 +454,40 @@
    border-radius: 0px;
    }
 </style>
+
+
+<script>
+
+    $('#toggle-1').bootstrapToggle({
+      on: 'Activo',
+      off: 'Inactivo'
+    });
+
+
+
+    if (<%=@patient.state%> == true)
+    {
+       $('#toggle-1').bootstrapToggle('on')
+    }
+    else
+    {
+        $('#toggle-1').bootstrapToggle('off')
+    }
+  
+  $('#toggle-1').change(function() {
+      if ( $(this).prop('checked') == true )
+      {
+        $.get("change_state/true/" + <%=@patient.id%>, function(data) {
+        
+        })
+      }
+      else
+      {
+        $.get("change_state/false/" + <%=@patient.id%>, function(data) {
+        })
+      }
+
+    })
+
+
+</script>

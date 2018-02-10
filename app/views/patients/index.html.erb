@@ -19,6 +19,12 @@ else
             <%= link_to 'Todos los Pacientes', all_patients_path, class: "#{b}"  %>
             
          </div>
+<div class="col-md-6 export-icons text-right">
+   <%= link_to image_tag("http://www.pvhc.net/img119/pjakzpmufndbotncoiml.png"), patients_csv_path(format: "csv")%>
+       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), patients_path(:format => "pdf"), target:"_blank"%>
+     
+  
+</div>
 </div>
 <%end%>
 <br>
@@ -31,7 +37,7 @@ else
             <%= will_paginate @patients%>
          </div>
          <div class = "col-md-2">
-
+           
             <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
          </div>
       </div>
@@ -45,6 +51,7 @@ else
       <th>Documento</th>
       <th>Fecha de Nacimiento</th>
       <th>Edad</th>
+      <th>Estado</th>
 
 
       <th>Acciones</th>
@@ -59,6 +66,7 @@ else
          <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>
          <td><%= patient.age %> Años</td>
+             <td class="text-center"><%= get_state(patient.state).html_safe %></td>
         <td>
         <%if current_user.rol.show_patient%>
         <%= link_to  patient, class: "btnl btn-primary" do %>
@@ -66,7 +74,7 @@ else
              <%end%>
       <%end%>
         <%if current_user.rol.edit_patient%>
-          <%= link_to  edit_patient_path(patient), class: "btnl btn-warning" do%>
+          <%= link_to  edit_patient_path(patient), class: "btnl btn-primary" do%>
              <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
 <%end%>
@@ -95,5 +103,9 @@ else
     padding: 6px 5px !important;
     vertical-align: initial !important;
 
+}
+.export-icons img
+{
+  width: 40px;
 }  
 </style>

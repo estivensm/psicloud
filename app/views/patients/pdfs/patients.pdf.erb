@@ -1,0 +1,53 @@
+
+
+            <p>Pacientes <span class="label label-primary"> </p>
+        
+         <table class="table">
+            <thead>
+               <tr class = "tr-table">
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Documento</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Edad</th>
+      <th>Estado</th>
+
+
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patientspdf.each do |patient| %>
+      <tr>
+        <td><%= patient.first_name %> <%= patient.second_name %></td>
+        <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
+         <td><%= patient.document_type%>: <%= patient.document%></td>
+        <td><%= patient.birth_date %></td>
+         <td><%= patient.age %> Años</td>
+            <td class="text-center"><%=   (patient.state == true ? a = "Activo" : a = "Inactivo") %></td>
+        
+               </tr>
+               <%end%>
+            </tbody>
+         </table>
+
+
+<style>
+.table td
+{ border: 1px solid #e8e8e8;
+  padding: 3px 5px !important;
+  vertical-align: initial !important;
+
+}
+
+.table th{
+    padding: 6px 5px !important;
+    vertical-align: initial !important;
+
+}
+.export-icons img
+{
+  width: 50px;
+}  
+</style>

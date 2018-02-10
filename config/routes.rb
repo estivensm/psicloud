@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   
 
  
+  get 'stats/index', as: "stats"
+  
+  get 'patients/change_state/:value/:id', to: "patients#change_state", as: "change_state"
   resources :account_types
   resources :documents
   resources :rols
@@ -20,7 +23,7 @@ Rails.application.routes.draw do
 
   get 'tool_tests/edit'
 
-
+  get 'patients/csv'
   post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
   post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
   
