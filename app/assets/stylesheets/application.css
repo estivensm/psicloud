@@ -89,7 +89,7 @@ label
 .second-navbar
 {
   background:#277394 !important;
-  margin-bottom: 30px !important;
+  /*margin-bottom: 30px !important;*/
 }
 
 
@@ -98,6 +98,21 @@ label
 {
   color:white !important;
 }
+
+
+.first-navbar
+{
+  background:white !important;
+  /*margin-bottom: 30px !important;*/
+}
+
+
+.first-navbar .navbar-nav>li>a
+
+{
+  color:gray !important;
+}
+
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
         color: #fff !important;
@@ -146,4 +161,9 @@ label
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
    color: #fff !important;
     background-color: #5bc0de !important;
+}
+
+.margin-top-40
+{
+  margin-top: 40px;
 }
