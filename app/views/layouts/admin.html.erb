@@ -128,6 +128,12 @@
                             <span class = "color-gray hidden-xs hidden-sm">Citas</span>
                            <% end %>
                         </li>
+                         <li  class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
+                           <i class="fa fa-file-text-o"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
+                            <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
+                           <% end %>
+                        </li>
+
                         <li class="<%=@menu[6]%> li"><%= link_to stats_path, :class => "stats" do %>
                            <i class="fa fa-bar-chart-o icon" color-gray icon" aria-hidden="true"></i>
 
@@ -135,12 +141,7 @@
                            <% end %>
                         </li>
 
-                         <li  class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
-                           <i class="fa fa-file-text-o"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
-                            <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
-                           <% end %>
-                        </li>
-                        <%if current_user.rol.configuracion%>
+                                                <%if current_user.rol.configuracion%>
                   <li class="dropdown <%=@menu[7]%> "  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-list color-gray icon" aria-hidden="true"></i>Informacion General <span class="caret"></span></a>
                      <ul class="dropdown-menu">
