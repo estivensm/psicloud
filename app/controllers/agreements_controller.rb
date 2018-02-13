@@ -4,7 +4,7 @@ class AgreementsController < ApplicationController
   # GET /agreements
   # GET /agreements.json
   def index
-    @agreements = Agreement.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30)
 
   end
 

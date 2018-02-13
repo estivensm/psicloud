@@ -4,7 +4,7 @@
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p>Formatos <span class="label label-primary"><%=@documents.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @documents, :entry_name => 'Pacientes' %></span> </p>
+            <p class="title-h2">Formatos <span class="label label-primary"><%=@documents.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @documents, :entry_name => 'Pacientes' %></span> </p>
          </div>
          <div class = "col-md-4 paginate text-left title-table1">
             <%= will_paginate @documents%>

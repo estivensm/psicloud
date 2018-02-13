@@ -125,19 +125,21 @@ def menu
           
   @menu = ["","","","",""]
   if  controller.controller_name == "home" 
-        @menu = ["active1","na","na","na","na","na", ""]
+        @menu = ["active1","na","na","na","na","na", "na","na"]
      elsif controller.controller_name == "views"
-        @menu = ["na","na","na","na","active1","na", ""]
-     elsif controller.controller_name == "patients"
-        @menu = ["na","na","active1","na","na","na", ""]
-     elsif controller.controller_name == "appointments"
-        @menu = ["na","na","na","active1","na","na", ""]
+        @menu = ["na","na","na","na","active1","na", "na","na"]
+     elsif controller.controller_name == "patients" && action_name == "index"
+        @menu = ["na","na","active1","na","na","na", "na","na"]
+     elsif controller.controller_name == "appointments" && action_name == "citas"
+        @menu = ["na","na","na","active1","na","na", "na","na"]
      elsif controller.controller_name == "clinic_histories"
-        @menu = ["na","na","active1","na","na","na", ""]
+        @menu = ["na","na","active1","na","na","na", "na","na"]
       elsif controller.controller_name == "documents"
-        @menu = ["na","na","na","na","na", "active1", ""]  
-      elsif controller.controller_name == "stats"
-        @menu = ["na","na","na","na","na", "", "active1"]  
+        @menu = ["na","na","na","na","na", "active1", "na","na"]  
+      elsif controller.controller_name == "stats" && action_name == "index"
+        @menu = ["na","na","na","na","na", "na", "active1","na"]  
+      elsif (controller.controller_name == "patients" && action_name == "all_patients") || (action_name == "citas_admin") || (action_name == "general_stats")
+        @menu = ["na","na","na","na","na", "na","na", "active1"]    
      else
         @menu = ["na","na","na","na","active1"]
   end

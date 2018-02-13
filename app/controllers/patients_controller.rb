@@ -8,8 +8,11 @@ class PatientsController < ApplicationController
   def index
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-    @patients = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 20)
-    @patientspdf = Patient.where(user_id: current_user.id).paginate(page: params[:page],:per_page => 20)
+    @patients = Patient.where(user_id: current_user.id).searchp(params[:search],params[:search1],params[:search2]).paginate(page: params[:page],:per_page => 30)
+    @patientspdf = Patient.where(user_id: current_user.id)
+    @route = patients_path
+  
+    @type = ""
     respond_to do |format|
       format.html
       format.pdf do
@@ -39,18 +42,61 @@ class PatientsController < ApplicationController
   end
 
   def csv
+    @patients = Patient.where(admin_user: current_user.admin_user).where(user_id: current_user.id)
+    respond_to do |format|
+       format.csv { send_data @patients.to_csv, filename: "patients.csv" }
+      
+  end
+
+end
+
+  def csv_all
     @patients = Patient.where(admin_user: current_user.admin_user)
     respond_to do |format|
        format.csv { send_data @patients.to_csv, filename: "patients.csv" }
       
   end
+
   end
 
   def all_patients
     
    
-    @patients = Patient.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
-    render "index"
+    @patients = Patient.where(admin_user: current_user.admin_user).searchp(params[:search],params[:search1],params[:search2]).paginate(page: params[:page],:per_page => 30)
+     @patientspdf = Patient.where(admin_user: current_user.admin_user)
+    @route = all_patients_path
+    @type = "Todos los "
+  
+     respond_to do |format|
+      format.html do 
+          render "index"
+      end
+      format.pdf do
+        render :pdf => "Pacientes",
+        header: { right: '[page] of [topage]' },
+        :template => 'patients/pdfs/patients.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
+  
+  
   end
 
   # GET /patients/1

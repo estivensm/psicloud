@@ -56,7 +56,16 @@ class Patient < ApplicationRecord
       document like '%#{search}%'").order(:id)
   end
 
+      def self.searchp(search,search1,search2)
+           
+           search != "" && search != nil ? (scope :named, -> { where("first_name like '%#{search.downcase}%' or first_name like '%#{search.upcase}%'  or first_name like '%#{search.capitalize}%' or second_name like '%#{search.downcase}%' or second_name like '%#{search.upcase}%'  or second_name like '%#{search.capitalize}%' ") }) : (scope :named, -> { where.not(id: nil) })  
+           search1 != "" && search1 != nil ? (scope :apellidod, -> { where("first_last_name like '%#{search.downcase}%' or first_last_name like '%#{search.upcase}%'  or first_last_name like '%#{search.capitalize}%' or second_last_name like '%#{search.downcase}%' or second_last_name like '%#{search.upcase}%'  or second_last_name like '%#{search.capitalize}%' ") }) : (scope :apellidod, -> { where.not(id: nil) })  
+           search2 != "" && search2 != nil ? (scope :document, -> { where("document like '%#{search.downcase}%' or document like '%#{search.upcase}%'  or document like '%#{search.capitalize}%' ") }) : (scope :document, -> { where.not(id: nil) })  
 
+           named.apellidod.document
+        end
+
+  
 
     def self.to_csv()
           attributes = %w{PrimerNombre SegundoNombre PrimerApellido SegundoApellido TipoDocumento document}

@@ -2,30 +2,21 @@
 
 
 
-<% if action_name == "citas" 
-  a = "btn btn-primary"
-  b = ""
-else
-  b = "btn btn-primary"
-  a = ""
-
-  end%>
-
 <div class="container margin-top-40">
 
-<%if current_user.rol.show_all_cita%>
+
    <div class="row">
   <div class = "col-md-6">
   
-            <%= link_to 'Mis Citas', citas_path, class: "#{a}"  %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to 'Todas las Citas', citas_admin_path, class: "#{b}"  %>
+       
+          <h2 class="title-h2">Citas</h2>
             
          </div>
 </div> 
-<%end%>
+
 <br>
  <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Calendar</a></li>
+  <li class="active"><a data-toggle="tab" href="#home">Calendario</a></li>
   <li><a data-toggle="tab" href="#menu1">Lista</a></li>
 
 </ul>

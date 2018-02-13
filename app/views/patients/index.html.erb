@@ -1,47 +1,71 @@
 
 
 
-<% if action_name == "index" 
-  a = "btn btn-primary"
-  b = ""
-else
-  b = "btn btn-primary"
-  a = ""
-
-  end%>
 
 <div class="container margin-top-40" >
-<%if current_user.rol.show_all_patient%>
+
 <div class="row">
-  <div class = "col-md-6">
+
+<div class="col-md-12 export-icons text-right">
   
-            <%= link_to 'Mis Pacientes', patients_path, class: "#{a}"  %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to 'Todos los Pacientes', all_patients_path, class: "#{b}"  %>
-            
-         </div>
-<div class="col-md-6 export-icons text-right">
-   <%= link_to image_tag("http://www.pvhc.net/img119/pjakzpmufndbotncoiml.png"), patients_csv_path(format: "csv")%>
-       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), patients_path(:format => "pdf"), target:"_blank"%>
      
   
 </div>
 </div>
-<%end%>
+
 <br>
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p><%=action_name == "index" ? "Mis " : "Todos los " %>Pacientes <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
+            <p class="title-h2"><%=@type%>Pacientes <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
          </div>
          <div class = "col-md-4 paginate text-left title-table1">
             <%= will_paginate @patients%>
          </div>
-         <div class = "col-md-2">
+         <div class = "col-md-2 ">
            
             <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
          </div>
       </div>
-      <hr class="hr">
+      <br>
+      <div class = "row busqueda hidden-xs hidden-sm">
+   <div class = "col-md-9">
+      <div class="form-group fil">
+         <%= form_tag(@route, :method => "get", id: "search-form") do %>
+   
+  <%= text_field_tag :search, params[:search], placeholder: "Nombre", class: "form-control search" %>
+  <%= text_field_tag :search1, params[:search1], placeholder: "Apellidos", class: "form-control search" %>
+  <%= text_field_tag :search2, params[:search2], placeholder: "Documento", class: "form-control search" %>
+
+  
+      
+         <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+            <%= link_to "Cancelar Filtros", @route, style: "    margin-left: 20px;
+    
+    position: relative;
+    top: 8px;"%>
+    
+         <% end %>
+      </div>
+   </div>
+   <div class="col-md-3 text-right">
+   
+<% if action_name == "index" %>
+        <%= link_to image_tag("http://www.pvhc.net/img119/pjakzpmufndbotncoiml.png"), patients_csv_path(format: "csv"), class: "icon-export"%>
+
+       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
+     <%end%>
+
+  <% if action_name == "all_patients" %>
+        <%= link_to image_tag("http://www.pvhc.net/img119/pjakzpmufndbotncoiml.png"), patients_csv_all_path(format: "csv"), class: "icon-export"%>
+
+       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
+     <%end%>   
+   </div>
+
+</div>
+
+
       <div class = "row">
          <table class="table">
             <thead>
@@ -104,8 +128,14 @@ else
     vertical-align: initial !important;
 
 }
-.export-icons img
+.icon-export img
 {
-  width: 40px;
+  width: 30px;
 }  
+.search
+   {
+   width:150px !important;
+   height: 35px!important;
+   display:inline-block !important;
+   }
 </style>

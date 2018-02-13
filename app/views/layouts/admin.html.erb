@@ -10,6 +10,7 @@
        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
         <meta name="turbolinks-cache-control" content="no-cache">
         <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/122/Sin-t_tulo-1.png' %>
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
 
 
@@ -59,11 +60,11 @@
                   <li class="dropdown <%=@menu[4]%> "  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i>Configuración <span class="caret"></span></a>
                      <ul class="dropdown-menu">
-                        <li ><%= link_to "Usuarios", users_index_path %></li>
-                        <li><%= link_to "Roles", rols_path %></li>
-                        <li><%= link_to "EPS", hpcs_path %></li>
-                        <li><%= link_to "Convenio", agreements_path %></li>
-                        <li><%= link_to "Cuenta", account_path(get_account) %></li>
+                        <li ><%= link_to "Usuarios", users_index_path, style: "color:gray !important" %></li>
+                        <li><%= link_to "Roles", rols_path, style: "color:gray !important" %></li>
+                        <li><%= link_to "EPS", hpcs_path , style: "color:gray !important"%></li>
+                        <li><%= link_to "Convenio", agreements_path , style: "color:gray !important"%></li>
+                        <li><%= link_to "Cuenta", account_path(get_account), style: "color:gray !important" %></li>
 
                   <li class="hidden-xs hidden-sm"><a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" > Autenticación <i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a></li>
                      </ul>
@@ -139,6 +140,18 @@
                             <span class = "color-gray hidden-xs hidden-sm">Formatos</span>
                            <% end %>
                         </li>
+                        <%if current_user.rol.configuracion%>
+                  <li class="dropdown <%=@menu[7]%> "  >
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i>Informacion General <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li ><%= link_to "Todos los Pacientes", all_patients_path , style: "color:gray !important"%></li>
+                        <li><%= link_to 'Todas las Citas', citas_admin_path , style: "color:gray !important"%></li>
+                        <li><%= link_to "Estadisticas Generales",general_stats_path , style: "color:gray !important"%></li>
+
+
+                     </ul>
+                  </li>
+                  <%end%>
                 </ul>
 
                <!--<form class="navbar-form navbar-left">

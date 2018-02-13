@@ -110,7 +110,7 @@ label
 .first-navbar .navbar-nav>li>a
 
 {
-  color:gray !important;
+  color:gray;
 }
 
 
@@ -167,3 +167,16 @@ label
 {
   margin-top: 40px;
 }
+
+.title-h2
+{
+
+    color: gray;
+    font-weight: bold;
+    margin-left: 25px;
+    font-size: 25px;
+    font-family: 'Days One', sans-serif ;
+
+
+}
+

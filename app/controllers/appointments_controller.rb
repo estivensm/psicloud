@@ -7,7 +7,8 @@ class AppointmentsController < ApplicationController
  
   respond_to :json
   def get_appointments
-    @appointment = Appointment.where( user_id: current_user.id)
+    
+    @appointment = Appointment.where( admin_user: current_user.admin_user).where( user_id: current_user.id)
     events = []
     @appointment.each do |task|
       
@@ -21,6 +22,8 @@ class AppointmentsController < ApplicationController
 
 
   respond_to :json
+
+
   def get_appointments_admin
     @appointment = Appointment.where( admin_user: current_user.admin_user)
     events = []

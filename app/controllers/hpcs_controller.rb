@@ -4,7 +4,7 @@ class HpcsController < ApplicationController
   # GET /hpcs
   # GET /hpcs.json
   def index
-    @hpcs = Hpc.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 3)
+    @hpcs = Hpc.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30)
   end
 
   # GET /hpcs/1
