@@ -33,9 +33,8 @@
       <div class="form-group fil">
          <%= form_tag(@route, :method => "get", id: "search-form") do %>
    
-  <%= text_field_tag :search, params[:search], placeholder: "Nombre", class: "form-control search" %>
-  <%= text_field_tag :search1, params[:search1], placeholder: "Apellidos", class: "form-control search" %>
-  <%= text_field_tag :search2, params[:search2], placeholder: "Documento", class: "form-control search" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Nombre, Apellido, Documento", class: "form-control search" %>
+ 
 
   
       
@@ -85,7 +84,7 @@
   <tbody>
     <% @patients.each do |patient| %>
       <tr>
-        <td><%= patient.first_name %> <%= patient.second_name %></td>
+        <td><%= patient.admin_user %><%= patient.first_name %> <%= patient.second_name %></td>
         <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
          <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>
@@ -134,7 +133,7 @@
 }  
 .search
    {
-   width:150px !important;
+   width:250px !important;
    height: 35px!important;
    display:inline-block !important;
    }

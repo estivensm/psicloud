@@ -8,7 +8,7 @@ class PatientsController < ApplicationController
   def index
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-    @patients = Patient.where(user_id: current_user.id).searchp(params[:search],params[:search1],params[:search2]).paginate(page: params[:page],:per_page => 30)
+    @patients = Patient.where(user_id: current_user.id).searchp(params[:search]).paginate(page: params[:page],:per_page => 30)
     @patientspdf = Patient.where(user_id: current_user.id)
     @route = patients_path
   
@@ -62,7 +62,7 @@ end
   def all_patients
     
    
-    @patients = Patient.where(admin_user: current_user.admin_user).searchp(params[:search],params[:search1],params[:search2]).paginate(page: params[:page],:per_page => 30)
+    @patients = Patient.where(admin_user: current_user.admin_user).searchp(params[:search]).paginate(page: params[:page],:per_page => 30)
      @patientspdf = Patient.where(admin_user: current_user.admin_user)
     @route = all_patients_path
     @type = "Todos los "
@@ -160,6 +160,7 @@ end
       @patient.birthdate_month = amonth -bmonth
       @patient.birthdate_day = aday
     end    
+    @patient.state = true
 
 
 

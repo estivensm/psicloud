@@ -128,7 +128,7 @@ def menu
         @menu = ["active1","na","na","na","na","na", "na","na"]
      elsif controller.controller_name == "views"
         @menu = ["na","na","na","na","active1","na", "na","na"]
-     elsif controller.controller_name == "patients" && action_name == "index"
+     elsif controller.controller_name == "patients" && (action_name == "index" || action_name == "new" || action_name == "show")
         @menu = ["na","na","active1","na","na","na", "na","na"]
      elsif controller.controller_name == "appointments" && action_name == "citas"
         @menu = ["na","na","na","active1","na","na", "na","na"]

@@ -27,19 +27,19 @@
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Segundo Nombre" %>
-               <%= form.text_field :second_name, id: :patient_second_name , class: "form-control", :title => "Es un Campo Obligatorio"%>
+               <%= form.text_field :second_name, id: :patient_second_name , class: "form-control ", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Primer Apellido" %>
-               <%= form.text_field :first_last_name, id: :patient_first_last_name, class: "form-control required", :title => "Es un Campo Obligatorio" %>
+               <%= form.text_field :first_last_name, id: :patient_first_last_name, class: "form-control  required", :title => "Es un Campo Obligatorio" %>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Segundo Apellido" %>
-               <%= form.text_field :second_last_name, id: :patient_second_last_name , class: "form-control", :title => "Es un Campo Obligatorio"%>
+               <%= form.text_field :second_last_name, id: :patient_second_last_name , class: "form-control ", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
       </div>
@@ -107,7 +107,7 @@
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Email" %>
-               <%= form.email_field :email, id: :patient_email ,class: "form-control", :title => "Es un Campo Obligatorio"%>
+               <%= form.email_field :email, id: :patient_email ,class: "form-control ", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
          <!--<div class="col-md-3">
@@ -192,7 +192,7 @@
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Nombre de Contacto" %>
-               <%= form.text_field :contact_name, id: :contact_name , class: "form-control required", :title => "Es un Campo Obligatorio"%>
+               <%= form.text_field :contact_name, id: :contact_name , class: "form-control  required", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
          <div class="col-md-3">
@@ -319,7 +319,8 @@
    
              allow_single_deselect: true,
              no_results_text: 'No hay resultados',
-             width: '230px;',
+             width: '230px',
+             height: '50px',
              placeholder_text_single: "Seleccione una opción",
              placeholder_text_multiple: "Seleccione una varias opciones"
    
@@ -599,5 +600,13 @@
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-  
+.chosen-container-single .chosen-single {
+
+    padding: 0px 0 0px 9px !important;
+    height: 30px !important;
+
+   border-radius: 0px !important;
+
+}
 </style>
+
