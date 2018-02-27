@@ -14,28 +14,28 @@
             <%= link_to 'Nuevo Formato', new_document_path, class: "btn btn-primary", remote:true if current_user.rol.create_doc  %>
          </div>
       </div>
-      <hr class="hr">
+   
       <div class = "row">
-         <table class="table">
-            <thead>
-               <tr class = "tr-table">
-      <th>Nombre</th>
-      <th>Formato</th>
-      <th>Descriptción</th>
-
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= document.name %></td>
-        <td><%=link_to "Descargar", document.file_url %></td>
-        <td><%= document.description %></td>
   
-             <td>
-        <%if current_user.rol.show_doc%>
+
+ <% @documents.each do |document| %>
+<div class="panel panel-default">
+                        <div class="panel-heading">
+                                   <div class="row">
+
+              <div class="col-md-6" style="    color: #5bc0de;
+    font-size: 18px;;">
+                    <%= document.name %> <span style="font-size:12px;margin-left: 20px;"><%= get_date(document.created_at) %></span>
+              </div>
+              
+
+              <div class="col-md-6 text-right">
+               <%if document.file_url%>
+                   <%= link_to  document.file_url, class: "btn btn-primary", style:"margin-right:10px;" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                   <%end%>  
+                   <%end%>
+                       <%if current_user.rol.show_doc%>
         <%= link_to  document, class: "btnl btn-primary" do %>
              <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
@@ -49,11 +49,17 @@
       <%= link_to  document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btnl btn-danger" do%>
              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%><%end%>
-</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              </div>
+           
+            
+            
+          </div>
+                        </div>
+                        <div class="panel-body">
+                      <%= document.description %>
+                        </div>
+                      </div>
+                       <% end %>
   </div>
     </div>
       </div>
