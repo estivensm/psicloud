@@ -43,7 +43,11 @@
 
 
     <% @clinic_history.tracings.each do |tracing| %>
-          <div class="row seg">
+         
+
+            <div class="panel panel-default">
+                        <div class="panel-heading">
+                                   <div class="row">
 
               <div class="col-md-6" style="    color: #5bc0de;
     font-size: 18px;;">
@@ -62,14 +66,15 @@
                     <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon" do %>
         <i class="fa fa-trash" aria-hidden="true"></i><%end%>
               </div>
-              <div class="col-md-12">
-                  <hr>
-              </div>
-              <div class="col-md-12">
-                   <span style="color: gray !important;"></span> <%= tracing.description %>
-              </div>
+           
+            
             
           </div>
+                        </div>
+                        <div class="panel-body">
+                       <%= tracing.description %>
+                        </div>
+                      </div>
     <% end %>
   </tbody>
 </table>

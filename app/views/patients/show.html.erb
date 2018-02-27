@@ -1,5 +1,3 @@
-
-
 <div class="row margin-top-40" >
    <div class="col-md-12" style="padding-left: 50px;">
       <%= link_to "inicio", root_path%><span> | </span> 
@@ -7,219 +5,220 @@
    </div>
 </div>
 <div class="container-fluid">
-   <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xs-offset-0 col-sm-offset-0 toppad" >
-         <div class="panel panel-info">
-            <div class="panel-heading" style="        background: #f9f9f9;
-               color: #808080;">
-               <h3 class="panel-title" style="font-size: 20px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
-            </div>
-            <div class="panel-body" style="padding-top: 40px;">
-               <div class="row img">
-                  <div class="col-md-3 col-lg-3 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
-                  <div class="col-md-7 col-lg-7 info-p" >
-                     <p><strong> <%= @patient.document_type%>: </strong><%= @patient.document%> </p>
-                     <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
-                     <% year = @patient.age == 1 ? "Año" : " Años"
-                        month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
-                        day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
-                        %>
-                     <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
-                     <p><strong>Genero: </strong><%= @patient.gender%> </p>
-                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Ver mas</button>
-                  </div>
-                  <div class="col-md-12 col-lg-12 info-p" style= "padding:20px;text-align: center;" >
-                     <hr>
-                     <%if @patient.age >= 18%>
-                     <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
-                     <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
-                     Consentimiento Informado
-                     <%end%>
-                     <%elsif @patient.age >= 12 &&  @patient.age < 18%>
-                     <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
-                     <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
-                     Consentimiento Informado
-                     <%end%>
-                     <%else%>
-                     <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
-                     <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
-                     Consentimiento Informado
-                     <%end%>
-                     <%end%>
-                     <!--<p style = "font-size:16px"><i class="fa fa-calendar" aria-hidden="true"></i><strong> Proxima Cita: </strong>&nbsp;  3 de julio de 2016  &nbsp; <%= link_to  root_path , :class => "opciones" do %>
-                        <i class="fa fa-pencil" aria-hidden="true"></i> 
-                        <% end %>&nbsp;<%= link_to  root_path , :class => "opciones" do %>
-                        <i class="fa fa-trash" aria-hidden="true"></i> 
-                        <% end %>
-                        </p>-->
-                  </div>
-                  <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                     <dl>
-                       <dt>DEPARTMENT:</dt>
-                       <dd>Administrator</dd>
-                       <dt>HIRE DATE</dt>
-                       <dd>11/12/2013</dd>
-                       <dt>DATE OF BIRTH</dt>
-                          <dd>11/12/2013</dd>
-                       <dt>GENDER</dt>
-                       <dd>Male</dd>
-                     </dl>
-                     </div>-->
+<div class="row">
+   <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xs-offset-0 col-sm-offset-0 toppad" >
+      <div class="panel panel-info">
+         <div class="panel-heading" style="        background: #f9f9f9;
+            color: #808080;">
+            <h3 class="panel-title" style="font-size: 20px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
+         </div>
+         <div class="panel-body" style="padding-top: 40px;">
+            <div class="row img">
+               <div class="col-md-3 col-lg-3 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
+               <div class="col-md-7 col-lg-7 info-p" >
+                  <p><strong> <%= @patient.document_type%>: </strong><%= @patient.document%> </p>
+                  <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
+                  <% year = @patient.age == 1 ? "Año" : " Años"
+                     month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+                     day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+                     %>
+                  <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
+                  <p><strong>Genero: </strong><%= @patient.gender%> </p>
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Ver mas</button>
                </div>
-            </div>
-            <div class="panel-footer text-right"><input type="checkbox" id="toggle-1">
-
-               <%= link_to  edit_patient_path(@patient.id), class: "btnl btn-warning" do%>
-               <i class="fa fa-pencil" style = "font-size:20px;"  aria-hidden="true"></i>
-               <%end%>
+               <div class="col-md-12 col-lg-12 info-p" style= "padding:20px;text-align: center;" >
+                  <hr>
+                  <%if @patient.age >= 18%>
+                  <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                  Consentimiento Informado
+                  <%end%>
+                  <%elsif @patient.age >= 12 &&  @patient.age < 18%>
+                  <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                  Consentimiento Informado
+                  <%end%>
+                  <%else%>
+                  <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                  Consentimiento Informado
+                  <%end%>
+                  <%end%>
+                  <!--<p style = "font-size:16px"><i class="fa fa-calendar" aria-hidden="true"></i><strong> Proxima Cita: </strong>&nbsp;  3 de julio de 2016  &nbsp; <%= link_to  root_path , :class => "opciones" do %>
+                     <i class="fa fa-pencil" aria-hidden="true"></i> 
+                     <% end %>&nbsp;<%= link_to  root_path , :class => "opciones" do %>
+                     <i class="fa fa-trash" aria-hidden="true"></i> 
+                     <% end %>
+                     </p>-->
+               </div>
+               <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                  </div>-->
             </div>
          </div>
+         <div class="panel-footer text-right"><input type="checkbox" id="toggle-1">
+            <%= link_to  edit_patient_path(@patient.id), class: "btnl btn-warning" do%>
+            <i class="fa fa-pencil" style = "font-size:20px;"  aria-hidden="true"></i>
+            <%end%>
+         </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xs-offset-0 col-sm-offset-0 toppad" >
-         <div id="exTab2">
-            <ul class="nav nav-tabs">
-              
+   </div>
+   <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xs-offset-0 col-sm-offset-0 toppad" >
+      <div id="exTab2">
+         <ul class="nav nav-tabs">
             <%if current_user.rol.show_hc%>
             <li class="active">
-                  <a  href="#1" data-toggle="tab">Historia Clinica</a>
-               </li>
+               <a  href="#1" data-toggle="tab">Historia Clinica</a>
+            </li>
             <%end%>
-              <%if current_user.rol.show_hc%>  
-               <li><a href="#2" data-toggle="tab">Seguimientos</a>
-               </li>
-                <%end%>
-             <%if current_user.rol.show_hc%>    
-               <li><a href="#4" data-toggle="tab">Proxima Cita</a>
-               </li>
-                 <%else%> 
-                    <li class="active"><a href="#4" data-toggle="tab">Proxima Cita</a>
-               </li>
-             <%end%>  
-            </ul>
-            <div class="tab-content ">
-             <%if current_user.rol.show_hc%>
-               <div class="tab-pane active" id="1">
-                  <%if @hs != nil%>
-                  <div class="descnum">
-                     <br>
-                     <div class="row">
-                        <div class="col-md-8">
-                           <h2 style="    color: #939393;
-    background: #f5f5f5;
-    padding: 10px;">Información Principal</h2>
-                        </div>
-                        <div class="col-md-4 text-right">
-                               <button type="button" class="btnl btn-info" data-toggle="modal" data-target="#send-mail"><i class="fa fa-envelope" style = "font-size:30px;"  aria-hidden="true"></i></button>
-                           <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-primary" do%>
-                           <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
-                           <%end%>
-                           <%if current_user.rol.create_hc%>
-                           <%= link_to  edit_patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-warning" do%>
-                           <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i>
-                           <%end%>
-                           <%end%>
-
-                        </div>
+            <%if current_user.rol.show_hc%>  
+            <li><a href="#2" data-toggle="tab">Seguimientos</a>
+            </li>
+            <%end%>
+            <%if current_user.rol.show_hc%>    
+            <li><a href="#4" data-toggle="tab">Proxima Cita</a>
+            </li>
+            <%else%> 
+            <li class="active"><a href="#4" data-toggle="tab">Proxima Cita</a>
+            </li>
+            <%end%>  
+         </ul>
+         <div class="tab-content ">
+            <%if current_user.rol.show_hc%>
+            <div class="tab-pane active" id="1">
+               <%if @hs != nil%>
+               <div class="descnum">
+                  <br>
+                  <div class="row tit1">
+                     <div class="col-md-8">
+                        <h2 style="color:gray" >Información Principal</h2>
                      </div>
-                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h3 class="panel-title"> Motivo de consulta</h3>
-                        </div>
-                        <div class="panel-body">
-                         <%= @hs.consultation_reason %>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h3 class="panel-title"> Estado Actual</h3>
-                        </div>
-                        <div class="panel-body">
-                         <%= @hs.actual_state %>
-                        </div>
-                      </div>
-                         <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h3 class="panel-title">Hipotesis diagnostica</h3>
-                        </div>
-                        <div class="panel-body">
+                     <div class="col-md-4 text-right">
+                        <button type="button" class="btnl btn-info" data-toggle="modal" data-target="#send-mail"><i class="fa fa-envelope" style = "font-size:30px;"  aria-hidden="true"></i></button>
+                        <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-primary" do%>
+                        <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
+                        <%end%>
+                        <%if current_user.rol.create_hc%>
+                        <%= link_to  edit_patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-warning" do%>
+                        <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i>
+                        <%end%>
+                        <%end%>
+                     </div>
+                  </div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <h3 class="panel-title"> Motivo de consulta</h3>
+                     </div>
+                     <div class="panel-body">
+                        <%= @hs.consultation_reason %>
+                     </div>
+                  </div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <h3 class="panel-title"> Estado Actual</h3>
+                     </div>
+                     <div class="panel-body">
+                        <%= @hs.actual_state %>
+                     </div>
+                  </div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <h3 class="panel-title">Hipotesis diagnostica</h3>
+                     </div>
+                     <div class="panel-body">
                         <%= @hs.diagnostic_hypothesis %>
-                        </div>
-                      </div>
-                         <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h3 class="panel-title"> Objetivo Terapeoutico</h3>
-                        </div>
-                        <div class="panel-body">
+                     </div>
+                  </div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <h3 class="panel-title"> Objetivo Terapeoutico</h3>
+                     </div>
+                     <div class="panel-body">
                         <%= @hs.therapeutic_goal %>
-                        </div>
-                      </div>
-                         <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h3 class="panel-title">Tipo de Tratamiento</h3>
-                        </div>
-                        <div class="panel-body">
-                       <%= @hs.type_of_treatment %>
-                        </div>
-                      </div>
-                    
-                     
+                     </div>
                   </div>
-                  <%else%>
-                  <br><br><br>
-                  <div class="alert-info" style="padding:20px;">
-                               <h2 class="text-center" >No se ha crado la Historia Clinica <br><br> 
-
-                               <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_hc%></h2>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <h3 class="panel-title">Tipo de Tratamiento</h3>
+                     </div>
+                     <div class="panel-body">
+                        <%= @hs.type_of_treatment %>
+                     </div>
                   </div>
-       
-                  <%end%>
+               </div>
+               <%else%>
+               <br><br><br>
+               <div class="alert-info" style="padding:20px;">
+                  <h2 class="text-center" >No se ha crado la Historia Clinica <br><br> 
+                     <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_hc%>
+                  </h2>
                </div>
                <%end%>
-                 <%if current_user.rol.show_hc%>
-               <div class="tab-pane" id="2">
-                  <br><br>
-                  <%if @hs != nil%>
-
-                  <%if @hs.tracings.count != 0%>
-                  <div class="row">
-                     <div class="col-md-12 text-right">
-                        <%= link_to "Ver Seguimientos", patient_clinic_history_tracings_path(@patient.id,@hs ), class: "btn btn-primary"%>
+            </div>
+            <%end%>
+            <%if current_user.rol.show_hc%>
+            <div class="tab-pane" id="2">
+               <br><br>
+               <%if @hs != nil%>
+               <%if @hs.tracings.count != 0%>
+               <div class="row tit1">
+                  <div class="col-md-8" style="padding:0px">
+                     <h2 style="    color: #939393;
+                        background: #f5f5f5;
+                        padding: 10px;    margin: 0px;">Ultimos Seguimientos</h2>
+                  </div>
+                  <div class="col-md-4 text-right">
+                     <%= link_to "Ver Seguimientos", patient_clinic_history_tracings_path(@patient.id,@hs ), class: "btn btn-primary"%>
+                  </div>
+               </div>
+               <% @hs.tracings.last(2).each do |tracing|  %>
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <div class="row">
+                        <div class="col-md-6" style="    color: gray;
+                           font-size: 18px;;">
+                           <%= get_date(tracing.created_at) %>
+                        </div>
+                        <div class="col-md-6 text-right">
+                           <%if tracing.attachment_url%>
+                           <%= link_to  tracing.attachment_url, class: "btn btn-primary", style:"margin-right:10px;" do  %>
+                           <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                           <%end%>  
+                           <%end%>
+                        </div>
                      </div>
                   </div>
-                  <br>
-                  <h3>Ultimos Seguimientos</h3>
-                  <br>
-                  <% @hs.tracings.last(2).each do |tracing|  %>
-                  <div class="row">
-                     <div class="col-md-3">
-                        <p><%= get_date(tracing.created_at)%></p>
-                     </div>
-                     <div class="col-md-6">
-                        <p><%=tracing.description%></p>
-                     </div>
-                     <div class="col-md-3">
-                        <p><%= (link_to "Adjunto", tracing.attachment_url) if tracing.attachment_url %></p>
-                     </div>
+                  <div class="panel-body">
+                     <%= tracing.description %>
                   </div>
-                  <hr>
-                  <%end%>
-                  <%else%>
-                <div class="alert-info" style="padding:20px;">
-                  <h2 class="text-center">No hay ninugun seguimiento <br>  <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_hc%></h2>  </div>
-                  <%end%>
-              
-                  <%else%>
-                   <div class="alert-info" style="padding:20px;">
-     <h2 class="text-center" >No hay seguimientos ya que no existe la Historia Clinica</h2> </div>
-                  <%end%>  
-              
-                </div>
-                  <%end%> 
-                 <%if current_user.rol.show_hc%>
-               <div class="tab-pane" id="4">
-               <%else%>
-                <div class="tab-pane active" id="4">
+               </div>
                <%end%>
+               <%else%>
+               <div class="alert-info" style="padding:20px;">
+                  <h2 class="text-center">No hay ninugun seguimiento <br>  <br><%= link_to "Crear Seguimiento", new_patient_clinic_history_tracing_path(@patient.id,@hs ), remote: true, class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_hc%></h2>
+               </div>
+               <%end%>
+               <%else%>
+               <div class="alert-info" style="padding:20px;">
+                  <h2 class="text-center" >No hay seguimientos ya que no existe la Historia Clinica</h2>
+               </div>
+               <%end%>  
+            </div>
+            <%end%> 
+            <%if current_user.rol.show_hc%>
+            <div class="tab-pane" id="4">
+               <%else%>
+               <div class="tab-pane active" id="4">
+                  <%end%>
                   <br><br>
                   <%if @patient.appointments.count != 0%>
                   <% a =  get_date_array(@patient.appointments.last.start_datetime)%>
@@ -237,7 +236,6 @@
                   </div>
                   <div class="col-md-12 text-center" style="margin:20px 0 20px 0; ">
                      <%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style:"margin-right:40px;"%>
-                  
                      <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary" if current_user.rol.create_cita %>
                   </div>
                   <div class="col-lg-12">
@@ -256,10 +254,10 @@
                   <hr>
                   <%end%>
                   <%else%>
-                      <div class="alert-info" style="padding:20px;">
-                  <h2 class="text-center">El Paciente no tiene citas<br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style: "font-size:20px" if current_user.rol.show_cita%> <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_cita%></h2>  </div>
+                  <div class="alert-info" style="padding:20px;">
+                     <h2 class="text-center">El Paciente no tiene citas<br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style: "font-size:20px" if current_user.rol.show_cita%> <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_cita%></h2>
+                  </div>
                   <%end%>  
-                
                </div>
             </div>
          </div>
@@ -326,6 +324,14 @@
    .info-p p
    {
    font-size: 14px;
+   }
+   .tit1
+   {
+    background: whitesmoke;
+    padding-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 0px !important;
+    margin-right:0px !important
    }
 </style>
 <script>
@@ -456,7 +462,6 @@
       </div>
    </div>
 </div>
-
 <%= render 'form_send_history' , patient: @patient %>
 <style>
    .nav-tabs>li>a {
@@ -468,40 +473,38 @@
    border-radius: 0px;
    }
 </style>
-
-
 <script>
-$(document).on('turbolinks:load',function() {
-    $('#toggle-1').bootstrapToggle({
-      on: 'Activo',
-      off: 'Inactivo'
-    });
-
-
-
-    if (<%=@patient.state%> == true)
-    {
-       $('#toggle-1').bootstrapToggle('on')
-    }
-    else
-    {
-        $('#toggle-1').bootstrapToggle('off')
-    }
-  
-  $('#toggle-1').change(function() {
-      if ( $(this).prop('checked') == true )
-      {
-        $.get("change_state/true/" + <%=@patient.id%>, function(data) {
-        
-        })
-      }
-      else
-      {
-        $.get("change_state/false/" + <%=@patient.id%>, function(data) {
-        })
-      }
-
-    })
-  });
-
+   $(document).on('turbolinks:load',function() {
+       $('#toggle-1').bootstrapToggle({
+         on: 'Activo',
+         off: 'Inactivo'
+       });
+   
+   
+   
+       if (<%=@patient.state%> == true)
+       {
+          $('#toggle-1').bootstrapToggle('on')
+       }
+       else
+       {
+           $('#toggle-1').bootstrapToggle('off')
+       }
+     
+     $('#toggle-1').change(function() {
+         if ( $(this).prop('checked') == true )
+         {
+           $.get("change_state/true/" + <%=@patient.id%>, function(data) {
+           
+           })
+         }
+         else
+         {
+           $.get("change_state/false/" + <%=@patient.id%>, function(data) {
+           })
+         }
+   
+       })
+     });
+   
 </script>
