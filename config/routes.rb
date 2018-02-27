@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   
 
-  get "loaderio-a37049370b15266d36ffe4514aeca803"
+  get 'loaderioa37049370b15266d36ffe4514aeca803'
   get 'stats/index', as: "stats"
   get 'general_stats', to: 'stats#general_stats' , as: 'general_stats'
   
