@@ -91,5 +91,7 @@ Rails.application.routes.draw do
     delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
 
   end
+
+  get "loaderio-a37049370b15266d36ffe4514aeca803.txt"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
