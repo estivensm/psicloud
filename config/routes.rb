@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   
 
- 
+  get "loaderio-a37049370b15266d36ffe4514aeca803"
   get 'stats/index', as: "stats"
   get 'general_stats', to: 'stats#general_stats' , as: 'general_stats'
   
@@ -92,6 +92,6 @@ Rails.application.routes.draw do
 
   end
 
-  get "loaderio-a37049370b15266d36ffe4514aeca803.txt"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
