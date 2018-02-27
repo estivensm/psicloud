@@ -7,7 +7,7 @@
         <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
     </div>
 </div>
-<br>
+
 <div class="row">
 <!--<div class="col-md-10">
 	<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1>
@@ -17,7 +17,7 @@
 	<h1 class="h1-tittle imgedit"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1>
 </div>
 </div>-->
-<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>
+<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1><br>
 
 <div class= "menu-history">
 
@@ -35,3 +35,13 @@
 
 </div>
 
+<style>
+.menu-history
+{
+    padding: 10px 12px;
+    background: #efefef;
+        text-align: center;
+}
+
+    
+</style>

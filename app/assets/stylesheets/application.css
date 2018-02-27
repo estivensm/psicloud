@@ -204,3 +204,9 @@ border-radius: 0px !important;
   color:gray !important;
 }
 
+.menu-history
+{
+    padding: 10px 12px;
+    background: #efefef;
+        text-align: center;
+}

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container margin-top-40">
 <div class="row">
     <div class="col-md-12" style="padding-left: 50px;">
         <%= link_to "inicio", root_path%><span> | </span> 
@@ -6,8 +6,8 @@
         <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
     </div>
 </div>
-<br>
-<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>  
+
+<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1><br>  
 <div class= "menu-history">
 	
  
@@ -46,3 +46,13 @@
 
 
 
+<style>
+.menu-history
+{
+    padding: 10px 12px;
+    background: #efefef;
+        text-align: center;
+}
+
+    
+</style>

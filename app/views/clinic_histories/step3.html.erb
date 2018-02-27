@@ -6,8 +6,7 @@
         <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
     </div>
 </div>
-<br>
-<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>  
+<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> </h1><br>  
 <div class= "menu-history">
    
 <%if @clinic_history.child_history%>
@@ -18,7 +17,7 @@
 
   </div>
 
-<div class = "row row-form">
+<div class = "row row-form margin-top-40">
    <%= form_tag patient_update_step3_path(@clinic_history), method: :patch do %>
    <% if @clinic_history.errors.any? %>
    <div id="error_explanation">
@@ -105,3 +104,4 @@
 
   }
 </script>
+

@@ -7,8 +7,8 @@
         <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
     </div>
 </div>
-<br>
-<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>  
+
+<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> </h1><br>  
 <div class="menu-history">
 
 <%if @clinic_history.child_history%>
@@ -22,10 +22,8 @@
 
   
 </div>
-   <div class="row antecedentes" style = "padding: 10px 45px;
-">
-<br>
-<br>
+   <div class="row antecedentes margin-top-40" style = "padding: 10px 45px;">
+
       <div class = "row title-table">
          <div class = "col-md-6">
             <p>Seguimientos <span class="label label-primary"><%=@tracings.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tracings, :entry_name => 'Seguimientos' %></span> </p>
@@ -37,7 +35,7 @@
             <%= link_to 'Nuevo Seguimiento', new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), remote:true, class: "btn btn-primary"  %>
          </div>
       </div>
-      <hr class="hr">
+<br><br>
    
         
 
@@ -92,5 +90,14 @@
     background: #f6f6f6;
     margin-bottom: 10px;
 }
-  
+
+.menu-history
+{
+    padding: 10px 12px;
+    background: #efefef;
+        text-align: center;
+}
+
+    
+ 
 </style>
