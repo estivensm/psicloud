@@ -104,7 +104,9 @@
                      <br>
                      <div class="row">
                         <div class="col-md-8">
-                           <h2>Información Principal</h2>
+                           <h2 style="    color: #939393;
+    background: #f5f5f5;
+    padding: 10px;">Información Principal</h2>
                         </div>
                         <div class="col-md-4 text-right">
                                <button type="button" class="btnl btn-info" data-toggle="modal" data-target="#send-mail"><i class="fa fa-envelope" style = "font-size:30px;"  aria-hidden="true"></i></button>
@@ -119,36 +121,48 @@
 
                         </div>
                      </div>
-                     <div class="descnum1">
-                        <h4>
-                        Motivo de consulta</h3>
-                        <hr>
-                        <p><%= @hs.consultation_reason %></p>
-                     </div>
-                     <div class="descnum1">
-                        <h4>
-                        Estado Actual</h3>
-                        <hr>
-                        <p><%= @hs.actual_state %></p>
-                     </div>
-                     <div class="descnum1">
-                        <h4>
-                        Hipotesis diagnostical</h3>
-                        <hr>
-                        <p><%= @hs.diagnostic_hypothesis %></p>
-                     </div>
-                     <div class="descnum1">
-                        <h4>
-                        Objetivo Terapeoutico</h3>
-                        <hr>
-                        <p><%= @hs.therapeutic_goal %></p>
-                     </div>
-                     <div class="descnum1" >
-                        <h4>
-                        Tipo de Tratamiento</h3>
-                        <hr>
-                        <p><%= @hs.type_of_treatment %></p>
-                     </div>
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title"> Motivo de consulta</h3>
+                        </div>
+                        <div class="panel-body">
+                         <%= @hs.consultation_reason %>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title"> Estado Actual</h3>
+                        </div>
+                        <div class="panel-body">
+                         <%= @hs.actual_state %>
+                        </div>
+                      </div>
+                         <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Hipotesis diagnostica</h3>
+                        </div>
+                        <div class="panel-body">
+                        <%= @hs.diagnostic_hypothesis %>
+                        </div>
+                      </div>
+                         <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title"> Objetivo Terapeoutico</h3>
+                        </div>
+                        <div class="panel-body">
+                        <%= @hs.therapeutic_goal %>
+                        </div>
+                      </div>
+                         <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Tipo de Tratamiento</h3>
+                        </div>
+                        <div class="panel-body">
+                       <%= @hs.type_of_treatment %>
+                        </div>
+                      </div>
+                    
+                     
                   </div>
                   <%else%>
                   <br><br><br>

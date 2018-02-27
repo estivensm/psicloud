@@ -84,7 +84,7 @@
   <tbody>
     <% @patients.each do |patient| %>
       <tr>
-        <td><%= patient.admin_user %><%= patient.first_name %> <%= patient.second_name %></td>
+        <td><%= patient.first_name %> <%= patient.second_name %></td>
         <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
          <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>

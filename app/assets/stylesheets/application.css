@@ -188,3 +188,13 @@ border-radius: 0px !important;
 border-radius: 0px !important;
 
   }
+
+ .panel
+ {
+      border-radius: 0px !important;
+ }
+
+ .panel-default>.panel-heading {
+    color: #939393 !important;
+
+}
