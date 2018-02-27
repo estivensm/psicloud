@@ -27,4 +27,10 @@ class HomeController < ApplicationController
     end
 
   end
+
+
+   def loader
+    redirect_to "https://psicloud.herokuapp.com/loaderio-a37049370b15266d36ffe4514aeca803.txt"
+     
+   end
 end
