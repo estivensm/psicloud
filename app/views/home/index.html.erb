@@ -59,6 +59,42 @@
 </div></div>
 
 
+<div class="container">
+<br>
+<div class="row">
+              <div class="col-md-8 col-md-offset-2 jm">
+<div class = "personal">
+            <div class="row">
+              <div class="col-md-12 jm">
+                <%= render partial: "personas" %></div>
+            </div>
+          </div>
+             </div>
+          </div>
+<div class="row info">
+<div class="col-md-12">
+
+<p style = "margin-top:30px;font-size:20px;">   <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i> Proximas citas </p>
+<% @citas.last(3).each do |cita|%>
+<div class="col-md-6">
+ <div class="alert alert-info" role="alert">
+    <span style="font-size:18px;margin-left:10px;"><%=cita.patient.first_name%> <%=cita.patient.first_last_name%></span> <%=get_date_hora(cita.start_datetime)%>
+</div>
+</div>
+<%end%>
+
+
+
+</div>
+
+    
+
+
+
+  </div>
+  
+</div>
+
 
 <style>
 .search-cont
