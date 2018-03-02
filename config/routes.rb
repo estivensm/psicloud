@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get "citas_admin", to: "appointments#citas_admin", as: "citas_admin"
   get "appointments/get_appointments", to: "appointments#get_appointments"
   get "appointments/get_appointments_admin", to: "appointments#get_appointments_admin"
+  get "patients/change_state_appointment/:id/:state", to: "appointments#change_state_appointment" , as: "change_state_appointment"
+
   get "all_patients", to: "patients#all_patients", as: "all_patients"
   resources :patients do 
      resources :appointments 

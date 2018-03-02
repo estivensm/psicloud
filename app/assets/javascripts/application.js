@@ -20,6 +20,7 @@
 //= require twitter/bootstrap
 //= require jquery.validate
 //= require chosen-jquery
+//= require Chart.min
 //= require jquery.datetimepicker
 //= require jquery.validate.additional-methods
 //= require turbolinks

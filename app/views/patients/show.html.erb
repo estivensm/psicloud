@@ -1,3 +1,5 @@
+
+
 <div class="row margin-top-40" >
    <div class="col-md-12" style="padding-left: 50px;">
       <%= link_to "inicio", root_path%><span> | </span> 
@@ -72,7 +74,7 @@
          </div>
       </div>
    </div>
-   <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xs-offset-0 col-sm-offset-0 toppad" >
+   <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xs-offset-0 col-sm-offset-0 toppad" id="app">
       <div id="exTab2">
          <ul class="nav nav-tabs">
             <%if current_user.rol.show_hc%>
@@ -215,29 +217,43 @@
             </div>
             <%end%> 
             <%if current_user.rol.show_hc%>
+
             <div class="tab-pane" id="4">
                <%else%>
                <div class="tab-pane active" id="4">
+
                   <%end%>
                   <br><br>
-                  <%if @patient.appointments.count != 0%>
-                  <% a =  get_date_array(@patient.appointments.last.start_datetime)%>
+                  <!--vue-->         
+                
+                 
+                  <div v-if="estado_citas > 0" class="row" >
                   <div class="col-md-4 text-right">
                      <img style = "width:135px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
                   </div>
                   <div class="col-md-8" style="color:gray">
-                     <% if @appointment_l != nil%>
-                     <span style="font-size:70px;"><%=a[5] %></span><br>
-                     <span style="font-size:20px;"><%=a[1]%> <%= a[0] %> de <%= a[2]%> de <%= a[4] %></span>
-                     <%else%>
+                  
+                     <div v-show="ultima_cita">
+                        
+                     
+                     <span style="font-size:70px;">{{fecha[5]}}</span><br>
+                     <span style="font-size:20px;">{{fecha[1]}} {{fecha[0]}} de {{fecha[2]}} de {{fecha[4]}}</span>
+                     </div>
+                         <div v-show="!ultima_cita">
                      <span style="font-size:20px;position: relative;
                         top: 50px;">No hay citas programadas</span>
-                     <%end%>  
+                       </div>
                   </div>
-                  <div class="col-md-12 text-center" style="margin:20px 0 20px 0; ">
-                     <%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style:"margin-right:40px;"%>
-                     <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary" if current_user.rol.create_cita %>
+
+                  <div class="col-md-12 text-center" style="margin:50px 0 20px 0;" >
+                     <%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style:"margin-right:10px;;width:200px"%>
+                     <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary"  , style:"margin-right:10px;width:200px" if current_user.rol.create_cita %><br><br>
+                      <template v-if="state_button">
+                      
+                      <button v-show="ultima_cita.state" @click="realizada()" class="btn btn-primary"><i class="fa fa-check" style = "font-size:30px;" aria-hidden="true"></i><br>Realizada</button>
+                      </template>
                   </div>
+<!--
                   <div class="col-lg-12">
                      <h3>Ultimas Citas</h3>
                   </div>
@@ -251,13 +267,20 @@
                         <p><%=appointment.observations%></p>
                      </div>
                   </div>
+
                   <hr>
-                  <%end%>
-                  <%else%>
-                  <div class="alert-info" style="padding:20px;">
+                  <%end%>-->
+
+                  </div>
+                  <!--vue-->
+                  
+            
+                  <div v-if="estado_citas == 0" class="alert-info" style="padding:20px;">
                      <h2 class="text-center">El Paciente no tiene citas<br> <br><%= link_to "Historial de Citas", patient_appointments_path(@patient.id ), class: "btn btn-primary", style: "font-size:20px" if current_user.rol.show_cita%> <%= link_to "Nueva Cita", new_patient_appointment_path(@patient.id ) , remote:true, class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_cita%></h2>
                   </div>
-                  <%end%>  
+                  
+
+                  <!--vue-->  
                </div>
             </div>
          </div>
@@ -507,4 +530,82 @@
        })
      });
    
+</script>
+
+<script>
+  $(document).on('turbolinks:load',function() {
+      new Vue({
+         el: "#app",
+         data: {
+             estado: [],
+             estado_citas: <%=@patient.appointments.count%>,
+             fecha: [],
+             ultima_cita: false,
+             state_button: true
+
+         },
+         created() {
+                    if (this.estado_citas > 0)
+                     { 
+                             this.fecha = <%= @appointment_l ? get_date_array(@appointment_l.start_datetime).to_s.html_safe : []%>; 
+                             this.ultima_cita = <%= @appointment_l != nil ? @appointment_l.to_json.html_safe : false%> ;
+                             
+                        
+                     }
+                     else
+                     {
+
+
+                     }
+
+                },
+         methods: {
+           
+               vigente(){
+
+                  this.estado = "Vigente"
+               },
+
+               vencida(){
+                  
+                  this.estado = "Vencida"
+               }, 
+               cancelada(){
+                  
+                  this.estado = "Cancelada"
+               }, 
+               realizada(){
+
+                  //this.estado = "Realizada" 
+                  this.fetchUser();
+
+                  
+               }, 
+               fetchUser() {
+                  fetch('change_state_appointment/'+ this.ultima_cita.id +'/Realizada')
+                  .then((res) => { return res.json() })
+                  .then((res) => {
+                        if (res.name != 0) 
+                        {
+                           this.fecha = res; console.log(res) ;this.state_button = false
+                        }
+                        else
+                        {
+                           this.ultima_cita =  false 
+                        }
+                      })
+                  
+               }
+
+
+
+         }
+
+
+
+
+      });
+
+ })
+
 </script>

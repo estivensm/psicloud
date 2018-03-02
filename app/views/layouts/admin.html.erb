@@ -18,13 +18,14 @@
       <%= csrf_meta_tags %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+      
+<%= javascript_include_tag 'https://unpkg.com/axios/dist/axios.min.js', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js', 'data-turbolinks-track': 'reload' %>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
          <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
-      
    </head>
    <body class="admin">
     
@@ -211,3 +212,4 @@
 
 
 </style>
+

@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-
+  include ApplicationHelper
 
   # GET /appointments
   # GET /appointments.json
@@ -173,6 +173,26 @@ class AppointmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def change_state_appointment
+      
+      @appointment = Appointment.find(params[:id])
+     
+
+      
+      if @appointment.update(state: params[:state])
+        if Appointment.where(state: "Vigente").order(start_datetime: :desc).last != nil
+          @appointment_l = get_date_array(Appointment.where(state: "Vigente").order(start_datetime: :desc).last.start_datetime)
+          
+          render json: @appointment_l
+          puts "siiiiiiiiiiiiiiiii"
+         else
+          
+          render json: {name: 0}
+          puts "nooooooooooooooooo"
+         end
+      end
+  end  
 
   private
     # Use callbacks to share common setup or constraints between actions.
