@@ -1,21 +1,34 @@
 
 
-<div class="row sign_form">
+<div class="row sign_form" id="app">
 <div class="col-md-4 col-md-offset-4 login1" style="padding-top: 50px;">
 <p class = "logop text-center" style = "color:#9a9a9a;    font-size: 30px"><img style= "width:200px;" id="slack" src="https://farm5.staticflickr.com/4539/38260696042_45b37e8f87_n.jpg"></p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 
 <br>
+ <p v-if="errors.length">
+    
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+  </p>
+
+
+
    <div class="form-group">
 
-    <%= f.email_field :email, autofocus: true , :class => 'form-control' , placeholder:"Email", style:"height:45px;font-size: 16px;border: 1px solid gainsboro !important;"%>
+    
+    
+    <input v-model="email" autofocus="autofocus" placeholder="Email" type="email" value="" name="user[email]" id="user_email" v-on:keyup="checkForm()" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
+
   </div>
 
 
 <div class="form-group">
   
-    <%= f.text_field :company , :class => 'form-control' , placeholder:"Nombre de la Empresa o Persona", style:"height:45px;font-size: 16px;border: 1px solid gainsboro !important;"%>
+  <input v-model="name"  placeholder="Nombre de la Empresa o Persona" type="text" name="user[company]" id="user_company" v-on:keyup="checkForm()" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
+    
   </div>
 
   
@@ -29,18 +42,30 @@
 
    <div class="form-group">
  
-    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control' , placeholder:"Contraseña", style:"height:45px;font-size: 16px;border: 1px solid gainsboro !important;"%>
+    <input v-model="pw" autocomplete="off" placeholder="Contraseña" type="password" name="user[password]" id="user_password" v-on:keyup="checkForm()" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
+
+
+    
   </div>
 
    <div class="form-group">
-
-    <%= f.password_field :password_confirmation, autocomplete: "off" , :class => 'form-control', placeholder:"Confirmar Contraseña", style:"height:45px;font-size: 16px;border: 1px solid gainsboro !important;"%>
+<input v-model="pwc" v-on:keyup="checkForm()" autocomplete="off" placeholder="Confirmar Contraseña" type="password" name="user[password_confirmation]" id="user_password_confirmation" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
   </div>
 
+     <label class="radio-inline" style="padding-left:0px!important">
+                   <input v-model="checked" @click="checkForm1()" type="checkbox" value="1" name="user[legal]" id="user_legal">He leído y aceptado la autorización para la <a  class="" data-toggle="modal" data-target="#exampleModal">
+  administación de datos personales
+</a>
+ así como los términos y condiciones de uso de la aplicación</span>
+      </label>
 
+<br>
+<br>
    <div class="form-group">
-    <%= f.submit "Crear Cuenta", :class => 'btn btn-primary btn-block is', style:"font-size:18px"  %>
+    <input :disabled=disabled type="submit" name="commit" @click="checkForm()" value="Crear Cuenta" data-disable-with="Crear Cuenta" class="btn btn-primary btn-block is" style="font-size: 18px;">
   </div>
+
+
 <% end %>
 
 <div class="col-md-10 col-md-offset-1 text-center color-gray" style="margin-top:10px;">
@@ -66,3 +91,142 @@ Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name
     
   </style>  }
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Autorización para Administración de Datos Personales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+   
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(document).on('turbolinks:load',function() {
+      new Vue ({
+
+            el: "#app",
+            data:{
+              email: null,
+              name: null,
+              pw: null,
+              pwc: null,
+              errors:[],
+              fields:[false, false, false,false,false,false,false],
+              disabled: true,
+              checked: false
+            },
+
+       computed: {
+       isDisabled() {
+    // evaluate whatever you need to determine disabled here...
+            console.log(!this.fields[0])
+            return !this.fields[0];
+
+
+      }
+},     
+methods:{
+    checkForm:function(e) {
+      console.log(this.fields);
+      this.errors = [];
+      //if(!this.name) this.errors.push("Name required.");
+      if(!this.email) {
+         this.fields[0] = false
+      } else if(!this.validEmail(this.email)) {
+        this.errors.push("Email Invalido");
+        this.fields[1] = false;        
+      }
+      else 
+{
+          this.fields[0] = true;
+          this.fields[1] = true;
+          
+}
+
+!this.name ? this.fields[2] = false : this.fields[2] = true;
+!this.pw ? this.fields[3] = false : this.fields[3] = true;
+!this.pwc ? this.fields[4] = false : this.fields[4] = true;
+
+if(!this.validpwc(this.pwc)) {
+        this.errors.push("las contraseñas no son iguales");
+        this.fields[5] = false;        
+      }
+
+  else
+{  
+  this.fields[5] = true;        
+}
+
+if (this.pw != null)
+{
+
+if(!this.validpwl(this.pw)) {
+        this.errors.push("La contraseña debe tener mas de 6 caracteres");
+        this.fields[6] = false;        
+      }
+       else
+{  
+  this.fields[6] = true;        
+}
+
+}
+
+
+  
+      if(this.errors.length == 0 && this.fields.indexOf(false) == -1 && this.checked ){ 
+          this.disabled = false;
+          console.log("hola");
+          console.log(this.fields)
+          
+
+      }
+      else
+      {
+        this.disabled = true
+      }
+
+    },
+    validEmail:function(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    validpwc:function(pwc) {
+      
+      return (this.pw == this.pwc)
+    },
+    validpwl:function(pwc) {
+      
+      return (this.pw.length > 6)
+    },
+    checkForm1:function() {
+      
+      this.checked = !this.checked
+      this.checkForm();
+    }
+
+  }
+
+
+
+
+
+      });
+       });
+
+
+
+</script>
