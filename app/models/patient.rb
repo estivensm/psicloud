@@ -28,15 +28,16 @@
 #  count                :integer
 #  agreement_id         :integer
 #  avatar               :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
 #  movil                :string
 #  city                 :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #  data                 :text
 #  hpc_id               :integer
 #  birthdate_month      :integer
 #  birthdate_day        :integer
 #  school_grade         :string
+#  state                :boolean
 #
 
 class Patient < ApplicationRecord

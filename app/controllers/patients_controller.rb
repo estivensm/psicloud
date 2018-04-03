@@ -6,6 +6,9 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
+    puts current_user.current_sign_in_ip
+    @ip =  request.env['REMOTE_ADDR']
+    puts "ippppppppppppppppppppppppppppppppp"
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @patients = Patient.where(user_id: current_user.id).searchp(params[:search]).paginate(page: params[:page],:per_page => 30)

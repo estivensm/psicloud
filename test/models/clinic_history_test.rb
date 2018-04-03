@@ -22,6 +22,8 @@
 #  child_history           :boolean
 #  codigo                  :string
 #  created_date            :datetime
+#  first_contact_state     :boolean
+#  outcome_state           :boolean
 #
 
 require 'test_helper'
