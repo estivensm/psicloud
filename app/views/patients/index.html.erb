@@ -14,19 +14,21 @@
 </div>
 
 <br>
-   <div class="row" >
+   <div class="row"  >
+
       <div class = "row title-table">
-         <div class = "col-md-6">
-            <p class="title-h2"><%=@type%>Pacientes <%=@ip%> <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
+         <div class = "col-md-8">
+            <p class="title-h2"><%=@type%>PACIENTES   <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
          </div>
-         <div class = "col-md-4 paginate text-left title-table1">
+       <!--  <div class = "col-md-4 paginate text-left title-table1">
             <%= will_paginate @patients%>
-         </div>
-         <div class = "col-md-2 ">
+         </div>-->
+         <div class = "col-md-4 text-right">
            
             <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
          </div>
       </div>
+      <br>
       <br>
       <div class = "row busqueda hidden-xs hidden-sm">
    <div class = "col-md-9">
@@ -65,7 +67,8 @@
 </div>
 
 
-      <div class = "row">
+      <div class = "row"> 
+        <div class="col-md-12">
          <table class="table">
             <thead>
                <tr class = "tr-table">
@@ -110,7 +113,14 @@
                <%end%>
             </tbody>
          </table>
+         </div>
       </div>
+   </div>
+   <div class="row">
+        <div class = "col-md-12 paginate text-center title-table1">
+            <%= will_paginate @patients%>
+        </div>
+     
    </div>
 </div>
 

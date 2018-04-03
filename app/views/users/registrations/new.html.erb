@@ -34,6 +34,8 @@
   
 
   <%= f.hidden_field :account, :value => true %>
+    <%= f.hidden_field :ip_address, :value => request.ip %>
+      <%= f.hidden_field :device, :value => request.user_agent %>
   <%= f.hidden_field :rol_id, :value => Rol.where(default: true).last.id %>
  
   
@@ -53,10 +55,10 @@
   </div>
 
      <label class="radio-inline" style="padding-left:0px!important">
-                   <input v-model="checked" @click="checkForm1()" type="checkbox" value="1" name="user[legal]" id="user_legal">He leído y aceptado la autorización para la <a  class="" data-toggle="modal" data-target="#exampleModal">
-  administación de datos personales
+                   <input v-model="checked" @click="checkForm1()" type="checkbox" value="1" name="user[legal]" id="user_legal"> Conozco y acepto la   <a  class="" data-toggle="modal" data-target="#exampleModal">
+  Política para el tratamiento de datos personales
 </a>
- así como los términos y condiciones de uso de la aplicación</span>
+ de PSICLOUD</span>
       </label>
 
 <br>
@@ -93,25 +95,7 @@ Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Autorización para Administración de Datos Personales</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-   
-      </div>
-    </div>
-  </div>
-</div>
+<%=render 'form_politica'%>
 
 
 <script>

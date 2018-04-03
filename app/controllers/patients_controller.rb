@@ -6,12 +6,12 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    puts current_user.current_sign_in_ip
+    puts request.ip
     @ip =  request.env['REMOTE_ADDR']
     puts "ippppppppppppppppppppppppppppppppp"
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-    @patients = Patient.where(user_id: current_user.id).searchp(params[:search]).paginate(page: params[:page],:per_page => 30)
+    @patients = Patient.where(user_id: current_user.id).searchp(params[:search]).paginate(page: params[:page],:per_page => 20)
     @patientspdf = Patient.where(user_id: current_user.id)
     @route = patients_path
   
@@ -68,7 +68,7 @@ end
     @patients = Patient.where(admin_user: current_user.admin_user).searchp(params[:search]).paginate(page: params[:page],:per_page => 30)
      @patientspdf = Patient.where(admin_user: current_user.admin_user)
     @route = all_patients_path
-    @type = "Todos los "
+    @type = "TODOS LOS "
   
      respond_to do |format|
       format.html do 

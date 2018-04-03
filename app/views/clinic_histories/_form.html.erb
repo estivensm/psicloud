@@ -84,8 +84,8 @@
 <br>
       <%= form.fields_for :backgrounds do |contact|  %>
       <div class="clearfix" style="margin-bottom: 30px;">
-         <div class="col-md-12" >
-            <div class="col-md-1 pdd" >
+         <div class="" >
+            <div class="pdd" >
 
               <%= contact.link_to_remove do %>
                <i style = "    color: #e74b09;
@@ -95,36 +95,36 @@
                   left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
             </div>
-            <div class="col-md-4 pdd" >
+            <div class=" pdd" >
                
                   <div class="form-group acc1">
 
-                  <div class="col-md-6">
+                  <div class="">
     
                <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Psicologico', class: 'rb cksi check1' %><span style = "margin-left:10px">Psicologico</span>
                </label>
                   </div>
-              <div class="col-md-6">
+              <div class="">
               <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Psiquiatrico', class: 'rb ckno check1' %><span style = "margin-left:10px">Psiquiatrico</span>
                 </label> </div>
-                   <div class="col-md-6">
+                   <div class="">
                   <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Toxico', class: 'rb ckno check1' %><span style = "margin-left:10px">Toxico</span>
                 </label></div>
-                            <div class="col-md-6">
+                            <div class="">
                   <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Medico', class: 'rb ckno check1' %><span style = "margin-left:10px">Medico </span>
                 </label></div>
            
     </div>  
             </div>
-              <div class="col-md-3 pdd" >
+              <div class="pdd" >
                <%= contact.label "Descripcion" %>
                <%= contact.text_area :description, :class => 'form-control' %>
             </div>
-              <div class="col-md-4 pdd" >
+              <div class=" pdd" >
                <%= contact.label "Adjuntar" %>
                <%= contact.file_field :attachment, :class => 'form-control' %>
             </div>
@@ -158,9 +158,9 @@
 <br>
       <%= form.fields_for :personal_backgrounds do |contact|  %>
       <div class="clearfix" style="margin-bottom: 30px;">
-         <div class="col-md-12" >
+         <div class="" >
 
-          <div class="col-md-1" >
+          <div class="pdd" >
                <%= contact.link_to_remove do %>
                <i style = "    color: #e74b09;
                   font-size: 18px;
@@ -169,36 +169,36 @@
                   left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
             </div>  
-            <div class="col-md-4 pdd" >
+            <div class=" pdd" >
               
                   <div class="form-group acc1">
 
-                  <div class="col-md-6">
+                  <div class="">
                      
                <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Psicologico', class: 'rb cksi check1' %><span style = "margin-left:10px">Psicologico</span>
                </label>
                   </div>
-              <div class="col-md-6">
+              <div class="">
               <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Psiquiatrico', class: 'rb ckno check1' %><span style = "margin-left:10px">Psiquiatrico</span>
                 </label> </div>
-                   <div class="col-md-6">
+                   <div class="">
                   <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Toxico', class: 'rb ckno check1' %><span style = "margin-left:10px">Toxico</span>
                 </label></div>
-                            <div class="col-md-6">
+                            <div class="">
                   <label class="radio-inline">
                <%= contact.radio_button :type_background, 'Medico', class: 'rb ckno check1' %><span style = "margin-left:10px">Medico </span>
                 </label></div>
            
     </div>  
             </div>
-              <div class="col-md-3 pdd" >
+              <div class=" pdd" >
                <%= contact.label "Descripcion" %>
                <%= contact.text_area :description, :class => 'form-control' %>
             </div>
-              <div class="col-md-4 pdd" >
+              <div class=" pdd" >
                <%= contact.label "Adjuntar" %>
                <%= contact.file_field :attachement, :class => 'form-control' %>
             </div>  
@@ -288,7 +288,12 @@
     width: 130px;
     
 }
-  
+.pdd
+{
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px 20px
+}
 </style>
 
 

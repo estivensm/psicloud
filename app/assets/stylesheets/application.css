@@ -173,7 +173,7 @@ label
 
     color: gray;
     font-weight: bold;
-    margin-left: 25px;
+    
     font-size: 25px;
     font-family: 'Days One', sans-serif ;
 
@@ -225,4 +225,8 @@ border-radius: 0px !important;
 
     background: url("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/143/chosen-sprite.png") -42px 1px no-repeat !important;
 
+}
+
+.label-primary {
+    background-color: #5bc0de !important;
 }
