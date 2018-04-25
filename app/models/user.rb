@@ -40,7 +40,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-     belongs_to :rol
+     belongs_to :rol, optional: true
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,
        :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -85,7 +85,9 @@ class User < ApplicationRecord
               Account.create(name: self.company, admin_user: self.id)
               Hpc.create(name: "Particular", admin_user: self.id,user_id: self.id)
               Agreement.create(name: "Particular", admin_user: self.id,user_id: self.id)
-            
+              Rol.create(admin_user: self.id, user_id: self.id, name: "Administrador", default: true,show_user: true,create_user: true,edit_user: true,delete_user: true,show_patient: true,create_patient: true,edit_patient: true,delete_patient: true,show_hc: true,create_hc: true,edit_hc: true,delete_hc: true,show_cita: true,create_cita: true,edit_cita: true,delete_cita: true,show_doc: true,create_doc: true,edit_doc: true,delete_doc: true,show_rol: true,create_rol: true,edit_rol: true,delete_rol: true,configuracion: true,show_all_user: true,show_all_patient: true,show_all_hc: true,show_all_cita: true,show_all_doc: true, show_all_rol: true)
+              Rol.create(admin_user: self.id, user_id: self.id, name: "Psicologo", default: true,show_user: false,create_user: false,edit_user: false,delete_user: false,show_patient: true,create_patient: true,edit_patient: true,delete_patient: true,show_hc: true,create_hc: true,edit_hc: true,delete_hc: true,show_cita: true,create_cita: true,edit_cita: true,delete_cita: true,show_doc: true,create_doc: true,edit_doc: true,delete_doc: true,show_rol: false,create_rol: false,edit_rol: false,delete_rol: false,configuracion: false,show_all_user: false,show_all_patient: false,show_all_hc: false,show_all_cita: false,show_all_doc: false, show_all_rol: false)
+              self.rol_id =  Rol.where(admin_user: self.id).where(name: "Administrador").last.id
                 
             end  
               

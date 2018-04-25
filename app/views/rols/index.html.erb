@@ -22,6 +22,8 @@
     margin-bottom: 0px;
     padding: 10px;
     color: #636363;"><%=rol.name%><span style="font-size:20px;margin-left:20px;">
+     
+     <%if !rol.default%> 
       <%= link_to rol do %>
       <i class="fa fa-eye color-gray icon" aria-hidden="true"></i>
       <%end%>
@@ -30,7 +32,9 @@
       <%end%>
       <%= link_to  rol, method: :delete, data: { confirm: 'Are you sure?' } do%>
       <i class="fa fa-trash color-gray icon" aria-hidden="true"></i>
-      <%end%></span> <span style="font-size:20px;float: right;">Configuracion <%= get_state(rol.configuracion).html_safe %></span></h3>
+      <%end%>
+      <%end%>
+      </span> <span style="font-size:20px;float: right;">Configuracion <%= get_state(rol.configuracion).html_safe %></span></h3>
          </div>
        </div>
          <table class="table" style = "    border: 1px solid #e8e8e8;">
@@ -105,5 +109,6 @@
 {
   text-align: center;
   background:white;
+  color:gray;
 }
 </style>

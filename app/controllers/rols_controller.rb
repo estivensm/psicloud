@@ -4,7 +4,7 @@ class RolsController < ApplicationController
   # GET /rols
   # GET /rols.json
   def index
-    @rols = Rol.where(admin_user: current_user.admin_user).or(Rol.where(default:true)).paginate(page: params[:page],:per_page => 20)
+    @rols = Rol.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
   end
 
   # GET /rols/1
