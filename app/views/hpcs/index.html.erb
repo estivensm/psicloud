@@ -21,7 +21,7 @@
       <th>Descripción</th>
 
 
-      <th width="10%" colspan="3"></th>
+      <th width="10%" ></th>
     </tr>
   </thead>
 
@@ -31,8 +31,16 @@
          <td><%= hpc.name %></td>
         <td><%= hpc.description %></td>
    
-        <td><%= link_to 'Editar', edit_hpc_path(hpc), remote:true %></td>
-        <td><%= link_to 'Eliminar', hpc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>  <%= link_to  edit_hpc_path(hpc),remote: true,  :class => "btnl btn-warning" do %>
+                    
+                     <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
+
+                <% end %>
+                <%= link_to  hpc,method: :delete, data: { confirm: 'Are you sure?' }, :class => "btnl btn-danger" do %>
+                    <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
+
+                    
+                <% end %></td>
                </tr>
                <%end%>
             </tbody>
@@ -40,3 +48,5 @@
       </div>
    </div>
 </div>
+
+
