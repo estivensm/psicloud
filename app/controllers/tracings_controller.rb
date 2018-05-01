@@ -78,6 +78,6 @@ class TracingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tracing_params
-      params.require(:tracing).permit(:admin_user, :user_id, :patient_id, :clinic_history_id, :description, :attachment, :tracing_type)
+      params.require(:tracing).permit(:admin_user, :user_id, :patient_id, :clinic_history_id, :description, :attachment, :tracing_type, :tracing_date)
     end
 end

@@ -27,6 +27,18 @@
 <%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
   <% end %>
 
+ <div class="form-group date_select">
+         <%= form.date_select :tracing_date,{
+            :start_year =>
+            Time.now.year + 1,
+            :end_year => 1900,
+            :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+            :use_short_month => true,
+            :order => [:day, :month, :year]},
+            {:class => 'year form-control line1 required',
+            :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
+            %>
+</div>
   <div class="form-group">
     <%= form.label "Descripción" %>
     <%= form.text_area :description, id: :tracing_description, class: "form form-control area" %>
