@@ -74,6 +74,11 @@ def get_ag
   Agreement.where(admin_user: current_user.admin_user)
 end
 
+def get_users
+
+  User.where(admin_user: current_user.admin_user)
+end
+
 
 def select_relacion
     [

@@ -45,6 +45,7 @@ class Patient < ApplicationRecord
      has_many :appointments , dependent: :destroy
      belongs_to :hpc
      belongs_to :agreement
+     belongs_to :user
      mount_uploader :avatar, AvatarPatientUploader  
      
 
@@ -55,6 +56,15 @@ class Patient < ApplicationRecord
       second_last_name like '%#{search.capitalize}%' or 
       email like '%#{search}%' or 
       document like '%#{search}%'").order(:id)
+  end
+
+  def self.searchp1(search, search1)
+   
+
+    search != "" && !search.nil? ? (scope :todos, -> { where("lower(first_name) like '%#{search.downcase}%' or lower(second_name) like '%#{search.downcase}%' or lower(second_last_name) like '%#{search.downcase}%' or  lower(email) like '%#{search.downcase}%' or lower(document) like '%#{search.downcase}%'")}) : (scope :todos, -> { where.not(id: nil) })
+    search1 != "" ? (scope :psicologo, -> { where(user_id: search1) }) : (scope :psicologo, -> { where.not(id: nil) })
+        todos.psicologo
+    
   end
 
       def self.searchp(search)

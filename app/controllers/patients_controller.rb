@@ -64,15 +64,20 @@ end
 
   def all_patients
     
-   
-    @patients = Patient.where(admin_user: current_user.admin_user).searchp(params[:search]).paginate(page: params[:page],:per_page => 30)
-     @patientspdf = Patient.where(admin_user: current_user.admin_user)
+   if params[:search]
+    @patients = Patient.where(admin_user: current_user.admin_user).searchp1(params[:search], params[:search1]).paginate(page: params[:page],:per_page => 30)
+  else 
+    @patients = Patient.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30)
+  end
+
+
+    @patientspdf = Patient.where(admin_user: current_user.admin_user)
     @route = all_patients_path
     @type = "TODOS LOS "
   
      respond_to do |format|
       format.html do 
-          render "index"
+         
       end
       format.pdf do
         render :pdf => "Pacientes",
