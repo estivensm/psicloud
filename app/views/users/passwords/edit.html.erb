@@ -1,25 +1,34 @@
-<h2>Change your password</h2>
+
+
+<div class="row sign_form">
+<div class="col-lg-4 col-lg-offset-4 login1">
+<p class = "logop text-center" style = "color:#9a9a9a;    font-size: 30px"><img style= "width:200px;" id="slack" src="https://farm5.staticflickr.com/4539/38260696042_45b37e8f87_n.jpg"></p>
+<br>
+
+<h3 class="text-center linka" style="color:gray">Restablecer contraseña</h3><br>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+    <%= f.label :password, "Nueva contraseña" %><br />
+    
+      <em>(Debe tener minimo 6 caracteres)</em><br />
+
+    <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "form form-control" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation, "Confirmar nueva contraseña" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form form-control"  %>
   </div>
-
+<br>
   <div class="actions">
-    <%= f.submit "Change my password" %>
+    <%= f.submit "Cambiar mi contraseña" , class: "btn btn-primary btn-block"%>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+</div>
+
+</div>

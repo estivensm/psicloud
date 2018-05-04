@@ -24,10 +24,12 @@
 #  created_date            :datetime
 #  first_contact_state     :boolean
 #  outcome_state           :boolean
+#  consult_reason_id       :integer
 #
 
 class ClinicHistory < ApplicationRecord
 	belongs_to :patient
+    belongs_to :consult_reason
 	has_one  :child_general_date, dependent: :destroy
     has_one  :personal_history, dependent: :destroy
     has_one  :two_child_history, dependent: :destroy

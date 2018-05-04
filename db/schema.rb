@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430225532) do
+ActiveRecord::Schema.define(version: 20180504163214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180430225532) do
     t.string "name"
     t.string "google_event_id"
     t.string "state"
+    t.text "reason_cancel"
   end
 
   create_table "backgrounds", force: :cascade do |t|
@@ -143,6 +144,7 @@ ActiveRecord::Schema.define(version: 20180430225532) do
     t.datetime "created_date"
     t.boolean "first_contact_state"
     t.boolean "outcome_state"
+    t.integer "consult_reason_id"
   end
 
   create_table "clinic_histories_diagnostics", id: false, force: :cascade do |t|
@@ -150,6 +152,16 @@ ActiveRecord::Schema.define(version: 20180430225532) do
     t.bigint "diagnostic_id"
     t.index ["clinic_history_id"], name: "index_clinic_histories_diagnostics_on_clinic_history_id"
     t.index ["diagnostic_id"], name: "index_clinic_histories_diagnostics_on_diagnostic_id"
+  end
+
+  create_table "consult_reasons", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.string "name"
+    t.text "description"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -445,6 +457,7 @@ ActiveRecord::Schema.define(version: 20180430225532) do
     t.boolean "legal"
     t.string "ip_address"
     t.string "device"
+    t.bigint "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

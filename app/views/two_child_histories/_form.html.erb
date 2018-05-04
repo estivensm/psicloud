@@ -29,12 +29,12 @@
 
             <%val4 = "" 
  action_name == "edit" ? val4 = @two_child_history.nivel_escolar : val4 = "" %>
-     <%= form.select 'nivel_escolar', options_for_select((['Jardin','Prescolar','Transición','Primero de Primaria']), val4), {},{:class => 'form-control'}%>
+     <%= form.select 'nivel_escolar', options_for_select((['Jardin','Prescolar','Transición','Primaria','Secundaria']), val4), {},{:class => 'form-control'}%>
           </div>
     </div>
        <div class="col-md-4">
           <div class="form-group">
-            <%= form.label "Indice academico" %>
+            <%= form.label "Grado" %>
             <%= form.text_field :indice_academico, id: :two_child_history_indice_academico, class: "form form-control" %>
           </div>
     </div>

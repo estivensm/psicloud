@@ -230,3 +230,19 @@ border-radius: 0px !important;
 .label-primary {
     background-color: #5bc0de !important;
 }
+
+.alert-info
+{
+ text-align: center; 
+}
+
+.alert-warning
+{
+ text-align: center; 
+}
+
+.modal-content
+{
+      border-right: 5px solid #5bc0de !important;
+      border-left: 5px solid #5bc0de !important;
+}

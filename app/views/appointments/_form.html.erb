@@ -65,15 +65,20 @@
     <%= form.text_area :observations, id: :appointment_observations, class: "form form-control"  %>
   </div>
 
+
+
 <%val1 = "" 
  action_name == "edit" ? val1 = "" : val1 = "display:none" %>
     <div class="form-group" style="<%=val1%>">
      <%= form.label "Estado" %>
    <%val3 = "" 
  action_name == "edit" ? val3 = @appointment.state : val3 = "Vigente" %>
-    <%= form.select 'state', options_for_select(["Vigente","Vencida", "Cancelada", "Realizada"], val3), {},{:class => 'form-control'}%>
+    <%= form.select 'state', options_for_select(["Vigente", "Vencida", "Cancelada", "Realizada", "No Asistio"], val3), {},{:class => 'form-control state'}%>
   </div>
-
+   <div class="field cancel">
+    <%= form.label "Razon de la Cancelación" %>
+    <%= form.text_area :reason_cancel, id: :appointment_reason_cancel, class: "form form-control"  %>
+  </div>
 
 
 <%= form.hidden_field :patient_id , :value => @patient.id %>
@@ -91,7 +96,17 @@
  </div> </div>
 <script>
 
+a = $('.state').val();
+  console.log(a)
+  if (a == "Cancelada")
+  {
 
+    $('.cancel').show();
+  }
+  else
+  {
+    $('.cancel').hide();
+  }
 
 
   $('.datetimepicker').datetimepicker({
@@ -99,7 +114,21 @@
   });
 
   
+$('.state').on('change', function(){
 
+  a = $('.state').val();
+  console.log(a)
+  if (a == "Cancelada")
+  {
+
+    $('.cancel').show();
+  }
+  else
+  {
+    $('.cancel').hide();
+  }
+
+})
 
 
 </script>

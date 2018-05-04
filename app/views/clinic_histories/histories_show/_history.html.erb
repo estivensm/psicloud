@@ -87,7 +87,8 @@
 <div class = "fields_history">
 <hr>
   <h3 class= "color-gray">2. Motivo de Consulta</h3>
-  <p><%=@clinic_history.consultation_reason%></p>
+   <p><strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
+                        <strong>Descripcion: </strong> <%=@clinic_history.consultation_reason%></p>
 </div>
 <div class = "fields_history">
 <hr>
@@ -179,6 +180,7 @@
   color:gray;
   width: 80%;
   margin-left:10%;
+  min-height: 150px;
   
 }
 
@@ -190,14 +192,20 @@
 }
 .h3
 {
-  color: #17c1ca;
-  width: 80%;
-  margin-left:10%;
+      color: #ffffff;
+    width: 80%;
+    background: #5bc0de;
+    padding: 6px;
+    margin-left: 10%;
   
 }
 .fields_history h3
 {
-  color: #17c1ca;
+color: #ffffff;
+   
+    background: #5bc0de;
+    padding: 6px;
+  
 }
 
     .table1

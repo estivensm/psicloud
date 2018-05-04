@@ -35,6 +35,9 @@
 #  updated_at             :datetime         not null
 #  company                :string
 #  legal                  :boolean
+#  ip_address             :string
+#  device                 :string
+#  phone                  :integer
 #
 
 class User < ApplicationRecord
@@ -83,7 +86,7 @@ class User < ApplicationRecord
             if self.account
               self.admin_user = self.id
               self.count = 1
-              Account.create(name: self.company, admin_user: self.id)
+              Account.create(name: self.company, admin_user: self.id, phone: self.phone,email:self.email)
               Hpc.create(name: "Particular", admin_user: self.id,user_id: self.id)
               Agreement.create(name: "Particular", admin_user: self.id,user_id: self.id)
               Rol.create(admin_user: self.id, user_id: self.id, name: "Administrador", default: true,show_user: true,create_user: true,edit_user: true,delete_user: true,show_patient: true,create_patient: true,edit_patient: true,delete_patient: true,show_hc: true,create_hc: true,edit_hc: true,delete_hc: true,show_cita: true,create_cita: true,edit_cita: true,delete_cita: true,show_doc: true,create_doc: true,edit_doc: true,delete_doc: true,show_rol: true,create_rol: true,edit_rol: true,delete_rol: true,configuracion: true,show_all_user: true,show_all_patient: true,show_all_hc: true,show_all_cita: true,show_all_doc: true, show_all_rol: true)

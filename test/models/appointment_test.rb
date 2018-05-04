@@ -17,6 +17,7 @@
 #  name            :string
 #  google_event_id :string
 #  state           :string
+#  reason_cancel   :text
 #
 
 require 'test_helper'

@@ -12,6 +12,7 @@
 #  tracing_type      :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  tracing_date      :date
 #
 
 require 'test_helper'

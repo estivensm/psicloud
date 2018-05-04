@@ -35,6 +35,9 @@
 #  updated_at             :datetime         not null
 #  company                :string
 #  legal                  :boolean
+#  ip_address             :string
+#  device                 :string
+#  phone                  :integer
 #
 
 require 'test_helper'

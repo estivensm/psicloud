@@ -24,6 +24,7 @@
 #  created_date            :datetime
 #  first_contact_state     :boolean
 #  outcome_state           :boolean
+#  consult_reason_id       :integer
 #
 
 require 'test_helper'

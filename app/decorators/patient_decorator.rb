@@ -87,4 +87,15 @@ module PatientDecorator
 
     ]
   end
+
+
+  def select_type
+    [
+      ['Psicologico', 'Psicologico'],
+      ['Psiquiatrico', 'Psiquiatrico'],
+      ['Toxico', 'Toxico'],
+      ['Medico', 'Medico'],
+
+    ]
+  end
 end

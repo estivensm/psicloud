@@ -24,6 +24,7 @@
 #  created_date            :datetime
 #  first_contact_state     :boolean
 #  outcome_state           :boolean
+#  consult_reason_id       :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

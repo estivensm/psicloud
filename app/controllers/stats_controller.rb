@@ -1,6 +1,9 @@
 class StatsController < ApplicationController
   def index
         #Grafica Edades
+        
+        @tipo_consulta = ConsultReason.all
+        @clinic_histories = ClinicHistory.where(user_id: current_user.id)
         @pacientes_menores = Patient.where(user_id: current_user.id).where('age > ? AND age < ? ',0,13).count
         @pacientes_adolecentes = Patient.where(user_id: current_user.id).where('age > ? AND age < ? ',13,19).count
         @pacientes_mayores = Patient.where(user_id: current_user.id).where('age > ?',18).count
@@ -21,6 +24,8 @@ class StatsController < ApplicationController
             @mes1 <<  @clinic_history1.where('extract(month  from created_date) = ?', (mes+ 1)).count
 
         end  
+        puts @mes
+        puts @mes1 
 
         #Grafica Pacientes Activos e Inactivos  
         @pacientes_activos = Patient.where(user_id: current_user.id).where(state:true).count
@@ -31,6 +36,7 @@ class StatsController < ApplicationController
 
   def general_stats
         #Grafica Edades
+        @tipo_consulta = ConsultReason.all
         @pacientes_menores = Patient.where(admin_user: current_user.admin_user).where('age > ? AND age < ? ',0,13).count
         @pacientes_adolecentes = Patient.where(admin_user: current_user.admin_user).where('age > ? AND age < ? ',13,19).count
         @pacientes_mayores = Patient.where(admin_user: current_user.admin_user).where('age > ?',18).count

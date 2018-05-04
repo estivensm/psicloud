@@ -67,10 +67,11 @@
                   </div>-->
             </div>
          </div>
-         <div class="panel-footer text-right"><input type="checkbox" id="toggle-1">
-            <%= link_to  edit_patient_path(@patient.id), class: "btnl btn-warning" do%>
-            <i class="fa fa-pencil" style = "font-size:20px;"  aria-hidden="true"></i>
+         <div class="panel-footer text-right">
+            <%= link_to  edit_patient_path(@patient.id), class: "btnl btn-warning",style:"margin-right: 20px;  border-radius: 0px !important;padding: 5px;" do%>
+            <i class="fa fa-pencil" style = "font-size:20px"  aria-hidden="true"></i> Editar Paciente
             <%end%>
+            <input type="checkbox" id="toggle-1" >
          </div>
       </div>
    </div>
@@ -101,19 +102,21 @@
                <div class="descnum">
                   <br>
                   <div class="row tit1">
-                     <div class="col-md-8">
+                     <div class="col-md-6">
                         <h2 style="color:gray" >Información Principal</h2>
                      </div>
-                     <div class="col-md-4 text-right">
-                        <button type="button" class="btnl btn-info" data-toggle="modal" data-target="#send-mail"><i class="fa fa-envelope" style = "font-size:30px;"  aria-hidden="true"></i></button>
+                     <div class="col-md-6 text-right">
+        
                         <%= link_to  patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-primary" do%>
-                        <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i>
+                        <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i> Ver
                         <%end%>
-                        <%if current_user.rol.create_hc%>
+                        <%if current_user.rol.edit_hc%>
                         <%= link_to  edit_patient_clinic_history_path(@patient.id,@hs), class: "btnl btn-warning" do%>
-                        <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i>
+                        <i class="fa fa-pencil" style = "font-size:30px;"  aria-hidden="true"></i> Editar
                         <%end%>
+
                         <%end%>
+                                        <button type="button" class="btnl btn-info" data-toggle="modal" data-target="#send-mail"><i class="fa fa-envelope" style = "font-size:30px;"  aria-hidden="true"></i> Enviar</button>
                      </div>
                   </div>
                   <div class="panel panel-default">
@@ -121,7 +124,8 @@
                         <h3 class="panel-title"> Motivo de consulta</h3>
                      </div>
                      <div class="panel-body">
-                        <%= @hs.consultation_reason %>
+                       <strong>Tipo: </strong> <%=@hs.consult_reason.name if @hs.consult_reason%><br><br>
+                        <strong>Descripcion: </strong><%= @hs.consultation_reason %>
                      </div>
                   </div>
                   <div class="panel panel-default">

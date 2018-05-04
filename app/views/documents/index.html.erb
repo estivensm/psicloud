@@ -1,4 +1,15 @@
-<div class="container margin-top-40">
+
+
+<div class="row margin-top-40" >
+   <div class="col-md-12" style="padding-left: 50px;">
+      <%= link_to "inicio", root_path%>
+
+   </div>
+</div>
+
+
+<%if @documents.count != 0%>
+<div class="container">
 
 
    <div class="row" >
@@ -65,4 +76,47 @@
       </div>
 
 
-       
+ 
+ <%else%>
+<div class="container" style="margin-top: 50px">
+    <div class="row">
+        <div class="col-md-12 np">
+
+
+        <h3>! AUN HAS CREADO FORMATOS ¡</h3>
+        
+        <%= link_to "CREA EL PRIMERO", new_document_path, remote: true, class: "crear_paciente btn btn-primary" %>
+        
+        </div>
+      
+    </div>
+</div>
+<%end%>
+
+
+<style>
+  .np
+{
+    text-align: center;
+    color: gray;
+    background: #f4f4f4;
+    font-size: 40px;
+    padding: 30px 0px;
+
+
+}
+.np h3
+{ 
+  
+    font-size: 40px;
+    margin-bottom: 30px;
+  
+
+}
+.crear_paciente
+{
+  font-size: 20px;
+  padding: 20px;
+ 
+}
+</style>

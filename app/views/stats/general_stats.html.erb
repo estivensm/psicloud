@@ -1,5 +1,12 @@
 
-<div class="container-fluid margin-top-40">
+<div class="row margin-top-40" >
+   <div class="col-md-12" style="padding-left: 50px;">
+      <%= link_to "inicio", root_path%>
+
+   </div>
+</div>
+
+<div class="container-fluid">
 <div class="row">
 <div class="col-md-12">
 <h2 class="title-h2">ESTADISTICAS GENERALES</h2>
@@ -39,6 +46,42 @@
         	 <canvas id="myChart4" width="300" height="100" style = "margin-top:30px;"></canvas>
         </div>
     	
+
+        <div class="col-md-12">
+
+        <h3 style="    color: white;
+    background: #25aed2;
+    font-weight: bold;
+    text-align: center;">TIPO DE CONSULTA</h3>
+           <canvas id="myChart5" width="300" height="100" style = "margin-top:30px;"></canvas>
+        </div>
+      
+      <div class="col-md-12">
+         <br>
+          <table class="table">
+            
+            <thead>
+              <tr style="background: #25aed2;    color: white;">
+                <th>Numero</th>
+                <th>Tipo</th>
+                <th>Total</th>
+      
+              </tr>
+            </thead>
+            <tbody>
+             <%@tipo_consulta.each do |tc|%>
+
+              <tr>
+                <td style="width:5%"><%=tc.count%></td>
+                <td style="width:75%"><%=tc.name%></td>
+                <td style="width:20%"><%=tc.clinic_histories.count%></td>
+              </tr>
+
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+
     </div>
 	    
 </div>
@@ -306,6 +349,46 @@ var myChart = new Chart(ctx, {
     options:options
     
 });
+
+
+
+
+  //GRAFICA TIPO DE CONSULTA
+
+var ctx = document.getElementById("myChart5");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [<%@tipo_consulta.each do |tc| %><%= tc.count %>,<%end%>],
+        
+        datasets: [{
+            label: 'Tipo de Consulta',
+            data: [<%@tipo_consulta.each do |tc| %><%=tc.clinic_histories.where(admin_user: current_user.admin_user).count%>,<%end%>],
+            backgroundColor: [<%@tipo_consulta.each do |item| %>"rgba(54, 162, 235, 0.5)",<%end%>
+            ],
+            borderColor: [
+                <%@tipo_consulta.each do |item| %>"rgba(54, 162, 235, 0.5)",<%end%>
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        tooltip: {
+          backgroundColor: "blue"
+        },
+        scales: {
+             yAxes: [{
+            ticks: {
+                max: 50,
+                min: 0,
+                stepSize: 10
+            }
+        }]
+        }
+    }
+});
+
+  //FIN GRAFICA TIPO DE CONSULTA
 
 });
 

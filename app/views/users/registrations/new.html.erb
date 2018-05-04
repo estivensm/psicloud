@@ -20,14 +20,19 @@
 
   
     
-    <input v-model="email" autofocus="autofocus" placeholder="Email" type="email" value="" name="user[email]" id="user_email" v-on:keyup="checkForm()" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
+    <input v-model="email" autofocus="autofocus" placeholder="Email" type="email" value="" name="user[email]" id="user_email" v-on:keyup="checkForm()" class="form-control" style="height: 35px; font-size: 14px; border: 1px solid gainsboro !important;">
 
   </div>
 
 
 <div class="form-group">
   
-  <input v-model="name"  placeholder="Nombre de la Empresa o Persona" type="text" name="user[company]" id="user_company" v-on:keyup="checkForm()" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
+  <input v-model="name"  placeholder="Nombre de la Empresa o Persona" type="text" name="user[company]" id="user_company" v-on:keyup="checkForm()" class="form-control" style="height: 35px; font-size: 14px; border: 1px solid gainsboro !important;">
+    
+  </div>
+
+<div class="form-group">
+   <input v-model="phone"  placeholder="Teléfono o Número Celular" type="number" name="user[phone]" id="user_phone" v-on:keyup="checkForm()" class="form-control" style="height: 35px; font-size: 14px; border: 1px solid gainsboro !important;">
     
   </div>
 
@@ -44,14 +49,14 @@
 
    <div class="form-group">
  
-    <input v-model="pw" autocomplete="off" placeholder="Contraseña" type="password" name="user[password]" id="user_password" v-on:keyup="checkForm()" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
+    <input v-model="pw" autocomplete="off" placeholder="Contraseña" type="password" name="user[password]" id="user_password" v-on:keyup="checkForm()" class="form-control" style="height: 35px; font-size: 14px; border: 1px solid gainsboro !important;">
 
 
     
   </div>
 
    <div class="form-group">
-<input v-model="pwc" v-on:keyup="checkForm()" autocomplete="off" placeholder="Confirmar Contraseña" type="password" name="user[password_confirmation]" id="user_password_confirmation" class="form-control" style="height: 45px; font-size: 16px; border: 1px solid gainsboro !important;">
+<input v-model="pwc" v-on:keyup="checkForm()" autocomplete="off" placeholder="Confirmar Contraseña" type="password" name="user[password_confirmation]" id="user_password_confirmation" class="form-control" style="height: 35px; font-size: 14px; border: 1px solid gainsboro !important;">
   </div>
 
      <label class="radio-inline" style="padding-left:0px!important">
@@ -106,10 +111,11 @@ Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name
             data:{
               email: null,
               name: null,
+              phone: null,
               pw: null,
               pwc: null,
               errors:[],
-              fields:[false, false, false,false,false,false,false],
+              fields:[false, false, false,false,false,false,false,false],
               disabled: true,
               checked: false
             },
@@ -144,6 +150,8 @@ methods:{
 !this.name ? this.fields[2] = false : this.fields[2] = true;
 !this.pw ? this.fields[3] = false : this.fields[3] = true;
 !this.pwc ? this.fields[4] = false : this.fields[4] = true;
+!this.phone ? this.fields[7] = false : this.fields[7] = true;
+
 
 if(!this.validpwc(this.pwc)) {
         this.errors.push("las contraseñas no son iguales");

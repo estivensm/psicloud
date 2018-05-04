@@ -62,7 +62,8 @@
       </th>
    </tr>
    <tr>
-      <td> <%=@clinic_history.consultation_reason%></td>
+      <td>  <p><strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
+                        <strong>Descripcion: </strong> <%=@clinic_history.consultation_reason%></p></td>
    </tr>
 </table>
 <br>
@@ -238,7 +239,7 @@
 
     </tr>
 
-    <tr>
+   <!-- <tr>
       <th colspan="2">Tipos de Semisolidos Introducidos</th>
       <th colspan="2">Tipos de Solidos Introducidos</th>
     </tr>
@@ -246,7 +247,7 @@
     <tr>
       <td colspan="2"><%=@schild.semisolidos%></td>
        <td colspan="2"><%=@schild.solidos%></td>
-    </tr>
+    </tr>-->
 
      <tr>
       
@@ -316,7 +317,7 @@
 
     <tr>
       <th >Nivel Escolar</th>
-      <th >Indice academico</th>
+      <th >Grado</th>
       <th >Escuela</th>
      
      

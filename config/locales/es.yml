@@ -2,10 +2,22 @@ es:
   devise:
     failure:
       not_found_in_database: "Usuario o Contraseña inválido"
-      invalid: "El Usuario no puede estar vacío"
+      invalid: "Usuario o Contraseña inválido"
       unauthenticated: "Debes iniciar sesion para ingresar a esta pagina"
     sessions:
       signed_in: "Bienvenido a Psicloud."  
       signed_out: "Cerraste Sesión Gracias por usar Psicloud."
     registrations:
       signed_up: "Bienvenido, has iniciado Sesión correctamente"
+    passwords:
+      send_instructions: "Un email ha sido enviado a tu correo con las instrucciones para restablecer tu contraseña"  
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "no encontrado"
+      not_locked: "was not locked"
+      not_saved:
+        one: "Ocurrido 1 error de %{resource}:"
+        other: "Ocurrieron %{count} errores el %{resource} no se puede guardar:"
