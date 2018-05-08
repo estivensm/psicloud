@@ -11,6 +11,7 @@ es:
       signed_up: "Bienvenido, has iniciado Sesión correctamente"
     passwords:
       send_instructions: "Un email ha sido enviado a tu correo con las instrucciones para restablecer tu contraseña"  
+      updated: "Tu Conraseña se actualizo correctamente"
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
