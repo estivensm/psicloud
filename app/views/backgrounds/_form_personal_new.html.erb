@@ -3,9 +3,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-        <h4 class="modal-title">Editar Herramienta</h4>
+        <h4 class="modal-title">Crear Antecedente Personal</h4>
       </div>
-<%= form_tag patient_clinic_history_update_tool_test_path(@patient,@clinic_history,@tool_test), method: :patch, remote: true, multipart: true do %>
+<%= form_tag patient_clinic_history_create_background_personal_path(@patient,@clinic_history), remote: true, multipart: true do %>
   <div class="alert alert-danger" style="display:none">
     <ul>
     
@@ -19,30 +19,30 @@
 
 <div class="form-group">
     <%= label_tag "Tipo" %>
-
-      <%= select_tag 'type_tool', options_for_select(@patient.select_tools, @tool_test.type_tool), {:class => 'form-control'}%>
+   
+      <%= select_tag 'type_background', options_for_select(@patient.select_type), {:class => 'form-control'}%>
   </div>
   <div class="form-group">
     <%= label_tag "Descripcion" %>
-    <%= text_area_tag :description,@tool_test.description,:class => 'form-control area' %>
+    <%= text_area_tag :description,nil,:class => 'form-control area' %>
   </div>
 
-<div class="form-group">
-    <%= label_tag "Evidencia" %><br>
+<div class="field">
+     <%= label_tag "Adjunto" %>
     <%= file_field_tag :attachment,  class: "form-control inputfile", id: 'file' %>
-    
     <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
 
- <span class="levidencia" style = "margin-right:10px;"><%= @tool_test.attachment.blank? != true ? "#{@tool_test.attachment.file.filename}" : "Evidencia" %> </span> <%if @tool_test.attachment.blank?   != true %><br>
-<%= check_box_tag :remove_attachment %> 
-   <%= label_tag "Eliminar", "Eliminar", style: "color:red!important" %></label>
-
-   <%end%>
+ <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <br>
+</label><span style="display:none;padding: 1px 10px;
+    background: #c8c8c8;
+    font-size: 19px;
+    margin-left: 10px;
+    border-radius: 8px;" class="quitar">x</span>
       
   </div>
 
-
-<%= hidden_field_tag :tool_test , @tool_test.id %>
+<%= hidden_field_tag :patient_id ,:value =>  @patient.id %>
+<%= hidden_field_tag :clinic_history_id ,:value =>  @clinic_history.id %>
 
 
 
@@ -63,8 +63,6 @@
 </div>
 
 
-
-
 <script>
   
 
@@ -83,31 +81,40 @@
 
     input.addEventListener( 'change', function( e )
     {
-     
+      
       var fileName = '';
       if( this.files && this.files.length > 1 )
         fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-        
-        
       else
         fileName = e.target.value.split( '\\' ).pop();
 
       if( fileName )
+      {
+         $(".quitar").show();
         label.querySelector( 'span' ).innerHTML = fileName;
-      else
+      }
+      else{
         label.innerHTML = labelVal;
-
-
+      }
     });
 
     // Firefox bug fix
     input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
     input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
   });
-
 }( document, window, 0 ));
 
+   $(".quitar").on("click" ,function(){
+      
+        $("#file").val(null);
+         $(".levidencia").html("Adjuntar Evidencia");
+        console.log("afafsd");
+        $(".quitar").hide();
 
+   })
+   $('.quitar').hover(function() {
+        $(this).css('cursor','pointer');
+    });
 </script>
 
 

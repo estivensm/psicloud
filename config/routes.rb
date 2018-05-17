@@ -50,11 +50,18 @@ Rails.application.routes.draw do
         
         get "pdf_completo", to: "clinic_histories#pdf_completo", as: "pdf_completo"
         get "backgrounds", to: "backgrounds#index", as: "backgrounds" 
-        get "backgrounds/:clase/new", to: "backgrounds#new", as: "new_backgrounds" 
+        get "backgrounds/new", to: "backgrounds#new", as: "new_backgrounds" 
         post "backgrounds/create", to: "backgrounds#create", as: "create_background" 
         get "backgrounds/edit/:id", to: "backgrounds#edit", as: "edit_backgrounds" 
         patch "backgrounds/update", to: "backgrounds#update", as: "update_backgrounds" 
         delete "backgrounds/destroy/:id", to: "backgrounds#destroy", as: "destroy_backgrounds"
+
+
+        get "backgrounds/new_background_personal", to: "backgrounds#new_background_personal", as: "new_background_personal" 
+        post "backgrounds/create_background_personal", to: "backgrounds#create_background_personal", as: "create_background_personal" 
+        get "backgrounds/edit_background_personal/:id", to: "backgrounds#edit_background_personal", as: "edit_background_personal" 
+        patch "backgrounds/update_background_personal", to: "backgrounds#update_background_personal", as: "update_background_personal" 
+        delete "backgrounds/destroy_background_personal/:id", to: "backgrounds#destroy_background_personal", as: "destroy_background_personal"
 
         
 

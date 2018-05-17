@@ -10,7 +10,11 @@ a = "noactive"
  <%= link_to "Primer Contacto", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary #{a}" ,style: ""%>
 
 
-<%= link_to "Htas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+<%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+
+
+
+<%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
 
 
 

@@ -42,6 +42,10 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
+         if params[:remove_file]
+              @document.remove_file!
+              @document.save
+            end  
         format.html { redirect_to documents_path, notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
@@ -69,6 +73,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:name, :file, :description, :state, :user_id, :admin_user)
+      params.require(:document).permit(:name, :file, :description, :state, :user_id, :admin_user,:remove_file)
     end
 end

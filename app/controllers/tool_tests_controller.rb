@@ -33,7 +33,10 @@ end
   def update
        @tool_test = ToolTest.find(params[:tool_test])
         if @tool_test.update(description: params[:description],type_tool:params[:type_tool],attachment: params[:attachment])
-           
+             if params[:remove_attachment]
+               @tool_test.remove_attachment!
+              @tool_test.save
+            end  
             redirect_to patient_clinic_history_tool_tests_path(params[:patient_id],params[:clinic_history_id])
   end
   end

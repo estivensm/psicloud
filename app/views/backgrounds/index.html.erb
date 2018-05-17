@@ -1,86 +1,125 @@
-<div class="container">
-<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1><br>  
-<div class="menu-history">
- <%= link_to "Primera Fase", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: "margin-left: 10%;"%>
 
-  <%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary edit-active"%>
-  
-    <%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-
-
-  <%= link_to "Segunda Fase", patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-   <%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+<div class="container margin-top-40">
+<div class="row">
+    <div class="col-md-12" style="padding-left: 50px;">
+        <%= link_to "inicio", root_path%><span> | </span> 
+        <%= link_to "pacientes", patients_path%> <span> | </span> 
+        <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
+    </div>
 </div>
+
+<div class="row">
+<!--<div class="col-md-10">
+	<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1>
+
+</div>
+	<div class="col-md-2">
+	<h1 class="h1-tittle imgedit"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1>
+</div>
+</div>-->
+<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1><br>
+
+<div class= "menu-history">
+
+<%if @clinic_history.child_history%>
+	<%=render "menu_child"%>
+    <%else%>	
+    <%=render "menu"%>
+<%end%>	
+</div>
+
+
 
 <div class="row antecedentes">
 <br>
 <br>
-<div class="col-md-6 descnum2" style="border-right:1px solid #428bca;">
-	<h3><i class="fa fa-user" aria-hidden="true"> </i> Antecedentes Personales</h3>
-<%= link_to 'Nuevo Antecedente', patient_clinic_history_new_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,"Personal"), remote: true, class: "btn btn-primary"  %>
-	<table class="table">
-		
-		<thead>
-			<tr class="tr-table">
-				<th style="width: 20%">Tipo</th>
-				<th style="width: 30%">Descripcion</th>
-				<th style="width: 30%">Adjunto</th>
-				<th style="width: 20%"></th>
+<div class="col-md-6" style="border-right:1px solid #428bca;">
+	<h3><i class="fa fa-users" aria-hidden="true"> </i> Antecedentes Familiares</h3>
+<%= link_to 'Nuevo Antecedente', patient_clinic_history_new_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
+	
 
-			</tr>
-		</thead>
-		<tbody>
-				<% @clinic_history.backgrounds.where(clase: "Personal").each do |back|%>
-			<tr>
-				<td><%= back.type_background %></td>
-				<td><%= back.description %></td>
-				<td><%= (link_to "#{back.attachment.file.filename}", back.attachment_url, class: "linka") if back.attachment_url%></td>
-				<td><%= link_to patient_clinic_history_edit_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id), remote: true, class: "icon" do %>
+
+<hr>
+
+<% @clinic_history.backgrounds.each do |back|%>
+   <div class="panel panel-default">
+                        <div class="panel-heading">
+                                   <div class="row">
+
+              <div class="col-md-6" style="    color: #5bc0de;
+    font-size: 18px;;">
+                    <%= back.type_background %> <span style="font-size:12px;margin-left: 20px;"></span>
+              </div>
+              
+
+              <div class="col-md-6 text-right">
+               <%if back.attachment_url%>
+                   <%= link_to  back.attachment_url, class: "btn btn-primary", style:"margin-right:10px;" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                   <%end%>  
+                   <%end%>
+                      
+        <%= link_to patient_clinic_history_edit_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id), remote: true, class: "icon" do %>
 				<i class="fa fa-pencil" aria-hidden="true"></i>
 				<%end%>
-
-					<%= link_to  patient_clinic_history_destroy_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
+        <%= link_to  patient_clinic_history_destroy_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
 					 <i class="fa fa-trash" aria-hidden="true"></i>
 					<%end%>
-				</td>
-			</tr>
-			<%end%>
-		</tbody>
-	</table>
+              </div>
+           
+            
+            
+          </div>
+                        </div>
+                        <div class="panel-body">
+                      <%= back.description %>
+                        </div>
+                      </div>
+
+<%end%>
+
 </div>
 
-<div class="col-md-6 descnum2">
-	<h3><i class="fa fa-users" aria-hidden="true"></i> Antecedentes Familiares</h3>
-<%= link_to 'Nuevo Antecedente', patient_clinic_history_new_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,"Familiar"), remote: true, class: "btn btn-primary"  %>
-		<table class="table">
-		
-		<thead>
-			<tr class="tr-table">
-				<th style="width: 20%">Tipo</th>
-				<th style="width: 30%">Descripcion</th>
-				<th style="width: 30%">Adjunto</th>
-				<th style="width: 20%"></th>
+<div class="col-md-6">
+	<h3><i class="fa fa-user" aria-hidden="true"></i> Antecedentes Personales</h3>
+<%= link_to 'Nuevo Antecedente', patient_clinic_history_new_background_personal_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
+<hr>
+		<% @clinic_history.personal_backgrounds.each do |back|%>
+   <div class="panel panel-default">
+                        <div class="panel-heading">
+                                   <div class="row">
 
-			</tr>
-		</thead>
-		<tbody>
-			<% @clinic_history.backgrounds.where(clase: "Familiar").each do |back|%>
-			<tr>
-				<td><%= back.type_background %></td>
-				<td><%= back.description %></td>
-				<td><%= (link_to "#{back.attachment.file.filename}", back.attachment_url, class: "linka") if back.attachment_url%></td>
-				<td><%= link_to patient_clinic_history_edit_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id), remote: true, class: "icon" do %>
+              <div class="col-md-6" style="    color: #5bc0de;
+    font-size: 18px;;">
+                    <%= back.type_background %> <span style="font-size:12px;margin-left: 20px;"></span>
+              </div>
+              
+
+              <div class="col-md-6 text-right">
+               <%if back.attachement_url%>
+                   <%= link_to  back.attachement_url, class: "btn btn-primary", style:"margin-right:10px;" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                   <%end%>  
+                   <%end%>
+                      
+        <%= link_to patient_clinic_history_edit_background_personal_path(@clinic_history.patient_id,@clinic_history.id,  back.id), remote: true, class: "icon" do %>
 				<i class="fa fa-pencil" aria-hidden="true"></i>
 				<%end%>
-
-					<%= link_to  patient_clinic_history_destroy_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
+        <%= link_to  patient_clinic_history_destroy_background_personal_path(@clinic_history.patient_id,@clinic_history.id,  back.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
 					 <i class="fa fa-trash" aria-hidden="true"></i>
 					<%end%>
-				</td>
-			</tr>
-			<%end%>
-		</tbody>
-	</table>
+              </div>
+           
+            
+            
+          </div>
+                        </div>
+                        <div class="panel-body">
+                      <%= back.description %>
+                        </div>
+                      </div>
+
+<%end%>
 </div>
 	
 </div>

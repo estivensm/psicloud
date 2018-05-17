@@ -133,7 +133,7 @@ def menu
         @menu = ["active1","na","na","na","na","na", "na","na"]
      elsif controller.controller_name == "views"
         @menu = ["na","na","na","na","active1","na", "na","na"]
-     elsif (controller.controller_name == "patients" && (action_name == "index" || action_name == "new" || action_name == "show")) || controller_name == "child_general_dates" || controller_name == "personal_histories" || controller_name == "two_child_histories" || controller_name == "three_child_histories" || controller_name == "tracings" || controller_name == "tool_tests"
+     elsif (controller.controller_name == "patients" && (action_name == "index" || action_name == "new" || action_name == "show")) || controller_name == "child_general_dates" || controller_name == "personal_histories" || controller_name == "two_child_histories" || controller_name == "three_child_histories" || controller_name == "tracings" || controller_name == "tool_tests" || controller_name == "backgrounds"
         @menu = ["na","na","active1","na","na","na", "na","na"]
      elsif (controller.controller_name == "appointments" && action_name == "citas") || controller.controller_name == "appointments" && action_name == "index"
         @menu = ["na","na","na","active1","na","na", "na","na"]

@@ -85,6 +85,8 @@
       <th>Fecha de Nacimiento</th>
       <th>Edad</th>
       <th>Estado</th>
+      <th>¿Historia?</th>
+
 
 
       <th>Acciones</th>
@@ -100,6 +102,7 @@
         <td><%= patient.birth_date %></td>
          <td><%= patient.age %> Años</td>
              <td class="text-center"><%= get_state(patient.state).html_safe %></td>
+              <td class="text-center"><%= get_state(patient.clinic_histories.count != 0).html_safe %></td>
         <td>
         <%if current_user.rol.show_patient%>
         <%= link_to  patient, class: "btnl btn-primary" do %>

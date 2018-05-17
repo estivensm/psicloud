@@ -2,10 +2,8 @@
 
  <%= link_to "Primer Contacto", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: ""%>
 
+<%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary active-edit"%>
 
- 
-<%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-   
 
  <%= link_to "Historia Familiar", edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), class: "btn btn-primary noactive"%>
 
@@ -14,11 +12,12 @@
 <%= link_to "Historia Personal Parte 1", edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), class: "btn btn-primary noactive"%>
 
 
-<%= link_to "Historia Personal Parte 1", edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), class: "btn btn-primary noactive"%>
-<br><br>
+<%= link_to "Historia Personal Parte 2", edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), class: "btn btn-primary noactive"%>
 
+<br>
+<br>
 
-<%= link_to "Historia Personal Parte 1", edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary noactive"%>
+<%= link_to "Historia Personal Parte 3", edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary noactive"%>
 
 
 
@@ -32,4 +31,16 @@
 
 
 
-<%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary edit-active"%>
+<%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+
+
+<style>
+.menu-history
+{
+    padding: 10px 12px;
+    background: #efefef;
+        text-align: center;
+}
+
+    
+</style>
