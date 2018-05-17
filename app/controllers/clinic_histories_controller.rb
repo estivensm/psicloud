@@ -136,13 +136,13 @@ end
 
           if !@clinic_history.child_history
           
-          redirect_to  patient_path(@clinic_history.patient_id), notice: 'Clinic history was successfully created.' 
+          redirect_to  patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id)  , notice: 'Clinic history was successfully created.' 
            
             else
           
-          redirect_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), notice: 'Clinic history was successfully created.' 
+          redirect_to  patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id)  , notice: 'Clinic history was successfully created.' 
 
-
+          
             end
         }
         format.json { render :show, status: :created, location: @clinic_history }
