@@ -43,7 +43,8 @@ class AppointmentsController < ApplicationController
 
   def index
       @patient = Patient.find(params[:patient_id])
-     @appointments = @patient.appointments.page(params[:page]).per_page(8)
+      @appointments = @patient.appointments.page(params[:page]).per_page(8)
+      @clinic_history = @patient.clinic_histories.first
   end
 
 

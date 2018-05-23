@@ -9,6 +9,10 @@ class TracingsController < ApplicationController
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 3)
     
+      @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+      @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
+      @clinic_history = @patient.clinic_histories.first
+      
   end
 
   # GET /tracings/1

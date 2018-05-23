@@ -226,6 +226,20 @@ end
       @patient.birthdate_month = amonth -bmonth
       @patient.birthdate_day = aday
     end  
+      
+      if @patient.clinic_histories.count != 0
+        if @patient.age < 14
+           @a = @patient.clinic_histories.first
+           @a.child_history = true
+           @a.save
+        else
+        
+           @a = @patient.clinic_histories.first
+           @a.child_history = false
+           @a.save
+        end
+
+       end 
         datau = @patient.data
         @patient.data = ""
         @patient.avatar = convert_data_uri_to_upload(datau)

@@ -7,21 +7,31 @@ a = "noactive"
 	end%>
 
 
- <%= link_to "Primer Contacto", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary #{a}" ,style: ""%>
-
-
-<%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-
-
-
-<%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-
-
-
-
-<%= link_to "Segunda Fase", patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary #{b}"%>
+ <%= link_to edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary #{a}" ,style: "width: 200px;" do%>
+        
+       
+        <%if @clinic_history.first_contact_state%>
+        <i class="fa fa-lock" style="font-size: 16px"></i>
+        <%else%>
+           <i class="fa fa-lock-open" style="font-size: 16px"></i>
+        <%end%>
+         Primer Contacto
+ <% end %>
 
 
 
 
-<%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+
+<%= link_to patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary #{b}", style: "width: 200px;" do%>
+
+        <%if @clinic_history.outcome_state%>
+        <i class="fa fa-lock" style="font-size: 16px"></i>
+        <%else%>
+           <i class="fa fa-unlock" style="font-size: 16px"></i>
+        <%end%>
+         Desenlace
+
+
+<%end%>
+
+

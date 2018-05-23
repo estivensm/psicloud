@@ -1,9 +1,7 @@
-<div class="container">
-<br>
 
-
-<div class = "row row-form">
   <br>
+<div class = "row row-form" style="margin-left: 0px !important;margin-right:  0px !important">
+
 <%= form_for([@patient, @clinic_history, three_child_history]) do |form| %>
   <% if three_child_history.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +14,8 @@
       </ul>
     </div>
   <% end %>
-<h2 style="margin:0px 20px;color:gray"> Historia Personal</h2>
+<h3 style="margin:0px 0px 20px 20px;color:gray" class="title-formulario">HISTORIA PERSONAL PARTE 3</h3>
+
 <hr>
 <h3 style="margin:0px 0px 20px 20px;color:gray">Desarrollo Psicosexual</h3>
 
@@ -236,4 +235,4 @@
   </div>
   </div>
 <% end %>
-  </div>  </div>
+  </div>  

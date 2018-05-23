@@ -1,44 +1,190 @@
 
-<div class="container margin-top-40">
+<div class="container-fluid">
 <div class="row">
-    <div class="col-md-12" style="padding-left: 50px;">
-        <%= link_to "inicio", root_path%><span> | </span> 
-        <%= link_to "pacientes", patients_path%> <span> | </span> 
-        <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
-    </div>
-</div>
 
-<div class="row">
-<!--<div class="col-md-10">
-	<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1>
+<div class="col-md-2" style="padding-left:0px !important;padding-right: 0px !important;">
+ <div class="col-md-12 margin-top-40" style="padding-left: 10px;">
+      <%= link_to "inicio", root_path%><span> | </span> 
+      <%= link_to "pacientes", patients_path%>
+   </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 toppad menu_paciente" style="padding-left:0px !important;padding-right: 0px !important;">
+         <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
+          <i class="fa fa-address-card" style = "font-size:20px;" aria-hidden="true"></i>
+          Informacion General
+         <%end%>
+             <%= link_to  edit_patient_clinic_history_path(@patient.id,@clinic_history.id) , class: "btn btn-primary edit-active" do %>
+          <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
+          Gestionar Historia Clinica
+         <%end%>
+         <%= link_to  patient_clinic_history_backgrounds_path(@patient.id,@clinic_history.id) , class: "btn btn-primary noactive" do %>
+          <i class="fa fa-undo" style = "font-size:20px;" aria-hidden="true"></i>
+          Antecedentes
+         <%end%>
+              <%= link_to  patient_clinic_history_tool_tests_path(@patient.id,@clinic_history.id) , class: "btn btn-primary noactive" do %>
+          <i class="fa fa-wrench" style = "font-size:20px;" aria-hidden="true"></i>
+          Htas de Evaluacion
+         <%end%>
+      
+            <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
+          <i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>
+          Citas
+         <%end%>
+       
+          <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
+          <i class="fa fa-binoculars" style = "font-size:20px;" aria-hidden="true"></i>
+          Ayudas Diagnosticas
+         <%end%>
+     
+              <%if @clinic_history != nil%>
+         <%= link_to   patient_clinic_history_tracings_path(@patient.id,@clinic_history.id) , class: "btn btn-primary noactive" do %>
+          <i class="fa fa-thumb-tack" style = "font-size:20px;" aria-hidden="true"></i>
+          Seguimientos
+         <%end%>
 
+         <%end%> 
+         <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
+          <i class="fa fa-tasks" style = "font-size:20px;" aria-hidden="true"></i>
+          Tareas
+         <%end%>
+   </div>
 </div>
-	<div class="col-md-2">
-	<h1 class="h1-tittle imgedit"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></h1>
-</div>
-</div>-->
-<h1 class="h1-tittle imgedit"><%=action_type%> Historia Clinica de <%=@patient.first_name%> <%=@patient.first_last_name%></h1><br>
+<div class="col-md-10">
+  
+
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 toppad" >
+      <div class="panel panel-info">
+         <div class="panel-heading" style="        background: #f9f9f9;
+            color: #808080;">
+         <div class="row">
+            
+       
+            <div class="col-md-8">
+               
+         
+            <h3 class="panel-title imagen-title" style="font-size: 20px">    <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
+            </div>
+             <div class="col-md-4 text-center">
+            <%= link_to  edit_patient_path(@patient.id), class: "btnl btn-warning",style:"margin-right: 20px;  border-radius: 0px !important;padding: 5px;" do%>
+            <i class="fa fa-pencil" style = "font-size:20px"  aria-hidden="true"></i> Editar Paciente
+            <%end%>
+            <input type="checkbox" id="toggle-1" >
+            </div>
+            </div>  
+         </div>
+         <div class="panel-body" style="padding-top: 10px;">
+            <div class="row img">
+          
+               <div class="col-md-12 col-lg-12 info-p" >
+                  <div class="col-md-3">
+                     <p><strong> <%= @patient.document_type%></strong><br><%= @patient.document%> </p>
+                  </div>
+                   <div class="col-md-3">
+                      <p><strong>Fecha de Nacimiento </strong><br><%= @patient.birth_date%> </p>
+                  </div>
+                   <div class="col-md-3">
+                      <% year = @patient.age == 1 ? "Año" : " Años"
+                     month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+                     day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+                     %>
+                  <p><strong>Edad </strong><br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
+                  </div>
+                
+                   <div class="col-md-3 text-right">
+                      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i></button>
+              
+                       <%if @patient.age >= 18%>
+                  <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+                  
+                  <%end%>
+                  <%elsif @patient.age >= 12 &&  @patient.age < 18%>
+                  <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+                  
+                  <%end%>
+                  <%else%>
+                  <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+                 
+                  <%end%>
+                  <%end%>
+                  </div>
+
+                
+                 
+                  
+                  
+               </div>
+               <div class="col-md-12 col-lg-12 info-p" style= "padding:20px;text-align: center; display: none" >
+                  <hr>
+                  <%if @patient.age >= 18%>
+                  <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                  Consentimiento Informado
+                  <%end%>
+                  <%elsif @patient.age >= 12 &&  @patient.age < 18%>
+                  <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                  Consentimiento Informado
+                  <%end%>
+                  <%else%>
+                  <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:30px;" aria-hidden="true"></i>
+                  Consentimiento Informado
+                  <%end%>
+                  <%end%>
+                  <!--<p style = "font-size:16px"><i class="fa fa-calendar" aria-hidden="true"></i><strong> Proxima Cita: </strong>&nbsp;  3 de julio de 2016  &nbsp; <%= link_to  root_path , :class => "opciones" do %>
+                     <i class="fa fa-pencil" aria-hidden="true"></i> 
+                     <% end %>&nbsp;<%= link_to  root_path , :class => "opciones" do %>
+                     <i class="fa fa-trash" aria-hidden="true"></i> 
+                     <% end %>
+                     </p>-->
+               </div>
+               <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                  </div>-->
+            </div>
+         </div>
+         <div class="panel-footer text-right">
+            
+         </div>
+      </div>
+   </div>
+   
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 " id="app">
+      <div id="exTab2">
+         
+         <div class="tab-content ">
+            <%if current_user.rol.show_hc%>
+            <div class="tab-pane active" id="1">
+                 <div class="row">
+
 
 <div class= "menu-history">
-	
+    
  <%= link_to "Primer Contacto", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: ""%>
- <%= link_to "Antecedentes", patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-      
-
- <%= link_to "Historia Familiar", edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), class: "btn btn-primary noactive"%>
 
 
-
-<%= link_to "Historia Personal Parte 1", edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), class: "btn btn-primary noactive"%>
-
-
-<%= link_to "Historia Personal Parte 2", edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), class: "btn btn-primary noactive"%>
-<br><br>
-<%= link_to "Historia Personal Parte 3", edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary edit-active"%>
+ <%= link_to "Hria Familiar", edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), class: "btn btn-primary noactive"%>
 
 
 
-<%= link_to "Herramientas de Evaluacion", patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
+<%= link_to "Hria Personal Parte 1", edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), class: "btn btn-primary noactive"%>
+
+
+<%= link_to "Hria Personal Parte 2", edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), class: "btn btn-primary noactive"%>
+
+<%= link_to "Hria Personal Parte 3", edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary edit-active"%>
+
 
 
 
@@ -48,16 +194,299 @@
 
 
 
-<%= link_to "Seguimientos", patient_clinic_history_tracings_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive"%>
-
-
-
-
   </div>
 
 <%= render 'form', three_child_history: @three_child_history %>
 
   </div>
+            <%end%>
+           
+                  <!--vue-->
+                  
+            
+               
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+   </div>
+</div>
+<style>
+.btn-nuevo
+{
+  padding: 0px 6px;
+    font-size: 16px;
+}
+.imagen-title img
+{
+      width: 75px;
+}
+   .menu_paciente a
+   {
+      width: 100%;
+      text-align: left !important;
+      padding-top:15px !important;
+      padding-bottom:15px !important; 
+   }
+   .descnum1
+   {
+   padding: 10px;
+   background: #f7f7f7;
+   margin-bottom: 5px;
+   }
+   .descnum1 h4
+   {
+   color: #5d5d5d !important;
+   }
+   .descnum1 p
+   {
+   margin-left: 30px;
+   }
+   .user-row {
+   margin-bottom: 14px;
+   }
+   .user-row:last-child {
+   margin-bottom: 0;
+   }
+   .dropdown-user {
+   margin: 13px 0;
+   padding: 5px;
+   height: 100%;
+   }
+   .dropdown-user:hover {
+   cursor: pointer;
+   }
+   .table-user-information > tbody > tr {
+   border-top: 1px solid rgb(221, 221, 221);
+   width: 25%;
+   }
+   .table-user-information > tbody > tr:first-child {
+   border-top: 1px solid rgb(221, 221, 221);
+   width: 25%;
+   }
+   .table-user-information > tbody > tr > td {
+   border-top: 1px solid rgb(221, 221, 221);
+   width: 25%;
+   }
+   .toppad
+   {margin-top:20px;
+   }
+   .img img
+   {
+   width: 90px;
+   }
+   .img1 img
+   {
+   width: 120px;
+   }
+   h3
+   {
+   font-size:20px;
+   color: #3b84a7;
+   }
+   .info-p p
+   {
+   font-size: 14px;
+   }
+   .tit1
+   {
+    background: whitesmoke;
+    padding-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 0px !important;
+    margin-right:0px !important
+   }
+</style>
+<script>
+   $(document).ready(function() {
+     var panels = $('.user-infos');
+     var panelsButton = $('.dropdown-user');
+     panels.hide();
+   
+     //Click dropdown
+     panelsButton.click(function() {
+         //get data-for attribute
+         var dataFor = $(this).attr('data-for');
+         var idFor = $(dataFor);
+   
+         //current button
+         var currentButton = $(this);
+         idFor.slideToggle(400, function() {
+             //Completed slidetoggle
+             if(idFor.is(':visible'))
+             {
+                 currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+             }
+             else
+             {
+                 currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+             }
+         })
+     });
+   
+   
+     $('[data-toggle="tooltip"]').tooltip();
+   
+     $('button').click(function(e) {
+         e.preventDefault();
+      
+     });
+   });
+</script>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="panel-heading" style="color:#3b84a7">
+               <h3 class="panel-title" style="font-size: 25px"> <%= @patient.first_name %> <%= @patient.second_name %>  <%= @patient.first_last_name %>  <%= @patient.second_last_name %></h3>
+            </div>
+         </div>
+         <div class="modal-body">
+            <div class="" >
+               <div class="panel panel-info">
+                  <div class="panel-body" style="padding-top: 40px;">
+                     <div class="row img1">
+                        <div class="col-md-4 col-lg-4 " align="center">  <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %> </div>
+                        <div class="col-md-6 col-lg-6 info-p" >
+                           <p><strong>Documento: </strong> <%= @patient.document_type%>: <%= @patient.document%> </p>
+                           <p><strong>Fecha de Nacimiento: </strong><%= @patient.birth_date%> </p>
+                           <% year = @patient.age == 1 ? "Año" : " Años"
+                              month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+                              day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+                              %>
+                           <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
+                           <p><strong>Genero: </strong><%= @patient.gender%> </p>
+                        </div>
+                        <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                           <dl>
+                             <dt>DEPARTMENT:</dt>
+                             <dd>Administrator</dd>
+                             <dt>HIRE DATE</dt>
+                             <dd>11/12/2013</dd>
+                             <dt>DATE OF BIRTH</dt>
+                                <dd>11/12/2013</dd>
+                             <dt>GENDER</dt>
+                             <dd>Male</dd>
+                           </dl>
+                           </div>-->
+                        <div class=" col-md-12 col-lg-12 " style = "margin-top:10px;">
+                           <table class="table table-user-information" style = "margin-bottom:0px !important">
+                              <tbody>
+                                 <tr>
+                                    <th>Ocumpacion:</th>
+                                    <td><%= @patient.occupation%></td>
+                                    <th>Profesion:</th>
+                                    <td><%= @patient.profession%></td>
+                                    <th>Ciudad:</th>
+                                    <td><%= @patient.city%></td>
+                                 </tr>
+                                 <tr>
+                                    <th>Direccion:</th>
+                                    <td><%= @patient.address%></td>
+                                    <th>Telefono Fijo:</th>
+                                    <td><%= @patient.phone%></td>
+                                    <th>Telefono Movil:</th>
+                                    <td><%= @patient.movil%></td>
+                                 </tr>
+                                 <tr>
+                                    <th>Email:</th>
+                                    <td><%= @patient.email%></td>
+                                    <th>Estado Civil:</th>
+                                    <td><%= @patient.civil_status%> </td>
+                                    <th>Grupo Etnico:</th>
+                                    <td><%= @patient.ethnic_group%></td>
+                                 </tr>
+                                 <tr>
+                                    <th>EPS:</th>
+                                    <td><%= @patient.hpc.name if @patient.hpc%> </td>
+                                    <th>Convenio:</th>
+                                    <td><%= @patient.agreement.name if @patient.agreement%></td>
+                                    <th>Nombre Contacto:</th>
+                                    <td><%= @patient.contact_name%> (<%=@patient.contact_relationship%>) </td>
+                                 </tr>
+                                 <tr>
+                                    <th>Telefono del Contacto:</th>
+                                    <td><%= @patient.contact_phone%></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<style>
+   .nav-tabs>li>a {
+   background: #277394;
+   color: white;
+   margin-right: 2px;
+   line-height: 1.42857143;
+   border: 1px solid rgba(12, 12, 12, 0.51);
+   border-radius: 0px;
+   }
+</style>
+<script>
+   $(document).on('turbolinks:load',function() {
+       $('#toggle-1').bootstrapToggle({
+         on: 'Activo',
+         off: 'Inactivo'
+       });
+   
+   
+   
+       if (<%=@patient.state%> == true)
+       {
+          $('#toggle-1').bootstrapToggle('on')
+       }
+       else
+       {
+           $('#toggle-1').bootstrapToggle('off')
+       }
+     
+     $('#toggle-1').change(function() {
+         if ( $(this).prop('checked') == true )
+         {
+           $.get("change_state/true/" + <%=@patient.id%>, function(data) {
+           
+           })
+         }
+         else
+         {
+           $.get("change_state/false/" + <%=@patient.id%>, function(data) {
+           })
+         }
+   
+       })
+     });
+   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
 .menu-history
 {
@@ -68,3 +497,57 @@
 
     
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

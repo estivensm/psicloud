@@ -1,9 +1,6 @@
 
-<div class="container">
 <br>
-
-
-<div class = "row row-form">
+<div class = "row row-form" style="margin-left: 0px !important;margin-right:  0px !important">
   <br>
 <%= nested_form_for([@patient, @clinic_history, child_general_date]) do |form| %>
 
@@ -20,7 +17,8 @@
   <% end %>
 
 <div class="row">
-<h2 style="margin:0px 20px;color:gray"> Historia Familiar</h2>
+<h3 style="margin:0px 0px 20px 20px;color:gray" class="title-formulario">HISTORIA FAMILIAR</h3>
+
 <br><div class="col-md-6"> 
   <div class="form-group">
     <%= form.label "Nombre del padre"%>
@@ -73,8 +71,8 @@
 
     </div>
   <br>
- <hr>
-
+ <hr style="    border-top: 3px solid #cfcfcf;">
+<br>
  <div class="row">
 
 <div class="col-md-6">
@@ -134,9 +132,9 @@
 
 
     </div>
-
-    <br>
-<hr>
+<br>
+   <hr style="    border-top: 3px solid #cfcfcf;">
+<br>
 
   
 
@@ -178,8 +176,8 @@
   </div>
    </div>
 </div>
-<br><hr>
-
+<br> <hr style="    border-top: 3px solid #cfcfcf;">
+<br>
    <div class="row">
  <div class="col-md-8">
   <div class="field">
@@ -281,7 +279,8 @@
 <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
 <%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
 
-<br><hr>
+<br> <hr style="    border-top: 3px solid #cfcfcf;">
+<br>
 
    <div class="row text-center">
 <div class="col-md-12">
@@ -296,7 +295,6 @@
 
 </div>
   
-</div>
 
 
 <style>
