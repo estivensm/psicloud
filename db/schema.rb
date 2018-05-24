@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504163214) do
+ActiveRecord::Schema.define(version: 20180523202518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -323,6 +323,21 @@ ActiveRecord::Schema.define(version: 20180504163214) do
     t.boolean "show_all_cita"
     t.boolean "show_all_doc"
     t.boolean "show_all_rol"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "patient_id"
+    t.text "description"
+    t.date "fecha_compromiso"
+    t.integer "appointment_id"
+    t.boolean "estado"
+    t.date "fecha_entrega"
+    t.boolean "cumplimiento"
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "three_child_histories", force: :cascade do |t|

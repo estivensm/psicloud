@@ -1,0 +1,45 @@
+
+<h1 align="center">Tareas Creadas</h1><br>
+   <table class="table" style="width: 80%; margin-left: 10%;">
+    <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Admin</th>
+          <th>Patient</th>
+          <th>Description</th>
+          <th>Fecha compromiso</th>
+          <th>Appointment</th>
+          <th>Estado</th>
+          <th>Fecha entrega</th>
+          <th>Cumplimiento</th>
+          <th>File</th>
+        </tr>
+    </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.user_id %></td>
+        <td><%= task.admin_user %></td>
+        <td><%= task.patient_id %></td>
+        <td><%= task.description %></td>
+        <td><%= task.fecha_compromiso %></td>
+        <td><%= task.appointment_id %></td>
+        <td><%= task.estado %></td>
+        <td><%= task.fecha_entrega %></td>
+        <td><%= task.cumplimiento %></td>
+        <td><%= task.file %></td>
+        <td><%= link_to 'Editar', edit_patient_task_path(@patient.id, task)%>|
+        <td><%= link_to 'Eliminar',patient_tasks_path, method: :delete, data: { confirm: 'Estas Seguro?' }%></td>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <br>
+  <div class="col-md-1 col-md-offset-1">
+    <%= link_to 'Nueva Tarea', new_patient_task_path(@patient.id), class: "btn btn-primary" %>
+  </div>
+  </div>
