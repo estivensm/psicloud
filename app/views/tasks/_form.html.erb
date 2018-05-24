@@ -1,0 +1,68 @@
+
+<div class="container">
+  <div class="col-sm-12">
+    <%= form_for([@patient, task]) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :appointment_id %><br>
+    <%= form.number_field :appointment_id, id: :task_appointment_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_compromiso %><br>
+    <%= form.date_field :fecha_compromiso, id: :task_fecha_compromiso %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Fecha_Entrega %><br>
+    <%= form.date_field :fecha_entrega, id: :task_fecha_entrega %>
+  </div>
+
+    <div class="field">
+    <%= form.label :Estado %><br>
+    <%= form.check_box :estado, id: :task_estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Cumplimiento %><br>
+    <%= form.check_box :cumplimiento, id: :task_cumplimiento %>
+  </div>
+
+    <div class="field">
+    <%= form.label :Descripcion %><br>
+    <%= form.text_area :description, id: :task_description, class: "txt" %>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= form.submit "Crear", class: "btn btn-primary" %>
+    <br>
+
+  </div>
+
+    <%if action_name == "new"%>
+      <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+      <%= form.hidden_field :user_id ,:value =>  current_user.id %>
+      <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
+  <% end %>
+<% end %>
+</div>
+<style type="text/css">
+  .txt{
+    resize: none;
+    width: 30%;
+    height: 10%;
+
+  }
+</style>
