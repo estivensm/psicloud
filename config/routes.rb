@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
  
  
- 
-
-  
-
   get 'loaderio-a37049370b15266d36ffe4514aeca803.txt', to: "home#loader"
   get 'stats/index', as: "stats"
   get 'general_stats', to: 'stats#general_stats' , as: 'general_stats'
@@ -39,6 +35,8 @@ Rails.application.routes.draw do
 
   get "all_patients", to: "patients#all_patients", as: "all_patients"
   resources :patients do 
+    resources :tasks
+    
      resources :appointments 
      
      resources :clinic_histories do 

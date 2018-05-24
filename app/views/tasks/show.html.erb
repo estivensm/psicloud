@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @task.user_id %>
+</p>
+
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @task.admin_user %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @task.patient_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>Fecha compromiso:</strong>
+  <%= @task.fecha_compromiso %>
+</p>
+
+<p>
+  <strong>Appointment:</strong>
+  <%= @task.appointment_id %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @task.estado %>
+</p>
+
+<p>
+  <strong>Fecha entrega:</strong>
+  <%= @task.fecha_entrega %>
+</p>
+
+<p>
+  <strong>Cumplimiento:</strong>
+  <%= @task.cumplimiento %>
+</p>
+
+<p>
+  <strong>File:</strong>
+  <%= @task.file %>
+</p>
+
+<%= link_to 'Editar', edit_task_path(@task) %> |
+<%= link_to 'Volver', patient_tasks_path %>
