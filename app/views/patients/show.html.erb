@@ -20,35 +20,35 @@
          <%end%>
          <%= link_to  patient_clinic_history_backgrounds_path(@patient.id,@hs.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-undo" style = "font-size:20px;" aria-hidden="true"></i>
-          Antecedentes
+          Antecedentes <span class="span-num"><%=@hs.backgrounds.count + @hs.personal_backgrounds.count%></span>
          <%end%>
               <%= link_to  patient_clinic_history_tool_tests_path(@patient.id,@hs.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-wrench" style = "font-size:20px;" aria-hidden="true"></i>
-          Htas de Evaluacion
+          Htas de Evaluacion <span class="span-num"><%=@hs.tool_tests.count%></span>
          <%end%>
       
           
        
-          <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
+         <!-- <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-binoculars" style = "font-size:20px;" aria-hidden="true"></i>
           Ayudas Diagnosticas
-         <%end%>
+         <%end%>-->
      
              
          <%= link_to   patient_clinic_history_tracings_path(@patient.id,@hs.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-thumb-tack" style = "font-size:20px;" aria-hidden="true"></i>
-          Seguimientos
+          Seguimientos <span class="span-num"><%=@hs.tracings.count%></span>
          <%end%>
 
          
          <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-tasks" style = "font-size:20px;" aria-hidden="true"></i>
-          Tareas
+          Tareas <span class="span-num"><%=@hs.tool_tests.count%></span>
          <%end%>
          <%end%> 
            <%= link_to  patient_appointments_path(@patient.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>
-          Citas
+          Citas 
          <%end%>
    </div>
 </div>
@@ -224,6 +224,16 @@
    </div>
 </div>
 <style>
+.span-num
+{
+background: white;
+background: white;
+color: #2e7dab;
+padding: 3px 9px;
+float: right;
+border-radius: 50%;
+
+}
 .imagen-title img
 {
       width: 75px;

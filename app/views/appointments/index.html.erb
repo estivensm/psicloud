@@ -32,22 +32,23 @@
           <i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>
           Citas
          <%end%>
-       
+        <%if @clinic_history != nil%>
           <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-binoculars" style = "font-size:20px;" aria-hidden="true"></i>
           Ayudas Diagnosticas
          <%end%>
      
-              <%if @clinic_history != nil%>
+             
          <%= link_to   patient_clinic_history_tracings_path(@patient.id,@clinic_history.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-thumb-tack" style = "font-size:20px;" aria-hidden="true"></i>
           Seguimientos
          <%end%>
 
-         <%end%> 
+          
          <%= link_to  patient_path(@patient.id) , class: "btn btn-primary noactive" do %>
           <i class="fa fa-tasks" style = "font-size:20px;" aria-hidden="true"></i>
           Tareas
+         <%end%>
          <%end%>
    </div>
 </div>
