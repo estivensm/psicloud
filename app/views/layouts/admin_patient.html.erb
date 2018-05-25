@@ -202,7 +202,7 @@
         
          <%= link_to  patient_clinic_history_backgrounds_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[0]}" do %>
           <i class="fa fa-undo" style = "font-size:20px;" aria-hidden="true"></i>
-          Antecedentes <span class="span-num"><%=@clinic_history.backgrounds.count%></span>
+          Antecedentes <span class="span-num"><%=@clinic_history.backgrounds.count + @clinic_history.personal_backgrounds.count %></span>
          <%end%>
               <%= link_to  patient_clinic_history_tool_tests_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[1]}" do %>
           <i class="fa fa-wrench" style = "font-size:20px;" aria-hidden="true"></i>
