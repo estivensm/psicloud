@@ -114,9 +114,10 @@ end
        
         @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-        @hs = @patient.clinic_histories.first
+        @clinic_history = @patient.clinic_histories.first
         @appointment_l = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc).last
          
+      render :layout => 'admin_patient'   
       
   end
 

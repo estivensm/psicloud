@@ -1,6 +1,7 @@
 class TwoChildHistoriesController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_two_child_history, only: [:show, :edit, :update, :destroy]
-
+   layout 'admin_patient'
   # GET /two_child_histories
   # GET /two_child_histories.json
   def index

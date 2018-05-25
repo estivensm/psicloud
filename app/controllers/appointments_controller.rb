@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+ 
   include ApplicationHelper
 
   # GET /appointments
@@ -43,8 +45,10 @@ class AppointmentsController < ApplicationController
 
   def index
       @patient = Patient.find(params[:patient_id])
-      @appointments = @patient.appointments.page(params[:page]).per_page(8)
+      @appointments = @patient.appointments.page(params[:page]).per_page(8).order(start_datetime: :desc)
       @clinic_history = @patient.clinic_histories.first
+
+       render :layout  => 'admin_patient'
   end
 
 

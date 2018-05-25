@@ -1,6 +1,7 @@
 class ChildGeneralDatesController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_child_general_date, only: [:show, :edit, :update, :destroy]
-
+  layout 'admin_patient'
   # GET /child_general_dates
   # GET /child_general_dates.json
   def index

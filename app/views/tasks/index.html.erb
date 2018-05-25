@@ -1,45 +1,125 @@
+  <div class="row" style = "padding: 10px 45px;">
 
-<h1 align="center">Tareas Creadas</h1><br>
-   <table class="table" style="width: 80%; margin-left: 10%;">
-    <thead>
-        <tr>
-          <th>Usuario</th>
-          <th>Admin</th>
-          <th>Patient</th>
-          <th>Description</th>
-          <th>Fecha compromiso</th>
-          <th>Appointment</th>
-          <th>Estado</th>
-          <th>Fecha entrega</th>
-          <th>Cumplimiento</th>
-          <th>File</th>
-        </tr>
-    </thead>
 
-  <tbody>
+
+<div class = "row title-table">
+         <div class = "col-md-10">
+            <p>TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tasks, :entry_name => 'Seguimientos' %></span> </p>
+         </div>
+        
+         <div class = "col-md-2">
+            <%= link_to 'Nueva Tarea', new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>
+         </div>
+          <div class = "col-md-12 paginate text-left title-table1">
+            <%= will_paginate @tasks%>
+         </div>
+      </div>
+
+  
+
+<div class="row">
+  
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Abiertas</a></li>
+    <li><a data-toggle="tab" href="#menu1">Cerradas</a></li>
+
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      
+
+    <br>
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.user_id %></td>
-        <td><%= task.admin_user %></td>
-        <td><%= task.patient_id %></td>
-        <td><%= task.description %></td>
-        <td><%= task.fecha_compromiso %></td>
-        <td><%= task.appointment_id %></td>
-        <td><%= task.estado %></td>
-        <td><%= task.fecha_entrega %></td>
-        <td><%= task.cumplimiento %></td>
-        <td><%= task.file %></td>
-        <td><%= link_to 'Editar', edit_patient_task_path(@patient.id, task)%>|
-        <td><%= link_to 'Eliminar',patient_tasks_path, method: :delete, data: { confirm: 'Estas Seguro?' }%></td>
-        </td>
-        <td></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    
+    <% color = task.fecha_compromiso >= Date.today ? "success" : "danger" %>
+     <% color_text = task.fecha_compromiso >= Date.today ? "#46765a" : "#a94442" %>
 
-  <br>
-  <div class="col-md-1 col-md-offset-1">
-    <%= link_to 'Nueva Tarea', new_patient_task_path(@patient.id), class: "btn btn-primary" %>
+      <div class="col-md-4">
+          <div class="panel panel-<%=color%>">
+              <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_only_date(task.fecha_compromiso)%><span style="float:right"> <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon", style: "color: #{color_text}" do  %>
+        <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
+                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
+        <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
+              </div>
+              <div class="panel-body" style="height: 100px;max-height: 100px;overflow: hidden;padding-bottom:10px;">
+                <%=task.description%>
+              </div>
+          </div>
+      </div>
+
+
+    <% end %>
+
+    </div>
+    <div id="menu1" class="tab-pane fade">
+     
+      
+          <br>
+    <% @tasks_cerradas.each do |task| %>
+    
+    <% color = task.fecha_compromiso >= Date.today ? "success" : "danger" %>
+     <% color_text = task.fecha_compromiso >= Date.today ? "#46765a" : "#a94442" %>
+
+      <div class="col-md-4">
+          <div class="panel panel-<%=color%>">
+              <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_only_date(task.fecha_compromiso)%><span style="float:right"> <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon", style: "color: #{color_text}" do  %>
+        <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
+                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
+        <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
+              </div>
+              <div class="panel-body" style="height: 100px;max-height: 100px;overflow: hidden;padding-bottom:10px;">
+                <%=task.description%>
+              </div>
+          </div>
+      </div>
+
+
+    <% end %>
+
+
+
+
+    </div>
+
   </div>
+
+
+
+</div>
   </div>
+  
+
+<style>
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: white !important;
+    background-color: #5bc0de !important;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
+}
+  
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

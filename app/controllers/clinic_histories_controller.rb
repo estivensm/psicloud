@@ -1,5 +1,7 @@
 class ClinicHistoriesController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_clinic_history, only: [:show, :edit, :update, :destroy]
+   
 
   # GET /clinic_histories
   # GET /clinic_histories.json
@@ -95,11 +97,14 @@ end
   def new
  @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.new
+render :layout => 'admin_patient'
+
   end
 
   # GET /clinic_histories/1/edit
   def edit
     @patient = Patient.find(params[:patient_id])
+    render :layout => 'admin_patient'
   end
 
   # POST /clinic_histories
@@ -220,7 +225,7 @@ end
 
       @clinic_history = ClinicHistory.find(params[:id])
        @patient = Patient.find(@clinic_history.patient_id)
-         
+         render :layout => 'admin_patient'
       
   end
 

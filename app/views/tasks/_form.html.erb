@@ -1,52 +1,84 @@
 
-<div class="container">
-  <div class="col-sm-12">
-    <%= form_for([@patient, task]) do |form| %>
-  <% if task.errors.any? %>
+
+
+
+
+
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Crear Tarea</h4>
+      </div>
+
+         <div class="modal-body">
+
+  <%= form_for([@patient, @task]) do |form| %>
+  <% if @task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
       <ul>
-      <% task.errors.full_messages.each do |message| %>
+      <% @task.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
+ <!-- <div class="field">
     <%= form.label :appointment_id %><br>
     <%= form.number_field :appointment_id, id: :task_appointment_id %>
-  </div>
+  </div>-->
 
-  <div class="field">
-    <%= form.label :fecha_compromiso %><br>
-    <%= form.date_field :fecha_compromiso, id: :task_fecha_compromiso %>
-  </div>
 
-  <div class="field">
-    <%= form.label :Fecha_Entrega %><br>
-    <%= form.date_field :fecha_entrega, id: :task_fecha_entrega %>
-  </div>
+    
+        <div class="form-group">
+               <%= form.label "Asociar a Cita" %><br>
+               <%= form.select :appointment_id,
+                  @appointments.map { |u| ["#{get_date_hora(u.start_datetime)}", u.id] },
+                             { include_blank: false },
+                             { class: 'form-control'  }
+                  %>
+            </div>
 
-    <div class="field">
-    <%= form.label :Estado %><br>
-    <%= form.check_box :estado, id: :task_estado %>
-  </div>
+ 
 
-  <div class="field">
-    <%= form.label :Cumplimiento %><br>
-    <%= form.check_box :cumplimiento, id: :task_cumplimiento %>
-  </div>
+
+
+
+
+   
+
 
     <div class="field">
     <%= form.label :Descripcion %><br>
-    <%= form.text_area :description, id: :task_description, class: "txt" %>
+    <%= form.text_area :description, id: :task_description, class: "form form-control area"  %>
   </div>
+ <br>
+ <% if action_name == "edit"%>
+  <div class="row">
+  <div class="col-md-6">
+     <div class="field">
+    <%= form.label "¿Cumplio con la Tarea?" %><br>
+    <%= form.check_box :cumplimiento, id: :task_estado, class: "form form-control"  %>
+  </div>
+  </div>
+   <div class="col-md-6">
+  
+  <div class="field">
+    <%= form.label "¿Cerrar Tarea?" %><br>
+    <%= form.check_box :estado, id: :task_cumplimiento, class: "form form-control"  %>
+  </div>
+  </div>
+  
+</div>
+<%end%>
   <br>
 
   <div class="actions">
-    <%= form.submit "Crear", class: "btn btn-primary" %>
+    <%= form.submit "Crear", class: "btn btn-primary btn-block" %>
     <br>
 
   </div>
@@ -55,14 +87,34 @@
       <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
       <%= form.hidden_field :user_id ,:value =>  current_user.id %>
       <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
+      <%= form.hidden_field :estado ,:value =>  false %>
   <% end %>
 <% end %>
 </div>
-<style type="text/css">
-  .txt{
-    resize: none;
-    width: 30%;
-    height: 10%;
+  </div>
+</div>
+</div>
 
-  }
-</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

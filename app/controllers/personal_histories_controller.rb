@@ -1,6 +1,7 @@
 class PersonalHistoriesController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_personal_history, only: [:show, :edit, :update, :destroy]
-
+   layout 'admin_patient'
   # GET /personal_histories
   # GET /personal_histories.json
   def index

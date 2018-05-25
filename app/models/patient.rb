@@ -46,6 +46,7 @@ class Patient < ApplicationRecord
      belongs_to :hpc
      belongs_to :agreement
      belongs_to :user
+     has_many :tasks
      mount_uploader :avatar, AvatarPatientUploader  
      
 

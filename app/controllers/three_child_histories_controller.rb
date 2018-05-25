@@ -1,6 +1,7 @@
 class ThreeChildHistoriesController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_three_child_history, only: [:show, :edit, :update, :destroy]
-
+   layout 'admin_patient'
   # GET /three_child_histories
   # GET /three_child_histories.json
   def index

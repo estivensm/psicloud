@@ -22,7 +22,9 @@
 
 class Appointment < ApplicationRecord
 	belongs_to :patient
+    has_many :tasks
     before_save :end_date
+
 
 	def end_date
 
