@@ -17,10 +17,16 @@
 <hr class = "hr">
 <div class="row">
 <div class="col-md-6 cuadro2">
-  <h4>Logo</h4>
-       <%= @account.logo? ? image_tag(@account.logo_url(:medium)) : ""  %>
+  <h4>Logo</h4><br>
+       <% if @account.logo? %>
+        
+       <%= image_tag(@account.logo_url(:medium))%>
+        <%else%>
+      <%= image_tag "http://michigrafias.com/wp-content/uploads/2018/04/no-imagen.jpg", style: "width:200px"  %>
 
-      
+        <%end%>
+
+      <br><br>
   
       <h4>Informacion General</h4>
         <p><strong>Nombre:</strong> <%= @account.name  %></p>
