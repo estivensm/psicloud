@@ -118,19 +118,19 @@
           
 
                          <li  class="<%=@menu[2]%> li"><%= link_to patients_path,:class => "" do %>
-                           <i class="fa fa-address-card-o icon" color-gray icon" aria-hidden="true"></i>
-                            <span class = "color-gray hidden-xs hidden-sm">Pacientes</span>
+                           <i class="fas fa-address-card icon" color-gray icon" aria-hidden="true"></i>
+                            <span class = "color-gray hidden-xs hidden-sm"> Pacientes</span>
                            <% end %>
                         </li>
 
                                 <li class="<%=@menu[3]%> li"><%= link_to citas_path,:class => "" do %>
-                           <i class="fa fa-calendar icon " color-gray icon" aria-hidden="true"></i>
+                           <i class="fas fa-calendar-check" style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
 
-                            <span class = "color-gray hidden-xs hidden-sm">Citas</span>
+                            <span class = "color-gray hidden-xs hidden-sm"> Citas</span>
                            <% end %>
                         </li>
                          <li  class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
-                           <i class="fa fa-file-text-o"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
+                           <i class="fas fa-file-alt"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
                             <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
                            <% end %>
                         </li>
@@ -138,7 +138,7 @@
                         <li class="<%=@menu[6]%> li"><%= link_to stats_path, :class => "stats" do %>
                            <i class="fa fa-bar-chart-o icon" color-gray icon" aria-hidden="true"></i>
 
-                            <span class = "color-gray hidden-xs hidden-sm">Estadisticas</span>
+                            <span class = "color-gray hidden-xs hidden-sm"> Estadisticas</span>
                            <% end %>
                         </li>
 
@@ -252,7 +252,7 @@
             </div>
              <div class="col-md-4 text-right">
             <%= link_to  edit_patient_path(@patient.id), class: "btn btn-warning" , title:"Editar Paciente" do%>
-            <i class="fa fa-pencil" style = "font-size:20px"  aria-hidden="true"></i> 
+            <i class="fas fa-edit" style = "font-size:20px"  aria-hidden="true"></i> 
             <%end%>
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" title="Ver Paciente"><i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true" ></i></button>
               
@@ -297,8 +297,27 @@
                   <p><strong>Edad </strong><br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
                   </div>
                 
-                   <div class="col-md-3 text-right">
-                      
+                   <div class="col-md-3">
+                        <%if (@clinic_history != nil && action_name != "new") %>
+                              
+                             <p><strong> Frecuencia en Citas</strong><br><span class="cantidad"><%= @clinic_history.quantity_appointment%></span> por <span class="frecuencia"><%= @clinic_history.frequency_appointment%></span>  <button type="" class="change_citas_view btn btn-default"><i class="fas fa-edit" style = "font-size:20px"  aria-hidden="true"></i></button>  </p> 
+                          
+
+                        <%= form_tag change_fcitas_path, remote: true, id: "change_citas" do %>
+                            
+                            <%= number_field_tag :quantity_appointment, nil,:class => 'form-control'%><br>
+                            <%= select_tag 'frequency_appointment', options_for_select(["Semana","Quincena" ,"Mes","Semestre", "Año"], @clinic_history.frequency_appointment),{:class => 'form-control'}%>
+                            <%= hidden_field_tag :clinic_history_id, @clinic_history.id,:class => 'form-control'%>
+                            <%= hidden_field_tag :patient_id, @patient.id%>
+                            <br>
+                            <%= submit_tag "Guardar", :class => 'btn btn-primary'%>
+
+                            <button type="button" class="btn btn-default cancelar">Cancelar</button>
+
+
+                        <%end%>
+
+                        <%end%>
                   </div>
 
                 
@@ -376,6 +395,14 @@
    </div>
 </div>
 <style>
+.btn-default {
+ 
+    border-color: white !important; : 
+    }
+#change_citas
+{
+  display: none;
+}
 .span-num
 {
 background: white;
@@ -473,6 +500,20 @@ border-radius: 50%;
 </style>
 <script>
    $(document).ready(function() {
+     
+
+    $('.cancelar').click(function(){
+       $('#change_citas').fadeOut();
+
+     
+     });
+
+    $('.change_citas_view').click(function(){
+       $('#change_citas').fadeIn();
+
+     
+     });
+
      var panels = $('.user-infos');
      var panelsButton = $('.dropdown-user');
      panels.hide();

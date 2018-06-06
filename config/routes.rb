@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'patients/csv_all'
   post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
   post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
+
+  post "change_fcitas", to: "clinic_histories#change_fcitas" , as: "change_fcitas"
   
   post "send_history", to: "patients#send_history", as: "send_history"
 

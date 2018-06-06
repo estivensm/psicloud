@@ -111,7 +111,7 @@
       <%end%>
         <%if current_user.rol.edit_patient%>
           <%= link_to  edit_patient_path(patient), class: "btnl btn-primary" do%>
-             <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
+             <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
 <%end%>
        <%if current_user.rol.delete_patient%>

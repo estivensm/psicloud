@@ -241,6 +241,15 @@ end
       
   end
 
+
+
+   def change_fcitas
+
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+    @clinic_history.update(patient_id: params[:patient_id],frequency_appointment:params[:frequency_appointment],quantity_appointment: params[:quantity_appointment])
+    @clinic_history.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clinic_history

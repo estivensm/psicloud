@@ -302,21 +302,19 @@
   vertical-align: top;
   padding: 0px 20px
 }
+
+ .error
+   {
+   color: red !important;
+   }
 </style>
 
 
 
 <script>
-  
-  /* if ("<%=action_name%>" == "edit" && <%=@clinic_history.first_contact_state%> ) 
-  {
-    $("textarea").attr('disabled','disabled');
-   $("input[type=radio").attr('disabled','disabled');*/
-    $(".fa-trash").hide();
-    
-  
-
-  }/*
+ $(document).ready(function(){
+     $('#signup').validate();
+   })
 </script>
 
 

@@ -255,25 +255,7 @@
 
 
 
-<div class="col-md-10">
-<h3 style="margin-bottom: 10px;"> Frecuencia en Citas</h3>
-<div class="col-md-3">
-  <div class="form-group">
-    
-    <%= form.label "Numero de Veces" %>
-     <%= form.number_field "quantity_appointment" , class: "form form-control"%>
-  </div>
-</div>
- <div class="col-md-3">
-  <div class="form-group">
-    <%val1 = "" 
- action_name == "edit" ? val1 = @clinic_history.frequency_appointment : val1 = "" %>
-    <%= form.label "Cada cuanto" %>
-     <%= form.select 'frequency_appointment', options_for_select(["Semana","Quincena" ,"Mes","Semestre", "Año"], val1), {},{:class => 'form-control'}%>
-  </div>
-</div>
 
-  </div>
 
 
 
