@@ -202,6 +202,17 @@ render :layout => 'admin_patient'
       @patient = Patient.find(@clinic_history.patient_id)
 
           if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis],outcome_state: params[:outcome_state])
+              
+
+              if @clinic_history.desenlace_first != true
+
+                  @clinic_history.desenlace_created_at = Date.today
+                  @clinic_history.desenlace_first = true
+                  @clinic_history.save
+              end  
+
+
+
               @clinic_history.diagnostics.destroy_all
             if params[:diagnostic_ids] != nil  
               params[:diagnostic_ids].each do |diag|
@@ -238,6 +249,6 @@ render :layout => 'admin_patient'
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_history_params
-      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id,:created_date, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :first_contact_state, :outcome_state,:family_dinamic,:codigo,:consult_reason_id,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
+      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id,:created_date, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :first_contact_state, :outcome_state, :first_child_state, :second_child_state, :third_child_state, :four_child_state,:family_dinamic,:codigo,:consult_reason_id,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
     end
 end

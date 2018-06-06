@@ -48,6 +48,14 @@ class TwoChildHistoriesController < ApplicationController
   def update
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+    if @clinic_history.first_child_third != true
+
+                  @clinic_history.third_child_created_at = Date.today
+                  @clinic_history.first_child_third = true
+                  @clinic_history.save
+                  
+
+         end 
     respond_to do |format|
       if @two_child_history.update(two_child_history_params)
         format.html { redirect_to edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), notice: 'Two child history was successfully updated.' }

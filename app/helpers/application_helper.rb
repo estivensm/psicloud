@@ -8,6 +8,44 @@ def get_state(state)
 end
 
 
+def get_open(state)
+
+  state == true ? "<i class='fas fa-lock'></i>" : "<i class='fas fa-lock-open'></i>"
+  
+end
+
+
+def state_history(history)
+
+  history = ClinicHistory.find(history)
+ if  (history.first_contact_state && !history.child_history) || (history.child_history && history.first_child_state && history.second_child_state && history.third_child_state && history.second_child_state)
+      
+      "<i class='fas fa-lock' style = 'font-size:25px;'></i>"
+
+ else 
+
+     "<i class='fas fa-lock-open' style = 'font-size:25px;'></i>"
+
+ end
+ 
+  
+end
+def state_history_desenlace(history)
+
+  history = ClinicHistory.find(history)
+ if  (history.outcome_state )
+      
+      "<i class='fas fa-lock' style = 'font-size:25px;'></i>"
+
+ else 
+
+     "<i class='fas fa-lock-open' style = 'font-size:25px;'></i>"
+
+ end
+ 
+end
+
+
 
   
 def bootstrap_class_for flash_type

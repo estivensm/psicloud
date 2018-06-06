@@ -11,7 +11,7 @@
         <meta name="turbolinks-cache-control" content="no-cache">
         <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/122/Sin-t_tulo-1.png' %>
         <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
        
@@ -191,12 +191,12 @@
            <%if @clinic_history != nil && action_name != "new"%>
              <%= link_to  edit_patient_clinic_history_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[5]}" do %>
           <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
-          Primer Contacto
+          Primer Contacto <span style="float:right"><%=state_history(@clinic_history.id).html_safe%></span>
          <%end%>
 
          <%= link_to  patient_step3_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[7]}" do %>
           <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
-          Desenlace
+          Desenlace <span style="float:right"><%=state_history_desenlace(@clinic_history.id).html_safe%></span>
          <%end%>
 
         

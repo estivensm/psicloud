@@ -1,20 +1,50 @@
 <div class= "menu-history">
     
- 
- <%= link_to "Primer Contacto", edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: ""%>
+
+
+<%= link_to  edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: "" do%>
+        
+       
+       <%=get_open(@clinic_history.first_contact_state).html_safe%>
+         Primer Contacto
+ <% end %>
 
 
 
- <%= link_to "Hria Familiar", edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), class: "btn btn-primary edit-active"%>
+ <%= link_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), class: "btn btn-primary edit-active" do%>
+       
+         <%=get_open(@clinic_history.first_child_state).html_safe%> Historia Familiar
+ <%end%>
 
 
 
-<%= link_to "Hria Personal Parte 1", edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), class: "btn btn-primary noactive"%>
+<%= link_to  edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), class: "btn btn-primary noactive" do %>
+           <%=get_open(@clinic_history.second_child_state).html_safe%>     Historia Personal P1
+ <%end%>
 
 
-<%= link_to "Hria Personal Parte 2", edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), class: "btn btn-primary noactive"%>
+<%= link_to edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), class: "btn btn-primary noactive" do %>
 
-<%= link_to "Hria Personal Parte 3", edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary noactive"%>
+      <%=get_open(@clinic_history.third_child_state).html_safe%>   Historia Personal P2
+ <%end%>
+
+
+
+<%= link_to edit_patient_clinic_history_three_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.three_child_history.id), class: "btn btn-primary noactive" do %>
+
+            
+         <%=get_open(@clinic_history.four_child_state).html_safe%>   Historia Personal P3
+
+ <%end%>
+
+
+
+
+
+
+
+
+
 
 
 

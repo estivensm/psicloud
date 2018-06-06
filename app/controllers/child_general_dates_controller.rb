@@ -47,9 +47,21 @@ class ChildGeneralDatesController < ApplicationController
   # PATCH/PUT /child_general_dates/1.json
   def update
     @patient = Patient.find(params[:patient_id])
+                     
+
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+    if @clinic_history.first_child_first != true
+
+                  @clinic_history.child_first_created_at = Date.today
+                  @clinic_history.first_child_first = true
+                  @clinic_history.save
+                  
+
+         end 
     respond_to do |format|
       if @child_general_date.update(child_general_date_params)
+
+          
         format.html { redirect_to edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), notice: 'Child general date was successfully updated.' }
         format.json { render :show, status: :ok, location: @child_general_date }
       else

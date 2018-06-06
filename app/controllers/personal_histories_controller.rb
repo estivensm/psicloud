@@ -33,6 +33,7 @@ class PersonalHistoriesController < ApplicationController
     @personal_history = PersonalHistory.new(personal_history_params)
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+
     respond_to do |format|
       if @personal_history.save
         format.html { redirect_to edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), notice: 'Personal history was successfully created.' }
@@ -49,6 +50,14 @@ class PersonalHistoriesController < ApplicationController
   def update
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+        if @clinic_history.first_child_second != true
+
+                  @clinic_history.second_child_created_at = Date.today
+                  @clinic_history.first_child_second = true
+                  @clinic_history.save
+                  
+
+         end 
     respond_to do |format|
       if @personal_history.update(personal_history_params)
         format.html { redirect_to edit_patient_clinic_history_two_child_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.two_child_history.id), notice: 'Personal history was successfully updated.' }
