@@ -1,4 +1,29 @@
 es:
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "no encontrado"
+      not_locked: "was not locked"
+      not_saved:
+        one: "Ocurrido 1 error de %{resource}:"
+        other: "Ocurrieron %{count} errores el %{resource} no se puede guardar:"
+  activerecord:
+    errors:
+      models:
+        clinic_history:
+          attributes:
+            consult_reason: 
+              required: "Es requerido"
+    attributes:
+      user:
+        name: "Nombre"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+      clinic_history:
+        consult_reason_id: "Tipo de Razon de Consulta"
+        consult_reason: "Razon de Consulta"      
   devise:
     failure:
       not_found_in_database: "Usuario o Contraseña inválido"
@@ -12,13 +37,3 @@ es:
     passwords:
       send_instructions: "Un email ha sido enviado a tu correo con las instrucciones para restablecer tu contraseña"  
       updated: "Tu Conraseña se actualizo correctamente"
-  errors:
-    messages:
-      already_confirmed: "was already confirmed, please try signing in"
-      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
-      expired: "has expired, please request a new one"
-      not_found: "no encontrado"
-      not_locked: "was not locked"
-      not_saved:
-        one: "Ocurrido 1 error de %{resource}:"
-        other: "Ocurrieron %{count} errores el %{resource} no se puede guardar:"

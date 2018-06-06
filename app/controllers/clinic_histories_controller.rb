@@ -7,6 +7,7 @@ class ClinicHistoriesController < ApplicationController
   # GET /clinic_histories.json
   def index
     @clinic_histories = ClinicHistory.all
+    render :layout => 'admin_patient'
   end
 
   # GET /clinic_histories/1
@@ -95,9 +96,9 @@ end
 
   # GET /clinic_histories/new
   def new
- @patient = Patient.find(params[:patient_id])
-    @clinic_history = ClinicHistory.new
-render :layout => 'admin_patient'
+      @patient = Patient.find(params[:patient_id])
+      @clinic_history = ClinicHistory.new
+      render :layout => 'admin_patient'
 
   end
 
@@ -151,8 +152,8 @@ render :layout => 'admin_patient'
             end
         }
         format.json { render :show, status: :created, location: @clinic_history }
-      else
-        format.html { render :new }
+      else 
+        format.html { render :new  }
         format.json { render json: @clinic_history.errors, status: :unprocessable_entity }
       end
     end

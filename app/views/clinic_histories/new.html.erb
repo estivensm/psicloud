@@ -9,7 +9,7 @@
 <%= nested_form_for([@patient, @clinic_history], :html => { :id => "signup" })  do |form| %>
   <% if @clinic_history.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@clinic_history.errors.count, "error") %> prohibited this clinic_history from being saved:</h2>
+      <h2><%= pluralize(@clinic_history.errors.count, "error") %> no permite guardar</h2>
 
       <ul>
       <% @clinic_history.errors.full_messages.each do |message| %>
@@ -66,7 +66,7 @@
 
  <div class="form-group">
   <%= form.label "Descripcion" %><br>
-    <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area" %>
+    <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area required", :title => "Es un Campo Obligatorio"%>
   </div>
   <hr>
   <br>

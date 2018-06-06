@@ -188,7 +188,9 @@
          <%end%>
 
 
-           <%if @clinic_history != nil && action_name != "new"%>
+           <%if (@clinic_history != nil && action_name != "new") %>
+           
+
              <%= link_to  edit_patient_clinic_history_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[5]}" do %>
           <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
           Primer Contacto <span style="float:right"><%=state_history(@clinic_history.id).html_safe%></span>
@@ -208,7 +210,7 @@
           <i class="fa fa-wrench" style = "font-size:20px;" aria-hidden="true"></i>
           Htas de Evaluacion <span class="span-num"><%=@clinic_history.tool_tests.count%></span>
          <%end%>
-      
+        
        <%end%> 
             <%= link_to  patient_appointments_path(@patient.id) , class: "btn btn-primary #{menu_patient[2]}" do %>
           <i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>
@@ -216,19 +218,20 @@
          <%end%>
        
       
-     
-            <%if @clinic_history != nil && action_name != "new"%>  
+            
+            <%if (@clinic_history != nil && action_name != "new") %>
          <%= link_to   patient_clinic_history_tracings_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[3]}" do %>
           <i class="fa fa-thumb-tack" style = "font-size:20px;" aria-hidden="true"></i>
           Seguimientos <span class="span-num"><%=@clinic_history.tracings.count%></span>
          <%end%>
+         
 
          <%= link_to  patient_tasks_path(@patient.id) , class: "btn btn-primary #{menu_patient[4]}" do %>
           <i class="fa fa-tasks" style = "font-size:20px;" aria-hidden="true"></i>
           Tareas <span class="span-num"><%=@patient.tasks.count%></span>
          <%end%>
-
-         <%end%> 
+            <%end%> 
+        
    </div>
 </div>
 <div class="col-md-10">

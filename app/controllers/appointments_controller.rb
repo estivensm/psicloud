@@ -98,7 +98,7 @@ class AppointmentsController < ApplicationController
     @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @appointment.save
-
+       
        if current_user.token != nil
 
               t = @appointment.start_datetime
@@ -131,7 +131,7 @@ class AppointmentsController < ApplicationController
 
     end
 
-
+       CitaMailer.programacion_cita(@patient,@appointment).deliver
 
 
         format.html { redirect_to patient_appointments_path(@patient.id), notice: 'Appointment was successfully created.' }

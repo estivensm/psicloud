@@ -80,19 +80,19 @@
 
  <div class="form-group">
   <%= form.label "Descripcion" %><br>
-    <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area" , disabled: @clinic_history.first_contact_state%>
+    <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area required", :title => "Es un Campo Obligatorio"%>
   </div>
   <hr>
   <br>
 <h3> Estado Actual</h3>
   <div class="form-group">
   
-    <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area", disabled: @clinic_history.first_contact_state %>
+    <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: @clinic_history.first_contact_state %>
   </div>
 <h3> Dinamica Familiar</h3>
    <div class="form-group">
     
-    <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area" , disabled: @clinic_history.first_contact_state%>
+    <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area required", :title => "Es un Campo Obligatorio" , disabled: @clinic_history.first_contact_state%>
   </div>
   
 
@@ -321,7 +321,9 @@
 
 
 <script>
-
+ $(document).ready(function(){
+     $('#signup').validate();
+   })
 </script>
 
 
@@ -365,6 +367,10 @@
 
 
 <style>
+ .error
+   {
+   color: red !important;
+   }
 .inputfile {
   width: 0.1px;
   height: 0.1px;
