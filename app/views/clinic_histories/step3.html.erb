@@ -31,6 +31,12 @@
                <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">DSMV</span>       
                <%= select_tag 'diagnostic_ids', options_for_select(get_diagnostic.collect{ |u| ["#{u.count} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
             </div>
+
+            <div class="form-group">
+               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">CIE10</span>       
+               <%= select_tag 'diagnostico_ids', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
+            </div>
+
          </div>
          <div class="col-md-12">
             <br>

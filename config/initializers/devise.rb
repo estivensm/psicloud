@@ -30,6 +30,7 @@ Devise.setup do |config|
   { access_type: "offline", 
     prompt: "consent",
     select_account: true,
+    expiry_date: false,
     scope: 'userinfo.email,calendar' }
 
   # ==> Configuration for any authentication mechanism

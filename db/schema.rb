@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180602175652) do
+ActiveRecord::Schema.define(version: 20180608224201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,13 @@ ActiveRecord::Schema.define(version: 20180602175652) do
     t.datetime "four_child_created_at"
   end
 
+  create_table "clinic_histories_diagnosticos", id: false, force: :cascade do |t|
+    t.bigint "clinic_history_id"
+    t.bigint "diagnostico_id"
+    t.index ["clinic_history_id"], name: "index_clinic_histories_diagnosticos_on_clinic_history_id"
+    t.index ["diagnostico_id"], name: "index_clinic_histories_diagnosticos_on_diagnostico_id"
+  end
+
   create_table "clinic_histories_diagnostics", id: false, force: :cascade do |t|
     t.bigint "clinic_history_id"
     t.bigint "diagnostic_id"
@@ -183,6 +190,17 @@ ActiveRecord::Schema.define(version: 20180602175652) do
     t.string "subjet"
     t.string "email"
     t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "diagnosticos", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.integer "count"
+    t.string "codigo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -136,12 +136,18 @@
 <div class = "fields_history">
 <hr>
   <h3 class= "color-gray">7. Hipotesis diagnostica</h3>
-  <strong>Descripcion</strong><br>
+  <strong>Descripcion</strong>
   <%=@clinic_history.diagnostic_hypothesis%><br><br>
-  <strong>DSMV</strong><br>
+  <strong>DSMV: </strong>
       <%@clinic_history.diagnostics.each do |ch|%>  
-    -  <%=ch.name%><br>
+   <span class="diagnostico"><%=ch.name%></span>
        <%end%>
+    <br>
+    <br>
+   <strong>CIE10: </strong>
+      <%@clinic_history.diagnosticos.each do |ch|%>  
+    <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span>
+       <%end%>     
    
 </div>
 

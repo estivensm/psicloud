@@ -102,6 +102,15 @@ def get_diagnostic
   
 end
 
+def get_diagnostico
+
+  
+  Diagnostico.all
+
+  
+end
+
+
 def get_hpc
 
   Hpc.where(admin_user: current_user.admin_user)

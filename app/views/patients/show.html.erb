@@ -36,9 +36,29 @@
                         <h3 class="panel-title">Hipotesis diagnostica</h3>
                      </div>
                      <div class="panel-body">
-                        <%= @clinic_history.diagnostic_hypothesis %>
+                        <strong>Descripcion: </strong><br>
+                        <%=@clinic_history.diagnostic_hypothesis%><br>
+                        <strong>DSMV: </strong>
+                        <%@clinic_history.diagnostics.each do |ch|%>  
+                        <span class="diagnostico"> <%=ch.name%></span>
+                        <%end%>
+                        <br>
+                        <br>
+                        <strong>CIE10: </strong>
+                        <%@clinic_history.diagnosticos.each do |ch|%>  
+                        <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span> 
+                        <%end%>     
+   
                      </div>
                   </div>
+
+
+               
+
+
+
+
+
                   <div class="panel panel-default">
                      <div class="panel-heading">
                         <h3 class="panel-title"> Objetivo Terapeoutico</h3>
