@@ -67,16 +67,16 @@ class User < ApplicationRecord
       return user
     else
 
-       user = User.new do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = auth.info.email
-        user.password = "alejo0906"
-      end
-      user.token = auth.credentials.token
-      user.refresh_token = auth.credentials.refresh_token
-      user.save
-      return user
+       #user = User.new do |user|
+        #user.provider = auth.provider
+       # user.uid = auth.uid
+       # user.email = auth.info.email
+        #user.password = "alejo0906"
+      #end
+      #user.token = auth.credentials.token
+      #user.refresh_token = auth.credentials.refresh_token
+     # user.save
+      return nil
     end
   end
 
