@@ -188,7 +188,7 @@
          <%end%>
 
 
-           <%if (@clinic_history != nil && action_name != "new") %>
+           <%if (@clinic_history != nil && (action_name != "new" || controller_name == "tracings")) %>
            
 
              <%= link_to  edit_patient_clinic_history_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[5]}" do %>
@@ -219,7 +219,7 @@
        
       
             
-            <%if (@clinic_history != nil && action_name != "new") %>
+            <%if (@clinic_history != nil && (action_name != "new" || controller_name == "tracings")) %>
          <%= link_to   patient_clinic_history_tracings_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[3]}" do %>
           <i class="fa fa-thumb-tack" style = "font-size:20px;" aria-hidden="true"></i>
           Seguimientos <span class="span-num"><%=@clinic_history.tracings.count%></span>
@@ -300,7 +300,7 @@
                    <div class="col-md-3">
                         <%if (@clinic_history != nil && action_name != "new") %>
                               
-                             <p><strong> Frecuencia en Citas</strong><br><span class="cantidad"><%= @clinic_history.quantity_appointment%></span> por <span class="frecuencia"><%= @clinic_history.frequency_appointment%></span>  <button type="" class="change_citas_view btn btn-default"><i class="fas fa-edit" style = "font-size:20px"  aria-hidden="true"></i></button>  </p> 
+                             <p><strong> Frecuencia en Citas</strong><br><span class="cantidad"><%= @clinic_history.quantity_appointment%></span> por <span class="frecuencia"><%= @clinic_history.frequency_appointment%></span>  <button type="" class="change_citas_view btn btn-default" style="border-color: white !important;"><i class="fas fa-edit" style = "font-size:20px;"  aria-hidden="true"></i></button>  </p> 
                           
 
                         <%= form_tag change_fcitas_path, remote: true, id: "change_citas" do %>
@@ -395,10 +395,7 @@
    </div>
 </div>
 <style>
-.btn-default {
- 
-    border-color: white !important; : 
-    }
+
 #change_citas
 {
   display: none;

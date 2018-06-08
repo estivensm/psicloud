@@ -1,12 +1,5 @@
-<div id="contact-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-        <h4 class="modal-title">Crear Seguimiento</h4>
-      </div>
 
-         <div class="modal-body">
+
 
 <%= form_for([@patient,@clinic_history,tracing]) do |form| %>
   <% if tracing.errors.any? %>
@@ -70,13 +63,10 @@
   <div class="modal-footer text-center">
        
         <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
-         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+         <%= link_to "Cancelar" , patient_clinic_history_tracings_path(@patient.id,@clinic_history.id) , class: "btn btn-default"%>
       </div>
 
 <% end %>
-</div>
-  </div>
-</div>
 
 <script>
   
