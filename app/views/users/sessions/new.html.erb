@@ -32,6 +32,14 @@
   
   </div>
 <% end %>
+
+<div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 10px;margin-left: 0px">
+
+<a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" > Autenticación <i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a>
+
+</div>
+
+
 <div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 10px;margin-left: 0px">
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "¿Olvidaste la contraseña?", new_password_path(resource_name)  %><br />
