@@ -1,3 +1,4 @@
+<%if @clinic_history.tracings.count != 0%>
 
         <div class="row" style = "padding: 10px 45px;">
       <div class = "row title-table" >
@@ -54,4 +55,44 @@
 
 
             </div>
+
+
+<%else%>
+ <div class="row">
+        <div class="col-md-12 np">
+
+
+        <h3>! AUN NO HAY SEGUIMIENTOS ¡</h3>
+        
+        <%= link_to "CREA EL PRIMERO", new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), remote:true, class: "btn btn-primary"   %>
+        
+        </div>
+      
+    </div>
+<%end%>
+<style>
+  .np
+{
+    text-align: center;
+    color: gray;
+    background: #f4f4f4;
+    font-size: 40px;
+    padding: 30px 0px;
+
+
+}
+.np h3
+{ 
   
+    font-size: 30px;
+    margin-bottom: 30px;
+  
+
+}
+.crear_paciente
+{
+  font-size: 20px;
+  padding: 20px;
+ 
+}
+</style>

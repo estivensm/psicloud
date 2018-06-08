@@ -1,10 +1,14 @@
+<%if @tasks.count + @tasks_cerradas.count != 0%>
+
+
+
   <div class="row" style = "padding: 10px 45px;">
 
 
 
 <div class = "row title-table">
          <div class = "col-md-10">
-            <p>TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tasks, :entry_name => 'Seguimientos' %></span> </p>
+            <p>TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> </p>
          </div>
         
          <div class = "col-md-2">
@@ -31,6 +35,7 @@
       
 
     <br>
+    <%if @tasks.count != 0%>
     <% @tasks.each do |task| %>
     
     <% color = task.fecha_compromiso >= Date.today ? "success" : "danger" %>
@@ -51,6 +56,19 @@
 
 
     <% end %>
+     <%else%>
+             <div class="row">
+                  <div class="col-md-12 np">
+
+
+                  <h3>! NO HAY TAREAS ABIERTAS ¡</h3>
+                  
+                  <%= link_to "CREAR TAREA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"   %>
+                  
+                  </div>
+      
+    </div>
+            <%end%>  
 
     </div>
     <div id="menu1" class="tab-pane fade">
@@ -89,7 +107,47 @@
 
 </div>
   </div>
+
+
+<%else%>
+ <div class="row">
+        <div class="col-md-12 np">
+
+
+        <h3>! AUN NO HAY TAREAS ¡</h3>
+        
+        <%= link_to "CREA LA PRIMEA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>
+        
+        </div>
+      
+    </div>
+<%end%>
+<style>
+  .np
+{
+    text-align: center;
+    color: gray;
+    background: #f4f4f4;
+    font-size: 40px;
+    padding: 30px 0px;
+
+
+}
+.np h3
+{ 
   
+    font-size: 30px;
+    margin-bottom: 30px;
+  
+
+}
+.crear_paciente
+{
+  font-size: 20px;
+  padding: 20px;
+ 
+}
+</style>  
 
 <style>
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {

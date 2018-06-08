@@ -1,4 +1,5 @@
 
+<%if @appointments.count != 0%>
 
 
 
@@ -33,60 +34,76 @@
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-               <% @appointments.where(state: "Vigente").each do |appointment| %>
-    
-             <% color = appointment.state == "Vigente" ? "success" : "danger" %>
-             <% color_text = appointment.state == "Vigente" ? "#46765a" : "#a94442" %>
+              
+            <%if @appointments.where(state: "Vigente").count != 0%>
+                                  <% @appointments.where(state: "Vigente").each do |appointment| %>
+                        
+                                <% color = appointment.state == "Vigente" ? "success" : "danger" %>
+                                <% color_text = appointment.state == "Vigente" ? "#46765a" : "#a94442" %>
 
-      <div class="col-md-4">
-          <div class="panel panel-<%=color%>">
-
-
-              <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_date_hora(appointment.start_datetime)%><span style="float:right"> <%= link_to edit_patient_appointment_path(appointment.patient_id, appointment), remote:true ,class:"icon", style: "color: #{color_text}" do  %>
-
+                          <div class="col-md-4">
+                              <div class="panel panel-<%=color%>">
 
 
-        <i class="fas fa-edit" aria-hidden="true"></i><%end%>
+                                  <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_date_hora(appointment.start_datetime)%><span style="float:right"> <%= link_to edit_patient_appointment_path(appointment.patient_id, appointment), remote:true ,class:"icon", style: "color: #{color_text}" do  %>
 
 
-                    <%= link_to patient_appointment_path(appointment.patient_id, appointment), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
-        <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
-              </div>
-              <div class="panel-body" style="height: 100px;max-height: 100px;overflow: hidden;padding-bottom:10px;">
-                
-               
-                <strong>Observaciones:</strong> <%=appointment.observations%><br><br>
-                <strong>Estado:</strong> <%=appointment.state%>
-                <%if appointment.state == "Cancelada"%>
-                <button type="button" class="btn btn-danger btn-lg" style="padding: 0px 6px;font-size: 15px;" data-toggle="modal" data-target="#myModal<%=appointment.id%>">
-  ?
-</button>
 
-<div class="modal fade" id="myModal<%=appointment.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Razon de Cancelacion</h4>
-      </div>
-      <div class="modal-body">
-        <%=appointment.reason_cancel%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-     
-      </div>
+                            <i class="fas fa-edit" aria-hidden="true"></i><%end%>
+
+
+                                        <%= link_to patient_appointment_path(appointment.patient_id, appointment), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
+                            <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
+                                  </div>
+                                  <div class="panel-body" style="height: 100px;max-height: 100px;overflow: hidden;padding-bottom:10px;">
+                                    
+                                  
+                                    <strong>Observaciones:</strong> <%=appointment.observations%><br><br>
+                                    
+                                    <%if appointment.state == "Cancelada"%>
+                                    <button type="button" class="btn btn-danger btn-lg" style="padding: 0px 6px;font-size: 15px;" data-toggle="modal" data-target="#myModal<%=appointment.id%>">
+                      ?
+                    </button>
+
+                    <div class="modal fade" id="myModal<%=appointment.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Razon de Cancelacion</h4>
+                          </div>
+                          <div class="modal-body">
+                            <%=appointment.reason_cancel%>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <%end%>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                        <%end%>
+
+            <%else%>
+             <div class="row">
+                  <div class="col-md-12 np">
+
+
+                  <h3>! NO HAY CITAS VIGENTES ¡</h3>
+                  
+                  <%= link_to "CREA CITA", new_patient_appointment_path(@patient.id),remote:true, class: "btn btn-primary"  %>
+                  
+                  </div>
+      
     </div>
-  </div>
-</div>
-<%end%>
-              </div>
-          </div>
-      </div>
-
-
-     <%end%>
-
+            <%end%>            
+ 
     </div>
     <div id="menu1" class="tab-pane fade">
                <% @appointments.where("state != ?", "Vigente").each do |appointment| %>
@@ -156,7 +173,45 @@
 
 
  </div>
+<%else%>
+ <div class="row">
+        <div class="col-md-12 np">
 
+
+        <h3>! AUN NO HAY CITAS ¡</h3>
+        
+        <%= link_to "CREA LA PRIMERA", new_patient_appointment_path(@patient.id),remote:true, class: "btn btn-primary"  %>
+        
+        </div>
+      
+    </div>
+<%end%>
+<style>
+  .np
+{
+    text-align: center;
+    color: gray;
+    background: #f4f4f4;
+    font-size: 40px;
+    padding: 30px 0px;
+
+
+}
+.np h3
+{ 
+  
+    font-size: 30px;
+    margin-bottom: 30px;
+  
+
+}
+.crear_paciente
+{
+  font-size: 20px;
+  padding: 20px;
+ 
+}
+</style>
 
 
 <style>

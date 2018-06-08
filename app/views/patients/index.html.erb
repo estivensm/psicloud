@@ -35,7 +35,7 @@
             <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
          </div>
       </div>
-      <br>
+      <hr>
       <br>
       <div class = "row busqueda hidden-xs hidden-sm">
    <div class = "col-md-9">
@@ -47,12 +47,10 @@
 
   
       
-         <%= submit_tag "Buscar", :class => "btn btn-primary" %>
-            <%= link_to "Cancelar Filtros", @route, style: "    margin-left: 20px;
-    
-    position: relative;
-    top: 8px;"%>
-    
+         <%= submit_tag "Buscar", :class => "btn btn-primary  btn_search" %>
+            <%if params[:commit]%>    
+            <%= link_to "Cancelar Filtros", @route, style: "    margin-left: 20px;position: relative;top: 8px;"%>
+            <% end %>
          <% end %>
       </div>
    </div>
@@ -156,7 +154,15 @@
 .search
    {
    width:250px !important;
-   height: 35px!important;
+   height: 34px!important;
    display:inline-block !important;
+   }
+
+   .btn_search
+   {
+    position: relative;
+    left: -4px;
+    border-radius: 0px 10px 10px 0px;
+    padding: 5px 10px 7px 10px;
    }
 </style>
