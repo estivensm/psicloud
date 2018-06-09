@@ -100,7 +100,7 @@ class User < ApplicationRecord
     puts refreshhash
     puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
     self.token     = refreshhash['access_token']
-    self.expiresat = DateTime.now + refreshhash["expires_in"].to_i.seconds
+    self.expires_ats = DateTime.now + refreshhash["expires_in"].to_i.seconds
 
     self.save
     puts 'Saved'
