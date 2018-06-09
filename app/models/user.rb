@@ -101,7 +101,7 @@ class User < ApplicationRecord
 end
 
 def token_expired?
-  expiry = Time.at(self.expires_ats.to_l) 
+  expiry = Time.at(self.expires_ats.to_i) 
    puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuiii"
   return true if expiry < Time.now # expired token, so we should quickly return
   token_expires_at = expiry
