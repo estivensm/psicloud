@@ -83,12 +83,11 @@ class User < ApplicationRecord
     end
   end
 
-
-  def refresh_token_if_expired
+ def refresh_token_if_expired
   if token_expired?
     
     url = URI("https://accounts.google.com/o/oauth2/token")
-    net = Net::HTTP.post_form(url, { 'refresh_token' => current_user.refresh_token,
+    net = Net::HTTP.post_form(url, { 'refresh_token' => self.refresh_token,
       'client_id'     => "537103906622-4n2q9h81kuucu4vppbg85lqahda3vohb.apps.googleusercontent.com",
       'client_secret' => "bkk9SygmN8ywbNB2tdFdL1VN",
       'grant_type'    => 'refresh_token'})

@@ -124,18 +124,6 @@ class AppointmentsController < ApplicationController
             'attendees' => [ { "email" => @patient.email } ] }
 
             client = Google::APIClient.new
-               if client.authorization.expired? && client.authorization.refresh_token
-                  begin
-                      client.authorization.grant_type = 'refresh_token'
-                      token_hash = client.authorization.fetch_access_token!
-                      goog_auth.access_token = token_hash['access_token']
-                      client.authorization.expires_in = goog_auth.expires_in || 3600
-                      client.authorization.issued_at = goog_auth.issued_at = Time.now
-                      goog_auth.save!
-                  rescue
-                      redirect_to user_omniauth_authorize_path(:google_oauth2)
-                  end
-             end  
             client.authorization.refresh_token = current_user.refresh_token_if_expired
             client.authorization.access_token = current_user.token
             service = client.discovered_api('calendar', 'v3')
