@@ -1,0 +1,12 @@
+ <% if @state %>
+
+ $('.clase_img img').attr("src" ,"<%=@user.firma_psicologo%>");
+ $('#firma_paciente').val("");
+ $('.alert-success').css("display", "inline-block");
+    setTimeout(function() {
+         $('.alert-success').fadeOut();
+    }, 2000);
+
+<%end%>    
+
+

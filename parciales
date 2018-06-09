@@ -238,3 +238,32 @@ var myChart = new Chart(ctx, {
   </div>
   
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <%if @patient.age >= 18%>
+                  <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary", title:"Consentimiento Informado" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+                  
+                  <%end%>
+                  <%elsif @patient.age >= 12 &&  @patient.age < 18%>
+                  <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary", title:"Consentimiento Informado" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+                  
+                  <%end%>
+                  <%else%>
+                  <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary" , title:"Consentimiento Informado" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+                 
+                  <%end%>
+ <%end%>

@@ -400,10 +400,48 @@ end
   def crear_firma_paciente
 
     @patient = Patient.find(params[:patient_id])
-    @patient.update(firma_paciente: params[:firma_paciente])
-    @patient.save
+   
+   # if !params[:firma_paciente].blank?
+      if @patient.update(firma_paciente: params[:firma_paciente]) 
+        
+        @state = true
+
+      
+      end 
+    #end 
     
   end
+
+  def crear_firma_padre
+
+    @patient = Patient.find(params[:patient_id])
+   
+   # if !params[:firma_paciente].blank?
+      if @patient.update(firma_padre: params[:firma_padre]) 
+        
+        @state = true
+
+      
+      end 
+    #end 
+    
+  end
+
+def crear_firma_madre
+
+    @patient = Patient.find(params[:patient_id])
+   
+   # if !params[:firma_paciente].blank?
+      if @patient.update(firma_madre: params[:firma_madre]) 
+        
+        @state = true
+
+      
+      end 
+    #end 
+    
+  end
+
 
 
 

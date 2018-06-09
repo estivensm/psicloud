@@ -39,7 +39,7 @@ Una vez leído y comprendido el procedimiento que se seguirá, se firma el prese
 	<thead>
 	    <tr>
 			<th><img src="<%=@patient.firma_paciente%>" alt=""></th>
-			<th></th>
+			<th><img src="<%=@patient.user.firma_psicologo%>" alt=""></th>
 		</tr>
 		<tr>
 			<th>Firma del Paciente</th>
@@ -47,13 +47,13 @@ Una vez leído y comprendido el procedimiento que se seguirá, se firma el prese
 			</tr>
             
             <tr>
-			<th>T.I</th>
-			<th>CC</th>
+			<th>C.C: <%=@patient.document%></th>
+			<th>C.C: <%=@patient.user.document%></th>
 			</tr>
 
 			<tr>
             <th></th>
-            <th>T.P</th>    
+            <th>T.P: <%=@patient.user.medical_record%></th>    
 			</tr>
 
 			

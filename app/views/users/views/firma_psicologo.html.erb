@@ -1,69 +1,35 @@
-  
 
-<div class="container">
+
+   <div class="container">
    <div class="col-md-12">
-      <div class="row margin-top-40" >
+<div class="row margin-top-40" >
    <div class="col-md-12" style="padding-left: 50px;">
-      <%= link_to "Volver al Paiente", patient_path(@patient.id)%>
+      <%= link_to "Volver al Usuario", show_user_path(@user.id)%>
 
    </div>
-</div>
-      <br><br>
-      <div class="pdf">           
-        <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-danger", title:"Consentimiento Informado" do  %> Generar PDF 
-        <i class="far fa-file-pdf" style = "font-size:20px;" aria-hidden="true"></i>
-        <%end%> 
-      </div>
+</div>      
+    <div class="row text-center" style="padding: 20px 50px;">
 
+          <div class="col-md-12">
 
-      
-      <%a = get_date_array(Time.now)%>
-      <h5 >
-         CONSENTIMIENTO INFORMADO PLENO
-      </h5>
-      <p style="text-align: justify;font-size: 13px;padding: 20px 50px;">
-         Este tipo de consentimiento lo da y lo firma el usuario en primera persona, sin la intervención de un tercero.
-         <br><br>
-         Certifico que he recibido y comprendido que la información que reciba el psicólogo es de
-         carácter confidencial y que la podrá revelar<sup>1</sup> si durante la evaluación o el tratamiento, el
-         psicólogo detecta de manera clara que hay un evidente daño para mi o para terceros (se
-         le explicará el destinatario y el manejo de la información y las consecuencias de la misma).
-         En caso de ambientes legales, se hará especial énfasis en la no autoincriminación y la no
-         observancia del secreto profesional. Se me indicó que el procedimiento a seguir es
-         (especificar de manera clara y comprensible el procedimiento que se va a seguir. Si es
-         necesario, antes de la intervención terapéutica, indicar que se hará una evaluación
-         mediante la aplicación de pruebas; estas se deberán listar aclarando el objeto de cada una
-         de ellas. Asimismo, se indicará la impresión diagnostica, se ello fuere el caso. Si el
-         psicólogo tiene una impresión diagnóstica en los términos del DSM o del CIE, así sea
-         tentativo, y que se da como consecuencia de la evaluación, se lo hará saber al consultante
-         indicándole qué tipo de tratamiento se llevará a cabo, explicándole en qué consiste este:
-         desensibilización sistemática, restructuración cognoscitiva, habilidades sociales y
-         comunicación asertiva, etcétera) y el posible tiempo que lleve el tratamiento. También se
-         me indicó yo puedo revocar el consentimiento o dar por terminado en cualquier momento
-         la relación entre psicólogo y yo, cuando lo considere pertinente, sin que ello implique
-         ningún tipo de consecuencia para mí.
-         <br><br>
-         Una vez leído y comprendido el procedimiento que se seguirá, se firma el presente consentimiento el día <strong><%= a[0]%></strong> del mes de <strong><%= a[2]%> </strong> de  <strong><%= a[4]%>, en la ciudad de Medellín.
-      </p>
-      <br><br>
-      
-
-      <div class="row" style="padding: 20px 50px;">
+              <h5>Acutalizar Firma</h5>
+            
+          </div>
           <div class="col-md-6">
                 
                 
                    
                     
                     <div class="clase_img" >
-                       <img src="<%=@patient.firma_paciente%>" alt=""><br>
+                       <img src="<%=@user.firma_psicologo%>" alt=""><br>
                      
                       <br>
-                      <p>Firma del Paciente </p>
-                    <p>C.C: <%=@patient.document%></p> 
+                      <p>Firma del Psicologo </p>
+                    
                     </div>
                   </div>    
-                  <div class="col-md-6">
-                         <div  class= "clase_form" >
+                  <div class="col-md-6 ">
+                         <div  class= "clase_form text-left" >
                       
                    
                     
@@ -73,9 +39,9 @@
                     </div>
                         
                         <br>
-                        <div><%=form_tag crear_firma_paciente_path, remote: true, class: "form_firma" do %>
-                            <%= hidden_field_tag :firma_paciente, nil, id: "firma_paciente"%>
-                            <%= hidden_field_tag :patient_id, @patient.id, id: "firma_paciente"%>
+                        <div><%=form_tag crear_firma_psicologo_path, remote: true, class: "form_firma" do %>
+                            <%= hidden_field_tag :firma_psicologo, nil, id: "firma_paciente"%>
+                            <%= hidden_field_tag :user_id, @user.id, id: "firma_paciente"%>
                             <%= submit_tag "Confirmar", id: "save-png"%>
 
                         <%end%> 
@@ -93,10 +59,9 @@
       </div>
 
 
-      
-      <br>
-      <br>
-      <style>
+
+
+<style>
          th
          {
          width: 50%;
@@ -108,7 +73,7 @@
          background: #5bc0de;
          color: white;
          padding: 12px;
-         font-size: 20px;
+         font-size: 36px;
          }
          .pdf
          {
@@ -118,10 +83,10 @@
          {
           display: inline-block;
          }
+
+
       </style>
-      <p style="text-align: justify;font-size: 10px;padding: 20px 50px;width: 100%;">
-         <sup>1</sup> En los procedimientos relacionados con la psicología forense, se deberá especificar que la información dada al psicólogo se condesará en un informe que le será entregado al abogado y que lo hará público en los escenarios jurídicos correspondientes.
-      </p>
+
    </div>
 </div>
 
@@ -151,6 +116,7 @@
    border:1px solid whitesmoke;
    }
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 <script>
    
@@ -217,6 +183,5 @@
                  ctx.globalCompositeOperation = 'destination-out';
                  });
 
-  });
-
-</script>
+  });               
+</script>      

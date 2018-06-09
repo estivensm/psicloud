@@ -87,6 +87,11 @@
                            <span style = "color:gray!important" >Editar Usuario</span>
                            <% end %>
                         </li>
+                        <li> <%= link_to show_user_path(current_user.id), :class => "indicadores" do %>
+                           <span class="fa fa-eye" style = "color:gray"></span>
+                           <span style = "color:gray!important" >Ver Usuario</span>
+                           <% end %>
+                        </li>
                      </ul>
                   </li>
                </ul>

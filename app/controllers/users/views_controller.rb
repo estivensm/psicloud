@@ -18,6 +18,13 @@ class Users::ViewsController < Devise::RegistrationsController
 
     end
 
+    def show_user
+        
+        @user = User.find(params[:id])
+
+
+    end
+
     
     def create_user
         maximum = User.where(admin_user: current_user.admin_user).maximum(:count) + 1 
@@ -46,5 +53,28 @@ class Users::ViewsController < Devise::RegistrationsController
   
      
 end
+
+
+def firma_psicologo
+
+      @user = User.find(params[:id])
+  
+end
+
+
+def crear_firma_psicologo
+
+    @user = User.find(params[:user_id])
+   
+   # if !params[:firma_paciente].blank?
+      if @user.update(firma_psicologo: params[:firma_psicologo]) 
+        
+        @state = true
+
+      
+      end 
+    #end 
+    
+  end
 
 end	

@@ -55,7 +55,6 @@ class ClinicHistory < ApplicationRecord
 	has_and_belongs_to_many :diagnostics, dependent: :destroy
     has_and_belongs_to_many :diagnosticos, dependent: :destroy
    
-    has_many :cieds , dependent: :destroy
     after_create :create_familiar_history
   
     accepts_nested_attributes_for :backgrounds, :allow_destroy => true

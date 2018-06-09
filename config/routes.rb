@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'patients/csv_all'
 
   post "crear_firma_paciente" , to: "patients#crear_firma_paciente" , as: "crear_firma_paciente"
+  post "crear_firma_padre" , to: "patients#crear_firma_padre" , as: "crear_firma_padre"
+  post "crear_firma_madre" , to: "patients#crear_firma_madre" , as: "crear_firma_madre"
   post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
   post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
 
@@ -100,6 +102,9 @@ Rails.application.routes.draw do
     get '/users/:id/edit', to: 'users/views#edit_user', as: "edit_user"
     post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
     delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
+    get '/users/:id', to: 'users/views#show_user', as: "show_user"
+    get '/users/firma_psicologo/:id', to: 'users/views#firma_psicologo', as: "firma_psicologo"
+    post "/users/crear_firma_psicologo" , to: "users/views#crear_firma_psicologo" , as: "crear_firma_psicologo"
 
   end
 
