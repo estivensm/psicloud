@@ -1,7 +1,169 @@
-<p>CONSENTIMIENTO INFORMADO PARA ADOLESCENTES (12 A 18 AÑOS)
+<div class="container">
+   <div class="col-md-12">
+      <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary", title:"Consentimiento Informado" do  %>
+      <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+      <%end%> 
+      <%a = get_date_array(Time.now)%>
+      <h5 >
+         CONSENTIMIENTO INFORMADO PLENO
+      </h5>
+      <p style="text-align: justify;font-size: 13px;padding: 20px 50px;">
+         Este tipo de consentimiento lo da y lo firma el usuario en primera persona, sin la intervención de un tercero.
+         <br><br>
+         Certifico que he recibido y comprendido que la información que reciba el psicólogo es de
+         carácter confidencial y que la podrá revelar<sup>1</sup> si durante la evaluación o el tratamiento, el
+         psicólogo detecta de manera clara que hay un evidente daño para mi o para terceros (se
+         le explicará el destinatario y el manejo de la información y las consecuencias de la misma).
+         En caso de ambientes legales, se hará especial énfasis en la no autoincriminación y la no
+         observancia del secreto profesional. Se me indicó que el procedimiento a seguir es
+         (especificar de manera clara y comprensible el procedimiento que se va a seguir. Si es
+         necesario, antes de la intervención terapéutica, indicar que se hará una evaluación
+         mediante la aplicación de pruebas; estas se deberán listar aclarando el objeto de cada una
+         de ellas. Asimismo, se indicará la impresión diagnostica, se ello fuere el caso. Si el
+         psicólogo tiene una impresión diagnóstica en los términos del DSM o del CIE, así sea
+         tentativo, y que se da como consecuencia de la evaluación, se lo hará saber al consultante
+         indicándole qué tipo de tratamiento se llevará a cabo, explicándole en qué consiste este:
+         desensibilización sistemática, restructuración cognoscitiva, habilidades sociales y
+         comunicación asertiva, etcétera) y el posible tiempo que lleve el tratamiento. También se
+         me indicó yo puedo revocar el consentimiento o dar por terminado en cualquier momento
+         la relación entre psicólogo y yo, cuando lo considere pertinente, sin que ello implique
+         ningún tipo de consecuencia para mí.
+         <br><br>
+         Una vez leído y comprendido el procedimiento que se seguirá, se firma el presente consentimiento el día <strong><%= a[0]%></strong> del mes de <strong><%= a[2]%> </strong> de  <strong><%= a[4]%>, en la ciudad de Medellín.
+      </p>
+      <br><br><br>
+      <table style="text-align: justify;font-size: 12px;padding: 20px 50px;width: 100%;margin-left: 50px">
+         <thead>
+            <tr>
+            	<th>
+                 <div class="wrapper">
+                    <canvas id="signature-pad" class="signature-pad" width=200 height=100 style="background:whitesmoke"></canvas>
+                </div>
+                    <button id="save-png">Save as PNG</button>
 
-Este tipo de consentimiento lo da y lo firma el usuario en primera persona, sin la intervención de un tercero.
-Nosotros, obrando en calidad de representantes legales del menor                                                        
-                                                                 Identificado (a) con la T.I   	                                  
-y en conjunto con él (ella), certificamos que hemos comprendido que la información que reciba el psicólogo es de carácter confidencial y que lo podrá revelar1 si durante la evaluación o tratamiento, el profesional detecta de manera clara que hay un evidente daño para el consultante o para terceros (se explicará quién es el destinatario potencial de la información en caso de verse la necesidad de revelarla, y el manejo de la información y las consecuencias de la misma. En caso de ambientes legales, se hará especial énfasis en la no autoincriminación y la no observancia del secreto profesional). Se nos indicó que el procedimiento a seguir es (especificar de manera clara y comprensible el procedimiento que se va a seguir. Si es necesario, antes de la intervención terapéutica, indicar que se hará una evaluación donde se aplicarán pruebas, estas se deberán listar aclarando el objeto de cada una de ellas. Asimismo, se indicará la impresión diagnóstica, en el caso de que aplique. Si el psicólogo tiene una impresión diagnóstica en los términos de OSM o de la CIE, así sea tentativa, se lo hará saber al consultante indicándole que tipo de tratamiento se llevará a cabo, explicándole en qué consiste este: desensibilización sistemática, restructuración cognoscitiva, habilidades sociales y comunicación asertiva, etcétera) y el posible tiempo que lleve el tratamiento. También se nos indicó que podemos revocar el consentimiento o dar por terminada en cualquier momento la relación entre el psicólogo y nuestro(a) hijo(a), cuando lo consideremos pertinente, sin que ello implique ningún tipo de consecuencias para nosotros.
-</p>
+                    <%=form_tag crear_firma_paciente_path, remote: true do %>
+                        <%= hidden_field_tag :firma_paciente, nil, id: "firma_paciente"%>
+                        <%= hidden_field_tag :patient_id, @patient.id, id: "firma_paciente"%>
+                        <%= submit_tag "Confirmar"%>
+
+                    <%end%>        
+               </th> 
+            	<th></th>
+            </tr>    
+
+            <tr>
+               
+               <th>Firma del Paciente</th>
+               <th>Firma del psicólogo</th>
+            </tr>
+            <tr>
+               <th>T.I</th>
+               <th>CC</th>
+            </tr>
+            <tr>
+               <th></th>
+               <th>T.P</th>
+            </tr>
+         </thead>
+         <tbody>
+         </tbody>
+      </table>
+      <br>
+      <br>
+      <style>
+         th
+         {
+         width: 50%;
+         }
+         h5
+         {
+         text-align: center;
+         margin: 50px 20px 50px 20px;
+         background: #5bc0de;
+         color: white;
+         padding: 12px;
+         font-size: 20px;
+         }
+      </style>
+      <p style="text-align: justify;font-size: 10px;padding: 20px 50px;width: 100%;">
+         <sup>1</sup> En los procedimientos relacionados con la psicología forense, se deberá especificar que la información dada al psicólogo se condesará en un informe que le será entregado al abogado y que lo hará público en los escenarios jurídicos correspondientes.
+      </p>
+   </div>
+</div>
+
+<style>
+   th
+   {
+   width: 50%;
+   }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+<style>
+   .wrapper {
+   position: relative;
+   width: 400px;
+   height: 200px;
+   -moz-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .signature-pad {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width:400px;
+   height:200px;
+   background-color: white;
+   }
+</style>
+<script>
+   var canvas = document.getElementById('signature-pad');
+   
+                 // Adjust canvas coordinate space taking into account pixel ratio,
+                 // to make it look crisp on mobile devices.
+                 // This also causes canvas to be cleared.
+                 function resizeCanvas() {
+                     // When zoomed out to less than 100%, for some very strange reason,
+                     // some browsers report devicePixelRatio as less than 1
+                     // and only part of the canvas is cleared then.
+                     var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+                     canvas.width = canvas.offsetWidth * ratio;
+                     canvas.height = canvas.offsetHeight * ratio;
+                     canvas.getContext("2d").scale(ratio, ratio);
+                 }
+   
+                 window.onresize = resizeCanvas;
+                 resizeCanvas();
+   
+                 var signaturePad = new SignaturePad(canvas, {
+                 backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
+                 });
+   
+                 document.getElementById('save-png').addEventListener('click', function () {
+                 if (signaturePad.isEmpty()) {
+                     return alert("Please provide a signature first.");
+                 }
+                 
+                 var data = signaturePad.toDataURL('image/png');
+                 console.log(data);
+                 $('#firma_paciente').val(data);
+                 /*window.open(data);*/
+                 });
+   
+                  
+                 document.getElementById('clear').addEventListener('click', function () {
+                 signaturePad.clear();
+                 });
+   
+                 document.getElementById('draw').addEventListener('click', function () {
+                 var ctx = canvas.getContext('2d');
+                 console.log(ctx.globalCompositeOperation);
+                 ctx.globalCompositeOperation = 'source-over'; // default value
+                 });
+   
+                 document.getElementById('erase').addEventListener('click', function () {
+                 var ctx = canvas.getContext('2d');
+                 ctx.globalCompositeOperation = 'destination-out';
+                 });
+</script>

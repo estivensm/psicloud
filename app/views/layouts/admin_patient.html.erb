@@ -255,7 +255,16 @@
             <i class="fas fa-edit" style = "font-size:20px"  aria-hidden="true"></i> 
             <%end%>
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" title="Ver Paciente"><i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true" ></i></button>
-              
+             
+
+              <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history, :format => "html"), :class => "btn btn-primary", title:"Consentimiento Informado" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+                  
+                  <%end%>
+
+
+
+
                        <%if @patient.age >= 18%>
                   <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-primary", title:"Consentimiento Informado" do  %>
                   <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
@@ -370,7 +379,7 @@
       </div>
    </div>
    
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 toppad" id="app">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0" id="app">
       <div id="exTab2">
          
          <div class="tab-content ">

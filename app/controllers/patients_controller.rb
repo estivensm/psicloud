@@ -266,9 +266,9 @@ end
 
 
   def consentimiento_informado
-@patient = Patient.find(params[:patient_id])
+      @patient = Patient.find(params[:patient_id])
       respond_to do |format|
-      format.html
+      format.html 
       format.pdf do
         render :pdf => "hola",
         header: { right: '[page] of [topage]' },
@@ -393,6 +393,16 @@ end
     params[:value] == "true" ? val = true : val = false 
     Patient.find(params[:id]).update(state: val)
   
+  end
+
+
+
+  def crear_firma_paciente
+
+    @patient = Patient.find(params[:patient_id])
+    @patient.update(firma_paciente: params[:firma_paciente])
+    @patient.save
+    
   end
 
 

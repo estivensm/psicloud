@@ -6,24 +6,24 @@
   <div class="row" style = "padding: 10px 45px;">    
 <div class = "row title-table">
     <div class = "col-md-8">
-            <p>CITAS <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span> </p>
+            <p>CITAS <span class="label label-primary" ><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <!--<%= page_entries_info @appointments, :entry_name => 'Citas' %>--></span></p>
          </div>
        
-         <div class = "col-md-4">
+         <div class = "col-md-4 text-right">
 
             <%= link_to 'Nueva Cita', new_patient_appointment_path(@patient.id),remote:true, class: "btn btn-primary"  %>
          
          </div>
-           <div class = "col-md-12 paginate text-left title-table1">
+           <!--<div class = "col-md-12 paginate text-left title-table1">
             <%= will_paginate @appointments%>
-         </div>
+         </div>-->
       </div>
     
-       
+       <br>
       <div class = "row">
 
 
- <ul class="nav nav-tabs">
+ <ul class="nav nav-tabs" style="margin-left: 15px;">
     <li class="active"><a data-toggle="tab" href="#home">Vigentes</a></li>
     <li><a data-toggle="tab" href="#menu1">Historial</a></li>
 

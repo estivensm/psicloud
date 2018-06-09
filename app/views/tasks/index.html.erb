@@ -8,7 +8,7 @@
 
 <div class = "row title-table">
          <div class = "col-md-10">
-            <p>TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> </p>
+            <p>TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <!--<%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> --></p>
          </div>
         
          <div class = "col-md-2">
@@ -24,7 +24,7 @@
 <div class="row">
   
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" style="margin-left: 15px;">
     <li class="active"><a data-toggle="tab" href="#home">Abiertas</a></li>
     <li><a data-toggle="tab" href="#menu1">Cerradas</a></li>
 

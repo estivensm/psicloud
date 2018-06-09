@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'patients/csv'
   get 'patients/csv_all'
+
+  post "crear_firma_paciente" , to: "patients#crear_firma_paciente" , as: "crear_firma_paciente"
   post "create_hpc", to: "patients#create_hpc" , as: "create_hpc"
   post "create_agreement", to: "patients#create_agreement" , as: "create_agreement"
 

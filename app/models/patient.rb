@@ -47,7 +47,8 @@ class Patient < ApplicationRecord
      belongs_to :agreement
      belongs_to :user
      has_many :tasks
-     mount_uploader :avatar, AvatarPatientUploader  
+     mount_uploader :avatar, AvatarPatientUploader 
+ 
      
 
   def self.search(search)
