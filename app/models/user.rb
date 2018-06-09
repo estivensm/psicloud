@@ -64,6 +64,8 @@ class User < ApplicationRecord
       end
       user.token = auth.credentials.token
       user.expires_at = auth.expires_at
+      user.expires_ats = auth.expires_at
+      puts auth.expires_at
       puts "exipereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
       user.refresh_token = auth.credentials.refresh_token
       user.save
