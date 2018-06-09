@@ -45,7 +45,7 @@ gem 'devise', '~> 4.3'
 gem 'newrelic_rpm'
 #gem para autenticacion de usuarios con google
 
-
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
 #jquery para rails 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 

@@ -136,7 +136,7 @@ class AppointmentsController < ApplicationController
                       redirect_to user_omniauth_authorize_path(:google_oauth2)
                   end
              end  
-            client.authorization.refresh_token = current_user.refresh_token
+            client.authorization.refresh_token = current_user.refresh_token_if_expired
             client.authorization.access_token = current_user.token
             service = client.discovered_api('calendar', 'v3')
             
