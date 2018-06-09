@@ -86,7 +86,7 @@ class User < ApplicationRecord
 
   def refresh_token_if_expired
   #if token_expired?
-    response    = RestClient.post "psicloud.herokuapp.com/oauth2/token", :grant_type => 'refresh_token', :refresh_token => self.refresh_token, :client_id => "537103906622-4n2q9h81kuucu4vppbg85lqahda3vohb.apps.googleusercontent.com", :client_secret => "bkk9SygmN8ywbNB2tdFdL1VN" 
+    response    = RestClient.post "https://psicloud.herokuapp.com/users/auth/oauth2/token", :grant_type => 'refresh_token', :refresh_token => self.refresh_token, :client_id => "537103906622-4n2q9h81kuucu4vppbg85lqahda3vohb.apps.googleusercontent.com", :client_secret => "bkk9SygmN8ywbNB2tdFdL1VN" 
     refreshhash = JSON.parse(response.body)
     puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
     token_will_change!
