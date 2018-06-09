@@ -59,10 +59,11 @@ class User < ApplicationRecord
         user.provider = auth.provider
         user.uid = auth.uid
         user.email = auth.info.email
-        user.uid = auth.expires_at
+
         user.password = "alejo0906"
       end
       user.token = auth.credentials.token
+      user.expires_at = auth.expires_at
       user.refresh_token = auth.credentials.refresh_token
       user.save
       return user
