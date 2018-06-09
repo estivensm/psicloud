@@ -99,9 +99,6 @@ class User < ApplicationRecord
     refreshhash = JSON.parse(net.body)
     puts refreshhash
     puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-    token_will_change!
-    expiresat_will_change!
-
     self.token     = refreshhash['access_token']
     self.expiresat = DateTime.now + refreshhash["expires_in"].to_i.seconds
 
