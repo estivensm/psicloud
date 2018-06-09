@@ -65,8 +65,6 @@ class User < ApplicationRecord
       user.token = auth.credentials.token
       user.expires_at = auth.credentials.expires_at
       user.expires_ats = auth.credentials.expires_at
-      puts auth.credentials.expires_at
-      puts "exipereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
       user.refresh_token = auth.credentials.refresh_token
       user.save
       return user
@@ -87,10 +85,10 @@ class User < ApplicationRecord
 
 
   def refresh_token_if_expired
-  if token_expired?
+  #if token_expired?
     response    = RestClient.post "psicloud.herokuapp.com/oauth2/token", :grant_type => 'refresh_token', :refresh_token => self.refresh_token, :client_id => "537103906622-4n2q9h81kuucu4vppbg85lqahda3vohb.apps.googleusercontent.com", :client_secret => "bkk9SygmN8ywbNB2tdFdL1VN" 
     refreshhash = JSON.parse(response.body)
-
+    puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
     token_will_change!
     expiresat_will_change!
 
@@ -99,11 +97,12 @@ class User < ApplicationRecord
 
     self.save
     puts 'Saved'
-  end
+  #end
 end
 
 def token_expired?
   expiry = Time.at(self.expiresat) 
+   puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuiii"
   return true if expiry < Time.now # expired token, so we should quickly return
   token_expires_at = expiry
   save if changed?
