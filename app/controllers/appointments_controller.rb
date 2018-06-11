@@ -169,7 +169,7 @@ class AppointmentsController < ApplicationController
   def destroy
      unless @appointment.google_event_id.nil?
       client = Google::APIClient.new
-      client.authorization.refresh_token = current_user.refresh_token
+      client.authorization.refresh_token = current_user.refresh_token_if_expired
       client.authorization.access_token = current_user.token
       service = client.discovered_api('calendar', 'v3')
 
