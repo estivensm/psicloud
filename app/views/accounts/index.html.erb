@@ -33,14 +33,15 @@
             <thead>
                <tr class = "tr-table">
       <th>Nombre</th>
-      <th>Dirección</th>
+
       <th>Telefono</th>
       <th>Email</th>
       <th>Logo</th>
       <th>Usuarios</th>
       <th>Cantidad Usuarios</th>
       <th>Almacenamiento</th>
-      <th>Tipo de Cuenta</th>
+      <th>Pacientes</th>
+      <!--<th>Tipo de Cuenta</th>-->
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -49,7 +50,7 @@
     <% @accounts.each do |account| %>
       <tr>
         <td><%= account.name %></td>
-        <td><%= account.address %></td>
+   
         <td><%= account.phone %></td>
         <td><%= account.email %></td>
         <td><%=image_tag account.logo_url , style: "width:100px;padding:10px;" if account.logo_url %></td>
@@ -59,7 +60,8 @@
         </td>
         <td><%= account.users_quantity %></td>
         <td><%= account.file_size %></td>
-        <td><%= account.account_type %></td>
+        <td class="text-center"><%= Patient.where(admin_user: account.admin_user).count %></td>
+        <!-- <td><%= account.account_type %></td>-->
         <td><%= link_to 'Ver', account %></td>
         <td><%= link_to 'Editar', edit_account_path(account) %></td>
        
