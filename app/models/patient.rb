@@ -38,6 +38,10 @@
 #  birthdate_day        :integer
 #  school_grade         :string
 #  state                :boolean
+#  firma_paciente       :text
+#  firma_psicologo      :text
+#  firma_madre          :text
+#  firma_padre          :text
 #
 
 class Patient < ApplicationRecord

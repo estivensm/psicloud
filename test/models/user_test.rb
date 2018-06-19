@@ -38,6 +38,9 @@
 #  ip_address             :string
 #  device                 :string
 #  phone                  :integer
+#  expires_at             :datetime
+#  expires_ats            :string
+#  firma_psicologo        :text
 #
 
 require 'test_helper'
