@@ -52,7 +52,7 @@
         <td><%= account.address %></td>
         <td><%= account.phone %></td>
         <td><%= account.email %></td>
-        <td><%=image_tag account.logo_url , style: "width:100px;padding:10px;" %></td>
+        <td><%=image_tag account.logo_url , style: "width:100px;padding:10px;" if account.logo %></td>
         <td><% User.where(admin_user: account.admin_user).each do |user|%>
               <%=user.email%> ,
           <%end%>
