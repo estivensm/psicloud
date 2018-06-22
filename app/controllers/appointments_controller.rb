@@ -188,7 +188,17 @@ class AppointmentsController < ApplicationController
 
       event = result.data
  
- 
+      t = @appointment.start_datetime
+      t.min < 10 ? min = "0" : min = ""
+      t.hour < 10 ? hora = "0" : hora = ""
+      startdate = "#{t.year}-#{t.month}-#{t.day}T#{hora}#{t.hour}:#{min}#{t.min}:00-05:00"
+      te = @appointment.end_datetime
+      te.min < 10 ? mint = "0" : mint = ""
+      te.hour < 10 ? horat = "0" : horat = ""
+      enddate = "#{te.year}-#{te.month}-#{te.day}T#{horat}#{te.hour}:#{mint}#{te.min}:00-05:00"
+      
+
+
     end
     
 
