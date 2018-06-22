@@ -178,7 +178,7 @@ class AppointmentsController < ApplicationController
     respond_to do |format|
       if @appointment.update(appointment_params)
         
-         unless @appointment.google_event_id.nil?
+      unless @appointment.google_event_id.nil?
       client = Google::APIClient.new
       client.authorization.refresh_token = current_user.refresh_token_if_expired
       client.authorization.access_token = current_user.token
@@ -188,27 +188,7 @@ class AppointmentsController < ApplicationController
 
       event = result.data
  
-      t = @appointment.start_datetime
-      t.min < 10 ? min = "0" : min = ""
-      t.hour < 10 ? hora = "0" : hora = ""
-      startdate = "#{t.year}-#{t.month}-#{t.day}T#{hora}#{t.hour}:#{min}#{t.min}:00-05:00"
-      te = @appointment.end_datetime
-      te.min < 10 ? mint = "0" : mint = ""
-      te.hour < 10 ? horat = "0" : horat = ""
-      enddate = "#{te.year}-#{te.month}-#{te.day}T#{horat}#{te.hour}:#{mint}#{te.min}:00-05:00"
-      
-
-
-      #event.summary = 'Cita con ' + @patient.first_name
-      event.start.dateTime = startdate
-      event.end.dateTime = enddate
-      event.description = @appointment.observations
-      event.location = @appointment.place
-
-      result = client.execute(:api_method => service.events.update,
-                              :parameters => {'calendarId' => current_user.email, 'eventId' =>  @appointment.google_event_id},
-                              :body_object => event,
-                              :headers => {'Content-Type' => 'application/json'})
+ 
     end
     
 
