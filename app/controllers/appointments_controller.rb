@@ -129,37 +129,35 @@ class AppointmentsController < ApplicationController
 
        if current_user.token != nil
 
-              t = @appointment.start_datetime
-              t.min < 10 ? min = "0" : min = ""
-              t.hour < 10 ? hora = "0" : hora = ""
-              startdate = "#{t.year}-#{t.month}-#{t.day}T#{hora}#{t.hour}:#{min}#{t.min}:00-05:00"
-              te = @appointment.end_datetime
-              te.min < 10 ? mint = "0" : mint = ""
-              te.hour < 10 ? horat = "0" : horat = ""
-              enddate = "#{te.year}-#{te.month}-#{te.day}T#{horat}#{te.hour}:#{mint}#{te.min}:00-05:00"
-              @event = {
-            'summary' => 'Cita con ' + @patient.first_name,
+            t = @appointment.start_datetime
+            t.min < 10 ? min = "0" : min = ""
+            t.hour < 10 ? hora = "0" : hora = ""
+            startdate = "#{t.year}-#{t.month}-#{t.day}T#{hora}#{t.hour}:#{min}#{t.min}:00-05:00"
+            te = @appointment.end_datetime
+            te.min < 10 ? mint = "0" : mint = ""
+            te.hour < 10 ? horat = "0" : horat = ""
+            enddate = "#{te.year}-#{te.month}-#{te.day}T#{horat}#{te.hour}:#{mint}#{te.min}:00-05:00"
+            @event = {
+            'summary' => 'Cita con ' + "#{@patient.first_name} #{@patient.first_last_name}",
             'description' => @appointment.observations,
             'location' => @appointment.place,
             'start' => { 'dateTime' => startdate },
             'end' => {'dateTime' => enddate  },
             'attendees' => [ { "email" => @patient.email } ] }
-
             client = Google::APIClient.new
             client.authorization.refresh_token = current_user.refresh_token_if_expired
             client.authorization.access_token = current_user.token
             service = client.discovered_api('calendar', 'v3')
-            
             @set_event = client.execute(:api_method => service.events.insert,
                                     :parameters => {'calendarId' => current_user.email, 'sendNotifications' => true},
                                     :body => JSON.dump(@event),
                                     :headers => {'Content-Type' => 'application/json'})
-           @appointment.google_event_id = @set_event.data.id
-           @appointment.save
+            @appointment.google_event_id = @set_event.data.id
+            @appointment.save
 
     end
 
-       CitaMailer.programacion_cita(@patient,@appointment).deliver
+        CitaMailer.programacion_cita(@patient,@appointment).deliver
 
 
         format.html { redirect_to patient_appointments_path(@patient.id), notice: 'Appointment was successfully created.' }
@@ -199,7 +197,7 @@ class AppointmentsController < ApplicationController
       
 
 
-      event.summary = 'Cita con ' + @patient.first_name
+      event.summary = 'Cita con ' + "#{@patient.first_name} #{@patient.first_last_name}"
       event.start.dateTime = startdate
       event.end.dateTime = enddate
       event.description = @appointment.observations

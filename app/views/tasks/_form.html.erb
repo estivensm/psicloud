@@ -39,7 +39,7 @@
                <%= form.select :appointment_id,
                   @appointments.map { |u| ["#{get_date_hora(u.start_datetime)}", u.id] },
                              { include_blank: false },
-                             { class: 'form-control'  }
+                             { class: 'form-control required', :title => "Este campo debe estar asociado a una cita" }
                   %>
             </div>
 
@@ -54,7 +54,7 @@
 
     <div class="field">
     <%= form.label :Descripcion %><br>
-    <%= form.text_area :description, id: :task_description, class: "form form-control area"  %>
+    <%= form.text_area :description, id: :task_description, class: "form form-control area required", :title => "Es un Campo Obligatorio"  %>
   </div>
  <br>
  <% if action_name == "edit"%>
@@ -110,6 +110,10 @@
 
 <script>
    $(document).ready(function(){
+
+         $('#new_task').validate();
+
+
      $(function() {
        $('#toggle-one').bootstrapToggle({
             on: 'Si',
@@ -123,6 +127,16 @@
             off: 'No'
           });
      }); 
+        
+
+       $('#toggle-two').change(function(){
+            
+            $('#toggle-one').bootstrapToggle('on')
+
+
+          });
+
+
 
    
      });
@@ -140,6 +154,10 @@
               color: gray;
               margin-bottom: 10px;
             }
+             .error
+   {
+   color: red !important;
+   }
   
 </style>
 

@@ -32,14 +32,15 @@
  
   <div class="tab-content">
 
+  <div id="home" class="tab-pane fade in active">
+           <br>
     <%if @tasks.count != 0%>
     <% @tasks.each do |task| %>
     
     <% color = task.fecha_compromiso >= Date.today ? "success" : "danger" %>
      <% color_text = task.fecha_compromiso >= Date.today ? "#46765a" : "#a94442" %>
       
-    <div id="home" class="tab-pane fade in active">
-           <br>
+    
      <p  style="margin-top: 10px;">
       <span class="exp"><i class="fas fa-calendar-check"></i></i> Tareas Vigentes</span>
       <span class="exp1"><i class="fas fa-calendar-times"></i></i> Tareas Vencidas</span>
@@ -88,11 +89,12 @@
       <span class="exp1"><i class="fas fa-thumbs-down"></i> Cerradas no Cumplidas</span>
       </p>
           <br>
+             <div class="row">
     <% @tasks_cerradas.each do |task| %>
     
     <% color = task.cumplimiento ? "success" : "danger" %>
      <% color_text = task.cumplimiento ? "#46765a" : "#a94442" %>
-    <div class="row">
+ 
       
    
       <div class="col-md-4">
@@ -107,12 +109,12 @@
               </div>
           </div>
       </div>
-       </div>
+
 
 
     <% end %>
 
-
+       </div>
 
 
     </div>
@@ -132,8 +134,13 @@
 
         <h3>! AUN NO HAY TAREAS ¡</h3>
         
+        <%if @patient.appointments.where(state: "Vigente").count != 0%>
         <%= link_to "CREA LA PRIMEA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>
-        
+        <%else%>
+            
+            <h4>No puedes crear tareas ya que no tienes citas programadas vigentes</h4>
+
+        <%end%>
         </div>
       
     </div>
