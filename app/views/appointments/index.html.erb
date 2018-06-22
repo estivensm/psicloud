@@ -24,7 +24,7 @@
 
 
  <ul class="nav nav-tabs" style="margin-left: 15px;">
-    <li class="active"><a data-toggle="tab" href="#home">Vigentes</a></li>
+    <li class="active"><a data-toggle="tab" href="#home">Abiertas</a></li>
     <li><a data-toggle="tab" href="#menu1">Historial</a></li>
 
   </ul>
@@ -34,11 +34,23 @@
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-              
-            <%if @appointments.where(state: "Vigente").count != 0%>
-                                  <% @appointments.where(state: "Vigente").each do |appointment| %>
-                        
-                                <% color = appointment.state == "Vigente" ? "success" : "danger" %>
+         
+
+
+            <%if @appointment_abiertas.count != 0%>
+
+     <p  style="margin-top: 10px;">
+      <span class="exp"><i class="fas fa-calendar-check"></i></i> Citas Vigentes</span>
+      <span class="exp1"><i class="fas fa-calendar-times"></i></i> Citas Vencidas</span>
+      </p>
+
+    <br>
+                                  <% @appointment_abiertas.each do |appointment| %>
+                                
+
+
+
+                                <% color = appointment.state == "Vigente"  ? "success" : "danger" %>
                                 <% color_text = appointment.state == "Vigente" ? "#46765a" : "#a94442" %>
 
                           <div class="col-md-4">
@@ -109,10 +121,34 @@
  
     </div>
     <div id="menu1" class="tab-pane fade">
-               <% @appointments.where("state != ?", "Vigente").each do |appointment| %>
-    
-             <% color = appointment.state == "Vigente" ? "success" : "danger" %>
-             <% color_text = appointment.state == "Vigente" ? "#46765a" : "#a94442" %>
+
+
+     <p  style="margin-top: 10px;">
+      <span class="exp"><i class="fas fa-calendar-check"></i> Citas realizadas</span>
+      <span class="exp1"><i class="fas fa-calendar-times"></i> Citas canceladas</span>
+      <span class="exp2"><i class="fas fa-calendar-minus"></i> Citas sin asistencia</span>
+      </p>
+
+    <br>
+               <% @appointment_cerradas.each do |appointment| %>
+             <% if appointment.state == "Realizada"
+                
+                color = "success"
+                color_text = "#46765a"
+
+               elsif  appointment.state == "Cancelada"
+                
+                color = "danger"
+                color_text = "#46765a"
+
+               else
+
+                color = "warning"
+                color_text = "#8a6d3b"
+
+              end %>
+
+            
 
       <div class="col-md-4">
           <div class="panel panel-<%=color%>">
@@ -218,6 +254,21 @@
   font-size: 20px;
   padding: 20px;
  
+}
+.exp
+{
+    padding: 5px;
+    color: #46765a;
+}
+.exp1
+{
+    padding: 5px;
+    color: #a94442;
+}
+.exp2
+{
+    padding: 5px;
+    color: #8a6d3b;
 }
 </style>
 

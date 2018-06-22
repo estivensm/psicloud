@@ -9,7 +9,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-        <h4 class="modal-title">Crear Tarea</h4>
+        <h4 class="modal-title"><%= action_type %> Tarea</h4>
       </div>
 
          <div class="modal-body">
@@ -58,27 +58,38 @@
   </div>
  <br>
  <% if action_name == "edit"%>
-  <div class="row">
-  <div class="col-md-6">
-     <div class="field">
-    <%= form.label "¿Cumplio con la Tarea?" %><br>
-    <%= form.check_box :cumplimiento, id: :task_estado, class: "form form-control"  %>
-  </div>
-  </div>
-   <div class="col-md-6">
-  
-  <div class="field">
-    <%= form.label "¿Cerrar Tarea?" %><br>
-    <%= form.check_box :estado, id: :task_cumplimiento, class: "form form-control"  %>
-  </div>
-  </div>
-  
-</div>
+ <div class="row check">
+
+              <div class="col-md-8">
+                  <span>¿Cumplio con la Tarea?</span>
+              </div>
+              <div class="col-md-4">
+                <%= form.check_box :cumplimiento ,  class: "cierra1", id: "toggle-two"  %>
+              </div>
+          
+          </div>
+
+
+        <div class="row check">
+
+              <div class="col-md-8">
+                  <span>¿Cerrar Tarea?</span>
+              </div>
+              <div class="col-md-4">
+                <%= form.check_box :estado ,  class: "cierra1", id: "toggle-one"  %>
+              </div>
+          
+             </div>
+
+
+
+
+
 <%end%>
   <br>
 
   <div class="actions">
-    <%= form.submit "Crear", class: "btn btn-primary btn-block" %>
+    <%= form.submit "Guardar", class: "btn btn-primary btn-block" %>
     <br>
 
   </div>
@@ -93,12 +104,47 @@
 </div>
   </div>
 </div>
+
+
+
+
+<script>
+   $(document).ready(function(){
+     $(function() {
+       $('#toggle-one').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+   
+     $(function() {
+       $('#toggle-two').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+
+   
+     });
+   
+   
+   
+</script>
+
+<style>
+       .check
+            {
+              background: whitesmoke;
+              padding: 10px;
+              font-size: 14px;
+              color: gray;
+              margin-bottom: 10px;
+            }
+  
+</style>
+
+
 </div>
-
-
-
-
-
 
 
 

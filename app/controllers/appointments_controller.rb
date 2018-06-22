@@ -47,8 +47,27 @@ class AppointmentsController < ApplicationController
       @patient = Patient.find(params[:patient_id])
       @appointments = @patient.appointments.page(params[:page]).per_page(20).order(start_datetime: :desc)
       @clinic_history = @patient.clinic_histories.first
+      @appointments.where(state: "Vigente").each do |app|
+          
+          if app.start_datetime < Time.now()
+                  
+              app.state = "Vencida"
+              app.save
 
-       render :layout  => 'admin_patient'
+          end     
+        
+      end  
+
+
+
+      @appointment_abiertas = @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida"))
+      @appointment_cerradas = @appointments.where("state != ?", "Vigente").where("state != ?", "Vencida")
+      @appointments_canceladas = @appointments.where(state: "Cancelada")
+      @appointments_realizadas = @appointments.where(state: "Realizada")
+      @appointments_no_asistio = @appointments.where(state: "Realizada")
+
+
+      render :layout  => 'admin_patient'
   end
 
 

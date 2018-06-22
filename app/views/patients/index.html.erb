@@ -24,21 +24,44 @@
    <div class="row"  >
 
       <div class = "row title-table">
-         <div class = "col-md-8">
+         <div class = "col-md-6">
             <p class="title-h2"><%=@type%>PACIENTES   <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
          </div>
        <!--  <div class = "col-md-4 paginate text-left title-table1">
             <%= will_paginate @patients%>
          </div>-->
-         <div class = "col-md-4 text-right">
+         <div class = "col-md-6 text-right">
            
+            
+   
+
+            <div class="dropdown" style="display:inline-block">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-download" aria-hidden="true"></i> Exportar
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <% if action_name == "index" %>
+                                  <li><%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png") + " Excel", patients_csv_path(format: "csv"), class: "icon-export"%></li>
+
+                                <li><%= link_to image_tag("https://www.codot.gov/business/civilrights/ada/assets/adobe-pdf-icon.png/image_preview")+ " PDF", patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%></li>
+                              <%end%>
+
+                            <% if action_name == "all_patients" %>
+                                <li>  <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png")+ " Excel" , patients_csv_all_path(format: "csv"), class: "icon-export"%></li>
+
+                              <li>  <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf")+ " PDF", target:"_blank", class: "icon-export"%></li>
+                              <%end%>  
+              </ul>
+            </div>
+
             <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
+
+
          </div>
       </div>
       <hr>
       <br>
       <div class = "row busqueda hidden-xs hidden-sm">
-   <div class = "col-md-9">
+   <div class = "col-md-12">
       <div class="form-group fil">
          <%= form_tag(@route, :method => "get", id: "search-form") do %>
    
@@ -54,20 +77,7 @@
          <% end %>
       </div>
    </div>
-   <div class="col-md-3 text-right">
-   
-<% if action_name == "index" %>
-        <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_path(format: "csv"), class: "icon-export"%>
-
-       <%= link_to image_tag("https://www.codot.gov/business/civilrights/ada/assets/adobe-pdf-icon.png/image_preview"), patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
-     <%end%>
-
-  <% if action_name == "all_patients" %>
-        <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_all_path(format: "csv"), class: "icon-export"%>
-
-       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
-     <%end%>   
-   </div>
+  
 
 </div>
 
@@ -165,4 +175,13 @@
     border-radius: 0px 10px 10px 0px;
     padding: 5px 10px 7px 10px;
    }
+   .dropdown-menu>li>a {
+      color:gray;
+   }
+
+   .btn-default {
+    color: #277394;
+    background-color: #fff;
+    border-color: #ccc;
+}
 </style>
