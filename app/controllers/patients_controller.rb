@@ -270,7 +270,7 @@ end
       respond_to do |format|
       format.html 
       format.pdf do
-        render :pdf => "hola",
+        render :pdf => "Consentimiento_Informado",
         header: { right: '[page] of [topage]' },
         :template => 'patients/pdfs/consentimiento_informado.pdf.erb',
         :layout => 'pdf.html.erb',
@@ -302,7 +302,7 @@ end
       respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "hola",
+        render :pdf => "Consentimiento_Informado",
         header: { right: '[page] of [topage]' },
         :template => 'patients/pdfs/consentimiento_informado_adolescentes.pdf.erb',
         :layout => 'pdf.html.erb',
@@ -334,7 +334,7 @@ def consentimiento_informado_menores
       respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "hola",
+        render :pdf => "Consentimiento_Informado",
         header: { right: '[page] of [topage]' },
         :template => 'patients/pdfs/consentimiento_informado_menores.pdf.erb',
         :layout => 'pdf.html.erb',
