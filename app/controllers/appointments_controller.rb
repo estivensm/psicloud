@@ -200,8 +200,8 @@ class AppointmentsController < ApplicationController
 
 
       event.summary = 'Cita con ' + @patient.first_name
-      event.start.dateTime = startdate
-      event.end.dateTime = enddate
+      #event.start.dateTime = startdate
+      #event.end.dateTime = enddate
       event.description = @appointment.observations
       event.location = @appointment.place
 
