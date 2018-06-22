@@ -53,7 +53,10 @@ class AppointmentsController < ApplicationController
                   
               app.state = "Vencida"
               app.save
-
+          
+          else 
+            app.state = "Vigente"
+            app.save
           end     
         
       end  
