@@ -21,13 +21,13 @@ class TasksController < ApplicationController
   def new
     @patient = Patient.find(params[:patient_id])
     @task = Task.new
-    @appointments = @patient.appointments.order(start_datetime: :desc)
+    @appointments = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc)
   end
 
   # GET /tasks/1/edit
   def edit
     @patient = Patient.find(params[:patient_id])
-    @appointments = @patient.appointments.order(start_datetime: :desc)
+    @appointments = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc)
   end
 
   # POST /tasks
