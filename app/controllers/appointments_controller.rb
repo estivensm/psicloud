@@ -202,10 +202,12 @@ class AppointmentsController < ApplicationController
       event.summary = 'Cita con ' + @patient.first_name
       event.start.dateTime = startdate
       event.end.dateTime = enddate
-      event.description = @appointment.observations
-      event.location = @appointment.place
-
      
+
+      result = client.execute(:api_method => service.events.update,
+                              :parameters => {'calendarId' => current_user.email, 'eventId' =>  @appointment.google_event_id},
+                              :body_object => event,
+                              :headers => {'Content-Type' => 'application/json'})
     end
     
 
