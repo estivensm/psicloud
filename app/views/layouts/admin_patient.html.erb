@@ -211,14 +211,14 @@
           <i class="fa fa-wrench" style = "font-size:20px;" aria-hidden="true"></i>
           Htas de Evaluacion <span class="span-num"><%=@clinic_history.tool_tests.count%></span>
          <%end%>
-        
-       <%end%> 
-
-
-          <%= link_to  patient_step3_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[7]}" do %>
+         <%= link_to  patient_step3_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[7]}" do %>
           <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
           Desenlace <span style="float:right"><%=state_history_desenlace(@clinic_history.id).html_safe%></span>
          <%end%>
+       <%end%> 
+
+
+         
             <%= link_to  patient_appointments_path(@patient.id) , class: "btn btn-primary #{menu_patient[2]}" do %>
           <i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>
           Citas <span class="span-num"><%=@patient.appointments.count%></span>
