@@ -34,8 +34,8 @@ gem 'jquery-validation-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'jquery-ui-rails'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
+gem 'fullcalendar', '~> 3.9'
+gem 'momentjs-rails', '~> 2.20', '>= 2.20.1'
 #gem para acceder a los servicios de google
 gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 gem "brakeman", :require => false

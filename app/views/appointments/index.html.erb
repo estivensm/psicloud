@@ -53,7 +53,7 @@
                                 <% color = appointment.state == "Vigente"  ? "success" : "danger" %>
                                 <% color_text = appointment.state == "Vigente" ? "#46765a" : "#a94442" %>
 
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                               <div class="panel panel-<%=color%>">
 
 
@@ -63,6 +63,12 @@
                                     
                                   
                                     <strong>Observaciones:</strong> <%=appointment.observations%><br><br>
+
+                                    <%appointment.tasks.each do |task|%>
+                                        
+                                        <%= task.description%>
+
+                                    <%end%>
                                     
                                     <%if appointment.state == "Cancelada"%>
                                     <button type="button" class="btn btn-danger btn-lg" style="padding: 0px 6px;font-size: 15px;" data-toggle="modal" data-target="#myModal<%=appointment.id%>">

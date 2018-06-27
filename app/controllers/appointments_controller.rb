@@ -14,9 +14,16 @@ class AppointmentsController < ApplicationController
     events = []
     @appointment.each do |task|
       
-        @color = "#17c1ca"
+        if task.state == "Vigente"
+           @color = "#17c1ca"
 
-        events << {:id => task.id, :title => "#{task.patient.first_name} #{task.patient.first_last_name} ", :start => "#{task.start_datetime.to_date}" , :color => "#{@color}", :url =>"patients/#{task.patient_id}"}
+        else
+          
+           @color = "#ff9b9b"
+          
+        end   
+
+        events << {:id => task.id, :title => "#{task.patient.first_name} #{task.patient.first_last_name} ", :description => "#{task.observations}", :start => "#{task.start_datetime.rfc2822}" , :end => "#{task.end_datetime.rfc2822}" , :color => "#{@color}", :url =>"patients/#{task.patient_id}"}
     end
     puts events.to_json.to_s
       render plain: events.to_json.to_s
@@ -77,6 +84,19 @@ class AppointmentsController < ApplicationController
   def citas
     
     @appointments = Appointment.where(user_id: current_user.id).page(params[:page]).per_page(20)
+    @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida")).each do |app|
+          
+          if app.start_datetime < Time.now()
+                  
+              app.state = "Vencida"
+              app.save
+          
+          else 
+            app.state = "Vigente"
+            app.save
+          end     
+        
+      end  
     
   end
 
@@ -173,7 +193,10 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
     
+    
     respond_to do |format|
+
+
       if @appointment.update(appointment_params)
         
       unless @appointment.google_event_id.nil?
@@ -217,6 +240,58 @@ class AppointmentsController < ApplicationController
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
+
+
+  end
+
+
+
+  def edit_calendar
+
+    puts "Editttttttttttttttttttttttttttttttttttttttttttttttt"
+    puts params[:start]
+    puts params[:end]
+
+    @appointment = Appointment.find(params[:id])
+    @appointment.update(start_datetime: params[:start], end_datetime: params[:end])
+    
+     unless @appointment.google_event_id.nil?
+      client = Google::APIClient.new
+      client.authorization.refresh_token = current_user.refresh_token_if_expired
+      client.authorization.access_token = current_user.token
+      service = client.discovered_api('calendar', 'v3')
+
+      result = client.execute(:api_method => service.events.get, :parameters => {'calendarId' => current_user.email, 'eventId' => @appointment.google_event_id } )
+
+      event = result.data
+ 
+      t = @appointment.start_datetime
+      t.min < 10 ? min = "0" : min = ""
+      t.hour < 10 ? hora = "0" : hora = ""
+      startdate = "#{t.year}-#{t.month}-#{t.day}T#{hora}#{t.hour}:#{min}#{t.min}:00-05:00"
+      te = @appointment.end_datetime
+      te.min < 10 ? mint = "0" : mint = ""
+      te.hour < 10 ? horat = "0" : horat = ""
+      enddate = "#{te.year}-#{te.month}-#{te.day}T#{horat}#{te.hour}:#{mint}#{te.min}:00-05:00"
+      
+
+
+      event.summary = 'Cita con ' + "#{@patient.first_name} #{@patient.first_last_name}"
+      event.start.dateTime = startdate
+      event.end.dateTime = enddate
+      event.description = @appointment.observations
+ 
+
+      result = client.execute(:api_method => service.events.update,
+                              :parameters => {'calendarId' => current_user.email, 'eventId' =>  @appointment.google_event_id},
+                              :body_object => event,
+                              :headers => {'Content-Type' => 'application/json'})
+    end
+    
+
+
+
+    
   end
 
   # DELETE /appointments/1

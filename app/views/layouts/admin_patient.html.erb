@@ -255,27 +255,27 @@
             <div class="col-md-8">
                
          
-            <h3 class="panel-title imagen-title" style="font-size: 20px;font-weight: bold;"> <span style="margin-right:10px">   <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></span> <%= @patient.first_name.upcase %> <%= @patient.second_name.upcase %>  <%= @patient.first_last_name.upcase %>  <%= @patient.second_last_name.upcase %></h3>
+            <h3 class="panel-title imagen-title" style="font-size: 20px;font-weight: bold;color:#5bc0de !important"> <span style="margin-right:10px">   <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></span> <%= @patient.first_name.upcase %> <%= @patient.second_name.upcase %>  <%= @patient.first_last_name.upcase %>  <%= @patient.second_last_name.upcase %></h3>
             </div>
              <div class="col-md-4 text-right">
-            <%= link_to  edit_patient_path(@patient.id), class: "btn btn-warning" , title:"Editar Paciente" do%>
+            <%= link_to  edit_patient_path(@patient.id), class: "btn btn-warning btg" , title:"Editar Paciente" do%>
             <i class="fas fa-edit" style = "font-size:20px"  aria-hidden="true"></i> 
             <%end%>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" title="Ver Paciente"><i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true" ></i></button>
+            <button type="button" class="btn btn-info btg" data-toggle="modal" data-target="#myModal" title="Ver Paciente"><i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true" ></i></button>
              
 
               <%if @patient.age >= 18%>
-                  <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary", title:"Consentimiento Informado" do  %>
+                  <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary btg", title:"Consentimiento Informado" do  %>
                   <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
                   
                   <%end%>
                   <%elsif @patient.age >= 12 &&  @patient.age < 18%>
-                  <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary", title:"Consentimiento Informado" do  %>
+                  <%= link_to  patient_consentimiento_informado_adolescentes_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary btg", title:"Consentimiento Informado" do  %>
                   <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
                   
                   <%end%>
                   <%else%>
-                  <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary" , title:"Consentimiento Informado" do  %>
+                  <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary btg" , title:"Consentimiento Informado" do  %>
                   <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
                  
                   <%end%>
@@ -501,6 +501,13 @@ border-radius: 50%;
     margin-bottom: 15px;
     margin-left: 0px !important;
     margin-right:0px !important
+   }
+   .btg
+   {
+background-color: #bfbdbd !important;
+    border-color: #b2b2b2 !important;
+    background: linear-gradient(#f2f2f2, #aeaeae);
+    color: #727272 !important;
    }
 </style>
 <script>

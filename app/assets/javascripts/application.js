@@ -37,29 +37,59 @@ $(document).on('turbolinks:load',function() {
 $("#calendar").fullCalendar({
 
     
-
-
+    themeSystem: 'jquery-ui',
+    defaultView: 'agendaWeek',
     selectable:true,
     selectHelper:true,
     editable:true,
+    eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+       console.log(event.start.toDate())
+       var a = event.url.slice(9)
+      
+       var choice = confirm("¿Esta seguro cambiar la cita");
+   
+       if (choice) {
+        
+       $.post("/edit_calendar",
+            {
+                start: event.start.toDate() ,
+                end: event.end.toDate(),
+                id: event.id
+            },
+            function(data, status){
+               console.log("Data: " + event.start + "\nStatus: " + status);
+    });
+     }
+
+    console.log(event);
+
+    },
      events: "/appointments/get_appointments",
-     timeFormat: "h:mm t{ - h:mm t} ",
+     /*eventRender: function(eventObj, $el) {
+      $el.popover({
+        title: eventObj.title,
+        content: "Observaciones: " + eventObj.description ,
+        trigger: 'hover',
+        placement: 'top',
+        container: 'body'
+      });
+    },*/
      monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-        monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
-         dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-    dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-    buttonText: ['Hoy', 'month', 'week', 'day', 'list'],
-header: {
+     monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+     dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+     dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+     buttonText: ['Hoy', 'month', 'week', 'day', 'list'],
+     header: {
                 left: 'prev,next Hoy',
                 center: 'title',
                 right: 'month,agendaWeek,today'
             },
-buttonText:{
-    today:    'Hoy',
-    month:    'Mes',
-    week:     'Semana',
-    day:      'Dia',
-    list:     'Lista'
+     buttonText:{
+     today:    'Hoy',
+     month:    'Mes',
+     week:     'Semana',
+     day:      'Dia',
+     list:     'Lista'
 }
 
 
