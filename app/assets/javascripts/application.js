@@ -64,6 +64,10 @@ $("#calendar").fullCalendar({
     console.log(event);
 
     },
+     select: function(startDate, endDate) {
+      alert('selected ' + startDate.format() + ' to ' + endDate.format());
+    },
+
      events: "/appointments/get_appointments",
      /*eventRender: function(eventObj, $el) {
       $el.popover({

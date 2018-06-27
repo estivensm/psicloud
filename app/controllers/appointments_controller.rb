@@ -276,7 +276,7 @@ class AppointmentsController < ApplicationController
       
 
 
-      event.summary = 'Cita con ' + "#{@patient.first_name} #{@patient.first_last_name}"
+      #event.summary = 'Cita con ' + "#{@patient.first_name} #{@patient.first_last_name}"
       event.start.dateTime = startdate
       event.end.dateTime = enddate
       event.description = @appointment.observations
@@ -287,7 +287,7 @@ class AppointmentsController < ApplicationController
                               :body_object => event,
                               :headers => {'Content-Type' => 'application/json'})
     end
-    
+
 
 
 
