@@ -278,7 +278,8 @@ end
 end
 
 def get_date_hora(fecha)
-   
+puts "horaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+puts fecha
 if fecha != nil
     ds = fecha.strftime("%w") #Dia de la semana
     y = fecha.strftime("%Y") #Año

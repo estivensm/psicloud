@@ -44,6 +44,12 @@ $("#calendar").fullCalendar({
     editable:true,
     eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
        console.log(event.start.toDate())
+       datet = event.start.toDate()
+       console.log(event.start.hour())
+       date_start = event.start.year() +  "-"  + (event.start.month() + 1) + "-" + event.start.date() + " " + event.start.hour() + ":" + event.start.minute() + ":" + event.start.second() 
+       date_end = event.end.year() +  "-"  + (event.end.month() + 1) + "-" + event.end.date() + " " + event.end.hour() + ":" + event.end.minute() + ":" + event.end.second() 
+
+       console.log(date_start)
        var a = event.url.slice(9)
       
        var choice = confirm("¿Esta seguro cambiar la cita");
@@ -52,8 +58,8 @@ $("#calendar").fullCalendar({
         
        $.post("/edit_calendar",
             {
-                start: event.start.toDate() ,
-                end: event.end.toDate(),
+                start: date_start ,
+                end: date_end,
                 id: event.id
             },
             function(data, status){
