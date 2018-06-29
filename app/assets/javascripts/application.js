@@ -42,9 +42,7 @@ $("#calendar").fullCalendar({
     /*selectable:true,*/
     selectHelper:true,
     editable:true,
-    eventRender: function(event, element) {
-            $(element).addTouch();
-        },
+    
     eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
 
        console.log(event.start.toDate())
