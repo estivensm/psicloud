@@ -30,21 +30,28 @@
   
 
  <% @documents.each do |document| %>
-<div class="panel panel-default">
+
+ <div class="col-md-12">
+   
+ 
+<div class="panel panel-default" >
                         <div class="panel-heading">
                                    <div class="row">
 
-              <div class="col-md-6" style="    color: #5bc0de;
-    font-size: 18px;;">
-                    <%= document.name %> <span style="font-size:12px;margin-left: 20px;"><%= get_date(document.created_at) %></span>
+
+              <div class="col-md-8" style="    color: #5bc0de;
+    font-size: 16px;">
+                    <%= document.name %><br> <span style="font-size:12px"><%= get_date(document.created_at) %></span>
               </div>
               
 
-              <div class="col-md-6 text-right">
+              <div class="col-md-4 text-right">
                <%if document.file_url%>
                    <%= link_to  document.file_url, class: "btn btn-primary", style:"margin-right:10px;" do  %>
-                          <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
-                   <%end%>  
+                          <i class="fa fa-download" aria-hidden="true"></i> Descargar
+                               <%end%>
+                   <%else%>
+                      <p class="sin-adjunto">Sin Adjunto</p>  
                    <%end%>
                        <%if current_user.rol.show_doc%>
         <%= link_to  document, class: "btnl btn-primary" do %>
@@ -66,10 +73,11 @@
             
           </div>
                         </div>
-                        <div class="panel-body">
-                      <%= document.description %>
-                        </div>
+                     
                       </div>
+
+</div>
+
                        <% end %>
   </div>
     </div>
@@ -118,5 +126,14 @@
   font-size: 20px;
   padding: 20px;
  
+}
+.sin-adjunto
+{
+    display: inline;
+    padding: 5px 20px;
+    background: #9a9a9a;
+    color: white;
+    border-radius: 4px;
+    margin-right: 9px;
 }
 </style>

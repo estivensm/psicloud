@@ -41,7 +41,7 @@
     <div class="row">
       <div class="col-md-8">
    <div class="form-group acc1">
-               <label for="">Relacion del Padre con el Niño</label><br>
+               <label for="">Relacion del Padre con el niño</label><br>
                <label class="radio-inline">
                <%= form.radio_button :father_relationship, 'Estable', class: 'rb cksi check1' %><span style = "margin-left:5px">Estable</span>
                </label>
@@ -57,8 +57,11 @@
                  <label class="radio-inline">
                <%= form.radio_button :father_relationship, 'Poca Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Poca </span>
                 </label>
-                    <label class="radio-inline">
-               <%= form.radio_button :father_relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Ninguna Comunicacion</span>
+               <label class="radio-inline" style="margin-left: 0px !important">
+               <%= form.radio_button :father_relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span style = "">Ninguna Comunicacion</span>
+                </label>
+                <label class="radio-inline">
+               <%= form.radio_button :father_relationship, 'Padre Fallecido', class: 'rb ckno check1' %><span style = "margin-left:5px">Padre Fallecido </span>
                 </label>
     </div>
     </div>
@@ -99,7 +102,7 @@
 <div class="row">
   <div class="col-md-8">
    <div class="form-group acc1">
-               <label for="">Relacion de la madre con el Niño</label><br>
+               <label for="">Relacion de la madre con el niño</label><br>
                <label class="radio-inline">
                <%= form.radio_button :mother_relationship, 'Estable', class: 'rb cksi check1' %><span style = "margin-left:5px">Estable</span>
                </label>
@@ -115,8 +118,11 @@
                  <label class="radio-inline">
                <%= form.radio_button :mother_relationship, 'Poca Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Poca </span>
                 </label>
-                    <label class="radio-inline">
-               <%= form.radio_button :mother_relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:5px">Ninguna Comunicacion</span>
+                    <label class="radio-inline" style = "margin-left:0px">
+               <%= form.radio_button :mother_relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span >Ninguna Comunicacion</span>
+                </label>
+                   <label class="radio-inline">
+               <%= form.radio_button :mother_relationship, 'Madre Fallecida', class: 'rb ckno check1' %><span style = "margin-left:5px">Madre Fallecida </span>
                 </label>
     </div>
     </div>
@@ -145,8 +151,7 @@
 
      <div class="form-group acc1">
                <label for="">Relacion Entre los padres</label><br>
-               <label class="radio-inline" style="margin-left: 10px;
-">
+               <label class="radio-inline" >
                <%= form.radio_button :parents_realationship, 'Buena', class: 'rb cksi check1' %><span style = "margin-left:5px">Buena</span>
                </label>
               <label class="radio-inline">
@@ -161,8 +166,8 @@
                  <label class="radio-inline">
                <%= form.radio_button :parents_realationship, 'Separados', class: 'rb ckno check1' %><span style = "margin-left:5px">Separados </span>
                 </label>
-                    <label class="radio-inline">
-               <%= form.radio_button :parents_realationship, 'Abandono total de un miembro', class: 'rb ckno check1' %><span style = "margin-left:5px">Abandono total de un miembro</span>
+                    <label class="radio-inline" style = "margin-left:0px">
+               <%= form.radio_button :parents_realationship, 'Abandono total de un miembro', class: 'rb ckno check1' %><span >Abandono total de un miembro</span>
                 </label>
     </div>
 
