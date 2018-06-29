@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
 
   post "edit_calendar", to: "appointments#edit_calendar", as: "edit_calendar"
+  get "new_calendar", to: "appointments#new_calendar", as: "new_calendar"
+  post "create_calendar", to: "appointments#create_calendar", as: "create_calendar"
 
   get "citas", to: "appointments#citas", as: "citas"
   get "citas_admin", to: "appointments#citas_admin", as: "citas_admin"

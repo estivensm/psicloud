@@ -294,6 +294,10 @@ class AppointmentsController < ApplicationController
     
   end
 
+  def new_calendar
+    @appointment = Appointment.new
+  end
+
   # DELETE /appointments/1
   # DELETE /appointments/1.json
   def destroy

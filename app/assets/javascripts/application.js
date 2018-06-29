@@ -39,10 +39,11 @@ $("#calendar").fullCalendar({
     
     themeSystem: 'jquery-ui',
     defaultView: 'agendaWeek',
-    selectable:true,
+    /*selectable:true,*/
     selectHelper:true,
     editable:true,
     eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+       $(element).addTouch();
        console.log(event.start.toDate())
        datet = event.start.toDate()
        console.log(event.start.hour())
@@ -52,7 +53,7 @@ $("#calendar").fullCalendar({
        console.log(date_start)
        var a = event.url.slice(9)
       
-       var choice = confirm("¿Esta seguro cambiar la cita");
+       var choice = confirm("¿Esta seguro cambiar la cita?");
    
        if (choice) {
         
@@ -70,9 +71,21 @@ $("#calendar").fullCalendar({
     console.log(event);
 
     },
-     select: function(startDate, endDate) {
-      alert('selected ' + startDate.format() + ' to ' + endDate.format());
-    },
+    /* select: function(startDate, endDate) {
+       date_start = startDate.year() +  "-"  + (startDate.month() + 1) + "-" + startDate.date() + " " + startDate.hour() + ":" + startDate.minute() + ":" + startDate.second() 
+       date_end = endDate.year() +  "-"  + (endDate.month() + 1) + "-" + endDate.date() + " " + endDate.hour() + ":" + endDate.minute() + ":" + endDate.second() 
+       console.log(date_start)
+       console.log(date_end)
+
+       $.get("/new_calendar", function(){
+
+
+
+
+       })
+       
+
+    },*/
 
      events: "/appointments/get_appointments",
      /*eventRender: function(eventObj, $el) {
