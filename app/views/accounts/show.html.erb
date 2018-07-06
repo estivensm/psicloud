@@ -1,5 +1,8 @@
 
-<br> 
+
+
+<br>
+
 <div class="container">
   
 
@@ -7,117 +10,125 @@
    <div class="col-md-12 ">
       <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
    </div>
- <br>
-<div class = "row title-table">
-   <div class = "col-md-10">
-      <p >INFORMACION DE LA CUENTA</p>
-   </div>
-   
-</div>
-<hr class = "hr">
-<div class="row">
-<div class="col-md-6 cuadro2">
-  <h4>Logo</h4><br>
-       <% if @account.logo? %>
+</div>  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">Informacion de la Cuenta
+             <%= link_to  edit_account_path(@account),:class => "btn btn-warning pull-right" do %>
+                           <i class="glyphicon glyphicon-pencil"></i>
+                           <span >Editar Cuenta</span>
+              <% end %>
+                  
+               <%= link_to  root_path, :class => "btn btn-default pull-right" do %>
+                           <i class="fas fa-back"></i>
+                           <span >Volver</span>
+              <% end %>
+            <hr></div>
+          </div>
+          <div class="row" style="color: #5bc0de !important;">
+      <div class="col-md-4 text-center">
+             <% if @account.logo? %>
         
        <%= image_tag(@account.logo_url(:medium))%>
         <%else%>
       <%= image_tag "http://michigrafias.com/wp-content/uploads/2018/04/no-imagen.jpg", style: "width:200px"  %>
 
         <%end%>
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h1 class="only-bottom-margin"><%= @account.name%></h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="info"><strong>Email: </strong> <%= @account.email %></p>
+                  <p class="info"><strong>Telefono:</strong> <%= @account.phone %></p>
+                  <p class="info"><strong>Dirección: </strong> <%= @account.address %></p>
+                  <p class="info"><strong>Nit/Cedula:</strong> <strong></p>               
+                </div>
+                <div class="col-md-6 text-center">
+                  <div class="activity-mini">
+                    Pacientes Atendidos <br> <span><i class="glyphicon glyphicon-user text-muted"></i> 500</span>
+                  </div>
+               
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              
+              <div class="alert alert-info text-left" style="font-size:25px;">
+                <strong>PLAN:</strong> PSICOLOGO
+              </div>
 
-      <br><br>
-  
-      <h4>Informacion General</h4>
-        <p><strong>Nombre:</strong> <%= @account.name  %></p>
-        <p><strong>Email:</strong> <%= @account.email %></p>
-        <p><strong>Telefono:</strong> <%= @account.phone %></p>
-        <p><strong>Direccion:</strong> <%= @account.address %></p>
-         
-      
-  
-</div>
-  <div class="col-md-6 cuadro1">
-  <h4>Plan</h4>
-        <p>Tipo: <span><%=@account.account_type.name if @account.account_type%></span></p>
-        
-        <p><i class="fa fa-user" aria-hidden="true"></i> Usuarios:  <span><%=@account.account_type.users if @account.account_type%></span></p>
-        <p><i class="fa fa-database" aria-hidden="true"></i> Almacenamiento: <span><%=@account.account_type.file_size if @account.account_type%> GB</span></p>
-</div>
-</div>
-<div class="row show-user company" >
-   
-   
-   <div class="col-md-12 text-center">
-      <%= link_to 'Editar', edit_account_path(@account), remote: true, class: "btn btn-primary btn-lg" %>
-       <%= link_to 'Inicio', root_path, remote: true, class: "btn btn-default btn-lg" %>
-     
-   </div>
-</div>
-</div>
+              
+           
+            </div>
+          </div>
+           <div class="row ">
+            <div class="col-md-6" style="padding: 10px 110px;">
+             
+              <div class="alert alert-success text-left text-center" style="font-size: 30px;">
+               <i class="fa fa-user" aria-hidden="true" style="font-size: 60px;"></i><br>
+                <strong>USUARIOS:</strong><br> 1 / 1 
+              </div>
 
-<!--<%if current_user.super_admin%>
-      <%= form_tag import_diagnosticos_path, multipart: true do %>
-      <div class = "col-md-12 text-right">
-      <%= file_field_tag :file , class: 'inputfile', id: 'file' %>
-      <label for="file"><i class="fa fa-upload" aria-hidden="true"></i>
+              
+           
+            </div>
+             <div class="col-md-6" style="padding: 10px 110px;">
+              
+              <div class="alert alert-success text-left text-center" style="font-size: 30px;">
+               <i class="fa fa-database" aria-hidden="true" style="font-size: 60px;"></i><br>
+                <strong>ALMACENAMIENTO:</strong><br> 1GB / 20GB
+              </div>
 
-    <span>Adjuntar</span></label>
-      <%= submit_tag "Importar", :class => "btn btn-primary", style: "margin-left:20px !important;" %>
+              
+           
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
-  <% end %>
-<%end%>-->
 
 <style>
-  
-   .cuadro2 p
-   {
-     color: #50aad4;
-     padding-top: 5px;
-     font-size: 20px;
-   
-   }
-   .cuadro1 img
-   {
-      width: 40px;
-   }
-   .cuadro1
-   {
-   color: white;
-    /* padding: 5px; */
-
-    
-   }
-    .cuadro1 i
-   {
-      font-size: 30px;
-
-    
-   }
-   .cuadro1 p
-   {
-   color: #50aad4;
-   padding-top: 5px;
-   font-size: 20px;
-  
-   }
-  
-   .pc
-   {
-   background: whitesmoke;
-   }
-   .company
-   {
-    padding-top: 20px;
-    padding-bottom: 50px
-   }
-h4 {
-    background: #3ea0d4;
-    color: white;
-    padding: 5px;
+.text-muted
+{
+  font-weight: bold;
+  color: #5bc0de !important;
 }
+.btn
+{
+  margin-right: 10px;
+}
+.info
+{
+  color: #5bc0de !important;
 
-
-
+}
+.activity-mini
+{
+  font-size: 30px;
+}
+.activity-mini span
+{
+  font-size: 50px;
+}
 </style>
+
+
+
+
+
+
+

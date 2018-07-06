@@ -39,18 +39,19 @@
      <%= f.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control'}%>
   </div>
   </div>
+    <div class="col-md-10">
+    <div class="form-group">
+      <%= f.label "Documento de Identidad" %>
+      <%= f.text_field :document, autofocus: true , :class => 'form-control' %>
+    </div>  
+  </div>
    <div class="col-md-10">
     <div class="form-group">
       <%= f.label "Teléfono o Número Celular" %>
       <%= f.text_field :phone, autofocus: true , :class => 'form-control' %>
     </div>  
   </div>
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Documento" %>
-      <%= f.text_field :document, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
+
   <div class="col-md-10">
     <div class="form-group">
       <%= f.label "Registro Medico" %>
@@ -86,7 +87,7 @@
    </div>
     <div class="col-md-10">
   <div class="form-group">
-    <%= f.label "Confirmar Contraseña"%><br />
+    <%= f.label "Confirmar Contraseña"%> <i>(Deja en Blanco si no quieres cambiar)</i><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
   </div>
 </div>
