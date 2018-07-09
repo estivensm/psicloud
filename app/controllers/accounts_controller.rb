@@ -12,6 +12,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1.json
   def show
       @account_type= AccountType.all
+      @patiens = Patient.where(admin_user: @account.admin_user)
   end
 
   # GET /accounts/new
