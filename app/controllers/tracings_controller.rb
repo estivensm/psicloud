@@ -1,13 +1,15 @@
 class TracingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tracing, only: [:show, :edit, :update, :destroy]
   before_action :set_tracing_info, only: [:index,:show, :edit, :update, :destroy, :new]
-
+ 
+  layout 'admin_patient'
   # GET /tracings
   # GET /tracings.json
   def index
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
-    @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 3)
+    @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 10)
     
       @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
       @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
@@ -23,10 +25,22 @@ class TracingsController < ApplicationController
   # GET /tracings/new
   def new
     @tracing = Tracing.new
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+    @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 10)
+    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @clinic_history = @patient.clinic_histories.first
   end
 
   # GET /tracings/1/edit
   def edit
+    @patient = Patient.find(params[:patient_id])
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+    @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 10)
+    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @clinic_history = @patient.clinic_histories.first
   end
 
   # POST /tracings
@@ -50,6 +64,10 @@ class TracingsController < ApplicationController
   def update
     respond_to do |format|
       if @tracing.update(tracing_params)
+        if params[:remove_attachment]
+              @tracing.remove_attachment!
+              @tracing.save
+            end  
         format.html { redirect_to patient_clinic_history_tracings_path(params[:patient_id],params[:clinic_history_id]), notice: 'Tracing was successfully updated.' }
         format.json { render :show, status: :ok, location: @tracing }
       else
@@ -82,6 +100,6 @@ class TracingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tracing_params
-      params.require(:tracing).permit(:admin_user, :user_id, :patient_id, :clinic_history_id, :description, :attachment, :tracing_type, :tracing_date)
+      params.require(:tracing).permit(:admin_user, :user_id, :patient_id, :clinic_history_id, :description, :attachment, :tracing_type, :tracing_date,:remove_attachment)
     end
 end

@@ -9,8 +9,9 @@
        <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
         <meta name="turbolinks-cache-control" content="no-cache">
-        <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/122/Sin-t_tulo-1.png' %>
+        <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/192/Sin-t_tulo-1.png' %>
         <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
 
@@ -66,8 +67,10 @@
                         <li><%= link_to "EPS", hpcs_path , style: "color:gray !important"%></li>
                         <li><%= link_to "Convenio", agreements_path , style: "color:gray !important"%></li>
                         <li><%= link_to "Cuenta", account_path(get_account), style: "color:gray !important" %></li>
-
-                  <li class="hidden-xs hidden-sm"><a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" > Autenticación <i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a></li>
+                        <%if current_user.super_admin%>
+                         <li><%= link_to "Cuentas", accounts_path, style: "color:gray !important" %></li>
+                        <%end%>
+                  <li class="hidden-xs hidden-sm"><a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" style="color:gray !important"> Autenticación <i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a></li>
                      </ul>
                   </li>
                   <%end%>
@@ -84,6 +87,11 @@
                         <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
                            <span style = "color:gray!important" >Editar Usuario</span>
+                           <% end %>
+                        </li>
+                        <li> <%= link_to show_user_path(current_user.id), :class => "indicadores" do %>
+                           <span class="fa fa-eye" style = "color:gray"></span>
+                           <span style = "color:gray!important" >Ver Usuario</span>
                            <% end %>
                         </li>
                      </ul>
@@ -118,19 +126,19 @@
           
 
                          <li  class="<%=@menu[2]%> li"><%= link_to patients_path,:class => "" do %>
-                           <i class="fa fa-address-card-o icon" color-gray icon" aria-hidden="true"></i>
+                           <i class="fas fa-address-card icon" color-gray icon" aria-hidden="true"></i>
                             <span class = "color-gray hidden-xs hidden-sm">Pacientes</span>
                            <% end %>
                         </li>
 
                                 <li class="<%=@menu[3]%> li"><%= link_to citas_path,:class => "" do %>
-                           <i class="fa fa-calendar icon " color-gray icon" aria-hidden="true"></i>
+                           <i class="fas fa-calendar-check" style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
 
                             <span class = "color-gray hidden-xs hidden-sm">Citas</span>
                            <% end %>
                         </li>
                          <li  class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
-                           <i class="fa fa-file-text-o"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
+                           <i class="fas fa-file-alt"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
                             <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
                            <% end %>
                         </li>

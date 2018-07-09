@@ -8,7 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = I18n.t "Tu autenticacion con Google calendar fue exitosa", :kind => "Google"
       sign_in_and_redirect @user, :event => :authentication
     else
-      redirect_to new_user_session_path, notice: 'Access Denied'
+      redirect_to new_user_session_path, notice: 'Esta cuenta no tiene Acceso'
     end
   end
 end

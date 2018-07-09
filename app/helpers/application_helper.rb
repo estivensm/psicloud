@@ -8,6 +8,44 @@ def get_state(state)
 end
 
 
+def get_open(state)
+
+  state == true ? "<i class='fas fa-lock'></i>" : "<i class='fas fa-lock-open'></i>"
+  
+end
+
+
+def state_history(history)
+
+  history = ClinicHistory.find(history)
+ if  (history.first_contact_state && !history.child_history) || (history.child_history && history.first_child_state && history.second_child_state && history.third_child_state && history.second_child_state)
+      
+      "<i class='fas fa-lock' style = 'font-size:25px;'></i>"
+
+ else 
+
+     "<i class='fas fa-lock-open' style = 'font-size:25px;'></i>"
+
+ end
+ 
+  
+end
+def state_history_desenlace(history)
+
+  history = ClinicHistory.find(history)
+ if  (history.outcome_state )
+      
+      "<i class='fas fa-lock' style = 'font-size:25px;'></i>"
+
+ else 
+
+     "<i class='fas fa-lock-open' style = 'font-size:25px;'></i>"
+
+ end
+ 
+end
+
+
 
   
 def bootstrap_class_for flash_type
@@ -63,6 +101,15 @@ def get_diagnostic
   Diagnostic.all
   
 end
+
+def get_diagnostico
+
+  
+  Diagnostico.all
+
+  
+end
+
 
 def get_hpc
 
@@ -133,7 +180,7 @@ def menu
         @menu = ["active1","na","na","na","na","na", "na","na"]
      elsif controller.controller_name == "views"
         @menu = ["na","na","na","na","active1","na", "na","na"]
-     elsif (controller.controller_name == "patients" && (action_name == "index" || action_name == "new" || action_name == "show")) || controller_name == "child_general_dates" || controller_name == "personal_histories" || controller_name == "two_child_histories" || controller_name == "three_child_histories" || controller_name == "tracings" || controller_name == "tool_tests" || controller_name == "backgrounds"
+     elsif (controller.controller_name == "patients" && (action_name == "index" || action_name == "new" || action_name == "show")) || controller_name == "child_general_dates" || controller_name == "personal_histories" || controller_name == "two_child_histories" || controller_name == "three_child_histories" || controller_name == "tracings" || controller_name == "tool_tests" || controller_name == "backgrounds" || controller_name == "tasks"
         @menu = ["na","na","active1","na","na","na", "na","na"]
      elsif (controller.controller_name == "appointments" && action_name == "citas") || controller.controller_name == "appointments" && action_name == "index"
         @menu = ["na","na","na","active1","na","na", "na","na"]
@@ -154,6 +201,51 @@ def menu
 end
 
 
+
+def menu_patient
+          
+  @menu_patient = ["","","","","", "", "", ""]
+  if  controller.controller_name == "backgrounds" 
+        @menu_patient = ["edit-active","noactive","noactive","noactive","noactive","noactive","noactive","noactive"]
+
+  elsif  controller.controller_name == "tool_tests"       
+        @menu_patient = ["noactive","edit-active","noactive","noactive","noactive","noactive","noactive","noactive"]
+
+  elsif  controller.controller_name == "appointments"       
+        @menu_patient = ["noactive","noactive","edit-active","noactive","noactive","noactive","noactive","noactive"]
+
+
+  elsif  controller.controller_name == "tracings"       
+        @menu_patient = ["noactive","noactive","noactive","edit-active","noactive","noactive","noactive","noactive"]
+
+
+  elsif  controller.controller_name == "tasks"       
+        @menu_patient = ["noactive","noactive","noactive","noactive","edit-active","noactive","noactive","noactive"]
+  
+ 
+elsif  controller.controller_name == "patients"       
+        @menu_patient = ["noactive","noactive","noactive","noactive","noactive","noactive","edit-active","noactive"]  
+
+elsif  controller.controller_name == "clinic_histories" && action_name == "step3"       
+        @menu_patient = ["noactive","noactive","noactive","noactive","noactive","noactive","noactive","edit-active"]  
+
+
+elsif  (controller.controller_name == "clinic_histories" && (action_name == "edit"  )) || controller_name = "child_general_dates"   || controller_name = "personal_histories" || controller_name = "two_child_histories" || controller_name = "three_child_histories"      
+        @menu_patient = ["noactive","noactive","noactive","noactive","noactive","edit-active","noactive","noactive"]
+  
+
+
+  end
+
+  return @menu_patient
+
+end
+
+
+
+
+
+
 def get_date(fecha)
    
 if fecha != nil
@@ -170,7 +262,8 @@ if fecha != nil
 end 
 end
 
-def get_date_hora(fecha)
+
+def get_only_date(fecha)
    
 if fecha != nil
     ds = fecha.strftime("%w") #Dia de la semana
@@ -178,12 +271,27 @@ if fecha != nil
     dm = fecha.strftime("%d") #Dia del mes
     m = fecha.strftime("%m") # Mes del Año
     meses = {"01" => "Enero", "02" => "Febrero","03"=>"Marzo","04" => "Abril", "05" => "Mayo","06"=> "Junio" ,"07"=> "Julio", "08" => "Agosto", "09"=> "Septiembre" ,"10"=> "Octubre","11" => "Noviembre" ,"12" => "Diciembre" }
-    dias = {"7" => "Domingo", "1" => "Lunes","2"=>"Martes","3" => "Miercoles", "4" => "Jueves","5"=> "Viernes" ,"6" =>"Sabado"}
+    dias = {"0" => "Domingo", "1" => "Lunes","2"=>"Martes","3" => "Miercoles", "4" => "Jueves","5"=> "Viernes" ,"6" =>"Sabado"}
+    return  dias[ds] + " " + dm + " de " + meses[m] + ", " + y  
+#dias[ds] + ", " +
+end 
+end
+
+def get_date_hora(fecha)
+puts "horaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+puts fecha
+if fecha != nil
+    ds = fecha.strftime("%w") #Dia de la semana
+    y = fecha.strftime("%Y") #Año
+    dm = fecha.strftime("%d") #Dia del mes
+    m = fecha.strftime("%m") # Mes del Año
+    meses = {"01" => "Ene", "02" => "Feb","03"=>"Mar","04" => "Abr", "05" => "May","06"=> "Jun" ,"07"=> "Jul", "08" => "Ago", "09"=> "Sep" ,"10"=> "Oct","11" => "Nov" ,"12" => "Dic" }
+    dias = {"0" => "Domingo", "1" => "Lunes","2"=>"Martes","3" => "Miercoles", "4" => "Jueves","5"=> "Viernes" ,"6" =>"Sabado"}
     fecha.min < 10 ? min = "0" : min = ""
     horat = fecha.hour > 12 ?   fecha.hour - 12 : fecha.hour
     horati = fecha.hour > 12 ?   "pm" : "am"
     fecha.hour < 10 ? hora = "0" : hora = ""
-    return  meses[m] + " " + dm + ", " + y + ", " + hora + horat.to_s   + ":" + min + fecha.min.to_s + " " + horati
+    return  dias[ds] + " " + dm + " de "+  meses[m] + " "  + ", " + y + ", " + hora + horat.to_s   + ":" + min + fecha.min.to_s + " " + horati
 #dias[ds] + ", " +
 end 
 end

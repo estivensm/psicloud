@@ -1,45 +1,216 @@
+<%if @tasks.count + @tasks_cerradas.count != 0%>
 
-<h1 align="center">Tareas Creadas</h1><br>
-   <table class="table" style="width: 80%; margin-left: 10%;">
-    <thead>
-        <tr>
-          <th>Usuario</th>
-          <th>Admin</th>
-          <th>Patient</th>
-          <th>Description</th>
-          <th>Fecha compromiso</th>
-          <th>Appointment</th>
-          <th>Estado</th>
-          <th>Fecha entrega</th>
-          <th>Cumplimiento</th>
-          <th>File</th>
-        </tr>
-    </thead>
 
-  <tbody>
+
+  <div class="row" style = "padding: 10px 45px;">
+
+
+
+<div class = "row title-table">
+         <div class = "col-md-10">
+            <p>TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <!--<%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> --></p>
+         </div>
+        
+         <div class = "col-md-2">
+            <%= link_to 'Nueva Tarea', new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>
+         </div>
+          <div class = "col-md-12 paginate text-left title-table1">
+            <%= will_paginate @tasks%>
+         </div>
+      </div>
+
+  
+
+<div class="row">
+  
+
+  <ul class="nav nav-tabs" style="margin-left: 15px;">
+    <li class="active"><a data-toggle="tab" href="#home">Abiertas</a></li>
+    <li><a data-toggle="tab" href="#menu1">Cerradas</a></li>
+ </ul>
+
+ 
+  <div class="tab-content">
+
+  <div id="home" class="tab-pane fade in active">
+           <br>
+    <%if @tasks.count != 0%>
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.user_id %></td>
-        <td><%= task.admin_user %></td>
-        <td><%= task.patient_id %></td>
-        <td><%= task.description %></td>
-        <td><%= task.fecha_compromiso %></td>
-        <td><%= task.appointment_id %></td>
-        <td><%= task.estado %></td>
-        <td><%= task.fecha_entrega %></td>
-        <td><%= task.cumplimiento %></td>
-        <td><%= task.file %></td>
-        <td><%= link_to 'Editar', edit_patient_task_path(@patient.id, task)%>|
-        <td><%= link_to 'Eliminar',patient_tasks_path, method: :delete, data: { confirm: 'Estas Seguro?' }%></td>
-        </td>
-        <td></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    
+    <% color = task.fecha_compromiso >= Date.today ? "success" : "danger" %>
+     <% color_text = task.fecha_compromiso >= Date.today ? "#46765a" : "#a94442" %>
+      
+    
+     <p  style="margin-top: 10px;">
+      <span class="exp"><i class="fas fa-calendar-check"></i></i> Tareas Vigentes</span>
+      <span class="exp1"><i class="fas fa-calendar-times"></i></i> Tareas Vencidas</span>
+      </p>
 
-  <br>
-  <div class="col-md-1 col-md-offset-1">
-    <%= link_to 'Nueva Tarea', new_patient_task_path(@patient.id), class: "btn btn-primary" %>
+    <br>
+
+      <div class="row">
+        
+      
+      <div class="col-md-4">
+          <div class="panel panel-<%=color%>">
+              <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_only_date(task.fecha_compromiso)%><span style="float:right"> <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon", style: "color: #{color_text}" do  %>
+        <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
+                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
+        <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
+              </div>
+              <div class="panel-body" style="height: 100px;max-height: 100px;overflow: auto;padding-bottom:10px;">
+                <%=task.description%>
+              </div>
+          </div>
+      </div>
+      </div>
+
+
+    <% end %>
+     <%else%>
+             <div class="row">
+                  <div class="col-md-12 np">
+
+
+                  <h3>! NO HAY TAREAS ABIERTAS ¡</h3>
+                  
+                  <%= link_to "CREAR TAREA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"   %>
+                  
+                  </div>
+      
+    </div>
+            <%end%>  
+
+    </div>
+    <div id="menu1" class="tab-pane fade">
+     <br>
+     <p  style="margin-top: 10px;">
+      <span class="exp"><i class="fas fa-thumbs-up"></i> Cerradas Cumplidas</span>
+      <span class="exp1"><i class="fas fa-thumbs-down"></i> Cerradas no Cumplidas</span>
+      </p>
+          <br>
+             <div class="row">
+    <% @tasks_cerradas.each do |task| %>
+    
+    <% color = task.cumplimiento ? "success" : "danger" %>
+     <% color_text = task.cumplimiento ? "#46765a" : "#a94442" %>
+ 
+      
+   
+      <div class="col-md-4">
+          <div class="panel panel-<%=color%>">
+              <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_only_date(task.fecha_compromiso)%><span style="float:right"> <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon", style: "color: #{color_text}" do  %>
+        <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
+                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
+        <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
+              </div>
+              <div class="panel-body" style="height: 100px;max-height: 100px;overflow: auto;padding-bottom:10px;">
+                <%=task.description%>
+              </div>
+          </div>
+      </div>
+
+
+
+    <% end %>
+
+       </div>
+
+
+    </div>
+
   </div>
+
+
+
+</div>
   </div>
+
+
+<%else%>
+ <div class="row">
+        <div class="col-md-12 np">
+
+
+        <h3>! AUN NO HAY TAREAS ¡</h3>
+        
+        <%if @patient.appointments.where(state: "Vigente").count != 0%>
+        <%= link_to "CREA LA PRIMEA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>
+        <%else%>
+            
+            <h4>No puedes crear tareas ya que no tienes citas programadas vigentes</h4>
+
+        <%end%>
+        </div>
+      
+    </div>
+<%end%>
+<style>
+  .np
+{
+    text-align: center;
+    color: gray;
+    background: #f4f4f4;
+    font-size: 40px;
+    padding: 30px 0px;
+
+
+}
+.np h3
+{ 
+  
+    font-size: 30px;
+    margin-bottom: 30px;
+  
+
+}
+.crear_paciente
+{
+  font-size: 20px;
+  padding: 20px;
+ 
+}
+.exp
+{
+    padding: 5px;
+    color: #46765a;
+}
+.exp1
+{
+    padding: 5px;
+    color: #a94442;
+}
+</style>  
+
+<style>
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: white !important;
+    background-color: #5bc0de !important;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
+}
+  
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

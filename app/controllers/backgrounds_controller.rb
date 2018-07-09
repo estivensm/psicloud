@@ -1,5 +1,9 @@
 class BackgroundsController  < ApplicationController
 
+  before_action :authenticate_user!
+  layout 'admin_patient'
+
+
 def index
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])

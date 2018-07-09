@@ -37,19 +37,23 @@ Una vez leído y comprendido el procedimiento que se seguirá, se firma el prese
 <table style="text-align: justify;font-size: 12px;padding: 20px 50px;width: 100%;margin-left: 50px">
 	
 	<thead>
+	    <tr>
+			<th><img style="width:200px"  src="<%=@patient.firma_paciente%>" alt=""></th>
+			<th><img style="width:200px"  src="<%=@patient.user.firma_psicologo%>" alt=""></th>
+		</tr>
 		<tr>
 			<th>Firma del Paciente</th>
 			<th>Firma del psicólogo</th>
 			</tr>
             
             <tr>
-			<th>T.I</th>
-			<th>CC</th>
+			<th>C.C: <%=@patient.document%></th>
+			<th>C.C: <%=@patient.user.document%></th>
 			</tr>
 
 			<tr>
             <th></th>
-            <th>T.P</th>    
+            <th>T.P: <%=@patient.user.medical_record%></th>    
 			</tr>
 
 			

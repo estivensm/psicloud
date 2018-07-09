@@ -38,6 +38,9 @@
 #  ip_address             :string
 #  device                 :string
 #  phone                  :integer
+#  expires_at             :datetime
+#  expires_ats            :string
+#  firma_psicologo        :text
 #
 
 class User < ApplicationRecord
@@ -59,26 +62,62 @@ class User < ApplicationRecord
         user.provider = auth.provider
         user.uid = auth.uid
         user.email = auth.info.email
+
         user.password = "alejo0906"
       end
       user.token = auth.credentials.token
+      user.expires_at = auth.credentials.expires_at
+      user.expires_ats = auth.credentials.expires_at
       user.refresh_token = auth.credentials.refresh_token
       user.save
       return user
     else
 
-       user = User.new do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = auth.info.email
-        user.password = "alejo0906"
-      end
-      user.token = auth.credentials.token
-      user.refresh_token = auth.credentials.refresh_token
-      user.save
-      return user
+       #user = User.new do |user|
+        #user.provider = auth.provider
+       # user.uid = auth.uid
+       # user.email = auth.info.email
+        #user.password = "alejo0906"
+      #end
+      #user.token = auth.credentials.token
+      #user.refresh_token = auth.credentials.refresh_token
+     # user.save
+      return nil
     end
   end
+
+
+  def refresh_token_if_expired
+  if token_expired?
+    
+    url = URI("https://accounts.google.com/o/oauth2/token")
+    net = Net::HTTP.post_form(url, { 'refresh_token' => self.refresh_token,
+      'client_id'     => "537103906622-4n2q9h81kuucu4vppbg85lqahda3vohb.apps.googleusercontent.com",
+      'client_secret' => "bkk9SygmN8ywbNB2tdFdL1VN",
+      'grant_type'    => 'refresh_token'})
+
+
+   
+     
+    refreshhash = JSON.parse(net.body)
+    puts refreshhash
+    puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+    self.token     = refreshhash['access_token']
+    self.expires_ats = DateTime.now + refreshhash["expires_in"].to_i.seconds
+
+    self.save
+    puts 'Saved'
+  end
+end
+
+def token_expired?
+  expiry = Time.at(self.expires_ats.to_i) 
+   puts "entre aquiiiiiiiiiiiiiiiiiiiiiiiiiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuiii"
+  return true if expiry < Time.now # expired token, so we should quickly return
+  token_expires_at = expiry
+  save if changed?
+  false # token not expired. :D
+end
 
 
         def crear_admin

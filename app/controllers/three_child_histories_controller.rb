@@ -1,6 +1,7 @@
 class ThreeChildHistoriesController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_three_child_history, only: [:show, :edit, :update, :destroy]
-
+   layout 'admin_patient'
   # GET /three_child_histories
   # GET /three_child_histories.json
   def index
@@ -47,6 +48,14 @@ class ThreeChildHistoriesController < ApplicationController
   def update
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+    if @clinic_history.first_child_four  != true
+
+                  @clinic_history.four_child_created_at = Date.today
+                  @clinic_history.first_child_four  = true
+                  @clinic_history.save
+                  
+
+         end 
     respond_to do |format|
       if @three_child_history.update(three_child_history_params)
         format.html { redirect_to patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Three child history was successfully updated.' }

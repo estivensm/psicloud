@@ -1,19 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="row margin-top-40" >
+   <div class="col-md-12" style="padding-left: 50px;">
+      <%= link_to "inicio", root_path%>
 
-<h1>Accounts</h1>
+   </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Phone</th>
+
+<div class="container">
+
+   
+
+
+
+
+
+  <div class="row" >
+      <div class = "row title-table">
+         <div class = "col-md-6">
+    <br>
+            <p>CUENTAS  </p>
+         </div>
+         <div class = "col-md-4 paginate text-left title-table1">
+            
+         </div>
+         <div class = "col-md-2">
+ 
+         </div>
+      </div>
+      <hr class="hr">
+      <div class = "row">
+         <table class="table">
+            <thead>
+               <tr class = "tr-table">
+      <th>Admin User</th>
+      <th>Nombre</th>
+      <th>Telefono</th>
       <th>Email</th>
       <th>Logo</th>
-      <th>Admin user</th>
-      <th>Users quantity</th>
-      <th>File size</th>
-      <th>Account type</th>
+      <th>Usuarios</th>
+      <th>Cantidad Usuarios</th>
+      <th>Almacenamiento</th>
+      <th>Pacientes</th>
+      <!--<th>Tipo de Cuenta</th>-->
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,23 +49,29 @@
   <tbody>
     <% @accounts.each do |account| %>
       <tr>
+       <td><%= account.admin_user %></td>
         <td><%= account.name %></td>
-        <td><%= account.address %></td>
+   
         <td><%= account.phone %></td>
         <td><%= account.email %></td>
-        <td><%= account.logo %></td>
-        <td><%= account.admin_user %></td>
+        <td><%=image_tag account.logo_url , style: "width:100px;padding:10px;" if account.logo_url %></td>
+        <td><% User.where(admin_user: account.admin_user).each do |user|%>
+              <%=user.email%> ,
+          <%end%>
+        </td>
         <td><%= account.users_quantity %></td>
         <td><%= account.file_size %></td>
-        <td><%= account.account_type %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-center"><%= Patient.where(admin_user: account.admin_user).count %></td>
+        <!-- <td><%= account.account_type %></td>-->
+        <td><%= link_to 'Ver', account %></td>
+        <td><%= link_to 'Editar', edit_account_path(account) %></td>
+       
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+      </div>
+   </div>
 
-<%= link_to 'New Account', new_account_path %>
+

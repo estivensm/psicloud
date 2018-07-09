@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: diagnosticos
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  admin_user  :integer
+#  user_id     :integer
+#  count       :integer
+#  codigo      :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  admin_user: 1
+  user_id: 1
+  count: 1
+  codigo: MyString
+
+two:
+  name: MyString
+  description: MyText
+  admin_user: 1
+  user_id: 1
+  count: 1
+  codigo: MyString

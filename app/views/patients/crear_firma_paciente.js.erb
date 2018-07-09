@@ -1,0 +1,12 @@
+ <% if @state %>
+
+ $('.clase_img img').attr("src" ,"<%=@patient.firma_paciente%>");
+ $('#firma_paciente').val("");
+ $('.paciente').css("display", "inline-block");
+    setTimeout(function() {
+         $('.paciente').fadeOut();
+    }, 2000);
+
+<%end%>    
+
+

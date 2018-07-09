@@ -38,6 +38,10 @@
 #  birthdate_day        :integer
 #  school_grade         :string
 #  state                :boolean
+#  firma_paciente       :text
+#  firma_psicologo      :text
+#  firma_madre          :text
+#  firma_padre          :text
 #
 
 class Patient < ApplicationRecord
@@ -46,7 +50,9 @@ class Patient < ApplicationRecord
      belongs_to :hpc
      belongs_to :agreement
      belongs_to :user
-     mount_uploader :avatar, AvatarPatientUploader  
+     has_many :tasks
+     mount_uploader :avatar, AvatarPatientUploader 
+ 
      
 
   def self.search(search)

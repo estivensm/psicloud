@@ -1,0 +1,468 @@
+<div class="container">
+   <div class="col-md-12">
+      <div class="row margin-top-40" >
+   <div class="col-md-12" style="padding-left: 50px;">
+      <%= link_to "Volver al Paciente", patient_path(@patient.id)%>
+
+   </div>
+</div>  
+      <br><br>
+      <div class="pdf">           
+    
+
+
+
+           <%= link_to  patient_consentimiento_informado_menores_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-danger", title:"Consentimiento Informado" do  %> Generar PDF 
+        <i class="far fa-file-pdf" style = "font-size:20px;" aria-hidden="true"></i>
+        <%end%>       
+      </div>
+<%a = get_date_array(Time.now)%>
+<h5>
+CONSENTIMIENTO INFORMADO PARA ADOLESCENTES (12 A 18 AÑOS)
+
+</h5>
+
+<p style="text-align: justify;font-size: 13px;padding: 20px 50px;">
+Este tipo de consentimiento lo da y lo firma el usuario en primera persona, sin la intervención de un tercero.
+<br><br>
+Nosotros, obrando en calidad de representantes legales del menor <strong style="border-bottom: 1px solid gray"><%= @patient.first_name %> <%= @patient.second_name %> <%= @patient.first_last_name %> <%= @patient.second_name %> </strong> Identificado (a) con la T.I <strong style="border-bottom: 1px solid gray"><%=@patient.document%> </strong>                                      
+y en conjunto con él (ella), certificamos que hemos comprendido que la información que reciba el psicólogo es de carácter confidencial y que lo podrá revelar<sup>1</sup> si durante la evaluación o tratamiento, el profesional detecta de manera clara que hay un evidente daño para el consultante o para terceros (se explicará quién es el destinatario potencial de la información en caso de verse la necesidad de revelarla, y el manejo de la información y las consecuencias de la misma. En caso de ambientes legales, se hará especial énfasis en la no autoincriminación y la no observancia del secreto profesional). Se nos indicó que el procedimiento a seguir es (especificar de manera clara y comprensible el procedimiento que se va a seguir. Si es necesario, antes de la intervención terapéutica, indicar que se hará una evaluación donde se aplicarán pruebas, estas se deberán listar aclarando el objeto de cada una de ellas. Asimismo, se indicará la impresión diagnóstica, en el caso de que aplique. Si el psicólogo tiene una impresión diagnóstica en los términos de OSM o de la CIE, así sea tentativa, se lo hará saber al consultante indicándole que tipo de tratamiento se llevará a cabo, explicándole en qué consiste este: desensibilización sistemática, restructuración cognoscitiva, habilidades sociales y comunicación asertiva, etcétera) y el posible tiempo que lleve el tratamiento. También se nos indicó que podemos revocar el consentimiento o dar por terminada en cualquier momento la relación entre el psicólogo y nuestro(a) hijo(a), cuando lo consideremos pertinente, sin que ello implique ningún tipo de consecuencias para nosotros.
+
+<br><br>
+Una vez leído y comprendido el procedimiento que se seguirá, se firma el presente consentimiento el día <strong><%= a[0]%></strong> del mes de <strong><%= a[2]%> </strong> de  <strong><%= a[4]%>, en la ciudad de Medellín.
+
+</p>
+      <br><br>
+      
+
+      <div class="row" style="padding: 20px 50px;">
+          <div class="col-md-6">
+                
+                
+                   
+                    
+                    <div class="clase_img" >
+                       <img width="300px" src="<%=@patient.firma_paciente%>" alt=""><br>
+                     
+                      <br>
+                      <p>Firma del Paciente </p>
+                    <p>C.C: <%=@patient.document%></p> 
+                    </div>
+                  </div>    
+                  <div class="col-md-6">
+                         <div  class= "clase_form" >
+                      
+                   
+                    
+                    <div class="wrapper">
+
+                        <canvas id="signature-pad" class="signature-pad" width=400 height=200 ></canvas>
+                    </div>
+                        
+                        <br>
+                        <div><%=form_tag crear_firma_paciente_path, remote: true, class: "form_firma" do %>
+                            <%= hidden_field_tag :firma_paciente, nil, id: "firma_paciente"%>
+                            <%= hidden_field_tag :patient_id, @patient.id, id: "firma_paciente"%>
+                            <%= submit_tag "Confirmar", id: "save-png"%>
+
+                        <%end%> 
+
+                        <button id="clear">Limpiar</button>
+                        <div class="alert alert-success paciente" style="display:none;    padding: 4px;" role="alert">¡ Guardada !</div>
+                        </div>
+
+
+                     </div>
+                    </div>  
+                    
+                    
+          
+      </div>
+
+
+      <div class="row" style="padding: 20px 50px;">
+          <div class="col-md-6">
+                
+                
+                   
+                    
+                    <div class="clase_img_padre" >
+                       <img width="300px" src="<%=@patient.firma_padre%>" alt=""><br>
+                     
+                      <br>
+                      <p>Firma del Padre </p>
+                    <p>C.C: <%=@patient.document%></p> 
+                    </div>
+                  </div>    
+                  <div class="col-md-6">
+                         <div  class= "clase_form" >
+                      
+                   
+                    
+                    <div class="wrapper">
+
+                        <canvas id="signature-pad-padre" class="signature-pad-padre" width=400 height=200 ></canvas>
+                    </div>
+                        
+                        <br>
+                        <div><%=form_tag crear_firma_padre_path, remote: true, class: "form_firma" do %>
+                            <%= hidden_field_tag :firma_padre, nil, id: "firma_padre"%>
+                            <%= hidden_field_tag :patient_id, @patient.id, id: "firma_paciente"%>
+                            <%= submit_tag "Confirmar", id: "save-png_padre"%>
+
+                        <%end%> 
+
+                        <button id="clear_padre">Limpiar</button>
+                        <div class="alert alert-success padre" style="display:none;    padding: 4px;" role="alert">¡ Guardada !</div>
+                        </div>
+
+
+                     </div>
+                    </div>  
+                    
+                    
+          
+      </div>
+
+
+      <div class="row" style="padding: 20px 50px;">
+          <div class="col-md-6">
+                
+                
+                   
+                    
+                    <div class="clase_img_madre" >
+                       <img width="300px" src="<%=@patient.firma_madre%>" alt=""><br>
+                     
+                      <br>
+                      <p>Firma del Madre </p>
+                    <p>C.C: <%=@patient.document%></p> 
+                    </div>
+                  </div>    
+                  <div class="col-md-6">
+                         <div  class= "clase_form" >
+                      
+                   
+                    
+                    <div class="wrapper">
+
+                        <canvas id="signature-pad-madre" class="signature-pad-madre" width=400 height=200 ></canvas>
+                    </div>
+                        
+                        <br>
+                        <div><%=form_tag crear_firma_madre_path, remote: true, class: "form_firma" do %>
+                            <%= hidden_field_tag :firma_madre, nil, id: "firma_madre"%>
+                            <%= hidden_field_tag :patient_id, @patient.id, id: "firma_paciente"%>
+                            <%= submit_tag "Confirmar", id: "save-png_madre"%>
+
+                        <%end%> 
+
+                        <button id="clear_madre">Limpiar</button>
+                        <div class="alert alert-success madre" style="display:none;    padding: 4px;" role="alert">¡ Guardada !</div>
+                        </div>
+
+
+                     </div>
+                    </div>  
+                    
+                    
+          
+      </div>
+
+
+      
+      <br>
+      <br>
+      <style>
+         th
+         {
+         width: 50%;
+         }
+         h5
+         {
+         text-align: center;
+         margin: 50px 20px 50px 20px;
+         background: #5bc0de;
+         color: white;
+         padding: 12px;
+         font-size: 20px;
+         }
+         .pdf
+         {
+          text-align: center;
+         }
+         .form_firma
+         {
+          display: inline-block;
+         }
+      </style>
+      <p style="text-align: justify;font-size: 10px;padding: 20px 50px;width: 100%;">
+<sup>1</sup> En los procedimientos relacionados con la psicología forense, se deberá especificar que la información dada al psicólogo se condesará en un informe que le será entregado al abogado y que lo hará público en los escenarios jurídicos correspondientes.<br><br>
+<sup>2</sup> En caso de no contar el consentimiento de uno de los dos padres, es necesario explicar la razón.<br><br>
+<sup>3</sup> En ambientes forenses, de contarse con el consentimiento de los dos padres, se hará saber que la remisión de autoridad competente (juez, defensor de familia, comisario de familia, personero municipal o inspector de policía de acuerdo con la Ley 1098 de 2006) se toma como consentimiento sustituto.</p>
+
+
+
+<style>
+th
+{
+  width: 50%;
+}
+  
+</style>
+
+<style>
+   .wrapper {
+   position: relative;
+   width: 400px;
+   height: 200px;
+   -moz-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .signature-pad {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width:400px;
+   height:200px;
+   border:1px solid whitesmoke;
+   }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+<script>
+   
+ $(document).on('turbolinks:load',function() {
+   var canvas = document.getElementById('signature-pad');
+      console.log(canvas);
+                 // Adjust canvas coordinate space taking into account pixel ratio,
+                 // to make it look crisp on mobile devices.
+                 // This also causes canvas to be cleared.
+                 function resizeCanvas() {
+                     // When zoomed out to less than 100%, for some very strange reason,
+                     // some browsers report devicePixelRatio as less than 1
+                     // and only part of the canvas is cleared then.
+                     var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+                     canvas.width = canvas.offsetWidth * ratio;
+                     canvas.height = canvas.offsetHeight * ratio;
+                     canvas.getContext("2d").scale(ratio, ratio);
+                 }
+   
+                 window.onresize = resizeCanvas;
+                 resizeCanvas();
+   
+                 var signaturePad = new SignaturePad(canvas, {
+                 backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
+                 });
+   
+                 document.getElementById('save-png').addEventListener('click', function () {
+                 /*if (signaturePad.isEmpty()) {
+                     return alert("Por favor ingresa la firma");
+                 }*/
+                 
+                 var data = signaturePad.toDataURL('image/png');
+                 console.log(data);
+                 $('#firma_paciente').val(data);
+                 signaturePad.clear();
+                 
+
+                 /*window.open(data);*/
+                 });
+   
+                  
+                 document.getElementById('clear').addEventListener('click', function () {
+                 signaturePad.clear();
+                 $('#firma_paciente').val("");
+                 });
+
+            
+                 
+                     
+        
+
+
+   
+ 
+
+                 document.getElementById('draw').addEventListener('click', function () {
+                 var ctx = canvas.getContext('2d');
+                 console.log(ctx.globalCompositeOperation);
+                 ctx.globalCompositeOperation = 'source-over'; // default value
+                 });
+   
+                 document.getElementById('erase').addEventListener('click', function () {
+                 var ctx = canvas.getContext('2d');
+                 ctx.globalCompositeOperation = 'destination-out';
+                 });
+
+  });
+
+</script>
+
+
+
+
+<script>
+   
+
+
+   var canvas_padre = document.getElementById('signature-pad-padre');
+ 
+   
+                 // Adjust canvas coordinate space taking into account pixel ratio,
+                 // to make it look crisp on mobile devices.
+                 // This also causes canvas to be cleared.
+                 function resizeCanvas() {
+                     // When zoomed out to less than 100%, for some very strange reason,
+                     // some browsers report devicePixelRatio as less than 1
+                     // and only part of the canvas is cleared then.
+                     var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+                     canvas_padre.width = canvas_padre.offsetWidth * ratio;
+                     canvas_padre.height = canvas_padre.offsetHeight * ratio;
+                     canvas_padre.getContext("2d").scale(ratio, ratio);
+                 }
+   
+                 window.onresize = resizeCanvas;
+                 resizeCanvas();
+   
+                 var signaturePad_padre = new SignaturePad(canvas_padre, {
+                 backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
+                 });
+   
+                 document.getElementById('save-png_padre').addEventListener('click', function () {
+                 /*if (signaturePad.isEmpty()) {
+                     return alert("Por favor ingresa la firma");
+                 }*/
+                 
+                 var data_padre = signaturePad_padre.toDataURL('image/png');
+                 console.log(data_padre);
+                 $('#firma_padre').val(data_padre);
+                 signaturePad_padre.clear();
+                 
+
+                 /*window.open(data);*/
+                 });
+   
+                  
+                 document.getElementById('clear_padre').addEventListener('click', function () {
+                 signaturePad_padre.clear();
+                 $('#firma_padre').val("");
+                 });
+
+            
+                 
+                     
+        
+
+
+   
+
+ 
+</script>
+
+
+
+
+
+<script>
+   
+ 
+   var canvas_madre = document.getElementById('signature-pad-madre');
+   
+                 // Adjust canvas coordinate space taking into account pixel ratio,
+                 // to make it look crisp on mobile devices.
+                 // This also causes canvas to be cleared.
+                 function resizeCanvas() {
+                     // When zoomed out to less than 100%, for some very strange reason,
+                     // some browsers report devicePixelRatio as less than 1
+                     // and only part of the canvas is cleared then.
+                     var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+                     canvas_madre.width = canvas_madre.offsetWidth * ratio;
+                     canvas_madre.height = canvas_madre.offsetHeight * ratio;
+                     canvas_madre.getContext("2d").scale(ratio, ratio);
+                 }
+   
+                 window.onresize = resizeCanvas;
+                 resizeCanvas();
+   
+                 var signaturePad_madre = new SignaturePad(canvas_madre, {
+                 backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
+                 });
+   
+                 document.getElementById('save-png_madre').addEventListener('click', function () {
+                 /*if (signaturePad.isEmpty()) {
+                     return alert("Por favor ingresa la firma");
+                 }*/
+                 
+                 var data_madre = signaturePad_madre.toDataURL('image/png');
+                 console.log(data_madre);
+                 $('#firma_madre').val(data_madre);
+                 signaturePad_madre.clear();
+                 
+
+                 /*window.open(data);*/
+                 });
+   
+                  
+                 document.getElementById('clear_madre').addEventListener('click', function () {
+                 signaturePad_madre.clear();
+                 $('#firma_madre').val("");
+                 });
+
+            
+                 
+  
+
+
+
+</script>
+
+
+
+
+
+
+
+<style>
+   .wrapper {
+   position: relative;
+   width: 400px;
+   height: 200px;
+   -moz-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .signature-pad-madre {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width:400px;
+   height:200px;
+   border:1px solid whitesmoke;
+   }
+</style>
+
+
+
+
+<style>
+   .wrapper {
+   position: relative;
+   width: 400px;
+   height: 200px;
+   -moz-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .signature-pad-padre {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width:400px;
+   height:200px;
+   border:1px solid whitesmoke;
+   }
+</style>

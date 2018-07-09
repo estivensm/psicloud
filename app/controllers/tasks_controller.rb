@@ -1,11 +1,15 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+  layout 'admin_patient'
   # GET /tasks
   # GET /tasks.json
   def index
     @patient = Patient.find(params[:patient_id])
-    @tasks = Task.all
+    @tasks = @patient.tasks.abiertas.paginate(page: params[:page],:per_page => 10).order(fecha_compromiso: :desc)
+    @tasks_cerradas = @patient.tasks.cerradas.paginate(page: params[:page],:per_page => 10).order(fecha_compromiso: :desc)
+    @clinic_history = @patient.clinic_histories.first
   end
 
   # GET /tasks/1
@@ -17,11 +21,13 @@ class TasksController < ApplicationController
   def new
     @patient = Patient.find(params[:patient_id])
     @task = Task.new
+    @appointments = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc)
   end
 
   # GET /tasks/1/edit
   def edit
     @patient = Patient.find(params[:patient_id])
+    @appointments = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc)
   end
 
   # POST /tasks
@@ -32,7 +38,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to new_patient_task_path(@patient.id), notice: 'Task was successfully created.' }
+
+        @appointment = Appointment.find(@task.appointment_id)
+        @task.fecha_compromiso = @appointment.start_datetime.to_date
+        @task.save
+        format.html { redirect_to patient_tasks_path(@patient.id), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -46,7 +56,10 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        @appointment = Appointment.find(@task.appointment_id)
+        @task.fecha_compromiso = @appointment.start_datetime.to_date
+        @task.save
+        format.html { redirect_to patient_tasks_path(@patient.id), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -60,7 +73,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to patient_tasks_path(@patient.id), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

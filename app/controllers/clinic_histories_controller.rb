@@ -1,10 +1,13 @@
 class ClinicHistoriesController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_clinic_history, only: [:show, :edit, :update, :destroy]
+   
 
   # GET /clinic_histories
   # GET /clinic_histories.json
   def index
     @clinic_histories = ClinicHistory.all
+    render :layout => 'admin_patient'
   end
 
   # GET /clinic_histories/1
@@ -93,13 +96,16 @@ end
 
   # GET /clinic_histories/new
   def new
- @patient = Patient.find(params[:patient_id])
-    @clinic_history = ClinicHistory.new
+      @patient = Patient.find(params[:patient_id])
+      @clinic_history = ClinicHistory.new
+      render :layout => 'admin_patient'
+
   end
 
   # GET /clinic_histories/1/edit
   def edit
     @patient = Patient.find(params[:patient_id])
+    render :layout => 'admin_patient'
   end
 
   # POST /clinic_histories
@@ -146,8 +152,8 @@ end
             end
         }
         format.json { render :show, status: :created, location: @clinic_history }
-      else
-        format.html { render :new }
+      else 
+        format.html { render :new  }
         format.json { render json: @clinic_history.errors, status: :unprocessable_entity }
       end
     end
@@ -197,11 +203,36 @@ end
       @patient = Patient.find(@clinic_history.patient_id)
 
           if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis],outcome_state: params[:outcome_state])
+              
+
+              if @clinic_history.desenlace_first != true
+
+                  @clinic_history.desenlace_created_at = Date.today
+                  @clinic_history.desenlace_first = true
+                  @clinic_history.save
+              end  
+
+
+
               @clinic_history.diagnostics.destroy_all
             if params[:diagnostic_ids] != nil  
               params[:diagnostic_ids].each do |diag|
                 
                 @clinic_history.diagnostics << Diagnostic.find(diag)
+                
+              end
+              
+          
+              
+
+            end
+
+
+            @clinic_history.diagnosticos.destroy_all
+            if params[:diagnostico_ids] != nil  
+              params[:diagnostico_ids].each do |diag|
+                
+                @clinic_history.diagnosticos << Diagnostico.find(diag)
                 
               end
               
@@ -220,8 +251,17 @@ end
 
       @clinic_history = ClinicHistory.find(params[:id])
        @patient = Patient.find(@clinic_history.patient_id)
-         
+         render :layout => 'admin_patient'
       
+  end
+
+
+
+   def change_fcitas
+
+    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+    @clinic_history.update(patient_id: params[:patient_id],frequency_appointment:params[:frequency_appointment],quantity_appointment: params[:quantity_appointment])
+    @clinic_history.save
   end
 
   private
@@ -233,6 +273,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_history_params
-      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id,:created_date, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :first_contact_state, :outcome_state,:family_dinamic,:codigo,:consult_reason_id,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
+      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id,:created_date, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :first_contact_state, :outcome_state, :first_child_state, :second_child_state, :third_child_state, :four_child_state,:family_dinamic,:codigo,:consult_reason_id,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
     end
 end

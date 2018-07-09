@@ -1,0 +1,76 @@
+
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">Perfil de Usuario<hr></div>
+          </div>
+          <div class="row">
+			<div class="col-md-2 text-center">
+              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto;"  width="100px" src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/512/user-male-icon.png">
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h1 class="only-bottom-margin"><%=@user.names%> <%=@user.last_names%></h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="text-muted">Email:</span> <%=@user.email%><br>
+                  <span class="text-muted">Fecha de Nacimiento:</span> <%=@user.birth_date%><br>
+                  <span class="text-muted">Documento:</span> <%=@user.document%><br>
+                  <span class="text-muted">Registro Medico:</span> <%=@user.medical_record%><br>
+                 
+                </div>
+                <div class="col-md-6">
+                  <div class="activity-mini">
+                    <i class="glyphicon glyphicon-comment text-muted"></i> 500
+                  </div>
+                  <div class="activity-mini">
+                    <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr>
+        
+
+               <%= link_to  edit_user_registration_path(@user.id), :class => "btn btn-warning pull-right" do %>
+                           <i class="glyphicon glyphicon-pencil"></i>
+                           <span >Editar Usuario</span>
+              <% end %>
+                  
+               <%= link_to  firma_psicologo_path(@user.id), :class => "btn btn-default pull-right" do %>
+                           <i class="fas fa-quidditch"></i>
+                           <span >Editar Firma</span>
+              <% end %>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+.text-muted
+{
+  font-weight: bold;
+}
+.btn
+{
+  margin-right: 10px;
+}
+</style>

@@ -62,7 +62,7 @@
 <% if action_name == "index" %>
         <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_path(format: "csv"), class: "icon-export"%>
 
-       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
+       <%= link_to image_tag("https://www.codot.gov/business/civilrights/ada/assets/adobe-pdf-icon.png/image_preview"), patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
      <%end%>
 
   <% if action_name == "all_patients" %>
@@ -111,7 +111,7 @@
       <%end%>
         <%if current_user.rol.edit_patient%>
           <%= link_to  edit_patient_path(patient), class: "btnl btn-primary" do%>
-             <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
+             <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
 <%end%>
        <%if current_user.rol.delete_patient%>

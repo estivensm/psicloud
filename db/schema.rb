@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504163214) do
+ActiveRecord::Schema.define(version: 20180609220949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,27 @@ ActiveRecord::Schema.define(version: 20180504163214) do
     t.boolean "first_contact_state"
     t.boolean "outcome_state"
     t.integer "consult_reason_id"
+    t.boolean "first_child_state"
+    t.boolean "second_child_state"
+    t.boolean "third_child_state"
+    t.boolean "four_child_state"
+    t.boolean "desenlace_first"
+    t.datetime "desenlace_created_at"
+    t.boolean "first_child_first"
+    t.datetime "child_first_created_at"
+    t.boolean "first_child_second"
+    t.datetime "second_child_created_at"
+    t.boolean "first_child_third"
+    t.datetime "third_child_created_at"
+    t.boolean "first_child_four"
+    t.datetime "four_child_created_at"
+  end
+
+  create_table "clinic_histories_diagnosticos", id: false, force: :cascade do |t|
+    t.bigint "clinic_history_id"
+    t.bigint "diagnostico_id"
+    t.index ["clinic_history_id"], name: "index_clinic_histories_diagnosticos_on_clinic_history_id"
+    t.index ["diagnostico_id"], name: "index_clinic_histories_diagnosticos_on_diagnostico_id"
   end
 
   create_table "clinic_histories_diagnostics", id: false, force: :cascade do |t|
@@ -169,6 +190,17 @@ ActiveRecord::Schema.define(version: 20180504163214) do
     t.string "subjet"
     t.string "email"
     t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "diagnosticos", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.integer "count"
+    t.string "codigo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -239,6 +271,10 @@ ActiveRecord::Schema.define(version: 20180504163214) do
     t.integer "birthdate_day"
     t.string "school_grade"
     t.boolean "state"
+    t.text "firma_paciente"
+    t.text "firma_psicologo"
+    t.text "firma_madre"
+    t.text "firma_padre"
   end
 
   create_table "personal_backgrounds", force: :cascade do |t|
@@ -323,6 +359,21 @@ ActiveRecord::Schema.define(version: 20180504163214) do
     t.boolean "show_all_cita"
     t.boolean "show_all_doc"
     t.boolean "show_all_rol"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "patient_id"
+    t.text "description"
+    t.date "fecha_compromiso"
+    t.integer "appointment_id"
+    t.boolean "estado"
+    t.date "fecha_entrega"
+    t.boolean "cumplimiento"
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "three_child_histories", force: :cascade do |t|
@@ -458,6 +509,9 @@ ActiveRecord::Schema.define(version: 20180504163214) do
     t.string "ip_address"
     t.string "device"
     t.bigint "phone"
+    t.datetime "expires_at"
+    t.string "expires_ats"
+    t.text "firma_psicologo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

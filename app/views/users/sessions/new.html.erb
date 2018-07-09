@@ -32,6 +32,14 @@
   
   </div>
 <% end %>
+
+<div class="col-md-12 text-center color-gray" style="margin-top: 10px;margin-left: 0px">
+
+<a class="google" href="https://psicloud.herokuapp.com/users/auth/google_oauth2" ><img style="width:20px" src="https://cdn.icon-icons.com/icons2/836/PNG/512/Google_icon-icons.com_66793.png" alt=""> Iniciar Sescion con Google </a> 
+
+</div>
+
+
 <div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 10px;margin-left: 0px">
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "¿Olvidaste la contraseña?", new_password_path(resource_name)  %><br />
@@ -47,5 +55,14 @@
 
 <style>
 
-  
+ .google
+ {
+    margin-bottom: 20px;
+    margin-left: 0px;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+    border-radius: 7px;
+    color: gray !important;
+    display: block;
+ } 
 </style>

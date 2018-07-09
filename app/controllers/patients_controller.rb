@@ -114,9 +114,10 @@ end
        
         @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-        @hs = @patient.clinic_histories.first
+        @clinic_history = @patient.clinic_histories.first
         @appointment_l = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc).last
          
+      render :layout => 'admin_patient'   
       
   end
 
@@ -265,11 +266,11 @@ end
 
 
   def consentimiento_informado
-@patient = Patient.find(params[:patient_id])
+      @patient = Patient.find(params[:patient_id])
       respond_to do |format|
-      format.html
+      format.html 
       format.pdf do
-        render :pdf => "hola",
+        render :pdf => "Consentimiento_Informado",
         header: { right: '[page] of [topage]' },
         :template => 'patients/pdfs/consentimiento_informado.pdf.erb',
         :layout => 'pdf.html.erb',
@@ -301,7 +302,7 @@ end
       respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "hola",
+        render :pdf => "Consentimiento_Informado",
         header: { right: '[page] of [topage]' },
         :template => 'patients/pdfs/consentimiento_informado_adolescentes.pdf.erb',
         :layout => 'pdf.html.erb',
@@ -333,7 +334,7 @@ def consentimiento_informado_menores
       respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "hola",
+        render :pdf => "Consentimiento_Informado",
         header: { right: '[page] of [topage]' },
         :template => 'patients/pdfs/consentimiento_informado_menores.pdf.erb',
         :layout => 'pdf.html.erb',
@@ -393,6 +394,54 @@ end
     Patient.find(params[:id]).update(state: val)
   
   end
+
+
+
+  def crear_firma_paciente
+
+    @patient = Patient.find(params[:patient_id])
+   
+   # if !params[:firma_paciente].blank?
+      if @patient.update(firma_paciente: params[:firma_paciente]) 
+        
+        @state = true
+
+      
+      end 
+    #end 
+    
+  end
+
+  def crear_firma_padre
+
+    @patient = Patient.find(params[:patient_id])
+   
+   # if !params[:firma_paciente].blank?
+      if @patient.update(firma_padre: params[:firma_padre]) 
+        
+        @state = true
+
+      
+      end 
+    #end 
+    
+  end
+
+def crear_firma_madre
+
+    @patient = Patient.find(params[:patient_id])
+   
+   # if !params[:firma_paciente].blank?
+      if @patient.update(firma_madre: params[:firma_madre]) 
+        
+        @state = true
+
+      
+      end 
+    #end 
+    
+  end
+
 
 
 

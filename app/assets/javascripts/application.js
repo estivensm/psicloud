@@ -37,29 +37,83 @@ $(document).on('turbolinks:load',function() {
 $("#calendar").fullCalendar({
 
     
-
-
-    selectable:true,
+    themeSystem: 'jquery-ui',
+    defaultView: 'agendaWeek',
+    /*selectable:true,*/
     selectHelper:true,
     editable:true,
+    
+    eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+
+       console.log(event.start.toDate())
+       datet = event.start.toDate()
+       console.log(event.start.hour())
+       date_start = event.start.year() +  "-"  + (event.start.month() + 1) + "-" + event.start.date() + " " + event.start.hour() + ":" + event.start.minute() + ":" + event.start.second() 
+       date_end = event.end.year() +  "-"  + (event.end.month() + 1) + "-" + event.end.date() + " " + event.end.hour() + ":" + event.end.minute() + ":" + event.end.second() 
+
+       console.log(date_start)
+       var a = event.url.slice(9)
+      
+       var choice = confirm("¿Esta seguro cambiar la cita?");
+   
+       if (choice) {
+        
+       $.post("/edit_calendar",
+            {
+                start: date_start ,
+                end: date_end,
+                id: event.id
+            },
+            function(data, status){
+               console.log("Data: " + event.start + "\nStatus: " + status);
+    });
+     }
+
+    console.log(event);
+
+    },
+    /* select: function(startDate, endDate) {
+       date_start = startDate.year() +  "-"  + (startDate.month() + 1) + "-" + startDate.date() + " " + startDate.hour() + ":" + startDate.minute() + ":" + startDate.second() 
+       date_end = endDate.year() +  "-"  + (endDate.month() + 1) + "-" + endDate.date() + " " + endDate.hour() + ":" + endDate.minute() + ":" + endDate.second() 
+       console.log(date_start)
+       console.log(date_end)
+
+       $.get("/new_calendar", function(){
+
+
+
+
+       })
+       
+
+    },*/
+
      events: "/appointments/get_appointments",
-     timeFormat: "h:mm t{ - h:mm t} ",
+     /*eventRender: function(eventObj, $el) {
+      $el.popover({
+        title: eventObj.title,
+        content: "Observaciones: " + eventObj.description ,
+        trigger: 'hover',
+        placement: 'top',
+        container: 'body'
+      });
+    },*/
      monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-        monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
-         dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-    dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-    buttonText: ['Hoy', 'month', 'week', 'day', 'list'],
-header: {
+     monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+     dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+     dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+     buttonText: ['Hoy', 'month', 'week', 'day', 'list'],
+     header: {
                 left: 'prev,next Hoy',
                 center: 'title',
                 right: 'month,agendaWeek,today'
             },
-buttonText:{
-    today:    'Hoy',
-    month:    'Mes',
-    week:     'Semana',
-    day:      'Dia',
-    list:     'Lista'
+     buttonText:{
+     today:    'Hoy',
+     month:    'Mes',
+     week:     'Semana',
+     day:      'Dia',
+     list:     'Lista'
 }
 
 

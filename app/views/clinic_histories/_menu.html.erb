@@ -10,11 +10,7 @@ a = "noactive"
  <%= link_to edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary #{a}" ,style: "width: 200px;" do%>
         
        
-        <%if @clinic_history.first_contact_state%>
-        <i class="fa fa-lock" style="font-size: 16px"></i>
-        <%else%>
-           <i class="fa fa-lock-open" style="font-size: 16px"></i>
-        <%end%>
+       <%=get_open(@clinic_history.first_contact_state).html_safe%>
          Primer Contacto
  <% end %>
 
