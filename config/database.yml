@@ -5,7 +5,7 @@ development:
   database: Psicloud_development
   pool: 5
   username: postgres 
-  password: Servidual2016
+  password: ruby0906
   host: localhost
   port: 5432
 
@@ -17,7 +17,7 @@ test:
   database: Psicloud_test
   pool: 5
   username: postgres 
-  password: Servidual2016
+  password: ruby0906
   host: localhost
   port: 5432
 
@@ -27,6 +27,6 @@ production:
   database: Psicloud_production
   pool: 5
   username: rails
-  password: 0r04PxFG8S
+  password: ruby0906
   host: localhost
   port: 5432
