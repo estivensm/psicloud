@@ -74,6 +74,22 @@
     </div>  
   </div>
 
+  <div class="col-md-10">
+    <div class="form-group">
+      <%= f.label "Adjuntar Firma" %>
+      <%= f.file_field :firma_adjunta, autofocus: true , :class => 'form-control' %>
+    </div>  
+  </div>
+
+   <div class="col-md-10">
+    <div class="form-group">
+<%val2 = "" 
+ action_name == "edit" ? val2 = current_user.tipo_firma : val2 = "" %>
+    <%= f.label "Tipo de Firma" %>
+     <%= f.select 'tipo_firma', options_for_select(["Adjunta", "Firma Digital", "Ninguna"], val2), {},{:class => 'form-control'}%>
+  </div>
+  </div>
+
 
  <div class="col-md-10">
     <div class="form-group">

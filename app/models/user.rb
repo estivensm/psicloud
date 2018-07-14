@@ -51,7 +51,8 @@ class User < ApplicationRecord
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,
        :omniauthable, :omniauth_providers => [:google_oauth2]
-  mount_uploader :avatar, AvatarUploader  
+  mount_uploader :avatar, AvatarUploader 
+  mount_uploader :firma_adjunta, FirmaAdjuntaUploader 
   after_create :crear_admin
 
     def self.find_for_google_oauth2(auth)
