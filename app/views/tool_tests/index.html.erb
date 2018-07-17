@@ -11,7 +11,7 @@
          </div>
       
          <div class = "col-md-4 text-right">
-          <%= link_to 'Nueva Herramienta', patient_clinic_history_new_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
+          <%= link_to 'Nueva Herramienta', new_patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
          </div>
       </div>
 
@@ -35,10 +35,10 @@
                           <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
                    <%end%>  
                    <%end%>
-                        <%= link_to patient_clinic_history_edit_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id), remote: true, class: "icon" do %>
+                        <%= link_to edit_patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id), remote: true, class: "icon" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i>
         <%end%>
-                    <%= link_to  patient_clinic_history_destroy_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
+                    <%= link_to  patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
            <i class="fa fa-trash" aria-hidden="true"></i>
           <%end%>
               </div>
@@ -61,7 +61,7 @@
 
         <h3>! AUN NO HAY HERRAMIENTAS DE EVALUACION ¡</h3>
         
-        <%= link_to "CREA LA PRIMERA", patient_clinic_history_new_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary" %>
+        <%= link_to "CREA LA PRIMERA", new_patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary" %>
         
         </div>
       

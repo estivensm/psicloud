@@ -1,4 +1,4 @@
-$('<%= j render "form_edit", tool_test: @tool_test %>').on('hidden.bs.modal', function (e) {
+$('<%= j render "form_new", tool_test: @tool_test %>').on('hidden.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
 }).modal({backdrop: 'static'});

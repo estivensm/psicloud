@@ -12,13 +12,7 @@ Rails.application.routes.draw do
   resources :contacts
   resources :hpcs
   resources :agreements
-  get 'tool_tests/index'
-
-  get 'tool_tests/show'
-
-  get 'tool_tests/new'
-
-  get 'tool_tests/edit'
+  
 
   get 'patients/csv'
   get 'patients/csv_all'
@@ -56,6 +50,8 @@ Rails.application.routes.draw do
         resources :child_general_dates
         resources :three_child_histories
         resources :tracings
+        resources :tool_tests
+
         
         get "pdf_completo", to: "clinic_histories#pdf_completo", as: "pdf_completo"
         get "backgrounds", to: "backgrounds#index", as: "backgrounds" 
@@ -73,14 +69,6 @@ Rails.application.routes.draw do
         delete "backgrounds/destroy_background_personal/:id", to: "backgrounds#destroy_background_personal", as: "destroy_background_personal"
 
         
-
-        get "tool_tests", to: "tool_tests#index", as: "tool_tests" 
-        get "tool_tests/new", to: "tool_tests#new", as: "new_tool_tests" 
-        post "tool_tests/create", to: "tool_tests#create", as: "create_tool_test" 
-        get "tool_tests/edit/:id", to: "tool_tests#edit", as: "edit_tool_test" 
-        patch "tool_tests/update", to: "tool_tests#update", as: "update_tool_test" 
-        delete "tool_tests/destroy/:id", to: "tool_tests#destroy", as: "destroy_tool_test"
-
      
      
      end

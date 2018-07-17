@@ -5,46 +5,59 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
         <h4 class="modal-title">Crear Herramienta</h4>
       </div>
-<%= form_tag patient_clinic_history_create_tool_test_path(@patient,@clinic_history), remote: true, multipart: true do %>
-  <div class="alert alert-danger" style="display:none">
-    <ul>
-    
-    </ul>
-  </div>
+
+  <%= form_for([@patient, @clinic_history , @tool_test]) do |form| %>
+  <% if @tool_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tool_test.errors.count, "error") %> prohibited this tool_test from being saved:</h2>
+
+      <ul>
+      <% @tool_test.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
       <div class="modal-body">
 
 
 
 
 
-<div class="form-group">
-    <%= label_tag "Tipo" %>
 
-      <%= select_tag 'type_tool', options_for_select(@patient.select_tools), {:class => 'form-control'}%>
-  </div>
+<div class="form-group">
+               <%val1 = "" 
+                  action_name == "edit" ? val1 = @tool_test.type_tool : val1 = "" %>
+               <%= form.label "Tipo de Documento" %>
+               <%= form.select 'type_tool', options_for_select(@patient.select_tools, val1), {},{:class => 'form-control'}%>
+            </div>
+
+
+
+
   <div class="form-group">
-    <%= label_tag "Descripcion" %>
-    <%= text_area_tag :description,nil,:class => 'form-control area' %>
+    <%= form.label "Descripcion" %>
+    <%= form.text_area :description,:class => 'form-control area' %>
   </div>
 
 
 <div class="field">
-     <%= label_tag "Adjunto" %>
-    <%= file_field_tag :attachment,  class: "form-control inputfile", id: 'file' %>
+     <%= form.label "Adjunto" %>
+    <%= form.file_field :attachment,  class: "form-control inputfile", id: 'file' %>
     <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
 
- <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <br>
-</label><span style="display:none;padding: 1px 10px;
-    background: #c8c8c8;
-    font-size: 19px;
-    margin-left: 10px;
-    border-radius: 8px;" class="quitar">x</span>
-      
-  </div>
+ <span class="levidencia" style = "margin-right:10px;"><%= @tool_test.attachment.blank? != true ? "#{@tool_test.attachment.file.filename}" : "Evidencia" %> </span> <%if @tool_test.attachment.blank?   != true %><br>
+<%= check_box_tag :remove_attachment %> 
+   <%= label_tag "Eliminar", "Eliminar", style: "color:red!important" %></label>
 
+   <%end%>
 
-<%= hidden_field_tag :patient_id ,:value =>  @patient.id %>
-<%= hidden_field_tag :clinic_history_id ,:value =>  @clinic_history.id %>
+   </div>
+
+<%= form.hidden_field :user_id ,:value =>  current_user.id %>
+<%= form.hidden_field :admin_user ,:value =>  current_user.admin_user %>
+<%= form.hidden_field :patient_id ,:value =>  @patient.id %>
+<%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
 
 
 
@@ -55,7 +68,7 @@
 
       <div class="modal-footer text-center">
        
-        <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
+        <%= form.submit "Guardar", class: 'btn btn-primary btnpad' %>
          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
 <% end %>
