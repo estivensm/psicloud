@@ -64,8 +64,10 @@ end
     end
   
    def tool_test_params
-      params.require(:tool_test).permit(:user_id, :admin_user, :patient_id, :clinic_history_id,:attachment,:description,:type_tool)
+      params.require(:tool_test).permit(:user_id, :admin_user, :patient_id, :clinic_history_id,:attachment,:description,:type_tool ,general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
     end
+
+
 
 end
 
