@@ -6,7 +6,7 @@
         <h4 class="modal-title">Crear Herramienta</h4>
       </div>
 
-  <%= form_for([@patient, @clinic_history , @tool_test]) do |form| %>
+  <%= nested_form_for([@patient, @clinic_history , @tool_test]) do |form| %>
   <% if @tool_test.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tool_test.errors.count, "error") %> prohibited this tool_test from being saved:</h2>
@@ -54,6 +54,49 @@
 
    </div>
 
+  <br>
+  <div class="row">
+   <%= form.fields_for :general_files do |file|  %>
+  <div class="clearfix">
+
+  <div class="col-md-12" >  
+    <div class="col-md-7 pdd" >
+     <%= file.link_to_remove do %>
+    <i style = "color: #e74b09;
+    font-size: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+    <% end %>
+
+    <%= file.label "Nombre" %>
+    <%= file.text_field :name, :class => ' form form-control', style: "" %>
+    </div>
+
+    <div class="col-md-5 pdd" >
+      <%= file.label "Archivo" %>
+      <%= file.file_field :file, :class => 'form form-control', style: "" %>
+      <br>
+    </div>
+
+    <br>
+    <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
+    <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
+   
+
+    <br>
+  </div> </div> <%end%>
+  <div class="col-md-12"> <%= form.link_to_add "Agregar Archivo", :general_files, :class => 'btn btn-primary top10'  %></div>
+   
+ 
+  </div>
+
+
+
+
+
+
+
 <%= form.hidden_field :user_id ,:value =>  current_user.id %>
 <%= form.hidden_field :admin_user ,:value =>  current_user.admin_user %>
 <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
@@ -69,7 +112,7 @@
       <div class="modal-footer text-center">
        
         <%= form.submit "Guardar", class: 'btn btn-primary btnpad' %>
-         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
 <% end %>
 
@@ -185,6 +228,8 @@
     padding: 10px;
     background: #e8e8e8;
    }
+  
+
   
 </style>
 </div>
