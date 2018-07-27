@@ -40,7 +40,9 @@
     <%= form.text_area :description,:class => 'form-control area' %>
   </div>
 
+<%if action_name == "edit"%>
 
+ <%if !@tool_test.attachment.blank? %>
 <div class="field">
      <%= form.label "Adjunto" %>
     <%= form.file_field :attachment,  class: "form-control inputfile", id: 'file' %>
@@ -49,11 +51,12 @@
  <span class="levidencia" style = "margin-right:10px;"><%= @tool_test.attachment.blank? != true ? "#{@tool_test.attachment.file.filename}" : "Evidencia" %> </span> <%if @tool_test.attachment.blank?   != true %><br>
 <%= check_box_tag :remove_attachment %> 
    <%= label_tag "Eliminar", "Eliminar", style: "color:red!important" %></label>
-
-   <%end%>
+<%end%>
+ 
 
    </div>
-
+     <%end%>
+<%end%>
   <br>
   <div class="row">
    <%= form.fields_for :general_files do |file|  %>
@@ -68,14 +71,25 @@
     position: relative;
     left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
     <% end %>
+    
+
+      
+       
+       
+
+
 
     <%= file.label "Nombre" %>
-    <%= file.text_field :name, :class => ' form form-control', style: "" %>
+     
+    <%= file.text_field :name, :class => 'name form form-control', style: "" %>
     </div>
 
     <div class="col-md-5 pdd" >
       <%= file.label "Archivo" %>
-      <%= file.file_field :file, :class => 'form form-control', style: "" %>
+      
+      <%= file.file_field :file, :class => 'file form form-control archivo', style: "" %>
+      <%= file.hidden_field :id, class:"items" if action_name == "edit"%>
+      <span></span>
       <br>
     </div>
 
@@ -123,7 +137,35 @@
 
 <script>
   
+console.log($("#tool_test_general_files_attributes_1_file").prop('files'));
 
+$( ".items" ).each(function( index ) {
+   a = $( this ).val();
+   b = $( this )
+   general_files(a,b)
+  
+
+});
+
+
+function general_files(x,y){
+
+
+   $.get("/general_files/"+ x , function(data, status){
+        y.next().html("<a href='" + data.url +"' alt=''>" + data.name +  "<a>");
+  
+
+    });
+
+
+}
+
+/*$(document).on('change', '.file', function() {
+    console.log($(this.files[0].size));
+    console.log($(this.files[0].name));
+    this.html("<a href='" + data.url +"' alt=''>" + data.name +  "<a>");
+
+})*/
 
 
 

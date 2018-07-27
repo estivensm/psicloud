@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'stats/index', as: "stats"
   get 'general_stats', to: 'stats#general_stats' , as: 'general_stats'
   
+  get 'general_files/:id', to: 'tool_tests#general_files' , as: 'general_files'
+
   get 'patients/change_state/:value/:id', to: "patients#change_state", as: "change_state"
   resources :account_types
   resources :documents

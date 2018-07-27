@@ -38,6 +38,8 @@ end
   end
 
   def update
+       #puts "ddddddddddddddddddd"
+       #puts tool_test_params["general_files_attributes"]
        @tool_test = ToolTest.find(params[:id])
         if @tool_test.update(tool_test_params)
              if params[:remove_attachment]
@@ -58,6 +60,15 @@ end
     
   end
 
+  def general_files
+     
+     @general_file = GeneralFile.find(params[:id])
+
+     a = { name: File.basename(@general_file.file.url), url: @general_file.file_url}  
+
+     render json: a
+
+  end
    private
     def set_tool_test
       @tool_test = ToolTest.find(params[:id])
@@ -67,7 +78,7 @@ end
       params.require(:tool_test).permit(:user_id, :admin_user, :patient_id, :clinic_history_id,:attachment,:description,:type_tool ,general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
     end
 
-
+   
 
 end
 
