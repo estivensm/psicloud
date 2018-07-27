@@ -115,7 +115,7 @@ end
     @patient = Patient.find(params[:patient_id])
     respond_to do |format|
       if @clinic_history.save
-
+      
       num = @patient.clinic_histories.maximum(:count)
       if num != nil
       num = num + 1
@@ -137,6 +137,20 @@ end
           @clinic_history.child_history = false
           @clinic_history.save
         end
+
+
+         current_user.fields.where(form: "Primer Contacto").order(id: :asc).each do |field|
+                  
+                 
+                  CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
+              
+
+
+        end
+
+
+
+
 
         format.html { 
 
@@ -166,6 +180,21 @@ end
 
     respond_to do |format|
       if @clinic_history.update(clinic_history_params)
+
+        
+          current_user.fields.where(form: "Primer Contacto").order(id: :asc).each do |field|
+                  
+                 if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
+                  CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
+                 else
+                   CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.update(content: params[:"#{field.name}"])
+
+                 end
+
+
+        end
+
+
         format.html { 
                if !@clinic_history.child_history
           
@@ -204,6 +233,22 @@ end
 
           if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis],outcome_state: params[:outcome_state])
               
+
+              current_user.fields.where(form: "Desenlace").order(id: :asc).each do |field|
+                  
+                 if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
+                  CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
+                 else
+                   CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.update(content: params[:"#{field.name}"])
+
+                 end
+
+
+              end
+
+
+
+
 
               if @clinic_history.desenlace_first != true
 
@@ -273,6 +318,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_history_params
-      params.require(:clinic_history).permit(:clinic_history_id, :count, :consultation_reason, :actual_state, :diagnostic_hypothesis, :therapeutic_goal, :quantity_appointment, :frequency_appointment,:codigo, :user_id,:created_date, :admin_user, :patient_id, :type_of_treatment, :description_appointment, :first_contact_state, :outcome_state, :first_child_state, :second_child_state, :third_child_state, :four_child_state,:family_dinamic,:codigo,:consult_reason_id,backgrounds_attributes: [:id, :name, :description, :attachment,:type_background,:clase,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy],personal_backgrounds_attributes: [:id, :name, :description, :attachement,:type_background,:admin_user,:user_id, :patient_id ,:clinic_history_id, :_destroy])
+
+      params.require(:clinic_history).permit!
     end
 end

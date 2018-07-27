@@ -67,6 +67,7 @@
                         <li><%= link_to "EPS", hpcs_path , style: "color:gray !important"%></li>
                         <li><%= link_to "Convenio", agreements_path , style: "color:gray !important"%></li>
                         <li><%= link_to "Cuenta", account_path(get_account), style: "color:gray !important" %></li>
+                         <li><%= link_to "Configuración de Formularios", fields_path , style: "color:gray !important" %></li>
                         <%if current_user.super_admin%>
                          <li><%= link_to "Cuentas", accounts_path, style: "color:gray !important" %></li>
                         <%end%>

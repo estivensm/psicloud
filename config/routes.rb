@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
  
+  resources :fields
   get 'loaderio-a37049370b15266d36ffe4514aeca803.txt', to: "home#loader"
   get 'stats/index', as: "stats"
   get 'general_stats', to: 'stats#general_stats' , as: 'general_stats'

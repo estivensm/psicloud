@@ -47,13 +47,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
      belongs_to :rol, optional: true
+     has_many :fields , dependent: :destroy
      has_many :patients
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,
        :omniauthable, :omniauth_providers => [:google_oauth2]
-  mount_uploader :avatar, AvatarUploader 
-  mount_uploader :firma_adjunta, FirmaAdjuntaUploader 
-  after_create :crear_admin
+        mount_uploader :avatar, AvatarUploader 
+        mount_uploader :firma_adjunta, FirmaAdjuntaUploader 
+        after_create :crear_admin
 
     def self.find_for_google_oauth2(auth)
     data = auth.info

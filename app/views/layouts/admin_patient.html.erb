@@ -66,7 +66,10 @@
                         <li><%= link_to "EPS", hpcs_path , style: "color:gray !important"%></li>
                         <li><%= link_to "Convenio", agreements_path , style: "color:gray !important"%></li>
                         <li><%= link_to "Cuenta", account_path(get_account), style: "color:gray !important" %></li>
-
+                           <li><%= link_to "Configuración de Formularios", fields_path , style: "color:gray !important" %></li>
+                        <%if current_user.super_admin%>
+                         <li><%= link_to "Cuentas", accounts_path, style: "color:gray !important" %></li>
+                        <%end%>
                   <li class="hidden-xs hidden-sm"><a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" > Autenticación <i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a></li>
                      </ul>
                   </li>
