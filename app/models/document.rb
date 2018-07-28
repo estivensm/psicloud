@@ -14,6 +14,7 @@
 #
 
 class Document < ApplicationRecord
-mount_uploader :file, FormatUploader  
-	   
+    mount_uploader :file, FormatUploader  
+    has_many :general_files , inverse_of: :document, dependent: :destroy
+	accepts_nested_attributes_for :general_files, :allow_destroy => true	   
 end

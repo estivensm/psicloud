@@ -32,11 +32,7 @@
               
 
               <div class="col-md-6 text-right">
-               <%if tracing.attachment_url%>
-                   <%= link_to  tracing.attachment_url, class: "", style:"margin-right:10px;" do  %>
-                          <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
-                   <%end%>  
-                   <%end%>
+          
                         <%= link_to  edit_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing) ,class:"icon" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
                     <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon" do %>
@@ -48,7 +44,20 @@
           </div>
                         </div>
                         <div class="panel-body">
-                       <%= tracing.description %>
+                       <%= tracing.description %><br><br>
+                            <%if tracing.attachment_url%>
+                   <%= link_to  tracing.attachment_url, class: "", style:"margin-right:10px;" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                   <%end%>  
+                   <%end%>
+
+                    <% tracing.general_files.each do |file|%>
+                      <%if file.file_url%>
+                   <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                   <%end%>  
+                   <%end%>
+                   <%end%>
                         </div>
                       </div>
     <% end %>

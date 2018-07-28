@@ -18,4 +18,6 @@
 class Tracing < ApplicationRecord
 	belongs_to :clinic_history
     mount_uploader :attachment, AttachmentTracingUploader 
+    has_many :general_files , inverse_of: :tracing, dependent: :destroy
+	accepts_nested_attributes_for :general_files, :allow_destroy => true
 end

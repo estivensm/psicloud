@@ -1,7 +1,7 @@
 
 
 
-<%= form_for([@patient,@clinic_history,tracing]) do |form| %>
+<%= nested_form_for([@patient,@clinic_history,tracing]) do |form| %>
   <% if tracing.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(tracing.errors.count, "error") %> prohibited this tracing from being saved:</h2>
@@ -39,7 +39,9 @@
 
 
 
+<%if action_name == "edit"%>
 
+ <%if !@tracing.attachment.blank? %>
   <div class="form-group">
     <%= form.label "Evidencia" %><br>
     <%= form.file_field :attachment,  class: "form-control inputfile", id: 'file' %>
@@ -59,6 +61,60 @@
 
   </div> 
 
+   <%end%>
+<%end%>
+
+
+ <div class="row">
+   <%= form.fields_for :general_files do |file|  %>
+  <div class="clearfix">
+
+  <div class="col-md-12" >  
+    <div class="col-md-7 pdd" >
+     <%= file.link_to_remove do %>
+    <i style = "color: #e74b09;
+    font-size: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+    <% end %>
+    
+
+      
+       
+       
+
+
+
+    <%= file.label "Nombre" %>
+     
+    <%= file.text_field :name, :class => 'name form form-control', style: "" %>
+    </div>
+
+    <div class="col-md-5 pdd" >
+      <%= file.label "Archivo" %>
+      
+      <%= file.file_field :file, :class => 'file form form-control archivo', style: "" %>
+      <%= file.hidden_field :id, class:"items" if action_name == "edit"%>
+      <span></span>
+      <br>
+    </div>
+
+    <br>
+    <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
+    <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
+   
+
+    <br>
+  </div> </div> <%end%>
+  <div class="col-md-12"> <%= form.link_to_add "Agregar Archivo", :general_files, :class => 'btn btn-primary top10'  %></div>
+   
+ 
+  </div>
+
+
+
+
 
   <div class="modal-footer text-center">
        
@@ -68,9 +124,37 @@
 
 <% end %>
 
+
+
+
+
+
+
 <script>
   
 
+console.log($("#tool_test_general_files_attributes_1_file").prop('files'));
+
+$( ".items" ).each(function( index ) {
+   a = $( this ).val();
+   b = $( this )
+   general_files(a,b)
+  
+
+});
+
+
+function general_files(x,y){
+
+
+   $.get("/general_files/"+ x , function(data, status){
+        y.next().html("<a href='" + data.url +"' alt=''>" + data.name +  "<a>");
+  
+
+    });
+
+
+}
 
 
 

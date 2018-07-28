@@ -41,6 +41,8 @@
 #  expires_at             :datetime
 #  expires_ats            :string
 #  firma_psicologo        :text
+#  firma_adjunta          :string
+#  tipo_firma             :string
 #
 
 class User < ApplicationRecord

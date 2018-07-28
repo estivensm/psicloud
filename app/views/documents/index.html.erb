@@ -26,12 +26,12 @@
          </div>
       </div>
    
-      <div class = "row">
+      <div class = "row equal">
   
 
  <% @documents.each do |document| %>
 
- <div class="col-md-12">
+ <div class="col-md-6" >
    
  
 <div class="panel panel-default" >
@@ -46,17 +46,9 @@
               
 
               <div class="col-md-4 text-right">
-               <%if document.file_url%>
-                   <%= link_to  document.file_url, class: "btn btn-primary", style:"margin-right:10px;" do  %>
-                          <i class="fa fa-download" aria-hidden="true"></i> Descargar
-                               <%end%>
-                   <%else%>
-                      <p class="sin-adjunto">Sin Adjunto</p>  
-                   <%end%>
+        
                        <%if current_user.rol.show_doc%>
-        <%= link_to  document, class: "btnl btn-primary" do %>
-             <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%>
+    
       <%end%>
         <%if current_user.rol.edit_doc%>
           <%= link_to  edit_document_path(document),remote:true, class: "btnl btn-warning" do%>
@@ -68,10 +60,24 @@
              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%><%end%>
               </div>
+
+              
            
             
             
           </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                   <% document.general_files.each do |file|%>
+                      <%if file.file_url%>
+                   <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                   <%end%>  
+                   <%end%>
+                   <%end%>
+              </div>
                         </div>
                      
                       </div>
@@ -103,6 +109,12 @@
 
 
 <style>
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
   .np
 {
     text-align: center;
