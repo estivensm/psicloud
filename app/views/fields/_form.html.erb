@@ -1,50 +1,152 @@
-<%= form_with(model: field, local: true) do |form| %>
-  <% if field.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(field.errors.count, "error") %> prohibited this field from being saved:</h2>
 
-      <ul>
-      <% field.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= nested_form_for(@field, local: true) do |form| %>
+        <% if field.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(field.errors.count, "error") %> prohibited this field from being saved:</h2>
+
+            <ul>
+            <% field.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :Nombre_del_Formulario %><br>
+          <%= form.text_field :name, id: :field_name, class: "form form-control" %>
+        </div>
+        <br>
+        <div class="form-group">
+                     <%val1 = "" 
+                        action_name == "edit" ? val1 = @field.form : val1 = "" %>
+                     <%= form.label "Tipo del Formulario" %><br>
+                     <%= form.select 'type_field', options_for_select(["TextArea", "Select", "Checkbox"], val1), {},{:class => 'form form-control select'}%>
+                  </div>
+  
+      
+<div class="row subform" style="display: none">
+   <%= form.fields_for :fieldselects do |file|  %>
+  <div class="clearfix">
+
+  <div class="col-md-12" style="padding: 0px;" >  
+    <div class="col-md-12" style="padding: 0px;">
+        <div class="input-group">
+            <span class="input-group-btn">
+               <%= file.link_to_remove class: "btn btn-danger" do %>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+              </span>
+              <%= file.text_field :option, :class => 'name form form-control', style: "", :placeholder => "Opcion del Checkbox" %>
+            </div>
+          </div>
+      
+        
+        <br>
+        <br>
+      <br>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :field_name %>
+    
+
+    <br>
+    <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
+    <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
+   
+    <br>
+    <br>
+  </div> </div> <%end%>
+  <br>
+  <div class="col-md-12"> <%= form.link_to_add "Agregar Opcion", :fieldselects, :class => 'btn btn-primary top10'  %></div>
+   
+ 
   </div>
-
-  <div class="form-group">
-               <%val1 = "" 
-                  action_name == "edit" ? val1 = @field.form : val1 = "" %>
-               <%= form.label "Formulario" %>
-               <%= form.select 'type_field', options_for_select(["TextArea", "Select", "Checkbox"], val1), {},{:class => ''}%>
-            </div>
-
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.check_box :state, id: :field_state %>
+    
+        <br>
+        <br>
+        <div class="col-md-4" style="padding: 0px;">
+          <div class="field">
+          <%= form.label :Estado %><br>
+          <%= form.check_box :state, id: :field_state %>
+         </div>
+        </div>
+      
+        <div class="col-md-4">
+          <div class="field">
+          <%= form.label :Requerido %><br>
+          <%= form.check_box :requierd, id: :field_requierd %>
+           </div>
+        </div>
+        <br>
+          <%= form.hidden_field :user_id , :value => current_user.admin_user %>
+          <%= form.hidden_field :admin_user ,:value => current_user.admin_user%>
+        
+        <br>
+        <br>
+        <br>
+           <div class="form-group">
+                     <%val1 = "" 
+                        action_name == "edit" ? val1 = @field.form : val1 = "" %>
+                     <%= form.label "Formulario" %><br>
+                     <%= form.select 'form', options_for_select(["Primer Contacto", "Desenlace"], val1), {},{:class => 'form form-control'}%>
+                  </div>
+      
+        
+        <br>
+        <div class="actions">
+          <%= form.submit "Guardar", class: "btn btn-info" %>
+          <%= link_to 'Back', fields_path, class: "btn btn-info" %>
+        </div>
+        <br>
+      <% end %>
+    </div>
   </div>
+</div>
 
-<%= form.hidden_field :user_id , :value => current_user.admin_user %>
-<%= form.hidden_field :admin_user ,:value => current_user.admin_user%>
+<script>
+    
+    if ("<%=action_name%>" == "edit" )
 
-  <div class="field">
-    <%= form.label :requierd %>
-    <%= form.check_box :requierd, id: :field_requierd %>
-  </div>
+    {
+      $('.select').attr('disabled' , 'disabled')
+       $('.select').css('background-color' , '#d8d8d8') 
+
+    }
+
+    $('.select').val
+
+    if ($('.select').val == "Select"  && "<%=action_name%>" == "edit" )
+    {
+       $('.subform').show();
+    }  
 
 
-   <div class="form-group">
-               <%val1 = "" 
-                  action_name == "edit" ? val1 = @field.form : val1 = "" %>
-               <%= form.label "Formulario" %>
-               <%= form.select 'form', options_for_select(["Primer Contacto", "Desenlace"], val1), {},{:class => ''}%>
-            </div>
+    $('.select').change(function(){
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+        if ($(this).val() == "Select")
+          {    
+                console.log($(this).val())
+               $('.subform').fadeIn();
+          }
+        else
+          {
+             console.log($(this).val() + "no entro")
+                $('.subform').fadeOut();
+          } 
+
+
+
+
+    })
+  
+
+</script>
+
+<style>
+  .organizar{
+    padding: 0px;
+  }
+</style>
