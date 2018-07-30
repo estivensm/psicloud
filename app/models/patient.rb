@@ -52,6 +52,18 @@ class Patient < ApplicationRecord
      belongs_to :user
      has_many :tasks
      mount_uploader :avatar, AvatarPatientUploader 
+     after_create :crear_historia
+
+
+  def crear_historia
+  
+    child =  self.age < 14 ? true : false 
+          
+          
+
+    ClinicHistory.create(user_id: self.user_id, admin_user: self.admin_user, patient_id: self.id, child_history: child)
+
+  end   
  
      
 

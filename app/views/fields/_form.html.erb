@@ -22,13 +22,14 @@
         <br>
         <div class="form-group">
                      <%val1 = "" 
-                        action_name == "edit" ? val1 = @field.form : val1 = "" %>
+                        action_name == "edit" ? val1 = @field.type_field : val1 = "" %>
                      <%= form.label "Tipo del Formulario" %><br>
-                     <%= form.select 'type_field', options_for_select(["TextArea", "Select", "Checkbox"], val1), {},{:class => 'form form-control select'}%>
+           
+                     <%= form.select 'type_field', options_for_select(["Textarea", "Seleccion Multiple"], val1), {},{:class => 'form form-control select'}%>
                   </div>
   
       
-<div class="row subform" style="display: none">
+<div class="subform" style="display: none">
    <%= form.fields_for :fieldselects do |file|  %>
   <div class="clearfix">
 
@@ -58,9 +59,14 @@
    
     <br>
     <br>
-  </div> </div> <%end%>
+  </div> 
+
+  <%end%>
   <br>
-  <div class="col-md-12"> <%= form.link_to_add "Agregar Opcion", :fieldselects, :class => 'btn btn-primary top10'  %></div>
+  <div class="col-md-12"> <%= form.link_to_add "Agregar Opcion", :fieldselects, :class => 'btn btn-primary top10'  %>
+     <br>
+    <br>
+  </div>
    
  
   </div>
@@ -116,9 +122,9 @@
 
     }
 
-    $('.select').val
+    
 
-    if ($('.select').val == "Select"  && "<%=action_name%>" == "edit" )
+    if ($('.select').val() == "Seleccion Multiple"  && "<%=action_name%>" == "edit" )
     {
        $('.subform').show();
     }  
@@ -126,7 +132,7 @@
 
     $('.select').change(function(){
 
-        if ($(this).val() == "Select")
+        if ($(this).val() == "Seleccion Multiple")
           {    
                 console.log($(this).val())
                $('.subform').fadeIn();

@@ -58,13 +58,13 @@
          </div>
 
 
-       <%current_user.fields.where(form: "Desenlace").order(id: :asc).each do |field| %>
+       <%current_user.fields.where(state: true).where(form: "Desenlace").order(id: :asc).each do |field| %>
                 <div class="col-md-12">
             <br>
             <hr>
             <h3><%= field.name%></h3>
             <br>
-            <%if field.type_field == "TextArea"%>
+            <%if field.type_field == "Textarea"%>
             <div class="form-group">
               <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any? %>
                <%= text_area_tag "#{field.name}", nil , class: "form-control area" %>
@@ -78,9 +78,9 @@
             
             <div class="form-group">
               <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any? %>
-                 <%= select_tag field.name, options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.name] },{:selected=>nil}), {:multiple => false,class: 'form-control'}%>
+                 <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>nil}), {:multiple => false,class: 'form-control', style: "width:50%"}%>
               <%else%>
-                 <%= select_tag field.name, options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.name] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control'}%>
+                 <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control', style: "width:50%"}%>
       
                 
 

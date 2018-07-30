@@ -139,7 +139,7 @@ end
         end
 
 
-         current_user.fields.where(form: "Primer Contacto").order(id: :asc).each do |field|
+         current_user.fields.where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field|
                   
                  
                   CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
@@ -182,7 +182,7 @@ end
       if @clinic_history.update(clinic_history_params)
 
         
-          current_user.fields.where(form: "Primer Contacto").order(id: :asc).each do |field|
+          current_user.fields.where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field|
                   
                  if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
                   CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
@@ -234,7 +234,7 @@ end
           if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis],outcome_state: params[:outcome_state])
               
 
-              current_user.fields.where(form: "Desenlace").order(id: :asc).each do |field|
+              current_user.fields.where(state: true).where(form: "Desenlace").order(id: :asc).each do |field|
                   
                  if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
                   CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
@@ -308,6 +308,48 @@ end
     @clinic_history.update(patient_id: params[:patient_id],frequency_appointment:params[:frequency_appointment],quantity_appointment: params[:quantity_appointment])
     @clinic_history.save
   end
+
+
+
+  #Actulizar historia clinica mientras copia
+    def actualizar_hc
+        
+        campo = params[:campo]
+        id = params[:id]
+        value = params[:value]
+        case campo
+            when "consultation_reason"
+              if ClinicHistory.find(id).update(consultation_reason: value)
+                    render plain: "Motivo de Consulta se actulizo correctamente"
+              else
+                    render plain: "No Actualizo"
+              end      
+            when "actual_state"
+              if ClinicHistory.find(id).update(actual_state: value)
+                    render plain: "Estado Actual se actulizo correctamente"
+            
+              else
+                    render plain: "No Actualizo"
+              end   
+            when "family_dinamic"
+              if ClinicHistory.find(id).update(family_dinamic: value)
+                    render plain: "Dinamica Familiar se actulizo correctamentee"
+            
+              else
+                    render plain: "No Actualizo"
+              end       
+            else
+              puts "NADA"
+        end
+        
+        
+
+
+       
+
+    end  
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

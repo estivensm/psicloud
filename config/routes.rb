@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   get 'patients/csv'
   get 'patients/csv_all'
 
+
+
+
+  #actualizar datos por ajax cuando escribe
+  post "actualizar_hc", to: "clinic_histories#actualizar_hc"
+
   post "crear_firma_paciente" , to: "patients#crear_firma_paciente" , as: "crear_firma_paciente"
   post "crear_firma_padre" , to: "patients#crear_firma_padre" , as: "crear_firma_padre"
   post "crear_firma_madre" , to: "patients#crear_firma_madre" , as: "crear_firma_madre"
