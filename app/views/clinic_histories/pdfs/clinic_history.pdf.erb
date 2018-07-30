@@ -843,9 +843,7 @@
       <%= wicked_pdf_image_tag @patient.user.firma_adjunta_url , style: "width:200px" if @patient.user.firma_adjunta %></th>
       <%elsif @patient.user.tipo_firma == "Firma Digital" %>
       <img style="width:300px"  src="<%=@patient.user.firma_psicologo%>" alt="">
-      <%else%>
-
-      <%end%>
+      
 
       </th>
     </tr>
@@ -864,7 +862,9 @@
             <th>T.P: <%=@patient.user.medical_record%></th>    
       </tr>
 
-      
+      <%else%>
+
+      <%end%>
 
       
     
