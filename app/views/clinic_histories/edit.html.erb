@@ -32,7 +32,7 @@
                :use_short_month => true,
                :order => [:day, :month, :year]},
                {:class => 'year form-control line1 required',
-               :id => 'event_date_event' , :title => "Es un Campo Obligatorio" , disabled: @clinic_history.first_contact_state}
+               :id => 'event_date_event' , :title => "Es un Campo Obligatorio" , disabled: false}
                %>
          </div>
       </div>
@@ -45,7 +45,7 @@
       <%= form.select :consult_reason_id,
          ConsultReason.all.map { |u| ["#{u.name}", u.id] },
                     { include_blank: "Ninguna" },
-                    { class: 'chosen-select1 form-control ch' ,disabled: @clinic_history.first_contact_state }
+                    { class: 'chosen-select1 form-control ch' ,disabled: false }
          %>
    </div>
    <div class="form-group">
@@ -56,11 +56,11 @@
    <br>
    <h3> Estado Actual</h3>
    <div class="form-group">
-      <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: @clinic_history.first_contact_state %>
+      <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: false %>
    </div>
    <h3> Dinamica Familiar</h3>
    <div class="form-group">
-      <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area required", :title => "Es un Campo Obligatorio" , disabled: @clinic_history.first_contact_state%>
+      <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area required", :title => "Es un Campo Obligatorio" , disabled: false%>
    </div>
 
 
