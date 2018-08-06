@@ -105,7 +105,10 @@
   <tbody>
     <% @patients.each do |patient| %>
       <tr>
-        <td><%= patient.first_name %> <%= patient.second_name %></td>
+      <% imagen = !patient.avatar.blank? ? patient.avatar_url(:logo) : "http://www.uic.mx/posgrados/files/2018/05/default-user-300x300.png" %>
+      <td><%= image_tag imagen, style: "border-radius: 60px;width:60px" %></td>
+       <td><%= patient.first_name %> <%= patient.second_name  %></td>
+ 
         <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
          <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>
