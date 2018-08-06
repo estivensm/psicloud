@@ -23,7 +23,8 @@ module PatientDecorator
     [
       ['Soltero', 'Soltero'],
       ['Casado', 'Casado'],
-      ['Union Libre', 'Union Libre']
+      ['Union Libre', 'Union Libre'],
+      ['Divorciado', 'Divorciado']
     ]
   end
 
