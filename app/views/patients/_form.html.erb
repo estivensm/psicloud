@@ -376,6 +376,8 @@
 <script type='text/javascript'>
 
    $(document).ready(function () {
+
+
     $("#prin").keyup(function () {
         var value = $(this).val();
         $("#hola").val(value);
@@ -395,7 +397,9 @@
    
    $(document).ready(function(){
      $('#form').validate();
-     
+     console.log($('#patient_birth_date').val()); 
+
+
      $('.chosen-select1').chosen(
            {
    
