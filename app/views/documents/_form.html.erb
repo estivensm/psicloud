@@ -55,31 +55,18 @@
    <%= form.fields_for :general_files do |file|  %>
   <div class="clearfix">
 
-  <div class="col-md-12" >  
-    <div class="col-md-7 pdd" >
-     <%= file.link_to_remove do %>
-    <i style = "color: #e74b09;
-    font-size: 18px;
-    margin-left: 0px;
-    position: relative;
-    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
-    <% end %>
-    
-
-      
-       
-       
-
-
-
-    <%= file.label "Nombre" %>
-     
-    <%= file.text_field :name, :class => 'name form form-control', style: "" %>
+  <div class="col-md-12" style="padding: 0px;" >  
+    <div class="col-md-7" style="padding: 0px;" >
+       <div class="input-group">
+          <span class="input-group-btn">
+             <%= file.link_to_remove class: "btn btn-danger" do %>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+           <% end %>
+          </span>
+       <%= file.text_field :name, :class => 'name form form-control', :placeholder => "Nombre"%>
     </div>
-
+  </div>
     <div class="col-md-5 pdd" >
-      <%= file.label "Archivo" %>
-      
       <%= file.file_field :file, :class => 'file form form-control archivo', style: "" %>
       <%= file.hidden_field :id, class:"items" if action_name == "edit"%>
       <span></span>
