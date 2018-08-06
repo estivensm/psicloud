@@ -27,27 +27,33 @@
             <h3>Informacion Basica</h3>
          </div>
          <div class="col-md-3">
-            <div class="form-group">
-               <%= form.label "Primer Nombre" %>
-               <%= form.text_field :first_name, id: :patient_first_name, class: "form-control required", :title => "Es un Campo Obligatorio" %>
+          <%= form.label "Primer Nombre" %> *
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+               <%= form.text_field :first_name, id: :patient_first_name, class: "form-control required", :title => "Es un Campo Obligatorio", id: "prin"  %>
             </div>
          </div>
          <div class="col-md-3">
-            <div class="form-group">
-               <%= form.label "Segundo Nombre" %>
-               <%= form.text_field :second_name, id: :patient_second_name , class: "form-control ", :title => "Es un Campo Obligatorio"%>
+            <%= form.label "Segundo Nombre" %>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+               <%= form.text_field :second_name, id: :patient_second_name , class: "form-control ", :title => "Es un Campo Obligatorio", id: "hola"%>
             </div>
          </div>
          <div class="col-md-3">
-            <div class="form-group">
-               <%= form.label "Primer Apellido" %>
+          <%= form.label "Primer Apellido" %> *
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
                <%= form.text_field :first_last_name, id: :patient_first_last_name, class: "form-control  required", :title => "Es un Campo Obligatorio" %>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Segundo Apellido" %>
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
                <%= form.text_field :second_last_name, id: :patient_second_last_name , class: "form-control ", :title => "Es un Campo Obligatorio"%>
+             </div>
             </div>
          </div>
       </div>
@@ -57,18 +63,26 @@
                <%val1 = "" 
                   action_name == "edit" ? val1 = @patient.document_type : val1 = "" %>
                <%= form.label "Tipo de Documento" %>
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
                <%= form.select 'document_type', options_for_select(@patient.select_documento, val1), {},{:class => 'form-control'}%>
+             </div>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Documento" %>
+               <%= form.label "Documento" %> *
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
                <%= form.text_field :document, id: :patient_document , class: "form-control required", :title => "Es un Campo Obligatorio" %>
+             </div>
             </div>
          </div>
          <div class="col-md-6 sir">
             <div class="form-group">
-               <%= form.label "Fecha de Nacimiento" %><br>
+               <%= form.label "Fecha de Nacimiento" %> * <br>
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
                <%= form.date_select :birth_date,{
                   :start_year =>
                   Time.now.year,
@@ -80,6 +94,7 @@
                   {:class => 'year form-control line1 required',
                   :id => 'patient_birth_date' , :title => "Es un Campo Obligatorio" }
                   %>
+                </div>
             </div>
          </div>
       </div>
@@ -90,31 +105,44 @@
       <div class="row">
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Ciudad de Residencia" %>
+               <%= form.label "Ciudad de Residencia" %> *
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-building"></i></span>
                <%= form.text_field :city, id: :patient_city , class: "form-control required", :title => "Es un Campo Obligatorio"%>
             </div>
+          </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Direccion de Residencia" %>
+               <%= form.label "Direccion de Residencia" %> *
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-home"></i></span>
                <%= form.text_field :address, id: :patient_address , class: "form-control required", :title => "Es un Campo Obligatorio"%>
             </div>
+          </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Telefono Fijo" %>
+               <%= form.label "Telefono Fijo" %> *
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
                <%= form.text_field :phone, id: :patient_phone ,class: "form-control required", :title => "Es un Campo Obligatorio" %>
+             </div>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Telefono Movil" %>
+               <%= form.label "Telefono Movil" %> *
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-mobile-alt"></i></span>
                <%= form.text_field :movil, id: :patient_movil  , class: "form-control required", :title => "Es un Campo Obligatorio"%>
             </div>
+          </div>
          </div>
          <div class="col-md-3">
-            <div class="form-group">
                <%= form.label "Email" %>
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-at"></i></span>
                <%= form.email_field :email, id: :patient_email ,class: "form-control ", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
@@ -128,14 +156,20 @@
             </div></div>-->
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Ocupacion" %>
+               <%= form.label "Ocupacion" %> *
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
                <%= form.text_field :occupation, id: :patient_occupation , class: "form-control required", :title => "Es un Campo Obligatorio" %>
+             </div>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Profesion" %>
+               <%= form.label "Profesion" %> * 
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
                <%= form.text_field :profession, id: :patient_profession , class: "form-control required", :title => "Es un Campo Obligatorio"%>
+             </div>
             </div>
          </div>
       </div>
@@ -147,33 +181,45 @@
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Genero" %>
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-transgender"></i></span>
                <%val1 = "" 
                   action_name == "edit" ? val1 = @patient.gender : val1 = "" %>
                <%= form.select 'gender', options_for_select(@patient.select_genero, val1), {},{:class => 'form-control'}%>
+             </div>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Estado Civil" %>
+                 <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
                <%val1 = "" 
                   action_name == "edit" ? val1 = @patient.civil_status : val1 = "" %>
                <%= form.select 'civil_status', options_for_select(@patient.select_estado_civil, val1), {},{:class => 'form-control'}%>
+             </div>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Grupo Sanguineo" %>
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-medkit"></i></span>
                <%val2 = "" 
                   action_name == "edit" ? val2 = @patient.blood_type : val2 = "" %>
                <%= form.select 'blood_type', options_for_select(@patient.select_sangre, val2), {},{:class => 'form-control'}%>
+             </div>
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
                <%= form.label "Grupo Etnico" %>
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-users"></i></span>
                <%val3 = "" 
                   action_name == "edit" ? val3 = @patient.ethnic_group : val3 = "" %>
                <%= form.select 'ethnic_group', options_for_select(@patient.select_grupo_etnico, val3), {},{:class => 'form-control'}%>
+             </div>
             </div>
          </div>
          <div class="col-md-3">
@@ -198,20 +244,23 @@
       <hr>
       <div class="row">
          <div class="col-md-3">
-            <div class="form-group">
-               <%= form.label "Nombre de Contacto" %>
+            <%= form.label "Nombre de Contacto" %> *
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
                <%= form.text_field :contact_name, id: :contact_name , class: "form-control  required", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
          <div class="col-md-3">
-            <div class="form-group">
-               <%= form.label "Telefono de Contacto" %>
+            <%= form.label "Telefono de Contacto" %> *
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
                <%= form.text_field :contact_phone, id: :patient_contact_phone , class: "form-control required", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
          <div class="col-md-3">
-            <div class="form-group">
-               <%= form.label "Parentesco del Contacto" %>
+            <%= form.label "Parentesco del Contacto" %> *
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
                <%= form.text_field :contact_relationship, id: :patient_contact_relationship , class: "form-control required", :title => "Es un Campo Obligatorio"%>
             </div>
          </div>
@@ -235,11 +284,11 @@
             <% action_name == "edit" ? @hola = @patient.avatar.url : @hola = "" %>
             <image  src="<%=@hola%>" style="width:12%;display:inline-block" id="avatar" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-img" />
             <br>
-            <button type="button" class="adjBtn" data-toggle="modal" data-type="1" data-target="#modal-image">
-            <i class="glyphicon glyphicon-paperclip" style = "font-size:30px; text-align: center;"></i>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-type="1" data-target="#modal-image">
+            <i class="glyphicon glyphicon-paperclip" style = "font-size:20px; text-align: center;"></i>
             </button>
-            <button type="button" class="camBtn" data-toggle="modal" data-type="1" data-target="#camMod">
-            <i class="glyphicon glyphicon-camera" style = "font-size:30px; text-align: center;"></i>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-type="1" data-target="#camMod">
+            <i class="glyphicon glyphicon-camera" style = "font-size:20px; text-align: center;"></i>
             </button>
             <%= render 'modal_crop', form: form %>
          </div>
@@ -253,7 +302,8 @@
       <div class="row text-center">
          <div class="col-md-12">
             <div class="actions">
-               <%= form.submit "Guardar", class: "btn-lg btn-primary btn-form" %>
+               <%= form.submit "Guardar", class: "btn btn-primary " %> 
+               <%= link_to "Cancelar", patients_path, class: "btn btn-default"%>
             </div>
          </div>
       </div>
@@ -303,10 +353,34 @@
    top: 62px;
    left: 24px;
    } 
+
+    .input-group-addon{
+      background-color: #5EB8DF;
+      border-color: #5EB8DF;
+    }
+
+    .fas{
+      color: #f1f1f1;
+    }
+
+    .btn{
+      font-size: 20px;
+    }
+
+    .btn-default{
+      background-color: #f1f1f1;
+      color: #939393;
+    }
+
 </style>
 <script type='text/javascript'>
 
-   
+   $(document).ready(function () {
+    $("#prin").keyup(function () {
+        var value = $(this).val();
+        $("#hola").val(value);
+    });
+  });
 
 
 

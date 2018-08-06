@@ -1,125 +1,172 @@
-
-
-<div class="row" style="margin-top: 40px;">
-<div class="col-md-8 col-md-offset-2 login2">
+<br>
 <p class= "titulo-form">Editar Usuario</p>
 <br>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<br>
+<div class="container">
+  <div class="col-md-4 col-md-offset-1" style="padding: 0px;">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
 
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-<div class="col-md-6">
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Email" %>
-      <%= f.email_field :email, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Nombres" %>
-      <%= f.text_field :names, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Apellidos" %>
-      <%= f.text_field :last_names, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
-  <div class="col-md-10">
-    <div class="form-group">
-<%val1 = "" 
- action_name == "edit" ? val1 = current_user.document_type : val1 = "" %>
-    <%= f.label "Tipo de Documento" %>
-     <%= f.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control'}%>
-  </div>
-  </div>
-    <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Documento de Identidad" %>
-      <%= f.text_field :document, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
-   <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Teléfono o Número Celular" %>
-      <%= f.text_field :phone, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
+        <div class="form-group">
+          <%= f.label "Email" %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-at"></i></span>
+          <%= f.email_field :email, autofocus: true , :class => 'form-control' %>
+        </div>  
+      </div>
 
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Registro Medico" %>
-      <%= f.text_field :medical_record, autofocus: true , :class => 'form-control' %>
-    </div>  
+
+        <div class="form-group">
+          <%= f.label "Nombres" %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-user"></i></span>
+          <%= f.text_field :names, autofocus: true , :class => 'form-control' %>
+        </div>  
+      </div>
+
+
+        <div class="form-group">
+          <%= f.label "Apellidos" %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-user"></i></span>
+          <%= f.text_field :last_names, autofocus: true , :class => 'form-control' %>
+        </div>  
+      </div>
+        <div class="form-group">
+    <%val1 = "" 
+     action_name == "edit" ? val1 = current_user.document_type : val1 = "" %>
+        <%= f.label "Tipo de Documento" %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+         <%= f.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control'}%>
+         </div>
+      </div>
+
+
+        <div class="form-group">
+          <%= f.label "Documento de Identidad" %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+          <%= f.text_field :document, autofocus: true , :class => 'form-control' %>
+        </div>  
+      </div>
+
+
+        <div class="form-group">
+          <%= f.label "Teléfono o Número Celular" %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+          <%= f.text_field :phone, autofocus: true , :class => 'form-control' %>
+        </div>  
+      </div>
+
+
+        <div class="form-group">
+          <%= f.label "Registro Medico" %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-first-aid"></i></span>
+          <%= f.text_field :medical_record, autofocus: true , :class => 'form-control' %>
+        </div>  
+      </div>
+    </div>
+
+    <div class="col-md-4 col-md-offset-1" style="padding: 0px;">
+      <div class="form-group">
+          <%= f.label "Fecha de Nacimiento" %>
+           <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
+          <%= f.date_field :birth_date, autofocus: true , :class => 'form-control' %>
+        </div>
+      </div>  
+
+      <div class="form-group">
+          <%= f.label "Foto" %>
+           <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-upload"></i></span>
+          <%= f.file_field :avatar, autofocus: true , :class => 'form-control' %>
+        </div> 
+      </div> 
+
+
+
+      <div class="form-group">
+          <%= f.label "Adjuntar Firma" %>
+           <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-upload"></i></span>
+          <%= f.file_field :firma_adjunta, autofocus: true , :class => 'form-control' %>
+        </div> 
+      </div> 
+
+
+
+        <div class="form-group">
+    <%val2 = "" 
+     action_name == "edit" ? val2 = current_user.tipo_firma : val2 = "" %>
+        <%= f.label "Tipo de Firma" %>
+         <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-users"></i></span>
+         <%= f.select 'tipo_firma', options_for_select(["Adjunta", "Firma Digital", "Ninguna"], val2), {},{:class => 'form-control'}%>
+      </div>
+    </div>
+
+
+
+
+        <div class="form-group">
+         <%= f.label "Contraseña" %> <i>(Deja en Blanco si no quieres cambiar)</i><br />
+         <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-unlock-alt"></i></span>
+         <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+       </div>
+          <% if @minimum_password_length %>
+             
+             <em><%= @minimum_password_length %> Caracteres minimo</em>
+           <% end %>
+         </div>
+
+
+      <div class="form-group">
+        <%= f.label "Confirmar Contraseña"%> <i>(Deja en Blanco si no quieres cambiar)</i><br />
+        <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-unlock-alt"></i></span>
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+      </div>
+    </div>
+
+
+      <div class="form-group">
+        <%= f.label "Contraseña Actual" %><br>
+        <i>(Tienes que ingresar la contraseña actual para cambiar)</i><br />
+         <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-unlock-alt"></i></span>
+        <%= f.password_field :current_password, autocomplete: "off" , :class => 'form-control'%>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <%= f.submit "Guardar",:class => 'btn btn-primary'  %>
+      </div>
+
+    <% end %>
   </div>
 </div>
-<div class="col-md-6">
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Fecha de Nacimiento" %>
-      <%= f.date_field :birth_date, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
 
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Foto" %>
-      <%= f.file_field :avatar, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
+<style type="text/css">
 
-  <div class="col-md-10">
-    <div class="form-group">
-      <%= f.label "Adjuntar Firma" %>
-      <%= f.file_field :firma_adjunta, autofocus: true , :class => 'form-control' %>
-    </div>  
-  </div>
+    .input-group-addon{
+      background-color: #5EB8DF;
+      border-color: #5EB8DF;
+    }
 
-   <div class="col-md-10">
-    <div class="form-group">
-<%val2 = "" 
- action_name == "edit" ? val2 = current_user.tipo_firma : val2 = "" %>
-    <%= f.label "Tipo de Firma" %>
-     <%= f.select 'tipo_firma', options_for_select(["Adjunta", "Firma Digital", "Ninguna"], val2), {},{:class => 'form-control'}%>
-  </div>
-  </div>
+    .fas{
+      color: #f1f1f1;
+    }
 
 
- <div class="col-md-10">
-    <div class="form-group">
-     <%= f.label "Contraseña" %> <i>(Deja en Blanco si no quieres cambiar)</i><br />
-     <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
-      <% if @minimum_password_length %>
-         
-         <em><%= @minimum_password_length %> Caracteres minimo</em>
-       <% end %>
-     </div>
-   </div>
-    <div class="col-md-10">
-  <div class="form-group">
-    <%= f.label "Confirmar Contraseña"%> <i>(Deja en Blanco si no quieres cambiar)</i><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
-  </div>
-</div>
- <div class="col-md-10">
-  <div class="form-group">
-    <%= f.label "Contraseña Actual" %> <i>(Tienes que ingresar la contraseña actual para cambiar)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" , :class => 'form-control'%>
-  </div>
-  </div>
-</div>
+</style>
 
-  <div class="form-group">
-    <%= f.submit "Editar",:class => 'btn btn-primary btn-block'  %>
-  </div>
-<% end %>
-
-
-
-  </div>  </div>
