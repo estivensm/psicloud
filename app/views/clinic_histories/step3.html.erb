@@ -31,11 +31,21 @@
                <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">DSMV</span>       
                <%= select_tag 'diagnostic_ids', options_for_select(get_diagnostic.collect{ |u| ["#{u.count} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
             </div>
+  
 
+             <div class="form-group">
+              <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnosticos Principal(CIE10)</span>
+             <%= select_tag 'diagnostico_id', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostico_id}), {:multiple => false,class: 'form-control chosen-select1', include_blank: true}%>
+              
+            </div>
+
+            <br>
             <div class="form-group">
-               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">CIE10</span>       
+               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnosticos Adicionales(CIE10)</span>       
                <%= select_tag 'diagnostico_ids', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
             </div>
+
+           
 
          </div>
          <div class="col-md-12">
@@ -47,6 +57,7 @@
                <%= text_area_tag :therapeutic_goal, @clinic_history.therapeutic_goal , class: "form-control area" %>
             </div>
          </div>
+
          <div class="col-md-12">
             <br>
             <hr>

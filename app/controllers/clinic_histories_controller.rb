@@ -18,8 +18,7 @@ class ClinicHistoriesController < ApplicationController
   @fchild = @clinic_history.child_general_date
   @schild = @clinic_history.personal_history
   @tchild = @clinic_history.two_child_history
-  @fochild = @clinic_history.three_child_history
- 
+  @fochild = @clinic_history.three_child_history 
 end
    @pdf = "basico"
   respond_to do |format|
@@ -231,7 +230,7 @@ end
       @clinic_history = ClinicHistory.find(params[:id])
       @patient = Patient.find(@clinic_history.patient_id)
 
-          if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis],outcome_state: params[:outcome_state])
+          if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis],outcome_state: params[:outcome_state],diagnostico_id: params[:diagnostico_id])
               
 
               current_user.fields.where(state: true).where(form: "Desenlace").order(id: :asc).each do |field|

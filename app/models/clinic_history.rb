@@ -52,6 +52,7 @@ class ClinicHistory < ApplicationRecord
     has_many :personal_backgrounds , inverse_of: :clinic_history, dependent: :destroy
 	has_many :tool_tests , dependent: :destroy
 	has_many :tracings , dependent: :destroy
+    belongs_to :diagnostico, optional: true 
 	has_and_belongs_to_many :diagnostics, dependent: :destroy
     has_and_belongs_to_many :diagnosticos, dependent: :destroy
    
