@@ -776,11 +776,17 @@
 <hr>
   <h3 class= "color-gray">7. Hipotesis diagnostica</h3>
   <strong>Descripcion</strong>
-  <%=@clinic_history.diagnostic_hypothesis%><br><br>
+  <span class="diagnostico"><%=@clinic_history.diagnostic_hypothesis%></span><br><br>
   <strong>DSMV: </strong>
-      <%@clinic_history.diagnostics.each do |ch|%>  
-   <span class="diagnostico"><%=ch.name%></span>
-       <%end%>
+  <%@clinic_history.diagnostics.each do |ch|%>  
+  <span class="diagnostico"><%=ch.name%></span>
+  <%end%>
+  <br>
+  <br>
+  <strong>Diagnostico Principal: </strong>
+  <span class="diagnostico"><%=@clinic_history.diagnostico.name%></span>
+
+
     <br>
     <br>
    <strong>CIE10: </strong>
