@@ -772,8 +772,10 @@
    <strong>Descripcion</strong><br>
    <%=@hs.diagnostic_hypothesis%><br><br>
    <strong>DSMV</strong><br>
+   
    <%@hs.diagnostics.each do |ch|%>  
    -  <%=ch.name%><br>
+
    <%end%>
 </div>
 <div class = "fields_history">

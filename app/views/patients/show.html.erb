@@ -37,17 +37,22 @@
                      </div>
                      <div class="panel-body">
                         <strong>Descripcion: </strong><br>
-                        <%=@clinic_history.diagnostic_hypothesis%><br>
+                        <%=@clinic_history.diagnostic_hypothesis%><br><br>
                         <strong>DSMV: </strong>
                         <%@clinic_history.diagnostics.each do |ch|%>  
                         <span class="diagnostico"> <%=ch.name%></span>
-                        <%end%>
-                        <br>
-                        <br>
+                        <%end%><br><br>
+                       
+                         <strong>Diagnostico Principal: </strong>
+                         <span class="diagnostico"><%=@clinic_history.diagnostico.name%></span>
+                       
+                         <br>
+                         <br>
                         <strong>CIE10: </strong>
                         <%@clinic_history.diagnosticos.each do |ch|%>  
                         <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span> 
-                        <%end%>     
+                        <%end%>    
+                         
    
                      </div>
                   </div>

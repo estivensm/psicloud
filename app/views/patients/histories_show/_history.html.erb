@@ -139,7 +139,7 @@
   <strong>Descripcion</strong><br>
   <%=@clinic_history.diagnostic_hypothesis%><br><br>
   <strong>DSMV</strong><br>
-      <%@clinic_history.diagnostics.each do |ch|%>  
+  <%@clinic_history.diagnostics.each do |ch|%>  
     -  <%=ch.name%><br>
        <%end%>
    
