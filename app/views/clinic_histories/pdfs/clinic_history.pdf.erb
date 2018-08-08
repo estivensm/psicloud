@@ -771,7 +771,13 @@
        <%end%>
     <br>
     <br>
-   <strong>CIE10: </strong>
+   <strong>Diagnostico Principal (CIE10): </strong>
+                         <%if @clinic_history.diagnostico%>  
+                         <span class="diagnostico"><%=@clinic_history.diagnostico.name %></span>
+                         <%end%>
+                         <br>
+                         <br> 
+   <strong>Diagnostico Adicionales (CIE10):</strong>
       <%@clinic_history.diagnosticos.each do |ch|%>  
     <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span>
        <%end%>    
