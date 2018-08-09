@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="padding: 0px;">
+      <%= form_with(model: consent, local: true) do |form| %>
+        <% if consent.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(consent.errors.count, "error") %> prohibited this consent from being saved:</h2>
+
+            <ul>
+            <% consent.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+        <%= form.hidden_field :user_id ,:value =>  current_user.id %>
+        <%= form.hidden_field :account_id%>
+        
+          <div class="row">
+            <div class="col-md-5" style="padding-left: 15px !important;">
+              <div class="field">
+                <%= form.label :Titulo %>
+                <%= form.text_field :title, id: :consent_title, class: "form form-control", autocomplete: "off" %>
+              </div>
+            </div>
+         
+            <div class="col-md-2">
+              <div class="field">
+                <%= form.label "Primera Edad"%>
+                <%= form.text_field :first_age, id: :consent_first_age, autocomplete: "off", :maxlength => 2, class: "form form-control" %>
+              </div>
+            </div>
+         
+            <div class="col-md-2">
+              <div class="field">
+                <%= form.label "Segunda Edad" %>
+                <%= form.text_field :second_age, id: :consent_second_age, autocomplete: "off", :maxlength => 2, class: "form form-control" %>
+              </div>
+            </div>
+          </div>
+       
+        <br>
+        <div class="field">
+          <%= form.label "Concentimiento " %>
+          <%= form.text_area :body, id: :consent_body, class: "ckeditor" %>
+        </div>
+        <br>
+
+      <div class="actions">
+          <%= form.submit "Guardar", class: "btn btn-primary" %>
+          <%= link_to 'Volver', consents_path, class: "btn btn-info" %>
+      </div>
+
+      <br>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+
+#cambio{
+  padding: 10px 101px !important;
+  background-color: red !important;
+  color: red !important;
+
+}
+
+
+</style>

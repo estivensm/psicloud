@@ -51,6 +51,7 @@ class User < ApplicationRecord
      belongs_to :rol, optional: true
      has_many :fields , dependent: :destroy
      has_many :patients
+
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,
        :omniauthable, :omniauth_providers => [:google_oauth2]
