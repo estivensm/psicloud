@@ -51,6 +51,7 @@ class User < ApplicationRecord
      belongs_to :rol, optional: true
      has_many :fields , dependent: :destroy
      has_many :patients
+     has_many :consents
 
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,

@@ -296,6 +296,8 @@ end
     
   end
 
+
+
   def consentimiento_informado_adolescentes
 
 @patient = Patient.find(params[:patient_id])
@@ -352,6 +354,53 @@ def consentimiento_informado_menores
                     :spacing => 5,
                   :html => {
                      :template => 'layouts/pdf_footer_cim.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
+    
+  end
+
+    def consentimiento_creado
+      
+      @patient = Patient.find(params[:patient_id])
+      @consent = "";
+      @title = "";
+      current_user.consents.each do  |consent|
+          
+          if @patient.age >= consent.first_age  &&  @patient.age < consent.second_age 
+          #(consent.first_age..consent.second_age).each do |i|
+           #   puts i
+            #  if i == @patient.age
+             #   puts "entreeeeeeeeeeeeeee"
+                  @title = consent.title
+                 @consent = consent.body
+              #end  
+           end 
+
+      end  
+      respond_to do |format|
+      format.html 
+      format.pdf do
+        render :pdf => "Consentimiento_Informado",
+        header: { right: '[page] of [topage]' },
+        :template => 'patients/pdfs/consentimiento_creado.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 15
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer_ci.html.erb'
                   }
                },
         :show_as_html => params[:debug].present?

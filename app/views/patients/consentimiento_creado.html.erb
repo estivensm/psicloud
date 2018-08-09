@@ -1,0 +1,206 @@
+  
+
+<div class="container">
+   <div class="col-md-12">
+      <div class="row margin-top-40" >
+   <div class="col-md-12" style="padding-left: 50px;">
+      <%= link_to "Volver al Paciente", patient_path(@patient.id)%>
+
+   </div>
+</div>
+      <br><br>
+      <div class="pdf">           
+        <%= link_to  patient_consentimiento_creado_path(@patient.id, @patient.id,@clinic_history , :format => "pdf"),target: "_blank" , :class => "btn btn-danger", title:"Consentimiento Informado" do  %> Generar PDF 
+        <i class="far fa-file-pdf" style = "font-size:20px;" aria-hidden="true"></i>
+        <%end%> 
+      </div>
+
+
+      
+      <%a = get_date_array(Time.now)%>
+      <% patient_completo = "<strong style='text-decoration:underline'>#{@patient.first_name} #{@patient.second_name} #{@patient.first_last_name} #{@patient.second_last_name}</strong>"
+      documento = "<strong style='text-decoration:underline'>#{@patient.document_type}  #{@patient.document}</strong>"
+      b = @consent.gsub('NOMBRE_PACIENTE', patient_completo)
+      c = b.gsub('DOCUMENTO_PACIENTE', documento) 
+      %>
+      <h5 >
+         CONSENTIMIENTO INFORMADO PLENO
+      </h5>
+      <p style="text-align: justify;font-size: 13px;padding: 20px 50px;">
+         <%==c%>
+      </p>
+      <br><br>
+      
+
+      <div class="row" style="padding: 20px 50px;">
+          <div class="col-md-6">
+                
+                
+                   
+                    
+                    <div class="clase_img" >
+                       <img width="300px" src="<%=@patient.firma_paciente%>" alt=""><br>
+                     
+                      <br>
+                      <p>Firma del Paciente </p>
+                    <p>C.C: <%=@patient.document%></p> 
+                    </div>
+                  </div>    
+                  <div class="col-md-6">
+                         <div  class= "clase_form" >
+                      
+                   
+                    
+                    <div class="wrapper">
+
+                        <canvas id="signature-pad" class="signature-pad" width=400 height=200 ></canvas>
+                    </div>
+                        
+                        <br>
+                        <div><%=form_tag crear_firma_paciente_path, remote: true, class: "form_firma" do %>
+                            <%= hidden_field_tag :firma_paciente, nil, id: "firma_paciente"%>
+                            <%= hidden_field_tag :patient_id, @patient.id, id: "firma_paciente"%>
+                            <%= submit_tag "Confirmar", id: "save-png"%>
+
+                        <%end%> 
+
+                        <button id="clear">Limpiar</button>
+                        <div class="alert alert-success" style="display:none;    padding: 4px;" role="alert">¡ Guardada !</div>
+                        </div>
+
+
+                     </div>
+                    </div>  
+                    
+                    
+          
+      </div>
+
+
+      
+      <br>
+      <br>
+      <style>
+         th
+         {
+         width: 50%;
+         }
+         h5
+         {
+         text-align: center;
+         margin: 50px 20px 50px 20px;
+         background: #5bc0de;
+         color: white;
+         padding: 12px;
+         font-size: 20px;
+         }
+         .pdf
+         {
+          text-align: center;
+         }
+         .form_firma
+         {
+          display: inline-block;
+         }
+      </style>
+      <p style="text-align: justify;font-size: 10px;padding: 20px 50px;width: 100%;">
+         <sup>1</sup> En los procedimientos relacionados con la psicología forense, se deberá especificar que la información dada al psicólogo se condesará en un informe que le será entregado al abogado y que lo hará público en los escenarios jurídicos correspondientes.
+      </p>
+   </div>
+</div>
+
+<style>
+   th
+   {
+   width: 50%;
+   }
+</style>
+
+<style>
+   .wrapper {
+   position: relative;
+   width: 400px;
+   height: 200px;
+   -moz-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .signature-pad {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width:400px;
+   height:200px;
+   border:1px solid whitesmoke;
+   }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+<script>
+   
+ $(document).on('turbolinks:load',function() {
+   var canvas = document.getElementById('signature-pad');
+   
+                 // Adjust canvas coordinate space taking into account pixel ratio,
+                 // to make it look crisp on mobile devices.
+                 // This also causes canvas to be cleared.
+                 function resizeCanvas() {
+                     // When zoomed out to less than 100%, for some very strange reason,
+                     // some browsers report devicePixelRatio as less than 1
+                     // and only part of the canvas is cleared then.
+                     var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+                     canvas.width = canvas.offsetWidth * ratio;
+                     canvas.height = canvas.offsetHeight * ratio;
+                     canvas.getContext("2d").scale(ratio, ratio);
+                 }
+   
+                 window.onresize = resizeCanvas;
+                 resizeCanvas();
+   
+                 var signaturePad = new SignaturePad(canvas, {
+                 backgroundColor: 'rgb(255, 255, 255)' // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
+                 });
+   
+                 document.getElementById('save-png').addEventListener('click', function () {
+                 /*if (signaturePad.isEmpty()) {
+                     return alert("Por favor ingresa la firma");
+                 }*/
+                 
+                 var data = signaturePad.toDataURL('image/png');
+                 console.log(data);
+                 $('#firma_paciente').val(data);
+                 signaturePad.clear();
+                 
+
+                 /*window.open(data);*/
+                 });
+   
+                  
+                 document.getElementById('clear').addEventListener('click', function () {
+                 signaturePad.clear();
+                 $('#firma_paciente').val("");
+                 });
+
+            
+                 
+                     
+        
+
+
+   
+ 
+
+                 document.getElementById('draw').addEventListener('click', function () {
+                 var ctx = canvas.getContext('2d');
+                 console.log(ctx.globalCompositeOperation);
+                 ctx.globalCompositeOperation = 'source-over'; // default value
+                 });
+   
+                 document.getElementById('erase').addEventListener('click', function () {
+                 var ctx = canvas.getContext('2d');
+                 ctx.globalCompositeOperation = 'destination-out';
+                 });
+
+  });
+
+</script>

@@ -88,6 +88,7 @@ Rails.application.routes.draw do
      get 'consentimiento_informado_menores', to: "patients#consentimiento_informado_menores", as: "consentimiento_informado_menores"
      get 'consentimiento_informado_adolescentes', to: "patients#consentimiento_informado_adolescentes", as: "consentimiento_informado_adolescentes"
      get 'consentimiento_informado', to: "patients#consentimiento_informado", as: "consentimiento_informado"
+     get 'consentimiento_creado', to: "patients#consentimiento_creado", as: "consentimiento_creado"
   
 
   end

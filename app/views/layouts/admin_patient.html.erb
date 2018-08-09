@@ -73,8 +73,9 @@
                         <li><%= link_to "Roles", rols_path, style: "color:gray !important" %></li>
                         <li><%= link_to "EPS", hpcs_path , style: "color:gray !important"%></li>
                         <li><%= link_to "Convenio", agreements_path , style: "color:gray !important"%></li>
-                        <li><%= link_to "Cuenta", account_path(get_account), style: "color:gray !important" %></li>
+                        <li><%= link_to "Configuración de Cuenta", account_path(get_account), style: "color:gray !important" %></li>
                            <li><%= link_to "Configuración de Formularios", fields_path , style: "color:gray !important" %></li>
+                         <li><%= link_to "Configuración de Concentimiento", consents_path , style: "color:gray !important" %></li>   
                         <%if current_user.super_admin%>
                          <li><%= link_to "Cuentas", accounts_path, style: "color:gray !important" %></li>
                         <%end%>
@@ -274,7 +275,7 @@
             <%end%>
             <button type="button" class="btn btn-info btg" data-toggle="modal" data-target="#myModal" title="Ver Paciente"><i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true" ></i></button>
              
-
+              <%if !current_user.consents.present?%>
               <%if @patient.age >= 18%>
                   <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary btg", title:"Consentimiento Informado" do  %>
                   <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
@@ -290,7 +291,16 @@
                   <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
                  
                   <%end%>
+                <%end%> 
+
+
+                <%else%>
+                    <%= link_to  patient_consentimiento_creado_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary btg" , title:"Consentimiento Informado" do  %>
+                  <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
+
+                  <%end%>
                 <%end%>
+
 
                   <%if controller_name == "patients"%>
               <input type="checkbox" id="toggle-1"  >

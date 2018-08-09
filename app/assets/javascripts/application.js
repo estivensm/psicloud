@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require turbolinks
 //= require rails-ujs
 //= require jquery
 //= require jquery_ujs
@@ -25,20 +26,9 @@
 //= require Chart.min
 //= require jquery.datetimepicker
 //= require jquery.validate.additional-methods
-//= require turbolinks
 //= require_tree .
 
-$(document).on('turbolinks:load',function() {
-
-$('.ckeditor').ckeditor({
-  // optional config
-  
-  }) ;
-
-});
-
-
-        
+   
 $("#calendar").fullCalendar({
 
     

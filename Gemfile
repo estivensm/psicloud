@@ -48,7 +48,7 @@ gem 'newrelic_rpm'
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
 #jquery para rails 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
-
+gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 #bootstrap
 gem 'twitter-bootstrap-rails', '~> 4.0'
 gem 'fog', '~> 1.38'

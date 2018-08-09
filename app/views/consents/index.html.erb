@@ -22,8 +22,7 @@
   <thead style="background-color: #306C95; color: #f1f1f1">
     <tr>
       <th>Nombre</th>
-      <th>Admin user</th>
-      <th>Account</th>
+
       <th>Body</th>
       <th>Titulo</th>
       <th>Primera Edad</th>
@@ -36,9 +35,9 @@
     <% @consents.each do |consent| %>
       <tr>
         <td><%= consent.user_id %></td>
-        <td><%= consent.admin_user %></td>
-        <td><%= consent.account_id %></td>
-        <td><%= consent.body %></td>
+
+
+        <td><%== consent.body %></td>
         <td><%= consent.title %></td>
         <td><%= consent.first_age %></td>
         <td><%= consent.second_age %></td>
