@@ -20,6 +20,8 @@
 //= require twitter/bootstrap
 //= require jquery.validate
 //= require chosen-jquery
+//= require ckeditor-jquery
+//= require config
 //= require Chart.min
 //= require jquery.datetimepicker
 //= require jquery.validate.additional-methods
@@ -28,9 +30,12 @@
 
 $(document).on('turbolinks:load',function() {
 
- 
+$('.ckeditor').ckeditor({
+  // optional config
+  
+  }) ;
 
-
+});
 
 
         
