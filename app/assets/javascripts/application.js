@@ -31,11 +31,11 @@
    
 $(document).on('turbolinks:load',function() {
 
-$('.ckeditor').ckeditor({
-  // optional config
-  
-  }) ;
-
+     $('#toggle-1').bootstrapToggle({
+         on: 'Activo',
+         off: 'Inactivo'
+       });
+   
 
 
 

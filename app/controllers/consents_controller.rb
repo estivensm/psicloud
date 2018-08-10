@@ -69,6 +69,6 @@ class ConsentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consent_params
-      params.require(:consent).permit(:user_id, :admin_user, :account_id, :body, :title, :first_age, :second_age)
+      params.require(:consent).permit(:user_id, :admin_user, :account_id, :body, :title, :first_age, :second_age,:header,:footer,:state)
     end
 end

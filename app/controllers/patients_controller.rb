@@ -365,8 +365,7 @@ def consentimiento_informado_menores
     def consentimiento_creado
       
       @patient = Patient.find(params[:patient_id])
-      @consent = "";
-      @title = "";
+   
       current_user.consents.each do  |consent|
           
           if @patient.age >= consent.first_age  &&  @patient.age < consent.second_age 
@@ -374,8 +373,7 @@ def consentimiento_informado_menores
            #   puts i
             #  if i == @patient.age
              #   puts "entreeeeeeeeeeeeeee"
-                  @title = consent.title
-                 @consent = consent.body
+                   @consent = consent 
               #end  
            end 
 
@@ -393,14 +391,14 @@ def consentimiento_informado_menores
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                     :template => 'layouts/pdf_header_creado.html.erb'
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer_ci.html.erb'
+                     :template => 'layouts/pdf_footer_creado.html.erb'
                   }
                },
         :show_as_html => params[:debug].present?

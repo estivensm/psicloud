@@ -14,18 +14,22 @@
         <i class="far fa-file-pdf" style = "font-size:20px;" aria-hidden="true"></i>
         <%end%> 
       </div>
+      
+      <p style="text-align: justify;font-size: 10px;padding: 20px 50px;width: 100%;">
+         <%==@consent.header%>
+      </p>
 
-
+      <h5 style="text-align:center;margin: 0px 20px 30px 20px;">
+        <%=@consent.title.upcase%>
+      </h5>
       
       <%a = get_date_array(Time.now)%>
       <% patient_completo = "<strong style='text-decoration:underline'>#{@patient.first_name} #{@patient.second_name} #{@patient.first_last_name} #{@patient.second_last_name}</strong>"
       documento = "<strong style='text-decoration:underline'>#{@patient.document_type}  #{@patient.document}</strong>"
-      b = @consent.gsub('NOMBRE_PACIENTE', patient_completo)
+      b = @consent.body.gsub('NOMBRE_PACIENTE', patient_completo)
       c = b.gsub('DOCUMENTO_PACIENTE', documento) 
       %>
-      <h5 >
-         CONSENTIMIENTO INFORMADO PLENO
-      </h5>
+  
       <p style="text-align: justify;font-size: 13px;padding: 20px 50px;">
          <%==c%>
       </p>
@@ -87,12 +91,8 @@
          }
          h5
          {
-         text-align: center;
-         margin: 50px 20px 50px 20px;
-         background: #5bc0de;
-         color: white;
-         padding: 12px;
          font-size: 20px;
+         font-weight: bold;
          }
          .pdf
          {
@@ -104,7 +104,7 @@
          }
       </style>
       <p style="text-align: justify;font-size: 10px;padding: 20px 50px;width: 100%;">
-         <sup>1</sup> En los procedimientos relacionados con la psicología forense, se deberá especificar que la información dada al psicólogo se condesará en un informe que le será entregado al abogado y que lo hará público en los escenarios jurídicos correspondientes.
+         <%==@consent.footer%>
       </p>
    </div>
 </div>

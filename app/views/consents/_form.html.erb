@@ -19,7 +19,7 @@
         <%= form.hidden_field :account_id%>
         
           <div class="row">
-            <div class="col-md-5" style="padding-left: 15px !important;">
+            <div class="col-md-6" style="padding-left: 15px !important;">
               <div class="field">
                 <%= form.label :Titulo %>
                 <%= form.text_field :title, id: :consent_title, class: "form form-control", autocomplete: "off" %>
@@ -32,6 +32,9 @@
                 <%= form.text_field :first_age, id: :consent_first_age, autocomplete: "off", :maxlength => 2, class: "form form-control" %>
               </div>
             </div>
+            
+             
+           
          
             <div class="col-md-2">
               <div class="field">
@@ -39,12 +42,31 @@
                 <%= form.text_field :second_age, id: :consent_second_age, autocomplete: "off", :maxlength => 2, class: "form form-control" %>
               </div>
             </div>
+
+                <div class="col-md-2">
+              <div class="field">
+              <%= form.label :Estado %><br>
+              <%= form.check_box :state, id: :field_state %>
+            </div>
+            </div>
           </div>
        
         <br>
         <div class="field">
           <%= form.label "Concentimiento " %>
           <%= form.text_area :body, id: :consent_body, class: "ckeditor" %>
+        </div>
+        <br>
+
+        <div class="field">
+          <%= form.label "Encabezado" %>
+          <%= form.text_area :header, id: :consent_header, class: "ckeditor" %>
+        </div>
+        <br>
+
+        <div class="field">
+          <%= form.label "Pie de pagin" %>
+          <%= form.text_area :footer, id: :consent_footer, class: "ckeditor" %>
         </div>
         <br>
 

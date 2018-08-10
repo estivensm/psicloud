@@ -275,7 +275,7 @@
             <%end%>
             <button type="button" class="btn btn-info btg" data-toggle="modal" data-target="#myModal" title="Ver Paciente"><i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true" ></i></button>
              
-              <%if !current_user.consents.present?%>
+              <%if !current_user.consents.where(state: true).present?%>
               <%if @patient.age >= 18%>
                   <%= link_to  patient_consentimiento_informado_path(@patient.id, @patient.id,@clinic_history , :format => "html"),target: "_blank" , :class => "btn btn-primary btg", title:"Consentimiento Informado" do  %>
                   <i class="fa fa-bullhorn" style = "font-size:20px;" aria-hidden="true"></i>
@@ -686,11 +686,8 @@ background-color: #bfbdbd !important;
 </style>
 <script>
    $(document).on('turbolinks:load',function() {
-       $('#toggle-1').bootstrapToggle({
-         on: 'Activo',
-         off: 'Inactivo'
-       });
-   
+    
+  
    
    
        if (<%=@patient.state%> == true)
