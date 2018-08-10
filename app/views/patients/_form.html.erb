@@ -1,5 +1,8 @@
 
 
+
+
+
 <div class="row margin-top-40" >
    <div class="col-md-12" style="padding-left: 50px;">
       <%= link_to "inicio", root_path%><span> | </span> 
@@ -238,8 +241,26 @@
               </div>
             </div>
          </div>
+     
          <div class="col-md-3">
+          <%val5 = "" 
+                  action_name == "edit" ? val5 = @patient.children : val5 = "" %>
+            <%= form.label "Tienes Hijos?" %>
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+               <%= form.select 'children', options_for_select(["No", "Si"], val5), {},{:class => 'form form-control select', id:"principal"}%>
+            </div>
          </div>
+         <div class="col-md-3" style="display: none;" id="mostrar">
+          <%val6 = "" 
+                  action_name == "edit" ? val6 = @patient.children : val6 = "" %>
+            <%= form.label "Cantidad de Hijos" %>
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <%= form.select 'number_children', options_for_select(["1", "2", "3", "4", "5", "6", "7", "8"], val1), {},{:class => 'form form-control select'}%>
+            </div>
+         </div>
+
       </div>
       <hr>
       <div class="row">
@@ -353,42 +374,54 @@
    top: 62px;
    left: 24px;
    } 
-
     .input-group-addon{
       background-color: #5EB8DF;
       border-color: #5EB8DF;
     }
-
     .fas{
       color: #f1f1f1;
     }
-
     .btn{
       font-size: 20px;
     }
-
     .btn-default{
       background-color: #f1f1f1;
       color: #939393;
     }
-
 </style>
 <script type='text/javascript'>
 
+    if ("<%=action_name%>" == "edit" && $('#principal').val() == "Si")
 
-   $(document).ready(function () {
+    {
+      $('#mostrar').show() 
+      
+      
+
+    }
+
+$('#principal').change(function(){
+
+    if ($(this).val() == "Si")
+          {    
+                console.log($(this).val())
+               $('#mostrar').fadeIn();
+          }
+        else
+          {
+             console.log($(this).val() + "no entro")
+                $('#mostrar').fadeOut();
+          } 
 
 
-    $("#prin").keyup(function () {
-        var value = $(this).val();
-        $("#hola").val(value);
-    });
-  });
+})
+
+
+
 
  $( "#cambio" ).change(function () {
     var cambio =  $( "#cambio" ).val()
     if (cambio == "prueba") {
-
       $( "#cambio1" ).val("Rodrigo"); 
       $( "#cambio2" ).val("Antonio")
       $( "#cambio3" ).val("Rivera")
@@ -406,12 +439,7 @@
       $("select[name*='patient[birth_date(3i)]']").val("5");
       $("select[name*='patient[birth_date(2i)]']").val("6");
       $("select[name*='patient[birth_date(1i)]']").val("1997");
-
-
-
     }else if ( cambio == "niño") {
-
-
       $( "#cambio1" ).val("Cristian"); 
       $( "#cambio2" ).val("Antonio")
       $( "#cambio3" ).val("Restrepo")
@@ -429,17 +457,9 @@
       $("select[name*='patient[birth_date(3i)]']").val("5");
       $("select[name*='patient[birth_date(2i)]']").val("6");
       $("select[name*='patient[birth_date(1i)]']").val("2010");
-
     }
-
-
   })
-
-
-
    $(document).on('turbolinks:load',function() {
-
-
    
    
    
@@ -447,11 +467,7 @@
    
    $(document).ready(function(){
      $('#form').validate();
-
      console.log($('#patient_birth_date').val()); 
-
-
-
      $('.chosen-select1').chosen(
            {
    
@@ -739,12 +755,9 @@
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .chosen-container-single .chosen-single {
-
     padding: 0px 0 0px 9px !important;
     height: 30px !important;
-
    border-radius: 0px !important;
-
 }
 </style>
-
+    

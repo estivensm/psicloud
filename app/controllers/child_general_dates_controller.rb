@@ -89,6 +89,6 @@ class ChildGeneralDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def child_general_date_params
-      params.require(:child_general_date).permit(:father_name, :father_age, :father_birthday, :father_job, :father_addictions, :father_relationship, :mother_name, :mother_age, :mother_birthday, :mother_job, :mother_addictions,:mother_relationship, :parents_realationship, :reasons_relationship, :parents_reaction, :patient_id, :admin_user, :user_id, :account_id, child_brothers_attributes: [:id, :name, :sexo, :edad,:birthdate,:relationship, :observations, :child_general_date_id, :_destroy])
+      params.require(:child_general_date).permit(:father_name, :father_age, :father_birthday, :father_job, :father_addictions, :father_relationship, :mother_name, :mother_age, :mother_birthday, :mother_job, :mother_addictions,:mother_relationship, :parents_realationship, :reasons_relationship, :parents_reaction, :patient_id, :admin_user, :user_id, :account_id, child_brothers_attributes: [:id, :name, :sexo, :edad,:birthdate,:relationship, :observations, :child_general_date_id, :_destroy], children_attributes:[:id, :name, :genero, :age, :relationship ,:observations, :child_general_date_id, :state, :_destroy])
     end
 end
