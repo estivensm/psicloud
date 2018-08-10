@@ -97,13 +97,13 @@
       <th>Nombre del Padre </th>
       <th>Edad del Padre </th>
       <th>Ocupacion del padre </th>
-       <th>Relacion del Padre con el Niño </th>
+      <th>Relacion del Padre con el Niño </th>
     </tr>
       <tr>
       <td><%=@fchild.father_name%></td>
       <td><%=@fchild.father_age%></td>
       <td><%=@fchild.father_job%></td>
-       <td><%=@fchild.father_relationship%></td>
+      <td><%=@fchild.father_relationship%></td>
 
     </tr>
     <tr>
@@ -159,22 +159,45 @@
       <tr>
       <td colspan="4"><%=@fchild.parents_reaction%></td>
 
-
     </tr>
+
     <!--hermanos-->
 
-      <tr>
+    <tr>
+
       <th >Nombre del hermano</th>
       <th>Sexo </th>
       <th>Edad (Años) </th>
       <th>Relacion</th>
+
     </tr>
     <%@fchild.child_brothers.each do |brother|%>
       <tr>
-      <td><%=brother.name%></td>
-      <td><%=brother.sexo%></td>
-      <td><%=brother.edad%></td>
-       <td><%=brother.relationship%></td>
+
+        <td><%=brother.name if brother.name%></td>
+        <td><%=brother.sexo if brother.sexo%></td>
+        <td><%=brother.edad if brother.edad%></td>
+        <td><%=brother.relationship if brother.relationship%></td>
+
+      </tr>
+    <%end%>
+      
+    <!--hermanos-->
+
+    <tr>
+      <th>Nombre del Hijo</th>
+      <th>Genero</th>
+      <th>Edad (Años) </th>
+      <th>Relacion</th>
+
+    </tr>
+    <%@fchild.children.each do |son|%>
+    <tr>
+
+      <td><%=son.name if son.name%></td>
+      <td><%=son.genero if son.genero%></td>
+      <td><%=son.age if son.age%></td>
+      <td><%=son.relationship if son.relationship%></td>
 
     </tr>
     <%end%>

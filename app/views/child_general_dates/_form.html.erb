@@ -190,85 +190,89 @@
     <%= form.text_area :parents_reaction, id: :child_general_date_parents_reaction, class: "form form-control" %>
   </div>
 </div></div>
-<hr>
-<div class="row">
 <br>
-  <h2 class = "" style = "margin :0px 0px 5px 0;color:gray">Hermanos</h2>
-<br>
+<hr style="    border-top: 3px solid #cfcfcf;"></hr>
+<h2 class = "" style = "margin :0px 0px 5px 0; color:gray; padding: 0px; ">Hermanos</h2>
+   <br>
       <%= form.fields_for :child_brothers do |contact|  %>
-      <div class="clearfix" style="margin-bottom: 30px;">
-         <div class="col-md-12" >
-            <div class="col-md-5 pdd" >
-               <%= contact.link_to_remove do %>
-               <i style = "    color: #e74b09;
-                  font-size: 18px;
-                  margin-left: 0px;
-                  position: relative;
-                  left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
-               <% end %>
-               <%= contact.label "Nombre" %>
-               <%= contact.text_field :name, :class => 'form-control' %>
+          <div class="col-md-3" style="padding: 0px;" >
+             <%= contact.label "Nombre"%>
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <%= contact.link_to_remove class: "btn btn-danger" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  <% end %>
+                </span>
+               <%= contact.text_field :name, :class => 'form-control', :placeholder => "Nombre" %>
             </div>
-                   <div class="col-md-5 pdd" >
-                  <div class="form-group acc1">
-               <label for="">Genero</label><br>
-               <label class="radio-inline">
-               <%= contact.radio_button :sexo, 'Masculino', class: 'rb cksi check1' %><span style = "margin-left:10px">Masculino</span>
-               </label>
-              <label class="radio-inline">
-               <%= contact.radio_button :sexo, 'Femenino', class: 'rb ckno check1' %><span style = "margin-left:10px">Femenino</span>
-                </label>
-                      <label class="radio-inline">
-               <%= contact.radio_button :sexo, 'Transexual', class: 'rb ckno check1' %><span style = "margin-left:10px">Transexual</span>
-                </label>
-     </div>  </div>
-
-              <div class="col-md-2 pdd" >
+          </div>
+          <div class="col-md-3" >
+            <div class="form">
+              <%= contact.label "Genero"%>
+              <%= contact.select 'sexo', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select'}%>
+            </div>
+          </div>
+              <div class="col-md-2" >
                <%= contact.label "Edad" %>
-               <%= contact.number_field :edad, :class => 'form-control' %>
+               <%= contact.text_field :edad, :class => 'form-control', :maxlength => 2, :placeholder => "Edad" %>
             </div>
-          <div class="col-md-12 pdd" style= "margin-top:10px;">
-    <div class="form-group acc1">
-               <label for="">Relacion con el Niño</label><br>
-               <label class="radio-inline">
-               <%= contact.radio_button :relationship, 'Estable', class: 'rb cksi check1' %><span style = "margin-left:10px">Estable</span>
-               </label>
-              <label class="radio-inline">
-               <%= contact.radio_button :relationship, 'Inestable', class: 'rb ckno check1' %><span style = "margin-left:10px">Inestable</span>
-                </label>
-                  <label class="radio-inline">
-               <%= contact.radio_button :relationship, 'Conflictiva', class: 'rb ckno check1' %><span style = "margin-left:10px">Conflictiva</span>
-                </label>
-                  <label class="radio-inline">
-               <%= contact.radio_button :relationship, 'Mucha Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:10px">Mucha </span>
-                </label>
-                 <label class="radio-inline">
-               <%= contact.radio_button :relationship, 'Poca Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:10px">Poca </span>
-                </label>
-                    <label class="radio-inline">
-               <%= contact.radio_button :relationship, 'Ninguna Comunicacion', class: 'rb ckno check1' %><span style = "margin-left:10px">Ninguna Comunicacion</span>
-                </label>
-    </div>  </div>
-
-
-
-
-
+          <div class="col-md-3">
+              <%= contact.label "Relacion" %>
+                <%= contact.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicacion", "Poca Comunicacion", "Ninguna Comunicacion"]), {},{:class => 'form form-control select'}%>
+                <br><br>
+          </div>  
             <%= contact.hidden_field :child_general_date_id, :value=> @child_general_date.id %>
-         </div>
 
-      </div><hr>
-      <%end%>
-      <div class="col-md-12" style="
-         margin-bottom: 25px;">
-         <%= form.link_to_add "Agregar Hermano", :child_brothers, :class => 'btn btn-primary top10'  %>
+    <% end %>
+
+          <div class="actions" style="padding: 0px">
+             <%= form.link_to_add "Agregar Hermano", :child_brothers, :class => 'btn btn-primary'  %>
+             <br><br>
+          </div>
+<hr style="    border-top: 3px solid #cfcfcf;"></hr>
+<br>
+<h2 class = "" style = "margin :0px 0px 5px 0;color:gray">Hijos</h2>
+  <br>
+    <%= form.fields_for :children do |boy|  %>
+      <div class="col-md-3" style="padding: 0px; margin-top: 1px;">
+        <%= boy.label "Nombre"%>
+           <div class="input-group">  
+             <span class="input-group-btn">
+              <%= boy.link_to_remove class: "btn btn-danger" do %>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+              </span>
+            <%= boy.text_field :name, class: "form form-control", :placeholder => "Nombre" %>
+          </div>
       </div>
-   </div>
-  
+        <div class="col-md-2">
+          <div class="form">
+            <%= boy.label "Genero"%>
+             <%= boy.select 'genero', options_for_select(["Masculino", "Femenino"]), {},{:class => 'form form-control select'}%>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form">
+            <%= boy.label "Edad"%>
+            <%= boy.text_field :age, class: "form form-control", :maxlength => 2, :placeholder => "Edad"%>
 
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="form">
+          <%= boy.label "Relacion"%>
+           <%= boy.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicacion", "Poca Comunicacion ", "Ninguna Comunicacion"]), {},{:class => 'form form-control select'}%>
+          </div>
+          <br><br>
+        </div>
+        <br><br><br>
 
+      <% end -%>
 
-
+      <div class="actions">
+            <%= form.link_to_add "Agregar Hijos", :children, :class => 'btn btn-primary top10'  %>
+      </div>
 
 
 
