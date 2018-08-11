@@ -62,7 +62,22 @@ class ChildGeneralDatesController < ApplicationController
       if @child_general_date.update(child_general_date_params)
 
           
-        format.html { redirect_to edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), notice: 'Child general date was successfully updated.' }
+        format.html { 
+        
+             if @clinic_history.child_history
+          
+          redirect_to edit_patient_clinic_history_personal_history_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.personal_history.id), notice: 'Child general date was successfully created.' 
+          
+          else
+
+          redirect_to  patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id)  , notice: 'Clinic history was successfully created.' 
+        
+
+          end
+
+        }
+                      
+
         format.json { render :show, status: :ok, location: @child_general_date }
       else
         format.html { render :edit }

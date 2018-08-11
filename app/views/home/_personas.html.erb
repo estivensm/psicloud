@@ -28,9 +28,15 @@
            CC :
             <%= paciente.document %>
             </span>
-
-       <%= link_to '| Ver Paciente ' , patient_path(paciente), :class =>
-            "marg" %>
+ <hr>
+       <%= link_to 'Ver Paciente ' , patient_path(paciente), :class =>
+            " btn btn-primary marg" %>
+       <%if paciente.clinic_histories.any?%>    
+       <%= link_to 'Ver Historia Clinica ' , patient_clinic_history_path(paciente,paciente.clinic_histories.first.id), :class =>
+            " btn btn-primary marg" %>
+            <%= link_to 'Gestionar Historia Clinica ' , edit_patient_clinic_history_path(paciente,paciente.clinic_histories.first.id), :class =>
+            " btn btn-primary marg" %>
+       <%end%>
 </div>
  
 

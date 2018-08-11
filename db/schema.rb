@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810022453) do
+ActiveRecord::Schema.define(version: 20180810184128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,18 @@ ActiveRecord::Schema.define(version: 20180810022453) do
     t.string "mother_relationship"
     t.date "mother_birthday"
     t.integer "clinic_history_id"
+  end
+
+  create_table "children", force: :cascade do |t|
+    t.string "name"
+    t.string "genero"
+    t.integer "age"
+    t.string "relationship"
+    t.text "observations"
+    t.integer "child_general_date_id"
+    t.boolean "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "clinic_histories", force: :cascade do |t|
@@ -339,6 +351,8 @@ ActiveRecord::Schema.define(version: 20180810022453) do
     t.text "firma_psicologo"
     t.text "firma_madre"
     t.text "firma_padre"
+    t.string "children"
+    t.integer "number_children"
   end
 
   create_table "personal_backgrounds", force: :cascade do |t|

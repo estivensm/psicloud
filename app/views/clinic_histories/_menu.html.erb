@@ -11,23 +11,15 @@ a = "noactive"
         
        
        <%=get_open(@clinic_history.first_contact_state).html_safe%>
-         Primer Contacto
+         Informacion Inicial
  <% end %>
 
 
 
 
-
-<%= link_to patient_step3_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary #{b}", style: "width: 200px;" do%>
-
-        <%if @clinic_history.outcome_state%>
-        <i class="fa fa-lock" style="font-size: 16px"></i>
-        <%else%>
-           <i class="fa fa-unlock" style="font-size: 16px"></i>
-        <%end%>
-         Desenlace
-
-
-<%end%>
+ <%= link_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), class: "btn btn-primary noactive" ,style: "width: 200px;b !important"  do%>
+       
+         <%=get_open(@clinic_history.first_child_state).html_safe%> Historia Familiar
+ <%end%>
 
 

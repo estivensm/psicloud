@@ -1,6 +1,7 @@
+
 <div class= "menu-history">
     
-
+<%if @clinic_history.child_history%>
 
 <%= link_to  edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary noactive" ,style: "" do%>
         
@@ -38,9 +39,33 @@
  <%end%>
 
 
+ <%else%>
+
+  <%if @clinic_history.child_general_date %>
+ 
+
+ <%= link_to edit_patient_clinic_history_path(@clinic_history.patient_id,@clinic_history.id), class: "btn btn-primary  noactive" ,style: "width: 200px;" do%>
+        
+       
+       <%=get_open(@clinic_history.first_contact_state).html_safe%>
+         Informacion Inicial
+ <% end %>
 
 
 
+
+ <%= link_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), class: "btn btn-primary",style: "width: 200px;" do%>
+       
+         <%=get_open(@clinic_history.first_child_state).html_safe%> Historia Familiar
+ <%end%>
+
+
+
+
+<%end%>
+
+
+<%end%>
 
 
 

@@ -60,7 +60,7 @@ class Patient < ApplicationRecord
     child =  self.age < 14 ? true : false 
           
           
-
+    
     ClinicHistory.create(user_id: self.user_id, admin_user: self.admin_user, patient_id: self.id, child_history: child)
 
   end   
@@ -72,6 +72,9 @@ class Patient < ApplicationRecord
       first_name like '%#{search.capitalize}%' or 
       second_name like '%#{search.capitalize}%' or 
       second_last_name like '%#{search.capitalize}%' or 
+      first_name like '%#{search.upcase}%' or 
+      second_name like '%#{search.upcase}%' or 
+      second_last_name like '%#{search.upcase}%' or 
       email like '%#{search}%' or 
       document like '%#{search}%'").order(:id)
   end

@@ -2,8 +2,17 @@
 <div class= "menu-history">
    <%=render "menu_child"%>
 </div>
-<br>
+
+<%else%>
+  <%if @clinic_history.child_general_date %>
+  <div class= "menu-history">
+   <%=render "menu"%>
+   <%end%>
+</div>
+
+
 <%end%> 
+
 <div class = "row row-form" style="margin-left: 0px !important;margin-right:  0px !important">
 <%= nested_form_for([@patient, @clinic_history], :html => { :id => "signup" })  do |form| %>
 <% if @clinic_history.errors.any? %>

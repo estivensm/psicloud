@@ -39,9 +39,8 @@
               
             </div>
 
-            <br>
             <div class="form-group">
-               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnosticos Adicionales (CIE10)</span>       
+               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnosticos Secundarios (CIE10)</span>  <br>   
                <%= select_tag 'diagnostico_ids', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostico_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
             </div>
 
@@ -129,23 +128,4 @@
       <% end %>
    </div>
 </div>
-<script>
-   $(document).on('turbolinks:load',function() {
-   $('.chosen-select1').chosen(
-         {
-   
-           allow_single_deselect: true,
-           no_results_text: 'No hay resultados',
-           placeholder_text_single: "Seleccione una opción",
-           placeholder_text_multiple: "Seleccione una varias opciones"
-   
-         });
-         });
 
-
-
-</script>
-<script>
-  
-
-</script>

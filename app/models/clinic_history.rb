@@ -70,7 +70,14 @@ class ClinicHistory < ApplicationRecord
     	    PersonalHistory.create(user_id: self.user_id, admin_user: self.admin_user, patient_id: self.patient_id, clinic_history_id:self.id)
             TwoChildHistory.create(user_id: self.user_id, admin_user: self.admin_user, patient_id: self.patient_id, clinic_history_id:self.id)
             ThreeChildHistory.create(user_id: self.user_id, admin_user: self.admin_user, patient_id: self.patient_id, clinic_history_id:self.id)
+        
+        else
+
+           ChildGeneralDate.create(user_id: self.user_id, admin_user: self.admin_user, patient_id: self.patient_id, clinic_history_id:self.id)
+
+            
         end
+
     	
     end
 end

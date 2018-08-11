@@ -418,6 +418,7 @@ $('#principal').change(function(){
  $( "#cambio" ).change(function () {
     var cambio =  $( "#cambio" ).val()
     if (cambio == "prueba") {
+       $( "#cambio" ).val("Prueba"); 
       $( "#cambio1" ).val("Rodrigo"); 
       $( "#cambio2" ).val("Antonio")
       $( "#cambio3" ).val("Rivera")
@@ -436,6 +437,7 @@ $('#principal').change(function(){
       $("select[name*='patient[birth_date(2i)]']").val("6");
       $("select[name*='patient[birth_date(1i)]']").val("1997");
     }else if ( cambio == "niño") {
+      $( "#cambio" ).val("Prueban"); 
       $( "#cambio1" ).val("Cristian"); 
       $( "#cambio2" ).val("Antonio")
       $( "#cambio3" ).val("Restrepo")
