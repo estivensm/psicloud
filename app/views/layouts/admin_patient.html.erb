@@ -191,12 +191,19 @@
 <% menu_patient %>
 <div class="container-fluid">
 <div class="row">
-
-<div class="col-md-2" style="padding-left:0px !important;padding-right: 0px !important;">
  <div class="col-md-12" style="padding-left: 10px;margin-top:30px;">
-      <%= link_to "inicio", root_path%><span> | </span> 
-      <%= link_to "pacientes", patients_path%>
-   </div>
+    <div id='cssmenu'>
+      <ul>
+        <li><%= link_to "inicio", root_path%></li> 
+        <li><%= link_to "pacientes", patients_path%></li>
+        <li class="active"><%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%></li>
+      </ul>
+    </div>
+ </div>
+<div class="col-md-2" style="padding-left:0px !important;padding-right: 0px !important;">
+
+
+
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 toppad menu_paciente" style="padding-left:0px !important;padding-right: 0px !important;">
          <%= link_to  patient_path(@patient.id) , class: "btn btn-primary #{menu_patient[6]}" do %>
           <i class="fa fa-address-card" style = "font-size:20px;" aria-hidden="true"></i> Informacion General
@@ -525,11 +532,22 @@ border-radius: 50%;
    }
    .btg
    {
-background-color: #bfbdbd !important;
+    background-color: #bfbdbd !important;
     border-color: #b2b2b2 !important;
     background: linear-gradient(#f2f2f2, #aeaeae);
     color: #727272 !important;
    }
+
+  #cssmenu {
+  display: inline-block;
+  position: relative;
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1em;
+  padding-right: 50px;
+  overflow: hidden;
+  left: 10px;
+}
 </style>
 <script>
    $(document).ready(function() {
