@@ -106,16 +106,16 @@
       <td><strong>Nombre de la madre:</strong><br><%=@fchild.mother_name%></td>
       <td><strong>Edad de la madre:</strong> <br><%=@fchild.mother_age%></td>
       <td><strong>Ocupacion de la madre:</strong> <br><%=@fchild.mother_job%></td>
-      <td><strong>Relacion de la madre con el Niño:</strong> <br><%=@fchild.mother_relationship%></td>
-      <td><strong>Adicciones de la madre:</strong><br><%=@fchild.mother_addictions%></td>
+      <td width="25%"><strong>Relacion de la madre con el Niño:</strong> <br><%=@fchild.mother_relationship%></td>
+      <td width="25%"><strong>Adicciones de la madre:</strong><br><%=@fchild.mother_addictions%></td>
     </tr>
 
 
 <!--relacion padres-->
     <tr>
       <td><strong>Relacion Entre los padres:</strong><br><%=@fchild.parents_realationship%></td>
-      <td><strong>Especificar razones:</strong><br><%=@fchild.reasons_relationship%></td>
-      <td colspan="4"><strong>Reaccion de los padres ante el problema del niño:</strong><br><%=@fchild.parents_reaction%></td>
+      <td colspan="2"><strong>Especificar razones:</strong><br><%=@fchild.reasons_relationship%></td>
+      <td colspan="2"><strong>Reaccion de los padres ante el problema del niño:</strong><br><%=@fchild.parents_reaction%></td>
     </tr>
 
     <!--hermanos-->
@@ -124,7 +124,7 @@
         <td><strong>Nombre del hermano :</strong><br><%=brother.name if brother.name%></td>
         <td><strong>Sexo :</strong><br><%=brother.sexo if brother.sexo%></td>
         <td><strong>Edad (Años) :</strong><br><%=brother.edad if brother.edad%></td>
-        <td><strong>Relacion :</strong><br><%=brother.relationship if brother.relationship%></td>
+        <td colspan="2"><strong>Relacion :</strong><br><%=brother.relationship if brother.relationship%></td>
       </tr>
     <%end%>
       
@@ -134,7 +134,7 @@
         <td><strong>Nombre del Hijo :</strong><br><%=son.name if son.name%></td>
         <td><strong>Genero :</strong><br><%=son.genero if son.genero%></td>
         <td><strong>Edad (Años) :</strong><br><%=son.age if son.age%></td>
-        <td><strong>Relacion :</strong><br><%=son.relationship if son.relationship%></td>
+        <td colspan="2"><strong>Relacion :</strong><br><%=son.relationship if son.relationship%></td>
       </tr>
     <%end%>
   </table>
@@ -548,6 +548,10 @@
    width: 80%;
    margin-left:10%;
    margin-bottom: 20px !important;
+   }
+   .table td
+   {
+    padding: 6px 5px !important;
    }
    .h3
    {

@@ -14,8 +14,9 @@ class ClinicHistoriesController < ApplicationController
   # GET /clinic_histories/1.json
   def show
   @patient = Patient.find(params[:patient_id])
-  if @clinic_history.child_history
   @fchild = @clinic_history.child_general_date
+  if @clinic_history.child_history
+  
   @schild = @clinic_history.personal_history
   @tchild = @clinic_history.two_child_history
   @fochild = @clinic_history.three_child_history 
@@ -52,8 +53,9 @@ end
   def pdf_completo
   @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   @patient = Patient.find(params[:patient_id])
-  if @clinic_history.child_history
   @fchild = @clinic_history.child_general_date
+  if @clinic_history.child_history
+ 
   @schild = @clinic_history.personal_history
   @tchild = @clinic_history.two_child_history
   @fochild = @clinic_history.three_child_history

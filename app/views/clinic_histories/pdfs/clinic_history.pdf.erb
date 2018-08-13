@@ -8,235 +8,144 @@
   </table>
 <br><br>
 
-<table class="table1">
-   <tr>
-      <th colspan="4">
-         <h2 class= "h2" style="text-align: left!important">Datos del Paciente</h2>
-      </th>
-   </tr>
+
+<h3 class="h3">1. Datos del Paciente</h3>
+<table class="table table-responsive">
    <tr>
       <td> <strong> Nombres</strong><br> <%=@patient.first_name%> <%=@patient.second_name%> </td>
       <td> <strong>Apellidos</strong><br> <%=@patient.first_last_name%> <%=@patient.second_last_name%> </td>
       <td> <strong>Documento</strong><br> <%=  type_document(@patient.document_type)%> -  <%=@patient.document%> 
-      <td> <strong>Fecha de Nacimiento</strong><br> <%=@patient.birth_date%> </td>
+      <td> <strong>Fecha de Nacimiento:</strong><br> <%=@patient.birth_date%> </td>
       </td>
    </tr>
    <tr>
-      <td> <strong>Edad</strong> <br><%=@patient.age%> </td>
-      <td> <strong>Ciudad</strong> <br><%=@patient.city%> </td>
+      <% year = @patient.age == 1 ? "Año" : " Años"
+         month = @patient.birthdate_month == 1 ? " Mes" : " Meses"
+         day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
+         %>
+      <td> <strong>Edad:</strong> <br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></td>
+      <td> <strong>Ciudad:</strong> <br><%=@patient.city%> </td>
       <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>
-      <td> <strong>Telefono fijo</strong><br> <%=@patient.phone%> </td>
+      <td> <strong>Telefono fijo:</strong><br> <%=@patient.phone%> </td>
    </tr>
    <tr>
-      <td> <strong>Telefono Movil</strong> <br><%= @patient.movil%> </td>
+      <td> <strong>Telefono Movil:</strong> <br><%= @patient.movil%> </td>
       <td> <strong>Email</strong><br> <%=@patient.email%> </td>
-      <td> <strong>Ocupación</strong><br> <%=@patient.occupation%> </td>
-      <td> <strong>Profesión</strong> <br><%= @patient.profession%> </td>
+      <td> <strong>Ocupación:</strong><br> <%=@patient.occupation%> </td>
+      <td> <strong>Profesión:</strong> <br><%= @patient.profession%> </td>
    </tr>
    <tr>
-      <td> <strong>Genero</strong> <br><%= @patient.gender%> </td>
+      <td> <strong>Genero:</strong> <br><%= @patient.gender%> </td>
       <td> <strong>Estado Civil</strong><br> <%=@patient.civil_status%> </td>
-      <td> <strong>Grupo sanguineo</strong><br> <%=@patient.blood_type%> </td>
-      <td> <strong>Grupo Etnico</strong> <br><%= @patient.ethnic_group%> </td>
+      <td> <strong>Grupo sanguineo:</strong><br> <%=@patient.blood_type%> </td>
+      <td> <strong>Grupo Etnico:</strong> <br><%= @patient.ethnic_group%> </td>
    </tr>
    <tr>
-      <td> <strong>Eps</strong> <br><%= @patient.hpc.name if @patient.hpc%>  </td>
-      <td> <strong>Convenio</strong><br> <%= @patient.agreement.name if @patient.agreement%>  </td>
-      <td> <strong>Nombre Contacto</strong> <br><%= @patient.contact_name%> </td>
+      <td> <strong>Eps:</strong> <br><%= @patient.hpc.name if @patient.hpc%>  </td>
+      <td> <strong>Convenio</strong><br><%= @patient.agreement.name if @patient.agreement%> </td>
+      <td> <strong>Nombre Contacto:</strong> <br><%= @patient.contact_name%> </td>
       <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
    </tr>
    <tr>
       <td> <strong>Parentesco del Contacto</strong><br> <%=@patient.contact_relationship%> </td>
-      <td> <strong>Fecha de inicio de tratamiento</strong><br> <%=get_date(@clinic_history.created_date)%> </td>
-      <td> <strong>Tiene Hijos</strong><br> <%=@patient.children%> </td>
-      <td> <strong>Numero de Hijos</strong><br> <%=@patient.number_children%> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
    </tr>
    </tbody>
 </table>
-<br>
-<br>
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important"> Motivo de Consulta</h2>
-      </th>
-   </tr>
-   <tr>
-      <td>  <p><strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
-                        <strong>Descripcion: </strong> <%=@clinic_history.consultation_reason%></p></td>
-   </tr>
-</table>
-<br>
-<br>
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important">Estado actual del paciente</h2>
-      </th>
-   </tr>
-   <tr>
-      <td> <%=@clinic_history.actual_state%></td>
-   </tr>
-</table>
-<br>
-<br>
+<div class = "fields_history">
+   <hr>
+   <h3 class= "color-gray">Motivo de Consulta</h3>
+   <p><strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
+                        <strong>Descripcion: </strong> <%=@clinic_history.consultation_reason%></p>
+</div>
+<div class = "fields_history">
+   <hr>
+   <h3 class= "color-gray">Estado actual del paciente</h3>
+   <p><%=@clinic_history.actual_state%></p>
+</div>
+<div class = "fields_history">
+   <hr>
+   <h3 class= "color-gray">Dinamica familiar</h3>
+   <p><%=@clinic_history.family_dinamic%></p>
+</div>
 
+<%if @pdf == "completo" ||  (!@clinic_history.child_history && @fchild != nil)%>
+<div class = "fields_history">
+  <table class="table table-responsive" id="tabla_antecedentes">
+    <h3 class= "color-gray">Historia Familiar</h3>
 
-
-
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important"> Dinamica Familiar</h2>
-      </th>
-   </tr>
-   <tr>
-      <td> <%=@clinic_history.family_dinamic%></td>
-   </tr>
-</table>
-<br>
-<br>
-<%if @clinic_history.child_history  && @pdf == "completo"%>
-  <h2 class= "h2" style="text-align: left!important">Historia Familiar</h2>
-<table class="table2">
  <!--padre--> 
     <tr>
-      <th>Nombre del Padre </th>
-      <th>Edad del Padre </th>
-      <th>Ocupacion del padre </th>
-       <th>Relacion del Padre con el Niño </th>
+      <td><strong>Nombre del Padre :</strong><br><%=@fchild.father_name%></td>
+      <td><strong>Edad del Padre :</strong><br><%=@fchild.father_age%></td>
+      <td><strong>Ocupacion del padre :</strong><br><%=@fchild.father_job%></td>
+      <td><strong>Relacion del Padre con el Niño :</strong><br><%=@fchild.father_relationship%></td>
+      <td><strong>Adicciones del Padre :</strong><br><%=@fchild.father_addictions%></td>
     </tr>
-      <tr>
-      <td><%=@fchild.father_name%></td>
-      <td><%=@fchild.father_age%></td>
-      <td><%=@fchild.father_job%></td>
-       <td><%=@fchild.father_relationship%></td>
 
-    </tr>
-    <tr>
-      <th colspan="4">Adicciones del Padre</th>
-
-    </tr>
-      <tr >
-      <td colspan="4"><%=@fchild.father_addictions%></td>
-
-
-    </tr>
   <!--madre-->
-   <tr>
-      <th >Nombre de la madre</th>
-      <th>Edad de la madre </th>
-      <th>Ocupacion de la madre </th>
-       <th>Relacion de la madre con el Niño </th>
-    </tr>
-      <tr>
-      <td><%=@fchild.mother_name%></td>
-      <td><%=@fchild.mother_age%></td>
-      <td><%=@fchild.mother_job%></td>
-       <td><%=@fchild.mother_relationship%></td>
-
-    </tr>
     <tr>
-      <th colspan="4">Adicciones de la madre</th>
-
+      <td><strong>Nombre de la madre:</strong><br><%=@fchild.mother_name%></td>
+      <td><strong>Edad de la madre:</strong> <br><%=@fchild.mother_age%></td>
+      <td><strong>Ocupacion de la madre:</strong> <br><%=@fchild.mother_job%></td>
+      <td width="25%"><strong>Relacion de la madre con el Niño:</strong> <br><%=@fchild.mother_relationship%></td>
+      <td width="25%"><strong>Adicciones de la madre:</strong><br><%=@fchild.mother_addictions%></td>
     </tr>
-      <tr>
-      <td colspan="4"><%=@fchild.mother_addictions%></td>
 
-
-    </tr>
 
 <!--relacion padres-->
-     <tr>
-      <th colspan="1">Relacion Entre los padres</th>
-      <th colspan="3">Especificar razones</th>
-
-    </tr>
-      <tr>
-      <td colspan="1"><%=@fchild.parents_realationship%></td>
-      <td colspan="3"><%=@fchild.reasons_relationship%></td>
-
-
+    <tr>
+      <td><strong>Relacion Entre los padres:</strong><br><%=@fchild.parents_realationship%></td>
+      <td colspan="2"><strong>Especificar razones:</strong><br><%=@fchild.reasons_relationship%></td>
+      <td colspan="2"><strong>Reaccion de los padres ante el problema del niño:</strong><br><%=@fchild.parents_reaction%></td>
     </tr>
 
-     <tr>
-      <th colspan="4">Reaccion de los padres ante el problema del niño</th>
-
-    </tr>
-      <tr>
-      <td colspan="4"><%=@fchild.parents_reaction%></td>
-
-
-    </tr>
     <!--hermanos-->
-
-      <tr>
-      <th >Nombre del hermano</th>
-      <th>Sexo </th>
-      <th>Edad (Años) </th>
-      <th>Relacion</th>
-    </tr>
     <%@fchild.child_brothers.each do |brother|%>
       <tr>
-      <td><%=brother.name%></td>
-      <td><%=brother.sexo%></td>
-      <td><%=brother.edad%></td>
-       <td><%=brother.relationship%></td>
-
-    </tr>
+        <td><strong>Nombre del hermano :</strong><br><%=brother.name if brother.name%></td>
+        <td><strong>Sexo :</strong><br><%=brother.sexo if brother.sexo%></td>
+        <td><strong>Edad (Años) :</strong><br><%=brother.edad if brother.edad%></td>
+        <td colspan="2"><strong>Relacion :</strong><br><%=brother.relationship if brother.relationship%></td>
+      </tr>
     <%end%>
-</table>
- <!--historia personal-->
-<hr>
-  <h2 class= "h2" style="text-align: left!important">Historia Personal</h2>
-<h4 class= "color-gray">Antecedentes</h4>
-<table class="table2">
-
-    <tr style="page-break-inside: avoid; display: inline-table;">
-      <th colspan="3">Embarazo</th>
-      <th>Hijo Deseado</th>
-    </tr>
-
-    <tr>
-      <td colspan="3"><%=@schild.embarazo%></td>
-       <td><%=@schild.hijo_deseado%></td>
-    </tr>
-
-     <tr>
-      <th colspan="4">Dificultades Prenatales (Médicas, Intentos de aborto, Psicológicas)</th>
-     
-    </tr>
-
-    <tr>
-      <td colspan="4"><%=@schild.dificultades_prenatales%></td>
-       
-    </tr>
-
-
-         <tr>
       
-      <th colspan="4">Periodo Prenatal Parto: (Normal, Anoxia, Cordon umbilical, Placenta, Malformación,Ictericia, Prelactancia materna)</th>
-    </tr>
-
-    <tr>
-      
-       <td colspan="4"><%=@schild.periodo_prenatal%></td>
-    </tr>
-
-
-
-     <tr>
-      <th >Peso al Nacer (Libras)</th>
-      <th>Talla nacimiento (cms)</th>
-      <th>Lactancia Materna Hasta (Meses)</th>
-       <th>Con biberon hasta (Meses)</th>
-    </tr>
+    <!--HIJOS-->
+    <%@fchild.children.each do |son|%>
       <tr>
-      <td><%=@schild.peso_nacimiento%></td>
-      <td><%=@schild.talla_nacimiento%></td>
-      <td><%=@schild.latencia_materna%></td>
-       <td><%=@schild.latencia_materna%></td>
+        <td><strong>Nombre del Hijo :</strong><br><%=son.name if son.name%></td>
+        <td><strong>Genero :</strong><br><%=son.genero if son.genero%></td>
+        <td><strong>Edad (Años) :</strong><br><%=son.age if son.age%></td>
+        <td colspan="2"><strong>Relacion :</strong><br><%=son.relationship if son.relationship%></td>
+      </tr>
+    <%end%>
+  </table>
+ <!--historia personal-->
+  <%end%>
+ <%if @pdf == "completo"%>
+<h3 class= "color-gray"> Historia Personal</h3>
+  <table class="table table-responsive" id="tabla_antecedentes">
+      <h4 class= "color-gray">Antecedentes</h4>
+    <tr>
+      <td><strong>Embarazo</strong><br><%=@schild.embarazo%></td>
+      <td><strong>Hijo Deseado</strong><br><%=@schild.hijo_deseado%></td>
+      <td colspan="2"><strong>Dificultades Prenatales (Médicas, Intentos de aborto, Psicológicas)</strong><br><%=@schild.dificultades_prenatales%></td>
+    </tr>
 
+    <tr>
+      <td colspan="4"><strong>Periodo Prenatal Parto: (Normal, Anoxia, Cordon umbilical, Placenta, Malformación,Ictericia, Prelactancia materna)</strong><br><%=@schild.periodo_prenatal%></td>
+    </tr>
+
+
+
+
+     <tr>
+      <td><strong>Peso al Nacer (Libras)</strong><br><%=@schild.peso_nacimiento%></td>
+      <td><strong>Talla nacimiento (cms)</strong><br><%=@schild.talla_nacimiento%></td>
+      <td><strong>Lactancia Materna Hasta (Meses)</strong><br><%=@schild.latencia_materna%></td>
+      <td><strong>Con biberon hasta (Meses)</strong><br><%=@schild.latencia_materna%></td>
     </tr>
 
     <!--<tr>
@@ -250,449 +159,297 @@
     </tr>-->
 
      <tr>
-      
-      <th colspan="4">Problemas de Alimentacion al nacer y hasta el primer año</th>
-    </tr>
-
-    <tr>
-      
-       <td colspan="4"><%=@schild.problemas_alimentacion%></td>
+      <td colspan="4"><strong>Problemas de Alimentacion al nacer y hasta el primer año</strong><br><%=@schild.problemas_alimentacion%></td>
     </tr>
 
 
-    <tr>
-      <th colspan="2">Dificultades para dormir</th>
-      <th colspan="2">Reacciones del niño</th>
-    </tr>
 
     <tr>
-      <td colspan="2"><%=@schild.dificultad_dormir%></td>
-       <td colspan="2"><%=@schild.reacciones%></td>
+      <td colspan="2"><strong>Dificultades para dormir</strong><br><%=@schild.dificultad_dormir%></td>
+      <td colspan="2"><strong>Reacciones del niño</strong><%=@schild.reacciones%></td>
     </tr>
 
 
      <tr>
-      <th >Edad de gateo (Meses)</th>
-      <th>Edad de ponerse en pie (Meses)</th>
-      <th>Edad de caminar (Meses)</th>
-       <th>Inicio del Lenguaje</th>
-    </tr>
-      <tr>
-      <td><%=@schild.edad_gateo%></td>
-      <td><%=@schild.edad_gateo%></td>
-      <td><%=@schild.edad_caminar%></td>
-       <td><%=@schild.inicio_lenguaje%></td>
-
+      <td><strong>Edad de gateo (Meses)</strong><br><%=@schild.edad_gateo%></td>
+      <td><strong>Edad de ponerse en pie (Meses)</strong><br><%=@schild.edad_gateo%></td>
+      <td><strong>Edad de caminar (Meses)</strong><br><%=@schild.edad_caminar%></td>
+      <td><strong>Inicio del Lenguaje</strong><br><%=@schild.inicio_lenguaje%></td>
     </tr>
 
      <tr>
-      <th colspan="2">Enfermedades Medicas</th>
-      <th colspan="2">Hospitalizaciones y cirugias</th>
+      <td colspan="2"><strong>Enfermedades Medicas</strong><br><%=@schild.enfermedades_medicas%></td>
+      <td colspan="2"><strong>Hospitalizaciones y cirugias</strong><br><%=@schild.hospitalizacion_cirugias%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@schild.enfermedades_medicas%></td>
-       <td colspan="2"><%=@schild.hospitalizacion_cirugias%></td>
+      <td colspan="4"><strong>Problemas visoperceptivomotores</strong><br><%=@schild.problemas_visoperceptivomotores%></td>
     </tr>
-
-         <tr>
-      
-      <th colspan="4">Problemas visoperceptivomotores</th>
-    </tr>
-
-    <tr>
-      
-       <td colspan="4"><%=@schild.problemas_visoperceptivomotores%></td>
-    </tr>
-
-
 
 </table>
-<hr>
 
 <h4 class= "color-gray">Antecedentes Escolares</h4>
-
-<table class="table2">
+  <table class="table table-responsive" id="tabla_antecedentes">
   
 
     <tr>
-      <th >Nivel Escolar</th>
-      <th >Grado</th>
-      <th >Escuela</th>
-     
-     
+      <td><strong>Nivel Escolar</strong><br><%=@tchild.nivel_escolar%></td>
+      <td><strong>Grado</strong><br><%=@tchild.indice_academico%></td>
+      <td ><strong>Escuela</strong><br><%=@tchild.escuela%></td> 
+      <td ></td> 
     </tr>
 
     <tr>
-      <td ><%=@tchild.nivel_escolar%></td>
-       <td ><%=@tchild.indice_academico%></td>
-        <td ><%=@tchild.escuela%></td>
-        
-    </tr>
-
-
-
-
-
- <tr>
-      
-      <th colspan="4">¿ Cómo fue el proceso de adaptación a la escuela ?</th>
+      <td colspan="2"><strong>¿Cómo fue el proceso de adaptación a la escuela?</strong><br><%=@tchild.adaptacion_escolar%></td>
+      <td colspan="2"><strong>Problemas escolares (académicos), (conductales)</strong><br><%=@tchild.problemas_escolares%></td>
     </tr>
 
     <tr>
-      
-       <td colspan="4"><%=@tchild.adaptacion_escolar%></td>
-    </tr>
-
-     <tr>
-      
-      <th colspan="4">Problemas escolares (académicos), (conductales)</th>
+      <td colspan="2"><strong>¿Qué le gusta mas de la escuela?</strong><br><%=@tchild.gustos_escolares%></td>
+      <td colspan="2"><strong>¿Qué no le gusta de la escuela?</strong><br><%=@tchild.disgustos_escolares%></td>
     </tr>
 
     <tr>
-      
-       <td colspan="4"><%=@tchild.problemas_escolares%></td>
-    </tr>
-
-      <tr>
-      <th colspan="2">¿ Qué le gusta mas de la escuela ?</th>
-      <th colspan="2">¿ Qué no le gusta de la escuela ?</th>
+      <td colspan="2"><strong>¿Cómo es con las tareas ?</strong><br><%=@tchild.tareas%></td>
+      <td colspan="2"><strong>¿ Cómo maneja los útiles escolares ?</strong><br><%=@tchild.utiles_escolares%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@tchild.gustos_escolares%></td>
-       <td colspan="2"><%=@tchild.disgustos_escolares%></td>
-    </tr>
-
-
-    <tr>
-      <th colspan="2">¿Cómo es con las tareas ?</th>
-      <th colspan="2">¿ Cómo maneja los útiles escolares ?</th>
+      <td colspan="2"><strong>¿ Qué problemas posee a nivel de lectura, escritura, cálculo ?</strong><br><%=@tchild.problemas_materias%></td>
+      <td colspan="2"><strong>¿ Cómo ser ralaciona con la maestra ?</strong><br><%=@tchild.relacion_maestro%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@tchild.tareas%></td>
-       <td colspan="2"><%=@tchild.utiles_escolares%></td>
+      <td colspan="4"><strong>¿ Cómo ser ralaciona con los compañeros ?</strong><br><%=@tchild.relacion_companeros%></td>
     </tr>
+ </table>
 
-     <tr>
-      <th colspan="2">¿ Qué problemas posee a nivel de lectura, escritura, cálculo ?</th>
-      <th colspan="2">¿ Cómo ser ralaciona con la maestra ?</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@tchild.problemas_materias%></td>
-       <td colspan="2"><%=@tchild.relacion_maestro%></td>
-    </tr>
-    
-     <tr>
-      
-      <th colspan="4">¿ Cómo ser ralaciona con los compañeros ?</th>
-    </tr>
-
-    <tr>
-      
-       <td colspan="4"><%=@tchild.relacion_companeros%></td>
-    </tr>
-
-
-
-    </table>
-
-    <h4 class= "color-gray">Aspectos de Socialización y Afectivos</h4>
-
-<table class="table2">
+<h4 class= "color-gray">Aspectos de Socialización y Afectivos</h4>
+  <table class="table table-responsive" id="tabla_antecedentes">
   
-  <tr>
-      
-      <th colspan="4">¿Hace amigos con facilidad? (comunicativo, poco comunicativo, participa en grupo, tendencia al aislamiento, pasivo, agresivo, dependiente, independiente)</th>
+    <tr>
+      <td colspan="5"><strong>¿Hace amigos con facilidad? (comunicativo, poco comunicativo, participa en grupo, tendencia al aislamiento, pasivo, agresivo, dependiente, independiente)</strong><br><%=@tchild.frecuencia_amigos%></td>
     </tr>
 
     <tr>
-      
-       <td colspan="4"><%=@tchild.frecuencia_amigos%></td>
-    </tr>
-
- <tr>
-      <th colspan="2">¿ De que edad son los niños con los que se realciona ?</th>
-      <th colspan="2">¿ Qué tipos de juegos realiza ?</th>
+      <td colspan="2"><strong>¿De que edad son los niños con los que se realciona?</strong><br><%=@tchild.edad_amigos%></td>
+      <td colspan="2"><strong>¿Qué tipos de juegos realiza?</strong><br><%=@tchild.tipo_juegos%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@tchild.edad_amigos%></td>
-       <td colspan="2"><%=@tchild.tipo_juegos%></td>
-    </tr>
-
-
-    <tr>
-      <th colspan="2">¿ Qué hace con otros niños del mismo sexo ?</th>
-      <th colspan="2">¿ Cómo se realciona con los niños de otro sexo ?</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@tchild.actividades_mismo_sexo%></td>
-       <td colspan="2"><%=@tchild.actividades_otro_sexo%></td>
-    </tr>
-
-
-
-     <tr>
-      <th colspan="2">¿ Por qué se pelea con otros niños ?</th>
-      <th colspan="2">¿ Qué lo hace feliz ?</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@tchild.pelea%></td>
-       <td colspan="2"><%=@tchild.motivo_felicidad%></td>
+      <td colspan="2"><strong>¿ Qué hace con otros niños del mismo sexo ?</strong><br><%=@tchild.actividades_mismo_sexo%></td>
+      <td colspan="2"><strong>¿ Cómo se realciona con los niños de otro sexo ?</strong><br><%=@tchild.actividades_otro_sexo%></td>
     </tr>
 
      <tr>
-      <th colspan="2">¿ Qué lo entristece ?</th>
-      <th colspan="2">¿ Qué lo enoja ?</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@tchild.motivo_tristeza%></td>
-       <td colspan="2"><%=@tchild.motivo_enojo%></td>
+      <td colspan="2"><strong>¿ Por qué se pelea con otros niños ?</strong><br><%=@tchild.pelea%></td>
+      <td colspan="2"><strong>¿ Qué lo hace feliz ?</strong><br><%=@tchild.motivo_felicidad%></td>
     </tr>
 
      <tr>
-      <th colspan="2">¿ Sobre que aspectos de la vida pregunta constantemente?</th>
-      <th colspan="2">¿ Qué tan bien se baña, se viste, come, duerme, en la actualidad ?</th>
+      <td colspan="2"><strong>¿ Qué lo entristece ?</strong><br><%=@tchild.motivo_tristeza%></td>
+      <td colspan="2"><strong>¿ Qué lo enoja ?</strong><br><%=@tchild.motivo_enojo%></td>
     </tr>
 
-    <tr>
-      <td colspan="2"><%=@tchild.motivos_pregunta%></td>
-       <td colspan="2"><%=@tchild.habitos%></td>
+     <tr>
+      <td colspan="2"><strong>¿ Sobre que aspectos de la vida pregunta constantemente?</strong>><br><%=@tchild.motivos_pregunta%></td>
+      <td colspan="2"><strong>¿ Qué tan bien se baña, se viste, come, duerme, en la actualidad ?</strong>><br><%=@tchild.habitos%></td>
     </tr>
 
 </table>
 
 
 <h4 class= "color-gray">Intereses y pasatiempos</h4>
-
-<table class="table2">
+  <table class="table table-responsive" id="tabla_antecedentes">
   
    <tr>
-      <th colspan="2">¿ Qué le gusta hacer en su tiempo libre ?</th>
-      <th colspan="2">¿ Qué hace cuando esta solo ?</th>
+      <td ><strong>¿ Qué le gusta hacer en su tiempo libre ?</strong><br><%=@tchild.tiempo_libre%></td>
+      <td ><strong>¿ Qué hace cuando esta solo ?</strong><br><%=@tchild.hace_solo%></td>
+
     </tr>
 
     <tr>
-      <td colspan="2"><%=@tchild.tiempo_libre%></td>
-       <td colspan="2"><%=@tchild.hace_solo%></td>
-    </tr>
-
-    <tr>
-      <th colspan="2">¿ Qué no le gusta hacer ?</th>
-      <th colspan="2">¿ Qué tipo de deportes le gustan ?</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@tchild.no_gusta%></td>
-       <td colspan="2"><%=@tchild.deportes%></td>
+      <td ><strong>¿ Qué no le gusta hacer ?</strong><br><%=@tchild.no_gusta%></td>
+      <td ><strong>¿ Qué tipo de deportes le gustan ?</strong><br><%=@tchild.deportes%></td>
     </tr>
 
      <tr>
-      <th colspan="2">¿ Cuales son sus juegos favoritos? ¿ Alguan vez a jugado al doctor, mamá y papá ?</th>
-      <th colspan="2">¿ Qué programas de televisión mira ?</th>
+      <td ><strong>¿ Cuales son sus juegos favoritos? ¿ Alguan vez a jugado al doctor, mamá y papá ?</strong><br><%=@tchild.juegos%></td>
+      <td ><strong>¿ Qué programas de televisión mira ?</strong><br><%=@tchild.programa_tv%></td>
     </tr>
 
-    <tr>
-      <td colspan="2"><%=@tchild.juegos%></td>
-       <td colspan="2"><%=@tchild.programa_tv%></td>
-    </tr>
-</table>
+  </table>
 
 
- <h4 class= "color-gray">Desarrollo Psicosexual</h4>
-
-<table class="table2">
+<h4 class= "color-gray">Desarrollo Psicosexual</h4>
+  <table class="table table-responsive" id="tabla_antecedentes">
   
-  <tr>
-      <th colspan="2">Destete</th>
-      <th colspan="2">¿ Qué tipos de alimentos prefiere ?</th>
+    <tr>
+      <td ><strong>Destete</strong><br><%=@fochild.destete%></td>
+      <td ><strong>¿ Qué tipos de alimentos prefiere ?</strong><br><%=@fochild.gustos_alimentos%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@fochild.destete%></td>
-       <td colspan="2"><%=@fochild.gustos_alimentos%></td>
+      <td ><strong>¿ Alguna vez ha dejando de alimentarse ?</strong><br><%=@fochild.dejado_alimentacion%></td>
+      <td ><strong>¿ Control Anal, Vesical diurno, Vesical nocturno, Tecnica?</strong><br><%=@fochild.tipo_alimentacion%></td>
     </tr>
 
     <tr>
-      <th colspan="2">¿ Alguna vez ha dejando de alimentarse ?</th>
-      <th colspan="2">¿ Control Anal, Vesical diurno, Vesical nocturno, Tecnica?</th>
+      <td colspan="2"><strong>¿Que reacción posee ante la defacación ? (asco, verguenza, miedo, agrado, desagrado)</strong><br><%=@fochild.reaccion_defecacion%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@fochild.dejado_alimentacion%></td>
-       <td colspan="2"><%=@fochild.tipo_alimentacion%></td>
-    </tr>
-
-
-<tr>
-      
-      <th colspan="4">¿Que reacción posee ante la defacación ? (asco, verguenza, miedo, agrado, desagrado)</th>
+      <td ><strong>Succion del dedo</strong><br><%=@fochild.succion_dedo%></td>
+      <td ><strong>Masturbación</strong><br><%=@fochild.masturbacion%></td>
     </tr>
 
     <tr>
-      
-       <td colspan="4"><%=@fochild.reaccion_defecacion%></td>
-    </tr>
-
-
-     <tr>
-      <th colspan="2">Succion del dedo</th>
-      <th colspan="2">Masturbación</th>
+      <td ><strong>¿ Con quien duerme ?</strong><br><%=@fochild.duerme_con%></td>
+      <td ><strong>¿Alguna vez ha observado actos sexuales?</strong><br><%=@fochild.visto_acto_sexual%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@fochild.succion_dedo%></td>
-       <td colspan="2"><%=@fochild.masturbacion%></td>
+      <td ><strong>¿ Que conocimientos tiene  acerca de la sexualidad ?</strong><br><%=@fochild.conocimientos_sexualidad%></td>
+      <td ><strong>Información sexual adquirida y fuentes</strong><br><%=@fochild.informacion_sexual%></td>
     </tr>
 
-     <tr>
-      <th colspan="2">¿ Con quien duerme ?</th>
-      <th colspan="2">¿Alguna vez ha observado actos sexuales?</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@fochild.duerme_con%></td>
-       <td colspan="2"><%=@fochild.visto_acto_sexual%></td>
-    </tr>
-
-         <tr>
-      <th colspan="2">¿ Que conocimientos tiene  acerca de la sexualidad ?</th>
-      <th colspan="2">Información sexual adquirida y fuentes</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@fochild.conocimientos_sexualidad%></td>
-       <td colspan="2"><%=@fochild.informacion_sexual%></td>
-    </tr>
  </table>
 
 <h4 class= "color-gray">Preadolescencia y Adolescencia</h4>
-
-<table class="table2">
+  <table class="table table-responsive" id="tabla_antecedentes">
   
-  <tr>
-      <th colspan="2">Menarquia</th>
-      <th colspan="2">Experiencia menarquia</th>
-    </tr>
-
     <tr>
-      <td colspan="2"><%=@fochild.menarquia%></td>
-       <td colspan="2"><%=@fochild.experiencia_menarquia%></td>
+      <td width="25%"><strong>Menarquia</strong><br><%=@fochild.menarquia%></td>
+      <td width="25%"><strong>Experiencia menarquia</strong><br><%=@fochild.experiencia_menarquia%></td>
     </tr>
 
      <tr>
-      <th colspan="2">Polución</th>
-      <th colspan="2">Experiencia polución</th>
+      <td ><strong>Polución</strong><br><%=@fochild.polucion%></td>
+      <td ><strong>Experiencia polución</strong><br><%=@fochild.experiencia_polucion%></td>
     </tr>
 
     <tr>
-      <td colspan="2"><%=@fochild.polucion%></td>
-       <td colspan="2"><%=@fochild.experiencia_polucion%></td>
-    </tr>
-
-      <tr>
-      <th colspan="4">¿Fue informado?</th>
-    
+      <td colspan="2"><strong>¿Fue informado?</strong><br><%=@fochild.reacciones_emocionales%></td>
     </tr>
 
     <tr>
-    
-       <td colspan="4"><%=@fochild.reacciones_emocionales%></td>
-    </tr>
-
- <tr>
-     
-      <th colspan="4">Reacciones emocionales propias de la adolescencia: (Extrovertido, Timido, Ansioso, voluntarioso, malumorado,labil)</th>
+      <td colspan="2"><strong>Reacciones emocionales propias de la adolescencia: (Extrovertido, Timido, Ansioso, voluntarioso, malumorado,labil)</strong><br><%=@fochild.reacciones_emocionales%></td>
     </tr>
 
     <tr>
-    
-       <td colspan="3"><%=@fochild.reacciones_emocionales%></td>
-    </tr>
-
-
-    <tr>
-      <th colspan="2">Noviazgo</th>
-      <th colspan="2">Aceptacion familiar o restricción familiar ante el noviazgo</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@fochild.aceptacion_noviazgo%></td>
-       <td colspan="2"><%=@fochild.aceptacion_noviazgo%></td>
+      <td ><strong>Noviazgo</strong><br><%=@fochild.aceptacion_noviazgo%></td>
+      <td ><strong>Aceptacion familiar o restricción familiar ante el noviazgo</strong><br><%=@fochild.aceptacion_noviazgo%></td>
     </tr>
 
 </table>
+
 <h4 class= "color-gray">Sintomas Neuróticos</h4>
+  <table class="table table-responsive" id="tabla_antecedentes">
 
-<table class="table2">
-  
-  
 
     <tr>
-      <td colspan="4"><%=@fochild.sintomas_neuroticos%></td>
-      
+      <td ><strong>Sintomas</strong><br><%=@fochild.sintomas_neuroticos%></td>     
     </tr>
 
     <tr>
-     
-      <th colspan="4">Descripcion sintomas neuroticos</th>
+      <td > <strong>Descripcion sintomas neuroticos</strong><br><%=@fochild.descripcion_sintomas%></td> 
+    </tr>
+
+</table>
+
+
+
+
+<table class="table table-responsive" id="tabla_antecedentes">
+
+    <tr>
+      <td ><strong>¿ Quién es el responsable de la disciplina ?</strong><br><%=@fochild.responsable_disiplina%></td>
+      <td ><strong>¿ Que comportamientos le molestan del niño ?</strong><br><%=@fochild.comportamientos_molestos%></td>
     </tr>
 
     <tr>
+      <td colspan="2"><strong>¿ Que tipo de castigos utiliza frecuentemente ?</strong><br><%=@fochild.tipos_de_castigo%></td>     
+    </tr>
+
+</table>
+
+<table class="table table-responsive" id="tabla_antecedentes">
+  <h4 class= "color-gray">Observaciones finales</h4></td>
+  <tr>
+      <td ><strong>Descripción</strong><br><%=@fochild.observaciones%></td>
     
-       <td colspan="3"><%=@fochild.descripcion_sintomas%></td>
-    
     </tr>
+
+
 </table>
 
+</div>
 
 
 
-<table class="table2">
+
+
+
+
+
+
+
+
+<div class = "fields_history">
   
+   <h3 class= "color-gray">Antecedentes</h3>
+   <h4><strong>Personales</strong></h4>
+   <%@clinic_history.personal_backgrounds.each do |ch|%>  
+   <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
   
- <tr>
-      <th colspan="2">¿ Quién es el responsable de la disciplina ?</th>
-      <th colspan="2">¿ Que comportamientos le molestan del niño ?</th>
-    </tr>
+   <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+   <%end%>
+   <h4><strong>Familiares</strong></h4>
+   <%@clinic_history.backgrounds.each do |ch|%>  
+   <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
 
-    <tr>
-      <td colspan="2"><%=@fochild.responsable_disiplina%></td>
-       <td colspan="2"><%=@fochild.comportamientos_molestos%></td>
-    </tr>
+   <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+   <%end%>
+</div>
 
- 
- <tr>
-      <th colspan="4">¿ Que tipo de castigos utiliza frecuentemente ?</th>
-     
-    </tr>
-
-    <tr>
-      
-       <td colspan="4"><%=@fochild.tipos_de_castigo%></td>
-    </tr>
-
-
-</table>
-
-<table class="table2">
-<h4 class= "color-gray">Observaciones finales</h4>
- 
-
-    <tr>
-      
-       <td colspan="4"><%=@fochild.observaciones%></td>
-    </tr>
+ <hr>
 
 
 
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -701,223 +458,132 @@
 
 
 
-
-
-
-
-
-
-
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important"> Antecedentes</h2>
-      </th>
-   </tr>
+<div class = "fields_history">
+ 
+   <h3 class= "color-gray"> Herramientas de evaluación</h3>
   
-   <tr>
-      <td>
-      <h3><strong>Personales</strong></h3>
-      <%@clinic_history.personal_backgrounds.each do |ch|%>  
+   <%@clinic_history.tool_tests.each do |ch|%>  
+   <strong>Tipo:</strong> <%=ch.type_tool %> &nbsp;
 
-      <strong>Tipo:</strong> <%=ch.type_background %> <br><strong>Descripción:</strong> <%=ch.description%><br><br>
-       <%end%>
-       <h3><strong>Familiares</strong></h3>
-      <%@clinic_history.backgrounds.each do |ch|%>  
+   <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+   <%end%>
+</div>
+  <hr>
+<div class = "fields_history">
 
-      <strong>Tipo:</strong> <%=ch.type_background %> <br><strong>Descripción:</strong> <%=ch.description%><br><br>
-       <%end%> </td>  
-      
-   </tr>
-  
-</table>
-<br>
-<br>
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important"> Herramientas de evaluacion</h2>
-      </th>
-   </tr>
-  
-   <tr>
-      <td>
-      
-      <%@clinic_history.tool_tests.each do |ch|%>  
-
-      <strong>Tipo:</strong> <%=ch.type_tool %> <br><strong>Descripción:</strong> <%=ch.description%><br><br>
-       <%end%>
-        
-      
-   </tr>
-  
-</table>
-<br><br>
-
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important">Hipotesis diagnostica</h2>
-      </th>
-   </tr>
-  
-   <tr>
-      <td>
-      <strong>Descripcion</strong>
-  <%=@clinic_history.diagnostic_hypothesis%><br><br>
+  <h3 class= "color-gray">7. Hipotesis diagnostica</h3>
+  <strong>Descripcion</strong>
+  <span class="diagnostico"><%=@clinic_history.diagnostic_hypothesis%></span><br><br>
   <strong>DSMV: </strong>
-      <%@clinic_history.diagnostics.each do |ch|%>  
-   <span class="diagnostico"><%=ch.name%></span>
-       <%end%>
+  <%@clinic_history.diagnostics.each do |ch|%>  
+  <span class="diagnostico"><%=ch.name%></span>
+  <%end%>
+  <br>
+  <br>
+
+  <strong>Diagnostico Principal (CIE10): </strong>
+   <%if @clinic_history.diagnostico%>  
+
+  <span class="diagnostico"><%=@clinic_history.diagnostico.name%></span>
+<%end%>
+
     <br>
     <br>
-   <strong>Diagnostico Principal (CIE10): </strong>
-                         <%if @clinic_history.diagnostico%>  
-                         <span class="diagnostico"><%=@clinic_history.diagnostico.name %></span>
-                         <%end%>
-                         <br>
-                         <br> 
-   <strong>Diagnostico Adicionales (CIE10):</strong>
+   <strong>Diagnosticos Adicionales (CE10): </strong>
       <%@clinic_history.diagnosticos.each do |ch|%>  
     <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span>
-       <%end%>    
-        
-      </td>
-   </tr>
-  
-</table>
-
-
-
-
-
-
-
-<br><br>
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important">Objetivo terapeoutico</h2>
-      </th>
-   </tr>
-   <tr>
-      <td> <%=@clinic_history.therapeutic_goal%></td>
-   </tr>
-</table>
-<br><br>
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important">Tipo de Tratamiento</h2>
-      </th>
-   </tr>
-   <tr>
-      <td> <%=@clinic_history.type_of_treatment%></td>
-   </tr>
-</table>
-
-
-<br>
-<br>
-<table class="table1">
-   <tr>
-      <th>
-         <h2 class= "h2" style="text-align: left!important"> Seguimiento y observaciones</h2>
-      </th>
-   </tr>
-  
-   <tr>
-      <td>
+       <%end%>     
    
-      <%@clinic_history.tracings.each do |tr|%>  
+</div>
 
-      <strong>Fecha:</strong> <%=tr.tracing_date %> <br><strong>Descripción:</strong> <%=tr.description%><br><br>
-       <%end%>
+<hr>
+<div class = "fields_history">
+ 
+   <h3 class= "color-gray">Objetivo terapeoutico</h3>
+   <p><%=@clinic_history.therapeutic_goal%></p>
+</div>
+  <hr>
+<div class = "fields_history">
+ 
+   <h3 class= "color-gray">Tipo de Tratamiento</h3>
+   <p><%=@clinic_history.type_of_treatment%></p>
+</div>
+  <hr>
+<div class = "fields_history">
 
-      
-   </tr>
+   <h3 class= "color-gray"> Seguimientos y observaciones</h3>
+   <%@clinic_history.tracings.each do |tr|%>  
+   <strong>Fecha:</strong> <%=tr.tracing_date %> &nbsp;
+   <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,tr.attachment_url if tr.attachment_url%>
+   <br><strong>Descripción:</strong> <%=tr.description%><br><br>
+   <%end%>
+</div>
+
+
+ 
   
-</table>
-
-
-<table  style="text-align: justify;font-size: 20px;padding: 20px 50px;width: 100%;margin-left: 50px;margin-top: 100px">
-
-<thead>
-      <tr>
-      <th>
-      <%if @patient.user.tipo_firma == "Adjunta" %>
-      <%= wicked_pdf_image_tag @patient.user.firma_adjunta_url , style: "width:400px" if @patient.user.firma_adjunta %></th>
-      <%elsif @patient.user.tipo_firma == "Firma Digital" %>
-      <img style="width:300px"  src="<%=@patient.user.firma_psicologo%>" alt="">
-      
-
-      </th>
-    </tr>
-    <tr>
-     
-      <th>Firma del psicólogo</th>
-      </tr>
-            
-            <tr>
-     
-      <th>C.C: <%=@patient.user.document%></th>
-      </tr>
-
-      <tr>
-           
-            <th>T.P: <%=@patient.user.medical_record%></th>    
-      </tr>
-
-      <%else%>
-
-      <%end%>
-
-      
-    
-  </thead>
-  
-</table>
-
-
 
 
 
 <style>
-   .info
+    td
+    {font-size:16px !important;}
+   .fields_history
    {
-   border:1px solid #cecece;
+   color:gray;
+   width: 1100px;
+   font-size:16px !important;
+   min-height: 150px;
+   }
+   .table
+   {
+   width: 1100px;
+   
+   margin-bottom: 20px !important;
+   }
+   .table td
+   {
+    padding: 6px 5px !important;
+   }
+   .h3
+   {
+    color: #ffffff;
+    width: 80%;
+    background: #5bc0de;
+    padding: 6px;
+    width: 1100px;
+   
+   }
+   .fields_history h3
+   {
+       color: #ffffff;
+   
+    background: #5bc0de;
+    padding: 6px;
+
+  
    }
    .table1
    {
    border-collapse: collapse;
    color: #7a7a7a;
-   font-size:16px;
-   width:1100px;
+   
+   width: 1100px;
 
-   }
+   }   
    .table1 td
    {
    padding: 6px 20px;
    width:25%;
    border:1px solid #cecece;
    }
-
-.table1 th
+     .table1 th
    {
    padding: 6px 20px;
    width:25%;
    border:1px solid #cecece;
    }
-   .tit
-   {
-   font-size: 22px;
-   }
-   .h2
-   {
-   color:gray;
-   }
-
-         .table2 td
+      .table2 td
    {
    padding: 6px 20px;
 
@@ -938,9 +604,18 @@
 
    }
    .table2
-   { color: #7a7a7a;
-       font-size:16px;
-     width:1100px;border-collapse: collapse;
+   {
+    width: 1100px;
    }
-</style>
 
+   #tabla_antecedentes{
+    margin-left: 0px;
+    width: 1100px;
+
+   }
+
+   strong{
+    color: #306C95;
+   }
+
+</style>
