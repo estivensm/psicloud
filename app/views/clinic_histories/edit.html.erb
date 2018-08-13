@@ -74,7 +74,7 @@
 
 
   <!-- inicio de los campos adicionales -->
-   <%current_user.fields.where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field| %>
+   <% Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field| %>
    <h3> <%= field.name%></h3>
    <div class="form-group">
       <%if field.type_field == "Textarea"%>

@@ -87,6 +87,22 @@
    <p><%=@clinic_history.family_dinamic%></p>
 </div>
 
+
+<% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+  
+ 
+   <%if field.field.form == "Primer Contacto" && field.field.state %>
+    <div class = "fields_history">
+      <hr>
+      <h3 class= "color-gray"><%=field.field.name%></h3>
+      <p><%=field.content%></p>
+    </div>
+
+<%end%>
+  
+
+<%end%>
+
 <%if @fchild != nil %>
 <div class = "fields_history">
   <table class="table table-responsive" id="tabla_antecedentes">
@@ -261,6 +277,24 @@
    <h3 class= "color-gray">Tipo de Tratamiento</h3>
    <p><%=@clinic_history.type_of_treatment%></p>
 </div>
+
+<% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+  
+ 
+   <%if field.field.form == "Desenlace" && field.field.state %>
+    <div class = "fields_history">
+      <hr>
+      <h3 class= "color-gray"><%=field.field.name%></h3>
+      <p><%=field.content%></p>
+    </div>
+
+<%end%>
+  
+
+<%end%>
+
+
+
 <div class = "fields_history">
    <hr>
    <h3 class= "color-gray"> Seguimientos y observaciones</h3>

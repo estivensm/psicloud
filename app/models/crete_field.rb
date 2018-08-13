@@ -17,4 +17,6 @@
 
 class CreteField < ApplicationRecord
 	belongs_to :field
+	belongs_to :clinic_history
+	belongs_to :user
 end
