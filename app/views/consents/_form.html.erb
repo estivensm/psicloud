@@ -31,11 +31,8 @@
                 <%= form.label "Primera Edad"%>
                 <%= form.text_field :first_age, id: :consent_first_age, autocomplete: "off", :maxlength => 2, class: "form form-control" %>
               </div>
-            </div>
-            
-             
-           
-         
+            </div>             
+
             <div class="col-md-2">
               <div class="field">
                 <%= form.label "Segunda Edad" %>
@@ -46,29 +43,58 @@
                 <div class="col-md-2">
               <div class="field">
               <%= form.label :Estado %><br>
-              <%= form.check_box :state, id: :field_state %>
+              <%= form.check_box :state, id: :field_state, class: "form form-control"%>
             </div>
             </div>
           </div>
        
         <br>
-        <div class="field">
-          <%= form.label "Concentimiento " %>
-          <%= form.text_area :body, id: :consent_body, class: "ckeditor" %>
-        </div>
-        <br>
 
-        <div class="field">
-          <%= form.label "Encabezado" %>
+<div class="panel-group">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse1"><i class="fas fa-arrow-circle-down" style="color: #306C95;"></i>  Consentimiento</a>
+        </h4>
+      </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <%= form.text_area :body, id: :consent_body, class: "ckeditor" %>
+    </div>
+  </div>
+</div>
+
+ <br>
+
+ <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse2"><i class="fas fa-arrow-circle-down" style="color: #306C95;"></i>  Encabezado</a>
+        </h4>
+      </div>
+       <div id="collapse2" class="panel-collapse collapse">
           <%= form.text_area :header, id: :consent_header, class: "ckeditor" %>
-        </div>
-        <br>
+      </div>
+    </div>
+</div>
+ <br>
 
+<div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse3"><i class="fas fa-arrow-circle-down" style="color: #306C95;"></i>  Pie de Pagina</a>
+        </h4>
+      </div>
+    <div id="collapse3" class="panel-collapse collapse">
         <div class="field">
-          <%= form.label "Pie de pagin" %>
           <%= form.text_area :footer, id: :consent_footer, class: "ckeditor" %>
         </div>
-        <br>
+    </div>
+  </div>
+</div>
+
+ <br>
 
       <div class="actions">
           <%= form.submit "Guardar", class: "btn btn-primary" %>
