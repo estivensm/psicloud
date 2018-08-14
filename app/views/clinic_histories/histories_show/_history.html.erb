@@ -1,8 +1,13 @@
 <div class="row margin-top-40">
     <div class="col-md-12" style="padding-left: 50px;">
-        <%= link_to "inicio", root_path%><span> | </span> 
-        <%= link_to "pacientes", patients_path%> <span> | </span> 
-        <%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%>
+      <div id='cssmenu'>
+        <ul>
+          <li><%= link_to "Inicio", root_path%></li> 
+          <li><%= link_to "Pacientes", patients_path%></li>
+          <li><%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%></li>
+          <li class="active"><%= link_to "Historia Clinica", patient_clinic_history_path(@patient.id,@clinic_history)%></li>
+        </ul>
+      </div>
     </div>
 </div>
 
