@@ -159,18 +159,30 @@
                            <% end %>
                         </li>
 
-                                                <%if current_user.rol.configuracion%>
+              <%if current_user.rol.configuracion%>
                   <li class="dropdown <%=@menu[7]%> "  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-list color-gray icon" aria-hidden="true"></i>Informacion General <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                        <li ><%= link_to "Todos los Pacientes", all_patients_path , style: "color:gray !important"%></li>
-                        <li><%= link_to 'Todas las Citas', citas_admin_path , style: "color:gray !important"%></li>
-                        <li><%= link_to "Estadisticas Generales",general_stats_path , style: "color:gray !important"%></li>
 
+                    <ul class="dropdown-menu">
+
+                        <li ><%= link_to all_patients_path , style: "color:gray !important" do%>
+                          <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Todos los Pacientes 
+                          </li>
+                        <% end -%>
+
+                        <li><%= link_to citas_admin_path , style: "color:gray !important" do%>
+                          <i class="fas fa-calendar-alt" style="padding-left: 4px; color: #306C95;"></i> Todas las Citas
+                          </li>
+                        <% end -%>
+
+                        <li><%= link_to general_stats_path , style: "color:gray !important" do%>
+                           <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95;"></i> Estadisticas Generales
+                           </li>
+                        <% end -%>
 
                      </ul>
                   </li>
-                  <%end%>
+                <%end%>
                 </ul>
 
                <!--<form class="navbar-form navbar-left">
