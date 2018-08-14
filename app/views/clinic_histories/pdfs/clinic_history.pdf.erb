@@ -86,7 +86,7 @@
 
 <%end%>
 
-<%if @pdf == "completo" ||  (!@clinic_history.child_history && @fchild != nil)%>
+<%if @pdf == "completo" ||  (!@clinic_history.child_history && @fchild != nil && !@fchild.father_name.blank?)  %>
 <div class = "fields_history">
   <table class="table table-responsive" id="tabla_antecedentes">
     <h3 class= "color-gray">Historia Familiar</h3>
@@ -139,6 +139,9 @@
   </table>
  <!--historia personal-->
   <%end%>
+
+
+
  <%if @pdf == "completo"%>
 <h3 class= "color-gray"> Historia Personal</h3>
   <table class="table table-responsive" id="tabla_antecedentes">
@@ -550,6 +553,45 @@
    <br><strong>Descripción:</strong> <%=tr.description%><br><br>
    <%end%>
 </div>
+
+
+<table  style="text-align: justify;font-size: 20px;padding: 20px 50px;width: 100%;margin-left: 50px;margin-top: 100px">
+
+<thead>
+      <tr>
+      <th>
+      <%if @patient.user.tipo_firma == "Adjunta" %>
+      <%= wicked_pdf_image_tag @patient.user.firma_adjunta_url , style: "width:400px" if @patient.user.firma_adjunta %></th>
+      <%elsif @patient.user.tipo_firma == "Firma Digital" %>
+      <img style="width:300px"  src="<%=@patient.user.firma_psicologo%>" alt="">
+      
+
+      </th>
+    </tr>
+    <tr>
+     
+      <th>Firma del psicólogo</th>
+      </tr>
+            
+            <tr>
+     
+      <th>C.C: <%=@patient.user.document%></th>
+      </tr>
+
+      <tr>
+           
+            <th>T.P: <%=@patient.user.medical_record%></th>    
+      </tr>
+
+      <%else%>
+
+      <%end%>
+
+      
+    
+  </thead>
+  
+</table>
 
 
  
