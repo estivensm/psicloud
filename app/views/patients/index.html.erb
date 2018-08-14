@@ -79,6 +79,7 @@
             <% end %>
          <% end %>
       </div>
+
    </div>
   
 
@@ -119,28 +120,57 @@
              <td class="text-center"><%= get_state(patient.state).html_safe %></td>
               <td class="text-center"><%= get_state(patient.clinic_histories.count != 0).html_safe %></td>
         <td>
-        <%if current_user.rol.show_patient%>
-        <%= link_to  patient, class: "btnl btn-primary" do %>
-             <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%>
-      <%end%>
-        <%if current_user.rol.edit_patient%>
-          <%= link_to  edit_patient_path(patient), class: "btnl btn-primary" do%>
-             <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%>
-<%end%>
-       <%if current_user.rol.delete_patient%>
-      <%= link_to  patient, method: :delete, data: { confirm: 'Estas Seguro?' }, class: "btnl btn-danger" do%>
-             <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%><%end%>
-</td>
-               </tr>
-               <%end%>
-            </tbody>
-         </table>
-         </div>
-      </div>
-   </div>
+          <div class="btn-group">
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
+                   
+            </button>
+           
+              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 168px;"  >
+                 <ul style="padding: 0px;">
+
+                  <ol style="padding-left: 0px; padding-top: 4px;"><%= link_to patient, style: "width: 20px !important;" do%>
+                  <i class="fas fa-address-card" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Gestionar Historial
+
+                  <% end -%>
+                  </ol>
+
+                  <ol style="padding-left: 0px;"><%= link_to patient, style: "width: 20px !important;" do%>
+                  <i class="fas fa-address-book" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Ver Historial
+
+                  <% end -%>
+                  </ol>
+
+                  <ol style="padding-left: 0px;"><%= link_to patient, style: "width: 20px !important;" do%>
+                  <i class="fas fa-user" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Ver Paciente 
+
+                  <% end -%>
+                  </ol>
+
+                  <%if current_user.rol.edit_patient%>
+                    <ol style="padding-left: 10px;"><%= link_to edit_patient_path(patient) do %></ol>
+                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar Paciente
+                    <% end -%>
+                  <% end -%>
+
+                  <%if current_user.rol.delete_patient%>
+                      <ol style="padding-left: 10px;"><%= link_to patient, method: :delete, data: { confirm: 'Estas Seguro?' } do %></ol>
+                      <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar Paciente
+                      <% end -%>
+                  <% end -%>
+
+                 </ul>
+              </div>
+             </div>
+
+              </td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
    <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">
             <%= will_paginate @patients%>
@@ -162,6 +192,7 @@
 .table th{
     padding: 6px 5px !important;
     vertical-align: initial !important;
+
 
 }
 .icon-export img
@@ -190,5 +221,9 @@
     color: #277394;
     background-color: #fff;
     border-color: #ccc;
+}
+
+ol{
+  padding-bottom: 4px;
 }
 </style>
