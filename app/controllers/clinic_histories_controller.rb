@@ -197,13 +197,17 @@ end
 
 
         format.html { 
-               if !@clinic_history.child_history
+               if !@clinic_history.child_history && !@clinic_history.child_general_date
           
-          redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' 
+          redirect_to  patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id), notice: 'Clinic history was successfully created.' 
            
-            else
+            elsif !@clinic_history.child_history && @clinic_history.child_general_date
           
           redirect_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), notice: 'Clinic history was successfully created.' 
+            
+            else
+
+              redirect_to  edit_patient_clinic_history_child_general_date_path(@clinic_history.patient_id,@clinic_history.id,@clinic_history.child_general_date.id), notice: 'Clinic history was successfully created.' 
 
 
             end
