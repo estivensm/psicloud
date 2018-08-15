@@ -106,6 +106,13 @@ class AppointmentsController < ApplicationController
     
   end
 
+  def state
+    @appointment = Appointment.find(params[:id])
+    estado = params[:estado]
+    @appointment.update(state: estado)
+  end
+
+
 
   # GET /appointments/1
   # GET /appointments/1.json
