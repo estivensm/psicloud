@@ -119,85 +119,71 @@
          <!-- /.container-fluid -->
       </nav>
 
-        <% menu %>
-     
-      <nav class="navbar navbar-default second-navbar">
-         <div class="container-fluid">
+<% menu %>
+  <div id='menu1'>
+    <ul>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
-                                  <li   class="<%=@menu[0]%> li"><%= link_to root_path,:class => "" do %>
-                           <i class="fa fa-home color-gray icon" aria-hidden="true"></i>
-                          <span class = "color-gray hidden-xs hidden-sm" " ">Inicio</span>
-                           <% end %>
-                        </li>
+      <li class="<%=@menu[0]%>"><%= link_to root_path do %>
+        <i class="fa fa-home color-gray icon" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm" " ">Inicio</span>
+        <% end %>
+      </li>
+
+      <li  class="<%=@menu[2]%>"><%= link_to patients_path do %>
+        <i class="fas fa-address-card icon" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Pacientes</span>
+        <% end %>
+      </li>
+
+
+      <li class="<%=@menu[3]%>"><%= link_to citas_path do %>
+        <i class="fas fa-calendar-check" style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Citas</span>
+        <% end %>
+      </li>
+
+      <li  class="<%=@menu[5]%>"><%= link_to documents_path do %>
+        <i class="fas fa-file-alt"  style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
+        <% end %>
+       </li>
+
+      <li  class="<%=@menu[6]%>"><%= link_to stats_path do %>
+        <i class="fa fa-bar-chart-o icon"  style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm"> Estadisticas</span>
+        <% end %>
+      </li>
+
+    <%if current_user.rol.configuracion%>
+
+      <li class="has-sub"><a style="user-select: none;">
+        <i class="fa fa-list color-gray icon" style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Informacion General</span>
+        </a>
+        <ul>
+
+          <li ><%= link_to all_patients_path , style: "color:gray !important" do%>
+              <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Todos los Pacientes 
+          <% end -%>
+          </li>
           
 
-                         <li  class="<%=@menu[2]%> li"><%= link_to patients_path,:class => "" do %>
-                           <i class="fas fa-address-card icon" color-gray icon" aria-hidden="true"></i>
-                            <span class = "color-gray hidden-xs hidden-sm"> Pacientes</span>
-                           <% end %>
-                        </li>
+          <li><%= link_to citas_admin_path , style: "color:gray !important" do%>
+              <i class="fas fa-calendar-alt" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Todas las Citas
+          <% end -%>
+          </li>
+          
+          <li><%= link_to general_stats_path , style: "color:gray !important" do%>
+              <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Estadisticas Generales
+          <% end -%>
+          </li>
 
-                                <li class="<%=@menu[3]%> li"><%= link_to citas_path,:class => "" do %>
-                           <i class="fas fa-calendar-check" style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
+        </ul>
+      </li>
+    <% end -%>
 
-                            <span class = "color-gray hidden-xs hidden-sm"> Citas</span>
-                           <% end %>
-                        </li>
-                         <li  class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
-                           <i class="fas fa-file-alt"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
-                            <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
-                           <% end %>
-                        </li>
-
-                        <li class="<%=@menu[6]%> li"><%= link_to stats_path, :class => "stats" do %>
-                           <i class="fa fa-bar-chart-o icon" color-gray icon" aria-hidden="true"></i>
-
-                            <span class = "color-gray hidden-xs hidden-sm"> Estadisticas</span>
-                           <% end %>
-                        </li>
-
-              <%if current_user.rol.configuracion%>
-                  <li class="dropdown <%=@menu[7]%> "  >
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-list color-gray icon" aria-hidden="true"></i>Informacion General <span class="caret"></span></a>
-
-                    <ul class="dropdown-menu">
-
-                        <li ><%= link_to all_patients_path , style: "color:gray !important" do%>
-                          <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Todos los Pacientes 
-                          </li>
-                        <% end -%>
-
-                        <li><%= link_to citas_admin_path , style: "color:gray !important" do%>
-                          <i class="fas fa-calendar-alt" style="padding-left: 4px; color: #306C95;"></i> Todas las Citas
-                          </li>
-                        <% end -%>
-
-                        <li><%= link_to general_stats_path , style: "color:gray !important" do%>
-                           <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95;"></i> Estadisticas Generales
-                           </li>
-                        <% end -%>
-
-                     </ul>
-                  </li>
-                <%end%>
-                </ul>
-
-               <!--<form class="navbar-form navbar-left">
-                  <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
-               </form>-->
-              
-            </div>
-            <!-- /.navbar-collapse -->
-         </div>
-         <!-- /.container-fluid -->
-      </nav>
-       <!--<%= flash_messages %>-->
+    </ul>
+  </div>
 
 
 <% menu_patient %>
@@ -560,7 +546,206 @@ border-radius: 50%;
   overflow: hidden;
   left: 10px;
 }
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+#menu1,
+#menu1 ul,
+#menu1 ul li,
+#menu1 ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#menu1:after,
+#menu1 > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#menu1 {
+  width: auto;
+  border-bottom: 3px solid #5bbbe1;
+  font-family: Raleway, sans-serif;
+  line-height: 1;
+}
+#menu1 ul {
+  background: #F5F5F5;
+}
+#menu1 > ul > li {
+  float: left;
+}
+#menu1.align-center > ul {
+  font-size: 0;
+  text-align: center;
+}
+#menu1.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+#menu1.align-right > ul > li {
+  float: right;
+}
+#menu1.align-right > ul > li > a {
+  margin-right: 0;
+  margin-left: -4px;
+}
+#menu1 > ul > li > a {
+  z-index: 2;
+  padding: 18px 25px 12px 25px;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #444444;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  margin-right: -4px;
+}
+#menu1 > ul > li.active > a,
+#menu1 > ul > li:hover > a,
+#menu1 > ul > li > a:hover {
+  color: #f1f1f1 !important;
+}
+#menu1 > ul > li > a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 120%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  content: "";
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: perspective(5px) rotateX(2deg);
+  -webkit-transform-origin: bottom;
+  -moz-transform: perspective(5px) rotateX(2deg);
+  -moz-transform-origin: bottom;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom;
+}
+#menu1 > ul > li.active > a:after,
+#menu1 > ul > li:hover > a:after,
+#menu1 > ul > li > a:hover:after {
+  background: #5bc0de;
+}
+
+/*Dropbox*/
+
+#menu1 li {
+  margin: 0 5px;
+  padding: 0 0 8px;
+  float: left;
+  position: relative;
+  list-style: none;
+}
+
+/*Dropbox*/
+
+#menu1 a,
+#menu1 a:link {
+  color: #787878 !important;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+
+}
+
+
+
+/*Dropbox*/
+
+#menu1 a:hover {
+  color: #fff !important;
+
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul li:hover a,
+#menu1 li:hover li a {
+  background: none;
+  border: none;
+  color: #666;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+
+}
+
+/*Dropbox*/
+
+#menu1 ul ul a:hover {
+  background: #F5F5F5 url() repeat-x 0 -100px !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+}
+
+/*Dropbox*/
+#menu1 ul ul a{
+  margin-top: 3px !important;
+  margin-bottom: 3px !important;
+
+}
+
+/*Dropbox*/
+
+#menu1 li:hover > ul {
+  display: block;
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul {
+  z-index: 1000;
+  display: none;
+  margin: 0;
+  padding: 10px 10px;
+  position: absolute;
+  top: 58px;
+  left: 0;
+  width: 220px !important;
+  background: #ffffff url() repeat-x 0 0;
+  border: solid 1px #b4b4b4;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul li {
+  float: none;
+  margin: 0;
+  padding: 3px;
+}
+
 </style>
+
+
 <script>
    $(document).ready(function() {
      

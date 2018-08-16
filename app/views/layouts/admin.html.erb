@@ -1,67 +1,61 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Psicloud</title>
+
+    <title>Psicloud</title>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="turbolinks-cache-control" content="no-cache">
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-       <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
-       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-        <meta name="turbolinks-cache-control" content="no-cache">
-        <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/192/Sin-t_tulo-1.png' %>
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/192/Sin-t_tulo-1.png' %>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-
-
-       
-      <%= csrf_meta_tags %>
-      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-        
-<%= javascript_include_tag 'https://unpkg.com/axios/dist/axios.min.js', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js', 'data-turbolinks-track': 'reload' %>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
-         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
+    <%= javascript_include_tag 'https://unpkg.com/axios/dist/axios.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 
    </head>
+
    <body class="admin">
     
     
        <% menu %>
-     
-      <nav class="navbar navbar-default first-navbar">
-         <div class="container-fluid">
+    <nav class="navbar navbar-default first-navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" style = "background:white" href="#"><img src="https://farm5.staticflickr.com/4539/38260696042_45b37e8f87_n.jpg" alt=""></a>
 
-            <!-- Brand and toggle get grouped for better mobile display -->
-             <div class="navbar-header">
-             <a class="navbar-brand" style = "background:white" href="#"><img src="https://farm5.staticflickr.com/4539/38260696042_45b37e8f87_n.jpg" alt=""></a>
-               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-            
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+        </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
-                                
-          
-
-                        
-                  
-             
+               <ul class="nav navbar-nav">         
                </ul>
               <ul class="nav navbar-nav navbar-right">
                   <%if current_user.rol.configuracion%>
                   <li class="dropdown <%=@menu[4]%> "  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i>Configuración <span class="caret"></span></a>
+
                      <ul class="dropdown-menu" style="width: 164% !important;">
                         <li ><%= link_to  users_index_path, style: "color:gray !important" do %>
                         <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Usuarios
@@ -108,122 +102,106 @@
                   
                   <%end%>
 
-              <li class="hidden-xs hidden-sm" style = "height: 51px;margin-left: 20px;margin-right: 15px;" class="l1"> <%= (image_tag Account.where(admin_user: current_user.admin_user).first.logo_url , style: "width:150px;height:60px") if Account.where(admin_user: current_user.admin_user).first.logo? %></li>
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=""> <i class="fa fa-user"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i> <%=current_user.names  %> <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
+<li class="hidden-xs hidden-sm" style = "height: 51px;margin-left: 20px;margin-right: 15px;" class="l1"> <%= (image_tag Account.where(admin_user: current_user.admin_user).first.logo_url , style: "width:150px;height:60px") if Account.where(admin_user: current_user.admin_user).first.logo? %></li>
+      <li class="dropdown">
+         <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=""> <i class="fa fa-user"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i> <%=current_user.names  %> <span class="caret"></span></a>
+         <ul class="dropdown-menu">
+          
                         <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
-                           <span class="fa fa-sign-out" style = "color: #306C95;"></span>
-                           <span style = "color:gray!important">Cerrar Sesión</span>
-                           <% end %>
+                            <span class="fa fa-sign-out" style = "color: #306C95;"></span>
+                            <span style = "color:gray!important">Cerrar Sesión</span>
+                            <% end %>
                         </li>
+
                         <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color: #306C95;"></span>
                            <span style = "color:gray!important" >Editar Usuario</span>
                            <% end %>
                         </li>
+
                         <li> <%= link_to show_user_path(current_user.id), :class => "indicadores" do %>
                            <span class="fa fa-eye" style = "color: #306C95;"></span>
                            <span style = "color:gray!important" >Ver Usuario</span>
                            <% end %>
                         </li>
-                     </ul>
-                  </li>
-               </ul>
-               <!--<form class="navbar-form navbar-left">
-                  <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
-               </form>-->
-              
-            </div>
-            <!-- /.navbar-collapse -->
-         </div>
-         <!-- /.container-fluid -->
-      </nav>
 
-        <% menu %>
-     
-      <nav class="navbar navbar-default second-navbar">
-         <div class="container-fluid">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
-                                  <li   class="<%=@menu[0]%> li"><%= link_to root_path,:class => "" do %>
-                           <i class="fa fa-home color-gray icon" aria-hidden="true"></i>
-                          <span class = "color-gray hidden-xs hidden-sm" " ">Inicio</span>
-                           <% end %>
-                        </li>
+
+
+<% menu %>
+
+  <div id='menu1'>
+    <ul>
+
+      <li class="<%=@menu[0]%>"><%= link_to root_path do %>
+        <i class="fa fa-home color-gray icon" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm" " ">Inicio</span>
+        <% end %>
+      </li>
+
+      <li  class="<%=@menu[2]%>"><%= link_to patients_path do %>
+        <i class="fas fa-address-card icon" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Pacientes</span>
+        <% end %>
+      </li>
+
+
+      <li class="<%=@menu[3]%>"><%= link_to citas_path do %>
+        <i class="fas fa-calendar-check" style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Citas</span>
+        <% end %>
+      </li>
+
+      <li  class="<%=@menu[5]%>"><%= link_to documents_path do %>
+        <i class="fas fa-file-alt"  style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
+        <% end %>
+       </li>
+
+      <li  class="<%=@menu[6]%>"><%= link_to stats_path do %>
+        <i class="fa fa-bar-chart-o icon"  style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm"> Estadisticas</span>
+        <% end %>
+      </li>
+
+    <%if current_user.rol.configuracion%>
+
+      <li class="has-sub"><a style="user-select: none;">
+        <i class="fa fa-list color-gray icon" style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Informacion General</span>
+        </a>
+        <ul>
+
+          <li ><%= link_to all_patients_path , style: "color:gray !important" do%>
+              <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Todos los Pacientes 
+          <% end -%>
+          </li>
           
 
-                         <li  class="<%=@menu[2]%> li"><%= link_to patients_path,:class => "" do %>
-                           <i class="fas fa-address-card icon" color-gray icon" aria-hidden="true"></i>
-                            <span class = "color-gray hidden-xs hidden-sm">Pacientes</span>
-                           <% end %>
-                        </li>
+          <li><%= link_to citas_admin_path , style: "color:gray !important" do%>
+              <i class="fas fa-calendar-alt" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Todas las Citas
+          <% end -%>
+          </li>
+          
+          <li><%= link_to general_stats_path , style: "color:gray !important" do%>
+              <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Estadisticas Generales
+          <% end -%>
+          </li>
 
-                                <li class="<%=@menu[3]%> li"><%= link_to citas_path,:class => "" do %>
-                           <i class="fas fa-calendar-check" style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
+        </ul>
+      </li>
+    <% end -%>
 
-                            <span class = "color-gray hidden-xs hidden-sm">Citas</span>
-                           <% end %>
-                        </li>
-                         <li  class="<%=@menu[5]%> li"><%= link_to documents_path,:class => "" do %>
-                           <i class="fas fa-file-alt"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i>
-                            <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
-                           <% end %>
-                        </li>
+    </ul>
+  </div>
 
-                        <li class="<%=@menu[6]%> li"><%= link_to stats_path, :class => "stats" do %>
-                           <i class="fa fa-bar-chart-o icon" color-gray icon" aria-hidden="true"></i>
-
-                            <span class = "color-gray hidden-xs hidden-sm">Estadisticas</span>
-                           <% end %>
-                        </li>
-
-                <%if current_user.rol.configuracion%>
-                  <li class="dropdown <%=@menu[7]%> "  >
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-list color-gray icon" aria-hidden="true"></i>Informacion General <span class="caret"></span></a>
-
-                     <ul class="dropdown-menu" style="width: 215px !important;">
-
-                        <li ><%= link_to all_patients_path , style: "color:gray !important" do%>
-                          <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Todos los Pacientes 
-                          </li>
-                        <% end -%>
-
-
-                        <li><%= link_to citas_admin_path , style: "color:gray !important" do%>
-                          <i class="fas fa-calendar-alt" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Todas las Citas
-                          </li>
-                        <% end -%>
-
-                        <li><%= link_to general_stats_path , style: "color:gray !important" do%>
-                           <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Estadisticas Generales
-                           </li>
-                        <% end -%>
-
-                     </ul>
-
-                  </li>
-                  <%end%>
-                </ul>
-
-               <!--<form class="navbar-form navbar-left">
-                  <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
-               </form>-->
-              
-            </div>
-            <!-- /.navbar-collapse -->
-         </div>
-         <!-- /.container-fluid -->
-      </nav>
-       <!--<%= flash_messages %>-->
+  
       <%= yield %>
    </body>
 </html>
@@ -231,38 +209,35 @@
 
 <style>
 
-.icon
-{
+.icon{
    font-size:20px !important;
    margin-right: 5px !important;
 }
 
-   .navbar-brand {
-  
-    height: 58px !important;
-    }
-    .navbar-brand img
-    {
-          margin-top: 10px;
-    }
+.navbar-brand {
+  height: 58px !important;
+}
 
-.stats
-{
+.navbar-brand img{
+  margin-top: 10px;
+}
+
+.stats{
   width:145px;
 }
 
 @media (max-width: 900px) {
-    .li {
-          text-align: left !important;
-          display: inline-block !important;
-          width: auto !important;
 
-    }
+  .li{
+    text-align: left !important;
+    display: inline-block !important;
+    width: auto !important;
+  }
 
-.stats
-{
-  width:auto !important;
-}
+  .stats{
+    width:auto !important;
+  }
+
 }
 
 a:hover{
@@ -272,20 +247,211 @@ a:hover{
 ul > a:h{
   background-color: red;
 }
-.dropdown-menu>li>a {
- 
+
+.dropdown-menu > li > a {
     padding: 4px 4px;
-
-
 }
-.dropdown-menu>li>a:hover {
- 
+
+.dropdown-menu > li > a:hover {
     background: #e0e0e0 !important;
     color:white!important;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+#menu1,
+#menu1 ul,
+#menu1 ul li,
+#menu1 ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#menu1:after,
+#menu1 > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#menu1 {
+  width: auto;
+  border-bottom: 3px solid #5bbbe1;
+  font-family: Raleway, sans-serif;
+  line-height: 1;
+}
+#menu1 ul {
+  background: #F5F5F5;
+}
+#menu1 > ul > li {
+  float: left;
+}
+#menu1.align-center > ul {
+  font-size: 0;
+  text-align: center;
+}
+#menu1.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+#menu1.align-right > ul > li {
+  float: right;
+}
+#menu1.align-right > ul > li > a {
+  margin-right: 0;
+  margin-left: -4px;
+}
+#menu1 > ul > li > a {
+  z-index: 2;
+  padding: 18px 25px 12px 25px;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #444444;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  margin-right: -4px;
+}
+#menu1 > ul > li.active > a,
+#menu1 > ul > li:hover > a,
+#menu1 > ul > li > a:hover {
+  color: #f1f1f1 !important;
+}
+#menu1 > ul > li > a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 120%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  content: "";
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: perspective(5px) rotateX(2deg);
+  -webkit-transform-origin: bottom;
+  -moz-transform: perspective(5px) rotateX(2deg);
+  -moz-transform-origin: bottom;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom;
+}
+#menu1 > ul > li.active > a:after,
+#menu1 > ul > li:hover > a:after,
+#menu1 > ul > li > a:hover:after {
+  background: #5bc0de;
+}
+
+/*Dropbox*/
+
+#menu1 li {
+  margin: 0 5px;
+  padding: 0 0 8px;
+  float: left;
+  position: relative;
+  list-style: none;
+}
+
+/*Dropbox*/
+
+#menu1 a,
+#menu1 a:link {
+  color: #787878 !important;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
 
 }
 
 
-</style>
 
-    
+/*Dropbox*/
+
+#menu1 a:hover {
+  color: #fff !important;
+
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul li:hover a,
+#menu1 li:hover li a {
+  background: none;
+  border: none;
+  color: #666;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+
+}
+
+/*Dropbox*/
+
+#menu1 ul ul a:hover {
+  background: #F5F5F5 url() repeat-x 0 -100px !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+}
+
+/*Dropbox*/
+#menu1 ul ul a{
+  margin-top: 3px !important;
+  margin-bottom: 3px !important;
+
+}
+
+/*Dropbox*/
+
+#menu1 li:hover > ul {
+  display: block;
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul {
+  z-index: 1000;
+  display: none;
+  margin: 0;
+  padding: 10px 10px;
+  position: absolute;
+  top: 58px;
+  left: 0;
+  width: 220px !important;
+  background: #ffffff url() repeat-x 0 0;
+  border: solid 1px #b4b4b4;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul li {
+  float: none;
+  margin: 0;
+  padding: 3px;
+}
+
+</style>
