@@ -177,23 +177,23 @@ def menu
           
   @menu = ["","","","",""]
   if  controller.controller_name == "home" 
-        @menu = ["active1","na","na","na","na","na", "na","na"]
+        @menu = ["active","na","na","na","na","na", "na","na"]
      elsif controller.controller_name == "views"
-        @menu = ["na","na","na","na","active1","na", "na","na"]
+        @menu = ["na","na","na","na","active","na", "na","na"]
      elsif (controller.controller_name == "patients" && (action_name == "index" || action_name == "new" || action_name == "show")) || controller_name == "child_general_dates" || controller_name == "personal_histories" || controller_name == "two_child_histories" || controller_name == "three_child_histories" || controller_name == "tracings" || controller_name == "tool_tests" || controller_name == "backgrounds" || controller_name == "tasks"
-        @menu = ["na","na","active1","na","na","na", "na","na"]
+        @menu = ["na","na","active","na","na","na", "na","na"]
      elsif (controller.controller_name == "appointments" && action_name == "citas") || controller.controller_name == "appointments" && action_name == "index"
-        @menu = ["na","na","na","active1","na","na", "na","na"]
+        @menu = ["na","na","na","active","na","na", "na","na"]
      elsif controller.controller_name == "clinic_histories"
-        @menu = ["na","na","active1","na","na","na", "na","na"]
+        @menu = ["na","na","active","na","na","na", "na","na"]
       elsif controller.controller_name == "documents"
-        @menu = ["na","na","na","na","na", "active1", "na","na"]  
+        @menu = ["na","na","na","na","na", "active", "na","na"]  
       elsif controller.controller_name == "stats" && action_name == "index"
-        @menu = ["na","na","na","na","na", "na", "active1","na"]  
+        @menu = ["na","na","na","na","na", "na", "active","na"]  
       elsif (controller.controller_name == "patients" && action_name == "all_patients") || (action_name == "citas_admin") || (action_name == "general_stats")
-        @menu = ["na","na","na","na","na", "na","na", "active1"]    
+        @menu = ["na","na","na","na","na", "na","na", "active"]    
      else
-        @menu = ["na","na","na","na","active1"]
+        @menu = ["na","na","na","na","active"]
   end
 
   return @menu
