@@ -1,13 +1,15 @@
+    <div id='cssmenu' style="margin-top: 40px;">
+      <ul>
+        <li><%= link_to "Inicio", root_path%></li> 
+        <li><%= link_to "Pacientes", patients_path%></li>
+        <li class="active"><%= link_to "Registrar Paciente"%></label><li>
 
-<div class="row margin-top-40" >
-   <div class="col-md-12" style="padding-left: 50px;">
-      <%= link_to "inicio", root_path%><span> | </span> 
-      <%= link_to "pacientes", patients_path%>
-   </div>
-</div>
+      </ul>
+    </div>
+
 <div class="container">
    <br>
-   <div class = "row row-form" style="background:white">
+   <div class = "row row-form" style="background:white; padding-top: 10px !important;" >
       <br>
       <%= form_with(model: patient, local: true, id:"form") do |form| %>
       <% if patient.errors.any? %>
