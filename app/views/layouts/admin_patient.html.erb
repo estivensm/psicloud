@@ -68,18 +68,48 @@
                   <%if current_user.rol.configuracion%>
                   <li class="dropdown <%=@menu[4]%> "  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i>Configuración <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                        <li ><%= link_to "Usuarios", users_index_path, style: "color:gray !important" %></li>
-                        <li><%= link_to "Roles", rols_path, style: "color:gray !important" %></li>
-                        <li><%= link_to "EPS", hpcs_path , style: "color:gray !important"%></li>
-                        <li><%= link_to "Convenio", agreements_path , style: "color:gray !important"%></li>
-                        <li><%= link_to "Configuración de Cuenta", account_path(get_account), style: "color:gray !important" %></li>
-                           <li><%= link_to "Configuración de Formularios", fields_path , style: "color:gray !important" %></li>
-                         <li><%= link_to "Configuración de Concentimiento", consents_path , style: "color:gray !important" %></li>   
+                      <ul class="dropdown-menu" style="width: 164% !important;">
+                        <li ><%= link_to  users_index_path, style: "color:gray !important" do %>
+                        <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Usuarios
+                        <% end -%>
+                        </li>
+
+                        <li><%= link_to rols_path, style: "color:gray !important" do %>
+                        <i class="fas fa-briefcase" style="padding-left: 4px; color: #306C95;"></i> Roles
+                        <% end -%>
+                        </li>
+
+                        <li><%= link_to hpcs_path , style: "color:gray !important" do%>
+                         <i class="fas fa-heart" style="padding-left: 4px; color: #306C95;"></i>  Eps
+                        <% end -%>
+                        </li>
+
+                        <li><%= link_to  agreements_path , style: "color:gray !important" do %>
+                        <i class="fas fa-building" style="padding-left: 4px; color: #306C95;"></i> Convenio
+                        <% end -%>
+                        </li>
+
+                        <li><%= link_to account_path(get_account), style: "color:gray !important" do %>
+                        <i class="fa fa-cog color-gray" style="padding-left: 4px; color: #306C95;"></i> Configuración de Cuenta
+                        <% end -%>
+                        </li>
+
+                        <li><%= link_to fields_path , style: "color:gray !important" do %>
+                        <i class="fas fa-clipboard" style="padding-left: 4px; color: #306C95;"></i> Configuración de Formularios
+                        <% end -%>
+                        </li>
+
+                        <li><%= link_to  consents_path , style: "color:gray !important" do %>
+                        <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> Configuración de Consentimiento
+                        <% end -%>
+                        </li>
                         <%if current_user.super_admin%>
-                         <li><%= link_to "Cuentas", accounts_path, style: "color:gray !important" %></li>
+
+                         <li><%= link_to  accounts_path, style: "color:gray !important" do  %>
+                           <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Cuentas
+                         <% end -%>
+                         </li>
                         <%end%>
-                  <li class="hidden-xs hidden-sm"><a href="https://psicloud.herokuapp.com/users/auth/google_oauth2" > Autenticación <i class="fa fa-google" style = "font-size:20px;" aria-hidden="true"></i></a></li>
                      </ul>
                   </li>
                   <%end%>
