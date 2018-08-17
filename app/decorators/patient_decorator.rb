@@ -32,7 +32,7 @@ module PatientDecorator
     [
       ['Ninguno', 'Ninguno'],
       ['Mestizo', 'Meztizo'],
-      ['Afro Desendiente', 'Afro Desendiente']
+      ['Afrodescendiente', 'Afro Desendiente']
     ]
   end
 
