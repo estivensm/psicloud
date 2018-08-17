@@ -233,7 +233,7 @@
  </div>
 
    <div class="col-md-6 text-right">
-         <%if (@clinic_history != nil ) %>
+         <%if (@clinic_history != nil && action_name != "new") %>
                         <%= link_to  patient_clinic_history_path(@patient.id,@clinic_history), class: "btnl btn-primary" do%>
                         <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i> Ver Historia Completa
                         <%end%>
