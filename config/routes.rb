@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'patients/csv'
   get 'patients/csv_all'
 
-  post 'cambiar/:id/estado', to: 'appointments#state', as: 'cambiar' 
+  post 'cambiar/:id/:estado', to: 'appointments#state', as: 'cambiar' 
 
 
   #actualizar datos por ajax cuando escribe
