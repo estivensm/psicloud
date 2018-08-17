@@ -75,6 +75,8 @@ class Patient < ApplicationRecord
       first_name like '%#{search.upcase}%' or 
       second_name like '%#{search.upcase}%' or 
       second_last_name like '%#{search.upcase}%' or 
+      second_name like '%#{search.downcase}%' or 
+      second_last_name like '%#{search.downcase}%' or 
       email like '%#{search}%' or 
       document like '%#{search}%'").order(:id)
   end
