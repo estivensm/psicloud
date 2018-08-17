@@ -219,7 +219,10 @@
 <% menu_patient %>
 <div class="container-fluid">
 <div class="row">
- <div class="col-md-12" style="margin-left: -19px; margin-top:30px;">
+<div class="row" style="margin-top:30px">
+  
+
+ <div class="col-md-6" style="margin-left: -19px; ">
     <div id='cssmenu'>
       <ul>
         <li><%= link_to "Inicio", root_path%></li> 
@@ -228,6 +231,16 @@
       </ul>
     </div>
  </div>
+
+   <div class="col-md-6 text-right">
+        
+                        <%= link_to  patient_clinic_history_path(@patient.id,@clinic_history), class: "btnl btn-primary" do%>
+                        <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i> Ver Historia Completa
+                        <%end%>
+                        
+                                        <button type="button" class="btnl btn-info" data-toggle="modal" data-target="#send-mail"><i class="fa fa-envelope" style = "font-size:30px;"  aria-hidden="true"></i> Enviar</button>
+                     </div>
+</div>
 <div class="col-md-2" style="padding-left:0px !important;padding-right: 0px !important;">
 
 
