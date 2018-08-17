@@ -69,16 +69,11 @@ class Patient < ApplicationRecord
 
   def self.search(search)
     where("(first_name || ' ' || second_name || ' ' || first_last_name  || ' ' || second_last_name) like '%#{search}%'  or 
-      first_name like '%#{search.capitalize}%' or 
-      second_name like '%#{search.capitalize}%' or 
-      second_last_name like '%#{search.capitalize}%' or 
-      first_name like '%#{search.upcase}%' or 
-      second_name like '%#{search.upcase}%' or 
-      second_last_name like '%#{search.upcase}%' or 
-      second_name like '%#{search.downcase}%' or 
-      second_last_name like '%#{search.downcase}%' or 
-      email like '%#{search}%' or 
-      document like '%#{search}%'").order(:id)
+      lower(first_name) like '%#{search.downcase}%' or 
+      lower(second_name) like '%#{search.downcase}%' or 
+      lower(second_last_name) like '%#{search.downcase}%' or 
+      lower(email) like '%#{search.downcase}%' or 
+      lower(document) like '%#{search.downcase}%'").order(:id)
   end
 
   def self.searchp1(search, search1)
