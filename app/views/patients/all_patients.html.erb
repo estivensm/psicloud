@@ -47,7 +47,7 @@
          <%= form_tag(@route, :method => "get", id: "search-form") do %>
    
   <%= text_field_tag :search, params[:search], placeholder: "Nombre, Apellido, Documento", class: "form-control search" %>
-   <%=select_tag 'search1', options_for_select(get_users.collect{ |u| ["#{u.names}", u.id, ] }),{:class => "form-control search psi", include_blank: "Psicologo" , placeholder: "hola"}%>
+   <%=select_tag 'search1', options_for_select(get_users.collect{ |u| ["#{u.names}", u.id, ] }),{:class => "form-control search psi", include_blank: "Psicólogo" , placeholder: "hola"}%>
  
 
   

@@ -43,11 +43,11 @@
       <td> <strong>Edad:</strong> <br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></td>
       <td> <strong>Ciudad:</strong> <br><%=@patient.city%> </td>
        <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>  
-       <td> <strong>Telefono fijo:</strong><br> <%=@patient.phone%> </td>
+       <td> <strong>Teléfono fijo:</strong><br> <%=@patient.phone%> </td>
     </tr>
      <tr>
           
-      <td> <strong>Telefono Movil:</strong> <br><%= @patient.movil%> </td>
+      <td> <strong>Teléfono Movil:</strong> <br><%= @patient.movil%> </td>
       <td> <strong>Email</strong><br> <%=@patient.email%> </td>
       <td> <strong>Ocupación:</strong><br> <%=@patient.occupation%> </td>
       <td> <strong>Profesión:</strong> <br><%= @patient.profession%> </td>
@@ -66,7 +66,7 @@
       <td> <strong>Eps:</strong> <br><%= @patient.hpc.name if @patient.hpc%> </td>
       <td> <strong>Convenio</strong><br> <%= @patient.agreement.name if @patient.agreement%> </td>
        <td> <strong>Nombre Contacto:</strong> <br><%= @patient.contact_name%> </td>
-      <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
+      <td> <strong>Teléfono Contacto</strong><br> <%=@patient.contact_phone%> </td>
       
 
     </tr>

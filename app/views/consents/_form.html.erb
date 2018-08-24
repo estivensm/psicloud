@@ -23,6 +23,7 @@
               <div class="field">
                 <%= form.label :Titulo %>
                 <%= form.text_field :title, id: :consent_title, class: "form form-control", autocomplete: "off" %>
+                <i>Este consentimientos se mostrara en los pacientes entre las siguientes edades </i>
               </div>
             </div>
          
@@ -30,6 +31,7 @@
               <div class="field">
                 <%= form.label "Primera Edad"%>
                 <%= form.text_field :first_age, id: :consent_first_age, autocomplete: "off", :maxlength => 2, class: "form form-control" %>
+                <i>Mayor a</i>
               </div>
             </div>             
 
@@ -37,6 +39,7 @@
               <div class="field">
                 <%= form.label "Segunda Edad" %>
                 <%= form.text_field :second_age, id: :consent_second_age, autocomplete: "off", :maxlength => 2, class: "form form-control" %>
+                <i>Menor a</i>
               </div>
             </div>
 

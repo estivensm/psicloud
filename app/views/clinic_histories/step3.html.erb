@@ -1,7 +1,3 @@
-
-
- 
-
 <div class = "row row-form" style="margin-left: 0px !important;margin-right:  0px !important">
    <%= form_tag patient_update_step3_path(@clinic_history), method: :patch do %>
    <% if @clinic_history.errors.any? %>
@@ -20,11 +16,11 @@
 
 
       <div class="col-md-12">
-         <h3>6. Diagnostico</h3>
+         <h3 style="padding-left: 0px;">Diagnóstico</h3>
          <br>
          <div class="col-md-12">
             <div class="form-group">
-               <%=label_tag "Descripcion" %>
+               <%=label_tag "Descripción" %>
                <%= text_area_tag :diagnostic_hypothesis, @clinic_history.diagnostic_hypothesis , class: "form-control area" %>
             </div>
             <div class="form-group">
@@ -34,13 +30,13 @@
   
 
              <div class="form-group">
-              <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnostico Principal (CIE10)</span>
+              <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnóstico Principal (CIE10)</span>
              <%= select_tag 'diagnostico_id', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostico_id}), {:multiple => false,class: 'form-control chosen-select1', include_blank: true}%>
               
             </div>
 
             <div class="form-group">
-               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnosticos Secundarios (CIE10)</span>  <br>   
+               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnósticos Secundarios (CIE10)</span>  <br>   
                <%= select_tag 'diagnostico_ids', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostico_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
             </div>
 
@@ -50,7 +46,7 @@
          <div class="col-md-12">
             <br>
             <hr>
-            <h3>8. Objetivo Terapeoutico</h3>
+            <h3 style="padding-left: 0px; margin-left: 0px;">Objetivo Terapeoutico</h3>
             <br>
             <div class="form-group">
                <%= text_area_tag :therapeutic_goal, @clinic_history.therapeutic_goal , class: "form-control area" %>
@@ -60,7 +56,7 @@
          <div class="col-md-12">
             <br>
             <hr>
-            <h3>9. Tipo de Tratamiento</h3>
+            <h3 style="padding-left: 0px; margin-left: 0px;">Tipo de Tratamiento</h3>
             <br>
             <div class="form-group">
                <%= text_area_tag :type_of_treatment, @clinic_history.type_of_treatment , class: "form-control area" %>

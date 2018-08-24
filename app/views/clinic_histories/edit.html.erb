@@ -28,10 +28,10 @@
 <div class="row step1">
 <div class="col-md-12">
    <h3 style="margin:0px 0px 20px 0px;color:gray" class="title-formulario"> <%=get_open(@clinic_history.first_contact_state).html_safe%> PRIMER CONTACTO</h3>
-   <h3>Fecha de Creacion</h3>
+   <h3 style="padding-left: 0px; margin-left: 0px;" >Fecha de Creacion</h3>
    <br>
    <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6" style="padding-left: 0px;">
          <div class="form-group date_select">
             <%= form.date_select :created_date,{
                :start_year =>
@@ -47,7 +47,7 @@
       </div>
    </div>
    <br>
-   <h3> Motivo de Consulta</h3>
+   <h3 style="padding-left: 0px; margin-left: 0px;"> Motivo de Consulta</h3>
    <br>
    <div class="form-group">
       <%= form.label "Tipo" %><br>
@@ -57,17 +57,22 @@
                     { class: 'chosen-select1 form-control ch' ,disabled: false }
          %>
    </div>
+   <br>
+   <h3 style="padding-left: 0px; margin-left: 0px;">Descripción</h3>
+   <br>
    <div class="form-group">
-      <%= form.label "Descripcion" %><br>
       <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area required", :title => "Es un Campo Obligatorio"%>
    </div>
    <hr>
    <br>
-   <h3> Estado Actual</h3>
+   <h3  style="padding-left: 0px; margin-left: 0px;"> Estado Actual</h3>
+   <br>
    <div class="form-group">
       <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: false %>
    </div>
-   <h3> Dinamica Familiar</h3>
+   <br>
+   <h3 style="padding-left: 0px; margin-left: 0px;"> Dinamica Familiar</h3>
+   <br>
    <div class="form-group">
       <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area required", :title => "Es un Campo Obligatorio" , disabled: false%>
    </div>
@@ -75,7 +80,7 @@
 
   <!-- inicio de los campos adicionales -->
    <% Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field| %>
-   <h3> <%= field.name%></h3>
+   <h3  style="padding-left: 0px; margin-left: 0px;"> <%= field.name%></h3>
    <div class="form-group">
       <%if field.type_field == "Textarea"%>
       <div class="form-group">
