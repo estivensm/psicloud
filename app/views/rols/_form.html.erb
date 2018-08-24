@@ -1,9 +1,11 @@
-<div class="row margin-top-40">
-   <div class="col-md-12" style="padding-left: 50px;">
-      <%= link_to "inicio", root_path%><span> | </span> 
-      <%= link_to "Roles", rols_path%>
-   </div>
-</div>
+  <div id='cssmenu' style="margin-top: 10px;" >
+      <ul>
+          <li><%= link_to "Inicio", root_path%></li> 
+          <li><%= link_to "Roles", rols_path%></li>
+          <li  class="active"><%= link_to "Crear Nuevo Rol", new_rol_path%></li>
+      </ul>
+  </div>
+
 <div class="container">
    <br>
    <div class = "row row-form">

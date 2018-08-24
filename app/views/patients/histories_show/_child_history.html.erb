@@ -3,7 +3,7 @@
 <div class="row no-marging"  ">
    <div class="col-md-12 text-right">
    
-      <%= link_to patient_clinic_history_path(@patient.id,@hs , :format => "pdf")  , class: "" ,target: :_blank do%>PDF Informacion general<img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+      <%= link_to patient_clinic_history_path(@patient.id,@hs , :format => "pdf")  , class: "" ,target: :_blank do%>PDF Información general<img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>&nbsp;&nbsp;
         <%= link_to patient_clinic_history_pdf_completo_path(@patient.id,@hs , :format => "pdf")  , class: "" ,target: :_blank do%>PDF Completo<img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%> &nbsp;&nbsp;
@@ -16,7 +16,7 @@
 <table class="table1">
    <tr style = "height:100px">
       <td class="text-center" style = "width:20%"><%=(image_tag (get_account1.logo_url), style: "width:100px;") if get_account1.logo_url%></td>
-      <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold">FORMATO DE HISTORIA CLINICA <br><%=get_account1.name.upcase %><br><%=@hs.codigo%> </td>
+      <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold">FORMATO DE HISTORIA ClÍNICA <br><%=get_account1.name.upcase %><br><%=@hs.codigo%> </td>
       <td class="text-center imgedit" style = "width:20%;font-size:40px;text-align: center"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></td>
    </tr>
 </table>
@@ -36,11 +36,11 @@
          %>
       <td> <strong>Edad:</strong> <br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></td>
       <td> <strong>Ciudad:</strong> <br><%=@patient.city%> </td>
-      <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>
-      <td> <strong>Telefono fijo:</strong><br> <%=@patient.phone%> </td>
+      <td> <strong>Dirección de Residencia</strong> <br><%=@patient.address%> </td>
+      <td> <strong>Teléfono fijo:</strong><br> <%=@patient.phone%> </td>
    </tr>
    <tr>
-      <td> <strong>Telefono Movil:</strong> <br><%= @patient.movil%> </td>
+      <td> <strong>Teléfono Movil:</strong> <br><%= @patient.movil%> </td>
       <td> <strong>Email</strong><br> <%=@patient.email%> </td>
       <td> <strong>Ocupación:</strong><br> <%=@patient.occupation%> </td>
       <td> <strong>Profesión:</strong> <br><%= @patient.profession%> </td>
@@ -48,14 +48,14 @@
    <tr>
       <td> <strong>Genero:</strong> <br><%= @patient.gender%> </td>
       <td> <strong>Estado Civil</strong><br> <%=@patient.civil_status%> </td>
-      <td> <strong>Grupo sanguineo:</strong><br> <%=@patient.blood_type%> </td>
-      <td> <strong>Grupo Etnico:</strong> <br><%= @patient.ethnic_group%> </td>
+      <td> <strong>Grupo sanguíneo:</strong><br> <%=@patient.blood_type%> </td>
+      <td> <strong>Grupo Étnico:</strong> <br><%= @patient.ethnic_group%> </td>
    </tr>
    <tr>
       <td> <strong>Eps:</strong> <br><%= @patient.hpc.name if @patient.hpc%>  </td>
       <td> <strong>Convenio</strong><br><%= @patient.agreement.name if @patient.agreement%> </td>
       <td> <strong>Nombre Contacto:</strong> <br><%= @patient.contact_name%> </td>
-      <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
+      <td> <strong>Teléfono Contacto</strong><br> <%=@patient.contact_phone%> </td>
    </tr>
    <tr>
       <td> <strong>Parentesco del Contacto</strong><br> <%=@patient.contact_relationship%> </td>
@@ -78,7 +78,7 @@
 </div>
 <div class = "fields_history">
    <hr>
-   <h3 class= "color-gray">Dinamica familiar</h3>
+   <h3 class= "color-gray">Dinámica familiar</h3>
    <p><%=@hs.family_dinamic%></p>
 </div>
 
@@ -91,7 +91,7 @@
       <th>Nombre del Padre </th>
       <th>Edad del Padre </th>
       <th>Ocupacion del padre </th>
-       <th>Relacion del Padre con el Niño </th>
+       <th>Relación del Padre con el Niño </th>
     </tr>
       <tr>
       <td><%=@fchild.father_name%></td>
@@ -114,7 +114,7 @@
       <th >Nombre de la madre</th>
       <th>Edad de la madre </th>
       <th>Ocupacion de la madre </th>
-       <th>Relacion de la madre con el Niño </th>
+       <th>Relación de la madre con el Niño </th>
     </tr>
       <tr>
       <td><%=@fchild.mother_name%></td>
@@ -135,7 +135,7 @@
 
 <!--relacion padres-->
      <tr>
-      <th colspan="1">Relacion Entre los padres</th>
+      <th colspan="1">Relación Entre los padres</th>
       <th colspan="3">Especificar razones</th>
 
     </tr>
@@ -147,7 +147,7 @@
     </tr>
 
      <tr>
-      <th colspan="4">Reaccion de los padres ante el problema del niño</th>
+      <th colspan="4">Reacción de los padres ante el problema del niño</th>
 
     </tr>
       <tr>
@@ -161,7 +161,7 @@
       <th >Nombre del hermano</th>
       <th>Sexo </th>
       <th>Edad (Años) </th>
-      <th>Relacion</th>
+      <th>Relación</th>
     </tr>
     <%@fchild.child_brothers.each do |brother|%>
       <tr>
@@ -249,7 +249,7 @@
 
     <tr>
       <th colspan="2">Dificultades para dormir</th>
-      <th colspan="2">Reacciones del niño</th>
+      <th colspan="2">Reacciónes del niño</th>
     </tr>
 
     <tr>
@@ -595,7 +595,7 @@
 
  <tr>
      
-      <th colspan="4">Reacciones emocionales propias de la adolescencia: (Extrovertido, Timido, Ansioso, voluntarioso, malumorado,labil)</th>
+      <th colspan="4">Reacciónes emocionales propias de la adolescencia: (Extrovertido, Timido, Ansioso, voluntarioso, malumorado,labil)</th>
     </tr>
 
     <tr>
@@ -628,7 +628,7 @@
 
     <tr>
      
-      <th colspan="4">Descripcion sintomas neuroticos</th>
+      <th colspan="4">Descripción sintomas neuroticos</th>
     </tr>
 
     <tr>
@@ -768,7 +768,7 @@
 </div>
 <div class = "fields_history">
    <hr>
-   <h3 class= "color-gray"> Hipotesis diagnostica</h3>
+   <h3 class= "color-gray"> Hipotesis diagnóstica</h3>
    <strong>Descripcion</strong><br>
    <%=@hs.diagnostic_hypothesis%><br><br>
    <strong>DSMV</strong><br>

@@ -13,7 +13,7 @@
                      </div>
                      <div class="panel-body">
                        <strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
-                        <strong>Descripcion: </strong><%= @clinic_history.consultation_reason %>
+                        <strong>Descripción: </strong><%= @clinic_history.consultation_reason %>
                      </div>
                   </div>
                   <div class="panel panel-default">
@@ -34,10 +34,10 @@
                   </div>
                   <div class="panel panel-default">
                      <div class="panel-heading">
-                        <h3 class="panel-title">Hipotesis diagnostica</h3>
+                        <h3 class="panel-title">Hipotesis Diagnostica</h3>
                      </div>
                      <div class="panel-body">
-                        <strong>Descripcion: </strong><br>
+                        <strong>Descripción: </strong><br>
                         <%=@clinic_history.diagnostic_hypothesis%><br><br>
                         <strong>DSMV: </strong>
                         <%@clinic_history.diagnostics.each do |ch|%>  

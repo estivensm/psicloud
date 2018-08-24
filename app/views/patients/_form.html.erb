@@ -75,7 +75,7 @@
                <%= form.label "Documento" %> *
                <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
-               <%= form.text_field :document, id: :patient_document , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio4" %>
+               <%= form.number_field :document, id: :patient_document , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio4" %>
              </div>
             </div>
          </div>
@@ -115,7 +115,7 @@
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Direccion de Residencia" %> *
+               <%= form.label "Dirección de Residencia" %> *
                <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-home"></i></span>
                <%= form.text_field :address, id: :patient_address , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio6"%>
@@ -157,7 +157,7 @@
             </div></div>-->
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Ocupacion" %> *
+               <%= form.label "Ocupación" %> *
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
                <%= form.text_field :occupation, id: :patient_occupation , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio10" %>
@@ -166,7 +166,7 @@
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Profesion" %> * 
+               <%= form.label "Profesión" %> * 
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
                <%= form.text_field :profession, id: :patient_profession , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio11"%>
@@ -181,7 +181,7 @@
       <div class="row">
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Genero" %>
+               <%= form.label "Género" %>
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-transgender"></i></span>
                <%val1 = "" 
@@ -203,7 +203,7 @@
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Grupo Sanguineo" %>
+               <%= form.label "Grupo Sanguíneo" %>
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-medkit"></i></span>
                <%val2 = "" 
@@ -214,7 +214,7 @@
          </div>
          <div class="col-md-3">
             <div class="form-group">
-               <%= form.label "Grupo Etnico" %>
+               <%= form.label "Grupo Étnico" %>
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-users"></i></span>
                <%val3 = "" 

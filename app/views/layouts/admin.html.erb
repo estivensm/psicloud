@@ -166,7 +166,7 @@
 
       <li  class="<%=@menu[6]%>"><%= link_to stats_path do %>
         <i class="fa fa-bar-chart-o icon"  style = "font-size:20px;" aria-hidden="true"></i>
-        <span class = "color-gray hidden-xs hidden-sm"> Estadisticas</span>
+        <span class = "color-gray hidden-xs hidden-sm"> Estadísticas</span>
         <% end %>
       </li>
 
@@ -174,7 +174,7 @@
 
       <li class="has-sub"><a style="user-select: none;">
         <i class="fa fa-list color-gray icon" style = "font-size:20px;" aria-hidden="true"></i>
-        <span class = "color-gray hidden-xs hidden-sm">Informacion General</span>
+        <span class = "color-gray hidden-xs hidden-sm">Información General</span>
         </a>
         <ul>
 
@@ -190,7 +190,7 @@
           </li>
           
           <li><%= link_to general_stats_path , style: "color:gray !important" do%>
-              <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Estadisticas Generales
+              <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Estadísticas Generales
           <% end -%>
           </li>
 
@@ -250,6 +250,7 @@ ul > a:h{
 
 .dropdown-menu > li > a {
     padding: 4px 4px;
+    padding-left: 3px !important;
 }
 
 .dropdown-menu > li > a:hover {

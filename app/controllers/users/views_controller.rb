@@ -7,13 +7,13 @@ class Users::ViewsController < Devise::RegistrationsController
 
     def new_user
         u = User.find(current_user.id)
-        @rols = Rol.where(admin_user: current_user.admin_user).or(Rol.where(default:true))
+        @rols = Rol.where(admin_user: current_user.admin_user).or(Rol.where(default:true).where(admin_user: current_user.admin_user))
     end
     
     def edit_user
       
         @user = User.find(params[:id])
-        @rols = Rol.where(admin_user: current_user.admin_user).or(Rol.where(default:true))
+        @rols = Rol.where(admin_user: current_user.admin_user).or(Rol.where(default:true).where(admin_user: current_user.admin_user))
         
 
     end

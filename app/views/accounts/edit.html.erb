@@ -1,6 +1,10 @@
-
-
+<div id='cssmenu' style="margin-top: 40px;">
+    <ul>
+        <li><%= link_to "Inicio", root_path%></li> 
+        <li class="active"><%= link_to "Editar Cuenta"%></label><li>
+    </ul>
+</div>
 <div class="container">
-<h1 style="color:gray">Editar Cuenta</h1>
+<h1 class="title-h2" style="color:gray; margin-left: 10px;" >Editar Cuenta</h1>
 	    <%= render 'form', account: @account %>
 </div>

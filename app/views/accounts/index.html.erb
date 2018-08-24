@@ -1,24 +1,16 @@
-<div class="row margin-top-40" >
-   <div class="col-md-12" style="padding-left: 50px;">
-      <%= link_to "inicio", root_path%>
-
-   </div>
+<div id='cssmenu' style="margin-top: 40px;">
+    <ul>
+        <li><%= link_to "Inicio", root_path%></li> 
+        <li class="active"><%= link_to "Cuentas", accounts_path%><li>
+    </ul>
 </div>
-
+<br><br>
 
 <div class="container">
-
-   
-
-
-
-
-
   <div class="row" >
       <div class = "row title-table">
-         <div class = "col-md-6">
-    <br>
-            <p>CUENTAS  </p>
+         <div class = "col-md-6" style="padding-left: 0px;">
+            <p class="title-h2">Cuentas Creadas   <span class="label label-primary"><%=@accounts.count%></span> <span style = "font-size:12px;margin-left:20px;"></span> </p>
          </div>
          <div class = "col-md-4 paginate text-left title-table1">
             
@@ -63,9 +55,12 @@
         <td><%= account.file_size %></td>
         <td class="text-center"><%= Patient.where(admin_user: account.admin_user).count %></td>
         <!-- <td><%= account.account_type %></td>-->
-        <td><%= link_to 'Ver', account %></td>
-        <td><%= link_to 'Editar', edit_account_path(account) %></td>
-       
+        <td>
+        <%= link_to edit_account_path(account), class: "btn btn-primary" do %>
+        <i class="fas fa-edit" aria-hidden="true"></i>
+        <% end -%>
+
+       </td>
       </tr>
     <% end %>
   </tbody>

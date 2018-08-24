@@ -23,8 +23,9 @@ module PatientDecorator
     [
       ['Soltero', 'Soltero'],
       ['Casado', 'Casado'],
-      ['Union Libre', 'Union Libre'],
-      ['Divorciado', 'Divorciado']
+      ['Union Libre', 'Unión libre.'],
+      ['Divorciado', 'Divorciado'],
+      ['Viud@', 'Viud@']
     ]
   end
 
@@ -39,7 +40,7 @@ module PatientDecorator
 	
 	def select_documento
 		[
-      ['Cedula de Ciudadania', 'Cedula de Ciudadania'],
+      ['Cedula de Ciudadanía', 'Cedula de Ciudadanía'],
       ['Tarjeta de Identidad', 'Tarjeta de Identidad'],
       ['Cédula de Extranjeria', 'Cedula de Extranjeria'],
       ['Pasaporte', 'Pasaporte'],

@@ -74,11 +74,20 @@
 <div class="row info">
 <div class="col-md-12">
 
-<p style = "margin-top:30px;font-size:20px;">   <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i> Proximas citas </p>
-<% @citas.last(3).each do |cita|%>
+<p style = "margin-top:30px;font-size:20px;">   <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i> Próximas Citas </p>
+<% @citas.where(state: "Vigente").last(4).each do |cita|%>
 <div class="col-md-6">
- <div class="alert alert-info" role="alert">
+ <div class="alert alert-info" role="alert" id="cambio<%= cita.id%>">
     <span style="font-size:18px;margin-left:10px;"><%=cita.patient.first_name%> <%=cita.patient.first_last_name%></span> <%=get_date_hora(cita.start_datetime)%>
+    <br>
+    <br>
+  <div>
+    <%= link_to "Realizada", cambiar_path(cita.id, "Realizada"),remote: true, method: :post, class: "btn1", style: "font-size: 10px;"%>
+                   
+    <%= link_to "Cancelar", cambiar_path(cita.id, "Cancelada" ),remote: true, method: :post, class: "btn2", style: "font-size: 10px;"  %>
+
+    <%= link_to "No Asistio", cambiar_path(cita.id , "No Asistio"),remote: true, method: :post, class: "btn3", style: "font-size: 10px;"  %>
+  </div>
 </div>
 </div>
 <%end%>
@@ -143,6 +152,45 @@
   padding: 20px;
  
 }
+
+.btn1{
+  padding: 10px 10px;
+  color: green;
+  border-bottom: 2px solid green;
+}
+
+.btn1:hover{
+  padding: 10px 10px;
+  color: green;
+}
+
+.btn2{
+  color: red;
+  padding: 10px 10px;
+  border-bottom: 2px solid red;
+}
+
+.btn2:hover{
+  color: red;
+  padding: 10px 10px;
+}
+
+.btn3{
+  color: orange;
+  padding: 10px 10px;
+  border-bottom: 2px solid orange;
+}
+
+.btn3:hover{
+  color: orange;
+  padding: 10px 10px;
+}
 </style>
 
+<script>
+  $(".btn2").click(function(event) {
+    $(this).parent().parent().hide();
+
+  });
+</script>
 
