@@ -60,7 +60,13 @@
              <%end%>
 <%end%>
        <%if current_user.rol.delete_doc%>
-      <%= link_to  document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btnl btn-danger" do%>
+      <%= link_to  document, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, class: "btnl btn-danger" do%>
              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%><%end%>
               </div>

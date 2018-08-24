@@ -34,7 +34,13 @@
                         <%= link_to edit_patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id), remote: true, class: "icon" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i>
         <%end%>
-                    <%= link_to  patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
+                    <%= link_to  patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id,  tool.id),method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, class: "icon" do %>
            <i class="fa fa-trash" aria-hidden="true"></i>
           <%end%>
               </div>
@@ -67,7 +73,7 @@
         <div class="col-md-12 np">
 
 
-        <h3>! AUN NO HAY HERRAMIENTAS DE EVALUACION ¡</h3>
+        <h3>! AÚN NO HAY HERRAMIENTAS DE EVALUACION ¡</h3>
         
         <%= link_to "CREA LA PRIMERA", new_patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary" %>
         

@@ -64,7 +64,13 @@
               <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
               <% end -%>
                 
-              <%= link_to field, method: :delete, data: { confirm: 'Estas Seguro?' } , class: "btn btn-danger" do%>
+              <%= link_to field, method: :delete,data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''} , class: "btn btn-danger" do%>
              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i></td>
              <% end -%>
             </tr>

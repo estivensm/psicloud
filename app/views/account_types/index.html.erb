@@ -20,7 +20,13 @@
         <td><%= account_type.file_size %></td>
         <td><%= link_to 'Show', account_type %></td>
         <td><%= link_to 'Edit', edit_account_type_path(account_type) %></td>
-        <td><%= link_to 'Destroy', account_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', account_type, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''} %></td>
       </tr>
     <% end %>
   </tbody>

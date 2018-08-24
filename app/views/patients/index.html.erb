@@ -149,7 +149,13 @@
                   <% end -%>
 
                   <%if current_user.rol.delete_patient%>
-                      <ol style="padding-left: 5px;"><%= link_to patient, method: :delete, data: { confirm: 'Estas Seguro?' } do %>
+                      <ol style="padding-left: 5px;"><%= link_to patient, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''} do %>
                       <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar Paciente
                       <% end -%></ol>
                   <% end -%>
