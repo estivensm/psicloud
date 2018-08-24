@@ -101,7 +101,13 @@
           <div class="panel panel-<%=color%>">
               <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_only_date(task.fecha_compromiso)%><span style="float:right"> <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon", style: "color: #{color_text}" do  %>
         <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
-                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
+                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, class:"icon", style: "color: #{color_text}" do %>
         <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
               </div>
               <div class="panel-body" style="height: 100px;max-height: 100px;overflow: auto;padding-bottom:10px;">
@@ -132,7 +138,7 @@
         <div class="col-md-12 np">
 
 
-        <h3>! AUN NO HAY TAREAS ¡</h3>
+        <h3>! AÚN NO HAY TAREAS ¡</h3>
         
         <%if @patient.appointments.where(state: "Vigente").count != 0%>
         <%= link_to "CREA LA PRIMEA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>

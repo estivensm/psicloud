@@ -38,7 +38,13 @@
         <%= link_to patient_clinic_history_edit_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id), remote: true, class: "icon" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i>
         <%end%>
-        <%= link_to  patient_clinic_history_destroy_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id),method: :delete, data: { confirm: '¿Estas seguro de eliminar este registro?' }, class: "icon" do %>
+        <%= link_to  patient_clinic_history_destroy_backgrounds_path(@clinic_history.patient_id,@clinic_history.id,  back.id),method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, class: "icon" do %>
            <i class="fa fa-trash" aria-hidden="true"></i>
           <%end%>
               </div>

@@ -26,6 +26,8 @@
 //= require Chart.min
 //= require jquery.datetimepicker
 //= require jquery.validate.additional-methods
+//= require sweetalert2
+//= require sweet-alert2-rails
 //= require_tree .
 
    

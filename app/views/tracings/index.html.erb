@@ -35,7 +35,13 @@
           
                         <%= link_to  edit_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing) ,class:"icon" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
-                    <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon" do %>
+                    <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, class:"icon" do %>
         <i class="fa fa-trash" aria-hidden="true"></i><%end%>
               </div>
            
@@ -71,7 +77,7 @@
         <div class="col-md-12 np">
 
 
-        <h3>! AUN NO HAY SEGUIMIENTOS ¡</h3>
+        <h3>! AÚN NO HAY SEGUIMIENTOS ¡</h3>
         
         <%= link_to "CREA EL PRIMERO", new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), class: "btn btn-primary"   %>
         
