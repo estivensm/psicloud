@@ -15,7 +15,7 @@
         <div class="form-group">
           <%= f.label "Email" %>
             <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-at"></i></span>
+              <span class="input-group-addon"><i class="fas fa-at" style="color: white;" ></i></span>
           <%= f.email_field :email, autofocus: true , :class => 'form-control' %>
         </div>  
       </div>
@@ -24,7 +24,7 @@
         <div class="form-group">
           <%= f.label "Nombres" %>
             <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-user"></i></span>
+              <span class="input-group-addon"><i class="fas fa-user" style="color: white;" ></i></span>
           <%= f.text_field :names, autofocus: true , :class => 'form-control' %>
         </div>  
       </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
           <%= f.label "Apellidos" %>
             <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-user"></i></span>
+              <span class="input-group-addon"><i class="fas fa-user" style="color: white;" ></i></span>
           <%= f.text_field :last_names, autofocus: true , :class => 'form-control' %>
         </div>  
       </div>
@@ -42,7 +42,7 @@
      action_name == "edit" ? val1 = current_user.document_type : val1 = "" %>
         <%= f.label "Tipo de Documento" %>
             <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+              <span class="input-group-addon"><i class="fas fa-id-card" style="color: white;" ></i></span>
          <%= f.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control'}%>
          </div>
       </div>
@@ -51,7 +51,7 @@
         <div class="form-group">
           <%= f.label "Documento de Identidad" %>
             <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+              <span class="input-group-addon"><i class="fas fa-id-card" style="color: white;"   ></i></span>
           <%= f.text_field :document, autofocus: true , :class => 'form-control' %>
         </div>  
       </div>
@@ -60,7 +60,7 @@
         <div class="form-group">
           <%= f.label "Teléfono o Número Celular" %>
             <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+              <span class="input-group-addon"><i class="fas fa-phone" style="color: white;"   ></i></span>
           <%= f.text_field :phone, autofocus: true , :class => 'form-control' %>
         </div>  
       </div>
@@ -69,7 +69,7 @@
         <div class="form-group">
           <%= f.label "Registro Medico" %>
             <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-first-aid"></i></span>
+              <span class="input-group-addon"><i class="fas fa-first-aid" style="color: white;" ></i></span>
           <%= f.text_field :medical_record, autofocus: true , :class => 'form-control' %>
         </div>  
       </div>
@@ -79,7 +79,7 @@
       <div class="form-group">
           <%= f.label "Fecha de Nacimiento" %>
            <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
+              <span class="input-group-addon"><i class="fas fa-calendar-alt "style="color: white;"  ></i></span>
           <%= f.date_field :birth_date, autofocus: true , :class => 'form-control' %>
         </div>
       </div>  
@@ -87,7 +87,7 @@
       <div class="form-group">
           <%= f.label "Foto" %>
            <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-upload"></i></span>
+              <span class="input-group-addon"><i class="fas fa-upload" style="color: white;"  ></i></span>
           <%= f.file_field :avatar, autofocus: true , :class => 'form-control' %>
         </div> 
       </div> 
@@ -97,7 +97,7 @@
       <div class="form-group">
           <%= f.label "Adjuntar Firma" %>
            <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-upload"></i></span>
+              <span class="input-group-addon"><i class="fas fa-upload" style="color: white;"  ></i></span>
           <%= f.file_field :firma_adjunta, autofocus: true , :class => 'form-control' %>
         </div> 
       </div> 
@@ -109,7 +109,7 @@
      action_name == "edit" ? val2 = current_user.tipo_firma : val2 = "" %>
         <%= f.label "Tipo de Firma" %>
          <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-users"></i></span>
+              <span class="input-group-addon"><i class="fas fa-users" style="color: white;"  ></i></span>
          <%= f.select 'tipo_firma', options_for_select(["Adjunta", "Firma Digital", "Ninguna"], val2), {},{:class => 'form-control'}%>
       </div>
     </div>
@@ -120,7 +120,7 @@
         <div class="form-group">
          <%= f.label "Contraseña" %> <i>(Deja en Blanco si no quieres cambiar)</i><br />
          <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-unlock-alt"></i></span>
+              <span class="input-group-addon"><i class="fas fa-unlock-alt" style="color: white;" ></i></span>
          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
        </div>
           <% if @minimum_password_length %>
@@ -133,7 +133,7 @@
       <div class="form-group">
         <%= f.label "Confirmar Contraseña"%> <i>(Deja en Blanco si no quieres cambiar)</i><br />
         <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-unlock-alt"></i></span>
+              <span class="input-group-addon"><i class="fas fa-unlock-alt" style="color: white;"  ></i></span>
         <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
       </div>
     </div>
@@ -143,7 +143,7 @@
         <%= f.label "Contraseña Actual" %><br>
         <i>(Tienes que ingresar la contraseña actual para cambiar)</i><br />
          <div class="input-group">
-              <span class="input-group-addon"><i class="fas fa-unlock-alt"></i></span>
+              <span class="input-group-addon"><i class="fas fa-unlock-alt" style="color: white;"  ></i></span>
         <%= f.password_field :current_password, autocomplete: "off" , :class => 'form-control'%>
       </div>
       <br>
@@ -163,9 +163,7 @@
       border-color: #5EB8DF;
     }
 
-    .fas{
-      color: #f1f1f1;
-    }
+
 
 
 </style>

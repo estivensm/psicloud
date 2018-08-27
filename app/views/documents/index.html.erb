@@ -1,161 +1,143 @@
-
-
 <div class="row margin-top-40" >
    <div id='cssmenu' style="margin-left: 10px;">
-       <ul>
-          <li><%= link_to "inicio", root_path%></li> 
-          <li class="active"><%= link_to "Formatos", @documents_path%></li>
+      <ul>
+         <li><%= link_to "inicio", root_path%></li>
+         <li class="active"><%= link_to "Formatos", @documents_path%></li>
       </ul>
-    </div>
-  <br>
-<br>
+   </div>
+   <br>
+   <br>
 </div>
-
-
 <%if @documents.count != 0%>
 <div class="container">
-
-
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p class="title-h2">Formatos <span class="label label-primary"><%=@documents.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @documents, :entry_name => 'Formatos' %></span> </p>
+            <p class="title-h2">Formatos <span class="label label-primary"><%=@documents.count%></span> <span style = "font-size:12px;margin-left:20px;"> </span> </p>
          </div>
-         <div class = "col-md-4 paginate text-left title-table1">
-            <%= will_paginate @documents%>
+         <div class = "col-md-4 paginate text-left title-table1" style="padding: 0px;">
+                  <div class="input-group">
+         <span class="input-group-addon" style="background-color: #5BBBE1;"><i class="fas fa-search" style="color: white;"></i></span>
+         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Ingrese Nombre" class="form form-control" style="width: 300px;">
+      </div>
          </div>
-         <div class = "col-md-2">
 
+         <div class = "col-md-2">
             <%= link_to 'Nuevo Formato', new_document_path, class: "btn btn-primary", remote:true if current_user.rol.create_doc  %>
          </div>
       </div>
-   
-      <div class = "row equal">
-  
-
- <% @documents.each do |document| %>
-
- <div class="col-md-6" >
-   
- 
-<div class="panel panel-default" >
-                        <div class="panel-heading">
-                                   <div class="row">
-
-
-              <div class="col-md-8" style="    color: #5bc0de;
-    font-size: 16px;">
-                    <%= document.name %><br> <span style="font-size:12px"><%= get_date(document.created_at) %></span>
-              </div>
-              
-
-              <div class="col-md-4 text-right">
-        
-                       <%if current_user.rol.show_doc%>
-    
-      <%end%>
-        <%if current_user.rol.edit_doc%>
-          <%= link_to  edit_document_path(document),remote:true, class: "btnl btn-warning" do%>
-             <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%>
-<%end%>
-       <%if current_user.rol.delete_doc%>
-      <%= link_to  document, method: :delete, data: {
-              confirm: '¿Estas Seguro?',
-              'confirm-button-text': 'Borrar',
-              'cancel-button-text': 'Cancelar',
-              'confirm-button-color': '#CC0000',
-               text: 'Recuerda quel registro se borrara permanentemente',
-              'image-url': ''}, class: "btnl btn-danger" do%>
-             <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%><%end%>
-              </div>
-
-              
-           
-            
-            
-          </div>
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="col-md-12">
-                   <% document.general_files.each do |file|%>
-                      <%if file.file_url%>
-                   <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
-                          <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
-                   <%end%>  
-                   <%end%>
-                   <%end%>
-              </div>
-                        </div>
-                     
-                      </div>
-
-</div>
-
-                       <% end %>
-  </div>
-    </div>
+      <br>
+      <hr>
+      <br>
+      <div class = "row equal" id="contenido">
+         <% @documents.each do |document| %>
+         <div class="col-md-6 filter2" >
+            <div class="panel panel-default" >
+               <div class="panel-heading">
+                  <div class="row">
+                     <div class="col-md-8" style="    color: #5bc0de;
+                        font-size: 16px;">
+                        <span class="filter3"> <%= document.name %></span><br> <span style="font-size:12px"><%= get_date(document.created_at) %></span>
+                     </div>
+                     <div class="col-md-4 text-right">
+                        <%if current_user.rol.show_doc%>
+                        <%end%>
+                        <%if current_user.rol.edit_doc%>
+                        <%= link_to  edit_document_path(document),remote:true, class: "btnl btn-warning" do%>
+                        <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
+                        <%end%>
+                        <%end%>
+                        <%if current_user.rol.delete_doc%>
+                        <%= link_to  document, method: :delete, data: {
+                           confirm: '¿Estas Seguro?',
+                           'confirm-button-text': 'Borrar',
+                           'cancel-button-text': 'Cancelar',
+                           'confirm-button-color': '#CC0000',
+                            text: 'Recuerda quel registro se borrara permanentemente',
+                           'image-url': ''}, class: "btnl btn-danger" do%>
+                        <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
+                        <%end%><%end%>
+                     </div>
+                  </div>
+               </div>
+               <div class="panel-body">
+                  <div class="col-md-12">
+                     <% document.general_files.each do |file|%>
+                     <%if file.file_url%>
+                     <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                     <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                     <%end%>  
+                     <%end%>
+                     <%end%>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <% end %>
       </div>
-
-
- 
- <%else%>
+   </div>
+</div>
+<%else%>
 <div class="container" style="margin-top: 50px">
-    <div class="row">
-        <div class="col-md-12 np">
-
-
-        <h3>! AÚN NO HAZ CREADO FORMATOS ¡</h3>
-        
-        <%= link_to "CREA EL PRIMERO", new_document_path, remote: true, class: "crear_paciente btn btn-primary" %>
-        
-        </div>
-      
-    </div>
+   <div class="row">
+      <div class="col-md-12 np">
+         <h3>! AÚN NO HAZ CREADO FORMATOS ¡</h3>
+         <%= link_to "CREA EL PRIMERO", new_document_path, remote: true, class: "crear_paciente btn btn-primary" %>
+      </div>
+   </div>
 </div>
 <%end%>
-
-
 <style>
-
-.equal {
-  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-}
-  .np
-{
-    text-align: center;
-    color: gray;
-    background: #f4f4f4;
-    font-size: 40px;
-    padding: 30px 0px;
-
-
-}
-.np h3
-{ 
-  
-    font-size: 40px;
-    margin-bottom: 30px;
-  
-
-}
-.crear_paciente
-{
-  font-size: 20px;
-  padding: 20px;
- 
-}
-.sin-adjunto
-{
-    display: inline;
-    padding: 5px 20px;
-    background: #9a9a9a;
-    color: white;
-    border-radius: 4px;
-    margin-right: 9px;
-}
+   .equal {
+   display: flex;
+   display: -webkit-flex;
+   flex-wrap: wrap;
+   }
+   .np
+   {
+   text-align: center;
+   color: gray;
+   background: #f4f4f4;
+   font-size: 40px;
+   padding: 30px 0px;
+   }
+   .np h3
+   { 
+   font-size: 40px;
+   margin-bottom: 30px;
+   }
+   .crear_paciente
+   {
+   font-size: 20px;
+   padding: 20px;
+   }
+   .sin-adjunto
+   {
+   display: inline;
+   padding: 5px 20px;
+   background: #9a9a9a;
+   color: white;
+   border-radius: 4px;
+   margin-right: 9px;
+   }
 </style>
+<script>
+   function myFunction() {
+     var input, filter, cambio, tr, td, i;
+     input = document.getElementById("myInput");
+     filter = input.value.toUpperCase();
+     cambio = document.getElementById("contenido");
+     tr = cambio.getElementsByClassName("filter2");
+   
+     for (i = 0; i < tr.length; i++) {
+       td = tr[i].getElementsByClassName("filter3")[0];
+       if (td) {
+         if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+           tr[i].style.display = "";
+         } else {
+           tr[i].style.display = "none";
+         }
+       }       
+     }
+   }
+</script>
