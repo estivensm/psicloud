@@ -78,6 +78,156 @@
    </div>
 
 
+
+ <div class="row">
+<br>
+<div class="col-md-12" style="background: #f7f7f7;" >
+  <h3 class = "" style = "margin :20px 0px 15px 0;color:gray">Antecedentes Familiares </h3>
+ 
+<br>
+      <%= form.fields_for :backgrounds do |contact|  %>
+      <div class="clearfix" style="margin-bottom: 30px;">
+         <div class="" >
+            <div class="pdd" >
+
+              <%= contact.link_to_remove do %>
+               <i style = "    color: #e74b09;
+                  font-size: 18px;
+                  margin-left: 0px;
+                  position: relative;
+                  left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </div>
+            <div class=" pdd" >
+               
+                  <div class="form-group acc1">
+
+                  <div class="">
+    
+               <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Psicologico', class: 'rb cksi check1' %><span style = "margin-left:10px">Psicologico</span>
+               </label>
+                  </div>
+              <div class="">
+              <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Psiquiatrico', class: 'rb ckno check1' %><span style = "margin-left:10px">Psiquiatrico</span>
+                </label> </div>
+                   <div class="">
+                  <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Toxico', class: 'rb ckno check1' %><span style = "margin-left:10px">Toxico</span>
+                </label></div>
+                            <div class="">
+                  <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Medico', class: 'rb ckno check1' %><span style = "margin-left:10px">Medico </span>
+                </label></div>
+           
+    </div>  
+            </div>
+              <div class="pdd" >
+               <%= contact.label "Descripcion" %>
+               <%= contact.text_area :description, :class => 'form-control' %>
+            </div>
+              <div class=" pdd" >
+               <%= contact.label "Adjuntar" %>
+               <%= contact.file_field :attachment, :class => 'form-control' %>
+            </div>
+        
+
+<%if action_name == "new"%>
+<%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+<%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+<%= contact.hidden_field :patient_id ,:value =>  @patient.id %>
+ <%end%> 
+<%= contact.hidden_field :codigo ,:value =>  @patient.document %>
+         
+         </div>
+
+      </div><hr>
+      <%end%>
+      <div class="col-md-12" style="
+         margin-bottom: 25px;">
+         <%= form.link_to_add "Agregar", :backgrounds, :class => 'btn btn-primary top10'  %>
+      </div>
+   </div>
+   </div>
+
+
+
+   <div class="row">
+<br>
+<div class="col-md-12" style="background: #f7f7f7;" >
+  <h3 class = "" style = "margin :20px 0px 15px 0;color:gray">Antecedentes Personales</h3>
+ 
+<br>
+      <%= form.fields_for :personal_backgrounds do |contact|  %>
+      <div class="clearfix" style="margin-bottom: 30px;">
+         <div class="" >
+
+          <div class="pdd" >
+               <%= contact.link_to_remove do %>
+               <i style = "    color: #e74b09;
+                  font-size: 18px;
+                  margin-left: 0px;
+                  position: relative;
+                  left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </div>  
+            <div class=" pdd" >
+              
+                  <div class="form-group acc1">
+
+                  <div class="">
+                     
+               <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Psicologico', class: 'rb cksi check1' %><span style = "margin-left:10px">Psicologico</span>
+               </label>
+                  </div>
+              <div class="">
+              <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Psiquiatrico', class: 'rb ckno check1' %><span style = "margin-left:10px">Psiquiatrico</span>
+                </label> </div>
+                   <div class="">
+                  <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Toxico', class: 'rb ckno check1' %><span style = "margin-left:10px">Toxico</span>
+                </label></div>
+                            <div class="">
+                  <label class="radio-inline">
+               <%= contact.radio_button :type_background, 'Medico', class: 'rb ckno check1' %><span style = "margin-left:10px">Medico </span>
+                </label></div>
+           
+    </div>  
+            </div>
+              <div class=" pdd" >
+               <%= contact.label "Descripcion" %>
+               <%= contact.text_area :description, :class => 'form-control' %>
+            </div>
+              <div class=" pdd" >
+               <%= contact.label "Adjuntar" %>
+               <%= contact.file_field :attachement, :class => 'form-control' %>
+            </div>  
+        
+
+<%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+<%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+<%= contact.hidden_field :patient_id ,:value =>  @patient.id %>
+
+
+           
+         </div>
+
+      </div><hr>
+      <%end%>
+      <div class="col-md-12" style="
+         margin-bottom: 25px;">
+         <%= form.link_to_add "Agregar", :personal_backgrounds, :class => 'btn btn-primary top10'  %>
+      </div>
+   </div>
+   </div>
+
+
+<br>
+
+
   <!-- inicio de los campos adicionales -->
    <% Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field| %>
    <h3  style="padding-left: 0px; margin-left: 0px;"> <%= field.name%></h3>

@@ -259,23 +259,23 @@
 
              <%= link_to  edit_patient_clinic_history_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[5]}" do %>
           <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
-          Primer Contacto <span style="float:right"><%=state_history(@clinic_history.id).html_safe%></span>
+          Primer Contacto <span style="float:right;display:none"><%=state_history(@clinic_history.id).html_safe%></span>
          <%end%>
 
       
 
         
-         <%= link_to  patient_clinic_history_backgrounds_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[0]}" do %>
+        <!-- <%= link_to  patient_clinic_history_backgrounds_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[0]}" do %>
           <i class="fa fa-undo" style = "font-size:20px;" aria-hidden="true"></i>
           Antecedentes <span class="span-num"><%=@clinic_history.backgrounds.count + @clinic_history.personal_backgrounds.count %></span>
-         <%end%>
+         <%end%>-->
               <%= link_to  patient_clinic_history_tool_tests_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[1]}" do %>
           <i class="fa fa-wrench" style = "font-size:20px;" aria-hidden="true"></i>
           Htas de Evaluacion <span class="span-num"><%=@clinic_history.tool_tests.count%></span>
          <%end%>
          <%= link_to  patient_step3_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[7]}" do %>
           <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
-          Desenlace <span style="float:right"><%=state_history_desenlace(@clinic_history.id).html_safe%></span>
+          Diagnostico y Tratamiento <span style="float:right;display:none"><%=state_history_desenlace(@clinic_history.id).html_safe%></span>
          <%end%>
        <%end%> 
 
