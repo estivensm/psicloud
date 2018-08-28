@@ -29,7 +29,7 @@
       <td class="text-center imgedit" style = "width:20%;font-size:40px;text-align: center"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></td>
    </tr>
 </table>
-<h3 class="h3">1. Datos del Paciente</h3>
+<h3 class="h3">Datos del Paciente</h3>
 <table class="table table-responsive">
    <tr>
       <td> <strong> Nombres</strong><br> <%=@patient.first_name%> <%=@patient.second_name%> </td>
@@ -502,8 +502,8 @@
 </div>
 <div class = "fields_history">
 <hr>
-  <h3 class= "color-gray">7. Hipotesis diagnostica</h3>
-  <strong>Descripcion</strong>
+  <h3 class= "color-gray"> Hipotesis diagnóstica</h3>
+  <strong>Descripción</strong>
   <span class="diagnostico"><%=@clinic_history.diagnostic_hypothesis%></span><br><br>
   <strong>DSMV: </strong>
   <%@clinic_history.diagnostics.each do |ch|%>  
