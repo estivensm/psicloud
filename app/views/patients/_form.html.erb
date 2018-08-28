@@ -30,21 +30,21 @@
          <div class="col-md-3">
           <%= form.label "Primer Nombre" %> *
               <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user" style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :first_name, id: :patient_first_name, class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio"  %>
             </div>
          </div>
          <div class="col-md-3">
             <%= form.label "Segundo Nombre" %>
               <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user" style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :second_name, id: :patient_second_name , class: "form-control ", :title => "Es un Campo Obligatorio", id: "cambio1"%>
             </div>
          </div>
          <div class="col-md-3">
           <%= form.label "Primer Apellido" %> *
             <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user" style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :first_last_name, id: :patient_first_last_name, class: "form-control  required", :title => "Es un Campo Obligatorio", id: "cambio2" %>
             </div>
          </div>
@@ -52,7 +52,7 @@
             <div class="form-group">
                <%= form.label "Segundo Apellido" %>
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user" style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :second_last_name, id: :patient_second_last_name , class: "form-control ", :title => "Es un Campo Obligatorio", id: "cambio3"%>
              </div>
             </div>
@@ -65,7 +65,7 @@
                   action_name == "edit" ? val1 = @patient.document_type : val1 = "" %>
                <%= form.label "Tipo de Documento" %>
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+                <span class="input-group-addon"><i class="fas fa-id-card" style = "color: #f1f1f1;" ></i></span>
                <%= form.select 'document_type', options_for_select(@patient.select_documento, val1), {},{:class => 'form-control'}%>
              </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="form-group">
                <%= form.label "Documento" %> *
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+                <span class="input-group-addon"><i class="fas fa-id-card" style = "color: #f1f1f1;" ></i></span>
                <%= form.number_field :document, id: :patient_document , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio4" %>
              </div>
             </div>
@@ -83,7 +83,7 @@
             <div class="form-group">
                <%= form.label "Fecha de Nacimiento" %> * <br>
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
+                <span class="input-group-addon"><i class="fas fa-calendar-alt"  style = "color: #f1f1f1;" ></i></span>
                <%= form.date_select :birth_date,{
                   :start_year =>
                   Time.now.year,
@@ -108,7 +108,7 @@
             <div class="form-group">
                <%= form.label "Ciudad de Residencia" %> *
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-building"></i></span>
+                <span class="input-group-addon"><i class="fas fa-building"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :city, id: :patient_city , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio5"%>
             </div>
           </div>
@@ -117,7 +117,7 @@
             <div class="form-group">
                <%= form.label "Dirección de Residencia" %> *
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-home"></i></span>
+                <span class="input-group-addon"><i class="fas fa-home"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :address, id: :patient_address , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio6"%>
             </div>
           </div>
@@ -126,7 +126,7 @@
             <div class="form-group">
                <%= form.label "Telefono Fijo" %> *
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+                <span class="input-group-addon"><i class="fas fa-phone"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :phone, id: :patient_phone ,class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio7" %>
              </div>
             </div>
@@ -135,7 +135,7 @@
             <div class="form-group">
                <%= form.label "Telefono Movil" %> *
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-mobile-alt"></i></span>
+                <span class="input-group-addon"><i class="fas fa-mobile-alt"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :movil, id: :patient_movil  , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio8"%>
             </div>
           </div>
@@ -143,7 +143,7 @@
          <div class="col-md-3">
                <%= form.label "Email" %>
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-at"></i></span>
+                <span class="input-group-addon"><i class="fas fa-at"  style = "color: #f1f1f1;" ></i></span>
                <%= form.email_field :email, id: :patient_email ,class: "form-control ", :title => "Es un Campo Obligatorio", id: "cambio9"%>
             </div>
          </div>
@@ -159,7 +159,7 @@
             <div class="form-group">
                <%= form.label "Ocupación" %> *
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
+                <span class="input-group-addon"><i class="fas fa-briefcase"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :occupation, id: :patient_occupation , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio10" %>
              </div>
             </div>
@@ -168,7 +168,7 @@
             <div class="form-group">
                <%= form.label "Profesión" %> * 
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
+                <span class="input-group-addon"><i class="fas fa-briefcase"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :profession, id: :patient_profession , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio11"%>
              </div>
             </div>
@@ -183,7 +183,7 @@
             <div class="form-group">
                <%= form.label "Género" %>
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-transgender"></i></span>
+                <span class="input-group-addon"><i class="fas fa-transgender"  style = "color: #f1f1f1;" ></i></span>
                <%val1 = "" 
                   action_name == "edit" ? val1 = @patient.gender : val1 = "" %>
                <%= form.select 'gender', options_for_select(@patient.select_genero, val1), {},{:class => 'form-control'}%>
@@ -194,7 +194,7 @@
             <div class="form-group">
                <%= form.label "Estado Civil" %>
                  <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user"  style = "color: #f1f1f1;" ></i></span>
                <%val1 = "" 
                   action_name == "edit" ? val1 = @patient.civil_status : val1 = "" %>
                <%= form.select 'civil_status', options_for_select(@patient.select_estado_civil, val1), {},{:class => 'form-control'}%>
@@ -205,7 +205,7 @@
             <div class="form-group">
                <%= form.label "Grupo Sanguíneo" %>
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-medkit"></i></span>
+                <span class="input-group-addon"><i class="fas fa-medkit"  style = "color: #f1f1f1;" ></i></span>
                <%val2 = "" 
                   action_name == "edit" ? val2 = @patient.blood_type : val2 = "" %>
                <%= form.select 'blood_type', options_for_select(@patient.select_sangre, val2), {},{:class => 'form-control'}%>
@@ -216,7 +216,7 @@
             <div class="form-group">
                <%= form.label "Grupo Étnico" %>
                 <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-users"></i></span>
+                <span class="input-group-addon"><i class="fas fa-users"  style = "color: #f1f1f1;" ></i></span>
                <%val3 = "" 
                   action_name == "edit" ? val3 = @patient.ethnic_group : val3 = "" %>
                <%= form.select 'ethnic_group', options_for_select(@patient.select_grupo_etnico, val3), {},{:class => 'form-control'}%>
@@ -245,7 +245,7 @@
                   action_name == "edit" ? val5 = @patient.children : val5 = "" %>
             <%= form.label "Tienes Hijos?" %>
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user"  style = "color: #f1f1f1;" ></i></span>
                <%= form.select 'children', options_for_select(["No", "Si"], val5), {},{:class => 'form form-control select', id:"principal"}%>
             </div>
          </div>
@@ -254,7 +254,7 @@
                   action_name == "edit" ? val6 = @patient.children : val6 = "" %>
             <%= form.label "Cantidad de Hijos" %>
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user"  style = "color: #f1f1f1;" ></i></span>
                 <%= form.select 'number_children', options_for_select(["1", "2", "3", "4", "5", "6", "7", "8"], val1), {},{:class => 'form form-control select'}%>
             </div>
          </div>
@@ -265,21 +265,21 @@
          <div class="col-md-3">
             <%= form.label "Nombre de Contacto" %> *
                <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :contact_name, id: :contact_name , class: "form-control  required", :title => "Es un Campo Obligatorio", id: "cambio12"%>
             </div>
          </div>
          <div class="col-md-3">
             <%= form.label "Telefono de Contacto" %> *
             <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+                <span class="input-group-addon"><i class="fas fa-phone"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :contact_phone, id: :patient_contact_phone , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio13"%>
             </div>
          </div>
          <div class="col-md-3">
             <%= form.label "Parentesco del Contacto" %> *
               <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <span class="input-group-addon"><i class="fas fa-user"  style = "color: #f1f1f1;" ></i></span>
                <%= form.text_field :contact_relationship, id: :patient_contact_relationship , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio14"%>
             </div>
          </div>
@@ -376,9 +376,7 @@
       background-color: #5EB8DF;
       border-color: #5EB8DF;
     }
-    .fas{
-      color: #f1f1f1;
-    }
+
     .btn{
       font-size: 20px;
     }

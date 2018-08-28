@@ -79,65 +79,55 @@
 
 
 <div class="col-md-12">
-<div class="row">
-  
-  <div class="col-md-12" style="background: #f7f7f7;;" >
-    <h3 class = "" style = "margin :20px 0px 15px 0;color:gray">Antecedentes Familiares </h3>
-      <br>
-  <%= form.fields_for :backgrounds do |contact|  %>
-    <div class="clearfix" style="margin-bottom: 30px;">
-      <div class="" >
-        <div class="col-md-3">
-          <label>Tipo</label>
-          <div class="input-group">
-              <span class="input-group-btn">
-                 <%= contact.link_to_remove class: "btn btn-danger" do %>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                  <% end %>
-                </span>
-                <%val6 = "" 
-                    action_name == "edit" ? val6 = @patient.children : val6 = "" %>
-               <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"], val6), {},{:class => 'form form-control select'}%>
-              </div>
+  <div class="row">
+    <div class="col-md-12" style="background: #f7f7f7;" >
+      <h3 class = "" style = "margin-top: 20px; margin-bottom: 10px; color:gray; padding: 0px;" >Antecedentes Familiares </h3>
+          <%= form.fields_for :backgrounds do |contact|  %>
+            <div class="col-md-3" >
+              <label>Tipo</label>
+                <div class="input-group">
+                  <span class="input-group-btn">
+                     <%= contact.link_to_remove class: "btn btn-danger" do %>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      <% end %>
+                    </span>
+                    <%val6 = "" 
+                        action_name == "edit" ? val6 = @patient.children : val6 = "" %>
+                   <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"], val6), {},{:class => 'form form-control select'}%>
+                </div>
             </div>
+                <div class="pdd"  style="width: 400px; padding-right: 10px;" >
+                   <%= contact.label "Descripcion" %>
+                   <%= contact.text_area :description, :class => 'form-control' %>
+                </div>
 
-              </div>
-                <div class="pdd" style="padding-right: 10px;" >
-                 <%= contact.label "Descripcion" %>
-                 <%= contact.text_area :description, :class => 'form-control' %>
-              </div>
-                <div class=" pdd" >
-                 <%= contact.label "Adjuntar" %>
-                 <%= contact.file_field :attachment, :class => 'form-control' %>
-              </div>
+                <div class="pdd"  style="width: 300px;" >
+                   <%= contact.label "Adjuntar" %>
+                   <%= contact.file_field :attachment, :class => 'form-control' %>
+                </div>
 
-          <%if action_name == "new"%>
-          <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
-          <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
-          <%= contact.hidden_field :patient_id ,:value =>  @patient.id %>
-           <%end%> 
-         
-           
-           </div>
-      
-        <%end%>
-            <div class="col-md-12" style="margin-bottom: 25px;">
-              <%= form.link_to_add "Agregar", :backgrounds, :class => 'btn btn-primary top10'  %>
-            </div>
-        </div>
-    </div>
-  <hr>
+                  <%if action_name == "new"%>
+                    <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+                    <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+                    <%= contact.hidden_field :patient_id ,:value =>  @patient.id %>
+                  <%end%> 
+                <%end%>
+              <br>
 
+              
+                <%= form.link_to_add "Agregar", :backgrounds, :class => 'btn btn-primary top10', id: "btn2"  %>
+          </div>
+      </div>
+    <hr>
 
 
 <div class="row">
   <div class="col-md-12" style="background: #f7f7f7;" >
-     <h3 class = "" style = "margin :20px 0px 15px 0;color:gray">Antecedentes Personales</h3>
-        <br>
+     <h3 class = ""style = "margin-top: 20px; color:gray; padding: 0px;">Antecedentes Personales</h3>
+     <br>
       <%= form.fields_for :personal_backgrounds do |contact|  %>
-      <div class="clearfix" style="margin-bottom: 30px;">
          <div class="" >
-          <div class="col-md-3">
+          <div class="col-md-3" style="padding-left: 5px;">
             <label>Tipo</label>
               <div class="input-group">
                   <span class="input-group-btn">
@@ -152,11 +142,11 @@
                 </div>
 
             </div>
-              <div class=" pdd"  style="padding-right: 10px;"  >
+               <div class="pdd"  style="width: 400px; padding-right: 10px;" >
                <%= contact.label "Descripcion" %>
                <%= contact.text_area :description, :class => 'form-control' %>
             </div>
-              <div class=" pdd" >
+               <div class="pdd"  style="width: 300px;" >
                <%= contact.label "Adjuntar" %>
                <%= contact.file_field :attachement, :class => 'form-control' %>
             </div>  
@@ -172,10 +162,9 @@
 
       </div>
       <%end%>
-      <div class="col-md-12" style="
-         margin-bottom: 25px;">
-         <%= form.link_to_add "Agregar", :personal_backgrounds, :class => 'btn btn-primary top10'  %>
-      </div>
+
+         <%= form.link_to_add "Agregar", :personal_backgrounds, :class => 'btn btn-primary top10', id: "btn2"  %>
+        
    </div>
 
   
@@ -245,7 +234,10 @@
       padding-left: 0px;
       }
 
-   
+   #btn2{
+    margin-left: 10px;
+    margin-bottom: 10px;  
+   }
 
  .error
    {
@@ -295,6 +287,7 @@
    font-size: 10px !important;
    padding: 6px 2px;
       }
+
          .busqueda
    {
         display: block;

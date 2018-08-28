@@ -58,6 +58,10 @@
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i>Configuración <span class="caret"></span></a>
 
                      <ul class="dropdown-menu" style="width: 164% !important;">
+                      
+                         <% account = Account.where(admin_user: current_user.admin_user).first %>
+                        <%if account.account_type != "Psicologo" || current_user.super_admin %>
+
                         <li ><%= link_to  users_index_path, style: "color:gray !important" do %>
                         <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Usuarios
                         <% end -%>
@@ -67,31 +71,36 @@
                         <i class="fas fa-briefcase" style="padding-left: 4px; color: #306C95;"></i> Roles
                         <% end -%>
                         </li>
-
-                        <li><%= link_to hpcs_path , style: "color:gray !important" do%>
-                         <i class="fas fa-heart" style="padding-left: 4px; color: #306C95;"></i>  Eps
                         <% end -%>
-                        </li>
+                     
 
-                        <li><%= link_to  agreements_path , style: "color:gray !important" do %>
-                        <i class="fas fa-building" style="padding-left: 4px; color: #306C95;"></i> Convenio
-                        <% end -%>
-                        </li>
+                          <li><%= link_to hpcs_path , style: "color:gray !important" do%>
+                           <i class="fas fa-heart" style="padding-left: 4px; color: #306C95;"></i>  Eps
+                          <% end -%>
+                          </li>
 
-                        <li><%= link_to account_path(get_account), style: "color:gray !important" do %>
-                        <i class="fa fa-cog color-gray" style="padding-left: 4px; color: #306C95;"></i> Configuración de Cuenta
-                        <% end -%>
-                        </li>
+                          <li><%= link_to  agreements_path , style: "color:gray !important" do %>
+                          <i class="fas fa-building" style="padding-left: 4px; color: #306C95;"></i> Convenio
+                          <% end -%>
+                          </li>
+          
+                          <li><%= link_to account_path(get_account), style: "color:gray !important" do %>
+                          <i class="fa fa-cog color-gray" style="padding-left: 4px; color: #306C95;"></i> Configuración de Cuenta
+                          <% end -%>
+                          </li>
 
-                        <li><%= link_to fields_path , style: "color:gray !important" do %>
-                        <i class="fas fa-clipboard" style="padding-left: 4px; color: #306C95;"></i> Configuración de Formularios
-                        <% end -%>
-                        </li>
+                          <li><%= link_to fields_path , style: "color:gray !important" do %>
+                          <i class="fas fa-clipboard" style="padding-left: 4px; color: #306C95;"></i> Configuración de Formularios
+                          <% end -%>
+                          </li>
 
-                        <li><%= link_to  consents_path , style: "color:gray !important" do %>
-                        <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> Configuración de Consentimiento
-                        <% end -%>
-                        </li>
+                          <li><%= link_to  consents_path , style: "color:gray !important" do %>
+                          <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> Configuración de Consentimiento
+                          <% end -%>
+                          </li>
+
+                     
+
                         <%if current_user.super_admin%>
 
                          <li><%= link_to  accounts_path, style: "color:gray !important" do  %>
@@ -170,7 +179,8 @@
         <span class = "color-gray hidden-xs hidden-sm"> Estadísticas</span>
         <% end %>
       </li>
-
+<% account = Account.where(admin_user: current_user.admin_user).first %>
+  <%if account.account_type != "Psicologo" || current_user.super_admin %>
     <%if current_user.rol.configuracion%>
 
       <li class="has-sub"><a style="user-select: none;">
@@ -197,6 +207,7 @@
 
         </ul>
       </li>
+      <% end -%>
     <% end -%>
 
     </ul>
