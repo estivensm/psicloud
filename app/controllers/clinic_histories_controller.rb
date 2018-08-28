@@ -42,7 +42,9 @@ end
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb'
+                     :template => 'layouts/pdf_footer.html.erb',
+                     :right => 'Page [page] of [topage]',
+                     :font_size => 7
                   }
                },
         :show_as_html => params[:debug].present?
