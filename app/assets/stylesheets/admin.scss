@@ -291,12 +291,15 @@ div.nobreak { page-break-inside: avoid; }
   font-size: 20px;
   color:#187191;
 }
-#event_date_event
-{
-margin: 0px 10px;
-    width: 110px;
-    text-align: center;
+
+#event_date_event{
+  margin: 0px 10px;
+  width: 110px;
+  text-align: center;
+  margin-left: 0px;
+  margin-top: 10px;
 }
+
 .date_select
 {
   display:inline-flex !important;

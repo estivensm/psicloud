@@ -16,47 +16,55 @@
 <br>
 
  <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Calendario</a></li>
-  <li><a data-toggle="tab" href="#menu0">Lista</a></li>
+  <li class="active"><a data-toggle="tab" href="#home">lista</a></li>
+  <li><a data-toggle="tab" href="#menu0">Calendario</a></li>
 
 </ul>
 
 <div class="tab-content">
   <div id="home" class="tab-pane fade in active">
 
-
- 
-
-
-    <h3>CITAS</h3>
-
      <div class="row">
 <div class="col-md-12" style="padding: 0px 50px 0px 50px">
- <div id="calendar"></div> 
 
 
-</div>
-  
-</div>
-
-  </div>
-  <div id="menu0" class="tab-pane fade">
-<br>
-
-  <div class="row" >
+ <div class="row" >
       <div class = "row title-table">
-         <div class = "col-md-6">
+        <br>
+         <div class = "col-md-6" style="padding: 0px;">
     
-            <p>Citas <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span> </p>
+            <p>Citas <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span></p>
+          
          </div>
-         <div class = "col-md-4 paginate text-left title-table1">
-            <%= will_paginate @appointments%>
-         </div>
-         <div class = "col-md-2">
- 
+
+            <%= form_tag  citas_path, :method => 'get' do%>
+              <div class="col-md-2" style=" right: -162px;">
+                <%= select_tag 'search', options_for_select(get_patient.collect{ |u| ["#{u.first_name} - #{u.second_name}", u.id] },{}), {:multiple => false,class: 'form-control', include_blank: true}%>
+              </div>
+                <div class="input-group" style="width: 10px; right: -172px;">
+                  <%= date_field_tag "search1",{
+                      :start_year =>
+                      Time.now.year,
+                      :end_year => 1900,
+                      :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+                      :use_short_month => true,
+                      :order => [:day, :month, :year],
+                      :prompt => {:month => 'Mes', :day => 'Dia', :year => 'Año'}},
+                      {:class => 'year form-control line1 required',
+                      :id => 'patient_birth_date' , :title => "Es un Campo Obligatorio" }
+                      %>
+                      <span class="input-group-btn">
+                        <%= button_tag class: "btn btn-info" do%>
+                          <i class="fas fa-search"></i>
+                        <% end -%>
+                    </span>
+                </div>
+            <% end -%>
          </div>
       </div>
+    </div>
       <hr class="hr">
+
       <div class = "row">
          <table class="table">
             <thead>
@@ -135,8 +143,19 @@
          </table>
       </div>
    </div>
-  </div>
+            <div class = "col-md-4 paginate text-left title-table1">
+              <%= will_paginate @appointments%>  
+            </div>
+</div>
+  
+</div>
 
+  </div>
+  <div id="menu0" class="tab-pane fade">
+<br>
+ <div id="calendar"></div> 
+
+  </div>
 </div>
 </div>
 

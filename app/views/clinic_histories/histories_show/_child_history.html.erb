@@ -569,7 +569,24 @@
    <strong>Fecha:</strong> <%=tr.tracing_date %> &nbsp;
    <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,tr.attachment_url if tr.attachment_url%>
    <br><strong>Descripción:</strong> <%=tr.description%><br><br>
+
+   <% if @field_default.observation_tracing_state  == true%>
+      <br><strong>Observaciones:</strong><br> <%=tr.observation%><br>
+   <%else%>
+      <strong>Observaciones:</strong>
+   <% end -%>
+
+   <% if @field_default.evolution_tracing_state  == true %>
+    <br><strong>Evolucion:</strong><br> <%=tr.evolution%><br>
+
+   <%else%>
+      <strong>Evolucion:</strong>
+   <% end -%>
+  
    <%end%>
+    <br>
+
+
 </div>
 
 

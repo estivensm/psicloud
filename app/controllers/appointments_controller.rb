@@ -33,6 +33,7 @@ class AppointmentsController < ApplicationController
   respond_to :json
 
 
+
   def get_appointments_admin
     @appointment = Appointment.where( admin_user: current_user.admin_user)
     events = []
@@ -51,7 +52,9 @@ class AppointmentsController < ApplicationController
 
 
   def index
+
       @patient = Patient.find(params[:patient_id])
+
       @appointments = @patient.appointments.page(params[:page]).per_page(20).order(start_datetime: :desc)
       @clinic_history = @patient.clinic_histories.first
       @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida")).each do |app|
@@ -82,8 +85,10 @@ class AppointmentsController < ApplicationController
 
 
   def citas
+     
+    @appointments = Appointment.where(user_id: current_user.id).search(params[:search], params[:search1]).page(params[:page]).per_page(20)
     
-    @appointments = Appointment.where(user_id: current_user.id).page(params[:page]).per_page(20)
+    if params[:search].present? 
     @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida")).each do |app|
           
           if app.start_datetime < Time.now()
@@ -97,6 +102,8 @@ class AppointmentsController < ApplicationController
           end     
         
       end  
+
+    end
     
   end
 

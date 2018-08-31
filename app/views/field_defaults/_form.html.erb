@@ -1,0 +1,47 @@
+<%= form_with(model: field_default, local: true) do |form| %>
+  <% if field_default.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(field_default.errors.count, "error") %> prohibited this field_default from being saved:</h2>
+
+      <ul>
+      <% field_default.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :field_default_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_user %>
+    <%= form.number_field :admin_user, id: :field_default_admin_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :account_id %>
+    <%= form.number_field :account_id, id: :field_default_account_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :observation_tracing_state %>
+    <%= form.check_box :observation_tracing_state, id: :field_default_observation_tracing_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evolution_tracing_state %>
+    <%= form.check_box :evolution_tracing_state, id: :field_default_evolution_tracing_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description_tracing_state %>
+    <%= form.check_box :description_tracing_state, id: :field_default_description_tracing_state %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
