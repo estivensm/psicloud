@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
  
+  resources :field_defaults
   resources :consents
   resources :fields
   get 'loaderio-a37049370b15266d36ffe4514aeca803.txt', to: "home#loader"
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resources :hpcs
   resources :agreements
   
+  post "buscador/:search1", to: "appointments#index", as: "buscador"
 
   get 'patients/csv'
   get 'patients/csv_all'
@@ -47,6 +49,8 @@ Rails.application.routes.draw do
   get "appointments/get_appointments", to: "appointments#get_appointments"
   get "appointments/get_appointments_admin", to: "appointments#get_appointments_admin"
   get "patients/change_state_appointment/:id/:state", to: "appointments#change_state_appointment" , as: "change_state_appointment"
+
+  get 'cambiar_state/:estado/:id/:field', to: 'field_defaults#cambiar_state', as: 'cambiar_state' 
 
   get "all_patients", to: "patients#all_patients", as: "all_patients"
   resources :patients do 

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Field Defaults</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Account</th>
+      <th>Observation tracing state</th>
+      <th>Evolution tracing state</th>
+      <th>Description tracing state</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @field_defaults.each do |field_default| %>
+      <tr>
+        <td><%= field_default.user_id %></td>
+        <td><%= field_default.admin_user %></td>
+        <td><%= field_default.account_id %></td>
+        <td><%= field_default.observation_tracing_state %></td>
+        <td><%= field_default.evolution_tracing_state %></td>
+        <td><%= field_default.description_tracing_state %></td>
+        <td><%= link_to 'Show', field_default %></td>
+        <td><%= link_to 'Edit', edit_field_default_path(field_default) %></td>
+        <td><%= link_to 'Destroy', field_default, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Field Default', new_field_default_path %>

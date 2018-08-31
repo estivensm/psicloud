@@ -1,0 +1,96 @@
+<div class="col-md-5 col-md-offset-4" >
+      <h3 style="margin-left: 77px;" class="title-h2">Formulario de Seguimiento</h3>
+      <br>
+      <div>
+        <p>
+          <br>
+          <legend class="h4">Estado de Observacion</legend>
+          <input type="checkbox" id="observation" class="change">
+          <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/235/Screenshot_from_2018-08-30_15-51-24.png" style="margin-left: 120px;">
+        </p>
+      </div>
+
+      <p>
+        <legend class="h4">Estado de Evaluacion</legend>
+        <input type="checkbox" id="evolution" class="change">
+        <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/235/Screenshot_from_2018-08-30_15-51-24.png" style="margin-left: 120px;">
+      </p>
+
+
+      <br>
+      <div class="actions">
+        <%= link_to 'Volver', field_defaults_path, class: "btn btn-info" %>
+      </div>
+       <br>
+    </div>
+
+
+<style>
+
+  .col-md-5{
+    margin-bottom: 20px; 
+    padding-left: 30px;
+    border-radius: 15px;
+    margin-top: 20px;
+  }
+
+</style>
+
+<script>
+
+    $('.change').change(function() {
+          
+          var id = $(this).prop('id')
+         if ( $(this).prop('checked') == true )
+         {
+
+
+           $.get("/cambiar_state/true/" + <%= current_user.admin_user%>+ "/" + id, function(data) {
+           
+           })
+         }
+         else
+         {
+           $.get("/cambiar_state/false/" + <%= current_user.admin_user%> + "/" + id, function(data) {
+           })
+         }
+   
+       })
+
+
+$(document).on('turbolinks:load',function() {
+
+         if ( <%=@field_default.observation_tracing_state%> == true )
+         {
+          $("#observation").bootstrapToggle('on')
+         }
+         else
+         {
+          $("#observation").bootstrapToggle('off')
+         }
+
+
+
+          if ( <%=@field_default.evolution_tracing_state%> == true )
+         {
+          $("#evolution").bootstrapToggle('on')
+         }
+         else
+         {
+          $("#evolution").bootstrapToggle('off')
+         }
+
+
+          if ( <%=@field_default.description_tracing_state%> == true )
+         {
+          $("#description").bootstrapToggle('on')
+         }
+         else
+         {
+          $("#description").bootstrapToggle('off')
+         }
+
+
+});
+
+</script>

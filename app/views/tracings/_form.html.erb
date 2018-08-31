@@ -13,12 +13,15 @@
       </ul>
     </div>
   <% end %>
+
   <%if action_name == "new"%>
-<%= form.hidden_field :admin_user , :value => current_user.admin_user %>
-<%= form.hidden_field :user_id ,:value =>  current_user.id %>
-<%= form.hidden_field :patient_id ,:value =>  @patient.id %>
-<%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
+    <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+    <%= form.hidden_field :user_id ,:value =>  current_user.id %>
+    <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
+    <%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
   <% end %>
+
+<label>Fecha de Seguimiento</label>
 
  <div class="form-group date_select">
          <%= form.date_select :tracing_date,{
@@ -32,10 +35,28 @@
             :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
             %>
 </div>
+<br>
+
   <div class="form-group">
     <%= form.label "Descripción" %>
     <%= form.text_area :description, id: :tracing_description, class: "form form-control area" %>
   </div>
+
+  <br> 
+ <% if @field_default.observation_tracing_state  == true%>
+  <div class="form-group">
+    <%= form.label "Observaciones" %>
+    <%= form.text_area :observation, class: "form form-control area" %>
+  </div>
+<% end -%>
+
+  <br>
+<% if @field_default.evolution_tracing_state  == true %>
+  <div class="form-group">
+    <%= form.label "Evolución" %>
+    <%= form.text_area :evolution, class: "form form-control area" %>
+  </div>
+<% end -%>
 
 
 
@@ -88,11 +109,10 @@
     </div>
 
     <br>
-    <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
-    <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
-   
-
+      <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
+      <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
     <br>
+
   </div> </div> <%end%>
   <div class="col-md-12"> <%= form.link_to_add "Agregar Archivo", :general_files, :class => 'btn btn-primary top10'  %></div>
    

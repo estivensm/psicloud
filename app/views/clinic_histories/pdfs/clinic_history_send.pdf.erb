@@ -812,10 +812,26 @@
    <tr>
       <td>
    
-      <%@clinic_history.tracings.each do |tr|%>  
+    <%@clinic_history.tracings.each do |tr|%>  
 
       <strong>Fecha:</strong> <%=tr.tracing_date %> <br><strong>Descripción:</strong> <%=tr.description%><br><br>
-       <%end%>
+
+         <% if @field_default.observation_tracing_state  == true%>
+            <br><strong>Observaciones:</strong><br> <%=tr.observation%><br>
+         <%else%>
+            <strong>Observaciones:</strong>
+         <% end -%>
+
+         <% if @field_default.evolution_tracing_state  == true %>
+          <br><strong>Evolucion:</strong><br> <%=tr.evolution%><br>
+
+         <%else%>
+            <strong>Evolucion:</strong>
+         <% end -%>
+        
+         <%end%>
+    <%end%>
+
 
       
    </tr>

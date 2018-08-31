@@ -16,7 +16,7 @@ class ClinicHistoriesController < ApplicationController
   @patient = Patient.find(params[:patient_id])
   @fchild = @clinic_history.child_general_date
   if @clinic_history.child_history
-  
+  @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
   @schild = @clinic_history.personal_history
   @tchild = @clinic_history.two_child_history
   @fochild = @clinic_history.three_child_history 
@@ -55,6 +55,7 @@ end
   def pdf_completo
   @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   @patient = Patient.find(params[:patient_id])
+  @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
   @fchild = @clinic_history.child_general_date
   if @clinic_history.child_history
  

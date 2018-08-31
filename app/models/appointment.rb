@@ -32,4 +32,14 @@ class Appointment < ApplicationRecord
         
 		
 	end
+
+	def self.search(search, search1)
+        puts search1
+        puts "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		search != " " && search != "" && search != nil ?  (scope :nombre_scope, -> { where(patient_id: search)}) : (scope :nombre_scope, -> { where.not(id: nil)})
+		search1 != " " && search1 != nil && search1 != "" ?  (scope :fecha_scope, -> { where("DATE(start_datetime) = ?",search1)}) : (scope :fecha_scope, -> { where.not(id: nil)})
+		nombre_scope.fecha_scope
+
+	end
+	
 end
