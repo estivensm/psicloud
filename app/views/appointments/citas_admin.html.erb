@@ -57,7 +57,7 @@
          <table class="table">
             <thead>
                <tr class = "tr-table">
- <th style= "width:20%">Fecha</th>
+      <th style= "width:20%">Fecha</th>
       <th style= "width:10%">Paciente</th>
       <th style= "width:10%">Lugar</th>
       <th style= "width:20%">Observaciones</th>
@@ -69,7 +69,7 @@
   <tbody>
      <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= get_date_hora(appointment.start_datetime) %></td>
+        <td><%= get_only_date(appointment.start_datetime) %></td>
                <td><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></td>
         <td><%= appointment.place %></td>
 

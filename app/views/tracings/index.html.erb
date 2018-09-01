@@ -50,7 +50,37 @@
           </div>
                         </div>
                         <div class="panel-body">
-                       <%= tracing.description %><br><br>
+                     
+                     <strong>Descripción:</strong> <%=tracing.description%><
+ <hr>
+   <% if @field_default.observation_tracing_state  == true%>
+     <strong>Observaciones:</strong> <%=tracing.observation%>
+  <hr>
+   <% end -%>
+
+   <% if @field_default.evolution_tracing_state  == true %>
+    <strong>Evolucion:</strong> <%=tracing.evolution%>
+
+ <hr>
+   <% end -%>
+  
+    <% @clinic_history.crete_fields.where(tracing_id: tracing.id).order(id: :asc).each do |field| %>
+  
+ 
+   <%if field.field.form == "Seguimiento" && field.field.state %>
+    
+    <strong><%=field.field.name%>: </strong> <%=field.content%>
+    
+ <hr>
+      <%end%>
+   
+   
+  
+
+<%end%>
+
+
+   
                             <%if tracing.attachment_url%>
                    <%= link_to  tracing.attachment_url, class: "", style:"margin-right:10px;" do  %>
                           <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
@@ -86,7 +116,12 @@
     </div>
 <%end%>
 <style>
+.panel-body strong
+{
+  margin-bottom: 5px
+}
   .np
+}
 {
     text-align: center;
     color: gray;

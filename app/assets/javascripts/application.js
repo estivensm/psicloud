@@ -54,7 +54,7 @@ $("#calendar").fullCalendar({
     
     themeSystem: 'jquery-ui',
     defaultView: 'agendaWeek',
-    /*selectable:true,*/
+    selectable:true,
     selectHelper:true,
     editable:true,
     
@@ -87,13 +87,13 @@ $("#calendar").fullCalendar({
     console.log(event);
 
     },
-    /* select: function(startDate, endDate) {
+     select: function(startDate, endDate) {
        date_start = startDate.year() +  "-"  + (startDate.month() + 1) + "-" + startDate.date() + " " + startDate.hour() + ":" + startDate.minute() + ":" + startDate.second() 
        date_end = endDate.year() +  "-"  + (endDate.month() + 1) + "-" + endDate.date() + " " + endDate.hour() + ":" + endDate.minute() + ":" + endDate.second() 
        console.log(date_start)
        console.log(date_end)
 
-       $.get("/new_calendar", function(){
+       $.get("/new_calendar/" + date_start, function(){
 
 
 
@@ -101,7 +101,7 @@ $("#calendar").fullCalendar({
        })
        
 
-    },*/
+    },
 
      events: "/appointments/get_appointments",
      /*eventRender: function(eventObj, $el) {

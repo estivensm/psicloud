@@ -542,7 +542,7 @@
 <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
   
  
-   <%if field.field.form == "Desenlace" && field.field.state %>
+   <%if field.field.form == "Diagnostico y Tratamiento" && field.field.state %>
     <div class = "fields_history">
       <hr>
       <h3 class= "color-gray"><%=field.field.name%></h3>
@@ -565,10 +565,14 @@
 <div class = "fields_history">
    <hr>
    <h3 class= "color-gray"> Seguimientos y observaciones</h3>
-   <%@clinic_history.tracings.each do |tr|%>  
-   <strong>Fecha:</strong> <%=tr.tracing_date %> &nbsp;
+   <%@clinic_history.tracings.each do |tr|%> 
+   <div class="row">
+   <div class="col-md-12">
+     
+   
+        <strong>Fecha:</strong> <%=tr.tracing_date %> &nbsp;
    <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,tr.attachment_url if tr.attachment_url%>
-   <br><strong>Descripción:</strong> <%=tr.description%><br><br>
+   <br><strong>Descripción:</strong> <%=tr.description%><br>
 
    <% if @field_default.observation_tracing_state  == true%>
       <br><strong>Observaciones:</strong><br> <%=tr.observation%><br>
@@ -583,8 +587,32 @@
       <strong>Evolucion:</strong>
    <% end -%>
   
+    <% @clinic_history.crete_fields.where(tracing_id: tr.id).order(id: :asc).each do |field| %>
+  
+ 
+   <%if field.field.form == "Seguimiento" && field.field.state %>
+    
+    <strong><%=field.field.name%>: </strong><br> <%=field.content%><br>
+    
+
+      <%end%>
+   
+   
+  
+
+<%end%>
+
+ </div> 
+</div>
+<hr>
    <%end%>
     <br>
+
+   
+
+
+
+
 
 
 </div>

@@ -13,6 +13,8 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  tracing_date      :date
+#  observation       :text
+#  evolution         :text
 #
 
 require 'test_helper'

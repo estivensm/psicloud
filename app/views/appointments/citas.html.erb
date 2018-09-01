@@ -1,12 +1,16 @@
+
 <div class="row margin-top-40" >
   
-   <div class="col-md-12" style="padding-left: 10px;">
+   <div class="col-md-10" style="padding-left: 10px;">
     <div id='cssmenu'>
        <ul>
           <li><%= link_to "inicio", root_path%></li> 
           <li class="active"><%= link_to "Citas", @appointments_path%></li>
       </ul>
     </div>
+   </div>
+   <div class="col-md-2">
+       <%= link_to "Crear Cita", new_calendar_path(Time.now), remote:true , class:"btn btn-primary"%></li>
    </div>
 </div>
 
@@ -23,23 +27,25 @@
 
 <div class="tab-content">
   <div id="home" class="tab-pane fade in active">
-
-     <div class="row">
+ <div class="row">
 <div class="col-md-12" style="padding: 0px 50px 0px 50px">
 
 
  <div class="row" >
-      <div class = "row title-table">
+      <div class = "row ">
         <br>
-         <div class = "col-md-6" style="padding: 0px;">
+         <div class = "col-md-5 title-table" style="padding: 0px;">
     
             <p>Citas <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span></p>
           
          </div>
-
+          <div class="col-md-1">
+             <%= link_to citas_pdf_path(@params, @params1, :format => "pdf" )  , class: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+      <%end%>
+          </div>
             <%= form_tag  citas_path, :method => 'get' do%>
               <div class="col-md-2" style=" right: -162px;">
-                <%= select_tag 'search', options_for_select(get_patient.collect{ |u| ["#{u.first_name} - #{u.second_name}", u.id] },{}), {:multiple => false,class: 'form-control', include_blank: true}%>
+                <%= select_tag 'search', options_for_select(get_patient.collect{ |u| ["#{u.first_name} #{u.second_name}", u.id] },{}), {:multiple => false,class: 'form-control', include_blank: "Paciente"}%>
               </div>
                 <div class="input-group" style="width: 10px; right: -172px;">
                   <%= date_field_tag "search1",{
@@ -62,7 +68,7 @@
             <% end -%>
          </div>
       </div>
-    </div>
+    
       <hr class="hr">
 
       <div class = "row">
@@ -72,7 +78,8 @@
       
     <th style= "width:20%">Fecha</th>
       <th style= "width:10%">Paciente</th>
-      <th style= "width:10%">Lugar</th>
+      <th style= "width:10%">Eps</th>
+      <th style= "width:10%">Convenio</th>
       <th style= "width:20%">Observaciones</th>
       <th style= "width:10%">Estados</th>
       <th style= "width:10%">Acciones</th>
@@ -82,9 +89,10 @@
   <tbody>
      <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= get_date_hora(appointment.start_datetime) %></td>
+        <td><%= get_only_date(appointment.start_datetime) %><br><%= get_date_hora_only(appointment.start_datetime) %></td>
                <td><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></td>
-        <td><%= appointment.place %></td>
+        <td><%= appointment.patient.hpc.name %></td>
+        <td><%= appointment.patient.agreement.name %></td>
          <td><%= appointment.observations %></td>
       <td><%= appointment.state %>
                      <%if appointment.state == "Cancelada"%>
@@ -141,15 +149,18 @@
                <%end%>
             </tbody>
          </table>
-      </div>
-   </div>
             <div class = "col-md-4 paginate text-left title-table1">
               <%= will_paginate @appointments%>  
             </div>
+      </div>
+
+  
+           
 </div>
   
 </div>
 
+    
   </div>
   <div id="menu0" class="tab-pane fade">
 <br>
@@ -158,6 +169,3 @@
   </div>
 </div>
 </div>
-
-
-

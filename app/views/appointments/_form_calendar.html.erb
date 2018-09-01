@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-        <h4 class="modal-title"><%=action_type%> Cita</h4>
+        <h4 class="modal-title">Crear Cita</h4>
       </div>
         
     
@@ -13,11 +13,20 @@
 
   <div class="modal-body">
 <div class="row">
+   
+   <div class="col-md-12">
+   <%= select_tag 'patient_id', options_for_select(get_patient.collect{ |u| ["#{u.first_name} - #{u.first_last_name}", u.id] },{}), {:multiple => false,class: 'form-control chosen-select1', include_blank: false}%>
+</div>
+
    <div class="col-md-12">
       <%= label_tag "Fecha" %><br>
-    <%= datetime_field_tag("start_datetime", value = nil, options = {})%>
+    <%= datetime_field_tag("start_datetime", "#{@start_datetime}", options = {})%>
    </div>
+    
 </div>
+
+
+
 
 <div class="row">
 <div class="col-md-5">

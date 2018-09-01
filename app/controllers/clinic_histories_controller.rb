@@ -1,5 +1,5 @@
 class ClinicHistoriesController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_clinic_history, only: [:show, :edit, :update, :destroy]
    
 
@@ -13,6 +13,7 @@ class ClinicHistoriesController < ApplicationController
   # GET /clinic_histories/1
   # GET /clinic_histories/1.json
   def show
+  @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
   @patient = Patient.find(params[:patient_id])
   @fchild = @clinic_history.child_general_date
   if @clinic_history.child_history
@@ -143,7 +144,7 @@ end
         end
 
 
-         current_user.fields.where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field|
+         Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field|
                   
                  
                   CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
@@ -186,7 +187,7 @@ end
       if @clinic_history.update(clinic_history_params)
 
         
-          current_user.fields.where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field|
+          Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field|
                   
                  if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
                   CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)
@@ -242,7 +243,7 @@ end
           if @clinic_history.update(therapeutic_goal:params[:therapeutic_goal],type_of_treatment:params[:type_of_treatment], diagnostic_hypothesis: params[:diagnostic_hypothesis],outcome_state: params[:outcome_state],diagnostico_id: params[:diagnostico_id])
               
 
-              current_user.fields.where(state: true).where(form: "Desenlace").order(id: :asc).each do |field|
+              Field.where(admin_user: current_user.admin_user).where(form: "Diagnostico y Tratamiento").order(id: :asc).each do |field|
                   
                  if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
                   CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id)

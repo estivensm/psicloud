@@ -41,10 +41,11 @@ Rails.application.routes.draw do
 
 
   post "edit_calendar", to: "appointments#edit_calendar", as: "edit_calendar"
-  get "new_calendar", to: "appointments#new_calendar", as: "new_calendar"
+  get "new_calendar/:start_datetime", to: "appointments#new_calendar", as: "new_calendar"
   post "create_calendar", to: "appointments#create_calendar", as: "create_calendar"
 
   get "citas", to: "appointments#citas", as: "citas"
+  get "citas_pdf/:patient/:fecha", to: "appointments#citas_pdf", as: "citas_pdf"
   get "citas_admin", to: "appointments#citas_admin", as: "citas_admin"
   get "appointments/get_appointments", to: "appointments#get_appointments"
   get "appointments/get_appointments_admin", to: "appointments#get_appointments_admin"

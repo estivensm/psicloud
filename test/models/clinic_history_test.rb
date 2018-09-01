@@ -39,6 +39,7 @@
 #  third_child_created_at  :datetime
 #  first_child_four        :boolean
 #  four_child_created_at   :datetime
+#  diagnostico_id          :integer
 #
 
 require 'test_helper'

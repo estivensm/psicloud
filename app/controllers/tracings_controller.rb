@@ -7,6 +7,8 @@ class TracingsController < ApplicationController
   # GET /tracings
   # GET /tracings.json
   def index
+        @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
+
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 10)
@@ -36,6 +38,7 @@ class TracingsController < ApplicationController
 
   # GET /tracings/1/edit
   def edit
+    @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     @tracings = Tracing.where(admin_user: current_user.admin_user, clinic_history_id: @clinic_history.id).paginate(page: params[:page],:per_page => 10)
@@ -48,9 +51,20 @@ class TracingsController < ApplicationController
   # POST /tracings.json
   def create
     @tracing = Tracing.new(tracing_params)
-
+    @clinic_history = @tracing.clinic_history
     respond_to do |format|
       if @tracing.save
+          
+        Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Seguimiento").order(id: :asc).each do |field|
+                  
+                 
+                  CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id, tracing_id: @tracing.id)
+              
+
+
+        end
+        
+
         format.html { redirect_to patient_clinic_history_tracings_path(params[:patient_id],params[:clinic_history_id]), notice: 'Tracing was successfully created.' }
         format.json { render :show, status: :created, location: @tracing }
       else
@@ -63,12 +77,24 @@ class TracingsController < ApplicationController
   # PATCH/PUT /tracings/1
   # PATCH/PUT /tracings/1.json
   def update
+    @clinic_history = @tracing.clinic_history
     respond_to do |format|
       if @tracing.update(tracing_params)
         if params[:remove_attachment]
               @tracing.remove_attachment!
               @tracing.save
             end  
+         Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Seguimeintos").order(id: :asc).each do |field|
+                  
+                 if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
+                  CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id, tracing_id: @tracing.id)
+                 else
+                   CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).where(tracing_id: @tracing.id).last.update(content: params[:"#{field.name}"])
+
+                 end
+
+
+        end    
         format.html { redirect_to patient_clinic_history_tracings_path(params[:patient_id],params[:clinic_history_id]), notice: 'Tracing was successfully updated.' }
         format.json { render :show, status: :ok, location: @tracing }
       else

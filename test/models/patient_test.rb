@@ -42,6 +42,8 @@
 #  firma_psicologo      :text
 #  firma_madre          :text
 #  firma_padre          :text
+#  children             :string
+#  number_children      :integer
 #
 
 require 'test_helper'

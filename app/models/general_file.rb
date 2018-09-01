@@ -2,15 +2,18 @@
 #
 # Table name: general_files
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  admin_user   :integer
-#  file         :string
-#  name         :string
-#  tool_test_id :integer
-#  tracing_id   :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                     :integer          not null, primary key
+#  user_id                :integer
+#  admin_user             :integer
+#  file                   :string
+#  name                   :string
+#  tool_test_id           :integer
+#  tracing_id             :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  document_id            :integer
+#  personal_background_id :integer
+#  background_id          :integer
 #
 
 class GeneralFile < ApplicationRecord

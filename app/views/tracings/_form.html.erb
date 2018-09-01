@@ -60,6 +60,70 @@
 
 
 
+
+
+
+
+  <!-- inicio de los campos adicionales -->
+   <% Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Seguimiento").order(id: :asc).each do |field| %>
+      <h3  style="padding-left: 0px; margin-left: 0px; color: gray" > <%= field.name%></h3>
+      <div class="form-group">
+      <%if field.type_field == "Textarea"%>
+          
+         <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).where(tracing_id: @tracing.id).any? %>
+         
+         <%= text_area_tag "#{field.name}", nil , class: "form-control area" %>
+         <%else%>
+         <%= text_area_tag "#{field.name}", field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).where(tracing_id: @tracing.id).last.content , class: "form-control area" %>      
+         <%end%>
+   
+         <%else%>
+      
+     
+         <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).where(tracing_id: @tracing.id).any? %>
+          <div class="form-group">
+         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>nil}), {:multiple => false,class: 'form-control' , style: "width:50%"}%>
+         <%else%>
+         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(tracing_id: @tracing.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control', style: "width:50%"}%>
+         
+         <%end%>
+      
+      <%end%>  
+      <br>
+      </div>
+   
+   <%end%>  
+   <!-- Fin de los campos adicionales -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <%if action_name == "edit"%>
 
  <%if !@tracing.attachment.blank? %>

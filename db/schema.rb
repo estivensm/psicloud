@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810184128) do
+ActiveRecord::Schema.define(version: 20180901164915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,7 @@ ActiveRecord::Schema.define(version: 20180810184128) do
     t.boolean "check_box_field"
     t.string "text_field"
     t.string "select_field"
+    t.integer "tracing_id"
   end
 
   create_table "diagnosticos", force: :cascade do |t|
@@ -263,6 +264,17 @@ ActiveRecord::Schema.define(version: 20180810184128) do
     t.boolean "state"
     t.integer "user_id"
     t.integer "admin_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "field_defaults", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "account_id"
+    t.boolean "observation_tracing_state"
+    t.boolean "evolution_tracing_state"
+    t.boolean "description_tracing_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -511,6 +523,8 @@ ActiveRecord::Schema.define(version: 20180810184128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "tracing_date"
+    t.text "observation"
+    t.text "evolution"
   end
 
   create_table "two_child_histories", force: :cascade do |t|
