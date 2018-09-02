@@ -19,15 +19,16 @@
 
 <br>
 
- <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">lista</a></li>
-  <li><a data-toggle="tab" href="#menu0">Calendario</a></li>
+<ul class="nav nav-tabs">
+  <li class="active"><%=link_to "Lista", citas_path %></li>
+  <li ><%=link_to "Calendario", citas_calendar_path %></li>
 
 </ul>
 
-<div class="tab-content">
-  <div id="home" class="tab-pane fade in active">
- <div class="row">
+ 
+
+
+<div class="row">
 <div class="col-md-12" style="padding: 0px 50px 0px 50px">
 
 
@@ -157,14 +158,7 @@
   
            
 </div>
-  
-</div>
 
-    
-  </div>
-  <div id="menu0" class="tab-pane fade">
-<br>
- <div id="calendar"></div> 
 
   </div>
 </div>

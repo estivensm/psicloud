@@ -54,7 +54,7 @@ $("#calendar").fullCalendar({
     
     themeSystem: 'jquery-ui',
     defaultView: 'agendaWeek',
-    selectable:true,
+    //selectable:true,
     selectHelper:true,
     editable:true,
     
@@ -104,7 +104,7 @@ $("#calendar").fullCalendar({
     },
 
      events: "/appointments/get_appointments",
-     /*eventRender: function(eventObj, $el) {
+     eventRender: function(eventObj, $el) {
       $el.popover({
         title: eventObj.title,
         content: "Observaciones: " + eventObj.description ,
@@ -112,7 +112,7 @@ $("#calendar").fullCalendar({
         placement: 'top',
         container: 'body'
       });
-    },*/
+    },
      monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
      monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
      dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],

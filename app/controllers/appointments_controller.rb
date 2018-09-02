@@ -144,6 +144,20 @@ class AppointmentsController < ApplicationController
 
   end
 
+
+def citas_calendar
+     
+    
+end   
+   
+
+
+
+
+
+ 
+
+
    def citas_pdf
     
     @search = params[:patient] == "Todos" ? "" : params[:patient]
