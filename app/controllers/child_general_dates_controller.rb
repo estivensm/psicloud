@@ -70,7 +70,7 @@ class ChildGeneralDatesController < ApplicationController
           
           else
 
-          redirect_to  patient_clinic_history_backgrounds_path(@clinic_history.patient_id,@clinic_history.id)  , notice: 'Clinic history was successfully created.' 
+          redirect_to  patient_clinic_history_tool_tests_path(@clinic_history.patient_id,@clinic_history.id)  , notice: 'Clinic history was successfully created.' 
         
 
           end
