@@ -295,7 +295,7 @@
 
 <div class = "fields_history">
    <hr>
-   <h3 class= "color-gray">Objetivo terapeoutico</h3>
+   <h3 class= "color-gray">Objetivo terapéoutico</h3>
    <p><%=@clinic_history.therapeutic_goal%></p>
 </div>
 <div class = "fields_history">
@@ -332,7 +332,7 @@
    
         <strong>Fecha:</strong> <%=tr.tracing_date %> &nbsp;
    <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,tr.attachment_url if tr.attachment_url%>
-   <br><strong>Descripción:</strong> <%=tr.description%><br><br>
+   <br><strong>Descripción:</strong> <%=tr.description%><br>
 
    <% if @field_default.observation_tracing_state  == true%>
       <br><strong>Observaciones:</strong>  <%=tr.observation%><br>

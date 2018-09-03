@@ -530,7 +530,7 @@
 
 <div class = "fields_history">
    <hr>
-   <h3 class= "color-gray">Objetivo terapeoutico</h3>
+   <h3 class= "color-gray">Objetivo terapéoutico</h3>
    <p><%=@clinic_history.therapeutic_goal%></p>
 </div>
 <div class = "fields_history">
@@ -575,16 +575,13 @@
    <br><strong>Descripción:</strong> <%=tr.description%><br>
 
    <% if @field_default.observation_tracing_state  == true%>
-      <br><strong>Observaciones:</strong><br> <%=tr.observation%><br>
-   <%else%>
-      <strong>Observaciones:</strong>
+      <br><strong>Observaciones:</strong> <%=tr.observation%><br>
+
    <% end -%>
 
    <% if @field_default.evolution_tracing_state  == true %>
-    <br><strong>Evolucion:</strong><br> <%=tr.evolution%><br>
+    <br><strong>Evolucion:</strong> <%=tr.evolution%><br>
 
-   <%else%>
-      <strong>Evolucion:</strong>
    <% end -%>
   
     <% @clinic_history.crete_fields.where(tracing_id: tr.id).order(id: :asc).each do |field| %>
