@@ -202,7 +202,7 @@ end
          if @clinic_history.first_contact_state != true && @clinic_history.first_contact_created_at == nil
 
                   @clinic_history.first_contact_created_at = Date.today
-                  @clinic_history.first_contact_state = true
+                  @clinic_history.first_contact_state = false
                   @clinic_history.save
          end  
 
