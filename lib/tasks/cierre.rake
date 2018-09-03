@@ -5,13 +5,15 @@ namespace :cierre do
         
        ClinicHistory.all.each do |ch|
           
-
-           if ch.created_at < Date.today() && !ch.first_contact_state
+         if ch.first_contact_created_at != nil
+           if ch.first_contact_created_at < Date.today() && !ch.first_contact_state
                         
                 ch.first_contact_state = true
                 ch.save
 
            end 
+
+        end   
 
          
         if ch.child_first_created_at != nil
@@ -53,9 +55,9 @@ namespace :cierre do
 
           if ch.desenlace_created_at != nil
 
-            if ch.desenlace_created_at < Date.today() && !ch.outcome_state
+            if ch.desenlace_created_at < Date.today() && !ch.desenlace_first
                         
-                ch.outcome_state = true
+                ch.desenlace_first = true
                 ch.save
 
            end   

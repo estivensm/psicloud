@@ -50,10 +50,10 @@ class ChildGeneralDatesController < ApplicationController
                      
 
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
-    if @clinic_history.first_child_first != true
+    if @clinic_history.first_child_first != true && @clinic_history.child_first_created_at == nil
 
                   @clinic_history.child_first_created_at = Date.today
-                  @clinic_history.first_child_first = true
+                  @clinic_history.first_child_first = false
                   @clinic_history.save
                   
 

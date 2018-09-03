@@ -54,7 +54,7 @@
       <%= form.select :consult_reason_id,
          ConsultReason.all.map { |u| ["#{u.name}", u.id] },
                     { include_blank: "Ninguna" },
-                    { class: 'chosen-select1 form-control ch' ,disabled: false }
+                    { class: 'chosen-select1 form-control ch' ,disabled: @clinic_history.first_contact_state }
          %>
    </div>
    <br>

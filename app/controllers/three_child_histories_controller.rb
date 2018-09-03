@@ -48,10 +48,10 @@ class ThreeChildHistoriesController < ApplicationController
   def update
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
-    if @clinic_history.first_child_four  != true
+    if @clinic_history.first_child_four  != true & @clinic_history.four_child_created_at == nil
 
                   @clinic_history.four_child_created_at = Date.today
-                  @clinic_history.first_child_four  = true
+                  @clinic_history.first_child_four  = false
                   @clinic_history.save
                   
 

@@ -50,10 +50,10 @@ class PersonalHistoriesController < ApplicationController
   def update
     @patient = Patient.find(params[:patient_id])
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
-        if @clinic_history.first_child_second != true
+        if @clinic_history.first_child_second != true && @clinic_history.second_child_created_at == nil
 
                   @clinic_history.second_child_created_at = Date.today
-                  @clinic_history.first_child_second = true
+                  @clinic_history.first_child_second = false
                   @clinic_history.save
                   
 

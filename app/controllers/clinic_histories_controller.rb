@@ -199,6 +199,13 @@ end
 
         end
 
+         if @clinic_history.first_contact_state != true && @clinic_history.first_contact_created_at == nil
+
+                  @clinic_history.first_contact_created_at = Date.today
+                  @clinic_history.first_contact_state = true
+                  @clinic_history.save
+         end  
+
 
         format.html { 
                if !@clinic_history.child_history && !@clinic_history.child_general_date
@@ -259,10 +266,10 @@ end
 
 
 
-              if @clinic_history.desenlace_first != true
+              if @clinic_history.desenlace_first != true && @clinic_history.desenlace_created_at == nil
 
                   @clinic_history.desenlace_created_at = Date.today
-                  @clinic_history.desenlace_first = true
+                  @clinic_history.desenlace_first = false
                   @clinic_history.save
               end  
 

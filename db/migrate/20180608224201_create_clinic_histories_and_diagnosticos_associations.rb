@@ -13,4 +13,3 @@ end
 
 
 
- ClinicHistory diagnostico_id
