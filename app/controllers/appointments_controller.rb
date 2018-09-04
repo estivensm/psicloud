@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
   respond_to :json
   def get_appointments
     
-    @appointment = Appointment.where( admin_user: current_user.admin_user).where( user_id: current_user.id)
+    @appointment = Appointment.where( admin_user: current_user.admin_user).abiertas.where( user_id: current_user.id)
     events = []
     @appointment.each do |task|
       
@@ -35,7 +35,7 @@ class AppointmentsController < ApplicationController
 
 
   def get_appointments_admin
-    @appointment = Appointment.where( admin_user: current_user.admin_user)
+    @appointment = Appointment.where( admin_user: current_user.admin_user).abiertas
     events = []
     @appointment.each do |task|
       
@@ -205,6 +205,66 @@ def citas_historico
 
   end  
 
+  def citas_historico_admin
+     
+    @appointments = Appointment.where(admin_user: current_user.admin_user).cerradas.search(params[:search], params[:search1]).page(params[:page]).per_page(20)
+    @params = params[:search].present? ? params[:search] : "Todos"
+    @params1 = params[:search1].present? ? params[:search1] : "Todos"
+   
+    if params[:search].present? 
+    @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida")).each do |app|
+          
+          if app.start_datetime < Time.now()
+                  
+              app.state = "Vencida"
+              app.save
+          
+          else 
+            app.state = "Vigente"
+            app.save
+          end     
+        
+      end  
+
+    end
+    
+     citas = !params[:search1].present? ? "Todas las Citas" : "Citas del #{get_only_date(params[:search1].to_date)}" 
+     respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => citas,
+        header: { right: '[page] of [topage]' },
+        :template => 'appointments/pdfs/citas.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb',
+                     :right => 'Page [page] of [topage]',
+                     :font_size => 7
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end   
+   
+
+
+
+
+
+  end  
+
 
 def citas_calendar
      
@@ -268,9 +328,53 @@ end
   end
 
 
+   def citas_pdf_admin
+    @search_tipo = params[:tipo] == "abiertas" ? Appointment.where(admin_user: current_user.admin_user).abiertas : Appointment.where(admin_user: current_user.admin_user).cerradas
+    @search = params[:patient] == "Todos" ? "" : params[:patient]
+    @patient = @search != "" ?  "#{Patient.find(@search).first_name} #{Patient.find(@search).first_last_name}" : "Todos los Pacientes"
+    @search1 = params[:fecha] == "Todos" ? "" : params[:fecha] 
+    @appointments =  @search_tipo.search(@search, @search1).page(params[:page]).per_page(20)
+     citas = !params[:search1].present? ? "Todas las Citas" : "Citas del #{get_only_date(params[:search1].to_date)}" 
+     respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => citas,
+        header: { right: '[page] of [topage]' },
+        :template => 'appointments/pdfs/citas.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb',
+                     :right => 'Page [page] of [topage]',
+                     :font_size => 7
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end   
+   
+
+
+
+
+
+  end
+
+
   def citas_admin
     
-    @appointments = Appointment.where(admin_user: current_user.admin_user).search(params[:search], params[:search1]).page(params[:page]).per_page(20)
+    @appointments = Appointment.where(admin_user: current_user.admin_user).abiertas.search(params[:search], params[:search1]).page(params[:page]).per_page(20)
     @params = params[:search].present? ? params[:search] : "Todos"
     @params1 = params[:search1].present? ? params[:search1] : "Todos"
    

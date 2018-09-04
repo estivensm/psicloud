@@ -1,4 +1,5 @@
 
+
 <div class="row margin-top-40" >
   
    <div class="col-md-10" style="padding-left: 10px;">
@@ -20,9 +21,10 @@
 <br>
 
 <ul class="nav nav-tabs">
-  <li class="active"><%=link_to "Lista Abiertasa", citas_path %></li>
-  <li ><%=link_to "Calendario Abiertas", citas_calendar_path %></li>
-   <li ><%=link_to "Historico", citas_historico_path %></li>
+  <li ><%=link_to "Lista Abiertas", citas_admin_path %></li>
+  <li ><%=link_to "Calendario Abiertas", citas_calendar_admin_path %></li>
+   <li class="active"><%=link_to "Historico", citas_historico_admin_path %></li>
+
 
 </ul>
 
@@ -42,10 +44,10 @@
           
          </div>
           <div class="col-md-1" style="right: -207px;">
-             <%= link_to citas_pdf_path(@params, @params1, "abiertas" , :format => "pdf" )  , style: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+             <%= link_to citas_pdf_admin_path(@params, @params1, "cerradas", :format => "pdf" )  , style: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>
           </div>
-            <%= form_tag  citas_path, :method => 'get' do%>
+            <%= form_tag  citas_historico_admin_path, :method => 'get' do%>
               <div class="col-md-2" style=" right: -162px;">
                 <%= select_tag 'search', options_for_select(get_patient.collect{ |u| ["#{u.first_name} #{u.second_name}", u.id] },{}), {:multiple => false,class: 'form-control', include_blank: "Paciente"}%>
               </div>

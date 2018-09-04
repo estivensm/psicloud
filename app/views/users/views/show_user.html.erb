@@ -5,13 +5,13 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-12 lead">Patirn Atendidos<hr></div>
+            <div class="col-md-12 lead">Perfil de Usuario<hr></div>
           </div>
           <div class="row">
             <div class="col-md-4 col-md-offset-10">
               <span class="count">
-                <label style="font-size: 12px;" class="lab">Pacientes Atendidos: </label><br>
-                <%=@patient.count%>
+                <label style="font-size: 12px;" class="lab">Pacientes Atendidos </label><br>
+                <%=@patient.where(user_id:@user.id).count%>
               </span>
 
             </div>
@@ -31,7 +31,7 @@
                   <span class="text-muted">Fecha de Nacimiento:</span> <%=@user.birth_date%><br>
                   <span class="text-muted">Documento:</span> <%=@user.document%><br>
                   <span class="text-muted">Registro Medico:</span> <%=@user.medical_record%><br>
-                  <span class="text-muted">Targeta Professional:</span> <%=@user.professional_card%><br>
+                  <span class="text-muted">Tarjeta Professional:</span> <%=@user.professional_card%><br>
                  
                 </div>
                 <div class="col-md-6" style="display:none">

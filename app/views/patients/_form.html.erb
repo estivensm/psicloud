@@ -75,7 +75,7 @@
                <%= form.label "Documento" %> *
                <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-id-card" style = "color: #f1f1f1;" ></i></span>
-               <%= form.number_field :document, id: :patient_document , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio4" %>
+               <%= form.number_field :document, id: :patient_document , class: "form-control", :title => "Es un Campo Obligatorio", id: "cambio4" %>
              </div>
             </div>
          </div>
@@ -127,7 +127,7 @@
                <%= form.label "Telefono Fijo" %> *
                <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-phone"  style = "color: #f1f1f1;" ></i></span>
-               <%= form.text_field :phone, id: :patient_phone ,class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio7" %>
+               <%= form.text_field :phone, id: :patient_phone ,class: "form-control", :title => "Es un Campo Obligatorio", id: "cambio7" %>
              </div>
             </div>
          </div>
@@ -136,7 +136,7 @@
                <%= form.label "Telefono Movil" %> *
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-mobile-alt"  style = "color: #f1f1f1;" ></i></span>
-               <%= form.text_field :movil, id: :patient_movil  , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio8"%>
+               <%= form.text_field :movil, id: :patient_movil  , class: "form-control", :title => "Es un Campo Obligatorio", id: "cambio8"%>
             </div>
           </div>
          </div>
@@ -144,7 +144,7 @@
                <%= form.label "Email" %>
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-at"  style = "color: #f1f1f1;" ></i></span>
-               <%= form.email_field :email, id: :patient_email ,class: "form-control ", :title => "Es un Campo Obligatorio", id: "cambio9"%>
+               <%= form.email_field :email, id: :patient_email ,class: "form-control ", :title => "Formato de email invalido", id: "cambio9"%>
             </div>
          </div>
          <!--<div class="col-md-3">
@@ -420,7 +420,7 @@ $('#principal').change(function(){
     if (cambio == "prueba") {
        $( "#cambio" ).val("Prueba"); 
       $( "#cambio1" ).val("Rodrigo"); 
-      $( "#cambio2" ).val("Antonio")
+      $( "#cambio2" ).val("Salazar")
       $( "#cambio3" ).val("Rivera")
       $( "#cambio4" ).val("1037521332"); 
       $( "#cambio5" ).val("Medellin");
@@ -439,7 +439,7 @@ $('#principal').change(function(){
     }else if ( cambio == "niño") {
       $( "#cambio" ).val("Prueban"); 
       $( "#cambio1" ).val("Cristian"); 
-      $( "#cambio2" ).val("Antonio")
+      $( "#cambio2" ).val("Moncada")
       $( "#cambio3" ).val("Restrepo")
       $( "#cambio4" ).val("1023476456"); 
       $( "#cambio5" ).val("Bogota");

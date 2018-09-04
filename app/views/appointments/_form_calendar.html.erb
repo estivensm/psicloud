@@ -1,129 +1,97 @@
-
 <div id="contact-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-        <h4 class="modal-title">Crear Cita</h4>
-      </div>
-        
-    
-<%= form_tag create_calendar_path do %>
-
-
-  <div class="modal-body">
-<div class="row">
-   
-   <div class="col-md-12">
-   <%= select_tag 'patient_id', options_for_select(get_patient.collect{ |u| ["#{u.first_name} - #{u.first_last_name}", u.id] },{}), {:multiple => false,class: 'form-control chosen-select1', include_blank: false}%>
-</div>
-
-
-        <div class='col-sm-6'>
-        <br>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" name="start_datetime" value="<%=@start_datetime%>" />
-                    <span class="input-group-addon">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+            <h4 class="modal-title">Crear Cita</h4>
+         </div>
+         <%= form_tag create_calendar_path do %>
+         <div class="modal-body">
+            <div class="row">
+               <div class="col-md-12"> 
+                  <%= select_tag 'patient_id', options_for_select(get_patient.where(user_id: current_user.id).collect{ |u| ["#{u.first_name} - #{u.first_last_name}", u.id] },{}), {:multiple => false,class: 'form-control chosen-select1', include_blank: false}%>
+               </div>
+               <div class='col-sm-6'>
+                  <br>
+                  <div class="form-group">
+                     <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" name="start_datetime" value="<%=@start_datetime%>" />
+                        <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <script type="text/javascript">
+                  $(function () {
+                      $('#datetimepicker1').datetimepicker({
+                          format : 'YYYY/MM/DD hh:mm a' ,
+                  
+                      });
+                  });
+               </script>
             </div>
-        </div>
-       <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker({
-                format : 'YYYY/MM/DD hh:mm a' ,
-
-            });
-        });
-    </script>
-  
- 
-    
-</div>
-
-
-
-
-<div class="row">
-<div class="col-md-5">
-    <div class="field">
-    <%= label_tag "Duracion (minutos)" %>
+            <div class="row">
+               <div class="col-md-5">
+                  <div class="field">
+                     <%= label_tag "Duracion (minutos)" %>
+                     <%= select_tag :duration, options_for_select( [10, 20, 30,40,50,60,70,80,90,100,110,120]),{:class => "form-control fsg"} %>
+                  </div>
+               </div>
+               <div class="col-md-7">
+               </div>
+            </div>
+            <br>
+            <div class="field">
+               <%= label_tag "Observaciones" %>
+               <%= text_area_tag :observations, nil,id: :appointment_observations, class: "form form-control area"  %>
+            </div>
+            <%= hidden_field_tag :admin_user ,  current_user.admin_user%>
+            <%= hidden_field_tag :user_id ,  current_user.id%>
+         </div>
+         <div class="modal-footer text-center">
+            <div class="actions">
+               <%= submit_tag "Guardar" , class: "btn btn-primary"%>
+            </div>
+         </div>
+         <% end %>
+      </div>
+   </div>
+   <script>
+   a = $('.state').val();
+     console.log(a)
+     if (a == "Cancelada")
+     {
    
-    <%= select_tag :duration, options_for_select( [10, 20, 30,40,50,60,70,80,90,100,110,120]),{:class => "form-control fsg"} %>
-        
-  </div>
-</div>
-<div class="col-md-7">
-    
-
-
-</div>
-  
-</div>
-
-
-<br>
-  <div class="field">
-    <%= label_tag "Observaciones" %>
-    <%= text_area_tag :observations, nil,id: :appointment_observations, class: "form form-control area"  %>
-  </div>
-
-
-
-
-
-
-
-
-<%= hidden_field_tag :admin_user ,  current_user.admin_user%>
-<%= hidden_field_tag :user_id ,  current_user.id%>
-  </div>
- <div class="modal-footer text-center">
-       
-  <div class="actions">
-    <%= submit_tag "Guardar" , class: "btn btn-primary"%>
-  </div>
-    </div>
-<% end %>
-
- </div> </div>
-<script>
-
-a = $('.state').val();
-  console.log(a)
-  if (a == "Cancelada")
-  {
-
-    $('.cancel').show();
-  }
-  else
-  {
-    $('.cancel').hide();
-  }
-
-
-  $('.datetimepicker').datetimepicker({
-    step: 5
-  });
-
-  
-$('.state').on('change', function(){
-
-  a = $('.state').val();
-  console.log(a)
-  if (a == "Cancelada")
-  {
-
-    $('.cancel').show();
-  }
-  else
-  {
-    $('.cancel').hide();
-  }
-
-})
-
-
+       $('.cancel').show();
+     }
+     else
+     {
+       $('.cancel').hide();
+     }
+   
+   
+     $('.datetimepicker').datetimepicker({
+       step: 5
+     });
+   
+     
+   $('.state').on('change', function(){
+   
+     a = $('.state').val();
+     console.log(a)
+     if (a == "Cancelada")
+     {
+   
+       $('.cancel').show();
+     }
+     else
+     {
+       $('.cancel').hide();
+     }
+   
+   })
+   
+   
 </script>
+</div>

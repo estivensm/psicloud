@@ -7,15 +7,17 @@ es:
       not_found: "no encontrado"
       not_locked: "was not locked"
       not_saved:
-        one: "Ocurrido 1 error de %{resource}"
-        other: "Ocurrieron %{count} errores el %{resource} no se puede guardar:"
+        one: ""
+        other: ""
   activerecord:
     errors:
       models:
         user:
           attributes:
+            password_confirmation:
+              confirmation: "" 
             current_password:
-              blank: "debe estar ingresada para guardar los cambios"
+              blank: ""
         clinic_history:
           attributes:
             consult_reason: 
@@ -24,7 +26,7 @@ es:
       user: 
         name: "Nombre"
         password: "Contraseña"
-        password_confirmation: "Confirmación de contraseña"
+        password_confirmation: "Las nuevas constraseñas no coinsiden"
         current_password: "Contraseña actual"
       clinic_history:
         consult_reason_id: "Tipo de Razon de Consulta"

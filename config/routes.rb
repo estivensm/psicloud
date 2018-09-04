@@ -46,12 +46,17 @@ Rails.application.routes.draw do
 
   get "citas", to: "appointments#citas", as: "citas"
   get "citas_historico", to: "appointments#citas_historico", as: "citas_historico"
+  get "citas_historico_admin", to: "appointments#citas_historico_admin", as: "citas_historico_admin"
 
   get "citas_calendar", to: "appointments#citas_calendar", as: "citas_calendar"
   get "citas_calendar_admin", to: "appointments#citas_calendar_admin", as: "citas_calendar_admin"
   
   get "citas_pdf/:patient/:fecha/:tipo", to: "appointments#citas_pdf", as: "citas_pdf"
   get "citas_admin", to: "appointments#citas_admin", as: "citas_admin"
+  get "citas_pdf_admin/:patient/:fecha/:tipo", to: "appointments#citas_pdf_admin", as: "citas_pdf_admin"
+
+
+
   get "appointments/get_appointments", to: "appointments#get_appointments"
   get "appointments/get_appointments_admin", to: "appointments#get_appointments_admin"
   get "patients/change_state_appointment/:id/:state", to: "appointments#change_state_appointment" , as: "change_state_appointment"

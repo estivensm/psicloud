@@ -42,6 +42,7 @@ module PatientDecorator
 		[
       ['Cedula de Ciudadanía', 'Cedula de Ciudadanía'],
       ['Tarjeta de Identidad', 'Tarjeta de Identidad'],
+      ['Registro Civil', 'Registro Civil'],
       ['Cédula de Extranjeria', 'Cedula de Extranjeria'],
       ['Pasaporte', 'Pasaporte'],
       ['Menor Sin Identificación', 'Menor Sin Identificación'],
