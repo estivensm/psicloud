@@ -25,20 +25,26 @@
 <div class="row">
    <div class="col-md-12">
       <%= form.label "Fecha" %><br>
-      <div class="form-group date_select">
-         <%= form.datetime_select :start_datetime,{
-            :default => { :hour => 00, :minute => 00 },
-            :start_year => Time.now.year + 3,
-            :end_year => Time.now.year,
-            :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
-            :use_short_month => true,
-            :order => [:day, :month, :year],
-            :start_minute => 10    
-            },
-            {:class => 'year form-control line1 required',
-            :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
-            %>
-      </div>
+   
+                <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    <%= form.text_field :start_datetime, class: "form form-control"%>
+                   
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        
+       <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format : 'YYYY/MM/DD hh:mm a' ,
+
+            });
+        });
+    </script>
+  
    </div>
 </div>
 
@@ -69,7 +75,7 @@
     <%= form.text_area :observations, id: :appointment_observations, class: "form form-control area"  %>
   </div>
 
-
+<br>
 
 <%val1 = "" 
  action_name == "edit" ? val1 = "" : val1 = "display:none" %>

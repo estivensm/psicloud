@@ -110,13 +110,14 @@ end
   # GET /patients/1.json
   def show
       
-       
+        @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
         @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @clinic_history = @patient.clinic_histories.first
+        @last_tracing = @patient.clinic_histories.first.tracings.last
         @appointment_l = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc).last
          
-      render :layout => 'admin_patient'   
+        render :layout => 'admin_patient'   
       
   end
 

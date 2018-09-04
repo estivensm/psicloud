@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @patient = Patient.find(params[:patient_id])
-    @appointments = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc)
+    @appointments = @patient.appointments.order(start_datetime: :desc)
   end
 
   # POST /tasks
@@ -36,46 +36,40 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @patient = Patient.find(params[:patient_id])
 
-    respond_to do |format|
+   
       if @task.save
 
-        @appointment = Appointment.find(@task.appointment_id)
-        @task.fecha_compromiso = @appointment.start_datetime.to_date
+        #@appointment = Appointment.find(@task.appointment_id)
+        #@task.fecha_compromiso = @appointment.start_datetime.to_date
         @task.save
-        format.html { redirect_to patient_tasks_path(@patient.id), notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        @tasks = @patient.tasks.abiertas
+ 
       end
-    end
+   
   end
 
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    respond_to do |format|
+    @patient = Patient.find(params[:patient_id])
+
       if @task.update(task_params)
-        @appointment = Appointment.find(@task.appointment_id)
-        @task.fecha_compromiso = @appointment.start_datetime.to_date
+        #@appointment = Appointment.find(@task.appointment_id)
+        #@task.fecha_compromiso = @appointment.start_datetime.to_date
         @task.save
-        format.html { redirect_to patient_tasks_path(@patient.id), notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        @tasks = @patient.tasks.abiertas
       end
-    end
+
   end
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @patient = Patient.find(params[:patient_id])
+    @taskd = @task
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to patient_tasks_path(@patient.id), notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+
+ 
   end
 
   private

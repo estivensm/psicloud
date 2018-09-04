@@ -40,8 +40,8 @@
             <p>Citas <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span></p>
           
          </div>
-          <div class="col-md-1">
-             <%= link_to citas_pdf_path(@params, @params1, :format => "pdf" )  , class: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+          <div class="col-md-1" style="right: -207px;">
+             <%= link_to citas_pdf_path(@params, @params1, :format => "pdf" )  , style: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>
           </div>
             <%= form_tag  citas_path, :method => 'get' do%>

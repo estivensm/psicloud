@@ -825,3 +825,83 @@
                </div>
             </div>
             <%end%>
+
+
+
+
+
+
+
+//
+
+
+       <div class="row tit1" style="display: none">
+            <div class="col-md-6">
+               <h2 style="color:gray" >INFORMACION GENERAL</h2>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title"> Motivo de consulta</h3>
+            </div>
+            <div class="panel-body">
+               <strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
+               <strong>Descripción: </strong><%= @clinic_history.consultation_reason %>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title"> Estado Actual</h3>
+            </div>
+            <div class="panel-body">
+               <%= @clinic_history.actual_state %>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">Dinamica  Familiar</h3>
+            </div>
+            <div class="panel-body">
+               <%= @clinic_history.family_dinamic   %>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">Hipotesis Diagnostica</h3>
+            </div>
+            <div class="panel-body">
+               <strong>Descripción: </strong><br>
+               <%=@clinic_history.diagnostic_hypothesis%><br><br>
+               <strong>DSMV: </strong>
+               <%@clinic_history.diagnostics.each do |ch|%>  
+               <span class="diagnostico"> <%=ch.name%></span>
+               <%end%><br><br>
+               <strong>Diagnostico Principal (CIE10): </strong>
+               <%if @clinic_history.diagnostico%>  
+               <span class="diagnostico"><%=@clinic_history.diagnostico.name %></span>
+               <%end%>
+               <br>
+               <br>
+               <strong>Diagnosticos Adicionales (CIE10): </strong>
+               <%@clinic_history.diagnosticos.each do |ch|%>  
+               <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span> 
+               <%end%>    
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title"> Objetivo Terapeoutico</h3>
+            </div>
+            <div class="panel-body">
+               <%= @clinic_history.therapeutic_goal %>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">Tipo de Tratamiento</h3>
+            </div>
+            <div class="panel-body">
+               <%= @clinic_history.type_of_treatment %>
+            </div>
+         </div>
+      </div>            

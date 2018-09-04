@@ -54,7 +54,7 @@ $("#calendar").fullCalendar({
     
     themeSystem: 'jquery-ui',
     defaultView: 'agendaWeek',
-    //selectable:true,
+    selectable:true,
     selectHelper:true,
     editable:true,
     

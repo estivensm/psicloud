@@ -1,0 +1,32 @@
+
+<% if @task.errors.blank? %>
+  $('#contact-modal').modal('hide');
+
+  
+    $('#task<%=@taskd.id%>').remove();
+
+
+$('.msg-task').removeClass('alert-success');
+$('.msg-task').addClass('alert-danger'); 
+
+
+
+
+
+$('.msg-task').html("La tarea se borro con exito");
+$('.msg-task').fadeIn();
+setTimeout(function(){
+  
+  $('.msg-task').fadeOut()
+  
+}, 2000)
+
+<% else %>
+$(".alert").css("display", "block");
+  // TODO: show the errors in the UI
+  $('.alert').empty('<p></p>');
+  <% @task.errors.full_messages.each do |msg| %>
+          $('.alert').append('<p><%=msg%></p>');
+        <% end %>
+
+<% end %>

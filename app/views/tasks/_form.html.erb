@@ -14,7 +14,7 @@
 
          <div class="modal-body">
 
-  <%= form_for([@patient, @task]) do |form| %>
+  <%= form_for([@patient, @task], remote:true) do |form| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -32,9 +32,19 @@
     <%= form.number_field :appointment_id, id: :task_appointment_id %>
   </div>-->
 
+  <div class="form-group">
+   <%= form.label "Fecha de Compromiso" %><br>
+                <div class='input-group date' id='datetimepicker2'>
+                    <%= form.text_field :fecha_compromiso, class: "form form-control required fecha_compromiso" , :title => "Es un Campo Obligatorio"%>
+                   
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
 
     
-        <div class="form-group">
+        <div class="form-group" style="display: none">
                <%= form.label "Asociar a Cita" %><br>
                <%= form.select :appointment_id,
                   @appointments.map { |u| ["#{get_date_hora(u.start_datetime)}", u.id] },
@@ -53,7 +63,7 @@
 
 
     <div class="field">
-    <%= form.label :Descripcion %><br>
+    <%= form.label "Descripcion de la Tarea" %><br>
     <%= form.text_area :description, id: :task_description, class: "form form-control area required", :title => "Es un Campo Obligatorio"  %>
   </div>
  <br>
@@ -141,7 +151,14 @@
    
      });
    
-   
+
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'YYYY/MM/DD'
+
+            });
+        });
+  
    
 </script>
 

@@ -150,6 +150,11 @@ def citas_calendar
     
 end   
    
+   
+def citas_calendar_admin
+     
+    
+end    
 
 
 
@@ -204,8 +209,60 @@ end
 
   def citas_admin
     
-    @appointments = Appointment.where(admin_user: current_user.admin_user).page(params[:page]).per_page(20)
+    @appointments = Appointment.where(admin_user: current_user.admin_user).search(params[:search], params[:search1]).page(params[:page]).per_page(20)
+    @params = params[:search].present? ? params[:search] : "Todos"
+    @params1 = params[:search1].present? ? params[:search1] : "Todos"
+   
+    if params[:search].present? 
+    @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida")).each do |app|
+          
+          if app.start_datetime < Time.now()
+                  
+              app.state = "Vencida"
+              app.save
+          
+          else 
+            app.state = "Vigente"
+            app.save
+          end     
+        
+      end  
+
+    end
     
+     citas = !params[:search1].present? ? "Todas las Citas" : "Citas del #{get_only_date(params[:search1].to_date)}" 
+     respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => citas,
+        header: { right: '[page] of [topage]' },
+        :template => 'appointments/pdfs/citas.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb',
+                     :right => 'Page [page] of [topage]',
+                     :font_size => 7
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end   
+   
+
+
+
   end
 
   def state
@@ -474,8 +531,10 @@ end
     minuto = start.minute < 12 ?  "0" : ""   
 
 
-    @start_datetime = start.year.to_s + "-" + mes +start.month.to_s +  "-" + dia +start.day.to_s + "T" + hora + start.hour.to_s + ":" +  minuto + start.minute.to_s  
-   
+    @start_datetime = start.year.to_s + "/" + mes +start.month.to_s +  "/" + dia +start.day.to_s + " " + hora + start.hour.to_s + ":" +  minuto + start.minute.to_s  
+     
+
+
     @appointment = Appointment.new
   end
 

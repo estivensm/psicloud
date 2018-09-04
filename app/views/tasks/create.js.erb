@@ -1,0 +1,25 @@
+console.log("entre");
+<% if @task.errors.blank? %>
+  $('#contact-modal').modal('hide');
+ 
+<%if @tasks.count >1 %>
+    
+    $('.tasks_patient').prepend("<%= j render 'patients/tasks/task', task: @task, patient: @patient %>");
+
+  <%else%>
+
+    $('.tasks_patient').html("<%= j render 'patients/tasks/tasks', tasks: @tasks, patient: @patient  %>");
+
+
+  <%end%>
+
+console.log("<%= @tasks.count %>")
+<% else %>
+$(".alert").css("display", "block");
+  // TODO: show the errors in the UI
+  $('.alert').empty('<p></p>');
+  <% @task.errors.full_messages.each do |msg| %>
+          $('.alert').append('<p><%=msg%></p>');
+        <% end %>
+
+<% end %>

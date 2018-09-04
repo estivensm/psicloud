@@ -1,0 +1,34 @@
+
+<% if @task.errors.blank? %>
+  $('#contact-modal').modal('hide');
+
+   <%if @task.estado%>
+    $('#task<%=@task.id%>').remove();
+    $('.msg-task').removeClass('alert-danger');
+    $('.msg-task').addClass('alert-success'); 
+    $('.msg-task').html("La tarea se envio al historial");
+    $('.msg-task').fadeIn()
+    setTimeout(function(){
+  
+        $('.msg-task').fadeOut()
+  
+    }, 2000)
+  <%else%>
+       $('#task<%=@task.id%>').html("<%= j render 'patients/tasks/task', task: @task, patient: @patient  %>");
+       
+
+  <%end%> 
+
+
+
+
+
+<% else %>
+$(".alert").css("display", "block");
+  // TODO: show the errors in the UI
+  $('.alert').empty('<p></p>');
+  <% @task.errors.full_messages.each do |msg| %>
+          $('.alert').append('<p><%=msg%></p>');
+        <% end %>
+
+<% end %>

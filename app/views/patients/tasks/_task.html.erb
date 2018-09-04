@@ -1,0 +1,12 @@
+  <div id="task<%=task.id%>">
+  <% estado =  task.fecha_compromiso > Time.now.to_date ? "alert-success" : "alert-danger" %>
+ <div class="<%=estado%> text-left" style="padding:5px;margin-bottom:10px">
+                              <span><i class="fa fa-calendar" style = "font-size:16px;" aria-hidden="true"></i> <%=task.fecha_compromiso%>  </span>
+                              <span style="float: right">
+                               <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon" do  %>
+                                  <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
+                               <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class:"icon" do %>
+                                  <i class="fa fa-trash" aria-hidden="true"></i><%end%></span>
+                            <br>
+                                <%=task.description%>
+</div></div>

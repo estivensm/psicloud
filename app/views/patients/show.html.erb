@@ -1,95 +1,81 @@
-         <%if @clinic_history != nil%>
-               <div class="">
-         
-                  <div class="row tit1">
-                     <div class="col-md-6">
-                        <h2 style="color:gray" >INFORMACION GENERAL</h2>
-                     </div>
-                   
+<div class="row" style="margin-left: 0px !important;
+   margin-right: 0px !important;">
+   <div class="col-md-12">
+      <%if @clinic_history != nil%>
+      <div class="">
+         <div class="row">
+            <div class="col-md-5
+               ">
+               <div class="panel panel-default">
+                  <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i><span> Proxima cita </span>
                   </div>
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title"> Motivo de consulta</h3>
-                     </div>
-                     <div class="panel-body">
-                       <strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
-                        <strong>Descripción: </strong><%= @clinic_history.consultation_reason %>
-                     </div>
+                  <div class="panel-body" style="min-height: 100px;padding-bottom:10px;">
+                     <%if !@appointment_l.nil?%>
+                     <span style="font-size: 18px;color: #1d96ff;"> <%=get_date_hora(@appointment_l.start_datetime)%></span><br>
+                     <% color = @appointment_l.state == "Vigente"  ? "success" : "danger" %>
+                     <% color_text = @appointment_l.state == "Vigente" ? "#46765a" : "#a94442" %>
+                     <br>
+                     <strong>Observaciones:</strong> <%=@appointment_l.observations%><br><br>
+                    <!-- <%= link_to "Realizada", cambiar_path(@appointment_l.id, "Realizada"),remote: true, method: :post, class: "btn btn-success", style: "font-size: 10px;"%>
+                     <%= link_to "Cancelada", cambiar_path(@appointment_l.id, "Cancelada" ),remote: true, method: :post, class: "btn btn-danger", style: "font-size: 10px;"  %>
+                     <%= link_to "No Asistio", cambiar_path(@appointment_l.id , "No Asistio"),remote: true, method: :post, class: "btn btn-info", style: "font-size: 10px;"  %>
+                     <%else%>
+                     <h3 style="text-align: center">NO TIENES CITA PROGRAMADA</h3>
+                     <%end%>-->
                   </div>
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title"> Estado Actual</h3>
+               </div>
+               <div class="panel panel-default">
+                  <div class="panel-heading">Tareas <span style="float:right">  <%= link_to '+ Crear Tarea', new_patient_task_path(@patient.id), remote:true, class: ""  %></span></div>
+                  <div class="panel-body">
+                     <div class="alert-success msg-task text-center" style="padding-left: 5px;display: none;margin-bottom: 10px;">
+                       Tarea enviada al historial
                      </div>
-                     <div class="panel-body">
-                        <%= @clinic_history.actual_state %>
-                     </div>
-                  </div>
-                    <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title">Dinamica  Familiar</h3>
-                     </div>
-                     <div class="panel-body">
-                        <%= @clinic_history.family_dinamic   %>
-                     </div>
-                  </div>
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title">Hipotesis Diagnostica</h3>
-                     </div>
-                     <div class="panel-body">
-                        <strong>Descripción: </strong><br>
-                        <%=@clinic_history.diagnostic_hypothesis%><br><br>
-                        <strong>DSMV: </strong>
-                        <%@clinic_history.diagnostics.each do |ch|%>  
-                        <span class="diagnostico"> <%=ch.name%></span>
-                        <%end%><br><br>
-                       
-                         <strong>Diagnostico Principal (CIE10): </strong>
-                         <%if @clinic_history.diagnostico%>  
-                         <span class="diagnostico"><%=@clinic_history.diagnostico.name %></span>
+                     
+                     <div class="tasks_patient">
+                        <%if @patient.tasks.abiertas.count > 0%>
+                          <%= render "patients/tasks/tasks", patient: @patient%>
+                         <%else%>
+                          <h3 style="text-align: center">NO HAY TAREAS</h3>
                          <%end%>
-                         <br>
-                         <br>
-                        <strong>Diagnosticos Adicionales (CIE10): </strong>
-                        <%@clinic_history.diagnosticos.each do |ch|%>  
-                        <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span> 
-                        <%end%>    
-                         
-   
-                     </div>
-                  </div>
-
-
-               
-
-
-
-
-
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title"> Objetivo Terapeoutico</h3>
-                     </div>
-                     <div class="panel-body">
-                        <%= @clinic_history.therapeutic_goal %>
-                     </div>
-                  </div>
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title">Tipo de Tratamiento</h3>
-                     </div>
-                     <div class="panel-body">
-                        <%= @clinic_history.type_of_treatment %>
                      </div>
                   </div>
                </div>
-               <%else%>
-            
-               <div class="alert-info" style="padding:20px;">
-                  <h2 class="text-center" >El paciente no tiene Historia Clinica <br><br> 
-                     <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_hc%>
-                  </h2>
+            </div>
+            <div class="col-md-7
+               ">
+               <div class="panel panel-default">
+                  <div class="panel-heading">Ultimo Seguimiento</div>
+                  <div class="panel-body" style="min-height: 100px;">
+                     <%if !@last_tracing.nil?%>
+                     <strong>Fecha:</strong> <%=@last_tracing.tracing_date %> &nbsp;
+                     <%= link_to 'Ver <i class="fa fa-file-text" aria-hidden="true"></i>'.html_safe ,@last_tracing.attachment_url if @last_tracing.attachment_url%><br>
+                     <br><strong>Descripción:</strong> <%=@last_tracing.description%><br>
+                     <% if @field_default.observation_tracing_state  == true%>
+                     <br><strong>Observaciones:</strong> <%=@last_tracing.observation%><br>
+                     <% end -%>
+                     <% if @field_default.evolution_tracing_state  == true %>
+                     <br><strong>Evolucion:</strong> <%=@last_tracing.evolution%><br>
+                     <% end -%>
+                     <% @clinic_history.crete_fields.where(tracing_id: @last_tracing.id).order(id: :asc).each do |field| %>
+                     <%if field.field.form == "Seguimiento" && field.field.state %>
+                     <strong><%=field.field.name%>: </strong><br> <%=field.content%><br>
+                     <%end%>
+                     <%end%>
+                     <%else%>
+                     <h3 style="text-align: center">AUN NO HAY SEGUIMIENTOS</h3>
+                     <%end%>
+                  </div>
                </div>
-               <%end%>
-
-   <%= render "form_send_history", patient: @patient%>            
+            </div>
+         </div>
+  
+      <%else%>
+      <div class="alert-info" style="padding:20px;">
+         <h2 class="text-center" >El paciente no tiene Historia Clinica <br><br> 
+            <%= link_to "Crear Historia Clinica", new_patient_clinic_history_path(@patient.id), class: "btn btn-primary", style: "font-size:20px" if current_user.rol.create_hc%>
+         </h2>
+      </div>
+      <%end%>
+   </div>
+</div>
+<%= render "form_send_history", patient: @patient%>
