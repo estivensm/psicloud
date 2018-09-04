@@ -4,7 +4,7 @@ class FieldsController < ApplicationController
   # GET /fields
   # GET /fields.json
   def index
-    @fields = Field.all
+    @fields = Field.where(admin_user: current_user.admin_user)
   end
 
   # GET /fields/1
