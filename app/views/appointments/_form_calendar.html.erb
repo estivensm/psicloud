@@ -17,11 +17,26 @@
    <div class="col-md-12">
    <%= select_tag 'patient_id', options_for_select(get_patient.collect{ |u| ["#{u.first_name} - #{u.first_last_name}", u.id] },{}), {:multiple => false,class: 'form-control chosen-select1', include_blank: false}%>
 </div>
-
-   <div class="col-md-12">
-      <%= label_tag "Fecha" %><br>
-    <%= datetime_field_tag("start_datetime", "#{@start_datetime}", options = {})%>
-   </div>
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" name="start_datetime" value="" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
+ 
     
 </div>
 

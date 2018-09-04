@@ -1,0 +1,36 @@
+
+<div class="row margin-top-40" >
+  
+   <div class="col-md-10" style="padding-left: 10px;">
+    <div id='cssmenu'>
+       <ul>
+          <li><%= link_to "inicio", root_path%></li> 
+          <li class="active"><%= link_to "Citas", @appointments_path%></li>
+      </ul>
+    </div>
+   </div>
+   <div class="col-md-2">
+       <%= link_to "Crear Cita", new_calendar_path(Time.now), remote:true , class:"btn btn-primary"%></li>
+   </div>
+</div>
+
+
+<div class="container">
+
+<br>
+
+ <ul class="nav nav-tabs">
+  <li ><%=link_to "Lista", citas_path %></li>
+  <li class="active"><%=link_to "Calendario", citas_calendar_path %></li>
+
+</ul>
+<br>
+ <div class="row">
+  <div class="col-md-12">
+     <div id="calendar1">     
+     </div>
+  </div>
+   
+ </div>
+
+</div>
