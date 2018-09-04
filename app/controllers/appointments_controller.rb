@@ -86,7 +86,7 @@ class AppointmentsController < ApplicationController
 
   def citas
      
-    @appointments = Appointment.where(user_id: current_user.id).search(params[:search], params[:search1]).page(params[:page]).per_page(20)
+    @appointments = Appointment.where(user_id: current_user.id).abiertas.search(params[:search], params[:search1]).page(params[:page]).per_page(20)
     @params = params[:search].present? ? params[:search] : "Todos"
     @params1 = params[:search1].present? ? params[:search1] : "Todos"
    
@@ -145,6 +145,67 @@ class AppointmentsController < ApplicationController
   end
 
 
+def citas_historico
+     
+    @appointments = Appointment.where(user_id: current_user.id).cerradas.search(params[:search], params[:search1]).page(params[:page]).per_page(20)
+    @params = params[:search].present? ? params[:search] : "Todos"
+    @params1 = params[:search1].present? ? params[:search1] : "Todos"
+   
+    if params[:search].present? 
+    @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida")).each do |app|
+          
+          if app.start_datetime < Time.now()
+                  
+              app.state = "Vencida"
+              app.save
+          
+          else 
+            app.state = "Vigente"
+            app.save
+          end     
+        
+      end  
+
+    end
+    
+     citas = !params[:search1].present? ? "Todas las Citas" : "Citas del #{get_only_date(params[:search1].to_date)}" 
+     respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => citas,
+        header: { right: '[page] of [topage]' },
+        :template => 'appointments/pdfs/citas.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb',
+                     :right => 'Page [page] of [topage]',
+                     :font_size => 7
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end   
+   
+
+
+
+
+
+  end  
+
+
 def citas_calendar
      
     
@@ -164,11 +225,11 @@ end
 
 
    def citas_pdf
-    
+    @search_tipo = params[:tipo] == "abiertas" ? Appointment.where(user_id: current_user.id).abiertas : Appointment.where(user_id: current_user.id).cerradas
     @search = params[:patient] == "Todos" ? "" : params[:patient]
     @patient = @search != "" ?  "#{Patient.find(@search).first_name} #{Patient.find(@search).first_last_name}" : "Todos los Pacientes"
     @search1 = params[:fecha] == "Todos" ? "" : params[:fecha] 
-    @appointments = Appointment.where(user_id: current_user.id).search(@search, @search1).page(params[:page]).per_page(20)
+    @appointments =  @search_tipo.search(@search, @search1).page(params[:page]).per_page(20)
      citas = !params[:search1].present? ? "Todas las Citas" : "Citas del #{get_only_date(params[:search1].to_date)}" 
      respond_to do |format|
       format.html
@@ -276,7 +337,7 @@ end
   # GET /appointments/1
   # GET /appointments/1.json
   def show
-  
+    
 
 
     #client = Google::APIClient.new
@@ -291,12 +352,32 @@ end
 
   # GET /appointments/new
   def new
+    start = Time.now()
+    
+    mes = start.month < 10 ?  "0" : ""
+    dia = start.day < 12 ?  "0" : ""
+    hora = start.hour < 12 ?  "0" : ""
+    minuto = start.min < 12 ?  "0" : ""   
+
+
+    @start_datetime = start.year.to_s + "/" + mes +start.month.to_s +  "/" + dia +start.day.to_s + " " + hora + start.hour.to_s + ":" +  minuto + start.min.to_s  
+    
     @patient = Patient.find(params[:patient_id])
     @appointment = Appointment.new
   end
 
   # GET /appointments/1/edit
   def edit
+      start = @appointment.start_datetime
+    
+    mes = start.month < 10 ?  "0" : ""
+    dia = start.day < 12 ?  "0" : ""
+    hora = start.hour < 12 ?  "0" : ""
+    minuto = start.min < 12 ?  "0" : ""   
+
+
+    @start_datetime = start.year.to_s + "/" + mes +start.month.to_s +  "/" + dia +start.day.to_s + " " + hora + start.hour.to_s + ":" +  minuto + start.min.to_s  
+    
   end
 
   # POST /appointments

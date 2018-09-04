@@ -20,8 +20,10 @@
 <br>
 
 <ul class="nav nav-tabs">
-  <li class="active"><%=link_to "Lista", citas_path %></li>
-  <li ><%=link_to "Calendario", citas_calendar_path %></li>
+  <li ><%=link_to "Lista Abiertas", citas_path %></li>
+  <li ><%=link_to "Calendario Abiertas", citas_calendar_path %></li>
+   <li class="active"><%=link_to "Historico", citas_historico_path %></li>
+
 
 </ul>
 
@@ -41,10 +43,10 @@
           
          </div>
           <div class="col-md-1" style="right: -207px;">
-             <%= link_to citas_pdf_path(@params, @params1, :format => "pdf" )  , class: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+             <%= link_to citas_pdf_path(@params, @params1, "cerradas", :format => "pdf" )  , style: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>
           </div>
-            <%= form_tag  citas_path, :method => 'get' do%>
+            <%= form_tag  citas_historico_path, :method => 'get' do%>
               <div class="col-md-2" style=" right: -162px;">
                 <%= select_tag 'search', options_for_select(get_patient.collect{ |u| ["#{u.first_name} #{u.second_name}", u.id] },{}), {:multiple => false,class: 'form-control', include_blank: "Paciente"}%>
               </div>
@@ -69,6 +71,8 @@
             <% end -%>
          </div>
       </div>
+
+      
     
       <hr class="hr">
 
@@ -140,9 +144,7 @@
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
-
                text: 'Recuerda que el registro se borrara permanentemente',
-
               'image-url': ''}, class: "btnl btn-danger" do%>
              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>

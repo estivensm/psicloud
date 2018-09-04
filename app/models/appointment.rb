@@ -24,7 +24,10 @@ class Appointment < ApplicationRecord
 	belongs_to :patient
     has_many :tasks
     before_save :end_date
+    
 
+    scope :abiertas, -> { where('state=? OR state=?', 'Vigente', 'Vencida') }
+    scope :cerradas, -> { where('state=? OR state=? OR state=?', 'Realizada', 'Cancelada', 'No Asistio') }
 
 	def end_date
 

@@ -36,7 +36,7 @@
   <div class="form-group">
    <%= form.label "Fecha de Compromiso" %><br>
                 <div class='input-group date' id='datetimepicker2'>
-                    <%= form.text_field :fecha_compromiso, class: "form form-control required fecha_compromiso" , :title => "Es un Campo Obligatorio"%>
+                    <%= form.text_field :fecha_compromiso, value: @start_datetime, class: "form form-control required fecha_compromiso" , :title => "Es un Campo Obligatorio"%>
                    
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>

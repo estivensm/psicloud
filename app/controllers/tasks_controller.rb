@@ -19,6 +19,15 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
+    start = Time.now()
+    mes = start.month < 10 ?  "0" : ""
+    dia = start.day < 12 ?  "0" : ""
+    hora = start.hour < 12 ?  "0" : ""
+    minuto = start.min < 12 ?  "0" : ""   
+
+
+    @start_datetime = start.year.to_s + "/" + mes +start.month.to_s +  "/" + dia +start.day.to_s + " " + hora + start.hour.to_s + ":" +  minuto + start.min.to_s  
+    
     @patient = Patient.find(params[:patient_id])
     @task = Task.new
     @appointments = @patient.appointments.where(state: "Vigente").order(start_datetime: :desc)
@@ -26,6 +35,15 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+     start = @task.fecha_compromiso
+    
+    mes = start.month < 10 ?  "0" : ""
+    dia = start.day < 10 ?  "0" : ""
+
+
+
+    @start_datetime = start.year.to_s + "/" + mes +start.month.to_s +  "/" + dia +start.day.to_s 
+    
     @patient = Patient.find(params[:patient_id])
     @appointments = @patient.appointments.order(start_datetime: :desc)
   end
