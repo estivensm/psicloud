@@ -18,10 +18,10 @@
                      <strong>Observaciones:</strong> <%=@appointment_l.observations%><br><br>
                     <!-- <%= link_to "Realizada", cambiar_path(@appointment_l.id, "Realizada"),remote: true, method: :post, class: "btn btn-success", style: "font-size: 10px;"%>
                      <%= link_to "Cancelada", cambiar_path(@appointment_l.id, "Cancelada" ),remote: true, method: :post, class: "btn btn-danger", style: "font-size: 10px;"  %>
-                     <%= link_to "No Asistio", cambiar_path(@appointment_l.id , "No Asistio"),remote: true, method: :post, class: "btn btn-info", style: "font-size: 10px;"  %>
+                     <%= link_to "No Asistio", cambiar_path(@appointment_l.id , "No Asistio"),remote: true, method: :post, class: "btn btn-info", style: "font-size: 10px;"  %>-->
                      <%else%>
                      <h3 style="text-align: center">NO TIENES CITA PROGRAMADA</h3>
-                     <%end%>-->
+                     <%end%>
                   </div>
                </div>
                <div class="panel panel-default">
@@ -62,7 +62,7 @@
                      <%end%>
                      <%end%>
                      <%else%>
-                     <h3 style="text-align: center">AUN NO HAY SEGUIMIENTOS</h3>
+                     <h3 style="text-align: center">AÚN NO HAY SEGUIMIENTOS</h3>
                      <%end%>
                   </div>
                </div>
