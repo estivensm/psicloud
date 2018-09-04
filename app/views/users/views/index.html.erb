@@ -40,11 +40,15 @@
                   <td><%=user.document%></td>
                   <td><%=user.medical_record%></td>
                   <td><%=user.rol.name%></td>
-                  <td>  <%= link_to  edit_user_path(user),remote: true,  :class => "btnl btn-warning" do %>
-                    
-                     <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
 
-                <% end %>
+                  <td><%= link_to show_user_path(user.id), :class => "btnl btn-info" do %>
+                      <i class="far fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
+                    <% end -%>
+
+                  <%= link_to  edit_user_path(user),remote: true,  :class => "btnl btn-warning" do %>
+                     <i class="fa fa-pencil" style = "font-size:20px;" aria-hidden="true"></i>
+                  <% end %>
+
                 <%= link_to  delete_user_path(user),method: :delete, data: {
               confirm: '¿Estas Seguro?',
               'confirm-button-text': 'Borrar',
@@ -53,7 +57,6 @@
                text: 'Recuerda que el registro se borrara permanentemente',
               'image-url': ''}, :class => "btnl btn-danger" do %>
                     <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
-
                     
                 <% end %></td>
                </tr>
