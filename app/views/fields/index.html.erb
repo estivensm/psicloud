@@ -10,12 +10,25 @@
     <div class="col-md-12 export-icons text-right">
   </div>
 </div>
+<br><br>
 
-<br>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Campos Creados</a></li>
+    <% var = FieldDefault.where(admin_user:  current_user.admin_user).first%>  
+        <%if !var.nil?%>
+        <li><%= link_to "Formularios De Seguimiento" ,field_default_path(var.id)%>
+      <% end -%>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <br>
    <div class="row">
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p class="title-h2">Campos Creados   <span class="label label-primary"><%=@fields.count%></span> <span style = "font-size:12px;margin-left:20px;"></span> </p>
+            <p class="title-h2" style="margin-left: 10px;">Campos Creados   <span class="label label-primary"><%=@fields.count%></span> <span style = "font-size:12px;margin-left:20px;"></span> </p>
          </div>
 
          <div class = "col-md-6 text-right">
@@ -77,8 +90,12 @@
           <% end %>
         </tbody>
       </table>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      asdhgasdgajshdgj
+    </div>
   </div>
-<br>
+</div>
 
 <style type="text/css">
   .glyphicon-remove{

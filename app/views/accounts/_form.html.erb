@@ -88,17 +88,15 @@
     <div class="col-md-6">
             <div class="form-group">
     <p>Logo</p>
-    <br>
     <%= f.file_field :logo,  class: "form-control inputfile", id: 'file' %>
     <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
 
  <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @account.logo.blank?   != true %>
-<%= f.check_box :remove_logo %> 
-   <%= f.label "Eliminar", style: "color:red!important" %></label>
-
+    <%= f.check_box :remove_logo %> 
+      <%= f.label "Eliminar", style: "color:red!important" %></label>
    <%end%>
-   </div>
-    </div>
+  </div>
+</div>
   
 </div>
   
@@ -110,7 +108,7 @@
 
 <br>
 <hr>
-  <div class="form-group text-center">
+  <div class="form-group text-right">
    <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
   </div>
