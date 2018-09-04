@@ -21,8 +21,7 @@ class Users::ViewsController < Devise::RegistrationsController
     def show_user
         
         @user = User.find(params[:id])
-
-
+        @patient = Patient.where(admin_user: current_user.admin_user)
     end
 
     

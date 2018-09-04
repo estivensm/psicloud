@@ -1,17 +1,21 @@
-
-
 <br>
-
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-12 lead">Perfil de Usuario<hr></div>
+            <div class="col-md-12 lead">Patirn Atendidos<hr></div>
           </div>
           <div class="row">
-			<div class="col-md-2 text-center">
+            <div class="col-md-4 col-md-offset-10">
+              <span class="count">
+                <label style="font-size: 12px;" class="lab">Pacientes Atendidos: </label><br>
+                <%=@patient.count%>
+              </span>
+
+            </div>
+			     <div class="col-md-2 text-center">
               <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
               display:block; margin:auto;"  width="100px" src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/512/user-male-icon.png">
             </div>
@@ -27,6 +31,7 @@
                   <span class="text-muted">Fecha de Nacimiento:</span> <%=@user.birth_date%><br>
                   <span class="text-muted">Documento:</span> <%=@user.document%><br>
                   <span class="text-muted">Registro Medico:</span> <%=@user.medical_record%><br>
+                  <span class="text-muted">Targeta Professional:</span> <%=@user.professional_card%><br>
                  
                 </div>
                 <div class="col-md-6" style="display:none">
@@ -46,13 +51,13 @@
         
 
                <%= link_to  edit_user_registration_path(@user.id), :class => "btn btn-warning pull-right" do %>
-                           <i class="glyphicon glyphicon-pencil"></i>
-                           <span >Editar Usuario</span>
+                <i class="glyphicon glyphicon-pencil"></i>
+                <span >Editar Usuario</span>
               <% end %>
                   
                <%= link_to  firma_psicologo_path(@user.id), :class => "btn btn-default pull-right" do %>
-                           <i class="fas fa-quidditch"></i>
-                           <span >Editar Firma</span>
+                <i class="fas fa-quidditch"></i>
+              <span >Editar Firma</span>
               <% end %>
            
             </div>
@@ -65,12 +70,32 @@
 
 
 <style>
-.text-muted
-{
+
+.count{
+
+  margin-left: 5px;
+  border-radius: 4px;
+  padding: 11px;
+  position: absolute;
+  bottom: -142px;
+  font-size: 98px;
+  color: gray;
+  padding-right: 74px;
+
+  
+
+}
+
+.lab{
+  position: absolute;
+  bottom: 5px;
+}
+
+.text-muted{
   font-weight: bold;
 }
-.btn
-{
+
+.btn{
   margin-right: 10px;
 }
 </style>
