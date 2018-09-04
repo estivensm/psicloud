@@ -7,7 +7,7 @@
             <div class="col-md-5
                ">
                <div class="panel panel-default">
-                  <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i><span> Proxima cita </span>
+                  <div class="panel-heading" ><strong><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i><span> PROXIMA CITA </strong></span>
                   </div>
                   <div class="panel-body" style="min-height: 100px;padding-bottom:10px;">
                      <%if !@appointment_l.nil?%>
@@ -25,7 +25,7 @@
                   </div>
                </div>
                <div class="panel panel-default">
-                  <div class="panel-heading">Tareas <span style="float:right">  <%= link_to '+ Crear Tarea', new_patient_task_path(@patient.id), remote:true, class: ""  %></span></div>
+                  <div class="panel-heading"><strong><i class="fa fa-thumb-tack" style="font-size:20px;" aria-hidden="true"></i> TAREAS <span style="float:right">  <%= link_to '+ Crear Tarea', new_patient_task_path(@patient.id), remote:true, class: ""  %></span></strong></div>
                   <div class="panel-body">
                      <div class="alert-success msg-task text-center" style="padding-left: 5px;display: none;margin-bottom: 10px;">
                        Tarea enviada al historial
@@ -44,7 +44,7 @@
             <div class="col-md-7
                ">
                <div class="panel panel-default">
-                  <div class="panel-heading">Ultimo Seguimiento</div>
+                  <div class="panel-heading"> <span class="glyphicon glyphicon-edit"></span> <strong>ULTIMO SEGUIMIENTO </strong></div>
                   <div class="panel-body" style="min-height: 100px;">
                      <%if !@last_tracing.nil?%>
                      <strong>Fecha:</strong> <%=@last_tracing.tracing_date %> &nbsp;

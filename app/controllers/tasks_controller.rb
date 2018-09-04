@@ -42,7 +42,7 @@ class TasksController < ApplicationController
         #@appointment = Appointment.find(@task.appointment_id)
         #@task.fecha_compromiso = @appointment.start_datetime.to_date
         @task.save
-        @tasks = @patient.tasks.abiertas
+        @tasks = @patient.tasks.abiertas.order(fecha_compromiso: :asc)
  
       end
    
@@ -57,7 +57,7 @@ class TasksController < ApplicationController
         #@appointment = Appointment.find(@task.appointment_id)
         #@task.fecha_compromiso = @appointment.start_datetime.to_date
         @task.save
-        @tasks = @patient.tasks.abiertas
+        @tasks = @patient.tasks.abiertas.order(fecha_compromiso: :asc)
       end
 
   end

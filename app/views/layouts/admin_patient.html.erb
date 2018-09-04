@@ -302,7 +302,8 @@
             
             <%if (@clinic_history != nil && (action_name != "new" || controller_name == "tracings")) %>
          <%= link_to   patient_clinic_history_tracings_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[3]}" do %>
-          <i class="fa fa-thumb-tack" style = "font-size:20px;" aria-hidden="true"></i>
+          
+           <span class="glyphicon glyphicon-edit" style = "font-size:20px;"></span>
           Seguimientos <span class="span-num"><%=@clinic_history.tracings.count%></span>
          <%end%>
          

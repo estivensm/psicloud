@@ -14,6 +14,12 @@ def get_open(state)
   
 end
 
+def state_si_o_no(state)
+
+  state == true ? "Si" : "No"
+  
+end
+
 
 def state_history(history)
 
