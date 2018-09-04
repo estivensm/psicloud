@@ -1,6 +1,27 @@
-<div class="col-md-5 col-md-offset-4" >
-      <h3 style="margin-left: 77px;" class="title-h2">Formulario de Seguimiento</h3>
-      <br>
+    <div id='cssmenu' style="margin-top: 20px;" >
+      <ul>
+        <li><%= link_to "Inicio", root_path%></li>
+          <li><%= link_to "Configuracion de Formularios", fields_path%></li>
+              <% var = FieldDefault.where(admin_user:  current_user.admin_user).first%>  
+              <%if !var.nil?%>
+          <li class="active"><%= link_to "Formularios De Seguimiento", field_default_path(var.id)%></li>
+        <% end -%>
+      </ul>
+    </div>
+<div class="container" style="margin-top: 30px;">
+  <ul class="nav nav-tabs">
+    <% var = FieldDefault.where(admin_user:  current_user.admin_user).first%>  
+        <%if !var.nil?%>
+        <li class="active"><%= link_to "Formularios De Seguimiento" ,field_default_path(var.id)%>
+      <% end -%>
+    </li>
+
+    <li class=""><%= link_to "Campos Creados", fields_path %></li>
+  </ul>
+</div>
+
+
+    <div class="col-md-5" style="margin-left: 42px;">
       <div>
         <p>
           <br>
@@ -19,7 +40,7 @@
 
       <br>
       <div class="actions">
-        <%= link_to 'Volver', field_defaults_path, class: "btn btn-info" %>
+        <%= link_to 'Volver', fields_path, class: "btn btn-info" %>
       </div>
        <br>
     </div>
