@@ -1,194 +1,101 @@
-<%if @tasks.count + @tasks_cerradas.count != 0%>
+<div class="row" style = "padding: 10px 45px;">
+  <div class = "row title-table" style="padding: 0px;">
 
-
-
-  <div class="row" style = "padding: 10px 45px;">
-
-
-
-<div class = "row title-table">
-         <div class = "col-md-10">
-            <p>TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <!--<%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> --></p>
-         </div>
-        
-         <div class = "col-md-2">
-            <%= link_to 'Nueva Tarea', new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>
-         </div>
-          <div class = "col-md-12 paginate text-left title-table1">
-            <%= will_paginate @tasks%>
-         </div>
+      <div class = "col-md-5" style="padding: 0px;">
+        <p style="font-size: 17px;">HISTORIAL DE TAREAS <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"></span><!--<%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> --></p>
       </div>
+
+      <div class="col-md-3" style="padding: 0px; text-align: right;">
+        <p style="font-size: 17px;">Tareas No Cumplidas<span class="label label-primary" style="font-size:12px;margin-left:4px;" ><%=@tasks.cerradas.where(cumplimiento: false).or(@tasks.cerradas.where(cumplimiento: nil)).count%></span><!--<%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> --></p>
+      </div>
+
+      <div class="col-md-3" style="padding: 0px;text-align: right;">
+        <p style="font-size: 17px;">Tareas Cumplidas<span class="label label-primary" style="font-size:12px;margin-left:4px;" ><%=@tasks.cerradas.where(cumplimiento: true).count%></span><!--<%= page_entries_info @tasks, :entry_name => 'Tarea' %></span> --></p>
+      </div>
+
+  </div>
 
   
 
 <div class="row">
-  
 
-  <ul class="nav nav-tabs" style="margin-left: 15px;">
-    <li class="active"><a data-toggle="tab" href="#home">Abiertas</a></li>
-    <li><a data-toggle="tab" href="#menu1">Cerradas</a></li>
- </ul>
-
- 
-  <div class="tab-content">
-
-  <div id="home" class="tab-pane fade in active">
-           <br>
-    <%if @tasks.count != 0%>
-    <% @tasks.each do |task| %>
-    
-    <% color = task.fecha_compromiso >= Date.today ? "success" : "danger" %>
-     <% color_text = task.fecha_compromiso >= Date.today ? "#46765a" : "#a94442" %>
-      
-    
-     <p  style="margin-top: 10px;">
-      <span class="exp"><i class="fas fa-calendar-check"></i></i> Tareas Vigentes</span>
-      <span class="exp1"><i class="fas fa-calendar-times"></i></i> Tareas Vencidas</span>
-      </p>
 
     <br>
+      <table class="table">
+        <thead>
+          <tr class = "tr-table">
+            <th style= "width:20%">Fecha De Compromiso</th>
+              <th style= "width:10%">Descripcion</th>
+              <th style= "width:10%">Estado</th>
+              <th style= "width:20%">Cumplimiento</th>
+              <th style="width: 20%">Acciones</th>
+            </tr>
+        </thead>
 
-      <div class="row">
-        
-      
-      <div class="col-md-4">
-          <div class="panel panel-<%=color%>">
-              <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_only_date(task.fecha_compromiso)%><span style="float:right"> <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon", style: "color: #{color_text}" do  %>
-        <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
-                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: { confirm: 'Are you sure?' }, class:"icon", style: "color: #{color_text}" do %>
-        <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
-              </div>
-              <div class="panel-body" style="height: 100px;max-height: 100px;overflow: auto;padding-bottom:10px;">
-                <%=task.description%>
-              </div>
-          </div>
-      </div>
-      </div>
+  <tbody>
+     <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.fecha_compromiso%></td>
+        <td><%= task.description%></td>
+        <td><%= get_open(task.estado).html_safe %></td>
+        <td><%= state_si_o_no(task.cumplimiento) %></td>
 
+        <td><%= link_to  edit_patient_task_path(@patient.id,task), remote:true , class: "btnl btn-warning" do%>
+             <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
+        <% end -%>
 
-    <% end %>
-     <%else%>
-             <div class="row">
-                  <div class="col-md-12 np">
-
-
-                  <h3>! NO HAY TAREAS ABIERTAS ¡</h3>
-                  
-                  <%= link_to "CREAR TAREA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"   %>
-                  
-                  </div>
-      
-    </div>
-            <%end%>  
-
-    </div>
-    <div id="menu1" class="tab-pane fade">
-     <br>
-     <p  style="margin-top: 10px;">
-      <span class="exp"><i class="fas fa-thumbs-up"></i> Cerradas Cumplidas</span>
-      <span class="exp1"><i class="fas fa-thumbs-down"></i> Cerradas no Cumplidas</span>
-      </p>
-          <br>
-             <div class="row">
-    <% @tasks_cerradas.each do |task| %>
-    
-    <% color = task.cumplimiento ? "success" : "danger" %>
-     <% color_text = task.cumplimiento ? "#46765a" : "#a94442" %>
- 
-      
-   
-      <div class="col-md-4">
-          <div class="panel panel-<%=color%>">
-              <div class="panel-heading" ><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i>    <%=get_only_date(task.fecha_compromiso)%><span style="float:right"> <%= link_to  edit_patient_task_path(@patient.id,task),remote:true ,class:"icon", style: "color: #{color_text}" do  %>
-        <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
-                    <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: {
+          <%= link_to  patient_task_path(@patient.id,task), method: :delete, data: {
               confirm: '¿Estas Seguro?',
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
-               text: 'Recuerda quel registro se borrara permanentemente',
-              'image-url': ''}, class:"icon", style: "color: #{color_text}" do %>
-        <i class="fa fa-trash" aria-hidden="true"></i><%end%></span></h3>
-              </div>
-              <div class="panel-body" style="height: 100px;max-height: 100px;overflow: auto;padding-bottom:10px;">
-                <%=task.description%>
-              </div>
-          </div>
-      </div>
-
-
-
-    <% end %>
-
-       </div>
-
-
-    </div>
-
-  </div>
-
-
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''}, class: "btnl btn-danger" do%>
+             <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
+          <% end -%>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
 
 </div>
-  </div>
 
 
-<%else%>
- <div class="row">
-        <div class="col-md-12 np">
-
-
-        <h3>! AÚN NO HAY TAREAS ¡</h3>
-        
-        <%if @patient.appointments.where(state: "Vigente").count != 0%>
-        <%= link_to "CREA LA PRIMEA",  new_patient_task_path(@patient.id), remote:true, class: "btn btn-primary"  %>
-        <%else%>
-            
-            <h4>No puedes crear tareas ya que no tienes citas programadas vigentes</h4>
-
-        <%end%>
-        </div>
-      
-    </div>
-<%end%>
 <style>
-  .np
-{
+
+.np{
     text-align: center;
     color: gray;
     background: #f4f4f4;
     font-size: 40px;
     padding: 30px 0px;
-
-
 }
-.np h3
-{ 
-  
-    font-size: 30px;
-    margin-bottom: 30px;
-  
 
+.np h3{ 
+  font-size: 30px;
+  margin-bottom: 30px;
 }
-.crear_paciente
-{
+
+.crear_paciente{
   font-size: 20px;
   padding: 20px;
  
 }
-.exp
-{
+.exp{
     padding: 5px;
     color: #46765a;
 }
-.exp1
-{
+
+.exp1{
     padding: 5px;
     color: #a94442;
 }
+
 </style>  
 
 <style>
+
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
     color: white !important;
     background-color: #5bc0de !important;
