@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   #actualizar datos por ajax cuando escribe
   post "actualizar_hc", to: "clinic_histories#actualizar_hc"
+  
 
   post "crear_firma_paciente" , to: "patients#crear_firma_paciente" , as: "crear_firma_paciente"
   post "crear_firma_padre" , to: "patients#crear_firma_padre" , as: "crear_firma_padre"
@@ -124,7 +125,9 @@ Rails.application.routes.draw do
     get '/users/:id', to: 'users/views#show_user', as: "show_user"
     get '/users/firma_psicologo/:id', to: 'users/views#firma_psicologo', as: "firma_psicologo"
     post "/users/crear_firma_psicologo" , to: "users/views#crear_firma_psicologo" , as: "crear_firma_psicologo"
-
+    post "/users/crear_firma_adjunta", to: "users/views#crear_firma_adjunta" , as: "crear_firma_adjunta"
+    post "/users/crear_formato", to: "users/views#crear_formato" , as: "crear_formato"
+    get "/users/cambiar_tipo_firma/:tipo/:id", to: "users/views#cambiar_tipo_firma" , as: "cambiar_tipo_firma"
   end
 
 

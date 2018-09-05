@@ -606,13 +606,27 @@
       <th>
       <%if @patient.user.tipo_firma == "Adjunta" %>
       <%= wicked_pdf_image_tag @patient.user.firma_adjunta_url , style: "width:400px" if @patient.user.firma_adjunta %></th>
+     
+
       <%elsif @patient.user.tipo_firma == "Firma Digital" %>
       <img style="width:300px"  src="<%=@patient.user.firma_psicologo%>" alt="">
       
 
       </th>
     </tr>
+
     <tr>
+      <td class="formato_firma">
+      <% b = @patient.user.signature_format.gsub('{CEDULA}', @patient.user.document)
+         c = b.gsub('{REGISTRO_MEDICO}', @patient.user.medical_record)
+         d = c.gsub('{TARJETA_PROFESIONAL}', @patient.user.professional_card)%>
+         
+        <%== d %>
+
+      </td>
+    </tr>
+
+    <!--<tr>
      
       <th>Firma del psicólogo</th>
       </tr>
@@ -625,7 +639,7 @@
       <tr>
            
             <th>T.P: <%=@patient.user.medical_record%></th>    
-      </tr>
+      </tr>-->
 
       <%else%>
 
@@ -644,7 +658,15 @@
 
 
 <style>
-    td
+    
+    .formato_firma p
+    {
+      color:#000000 !important;
+    }
+    .formato_firma strong
+    {
+      color:#000000 !important;
+    }
     {font-size:16px !important;}
    .fields_history
    {

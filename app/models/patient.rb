@@ -73,6 +73,7 @@ class Patient < ApplicationRecord
     where("(first_name || ' ' || second_name || ' ' || first_last_name  || ' ' || second_last_name) like '%#{search}%'  or 
       lower(first_name) like '%#{search.downcase}%' or 
       lower(second_name) like '%#{search.downcase}%' or 
+      lower(first_last_name) like '%#{search.downcase}%' or 
       lower(second_last_name) like '%#{search.downcase}%' or 
       lower(email) like '%#{search.downcase}%' or 
       lower(document) like '%#{search.downcase}%'").order(:id)

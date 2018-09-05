@@ -23,7 +23,7 @@ module PatientDecorator
     [
       ['Soltero', 'Soltero'],
       ['Casado', 'Casado'],
-      ['Union Libre', 'Unión libre.'],
+      ['Unión Libre', 'Unión libre.'],
       ['Divorciado', 'Divorciado'],
       ['Viud@', 'Viud@']
     ]
@@ -32,21 +32,24 @@ module PatientDecorator
   def select_grupo_etnico
     [
       ['Ninguno', 'Ninguno'],
-      ['Mestizo', 'Meztizo'],
-      ['Afrodescendiente', 'Afro Desendiente']
+      ['Afrocolombiano', 'Afro Desendiente'],
+      ['Indigena', 'Indigena'],
+      ['Raizal', 'Raizal'],
+      ['Gitano', 'Gitano'],
+      
     ]
   end
 
 	
 	def select_documento
 		[
-      ['Cedula de Ciudadanía', 'Cedula de Ciudadanía'],
+      ['Cédula de Ciudadanía', 'Cédula de Ciudadanía'],
       ['Tarjeta de Identidad', 'Tarjeta de Identidad'],
-      ['Registro Civil', 'Registro Civil'],
+      ['Registro Civil de Nacimiento', 'Registro Civil de Nacimiento'],
       ['Cédula de Extranjeria', 'Cedula de Extranjeria'],
       ['Pasaporte', 'Pasaporte'],
-      ['Menor Sin Identificación', 'Menor Sin Identificación'],
-      ['Adulto Sin Identificación', 'Adulto Sin Identificación'],
+      ['Menor sin Identificación', 'Menor sin Identificación'],
+      ['Adulto sin Identificación', 'Adulto sin Identificación'],
       ['Carnet Diplomático', 'Carnet Diplomático']
      
   	]

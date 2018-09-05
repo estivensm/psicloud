@@ -28,7 +28,7 @@
 <div class="row step1">
 <div class="col-md-12">
    <h3 style="margin:0px 0px 20px 0px;color:gray" class="title-formulario"> <%=get_open(@clinic_history.first_contact_state).html_safe%> PRIMER CONTACTO</h3>
-   <h3 style="padding-left: 0px; margin-left: 0px;" >Fecha de Creacion</h3>
+   <h3 style="padding-left: 0px; margin-left: 0px;" >Fecha de Creación</h3>
    <br>
    <div class="row">
       <div class="col-md-6" style="padding-left: 0px;">
@@ -53,7 +53,7 @@
       <%= form.label "Tipo" %><br>
       <%= form.select :consult_reason_id,
          ConsultReason.all.map { |u| ["#{u.name}", u.id] },
-                    { include_blank: "Ninguna" },
+                    { include_blank: "NINGUNO" },
                     { class: 'chosen-select1 form-control ch' ,disabled: @clinic_history.first_contact_state }
          %>
    </div>
@@ -71,7 +71,7 @@
       <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: false %>
    </div>
    <br>
-   <h3 style="padding-left: 0px; margin-left: 0px;"> Dinamica Familiar</h3>
+   <h3 style="padding-left: 0px; margin-left: 0px;"> Dinámica Familiar</h3>
    <br>
    <div class="form-group">
       <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area required", :title => "Es un Campo Obligatorio" , disabled: false%>

@@ -17,6 +17,7 @@
 //= require jquery-ui
 //= require moment 
 //= require fullcalendar
+//= require tinymce
 //= require jquery_nested_form
 //= require twitter/bootstrap
 //= require jquery.validate

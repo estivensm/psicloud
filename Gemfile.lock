@@ -463,6 +463,10 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    tinymce-rails (4.3.8)
+      railties (>= 3.1.1)
+    tinymce-rails-langs (4.20180103)
+      tinymce-rails (~> 4.1, >= 4.1.10)
     trollop (2.1.2)
     turbolinks (5.1.0)
       turbolinks-source (~> 5.1)
@@ -542,6 +546,8 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sweet-alert2-rails
+  tinymce-rails
+  tinymce-rails-langs
   turbolinks (~> 5)
   twitter-bootstrap-rails (~> 4.0)
   tzinfo-data

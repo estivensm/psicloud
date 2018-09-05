@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pg'
 gem 'jquery-validation-rails'
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'jquery-ui-rails'

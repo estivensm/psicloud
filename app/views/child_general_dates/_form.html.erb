@@ -57,7 +57,7 @@
                <%= form.radio_button :father_relationship, 'Poca Comunicación', class: 'rb ckno check1' %><span style = "margin-left:5px">Poca </span>
                 </label>
                <label class="radio-inline" style="margin-left: 0px !important">
-               <%= form.radio_button :father_relationship, 'Ninguna Comunicación', class: 'rb ckno check1' %><span style = "">Ninguna Comunicacion</span>
+               <%= form.radio_button :father_relationship, 'Ninguna Comunicación', class: 'rb ckno check1' %><span style = "">Ninguna Comunicación</span>
                 </label>
                 <label class="radio-inline">
                <%= form.radio_button :father_relationship, 'Padre Fallecido', class: 'rb ckno check1' %><span style = "margin-left:5px">Padre Fallecido </span>
@@ -101,7 +101,7 @@
 <div class="row">
   <div class="col-md-8">
    <div class="form-group acc1">
-               <label for="">Relacion con la Madre</label><br>
+               <label for="">Relación con la Madre</label><br>
                <label class="radio-inline">
                <%= form.radio_button :mother_relationship, 'Estable', class: 'rb cksi check1' %><span style = "margin-left:5px">Estable</span>
                </label>
@@ -149,7 +149,7 @@
 
 
      <div class="form-group acc1">
-               <label for="">Relacion Entre los padres</label><br>
+               <label for="">Relación entre los padres</label><br>
                <label class="radio-inline" >
                <%= form.radio_button :parents_realationship, 'Buena', class: 'rb cksi check1' %><span style = "margin-left:5px">Buena</span>
                </label>
@@ -207,7 +207,7 @@
           </div>
           <div class="col-md-3" >
             <div class="form">
-              <%= contact.label "Genero"%>
+              <%= contact.label "Género"%>
               <%= contact.select 'sexo', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select'}%>
             </div>
           </div>
@@ -216,7 +216,7 @@
                <%= contact.text_field :edad, :class => 'form-control', :maxlength => 2, :placeholder => "Edad" %>
             </div>
           <div class="col-md-3">
-              <%= contact.label "Relacion" %>
+              <%= contact.label "Relación" %>
                 <%= contact.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicacion", "Poca Comunicacion", "Ninguna Comunicacion"]), {},{:class => 'form form-control select'}%>
                 <br><br>
           </div>  
@@ -246,7 +246,7 @@
       </div>
         <div class="col-md-2">
           <div class="form">
-            <%= boy.label "Genero"%>
+            <%= boy.label "Género"%>
              <%= boy.select 'genero', options_for_select(["Masculino", "Femenino"]), {},{:class => 'form form-control select'}%>
           </div>
         </div>
@@ -260,8 +260,8 @@
         
         <div class="col-md-4">
           <div class="form">
-          <%= boy.label "Relacion"%>
-           <%= boy.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicacion", "Poca Comunicacion ", "Ninguna Comunicacion"]), {},{:class => 'form form-control select'}%>
+          <%= boy.label "Relación"%>
+           <%= boy.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicación", "Poca Comunicación ", "Ninguna Comunicación"]), {},{:class => 'form form-control select'}%>
           </div>
           <br><br>
         </div>

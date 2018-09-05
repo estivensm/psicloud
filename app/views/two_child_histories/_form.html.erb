@@ -27,7 +27,7 @@
 
             <%val4 = "" 
  action_name == "edit" ? val4 = @two_child_history.nivel_escolar : val4 = "" %>
-     <%= form.select 'nivel_escolar', options_for_select((['Jardin','Prescolar','Transición','Primaria','Secundaria']), val4), {},{:class => 'form-control'}%>
+     <%= form.select 'nivel_escolar', options_for_select((['Jardin','Preescolar','Transición','Primaria','Secundaria']), val4), {},{:class => 'form-control'}%>
           </div>
     </div>
        <div class="col-md-4">
@@ -44,31 +44,31 @@
     </div>
         <div class="col-md-12">
           <div class="form-group">
-            ¿ <%= form.label "Cómo fue el proceso de adaptación a la escuela ?" %>
+            <strong>¿</strong><%= form.label "Cómo fue el proceso de adaptación a la escuela ?" %>
             <%= form.text_field :adaptacion_escolar, id: :two_child_history_adaptacion_escolar, class: "form form-control" %>
           </div>
     </div>
         <div class="col-md-12">
           <div class="form-group">
-            <%= form.label "Problemas escolares (académicos), (conductales)" %>
+            <%= form.label "Problemas escolares (académicos), (conductuales)" %>
             <%= form.text_field :problemas_escolares, id: :two_child_history_problemas_escolares, class: "form form-control" %>
           </div>
     </div>
             <div class="col-md-6">
           <div class="form-group">
-            ¿ <%= form.label "Qué le gusta mas de la escuela ?" %>
+            <strong>¿</strong> <%= form.label "Qué le gusta mas de la escuela ?" %>
             <%= form.text_field :gustos_escolares, id: :two_child_history_gustos_escolares, class: "form form-control" %>
           </div>
     </div>
      <div class="col-md-6">
           <div class="form-group">
-            ¿ <%= form.label "Qué no le gusta de la escuela ?" %>
+            <strong>¿</strong> <%= form.label "Qué no le gusta de la escuela ?" %>
             <%= form.text_field :disgustos_escolares, id: :two_child_history_disgustos_escolares, class: "form form-control" %>
           </div>
     </div>
          <div class="col-md-6">
           <div class="form-group">
-            ¿ <%= form.label "Cómo es con las tareas ?" %>
+            <strong>¿</strong> <%= form.label "Cómo es con las tareas ?" %>
             <%= form.text_field :tareas, id: :two_child_history_tareas, class: "form form-control" %>
           </div>
     </div>
@@ -80,18 +80,18 @@
     </div>
         <div class="col-md-6">
           <div class="form-group">
-            ¿ <%= form.label "Qué problemas posee a nivel de lectura, escritura, cálculo ?" %>
+           <strong>¿</strong> <%= form.label "Qué problemas posee a nivel de lectura, escritura, cálculo ?" %>
             <%= form.text_field :problemas_materias, id: :two_child_history_problemas_materias, class: "form form-control" %>
           </div>
     </div>
        <div class="col-md-6">
           <div class="form-group">
-            ¿ <%= form.label "Cómo ser ralaciona con la maestra ?" %>
+            <strong>¿</strong> <%= form.label "Cómo ser ralaciona con la maestra ?" %>
             <%= form.text_field :relacion_maestro, id: :two_child_history_relacion_maestro, class: "form form-control" %>
           </div>
     </div>   <div class="col-md-12">
           <div class="form-group">
-            ¿ <%= form.label "Cómo ser ralaciona con los compañeros ?" %>
+           <strong>¿</strong> <%= form.label "Cómo ser ralaciona con los compañeros ?" %>
             <%= form.text_field :relacion_companeros, id: :two_child_history_relacion_companeros, class: "form form-control" %>
           </div>
     </div>
