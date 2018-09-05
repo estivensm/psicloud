@@ -78,7 +78,7 @@
               
           <%end%>
           <br>
-          <%= image_tag @user.firma_adjunta_url, style: "width:300px"%>
+          <%= image_tag @user.firma_adjunta_url, style: "width:300px" if @user.firma_adjunta%>
          </div>
       </div>
       <style>
