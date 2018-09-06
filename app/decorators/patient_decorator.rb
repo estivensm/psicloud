@@ -25,7 +25,7 @@ module PatientDecorator
       ['Casado', 'Casado'],
       ['Unión Libre', 'Unión libre.'],
       ['Divorciado', 'Divorciado'],
-      ['Viud@', 'Viud@']
+      ['Viud@', 'Viud@'],
       ['N/A', 'N/A']
     ]
   end
