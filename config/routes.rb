@@ -65,11 +65,20 @@ Rails.application.routes.draw do
   get 'cambiar_state/:estado/:id/:field', to: 'field_defaults#cambiar_state', as: 'cambiar_state' 
 
   get "all_patients", to: "patients#all_patients", as: "all_patients"
+  
+
+  get '/child_get/:id', to: 'child_general_dates#child_get' 
+  get '/brother_get/:id', to: 'child_general_dates#brother_get'  
+
   resources :patients do 
     resources :tasks
     
      resources :appointments 
      
+    
+
+
+
      resources :clinic_histories do 
         resources :personal_histories
         resources :two_child_histories
@@ -86,7 +95,13 @@ Rails.application.routes.draw do
         get "backgrounds/edit/:id", to: "backgrounds#edit", as: "edit_backgrounds" 
         patch "backgrounds/update", to: "backgrounds#update", as: "update_backgrounds" 
         delete "backgrounds/destroy/:id", to: "backgrounds#destroy", as: "destroy_backgrounds"
+        
 
+        get 'backgrounds/background_get/:id', to: 'backgrounds#background_get'
+        get 'backgrounds/personal_background_get/:id', to: 'backgrounds#personal_background_get'
+
+       
+        
 
         get "backgrounds/new_background_personal", to: "backgrounds#new_background_personal", as: "new_background_personal" 
         post "backgrounds/create_background_personal", to: "backgrounds#create_background_personal", as: "create_background_personal" 
@@ -132,6 +147,11 @@ Rails.application.routes.draw do
 
 
 resources :diagnosticos do
+  collection { post :import }
+
+end
+
+resources :first_diagnosticos do
   collection { post :import }
 
 end

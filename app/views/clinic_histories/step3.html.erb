@@ -29,10 +29,15 @@
             </div>
   
 
-             <div class="form-group">
+             <!--<div class="form-group" style="">
               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnóstico Principal (CIE10)</span>
              <%= select_tag 'diagnostico_id', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostico_id}), {:multiple => false,class: 'form-control chosen-select1', include_blank: true}%>
               
+            </div>-->
+
+             <div class="form-group">
+               <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnósticos Principales (CIE10)</span>  <br>   
+               <%= select_tag 'first_diagnostico_ids', options_for_select(get_first_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.first_diagnostico_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
             </div>
 
             <div class="form-group">

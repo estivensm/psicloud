@@ -302,6 +302,19 @@ end
 
             end
 
+                @clinic_history.first_diagnosticos.destroy_all
+            if params[:first_diagnostico_ids] != nil  
+              params[:first_diagnostico_ids].each do |diag|
+                
+                @clinic_history.first_diagnosticos << FirstDiagnostico.find(diag)
+                
+              end  
+
+            end
+
+
+
+
                redirect_to patient_path(@clinic_history.patient_id)
 
                #redirect_to patient_step3_path(@clinic_history.patient_id,@clinic_history.id)

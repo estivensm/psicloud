@@ -96,6 +96,33 @@ class ChildGeneralDatesController < ApplicationController
     end
   end
 
+
+
+  def child_get
+     
+     id = params[:id]
+     @child = Child.find(id)
+
+     render plain: "#{@child.genero},#{id},#{@child.relationship}"
+
+  end
+
+
+
+  def brother_get
+
+
+     id = params[:id]
+     @brother = ChildBrother.find(id)
+
+     render plain: "#{@brother.sexo},#{id},#{@brother.relationship}"
+    
+  end
+
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_child_general_date

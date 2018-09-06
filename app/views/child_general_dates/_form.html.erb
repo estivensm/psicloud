@@ -205,9 +205,10 @@
                <%= contact.text_field :name, :class => 'form-control', :placeholder => "Nombre" %>
             </div>
           </div>
-          <div class="col-md-3" >
+          <div class="col-md-3 cb" >
             <div class="form">
               <%= contact.label "Género"%>
+               <%=contact.hidden_field :id, class: "items"%>
               <%= contact.select 'sexo', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select'}%>
             </div>
           </div>
@@ -244,10 +245,11 @@
             <%= boy.text_field :name, class: "form form-control", :placeholder => "Nombre" %>
           </div>
       </div>
-        <div class="col-md-2">
+        <div class="col-md-3 b">
           <div class="form">
             <%= boy.label "Género"%>
-             <%= boy.select 'genero', options_for_select(["Masculino", "Femenino"]), {},{:class => 'form form-control select'}%>
+            <%= boy.hidden_field :id, class: "items1"%>
+             <%= boy.select 'genero', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select'}%>
           </div>
         </div>
         <div class="col-md-2">
@@ -258,7 +260,7 @@
           </div>
         </div>
         
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form">
           <%= boy.label "Relación"%>
            <%= boy.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicación", "Poca Comunicación ", "Ninguna Comunicación"]), {},{:class => 'form form-control select'}%>
@@ -339,3 +341,65 @@
 </style>
 
 
+<script>
+  
+$(document).on('turbolinks:load',function() {
+   
+   
+
+   $( ".items1" ).each(function( index ) {
+  
+        a = $( this ).val();
+   $.get("/child_get/" + a , function(data, status){
+         
+         var array = data.split(",");
+         x = ".b input[value='" + array[1] +  "']" ;
+         b = $(x)
+         b.next().val(array[0]);
+         b.parent().parent().next().next().children(2).children(2).first().next().val(array[2])
+ 
+         console.log(b.parent().parent().next().next().children(2).first().next())  
+         console.log(array[2])    
+           
+
+    });
+
+
+
+   
+   
+   //general_files(a,b)
+  
+
+});
+
+$( ".items" ).each(function( index ) {
+  
+        a = $( this ).val();
+   $.get("/brother_get/" + a , function(data, status){
+         
+         var array = data.split(",");
+         x = ".cb input[value='" + array[1] +  "']" ;
+         b = $(x)
+         b.next().val(array[0]);
+         b.parent().parent().next().next().children(2).first().next().val(array[2])
+
+
+    });
+
+
+   
+   
+   
+   //general_files(a,b)
+  
+
+});
+
+
+});
+
+
+
+
+</script>

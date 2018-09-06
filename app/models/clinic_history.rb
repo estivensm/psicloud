@@ -57,6 +57,7 @@ class ClinicHistory < ApplicationRecord
     belongs_to :diagnostico, optional: true 
 	has_and_belongs_to_many :diagnostics, dependent: :destroy
     has_and_belongs_to_many :diagnosticos, dependent: :destroy
+    has_and_belongs_to_many :first_diagnosticos, dependent: :destroy
    
     after_create :create_familiar_history
   

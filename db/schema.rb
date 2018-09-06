@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905034326) do
+ActiveRecord::Schema.define(version: 20180906055244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,13 @@ ActiveRecord::Schema.define(version: 20180905034326) do
     t.index ["diagnostic_id"], name: "index_clinic_histories_diagnostics_on_diagnostic_id"
   end
 
+  create_table "clinic_histories_first_diagnosticos", force: :cascade do |t|
+    t.bigint "clinic_history_id"
+    t.bigint "first_diagnostico_id"
+    t.index ["clinic_history_id"], name: "clinic_history"
+    t.index ["first_diagnostico_id"], name: "first_diagnostico"
+  end
+
   create_table "consents", force: :cascade do |t|
     t.integer "user_id"
     t.integer "admin_user"
@@ -297,6 +304,17 @@ ActiveRecord::Schema.define(version: 20180905034326) do
     t.integer "admin_user"
     t.integer "user_id"
     t.string "option"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "first_diagnosticos", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.integer "count"
+    t.string "codigo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

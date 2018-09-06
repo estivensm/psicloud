@@ -107,8 +107,15 @@
   <div class = "col-md-12 text-right">
   <%= file_field_tag :file , class: 'inputfile', id: 'file' %>
  
-  <%= submit_tag "Importar", :class => "btn btn-primary", style: "margin-left:20px !important;" %>
+  <%= submit_tag "Importar", :class => "btn btn-primary", style: "margin-left:20px !important;" %><% end %>
 </div>-->
+
+<%= form_tag import_first_diagnosticos_path, multipart: true do %>
+  <div class = "col-md-12 text-right">
+  <%= file_field_tag :file , class: 'inputfile', id: 'file' %>
+ 
+  <%= submit_tag "Importar", :class => "btn btn-primary", style: "margin-left:20px !important;" %>
+</div>
 
 <% end %>
 <style>

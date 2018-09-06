@@ -59,11 +59,6 @@
 <% end -%>
 
 
-
-
-
-
-
   <!-- inicio de los campos adicionales -->
    <% Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Seguimiento").order(id: :asc).each do |field| %>
       <h3  style="padding-left: 0px; margin-left: 0px; color: gray" > <%= field.name%></h3>

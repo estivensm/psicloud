@@ -80,13 +80,13 @@
 <div class = "fields_history">
    <hr>
    <h3 class= "color-gray">Motivo de Consulta</h3>
-   <p><strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
+   <p><strong>Tipo: </strong> <%==@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
                         <strong>Descripcion: </strong> <%=@clinic_history.consultation_reason%></p>
 </div>
 <div class = "fields_history">
    <hr>
    <h3 class= "color-gray">Estado actual del paciente</h3>
-   <p><%=@clinic_history.actual_state%></p>
+   <p><%==@clinic_history.actual_state%></p>
 </div>
 <div class = "fields_history">
    <hr>
@@ -267,10 +267,10 @@
 <hr>
   <h3 class= "color-gray">Hipotesis diagnóstica</h3>
   <strong>Descripcion</strong>
-  <span class="diagnostico"><%=@clinic_history.diagnostic_hypothesis%></span><br><br>
+  <span ><%=@clinic_history.diagnostic_hypothesis%></span><br><br>
   <strong>DSMV: </strong>
   <%@clinic_history.diagnostics.each do |ch|%>  
-  <span class="diagnostico"><%=ch.name%></span>
+  <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=ch.name%></div>
   <%end%>
   <br>
   <br>
@@ -278,14 +278,18 @@
   <strong>Diagnostico Principal (CIE10): </strong>
    <%if @clinic_history.diagnostico%>  
 
-  <span class="diagnostico"><%=@clinic_history.diagnostico.name%></span>
+<div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=@clinic_history.diagnostico.codigo%> - <%=@clinic_history.diagnostico.name%></div>
 <%end%>
+
+ <%@clinic_history.first_diagnosticos.each do |ch|%>  
+    <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=ch.codigo%> - <%=ch.name%></div>
+       <%end%>   
 
     <br>
     <br>
-   <strong>Diagnosticos Adicionales (CE10): </strong>
+   <strong>Diagnosticos Secundario (CE10): </strong>
       <%@clinic_history.diagnosticos.each do |ch|%>  
-    <span class="diagnostico"><%=ch.codigo%> - <%=ch.name%></span>
+    <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=ch.codigo%> - <%=ch.name%></div>
        <%end%>     
    
 </div>

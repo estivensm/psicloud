@@ -68,7 +68,7 @@
    <h3  style="padding-left: 0px; margin-left: 0px;"> Estado Actual</h3>
    <br>
    <div class="form-group">
-      <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: false %>
+      <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: false, wrap:"hard" %>
    </div>
    <br>
    <h3 style="padding-left: 0px; margin-left: 0px;"> Dinámica Familiar</h3>
@@ -83,7 +83,7 @@
     <div class="col-md-12" style="background: #f7f7f7;" >
       <h3 class = "" style = "margin-top: 20px; margin-bottom: 10px; color:gray; padding: 0px;" >Antecedentes Familiares </h3>
           <%= form.fields_for :backgrounds do |contact|  %>
-            <div class="col-md-3" >
+            <div class="col-md-3 fb" >
               <label>Tipo</label>
                 <div class="input-group">
                   <span class="input-group-btn">
@@ -91,13 +91,12 @@
                       <i class="fa fa-trash" aria-hidden="true"></i>
                       <% end %>
                     </span>
-                    <%val6 = "" 
-                        action_name == "edit" ? val6 = @patient.children : val6 = "" %>
-                   <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"], val6), {},{:class => 'form form-control select'}%>
+                    <%=contact.hidden_field :id, class: "items"%>
+                    <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"]), {},{:class => 'form form-control select'}%>
                 </div>
             </div>
                 <div class="pdd"  style="width: 400px; padding-right: 10px;" >
-                   <%= contact.label "Descripcion" %>
+                   <%= contact.label "Descripción" %>
                    <%= contact.text_area :description, :class => 'form-control' %>
                 </div>
 
@@ -126,7 +125,7 @@
      <h3 class = ""style = "margin-top: 20px; color:gray; padding: 0px;">Antecedentes Personales</h3>
      <br>
       <%= form.fields_for :personal_backgrounds do |contact|  %>
-         <div class="" >
+         <div class="pb" >
           <div class="col-md-3" style="padding-left: 5px;">
             <label>Tipo</label>
               <div class="input-group">
@@ -135,15 +134,14 @@
                       <i class="fa fa-trash" aria-hidden="true"></i>
                       <% end %>
                     </span>
-                    <%val6 = "" 
-                        action_name == "edit" ? val6 = @patient.children : val6 = "" %>
-                   <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"], val6), {},{:class => 'form form-control select'}%>
+                    <%=contact.hidden_field :id, class: "items1"%>
+                   <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"]), {},{:class => 'form form-control select'}%>
                   </div>
                 </div>
 
             </div>
                <div class="pdd"  style="width: 400px; padding-right: 10px;" >
-               <%= contact.label "Descripcion" %>
+               <%= contact.label "Descripción" %>
                <%= contact.text_area :description, :class => 'form-control' %>
             </div>
                <div class="pdd"  style="width: 300px;" >
@@ -299,6 +297,91 @@
      </style>
 
    <script>
+
+$(document).on('turbolinks:load',function() {
+   
+   
+
+   $( ".items" ).each(function( index ) {
+  
+        a = $( this ).val();
+   $.get("backgrounds/background_get/" + a , function(data, status){
+         
+         var array = data.split(",");
+         x = ".fb input[value='" + array[1] +  "']" ;
+         b = $(x)
+         b.next().val(array[0]);
+ 
+         console.log(b)  
+           
+
+    });
+
+
+
+   
+   
+   //general_files(a,b)
+  
+
+});
+
+$( ".items1" ).each(function( index ) {
+  
+        a = $( this ).val();
+   $.get("backgrounds/personal_background_get/" + a , function(data, status){
+         
+         var array = data.split(",");
+         x = ".pb input[value='" + array[1] +  "']" ;
+         b = $(x)
+         b.next().val(array[0]);
+ 
+         console.log(b)  
+           
+
+    });
+
+
+   
+   
+   
+   //general_files(a,b)
+  
+
+});
+
+
+});
+
+/*function general_files(x,y){
+
+
+   $.get("/general_files/"+ x , function(data, status){
+        y.next().html("<a href='" + data.url +"' alt=''>" + data.name +  "<a>");
+  
+
+    });
+
+
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       'use strict';
       
       ;( function ( document, window, index )

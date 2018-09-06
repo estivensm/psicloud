@@ -116,6 +116,14 @@ def get_diagnostico
   
 end
 
+def get_first_diagnostico
+
+  
+  FirstDiagnostico.all
+
+  
+end
+
 def get_patient
   
   Patient.where(admin_user: current_user.admin_user)

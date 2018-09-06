@@ -116,6 +116,24 @@ def edit_background_personal
     
   end
 
+  def background_get
+
+    id = params[:id]
+    @background = Background.find(id)
+
+    render plain: "#{@background.type_background},#{id}"
+    
+  end
+
+  def personal_background_get
+
+    id = params[:id]
+    @background = PersonalBackground.find(id)
+
+    render plain: "#{@background.type_background},#{id}"
+    
+  end
+
 
 
 end
