@@ -1,3 +1,16 @@
+<% if action_name == "edit"%>
+    <div id='cssmenu' style="margin-top: 40px;">
+      <ul>
+        <li><%= link_to "Inicio", root_path%></li> 
+        <li><%= link_to "Pacientes", patients_path%></li> 
+        <li><%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patients_path%></li>
+        <li class="active"><%= link_to "Editar Paciente"%></label><li>
+
+      </ul>
+    </div>
+
+<%else%>
+
     <div id='cssmenu' style="margin-top: 40px;">
       <ul>
         <li><%= link_to "Inicio", root_path%></li> 
@@ -6,6 +19,8 @@
 
       </ul>
     </div>
+
+<% end -%>
 
 <div class="container">
    <br>

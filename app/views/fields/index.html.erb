@@ -12,19 +12,6 @@
 </div>
 <br><br>
 
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Campos Creados</a></li>
-    <% var = FieldDefault.where(admin_user:  current_user.admin_user).first%>  
-        <%if !var.nil?%>
-        <li><%= link_to "Formularios De Seguimiento" ,field_default_path(var.id)%>
-      <% end -%>
-    </li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <br>
    <div class="row">
       <div class = "row title-table">
          <div class = "col-md-6">
