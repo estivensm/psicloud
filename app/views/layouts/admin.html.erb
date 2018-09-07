@@ -110,13 +110,7 @@
                          </li>
                   
                         <%end%>
-                          <% var = FieldDefault.where(admin_user:  current_user.admin_user).first%>  
-                        <%if !var.nil?%>
-                        <li><%= link_to  field_default_path(var.id), style: "color:gray !important" do  %>
-                           <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Formularios Por defecto
-                         <% end -%>
-                         </li>
-                         <%end%> 
+
                      </ul>
                   
                   <%end%>
