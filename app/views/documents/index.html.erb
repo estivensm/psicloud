@@ -13,29 +13,32 @@
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p class="title-h2">Formatos <span class="label label-primary"><%=@documents.count%></span> <span style = "font-size:12px;margin-left:20px;"> </span> </p>
+            <p class="title-h2">Formatos <span class="label label-primary"><%=@documents.count%></span> <span style = "font-size:12px;margin-left:20px;"><%= link_to  new_document_path, remote: true, class: "btn btn-primary  hidden-md hidden-lg new" do%>
+                <i class="fas fa-plus-circle" style="color: #fff;"></i>
+              <% end -%> </span> </p>
          </div>
-         <div class = "col-md-4 paginate text-left title-table1" style="padding: 0px;">
-                  <div class="input-group">
-         <span class="input-group-addon" style="background-color: #5BBBE1;"><i class="fas fa-search" style="color: white;"></i></span>
-         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Ingrese Nombre" class="form form-control" style="width: 300px;">
-      </div>
-         </div>
+<div class = "col-md-4 paginate text-left title-table1" style="padding: 0px">
+  <div class="input-group">
+    <span class="input-group-addon" style="background-color: #5BBBE1;"><i class="fas fa-search" style="color: white;"></i></span>
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Ingrese Nombre" class="form form-control"> 
+  </div>        
+</div>
 
-         <div class = "col-md-2">
+         <div class = "col-md-2  hidden-xs hidden-sm" >
             <%= link_to 'Nuevo Formato', new_document_path, class: "btn btn-primary", remote:true if current_user.rol.create_doc  %>
          </div>
       </div>
       <br>
-      <hr>
-      <br>
+
       <div class = "row equal" id="contenido">
+
          <% @documents.each do |document| %>
-         <div class="col-md-6 filter2" >
+
+         <div class="col-md-6 filter2 col-xs-12 col-xs-12 col-lg-4 " >
             <div class="panel panel-default" >
                <div class="panel-heading">
                   <div class="row">
-                     <div class="col-md-8" style="    color: #5bc0de;
+                     <div class="col-md-8" style="color: #5bc0de;
                         font-size: 16px;">
                         <span class="filter3"> <%= document.name %></span><br> <span style="font-size:12px"><%= get_date(document.created_at) %></span>
                      </div>
@@ -120,6 +123,32 @@
    border-radius: 4px;
    margin-right: 9px;
    }
+
+   @media only screen and (max-width: 600px) {
+      .input-group{
+       width: 297px;
+       margin-left: 30px;
+       margin-right: 7px;
+      }
+
+      #contenido{
+        margin-right: 7px;
+        margin-left: 7px;
+      }
+
+      .title-h2{
+        margin-left: 16px;
+        margin-bottom: 16px;
+      }
+
+      .new{
+          margin-bottom: 5px;
+          margin-left: 54px;
+      }
+
+    
+}
+
 </style>
 <script>
    function myFunction() {

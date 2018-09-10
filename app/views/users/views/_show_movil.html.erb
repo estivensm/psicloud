@@ -1,0 +1,75 @@
+<div class="container hidden-md hidden-lg ">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="thumbnail">
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-md-12 lead">Perfil de Usuario</div>
+            <hr>
+        </div>
+        <br>
+        <div class="col-md-2 text-center">
+              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto;"  width="100px" src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/512/user-male-icon.png">
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h1 class="only-bottom-margin"><%=@user.names%> <%=@user.last_names%></h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="text-muted">Email:</span> <%=@user.email%><br>
+                  <span class="text-muted">Fecha de Nacimiento:</span> <%=@user.birth_date%><br>
+                  <span class="text-muted">Documento:</span> <%=@user.document%><br>
+                  <span class="text-muted">Registro Medico:</span> <%=@user.medical_record%><br>
+                  <span class="text-muted">Tarjeta Professional:</span> <%=@user.professional_card%><br>
+                  <span class="text-muted">Pacientes Atendidos:</span> <%=@patient.where(user_id:@user.id).count%><br>
+                 
+                </div>
+        <div class="row">
+          <hr>  
+            <div class="col-md-12" style="padding: 0px;">
+              <%= link_to  edit_user_registration_path(@user.id), :style => "margin-left:25px; margin-right: 0px !important",  :class => "btn btn-warning" do %>
+                <i class="glyphicon glyphicon-pencil"></i>
+                <span >Editar Usuario</span>
+              <% end %>
+                  
+               <%= link_to  firma_psicologo_path(@user.id), :class => "btn btn-default" do %>
+                <i class="fas fa-quidditch"></i>
+                <span >Editar Firma</span>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  
+  .thumbnail{
+
+    border-radius: 3%;
+    margin-left: 2px;
+  }
+
+  .col-md-12{
+    margin-bottom: 10px;
+  }
+
+
+
+
+@media only screen and (max-width: 600px) {
+  
+  h1{
+    font-size: 25px;
+    text-transform: capitalize;
+  }
+
+}
+
+</style>

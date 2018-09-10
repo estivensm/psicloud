@@ -57,7 +57,7 @@
 
   <div class="col-md-12" style="padding: 0px;" >  
     <div class="col-md-7" style="padding: 0px;" >
-       <div class="input-group">
+       <div class="input-group" id="in">
           <span class="input-group-btn">
              <%= file.link_to_remove class: "btn btn-danger" do %>
               <i class="fa fa-trash" aria-hidden="true"></i>
@@ -177,6 +177,27 @@ if ("<%=action_name%>" == "new")
 
 
 <style>
+
+@media only screen and (max-width: 600px) {
+  .name{
+    width: 242px !important;
+  }
+
+  #in{
+    margin-left: 1px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .file{
+    width: 279px !important;
+  }
+
+  .col-md-5{
+    padding: 0px;
+  }
+
+}
+
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -227,6 +248,8 @@ if ("<%=action_name%>" == "new")
     padding: 10px;
     background: #e8e8e8;
    }
+
+
   
 </style>
 
