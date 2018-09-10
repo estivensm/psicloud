@@ -1,66 +1,84 @@
-<div class="container hidden-md hidden-lg movil">
-    <br>
-      <div class="row">
-        <ul class="list-group">
-          <li class="list-group-item active">Todos los Pacientes   
+<div class="container hidden-md hidden-lg ">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="thumbnail">
+        <div class="row" style="margin-top: 10px;">
+          <div class="row">
+            <div class="col-md-12" style="padding: 0px;">
+            <%= link_to "Nuevo Paciente",new_patient_path, class: "btn btn-primary new" %>
+            <div class="btn-group " style="">
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
+                           
+              </button>         
+                <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 149px;"  >
+                    <ul style="padding: 0px;">      
+                      <ol style="padding-left: 5px;">
+                        <% if action_name == "all_patients" %>
+                          <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_all_path(format: "csv"), class: "icon-export new", id: "img1"%>  
+                      </ol>
 
-            <% if action_name == "all_patients" %>
-              <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_all_path(format: "csv"), class: "icon-export new"%>
+                      <ol style="padding-left: 5px;">
+                        <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
+                        <% end -%>
+                      </ol>
 
-              <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
-              <% end -%>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <h5 style="margin-left: 18px;">Todos los Pacientes</h5>
+            
+            <hr>
+        </div>
+        <br>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <% @patients.each do |patient| %>
+                <li class="list-group-item">
+                <b><%= patient.first_name %> <%= patient.second_name %></b><div class="btn-group " style="float: right;">
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
+                           
+              </button>         
+                <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 160px;"  >
+                    <ul style="padding: 0px;">      
 
-              <%= link_to new_patient_path, class: "btn btn-primary" do %>
-                <i class="fas fa-plus-circle" style="color: #fff;"></i>
-              <% end -%>
+                <%if current_user.rol.show_patient%>
+                  <ol style="padding-left: 5px;"><%= link_to  patient, style: "width: 20px !important;" do%>
+                    <i class="fas fa-address-book" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Ver Paciente
+                    <% end -%>
+                  </ol>
+                <% end -%>
 
-          </li> 
 
-        <% @patients.each do |patient| %>
-            <li class="list-group-item">
-              <b><%= patient.first_name %> <%= patient.second_name %></b> <%= patient.document_type%>: <%= patient.document%>
-          </li>
-        <% end -%>
-      </ul>
+                <%if current_user.rol.edit_patient%>
+                    <ol style="padding-left: 5px;"><%= link_to  edit_patient_path(patient) do %>
+                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar Paciente
+                    <% end -%></ol>
+                <% end -%>
+                  
+
+                <%if current_user.rol.delete_patient%>
+                    <ol style="padding-left: 5px;"><%= link_to patient, method: :delete, data: {
+                        confirm: '¿Estas Seguro?',
+                        'confirm-button-text': 'Borrar',
+                        'cancel-button-text': 'Cancelar',
+                        'confirm-button-color': '#CC0000',
+                         text: 'Recuerda que el registro se borrara permanentemente',
+                        'image-url': ''} do %>
+                      <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar Paciente
+                      <% end -%></ol>
+                  <% end -%>
+                    </ul>
+                  </div>
+                </div><br> 
+                <%= patient.document_type%>: <%= patient.document%>
+                </li>
+              <% end -%>  
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-<style type="text/css">
-
-    @media only screen and (max-width: 600px) {
-
-      .new{
-          margin-left: 28px;
-      }
-
-      .movil{
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-
-      .title-h2{
-        font-size: 21px;
-        margin-left: 12px;
-      }
-
-      .count{
-        margin-left: 4px !important;
-      }
-
-      #search2{
-        margin-left: 42px;
-        margin-bottom: 17px;
-
-      }
-
-      .psi{
-        margin-left: 42px;
-        margin-bottom: 17px;
-      }
-
-      .commit{
-        margin-left: 123px;
-      }
-}
-
-</style>
+</div>
