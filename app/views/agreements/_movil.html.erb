@@ -1,0 +1,91 @@
+<div class="container hidden-md hidden-lg movil">
+    <br>
+      <div class="row">
+        <ul class="list-group">
+          <li class="list-group-item active">Convenios  
+
+              <%= link_to  new_agreement_path,remote:true, class: "btn btn-primary new" do %>
+                <i class="fas fa-plus-circle" style="color: #fff;"></i>
+              <% end -%>
+
+          </li> 
+
+       <% @agreements.each do |agreement| %>
+            <li class="list-group-item" style="padding: 10px 8px;">
+              <b><%= agreement.name %> </b><br> 
+              <p><%= agreement.description %></p>
+        
+            <div class="btn-group ">
+
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
+                    
+            </button>
+
+           
+              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 149px;"  >
+                 <ul style="padding: 0px;">
+                    
+                  <ol style="padding-left: 5px;"><%= link_to edit_agreement_path(agreement),remote: true do %>
+                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar Usuario
+                    <% end -%>
+                  </ol>
+
+                  
+                      <ol style="padding-left: 5px;"><%= link_to  agreement, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''} do %>
+                      <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar Usuario
+                      <% end -%></ol>
+                </ul>
+              <% end -%>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+<style type="text/css">
+
+    @media only screen and (max-width: 600px) {
+
+      .new{
+
+        margin-left: 209px;
+        position: absolute;
+        top: 3px;
+        left: 70px;
+      }
+
+      .movil{
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+
+      b{
+        margin-right: 25px;
+        text-transform: capitalize;
+      }
+
+      .btn-group{
+        position: absolute;
+        right:10px !important;
+        top: 10px !important;
+
+
+      }
+
+      .t{
+        font-size: 11px !important;
+        width: 227px;
+
+      }
+
+
+}
+
+</style>

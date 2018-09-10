@@ -7,13 +7,10 @@
 <div class="container margin-top-40">
    <div class="row" >
       <div class = "row title-table">
-         <div class = "col-md-6">
+         <div class = "col-md-6" style="padding: 0px;">
             <p>Roles <span class="label label-primary"><%=@rols.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @rols, :entry_name => 'Roles' %></span> </p>
          </div>
-         <div class = "col-md-4 paginate text-left title-table1">
-            <%= will_paginate @rols%>
-         </div>
-         <div class = "col-md-2">
+         <div class = "col-md-2"  style="right: -42%; padding: 0px; width: 80px !important;">
             <%= link_to 'Nuevo Rol', new_rol_path, class: "btn btn-primary"  %>
          </div>
       </div>

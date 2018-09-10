@@ -7,19 +7,16 @@
 <div class="container  margin-top-40">
    <div class="row">
       <div class = "row title-table">
-         <div class = "col-md-6">
+         <div class = "col-md-6" style="padding: 0px;">
             <p class="title-h2">Usuarios <span class="label label-primary"><%=@users.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @users, :entry_name => 'Usuarios' %></span> </p>
          </div>
-         <div class = "col-md-4 paginate text-left title-table1">
-            <%= will_paginate @users%>
-         </div>
-         <div class = "col-md-2">
-            <%= link_to 'Nuevo', new_user_path, remote: true, class: "btn btn-primary"  %>
+         <div class = "col-md-2"  style="right: -44%; padding: 0px; width: 80px !important;">
+            <%= link_to 'Nuevo', new_user_path, remote: true, class: "btn btn-primary hidden-xs hidden-sm"  %>
          </div>
       </div>
       <hr class="hr">
       <div class = "row">
-         <table class="table">
+         <table class="table hidden-xs hidden-sm">
             <thead>
                <tr class = "tr-table">
                   <th>Email</th>
@@ -66,3 +63,18 @@
       </div>
    </div>
 </div>
+
+<%= render "movil.htm.erb"%>
+  
+<div class = "col-md-4 paginate text-left title-table1">
+  <%= will_paginate @users%>
+</div>
+<style type="text/css">
+  @media only screen and (max-width: 600px) { 
+
+      .title-h2{
+       font-size: 17px;
+
+      }
+  } 
+</style>

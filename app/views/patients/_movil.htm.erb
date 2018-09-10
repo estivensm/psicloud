@@ -1,0 +1,66 @@
+<div class="container hidden-md hidden-lg movil">
+    <br>
+      <div class="row">
+        <ul class="list-group">
+          <li class="list-group-item active">Todos los Pacientes   
+
+            <% if action_name == "all_patients" %>
+              <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_all_path(format: "csv"), class: "icon-export new"%>
+
+              <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
+              <% end -%>
+
+              <%= link_to new_patient_path, class: "btn btn-primary" do %>
+                <i class="fas fa-plus-circle" style="color: #fff;"></i>
+              <% end -%>
+
+          </li> 
+
+        <% @patients.each do |patient| %>
+            <li class="list-group-item">
+              <b><%= patient.first_name %> <%= patient.second_name %></b> <%= patient.document_type%>: <%= patient.document%>
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
+
+<style type="text/css">
+
+    @media only screen and (max-width: 600px) {
+
+      .new{
+          margin-left: 28px;
+      }
+
+      .movil{
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .title-h2{
+        font-size: 21px;
+        margin-left: 12px;
+      }
+
+      .count{
+        margin-left: 4px !important;
+      }
+
+      #search2{
+        margin-left: 42px;
+        margin-bottom: 17px;
+
+      }
+
+      .psi{
+        margin-left: 42px;
+        margin-bottom: 17px;
+      }
+
+      .commit{
+        margin-left: 123px;
+      }
+}
+
+</style>
