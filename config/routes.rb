@@ -156,6 +156,8 @@ resources :first_diagnosticos do
 
 end
 
+get "/generar_hc", to: "clinic_histories#generar_hc" , as: "generar_hc"
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

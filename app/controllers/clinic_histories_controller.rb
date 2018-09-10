@@ -21,7 +21,7 @@ class ClinicHistoriesController < ApplicationController
   @schild = @clinic_history.personal_history
   @tchild = @clinic_history.two_child_history
   @fochild = @clinic_history.three_child_history 
-end
+  end
    @pdf = "basico"
   respond_to do |format|
       format.html
@@ -378,6 +378,52 @@ end
 
     end  
 
+def generar_hc
+
+  @clinic_history = ClinicHistory.find(params[:clinic_history])
+  @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
+  @patient = Patient.find(params[:patient_id])
+  @fchild = @clinic_history.child_general_date
+  if @clinic_history.child_history
+  @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
+  @schild = @clinic_history.personal_history
+  @tchild = @clinic_history.two_child_history
+  @fochild = @clinic_history.three_child_history 
+end
+
+
+@motivo_de_consulta = params[:motivo_de_consulta] == "true" ? "block" : "none"
+@estado_actual = params[:estado_actual] == "true" ? "block" : "none"
+@dinamica_familiar = params[:dinamica_familiar] == "true" ? "block" : "none"
+
+
+@pdf = "basico"
+
+        render :pdf => @clinic_history.patient.first_name + @clinic_history.patient.first_last_name,
+        header: { right: '[page] of [topage]' },
+        :template => 'clinic_histories/pdfs/clinic_history_select.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 10
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb',
+                     :right => 'Page [page] of [topage]',
+                     :font_size => 7
+                  }
+               },
+        :show_as_html => params[:debug].present?
+
+end
 
 
   private

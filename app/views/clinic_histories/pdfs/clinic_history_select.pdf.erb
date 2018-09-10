@@ -54,22 +54,33 @@
    </tr>
    </tbody>
 </table>
-<div class = "fields_history">
+
+
+
+
+<div class = "fields_history" style="display:<%=@motivo_de_consulta%>">
    <hr>
    <h3 class= "color-gray">Motivo de Consulta</h3>
    <p><strong>Tipo: </strong> <%=@clinic_history.consult_reason.name if @clinic_history.consult_reason%><br><br>
                         <strong>Descripcion: </strong> <%=@clinic_history.consultation_reason%></p>
 </div>
-<div class = "fields_history">
+
+<div class = "fields_history" style="display:<%=@estado_actual%>">
    <hr>
-   <h3 class= "color-gray">Estado actual del paciente</h3>
+   <h3 class= "color-gray">Estado Actual</h3>
    <p><%=@clinic_history.actual_state%></p>
 </div>
-<div class = "fields_history">
+
+
+<div class = "fields_history" style="display:<%=@dinamica_familiar%>">
    <hr>
-   <h3 class= "color-gray">Dinamica familiar</h3>
+   <h3 class= "color-gray">Dinamica Familiar</h3>
    <p><%=@clinic_history.family_dinamic%></p>
 </div>
+
+
+
+
 
 <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
   
