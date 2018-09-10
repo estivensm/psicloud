@@ -392,6 +392,24 @@ def generar_hc
 end
 
 
+@fields_create = []
+ @clinic_history.crete_fields.order(id: :asc).each do |field|
+   if field.field.form == "Primer Contacto" && field.field.state 
+
+     param = params[:"#{field.field.name}"].present? ? "block" : "none"
+     @fields_create << param
+
+
+
+   end
+ end
+
+puts "holaaaaaaaaaaaaaaaaa"
+puts @fields_create
+
+
+
+
 @motivo_de_consulta = params[:motivo_de_consulta] == "true" ? "block" : "none"
 @estado_actual = params[:estado_actual] == "true" ? "block" : "none"
 @dinamica_familiar = params[:dinamica_familiar] == "true" ? "block" : "none"

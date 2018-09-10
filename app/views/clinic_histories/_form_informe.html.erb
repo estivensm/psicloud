@@ -9,32 +9,45 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Generar PFD</h4>
       </div>
-    
+     <%= form_tag generar_hc_path, method: :get, target: "_blank", id: "form-tag" do%>
       <div class="modal-body">
-          <%= form_tag generar_hc_path, method: :get, target: "_blank", id: "form-tag" do%>
+         
          
           <div class=" row">
             <div class="col-md-8">
                 <h3>Motivo de Consulta</h3>
             </div>
             <div class="col-md-4">
-                <%= check_box_tag :motivo_de_consulta, true ,class: "", id: "toggle-one"  %></span>
+                <%= check_box_tag :motivo_de_consulta, true   %></span>
             </div>
             <div class="col-md-8">
                 <h3>Estado Acual</h3>
             </div>
             <div class="col-md-4">
-                  <%= check_box_tag :estado_actual, true ,class: "", id: "toggle-two"  %></span>
+                  <%= check_box_tag :estado_actual, true %></span>
             </div>
             <div class="col-md-8">
                 <h3>Dinamica Familiar</h3>
             </div>
             <div class="col-md-4">
-                 <%= check_box_tag :dinamica_familiar, true ,class: "", id: "toggle-three"  %></span>
+                 <%= check_box_tag :dinamica_familiar, true  %></span>
             </div>
+          <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+            <%if field.field.form == "Primer Contacto" && field.field.state %>
+              <div class="col-md-8">
+                <h3><%=field.field.name%></h3>
+            </div>
+            <div class="col-md-4">
+                <%= check_box_tag "#{field.field.name}" , true   %></span>
+            </div>
+           <%end%>
+           <%end%>
+          
           </div>
-       
-         
+
+
+
+             
           
           <%=hidden_field_tag :patient_id, patient.id%>
           <%=hidden_field_tag :clinic_history, clinic_history.id%>
@@ -51,11 +64,48 @@
  
 </div><!-- /.modal -->
 
+ <script>
+   $(document).on('turbolinks:load',function() {
 
-<script>
-  $('#form-tag').submit(function(){
+     $(function() {
+       $('#motivo_de_consulta').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+      $('#estado_actual').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+       $('#dinamica_familiar').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
 
-       
-  })
+         <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+            <%if field.field.form == "Primer Contacto" && field.field.state %>
+                  
+                  $('#<%=field.field.name.gsub(" ", "_")%>').bootstrapToggle({
+                           on: 'Si',
+                           off: 'No'
+                      });
 
-</script>
+                  $('#<%=field.field.name.gsub(" ", "_")%>').bootstrapToggle('on');
+           <%end%>
+           <%end%>
+
+
+     }); 
+
+$("#motivo_de_consulta").bootstrapToggle('on');
+$("#estado_actual").bootstrapToggle('on');
+$("#dinamica_familiar").bootstrapToggle('on');
+
+  });
+
+$('#form-tag').on('click', function(e) {
+   //location.reload(true);
+ 
+});
+
+
+     </script>

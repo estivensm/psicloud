@@ -82,17 +82,20 @@
 
 
 
-<% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+<% i = 0
+ @clinic_history.crete_fields.order(id: :asc).each do |field| %>
   
  
    <%if field.field.form == "Primer Contacto" && field.field.state %>
-    <div class = "fields_history">
+    <div class = "fields_history" style="display:<%=@fields_create[i]%>">
       <hr>
       <h3 class= "color-gray"><%=field.field.name%></h3>
       <p><%=field.content%></p>
     </div>
 
-<%end%>
+<% i =  i + 1;
+
+end%>
   
 
 <%end%>
