@@ -1,0 +1,90 @@
+<div class="container hidden-md hidden-lg movil">
+    <br>
+      <div class="row">
+        <ul class="list-group">
+          <li class="list-group-item active">Consentimientos  
+
+              <%= link_to  new_consent_path, class: "btn btn-primary new" do %>
+                <i class="fas fa-plus-circle" style="color: #fff;"></i>
+              <% end -%>
+
+          </li> 
+
+        <% @consents.each do |consent| %>
+            <li class="list-group-item" style="padding: 10px 8px;">
+              <b><%=consent.title%></b>  <p class="name"><%= consent.second_age %> <%=consent.first_age%></p> <p><%=get_state(consent.state).html_safe%></p> 
+        
+            <div class="btn-group ">
+
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
+                    
+            </button>
+
+           
+              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width:   91px;"  >
+                 <ul style="padding: 0px;">
+ 
+                    
+                  <ol style="padding-left: 5px;"><%= link_to edit_consent_path(consent),remote: true do %>
+                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar
+                    <% end -%>
+                  </ol>
+
+                  
+                      <ol style="padding-left: 5px;"><%= link_to consent, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''} do %>
+                      <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar 
+                      <% end -%></ol>
+                </ul>
+              <% end -%>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+<style type="text/css">
+
+    @media only screen and (max-width: 600px) {
+
+      .new{
+
+        margin-left: 196px;
+        position: absolute;
+        top: 3px;
+        left: 70px;
+      }
+
+
+      b{
+        margin-right: 25px;
+        text-transform: capitalize;
+      }
+
+      .name{
+        margin-right: 10px;
+      }
+
+      .btn-group{
+        position: absolute;
+        right:10px !important;
+        top: 10px !important;
+
+
+      }
+
+      .t{
+        font-size: 11px !important;
+        width: 227px;
+
+      }
+
+
+}
+
+</style>

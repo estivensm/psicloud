@@ -8,18 +8,15 @@
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6" style="padding: 0px;">
-            <p>EPS <span class="label label-primary"><%=@hpcs.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @hpcs, :entry_name => 'Eps' %></span> </p>
+            <p id="ti1">EPS <span class="label label-primary"><%=@hpcs.count%></span> <span style = "font-size:12px;margin-left:20px;" id="t2"> <%= page_entries_info @hpcs, :entry_name => 'Eps' %></span> </p>
          </div>
-         <div class = "col-md-4 paginate text-left title-table1">
-            <%= will_paginate @hpcs%>
-         </div>
-         <div class = "col-md-2">
-            <%= link_to 'Nueva EPS', new_hpc_path,remote:true, class: "btn btn-primary"  %>
+         <div class = "col-md-2" style="right: -41%; padding: 0px; width: 114px !important;">
+            <%= link_to 'Nueva EPS', new_hpc_path,remote:true, class: "btn btn-primary hidden-xs hidden-sm"  %>
          </div>
       </div>
       <hr class="hr">
       <div class = "row">
-         <table class="table">
+         <table class="table hidden-xs hidden-sm" >
             <thead>
                <tr class = "tr-table">
       <th>Nombre</th>
@@ -60,4 +57,22 @@
    </div>
 </div>
 
+<%= render "movil"%>
 
+<div class = "col-md-4 paginate text-left title-table1">
+  <%= will_paginate @hpcs%>
+</div>
+
+<style type="text/css">
+
+   @media only screen and (max-width: 600px) {
+    #ti1{
+      margin-left: 22px;
+    }
+
+    #t2{
+      margin-left: 80px !important;
+    }
+   }
+
+</style>

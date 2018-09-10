@@ -24,9 +24,9 @@
 </div>
 
 <br>
-   <div class="row"  >
+   <div class="row" style="    margin-left: 10px;"  >
 
-      <div class = "row title-table">
+      <div class = "row title-table hidden-xs hidden-sm" >
          <div class = "col-md-6">
             <p class="title-h2"><%=@type%>PACIENTES   <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
          </div>
@@ -62,32 +62,22 @@
          </div>
       </div>
       <hr>
-      <br>
-      <div class = "row busqueda hidden-xs hidden-sm">
-   <div class = "col-md-12">
+
+    <div class = "col-md-12" style="padding: 0px;">
       <div class="form-group fil">
          <%= form_tag(@route, :method => "get", id: "search-form") do %>
-   
-  <%= text_field_tag :search, params[:search], placeholder: "Nombre, Apellido, Documento", class: "form-control search" %>
- 
-
-  
-      
+          <%= text_field_tag :search, params[:search], placeholder: "Nombre, Apellido, Documento", class: "form-control search" %>      
          <%= submit_tag "Buscar", :class => "btn btn-primary  btn_search" %>
             <%if params[:commit]%>    
             <%= link_to "Cancelar Filtros", @route, style: "    margin-left: 20px;position: relative;top: 8px;"%>
             <% end %>
          <% end %>
       </div>
-
    </div>
   
 
-</div>
-
-
       <div class = "row"> 
-        <div class="col-md-12">
+        <div class="col-md-12 hidden-xs hidden-sm">
          <table class="table">
             <thead>
                <tr class = "tr-table">
@@ -173,13 +163,82 @@
   </div>
 </div>
 
-   <div class="row">
+
+  </div>
+
+  <br>
+    <div class="container hidden-md hidden-lg">
+
+      <br>
+
+      <div class="row" style="margin-left: 10px; margin-right: 10px;">
+        <ul class="list-group">
+          <li class="list-group-item active">Pacientes     
+              <%= link_to  new_patient_path, class: "btn btn-primary new" do%>
+                <i class="fas fa-plus-circle" style="color: #fff;"></i>
+              <% end -%>
+          </li> 
+          <% @patients.each do |patient| %>
+            <li class="list-group-item">
+
+            <% imagen = !patient.avatar.blank? ? patient.avatar_url : "http://www.uic.mx/posgrados/files/2018/05/default-user-300x300.png" %>
+            <%= image_tag imagen, style: "border-radius: 60px; width: 50px; margin-right: 10px;" %> 
+            <%= patient.first_name %> <%= patient.second_name  %>
+
+            <div class="btn-group" style="margin-left: 55px;">
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
+                     
+              </button>
+             
+                <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 230px;"  >
+                   <ul style="padding: 0px;">
+
+                    <ol style="padding-left: 5px; padding-top: 4px;"><%= link_to patient, style: "width: 20px !important;" do%>
+                    <i class="fas fa-address-card" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Gestionar Historia Clinica
+
+                    <% end -%>
+                    </ol>
+
+                    <%if patient.clinic_histories.any? %>
+                    <ol style="padding-left: 5px;"><%= link_to patient_clinic_history_path(patient.id, patient.clinic_histories.first.id), style: "width: 20px !important;" do%>
+                    <i class="fas fa-address-book" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Ver Historia Clinica
+                    <% end -%>
+                    </ol>
+                    <%end%>
+
+
+                    <%if current_user.rol.edit_patient%>
+                      <ol style="padding-left: 5px;"><%= link_to edit_patient_path(patient) do %>
+                      <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar Paciente
+                      <% end -%></ol>
+                    <% end -%>
+
+                    <%if current_user.rol.delete_patient%>
+                        <ol style="padding-left: 5px;"><%= link_to patient, method: :delete, data: {
+                confirm: '¿Estas Seguro?',
+                'confirm-button-text': 'Borrar',
+                'cancel-button-text': 'Cancelar',
+                'confirm-button-color': '#CC0000',
+                 text: 'Recuerda que el registro se borrara permanentemente',
+                'image-url': ''} do %>
+                        <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar Paciente
+                        <% end -%></ol>
+                    <% end -%>
+
+                   </ul>
+                </div>
+               </div>
+            
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+       <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">
             <%= will_paginate @patients%>
         </div>
-     
    </div>
-</div>
+  </div>
 
 <style>
 .table td
@@ -224,6 +283,13 @@
     background-color: #fff;
     border-color: #ccc;
 }
+
+.new {
+    margin-left: 173px;
+}
+
+
+
 
 ol{
   padding-bottom: 4px;

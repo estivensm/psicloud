@@ -18,13 +18,13 @@
             <p class="title-h2">Consentimientos Creados   <span class="label label-primary"><%=@consents.count%></span> <span style = "font-size:12px;margin-left:20px;"></span> </p>
          </div>
 
-         <div class = "col-md-6 text-right">
+         <div class = "col-md-6 text-right hidden-xs hidden-sm">
           <%= link_to 'Nuevo Consentimiento', new_consent_path, class: "btn btn-primary" %>
         </div>
       </div>
     </div>
 <br>
-<table class="table">
+<table class="table hidden-xs hidden-sm">
   <thead style="background-color: #306C95; color: #f1f1f1">
     <tr>
       <th>Titulo</th>
@@ -67,8 +67,16 @@
   </tbody>
 </table>
 
-<br>
+<%= render "movil"%>
 
 <style type="text/css">
+
+  @media only screen and (max-width: 600px) { 
+
+      .title-h2{
+       font-size: 22px;
+
+      }
+  } 
 
 </style>

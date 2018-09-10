@@ -26,7 +26,7 @@
 
       <div class = "row title-table">
          <div class = "col-md-8" style="padding: 0px">
-            <p class="title-h2" ><%=@type%>PACIENTES   <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
+            <p class="title-h2" ><%=@type%>PACIENTES   <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;" class="count"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
             <hr>
          </div>
        <!--  <div class = "col-md-4 paginate text-left title-table1">
@@ -34,24 +34,24 @@
          </div>-->
          <div class = "col-md-4 text-right" style="padding: 0px;">
            
-            <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
-            <hr>
+            <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary hidden-xs hidden-sm" if current_user.rol.create_patient  %>
+            <hr class="hidden-xs hidden-sm">
          </div>
       </div>
       <br>
-      <div class = "row busqueda hidden-xs hidden-sm">
+      <div class = "row busqueda">
    <div class = "col-md-9">
       <div class="form-group fil">
          <%= form_tag(@route, :method => "get", id: "search-form") do %>
    
-  <%= text_field_tag :search, params[:search], placeholder: "Nombre, Apellido, Documento", class: "form-control search", id: "search2" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Nombre, Apellido, Documento", class: "form-control search", id: "search2", :required => true  %>
         <div class="col-md-4" style="padding: 0px;width: 30%;">
          <%=select_tag 'search1', options_for_select(get_users.collect{ |u| ["#{u.names}", u.id, ] }),{:class => "form-control search psi", include_blank: "Psicólogo" , placeholder: "hola"}%>
        </div>
 
   
       
-         <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+         <%= submit_tag "Buscar", :class => "btn btn-primary commit" %>
             <%= link_to "Cancelar Filtros", @route, style: "margin-left: 1px; position: relative;top: 8px; display: none;", id: "cambiar"%>
             <br>
     
@@ -66,17 +66,17 @@
        <%= link_to image_tag("https://www.codot.gov/business/civilrights/ada/assets/adobe-pdf-icon.png/image_preview"), patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
      <%end%>
 
-  <% if action_name == "all_patients" %>
-        <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_all_path(format: "csv"), class: "icon-export"%>
+      <% if action_name == "all_patients" %>
+        <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png"), patients_csv_all_path(format: "csv"), class: "icon-export hidden-xs hidden-sm"%>
 
-       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%>
+       <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf"), target:"_blank", class: "icon-export hidden-xs hidden-sm"%>
      <%end%>   
    </div>
 
 </div>
 
 
-      <div class = "row"> 
+      <div class = "row hidden-xs hidden-sm"> 
         <div class="col-md-12">
          <table class="table">
             <thead>
@@ -99,24 +99,27 @@
       <tr>
         <td><%= patient.first_name %> <%= patient.second_name %></td>
         <td><%= patient.first_last_name %> <%= patient.second_last_name %></td>
-         <td><%= patient.document_type%>: <%= patient.document%></td>
+        <td><%= patient.document_type%>: <%= patient.document%></td>
         <td><%= patient.birth_date %></td>
-         <td><%= patient.age %> Años</td>
-                  <td><%= patient.user.names %></td>
-             <td class="text-center"><%= get_state(patient.state).html_safe %></td>
+        <td><%= patient.age %> Años</td>
+        <td><%= patient.user.names if patient.user %></td>
+        <td class="text-center"><%= get_state(patient.state).html_safe %></td>
         <td>
+
         <%if current_user.rol.show_patient%>
-        <%= link_to  patient, class: "btnl btn-primary" do %>
-             <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%>
-      <%end%>
+          <%= link_to  patient, class: "btnl btn-primary" do %>
+          <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
+          <%end%>
+        <%end%>
+
         <%if current_user.rol.edit_patient%>
           <%= link_to  edit_patient_path(patient), class: "btnl btn-primary" do%>
-             <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
-             <%end%>
-<%end%>
-       <%if current_user.rol.delete_patient%>
-      <%= link_to  patient, method: :delete, data: {
+          <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
+          <%end%>
+        <%end%>
+
+        <%if current_user.rol.delete_patient%>
+        <%= link_to  patient, method: :delete, data: {
               confirm: '¿Estas Seguro?',
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
@@ -133,14 +136,15 @@
          </div>
       </div>
    </div>
-   <div class="row">
+</div>
+
+<%= render "movil.htm.erb"%>
+
+    <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">
             <%= will_paginate @patients%>
         </div>
-     
    </div>
-</div>
-
 <style>
 .table td
 { /*border: 1px solid #e8e8e8;*/
@@ -169,6 +173,7 @@
 #cambiar{
   text-decoration: underline;
 }
+
 </style>
 
 <script>

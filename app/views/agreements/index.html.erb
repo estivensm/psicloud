@@ -8,18 +8,15 @@
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6" style="padding: 0px;">
-            <p>Convenios <span class="label label-primary"><%=@agreements.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @agreements, :entry_name => 'Convenio' %></span> </p>
+            <p class="t">Convenios <span class="label label-primary"><%=@agreements.count%></span> <span id="show" style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @agreements, :entry_name => 'Convenio' %></span> </p>
          </div>
-         <div class = "col-md-4 paginate text-left title-table1">
-            <%= will_paginate @agreements%>
-         </div>
-         <div class = "col-md-2">
+         <div class = "col-md-2 hidden-xs hidden-sm" style="right: -36%;" >
             <%= link_to 'Nuevo Convenio', new_agreement_path,remote:true, class: "btn btn-primary"  %>
          </div>
       </div>
       <hr class="hr">
       <div class = "row">
-         <table class="table">
+         <table class="table hidden-xs hidden-sm">
             <thead>
                <tr class = "tr-table">
       <th>Nombre</th>
@@ -52,11 +49,36 @@
                     <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
 
                     
-                <% end %></td>
-      </tr>
-               <%end%>
-            </tbody>
-         </table>
-      </div>
-   </div>
+              <% end %></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
+<%= render "movil"%>
+
+<div class = "col-md-4 paginate text-left title-table1">
+    <%= will_paginate @agreements%>
+</div>
+
+<style type="text/css">
+
+@media only screen and (max-width: 600px) {
+
+      .t{
+        font-size: 20px !important;
+        margin-left: 21px !important;
+        width: 314px;
+
+      }
+
+      #show{
+        margin-left: 2px !important;
+        font-size: 10px !important;
+      }
+  
+}
+</style>

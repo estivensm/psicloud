@@ -22,7 +22,7 @@
             <div class="col-md-6" style="padding-left: 15px !important;">
               <div class="field">
                 <%= form.label :Titulo %>
-                <%= form.text_field :title, id: :consent_title, class: "form form-control", autocomplete: "off" %>
+                <%= form.text_field :title, id: :consent_title, class: "form form-control", autocomplete: "off", :required => true %>
                 <i>Este consentimientos se mostrara en los pacientes entre las siguientes edades </i>
               </div>
             </div>
