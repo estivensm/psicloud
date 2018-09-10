@@ -1,0 +1,32 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: Psicloud_development
+  pool: 5
+  username: postgres 
+  password: Servidual2016
+  host: localhost
+  port: 5432
+
+
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: Psicloud_test
+  pool: 5
+  username: postgres 
+  password: Servidual2016
+  host: localhost
+  port: 5432
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: Psicloud_production
+  pool: 5
+  username: rails
+  password: Servidual2016
+  host: localhost
+  port: 5432
