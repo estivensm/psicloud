@@ -20,28 +20,126 @@
             <div class="col-md-4">
                 <%= check_box_tag :motivo_de_consulta, true   %></span>
             </div>
+          </div>  
+             <div class=" row">
             <div class="col-md-8">
                 <h3>Estado Acual</h3>
             </div>
             <div class="col-md-4">
                   <%= check_box_tag :estado_actual, true %></span>
             </div>
+            </div>
+            <div class=" row">
             <div class="col-md-8">
                 <h3>Dinamica Familiar</h3>
             </div>
             <div class="col-md-4">
                  <%= check_box_tag :dinamica_familiar, true  %></span>
             </div>
+          </div>
+
+
           <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
             <%if field.field.form == "Primer Contacto" && field.field.state %>
+              <div class=" row">
               <div class="col-md-8">
                 <h3><%=field.field.name%></h3>
             </div>
             <div class="col-md-4">
                 <%= check_box_tag "#{field.field.name}" , true   %></span>
             </div>
+            </div>  
+            
            <%end%>
            <%end%>
+
+            <div class=" row">
+             <div class="col-md-8">
+                <h3>Historia Familiar</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :historia_familiar, true  %></span>
+            </div>
+         </div>  
+
+         <% if @clinic_history.child_history %>
+         <div class=" row">
+             <div class="col-md-8">
+                <h3>Historia Personal</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :historia_personal, true  %></span>
+            </div>
+         </div>
+         <%end%>   
+
+        <div class=" row">
+            <div class="col-md-8">
+                <h3>Antecedentes</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :antecedentes , true  %></span>
+            </div>
+          </div>  
+         <div class=" row">
+            <div class="col-md-8">
+                <h3>Herramientas de Evaluacion</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :herramientas_evaluacion , true  %></span>
+            </div>
+
+          </div>  
+         <div class=" row">
+            <div class="col-md-8">
+                <h3>Hipotesis Diagnóstica</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :hipotesis_diagnostica , true  %></span>
+            </div>
+          </div>  
+         <div class=" row">
+            <div class="col-md-8">
+                <h3>Objetico Terapéoutico</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :objetivo_terapeoutico , true  %></span>
+            </div>
+          </div>
+           <div class=" row">
+             <div class="col-md-8">
+                <h3>Tipo de Tratamiento</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :tipo_tratamiento , true  %></span>
+            </div>
+           </div>
+
+          <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+            <%if field.field.form == "Diagnostico y Tratamiento" && field.field.state %>
+              <div class=" row">
+              <div class="col-md-8">
+                <h3><%=field.field.name%></h3>
+            </div>
+            <div class="col-md-4">
+                <%= check_box_tag "#{field.field.name}" , true   %></span>
+            </div>
+            </div>  
+            
+           <%end%>
+           <%end%>
+
+
+
+
+
+            <div class=" row"> 
+             <div class="col-md-8">
+                <h3>Seguimientos</h3>
+            </div>
+            <div class="col-md-4">
+                 <%= check_box_tag :seguimientos , true  %></span>
+            </div>
           
           </div>
 
@@ -55,7 +153,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
          <%= submit_tag "Crear", class:"btn btn-default" %>
       </div>
       <%end%>
@@ -67,7 +165,6 @@
  <script>
    $(document).on('turbolinks:load',function() {
 
-     $(function() {
        $('#motivo_de_consulta').bootstrapToggle({
             on: 'Si',
             off: 'No'
@@ -80,6 +177,46 @@
             on: 'Si',
             off: 'No'
           });
+        $('#historia_familiar').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
+        $('#historia_personal').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
+ $('#antecedentes').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
+ $('#herramientas_evaluacion').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
+ $('#hipotesis_diagnostica').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
+ $('#objetivo_terapeoutico').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
+ $('#tipo_tratamiento').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
+ $('#seguimientos').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+
 
          <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
             <%if field.field.form == "Primer Contacto" && field.field.state %>
@@ -93,19 +230,62 @@
            <%end%>
            <%end%>
 
+           <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+            <%if field.field.form == "Diagnostico y Tratamiento" && field.field.state %>
+                  
+                  $('#<%=field.field.name.gsub(" ", "_")%>').bootstrapToggle({
+                           on: 'Si',
+                           off: 'No'
+                      });
 
-     }); 
+                  $('#<%=field.field.name.gsub(" ", "_")%>').bootstrapToggle('on');
+           <%end%>
+           <%end%>
+
+
+  
 
 $("#motivo_de_consulta").bootstrapToggle('on');
 $("#estado_actual").bootstrapToggle('on');
 $("#dinamica_familiar").bootstrapToggle('on');
 
+$("#historia_familiar").bootstrapToggle('on');
+$("#historia_personal").bootstrapToggle('on');
+
+$("#antecedentes").bootstrapToggle('on');
+$("#herramientas_evaluacion").bootstrapToggle('on');
+
+$("#hipotesis_diagnostica").bootstrapToggle('on');
+$("#objetivo_terapeoutico").bootstrapToggle('on');
+$("#tipo_tratamiento").bootstrapToggle('on');
+
+$("#seguimientos").bootstrapToggle('on');
+
   });
 
 $('#form-tag').on('click', function(e) {
-   //location.reload(true);
+     
+     setTimeout(function(){
+        window.location.reload(true);
+      }, 1000)
  
 });
 
 
      </script>
+
+
+<style>
+.modal-body .row
+{
+  background: whitesmoke;
+  margin-bottom: 3px;
+  padding-top: 8px;
+}
+.modal-body h3
+{
+    color: gray !important;
+    font-size: 18px !important;
+}
+       
+     </style>     

@@ -38,7 +38,7 @@
                         action_name == "edit" ? val1 = @field.type_field : val1 = "" %>
                      <%= form.label "Tipo del Formulario" %><br>
            
-                     <%= form.select 'type_field', options_for_select(["Textarea", "Seleccion Multiple"], val1), {},{:class => 'form form-control select'}%>
+                     <%= form.select 'type_field', options_for_select([["Cuadro de Texto", "Textarea"], ["Seleccion", "Seleccion Multiple"]], val1), {},{:class => 'form form-control select'}%>
                   </div>
   
       
@@ -88,12 +88,12 @@
         <br>
         <div class="col-md-4" style="padding: 0px;">
           <div class="field">
-          <%= form.label :Estado %><br>
+          <%= form.label "Estado"  %><br>
           <%= form.check_box :state, id: :field_state %>
          </div>
         </div>
       
-        <div class="col-md-4">
+        <div class="col-md-4" style="display:none">
           <div class="field">
           <%= form.label :Requerido %><br>
           <%= form.check_box :requierd, id: :field_requierd%>
@@ -127,6 +127,12 @@
 
 <script>
     
+
+       $('#field_state').bootstrapToggle({
+            on: 'Activo',
+            off: 'Inactivo'
+          });
+
     if ("<%=action_name%>" == "edit" )
 
     {
@@ -135,7 +141,17 @@
 
     }
 
+    if ("<%=action_name%>" != "edit" )
+
+    {
+    $("#field_state").bootstrapToggle('on');
+
+    }
+
     
+   
+
+
 
     if ($('.select').val() == "Seleccion Multiple"  && "<%=action_name%>" == "edit" )
     {
@@ -169,4 +185,9 @@
   .organizar{
     padding: 0px;
   }
+
+  .toggle.btn {
+    min-width: 100px;
+    min-height: 34px;
+}
 </style>

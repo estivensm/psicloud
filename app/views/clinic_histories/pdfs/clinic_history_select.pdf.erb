@@ -1,3 +1,7 @@
+
+
+
+
  <table class="table1">
         <tr style = "height:100px">
          <td class="" style = "width:20%"><%=  (wicked_pdf_image_tag (get_account1.logo_url), style: "width:150px;") if get_account1.logo_url%></td>
@@ -96,12 +100,18 @@
 <% i =  i + 1;
 
 end%>
+
+
+
+
+
+
   
 
 <%end%>
 
 <%if  @clinic_history.child_history  || (!@clinic_history.child_history && @fchild != nil && !@fchild.father_name.blank?)  %>
-<div class = "fields_history">
+<div class = "fields_history" style="display:<%=@historia_familiar%>">
   <table class="table table-responsive" id="tabla_antecedentes">
     <h3 class= "color-gray">Historia Familiar</h3>
 
@@ -154,270 +164,273 @@ end%>
  <!--historia personal-->
   <%end%>
 
-
-
-  <% if  @clinic_history.child_history %>
-  
-<h3 class= "color-gray"> Historia Personal</h3>
-  <table class="table table-responsive" id="tabla_antecedentes">
-      <h4 class= "color-gray">Antecedentes</h4>
-    <tr>
-      <td><strong>Embarazo</strong><br><%=@schild.embarazo%></td>
-      <td><strong>Hijo Deseado</strong><br><%=@schild.hijo_deseado%></td>
-      <td colspan="2"><strong>Dificultades Prenatales (Médicas, Intentos de aborto, Psicológicas)</strong><br><%=@schild.dificultades_prenatales%></td>
-    </tr>
-
-    <tr>
-      <td colspan="4"><strong>Periodo Prenatal Parto: (Normal, Anoxia, Cordon umbilical, Placenta, Malformación,Ictericia, Prelactancia materna)</strong><br><%=@schild.periodo_prenatal%></td>
-    </tr>
-
-
-
-
-     <tr>
-      <td><strong>Peso al Nacer (Libras)</strong><br><%=@schild.peso_nacimiento%></td>
-      <td><strong>Talla nacimiento (cms)</strong><br><%=@schild.talla_nacimiento%></td>
-      <td><strong>Lactancia Materna Hasta (Meses)</strong><br><%=@schild.latencia_materna%></td>
-      <td><strong>Con biberon hasta (Meses)</strong><br><%=@schild.latencia_materna%></td>
-    </tr>
-
-    <!--<tr>
-      <th colspan="2">Tipos de Semisolidos Introducidos</th>
-      <th colspan="2">Tipos de Solidos Introducidos</th>
-    </tr>
-
-    <tr>
-      <td colspan="2"><%=@schild.semisolidos%></td>
-       <td colspan="2"><%=@schild.solidos%></td>
-    </tr>-->
-
-     <tr>
-      <td colspan="4"><strong>Problemas de Alimentacion al nacer y hasta el primer año</strong><br><%=@schild.problemas_alimentacion%></td>
-    </tr>
-
-
-
-    <tr>
-      <td colspan="2"><strong>Dificultades para dormir</strong><br><%=@schild.dificultad_dormir%></td>
-      <td colspan="2"><strong>Reacciones del niño</strong><%=@schild.reacciones%></td>
-    </tr>
-
-
-     <tr>
-      <td><strong>Edad de gateo (Meses)</strong><br><%=@schild.edad_gateo%></td>
-      <td><strong>Edad de ponerse en pie (Meses)</strong><br><%=@schild.edad_gateo%></td>
-      <td><strong>Edad de caminar (Meses)</strong><br><%=@schild.edad_caminar%></td>
-      <td><strong>Inicio del Lenguaje</strong><br><%=@schild.inicio_lenguaje%></td>
-    </tr>
-
-     <tr>
-      <td colspan="2"><strong>Enfermedades Medicas</strong><br><%=@schild.enfermedades_medicas%></td>
-      <td colspan="2"><strong>Hospitalizaciones y cirugias</strong><br><%=@schild.hospitalizacion_cirugias%></td>
-    </tr>
-
-    <tr>
-      <td colspan="4"><strong>Problemas visoperceptivomotores</strong><br><%=@schild.problemas_visoperceptivomotores%></td>
-    </tr>
-
-</table>
-
-<h4 class= "color-gray">Antecedentes Escolares</h4>
-  <table class="table table-responsive" id="tabla_antecedentes">
-  
-
-    <tr>
-      <td><strong>Nivel Escolar</strong><br><%=@tchild.nivel_escolar%></td>
-      <td><strong>Grado</strong><br><%=@tchild.indice_academico%></td>
-      <td ><strong>Escuela</strong><br><%=@tchild.escuela%></td> 
-      <td ></td> 
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿Cómo fue el proceso de adaptación a la escuela?</strong><br><%=@tchild.adaptacion_escolar%></td>
-      <td colspan="2"><strong>Problemas escolares (académicos), (conductales)</strong><br><%=@tchild.problemas_escolares%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿Qué le gusta mas de la escuela?</strong><br><%=@tchild.gustos_escolares%></td>
-      <td colspan="2"><strong>¿Qué no le gusta de la escuela?</strong><br><%=@tchild.disgustos_escolares%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿Cómo es con las tareas ?</strong><br><%=@tchild.tareas%></td>
-      <td colspan="2"><strong>¿ Cómo maneja los útiles escolares ?</strong><br><%=@tchild.utiles_escolares%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿ Qué problemas posee a nivel de lectura, escritura, cálculo ?</strong><br><%=@tchild.problemas_materias%></td>
-      <td colspan="2"><strong>¿ Cómo ser ralaciona con la maestra ?</strong><br><%=@tchild.relacion_maestro%></td>
-    </tr>
-
-    <tr>
-      <td colspan="4"><strong>¿ Cómo ser ralaciona con los compañeros ?</strong><br><%=@tchild.relacion_companeros%></td>
-    </tr>
- </table>
-
-<h4 class= "color-gray">Aspectos de Socialización y Afectivos</h4>
-  <table class="table table-responsive" id="tabla_antecedentes">
-  
-    <tr>
-      <td colspan="5"><strong>¿Hace amigos con facilidad? (comunicativo, poco comunicativo, participa en grupo, tendencia al aislamiento, pasivo, agresivo, dependiente, independiente)</strong><br><%=@tchild.frecuencia_amigos%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿De que edad son los niños con los que se realciona?</strong><br><%=@tchild.edad_amigos%></td>
-      <td colspan="2"><strong>¿Qué tipos de juegos realiza?</strong><br><%=@tchild.tipo_juegos%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿ Qué hace con otros niños del mismo sexo ?</strong><br><%=@tchild.actividades_mismo_sexo%></td>
-      <td colspan="2"><strong>¿ Cómo se realciona con los niños de otro sexo ?</strong><br><%=@tchild.actividades_otro_sexo%></td>
-    </tr>
-
-     <tr>
-      <td colspan="2"><strong>¿ Por qué se pelea con otros niños ?</strong><br><%=@tchild.pelea%></td>
-      <td colspan="2"><strong>¿ Qué lo hace feliz ?</strong><br><%=@tchild.motivo_felicidad%></td>
-    </tr>
-
-     <tr>
-      <td colspan="2"><strong>¿ Qué lo entristece ?</strong><br><%=@tchild.motivo_tristeza%></td>
-      <td colspan="2"><strong>¿ Qué lo enoja ?</strong><br><%=@tchild.motivo_enojo%></td>
-    </tr>
-
-     <tr>
-      <td colspan="2"><strong>¿ Sobre que aspectos de la vida pregunta constantemente?</strong>><br><%=@tchild.motivos_pregunta%></td>
-      <td colspan="2"><strong>¿ Qué tan bien se baña, se viste, come, duerme, en la actualidad ?</strong>><br><%=@tchild.habitos%></td>
-    </tr>
-
-</table>
-
-
-<h4 class= "color-gray">Intereses y pasatiempos</h4>
-  <table class="table table-responsive" id="tabla_antecedentes">
-  
-   <tr>
-      <td ><strong>¿ Qué le gusta hacer en su tiempo libre ?</strong><br><%=@tchild.tiempo_libre%></td>
-      <td ><strong>¿ Qué hace cuando esta solo ?</strong><br><%=@tchild.hace_solo%></td>
-
-    </tr>
-
-    <tr>
-      <td ><strong>¿ Qué no le gusta hacer ?</strong><br><%=@tchild.no_gusta%></td>
-      <td ><strong>¿ Qué tipo de deportes le gustan ?</strong><br><%=@tchild.deportes%></td>
-    </tr>
-
-     <tr>
-      <td ><strong>¿ Cuales son sus juegos favoritos? ¿ Alguan vez a jugado al doctor, mamá y papá ?</strong><br><%=@tchild.juegos%></td>
-      <td ><strong>¿ Qué programas de televisión mira ?</strong><br><%=@tchild.programa_tv%></td>
-    </tr>
-
-  </table>
-
-
-<h4 class= "color-gray">Desarrollo Psicosexual</h4>
-  <table class="table table-responsive" id="tabla_antecedentes">
-  
-    <tr>
-      <td ><strong>Destete</strong><br><%=@fochild.destete%></td>
-      <td ><strong>¿ Qué tipos de alimentos prefiere ?</strong><br><%=@fochild.gustos_alimentos%></td>
-    </tr>
-
-    <tr>
-      <td ><strong>¿ Alguna vez ha dejando de alimentarse ?</strong><br><%=@fochild.dejado_alimentacion%></td>
-      <td ><strong>¿ Control Anal, Vesical diurno, Vesical nocturno, Tecnica?</strong><br><%=@fochild.tipo_alimentacion%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿Que reacción posee ante la defacación ? (asco, verguenza, miedo, agrado, desagrado)</strong><br><%=@fochild.reaccion_defecacion%></td>
-    </tr>
-
-    <tr>
-      <td ><strong>Succion del dedo</strong><br><%=@fochild.succion_dedo%></td>
-      <td ><strong>Masturbación</strong><br><%=@fochild.masturbacion%></td>
-    </tr>
-
-    <tr>
-      <td ><strong>¿ Con quien duerme ?</strong><br><%=@fochild.duerme_con%></td>
-      <td ><strong>¿Alguna vez ha observado actos sexuales?</strong><br><%=@fochild.visto_acto_sexual%></td>
-    </tr>
-
-    <tr>
-      <td ><strong>¿ Que conocimientos tiene  acerca de la sexualidad ?</strong><br><%=@fochild.conocimientos_sexualidad%></td>
-      <td ><strong>Información sexual adquirida y fuentes</strong><br><%=@fochild.informacion_sexual%></td>
-    </tr>
-
- </table>
-
-<h4 class= "color-gray">Preadolescencia y Adolescencia</h4>
-  <table class="table table-responsive" id="tabla_antecedentes">
-  
-    <tr>
-      <td width="25%"><strong>Menarquia</strong><br><%=@fochild.menarquia%></td>
-      <td width="25%"><strong>Experiencia menarquia</strong><br><%=@fochild.experiencia_menarquia%></td>
-    </tr>
-
-     <tr>
-      <td ><strong>Polución</strong><br><%=@fochild.polucion%></td>
-      <td ><strong>Experiencia polución</strong><br><%=@fochild.experiencia_polucion%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿Fue informado?</strong><br><%=@fochild.reacciones_emocionales%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>Reacciones emocionales propias de la adolescencia: (Extrovertido, Timido, Ansioso, voluntarioso, malumorado,labil)</strong><br><%=@fochild.reacciones_emocionales%></td>
-    </tr>
-
-    <tr>
-      <td ><strong>Noviazgo</strong><br><%=@fochild.aceptacion_noviazgo%></td>
-      <td ><strong>Aceptacion familiar o restricción familiar ante el noviazgo</strong><br><%=@fochild.aceptacion_noviazgo%></td>
-    </tr>
-
-</table>
-
-<h4 class= "color-gray">Sintomas Neuróticos</h4>
-  <table class="table table-responsive" id="tabla_antecedentes">
-
-
-    <tr>
-      <td ><strong>Sintomas</strong><br><%=@fochild.sintomas_neuroticos%></td>     
-    </tr>
-
-    <tr>
-      <td > <strong>Descripcion sintomas neuroticos</strong><br><%=@fochild.descripcion_sintomas%></td> 
-    </tr>
-
-</table>
-
-
-
-
-<table class="table table-responsive" id="tabla_antecedentes">
-
-    <tr>
-      <td ><strong>¿ Quién es el responsable de la disciplina ?</strong><br><%=@fochild.responsable_disiplina%></td>
-      <td ><strong>¿ Que comportamientos le molestan del niño ?</strong><br><%=@fochild.comportamientos_molestos%></td>
-    </tr>
-
-    <tr>
-      <td colspan="2"><strong>¿ Que tipo de castigos utiliza frecuentemente ?</strong><br><%=@fochild.tipos_de_castigo%></td>     
-    </tr>
-
-</table>
-
-<table class="table table-responsive" id="tabla_antecedentes">
-  <h4 class= "color-gray">Observaciones finales</h4></td>
-  <tr>
-      <td ><strong>Descripción</strong><br><%=@fochild.observaciones%></td>
-    
-    </tr>
-
-
-</table>
-
 </div>
 
+  <% if  @clinic_history.child_history %>
+
+<div class = "fields_history" style="display:<%=@historia_personal%>">
+
+
+    
+
+            <h3 class= "color-gray"> Historia Personal</h3>
+              <table class="table table-responsive" id="tabla_antecedentes">
+                  <h4 class= "color-gray">Antecedentes</h4>
+                <tr>
+                  <td><strong>Embarazo</strong><br><%=@schild.embarazo%></td>
+                  <td><strong>Hijo Deseado</strong><br><%=@schild.hijo_deseado%></td>
+                  <td colspan="2"><strong>Dificultades Prenatales (Médicas, Intentos de aborto, Psicológicas)</strong><br><%=@schild.dificultades_prenatales%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="4"><strong>Periodo Prenatal Parto: (Normal, Anoxia, Cordon umbilical, Placenta, Malformación,Ictericia, Prelactancia materna)</strong><br><%=@schild.periodo_prenatal%></td>
+                </tr>
+
+
+
+
+                <tr>
+                  <td><strong>Peso al Nacer (Libras)</strong><br><%=@schild.peso_nacimiento%></td>
+                  <td><strong>Talla nacimiento (cms)</strong><br><%=@schild.talla_nacimiento%></td>
+                  <td><strong>Lactancia Materna Hasta (Meses)</strong><br><%=@schild.latencia_materna%></td>
+                  <td><strong>Con biberon hasta (Meses)</strong><br><%=@schild.latencia_materna%></td>
+                </tr>
+
+                <!--<tr>
+                  <th colspan="2">Tipos de Semisolidos Introducidos</th>
+                  <th colspan="2">Tipos de Solidos Introducidos</th>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><%=@schild.semisolidos%></td>
+                  <td colspan="2"><%=@schild.solidos%></td>
+                </tr>-->
+
+                <tr>
+                  <td colspan="4"><strong>Problemas de Alimentacion al nacer y hasta el primer año</strong><br><%=@schild.problemas_alimentacion%></td>
+                </tr>
+
+
+
+                <tr>
+                  <td colspan="2"><strong>Dificultades para dormir</strong><br><%=@schild.dificultad_dormir%></td>
+                  <td colspan="2"><strong>Reacciones del niño</strong><%=@schild.reacciones%></td>
+                </tr>
+
+
+                <tr>
+                  <td><strong>Edad de gateo (Meses)</strong><br><%=@schild.edad_gateo%></td>
+                  <td><strong>Edad de ponerse en pie (Meses)</strong><br><%=@schild.edad_gateo%></td>
+                  <td><strong>Edad de caminar (Meses)</strong><br><%=@schild.edad_caminar%></td>
+                  <td><strong>Inicio del Lenguaje</strong><br><%=@schild.inicio_lenguaje%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>Enfermedades Medicas</strong><br><%=@schild.enfermedades_medicas%></td>
+                  <td colspan="2"><strong>Hospitalizaciones y cirugias</strong><br><%=@schild.hospitalizacion_cirugias%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="4"><strong>Problemas visoperceptivomotores</strong><br><%=@schild.problemas_visoperceptivomotores%></td>
+                </tr>
+
+            </table>
+
+            <h4 class= "color-gray">Antecedentes Escolares</h4>
+              <table class="table table-responsive" id="tabla_antecedentes">
+              
+
+                <tr>
+                  <td><strong>Nivel Escolar</strong><br><%=@tchild.nivel_escolar%></td>
+                  <td><strong>Grado</strong><br><%=@tchild.indice_academico%></td>
+                  <td ><strong>Escuela</strong><br><%=@tchild.escuela%></td> 
+                  <td ></td> 
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿Cómo fue el proceso de adaptación a la escuela?</strong><br><%=@tchild.adaptacion_escolar%></td>
+                  <td colspan="2"><strong>Problemas escolares (académicos), (conductales)</strong><br><%=@tchild.problemas_escolares%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿Qué le gusta mas de la escuela?</strong><br><%=@tchild.gustos_escolares%></td>
+                  <td colspan="2"><strong>¿Qué no le gusta de la escuela?</strong><br><%=@tchild.disgustos_escolares%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿Cómo es con las tareas ?</strong><br><%=@tchild.tareas%></td>
+                  <td colspan="2"><strong>¿ Cómo maneja los útiles escolares ?</strong><br><%=@tchild.utiles_escolares%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿ Qué problemas posee a nivel de lectura, escritura, cálculo ?</strong><br><%=@tchild.problemas_materias%></td>
+                  <td colspan="2"><strong>¿ Cómo ser ralaciona con la maestra ?</strong><br><%=@tchild.relacion_maestro%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="4"><strong>¿ Cómo ser ralaciona con los compañeros ?</strong><br><%=@tchild.relacion_companeros%></td>
+                </tr>
+            </table>
+
+            <h4 class= "color-gray">Aspectos de Socialización y Afectivos</h4>
+              <table class="table table-responsive" id="tabla_antecedentes">
+              
+                <tr>
+                  <td colspan="5"><strong>¿Hace amigos con facilidad? (comunicativo, poco comunicativo, participa en grupo, tendencia al aislamiento, pasivo, agresivo, dependiente, independiente)</strong><br><%=@tchild.frecuencia_amigos%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿De que edad son los niños con los que se realciona?</strong><br><%=@tchild.edad_amigos%></td>
+                  <td colspan="2"><strong>¿Qué tipos de juegos realiza?</strong><br><%=@tchild.tipo_juegos%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿ Qué hace con otros niños del mismo sexo ?</strong><br><%=@tchild.actividades_mismo_sexo%></td>
+                  <td colspan="2"><strong>¿ Cómo se realciona con los niños de otro sexo ?</strong><br><%=@tchild.actividades_otro_sexo%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿ Por qué se pelea con otros niños ?</strong><br><%=@tchild.pelea%></td>
+                  <td colspan="2"><strong>¿ Qué lo hace feliz ?</strong><br><%=@tchild.motivo_felicidad%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿ Qué lo entristece ?</strong><br><%=@tchild.motivo_tristeza%></td>
+                  <td colspan="2"><strong>¿ Qué lo enoja ?</strong><br><%=@tchild.motivo_enojo%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿ Sobre que aspectos de la vida pregunta constantemente?</strong>><br><%=@tchild.motivos_pregunta%></td>
+                  <td colspan="2"><strong>¿ Qué tan bien se baña, se viste, come, duerme, en la actualidad ?</strong>><br><%=@tchild.habitos%></td>
+                </tr>
+
+            </table>
+
+
+            <h4 class= "color-gray">Intereses y pasatiempos</h4>
+              <table class="table table-responsive" id="tabla_antecedentes">
+              
+              <tr>
+                  <td ><strong>¿ Qué le gusta hacer en su tiempo libre ?</strong><br><%=@tchild.tiempo_libre%></td>
+                  <td ><strong>¿ Qué hace cuando esta solo ?</strong><br><%=@tchild.hace_solo%></td>
+
+                </tr>
+
+                <tr>
+                  <td ><strong>¿ Qué no le gusta hacer ?</strong><br><%=@tchild.no_gusta%></td>
+                  <td ><strong>¿ Qué tipo de deportes le gustan ?</strong><br><%=@tchild.deportes%></td>
+                </tr>
+
+                <tr>
+                  <td ><strong>¿ Cuales son sus juegos favoritos? ¿ Alguan vez a jugado al doctor, mamá y papá ?</strong><br><%=@tchild.juegos%></td>
+                  <td ><strong>¿ Qué programas de televisión mira ?</strong><br><%=@tchild.programa_tv%></td>
+                </tr>
+
+              </table>
+
+
+            <h4 class= "color-gray">Desarrollo Psicosexual</h4>
+              <table class="table table-responsive" id="tabla_antecedentes">
+              
+                <tr>
+                  <td ><strong>Destete</strong><br><%=@fochild.destete%></td>
+                  <td ><strong>¿ Qué tipos de alimentos prefiere ?</strong><br><%=@fochild.gustos_alimentos%></td>
+                </tr>
+
+                <tr>
+                  <td ><strong>¿ Alguna vez ha dejando de alimentarse ?</strong><br><%=@fochild.dejado_alimentacion%></td>
+                  <td ><strong>¿ Control Anal, Vesical diurno, Vesical nocturno, Tecnica?</strong><br><%=@fochild.tipo_alimentacion%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿Que reacción posee ante la defacación ? (asco, verguenza, miedo, agrado, desagrado)</strong><br><%=@fochild.reaccion_defecacion%></td>
+                </tr>
+
+                <tr>
+                  <td ><strong>Succion del dedo</strong><br><%=@fochild.succion_dedo%></td>
+                  <td ><strong>Masturbación</strong><br><%=@fochild.masturbacion%></td>
+                </tr>
+
+                <tr>
+                  <td ><strong>¿ Con quien duerme ?</strong><br><%=@fochild.duerme_con%></td>
+                  <td ><strong>¿Alguna vez ha observado actos sexuales?</strong><br><%=@fochild.visto_acto_sexual%></td>
+                </tr>
+
+                <tr>
+                  <td ><strong>¿ Que conocimientos tiene  acerca de la sexualidad ?</strong><br><%=@fochild.conocimientos_sexualidad%></td>
+                  <td ><strong>Información sexual adquirida y fuentes</strong><br><%=@fochild.informacion_sexual%></td>
+                </tr>
+
+            </table>
+
+            <h4 class= "color-gray">Preadolescencia y Adolescencia</h4>
+              <table class="table table-responsive" id="tabla_antecedentes">
+              
+                <tr>
+                  <td width="25%"><strong>Menarquia</strong><br><%=@fochild.menarquia%></td>
+                  <td width="25%"><strong>Experiencia menarquia</strong><br><%=@fochild.experiencia_menarquia%></td>
+                </tr>
+
+                <tr>
+                  <td ><strong>Polución</strong><br><%=@fochild.polucion%></td>
+                  <td ><strong>Experiencia polución</strong><br><%=@fochild.experiencia_polucion%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿Fue informado?</strong><br><%=@fochild.reacciones_emocionales%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>Reacciones emocionales propias de la adolescencia: (Extrovertido, Timido, Ansioso, voluntarioso, malumorado,labil)</strong><br><%=@fochild.reacciones_emocionales%></td>
+                </tr>
+
+                <tr>
+                  <td ><strong>Noviazgo</strong><br><%=@fochild.aceptacion_noviazgo%></td>
+                  <td ><strong>Aceptacion familiar o restricción familiar ante el noviazgo</strong><br><%=@fochild.aceptacion_noviazgo%></td>
+                </tr>
+
+            </table>
+
+            <h4 class= "color-gray">Sintomas Neuróticos</h4>
+              <table class="table table-responsive" id="tabla_antecedentes">
+
+
+                <tr>
+                  <td ><strong>Sintomas</strong><br><%=@fochild.sintomas_neuroticos%></td>     
+                </tr>
+
+                <tr>
+                  <td > <strong>Descripcion sintomas neuroticos</strong><br><%=@fochild.descripcion_sintomas%></td> 
+                </tr>
+
+            </table>
+
+
+
+
+            <table class="table table-responsive" id="tabla_antecedentes">
+
+                <tr>
+                  <td ><strong>¿ Quién es el responsable de la disciplina ?</strong><br><%=@fochild.responsable_disiplina%></td>
+                  <td ><strong>¿ Que comportamientos le molestan del niño ?</strong><br><%=@fochild.comportamientos_molestos%></td>
+                </tr>
+
+                <tr>
+                  <td colspan="2"><strong>¿ Que tipo de castigos utiliza frecuentemente ?</strong><br><%=@fochild.tipos_de_castigo%></td>     
+                </tr>
+
+            </table>
+
+            <table class="table table-responsive" id="tabla_antecedentes">
+              <h4 class= "color-gray">Observaciones finales</h4></td>
+              <tr>
+                  <td ><strong>Descripción</strong><br><%=@fochild.observaciones%></td>
+                
+                </tr>
+
+
+            </table>
+  </div>  
 
 
 
@@ -428,7 +441,9 @@ end%>
 
 
 
-<div class = "fields_history">
+
+
+<div class = "fields_history" style="display:<%=@antecedentes%>">
   
    <h3 class= "color-gray">Antecedentes</h3>
    <h4><strong>Personales</strong></h4>
@@ -443,9 +458,10 @@ end%>
 
    <br><strong>Descripción:</strong> <%=ch.description%><br><br>
    <%end%>
+    <hr>
 </div>
 
- <hr>
+
 
 
 
@@ -491,7 +507,7 @@ end%>
 
 
 
-<div class = "fields_history">
+<div class = "fields_history" style="display:<%=@herramientas_evaluacion%>">
  
    <h3 class= "color-gray"> Herramientas de evaluación</h3>
   
@@ -500,9 +516,10 @@ end%>
 
    <br><strong>Descripción:</strong> <%=ch.description%><br><br>
    <%end%>
+    <hr>
 </div>
-  <hr>
-<div class = "fields_history">
+ 
+<div class = "fields_history" style="display:<%=@hipotesis_diagnostica%>">
 
 <h3 class= "color-gray"> Hipotesis diagnóstica</h3>
   <strong>Descripción</strong>
@@ -530,39 +547,51 @@ end%>
       <%@clinic_history.diagnosticos.each do |ch|%>  
     <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=ch.codigo%> - <%=ch.name%></div>
        <%end%>     
-   
+   <hr>
 </div>
-<hr>
-<div class = "fields_history">
+
+<div class = "fields_history" style="display:<%=@objetivo_terapeoutico%>">
  
    <h3 class= "color-gray">Objetivo terapéoutico</h3>
    <p><%=@clinic_history.therapeutic_goal%></p>
+     <hr>
 </div>
-  <hr>
-<div class = "fields_history">
+
+
+<div class = "fields_history" style="display:<%=@tipo_tratamiento%>">
  
    <h3 class= "color-gray">Tipo de Tratamiento</h3>
    <p><%=@clinic_history.type_of_treatment%></p>
+    <hr>
 </div>
-  <hr>
+ 
 
 
-  <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+  <% i = 0 
+  @clinic_history.crete_fields.order(id: :asc).each do |field| %>
   
  
    <%if field.field.form == "Diagnostico y Tratamiento" && field.field.state %>
-    <div class = "fields_history">
+    <div class = "fields_history" style="display:<%=@fields_create_two[i]%>">
       <hr>
       <h3 class= "color-gray"><%=field.field.name%></h3>
       <p><%=field.content%></p>
     </div>
 <hr>
-<%end%>
+<% i =  i + 1
+
+end%>
   
 
 <%end%>
 
-<div class = "fields_history">
+
+
+
+
+
+
+<div class = "fields_history" style="display:<%=@seguimientos%>">
 
    <h3 class= "color-gray"> Seguimientos y observaciones</h3>
    <%@clinic_history.tracings.each do |tr|%> 

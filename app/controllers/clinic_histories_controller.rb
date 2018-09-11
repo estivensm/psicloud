@@ -404,8 +404,27 @@ end
    end
  end
 
+ @fields_create_two = []
+ @clinic_history.crete_fields.order(id: :asc).each do |field|
+   if field.field.form == "Diagnostico y Tratamiento" && field.field.state 
+
+     param1 = params[:"#{field.field.name}"].present? ? "block" : "none"
+     @fields_create_two << param1
+
+
+
+   end
+ end
+
 puts "holaaaaaaaaaaaaaaaaa"
 puts @fields_create
+
+
+
+
+
+
+
 
 
 
@@ -413,6 +432,22 @@ puts @fields_create
 @motivo_de_consulta = params[:motivo_de_consulta] == "true" ? "block" : "none"
 @estado_actual = params[:estado_actual] == "true" ? "block" : "none"
 @dinamica_familiar = params[:dinamica_familiar] == "true" ? "block" : "none"
+
+@historia_familiar = params[:historia_familiar] == "true" ? "block" : "none"
+@historia_personal = params[:historia_personal] == "true" ? "block" : "none"
+
+
+
+@antecedentes = params[:antecedentes] == "true" ? "block" : "none"
+@herramientas_evaluacion = params[:herramientas_evaluacion] == "true" ? "block" : "none"
+
+@hipotesis_diagnostica = params[:hipotesis_diagnostica] == "true" ? "block" : "none"
+@objetivo_terapeoutico = params[:objetivo_terapeoutico] == "true" ? "block" : "none"
+@tipo_tratamiento = params[:tipo_tratamiento] == "true" ? "block" : "none"
+
+@seguimientos = params[:seguimientos] == "true" ? "block" : "none"
+
+
 
 
 @pdf = "basico"
