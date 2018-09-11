@@ -26,7 +26,7 @@
 
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div id='cssmenu'>
       <ul>
         <li><%= link_to "Inicio", root_path%></li> 
@@ -36,11 +36,11 @@
       </ul>
     </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6 text-right">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Seleccionar Informe <img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+            Seleccionar campos del PDF <img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       </button>
-      <%= link_to patient_clinic_history_pdf_completo_path(@patient.id,@clinic_history , :format => "pdf")  , class: "btn btn-primary" ,target: :_blank do%>Informe Completo <img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+      <%= link_to patient_clinic_history_pdf_completo_path(@patient.id,@clinic_history , :format => "pdf")  , class: "btn btn-primary" ,target: :_blank do%>Generar PDF completo <img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>
     </div>
 
