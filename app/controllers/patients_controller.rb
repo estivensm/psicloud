@@ -114,7 +114,7 @@ end
         @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @clinic_history = @patient.clinic_histories.first
-        if @patient.clinic_histories.count.first != nil
+        if @patient.clinic_histories.first != nil
         @last_tracing = @patient.clinic_histories.first.tracings.last
         else
           @last_tracing = nil
