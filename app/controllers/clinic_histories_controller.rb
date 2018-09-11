@@ -396,7 +396,7 @@ end
  @clinic_history.crete_fields.order(id: :asc).each do |field|
    if field.field.form == "Primer Contacto" && field.field.state 
 
-     param = params[:"#{field.field.name}"].present? ? "block" : "none"
+     param = params[:"pr#{field.id}"].present? ? "block" : "none"
      @fields_create << param
 
 
@@ -408,7 +408,7 @@ end
  @clinic_history.crete_fields.order(id: :asc).each do |field|
    if field.field.form == "Diagnostico y Tratamiento" && field.field.state 
 
-     param1 = params[:"#{field.field.name}"].present? ? "block" : "none"
+     param1 = params[:"dt#{field.id}"].present? ? "block" : "none"
      @fields_create_two << param1
 
 
