@@ -1,34 +1,35 @@
-<html>
-  <head>
-    <script>
-      function number_pages() {
-        var vars={};
-        var x=document.location.search.substring(1).split('&');
-        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
-        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
-        for(var i in x) {
-          var y = document.getElementsByClassName(x[i]);
-          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
-        }
-      }
-    </script>
-  </head>
-  <body onload="number_pages()">
-  
 
-<div class="info">
+<div class="info text-center">
   
+ <!-- <%=  (wicked_pdf_image_tag (current_user.clinichistory_config.header_image_url), style: "") if get_account1.logo_url%>-->
 
+ <%if current_user.clinichistory_config.state == "Creado" %>   
+  <% a = get_account1.logo_url ? (wicked_pdf_image_tag (get_account1.logo_url), style: "width:150px;") : ""
+      b = current_user.clinichistory_config.header_text.gsub('{LOGO}', a)
+    %>
+     <%== b%>
+
+<%else%>
+
+    <table class="table1">
+        <tr style = "height:100px">
+         <td class="" style = "width:20%"><%=  (wicked_pdf_image_tag (get_account1.logo_url), style: "width:150px;") if get_account1.logo_url%></td>
+         <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold">HISTORIA CLÍNICA </td>
+         <td class="text-center" style = "width:20%;font-size:20px;text-align: center">Codigo <br><%=@clinic_history.codigo%> </td>
+      </tr>
+
+  </table>
+
+ <%end%>
  
-
 </div>
-  </body>
-</html>
+
+
 <style>
 .info
 {
  
-	margin-top: 20px !important;
+	margin-top: 50px !important;
 }
  .table1
     {

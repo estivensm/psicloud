@@ -77,7 +77,7 @@ gem 'google-api-client', '0.8.2', require: 'google/api_client'
 gem 'google_calendar', '~> 0.6.2'
 gem 'omniauth-google-oauth2'
 gem 'jquery-datetimepicker-rails'
-
+gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
 gem 'roo'
 gem 'chartjs-ror'
 group :development, :test do

@@ -7,7 +7,7 @@
 
  <div class = "row title-table">
          <div class = "col-md-8">
-            <p>HERRAMIENTAS DE EVALUACION <span class="label label-primary"><%=@clinic_history.tool_tests.count%></span>  </p>
+            <p>HERRAMIENTAS DE EVALUACIÓN <span class="label label-primary"><%=@clinic_history.tool_tests.count%></span>  </p>
          </div>
       
          <div class = "col-md-4 text-right">
@@ -73,7 +73,7 @@
         <div class="col-md-12 np">
 
 
-        <h3>! AÚN NO HAY HERRAMIENTAS DE EVALUACION ¡</h3>
+        <h3>! AÚN NO HAY HERRAMIENTAS DE EVALUACIÓN ¡</h3>
         
         <%= link_to "CREA LA PRIMERA", new_patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary" %>
         

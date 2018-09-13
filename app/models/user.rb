@@ -43,6 +43,8 @@
 #  firma_psicologo        :text
 #  firma_adjunta          :string
 #  tipo_firma             :string
+#  professional_card      :string
+#  signature_format       :text
 #
 
 class User < ApplicationRecord
@@ -53,7 +55,7 @@ class User < ApplicationRecord
      has_many :patients
      has_many :create_fields
      has_many :consents
-
+     has_one :clinichistory_config
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,
        :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -140,9 +142,16 @@ end
               Rol.create(admin_user: self.id, user_id: self.id, name: "Psicologo", default: true,show_user: false,create_user: false,edit_user: false,delete_user: false,show_patient: true,create_patient: true,edit_patient: true,delete_patient: true,show_hc: true,create_hc: true,edit_hc: true,delete_hc: true,show_cita: true,create_cita: true,edit_cita: true,delete_cita: true,show_doc: true,create_doc: true,edit_doc: true,delete_doc: true,show_rol: false,create_rol: false,edit_rol: false,delete_rol: false,configuracion: false,show_all_user: false,show_all_patient: false,show_all_hc: false,show_all_cita: false,show_all_doc: false, show_all_rol: false)
               FieldDefault.create(admin_user: self.id, user_id: self.id,observation_tracing_state: false,evolution_tracing_state: false,description_tracing_state:true)
               self.rol_id =  Rol.where(admin_user: self.id).where(name: "Administrador").last.id
+              ClinichistoryConfig.create(admin_user: self.id, user_id: self.id, state: "Basico")
 
+            else
+
+              ClinichistoryConfig.create(admin_user: self.admin_user, user_id: self.id, state: "Basico")
+     
                 
-            end  
+            end 
+
+
               
         end
 

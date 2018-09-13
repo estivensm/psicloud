@@ -21,7 +21,6 @@
 
 
 
-
 <div class="row margin-top-40">
 
 </div>
@@ -40,7 +39,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
             Seleccionar campos del PDF <img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       </button>
-      <%= link_to patient_clinic_history_pdf_completo_path(@patient.id,@clinic_history , :format => "pdf")  , class: "btn btn-primary" ,target: :_blank do%>Generar PDF completo <img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+      <%= link_to patient_clinic_history_path(@patient.id,@clinic_history , :format => "pdf")  , class: "btn btn-primary" ,target: :_blank do%>Generar PDF completo <img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>
     </div>
 
@@ -48,7 +47,7 @@
 <div class="row no-marging"  style="display:none">
    <div class="col-md-12 text-right">
    
-      <%= link_to patient_clinic_history_path(@patient.id,@clinic_history , :format => "pdf")  , class: "" ,target: :_blank do%>PDF Informacion general<img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
+      <%= link_to patient_clinic_history_path(@patient.id,@clinic_history , :format => "pdf")  , class: "" ,target: :_blank do%>PDF Información general<img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>&nbsp;&nbsp;
          &nbsp;&nbsp;
        <!-- <%= link_to edit_patient_clinic_history_path(@patient.id,@clinic_history), class: "btn btn-primary icon" do%>
@@ -57,13 +56,29 @@
    </div>
 </div>
 <br>
+
+
+<%if current_user.clinichistory_config.state == "Creado" %>   
+  
+<div class="row" style="width:80%;margin-left: 10%;">
+    <% a = get_account1.logo_url ? (image_tag (get_account1.logo_url), style: "width:150px;") : ""
+      b = current_user.clinichistory_config.header_text.gsub('{LOGO}', a)
+    %>
+    <%== b%>
+</div>
+
+<%else%>
 <table class="table1">
    <tr style = "height:100px">
       <td class="text-center" style = "width:20%"><%=(image_tag (get_account1.logo_url), style: "width:100px;") if get_account1.logo_url%></td>
-      <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold">FORMATO DE HISTORIA CLINICA <br><%=get_account1.name.upcase %><br><%=@clinic_history.codigo%> </td>
-      <td class="text-center imgedit" style = "width:20%;font-size:40px;text-align: center"> <%=image_tag @patient.avatar_url if @patient.avatar?  %></td>
+      <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold"> HISTORIA CLÍNICA  </td>
+      <td class="text-center imgedit" style = "width:20%;font-size:40px;text-align: center"> <%=@clinic_history.codigo%></td>
    </tr>
 </table>
+
+<%end%>
+
+
 <h3 class="h3">Datos del Paciente</h3>
 <table class="table table-responsive">
    <tr>
@@ -80,11 +95,11 @@
          %>
       <td> <strong>Edad:</strong> <br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></td>
       <td> <strong>Ciudad:</strong> <br><%=@patient.city%> </td>
-      <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>
-      <td> <strong>Telefono fijo:</strong><br> <%=@patient.phone%> </td>
+      <td> <strong>Dirección de Residencia</strong> <br><%=@patient.address%> </td>
+      <td> <strong>Teléfono fijo:</strong><br> <%=@patient.phone%> </td>
    </tr>
    <tr>
-      <td> <strong>Telefono Movil:</strong> <br><%= @patient.movil%> </td>
+      <td> <strong>Teléfono Móvil:</strong> <br><%= @patient.movil%> </td>
       <td> <strong>Email</strong><br> <%=@patient.email%> </td>
       <td> <strong>Ocupación:</strong><br> <%=@patient.occupation%> </td>
       <td> <strong>Profesión:</strong> <br><%= @patient.profession%> </td>
@@ -92,14 +107,14 @@
    <tr>
       <td> <strong>Genero:</strong> <br><%= @patient.gender%> </td>
       <td> <strong>Estado Civil</strong><br> <%=@patient.civil_status%> </td>
-      <td> <strong>Grupo sanguineo:</strong><br> <%=@patient.blood_type%> </td>
-      <td> <strong>Grupo Etnico:</strong> <br><%= @patient.ethnic_group%> </td>
+      <td> <strong>Grupo sanguíneo:</strong><br> <%=@patient.blood_type%> </td>
+      <td> <strong>Grupo Étnico:</strong> <br><%= @patient.ethnic_group%> </td>
    </tr>
    <tr>
       <td> <strong>Eps:</strong> <br><%= @patient.hpc.name if @patient.hpc%>  </td>
       <td> <strong>Convenio</strong><br><%= @patient.agreement.name if @patient.agreement%> </td>
       <td> <strong>Nombre Contacto:</strong> <br><%= @patient.contact_name%> </td>
-      <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
+      <td> <strong>Teléfono Contacto</strong><br> <%=@patient.contact_phone%> </td>
    </tr>
    <tr>
       <td> <strong>Parentesco del Contacto</strong><br> <%=@patient.contact_relationship%> </td>
@@ -122,7 +137,7 @@
 </div>
 <div class = "fields_history">
    <hr>
-   <h3 class= "color-gray">Dinamica Familiar</h3>
+   <h3 class= "color-gray">Dinámica Familiar</h3>
    <p><%=@clinic_history.family_dinamic%></p>
 </div>
 
@@ -152,8 +167,8 @@
     <tr>
       <td><strong>Nombre del Padre :</strong><br><%=@fchild.father_name%></td>
       <td><strong>Edad del Padre :</strong><br><%=@fchild.father_age%></td>
-      <td><strong>Ocupacion del padre :</strong><br><%=@fchild.father_job%></td>
-      <td><strong>Relacion del Padre con el Niño :</strong><br><%=@fchild.father_relationship%></td>
+      <td><strong>Ocupación del padre :</strong><br><%=@fchild.father_job%></td>
+      <td><strong>Relación del Padre con el Niño :</strong><br><%=@fchild.father_relationship%></td>
       <td><strong>Adicciones del Padre :</strong><br><%=@fchild.father_addictions%></td>
     </tr>
 
@@ -161,17 +176,17 @@
     <tr>
       <td><strong>Nombre de la madre:</strong><br><%=@fchild.mother_name%></td>
       <td><strong>Edad de la madre:</strong> <br><%=@fchild.mother_age%></td>
-      <td><strong>Ocupacion de la madre:</strong> <br><%=@fchild.mother_job%></td>
-      <td width="25%"><strong>Relacion de la madre con el Niño:</strong> <br><%=@fchild.mother_relationship%></td>
+      <td><strong>Ocupación de la madre:</strong> <br><%=@fchild.mother_job%></td>
+      <td width="25%"><strong>Relación de la madre con el Niño:</strong> <br><%=@fchild.mother_relationship%></td>
       <td width="25%"><strong>Adicciones de la madre:</strong><br><%=@fchild.mother_addictions%></td>
     </tr>
 
 
 <!--relacion padres-->
     <tr>
-      <td><strong>Relacion Entre los padres:</strong><br><%=@fchild.parents_realationship%></td>
+      <td><strong>Relación Entre los padres:</strong><br><%=@fchild.parents_realationship%></td>
       <td colspan="2"><strong>Especificar razones:</strong><br><%=@fchild.reasons_relationship%></td>
-      <td colspan="2"><strong>Reaccion de los padres ante el problema del niño:</strong><br><%=@fchild.parents_reaction%></td>
+      <td colspan="2"><strong>Reacción de los padres ante el problema del niño:</strong><br><%=@fchild.parents_reaction%></td>
     </tr>
 
     <!--hermanos-->
@@ -180,7 +195,7 @@
         <td><strong>Nombre del hermano :</strong><br><%=brother.name if brother.name%></td>
         <td><strong>Sexo :</strong><br><%=brother.sexo if brother.sexo%></td>
         <td><strong>Edad (Años) :</strong><br><%=brother.edad if brother.edad%></td>
-        <td colspan="2"><strong>Relacion :</strong><br><%=brother.relationship if brother.relationship%></td>
+        <td colspan="2"><strong>Relación :</strong><br><%=brother.relationship if brother.relationship%></td>
       </tr>
     <%end%>
       
@@ -190,7 +205,7 @@
         <td><strong>Nombre del Hijo :</strong><br><%=son.name if son.name%></td>
         <td><strong>Genero :</strong><br><%=son.genero if son.genero%></td>
         <td><strong>Edad (Años) :</strong><br><%=son.age if son.age%></td>
-        <td colspan="2"><strong>Relacion :</strong><br><%=son.relationship if son.relationship%></td>
+        <td colspan="2"><strong>Relación :</strong><br><%=son.relationship if son.relationship%></td>
       </tr>
     <%end%>
   </table>
@@ -377,7 +392,7 @@
     </tr>
 
     <tr>
-      <td colspan="2"><strong>Succion del dedo</strong><br><%=@fochild.succion_dedo%></td>
+      <td colspan="2"><strong>Succión del dedo</strong><br><%=@fochild.succion_dedo%></td>
       <td colspan="2"><strong>Masturbación</strong><br><%=@fochild.masturbacion%></td>
     </tr>
 
@@ -430,7 +445,7 @@
     </tr>
 
     <tr>
-      <td colspan="4"> <strong>Descripcion sintomas neuroticos</strong><br><%=@fochild.descripcion_sintomas%></td> 
+      <td colspan="4"> <strong>Descripción sintomas neuroticos</strong><br><%=@fochild.descripcion_sintomas%></td> 
     </tr>
 
 </table>
@@ -555,7 +570,7 @@
   <br>
   <br>
 
-  <strong>Diagnostico Principal (CIE10): </strong>
+  <strong>Diagnóstico Principal (CIE10): </strong>
    <%if @clinic_history.diagnostico%>  
 
 <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=@clinic_history.diagnostico.codigo%> - <%=@clinic_history.diagnostico.name%></div>
@@ -567,7 +582,7 @@
 
     <br>
     <br>
-   <strong>Diagnosticos Secundario (CE10): </strong>
+   <strong>Diagnósticos Secundario (CE10): </strong>
       <%@clinic_history.diagnosticos.each do |ch|%>  
     <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=ch.codigo%> - <%=ch.name%></div>
        <%end%>     
@@ -577,7 +592,7 @@
 
 <div class = "fields_history">
    <hr>
-   <h3 class= "color-gray">Objetivo terapéoutico</h3>
+   <h3 class= "color-gray">Objetivo terapéutico</h3>
    <p><%=@clinic_history.therapeutic_goal%></p>
 </div>
 <div class = "fields_history">

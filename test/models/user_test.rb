@@ -43,6 +43,8 @@
 #  firma_psicologo        :text
 #  firma_adjunta          :string
 #  tipo_firma             :string
+#  professional_card      :string
+#  signature_format       :text
 #
 
 require 'test_helper'

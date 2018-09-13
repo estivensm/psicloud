@@ -13,6 +13,7 @@
 #  check_box_field   :boolean
 #  text_field        :string
 #  select_field      :string
+#  tracing_id        :integer
 #
 
 class CreteField < ApplicationRecord

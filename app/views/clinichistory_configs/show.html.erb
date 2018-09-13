@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Header image:</strong>
+  <%= @clinichistory_config.header_image %>
+</p>
+
+<p>
+  <strong>Footer image:</strong>
+  <%= @clinichistory_config.footer_image %>
+</p>
+
+<p>
+  <strong>Header text:</strong>
+  <%= @clinichistory_config.header_text %>
+</p>
+
+<p>
+  <strong>Footer text:</strong>
+  <%= @clinichistory_config.footer_text %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @clinichistory_config.state %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @clinichistory_config.admin_user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @clinichistory_config.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_clinichistory_config_path(@clinichistory_config) %> |
+<%= link_to 'Back', clinichistory_configs_path %>

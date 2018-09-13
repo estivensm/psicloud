@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
  
+  resources :clinichistory_configs
   resources :field_defaults
   resources :consents
   resources :fields

@@ -6,7 +6,9 @@ theme_advanced_buttons3_add:
   - fullscreen
   - fontsizeselect
 toolbar:
-  -  fontselect | fontsizeselect | bold | italic | underline | alignleft | aligncenter | alignjustify | alignright
-tplugins:
+  -  fontselect | fontsizeselect | bold | italic | underline | alignleft | aligncenter | alignjustify | alignright | image | link
+plugins:
   - table
   - fullscreen
+  - image
+  - link

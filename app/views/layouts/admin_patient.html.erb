@@ -876,7 +876,7 @@ border-radius: 50%;
                               day =  @patient.birthdate_day == 1 ?  " Día" : " Días"
                               %>
                            <p><strong>Edad: </strong><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></p>
-                           <p><strong>Genero: </strong><%= @patient.gender%> </p>
+                           <p><strong>Género: </strong><%= @patient.gender%> </p>
                         </div>
                         <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
                            <dl>
@@ -896,17 +896,17 @@ border-radius: 50%;
                                  <tr>
                                     <th>Ocupación:</th>
                                     <td><%= @patient.occupation%></td>
-                                    <th>Profesion:</th>
+                                    <th>Profesión:</th>
                                     <td><%= @patient.profession%></td>
                                     <th>Ciudad:</th>
                                     <td><%= @patient.city%></td>
                                  </tr>
                                  <tr>
-                                    <th>Direccion:</th>
+                                    <th>Dirección:</th>
                                     <td><%= @patient.address%></td>
-                                    <th>Telefono Fijo:</th>
+                                    <th>Teléfono Fijo:</th>
                                     <td><%= @patient.phone%></td>
-                                    <th>Telefono Movil:</th>
+                                    <th>Teléfono Móvil:</th>
                                     <td><%= @patient.movil%></td>
                                  </tr>
                                  <tr>
@@ -914,7 +914,7 @@ border-radius: 50%;
                                     <td><%= @patient.email%></td>
                                     <th>Estado Civil:</th>
                                     <td><%= @patient.civil_status%> </td>
-                                    <th>Grupo Etnico:</th>
+                                    <th>Grupo Étnico:</th>
                                     <td><%= @patient.ethnic_group%></td>
                                  </tr>
                                  <tr>
@@ -926,11 +926,11 @@ border-radius: 50%;
                                     <td><%= @patient.contact_name%> (<%=@patient.contact_relationship%>) </td>
                                  </tr>
                                  <tr>
-                                    <th>Telefono del Contacto:</th>
+                                    <th>Teléfono del Contacto:</th>
                                     <td><%= @patient.contact_phone%></td>
                                     <th>Tiene Hijos</th>
                                     <td><%= @patient.children%></td>
-                                    <th>Numero de Hijos</th>
+                                    <th>Número de Hijos</th>
                                     <td><%= @patient.number_children %></td>
                                  </tr>
 

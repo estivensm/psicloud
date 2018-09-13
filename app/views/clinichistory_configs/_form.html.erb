@@ -1,0 +1,128 @@
+<%= tinymce_assets %>
+
+<%= form_with(model: clinichistory_config, local: true) do |form| %>
+  <% if clinichistory_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(clinichistory_config.errors.count, "error") %> prohibited this clinichistory_config from being saved:</h2>
+
+      <ul>
+      <% clinichistory_config.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="row">
+
+<div class="col-md-12">
+            <h5>Encabezado y pie de página</h5>
+         </div>
+    <div class="col-md-12">
+
+        <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :clinichistory_config_state %>
+  </div> 
+      
+    </div>
+  
+</div>
+
+<div class="row">
+
+    <div class="col-md-12" style="padding:20px;border-right: 2px solid gray">
+ <h3 style="text-align:center">Manual</h3>
+           <hr>
+          <div class="field">
+    <%= form.label :header_text %>
+    <%= form.text_area :header_text, id: :clinichistory_config_header_text , id: "mytextarea", :class => "tinymce" , :rows => 8, :cols => 10 %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :footer_text %>
+    <%= form.text_area :footer_text, id: :clinichistory_config_footer_text , id: "mytextarea2", :class => "tinymce" , :rows => 8, :cols => 10 %>
+  </div>
+    </div>
+
+<%= tinymce %>
+
+     <div class="col-md-12" style="padding:20px">
+   <h3 style="text-align:center">Imagenes </h3>
+          <div class="field" style="background:#d1d1d1;padding:20px">
+    <%= form.label :header_image %>
+    <%= form.file_field :header_image, id: :clinichistory_config_header_image %><br>
+    <%= image_tag @clinichistory_config.header_image_url, style: "width:300px" if @clinichistory_config.header_image_url %>
+  </div>
+ <br>
+  <div class="field" style="background:#d1d1d1;padding:20px">
+    <%= form.label :footer_image %>
+    <%= form.file_field :footer_image, id: :clinichistory_config_footer_image %><br>
+    <%= image_tag @clinichistory_config.footer_image_url, style: "width:300px" if @clinichistory_config.header_image_url %>
+  </div>
+     </div>
+</div>
+
+  
+
+  
+<hr>
+
+
+  <div class="actions text-center">
+    <%= form.submit "Guardar", class: "btn btn-primary btn-lg" %>
+  </div>
+<% end %>
+
+
+
+
+<script>
+
+ $(document).on('turbolinks:load',function() { 
+
+    tinymce.init({
+ 
+      selector: "#mytextarea2",  // change this value according to your HTML
+      plugins: "spellchecker",
+      plugins: "table",
+      menubar: "tools",
+      toolbar: 'fontsizeselect',
+      language: 'es',
+      forced_root_block_attrs: { "style": "margin: 0px 0px;" },
+      setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+
+        }
+  });
+
+
+
+
+});    
+
+
+
+
+</script>
+
+
+
+ <style>
+ 
+         h5
+         {
+         text-align: center;
+         margin: 50px 20px 50px 20px;
+         background: #5bc0de;
+         color: white;
+         padding: 12px;
+         font-size: 36px;
+         }
+     
+      </style>

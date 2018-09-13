@@ -31,7 +31,7 @@ class ClinicHistoriesController < ApplicationController
         :template => 'clinic_histories/pdfs/clinic_history.pdf.erb',
         :layout => 'pdf.html.erb',
         margin: {
-                    top: 10
+                    top: 25
                      },
         :header => {
                   :spacing => 5,
@@ -457,7 +457,7 @@ puts @fields_create
         :template => 'clinic_histories/pdfs/clinic_history_select.pdf.erb',
         :layout => 'pdf.html.erb',
         margin: {
-                    top: 10
+                    top: 25
                      },
         :header => {
                   :spacing => 5,

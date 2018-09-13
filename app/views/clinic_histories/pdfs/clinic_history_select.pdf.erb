@@ -1,16 +1,5 @@
 
-
-
-
- <table class="table1">
-        <tr style = "height:100px">
-         <td class="" style = "width:20%"><%=  (wicked_pdf_image_tag (get_account1.logo_url), style: "width:150px;") if get_account1.logo_url%></td>
-         <td class="text-center" style = "width:60%;font-size:20px;text-align: center;font-weight: bold">FORMATO DE HISTORIA CLINICA <br> <br><%=get_account1.name.upcase %></td>
-         <td class="text-center" style = "width:20%;font-size:20px;text-align: center">Codigo <br><%=@clinic_history.codigo%> </td>
-      </tr>
-
-  </table>
-<br><br>
+<br>
 
 
 <h3 class="h3">Datos del Paciente</h3>
@@ -29,11 +18,11 @@
          %>
       <td> <strong>Edad:</strong> <br><%=@patient.age.to_s + year  %> <%=@patient.birthdate_month.to_s + month   %> <%=@patient.birthdate_day.to_s +  day %></td>
       <td> <strong>Ciudad:</strong> <br><%=@patient.city%> </td>
-      <td> <strong>Direccion de Residencia</strong> <br><%=@patient.address%> </td>
-      <td> <strong>Telefono fijo:</strong><br> <%=@patient.phone%> </td>
+      <td> <strong>Dirección de Residencia</strong> <br><%=@patient.address%> </td>
+      <td> <strong>Teléfono fijo:</strong><br> <%=@patient.phone%> </td>
    </tr>
    <tr>
-      <td> <strong>Telefono Movil:</strong> <br><%= @patient.movil%> </td>
+      <td> <strong>Teléfono Móvil:</strong> <br><%= @patient.movil%> </td>
       <td> <strong>Email</strong><br> <%=@patient.email%> </td>
       <td> <strong>Ocupación:</strong><br> <%=@patient.occupation%> </td>
       <td> <strong>Profesión:</strong> <br><%= @patient.profession%> </td>
@@ -41,14 +30,14 @@
    <tr>
       <td> <strong>Genero:</strong> <br><%= @patient.gender%> </td>
       <td> <strong>Estado Civil</strong><br> <%=@patient.civil_status%> </td>
-      <td> <strong>Grupo sanguineo:</strong><br> <%=@patient.blood_type%> </td>
-      <td> <strong>Grupo Etnico:</strong> <br><%= @patient.ethnic_group%> </td>
+      <td> <strong>Grupo sanguíneo:</strong><br> <%=@patient.blood_type%> </td>
+      <td> <strong>Grupo Étnico:</strong> <br><%= @patient.ethnic_group%> </td>
    </tr>
    <tr>
       <td> <strong>Eps:</strong> <br><%= @patient.hpc.name if @patient.hpc%>  </td>
       <td> <strong>Convenio</strong><br><%= @patient.agreement.name if @patient.agreement%> </td>
       <td> <strong>Nombre Contacto:</strong> <br><%= @patient.contact_name%> </td>
-      <td> <strong>Telefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
+      <td> <strong>Télefono Contacto</strong><br> <%=@patient.contact_phone%> </td>
    </tr>
    <tr>
       <td> <strong>Parentesco del Contacto</strong><br> <%=@patient.contact_relationship%> </td>
@@ -119,8 +108,8 @@ end%>
     <tr>
       <td><strong>Nombre del Padre :</strong><br><%=@fchild.father_name%></td>
       <td><strong>Edad del Padre :</strong><br><%=@fchild.father_age%></td>
-      <td><strong>Ocupacion del padre :</strong><br><%=@fchild.father_job%></td>
-      <td><strong>Relacion del Padre con el Niño :</strong><br><%=@fchild.father_relationship%></td>
+      <td><strong>Ocupación del padre :</strong><br><%=@fchild.father_job%></td>
+      <td><strong>Relación del Padre con el Niño :</strong><br><%=@fchild.father_relationship%></td>
       <td><strong>Adicciones del Padre :</strong><br><%=@fchild.father_addictions%></td>
     </tr>
 
@@ -128,17 +117,17 @@ end%>
     <tr>
       <td><strong>Nombre de la madre:</strong><br><%=@fchild.mother_name%></td>
       <td><strong>Edad de la madre:</strong> <br><%=@fchild.mother_age%></td>
-      <td><strong>Ocupacion de la madre:</strong> <br><%=@fchild.mother_job%></td>
-      <td width="25%"><strong>Relacion de la madre con el Niño:</strong> <br><%=@fchild.mother_relationship%></td>
+      <td><strong>Ocupación de la madre:</strong> <br><%=@fchild.mother_job%></td>
+      <td width="25%"><strong>Relación de la madre con el Niño:</strong> <br><%=@fchild.mother_relationship%></td>
       <td width="25%"><strong>Adicciones de la madre:</strong><br><%=@fchild.mother_addictions%></td>
     </tr>
 
 
 <!--relacion padres-->
     <tr>
-      <td><strong>Relacion Entre los padres:</strong><br><%=@fchild.parents_realationship%></td>
+      <td><strong>Relación Entre los padres:</strong><br><%=@fchild.parents_realationship%></td>
       <td colspan="2"><strong>Especificar razones:</strong><br><%=@fchild.reasons_relationship%></td>
-      <td colspan="2"><strong>Reaccion de los padres ante el problema del niño:</strong><br><%=@fchild.parents_reaction%></td>
+      <td colspan="2"><strong>Reacción de los padres ante el problema del niño:</strong><br><%=@fchild.parents_reaction%></td>
     </tr>
 
     <!--hermanos-->
@@ -147,7 +136,7 @@ end%>
         <td><strong>Nombre del hermano :</strong><br><%=brother.name if brother.name%></td>
         <td><strong>Sexo :</strong><br><%=brother.sexo if brother.sexo%></td>
         <td><strong>Edad (Años) :</strong><br><%=brother.edad if brother.edad%></td>
-        <td colspan="2"><strong>Relacion :</strong><br><%=brother.relationship if brother.relationship%></td>
+        <td colspan="2"><strong>Relación :</strong><br><%=brother.relationship if brother.relationship%></td>
       </tr>
     <%end%>
       
@@ -157,7 +146,7 @@ end%>
         <td><strong>Nombre del Hijo :</strong><br><%=son.name if son.name%></td>
         <td><strong>Genero :</strong><br><%=son.genero if son.genero%></td>
         <td><strong>Edad (Años) :</strong><br><%=son.age if son.age%></td>
-        <td colspan="2"><strong>Relacion :</strong><br><%=son.relationship if son.relationship%></td>
+        <td colspan="2"><strong>Relación :</strong><br><%=son.relationship if son.relationship%></td>
       </tr>
     <%end%>
   </table>
@@ -552,7 +541,7 @@ end%>
 
 <div class = "fields_history" style="display:<%=@objetivo_terapeoutico%>">
  
-   <h3 class= "color-gray">Objetivo terapéoutico</h3>
+   <h3 class= "color-gray">Objetivo terapéutico</h3>
    <p><%=@clinic_history.therapeutic_goal%></p>
      <hr>
 </div>
@@ -609,7 +598,7 @@ end%>
    <% end -%>
 
    <% if @field_default.evolution_tracing_state  == true %>
-    <br><strong>Evolucion:</strong> <%=tr.evolution%><br>
+    <br><strong>Evolucioón:</strong> <%=tr.evolution%><br>
 
   
    <% end -%>

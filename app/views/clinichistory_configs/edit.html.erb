@@ -1,0 +1,53 @@
+
+
+<%= render 'form', clinichistory_config: @clinichistory_config %>
+
+
+
+
+
+<script>
+
+ $(document).on('turbolinks:load',function() { 
+
+    tinymce.init({
+ 
+      selector: "#mytextarea1",  // change this value according to your HTML
+      plugins: "spellchecker",
+      plugins: "table",
+      menubar: "tools",
+      toolbar: 'fontsizeselect',
+      language: 'es',
+      forced_root_block_attrs: { "style": "margin: 0px 0px;" },
+      setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+
+        }
+  });
+
+
+    tinymce.init({
+ 
+      selector: "#mytextarea2",  // change this value according to your HTML
+      plugins: "spellchecker",
+      menubar: "tools",
+      toolbar: 'fontsizeselect',
+      language: 'es',
+      forced_root_block_attrs: { "style": "margin: 0px 0px;" },
+      setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+
+        }
+  });  
+
+
+});    
+
+
+
+
+</script>

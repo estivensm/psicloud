@@ -119,14 +119,14 @@
                  <ul style="padding: 0px;">
 
                   <ol style="padding-left: 5px; padding-top: 4px;"><%= link_to patient, style: "width: 20px !important;" do%>
-                  <i class="fas fa-address-card" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Gestionar Historia Clinica
+                  <i class="fas fa-address-card" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Gestionar Historia Clínica
 
                   <% end -%>
                   </ol>
 
                   <%if patient.clinic_histories.any? %>
                   <ol style="padding-left: 5px;"><%= link_to patient_clinic_history_path(patient.id, patient.clinic_histories.first.id), style: "width: 20px !important;" do%>
-                  <i class="fas fa-address-book" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Ver Historia Clinica
+                  <i class="fas fa-address-book" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Ver Historia Clínica
                   <% end -%>
                   </ol>
                   <%end%>
@@ -212,7 +212,7 @@
                     <% end -%></ol>
                   <% end -%>
 
-                  <%if current_user.rol.delete_patient%>
+                  <%if current_user.rol.delete_patient %>
                       <ol style="padding-left: 5px;"><%= link_to patient, method: :delete, data: {
               confirm: '¿Estas Seguro?',
               'confirm-button-text': 'Borrar',
