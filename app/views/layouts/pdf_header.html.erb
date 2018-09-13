@@ -1,7 +1,6 @@
 
 <div class="info text-center">
   
- <!-- <%=  (wicked_pdf_image_tag (current_user.clinichistory_config.header_image_url), style: "") if get_account1.logo_url%>-->
 
  <%if current_user.clinichistory_config.state == "Creado" %>   
   <% a = get_account1.logo_url ? (wicked_pdf_image_tag (get_account1.logo_url), style: "width:150px;") : ""
