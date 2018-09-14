@@ -250,7 +250,7 @@
                 <% if action_name == "all_patients" %>
                 <li><%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png")+ " Excel" , patients_csv_all_path(format: "csv"), class: "icon-export"%></li>
 
-                <li><%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf")+ " PDF", target:"_blank", class: "icon-export"%></li>
+                <li><%= link_to image_tag("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/243/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf")+ " PDF", target:"_blank", class: "icon-export"%></li>
                 <%end%>  
               </ul>
             </div>
