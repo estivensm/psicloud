@@ -43,15 +43,15 @@
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <% if action_name == "index" %>
-                                  <li><%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png") + " Excel", patients_csv_path(format: "csv"), class: "icon-export"%></li>
+                                  <li><%= link_to image_tag("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/244/file_formats_4_csv-512.png") + " Excel", patients_csv_path(format: "csv"), class: "icon-export"%></li>
 
-                                <li><%= link_to image_tag("https://www.codot.gov/business/civilrights/ada/assets/adobe-pdf-icon.png/image_preview")+ " PDF", patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%></li>
+                                <li><%= link_to image_tag("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/243/52ff0e80b07d28b590bbc4b30befde52.png")+ " PDF", patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%></li>
                               <%end%>
 
                             <% if action_name == "all_patients" %>
-                                <li>  <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png")+ " Excel" , patients_csv_all_path(format: "csv"), class: "icon-export"%></li>
+                                <li>  <%= link_to image_tag("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/244/file_formats_4_csv-512.png")+ " Excel" , patients_csv_all_path(format: "csv"), class: "icon-export"%></li>
 
-                              <li>  <%= link_to image_tag("http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf")+ " PDF", target:"_blank", class: "icon-export"%></li>
+                              <li>  <%= link_to image_tag("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/243/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf")+ " PDF", target:"_blank", class: "icon-export"%></li>
                               <%end%>  
               </ul>
             </div>
