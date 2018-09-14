@@ -181,7 +181,7 @@
         <div class="col-md-6">
           <% @patients.each do |patient| %>
             <li class="list-group-item">
-              <% imagen = !patient.avatar.blank? ? patient.avatar_url : "http://www.uic.mx/posgrados/files/2018/05/default-user-300x300.png" %>
+              <% imagen = !patient.avatar.blank? ? patient.avatar_url : "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/242/default-user-300x300.png" %>
               <%= image_tag imagen, style: "border-radius: 60px;width:50px" %>
               <b><%= patient.first_name %> <%= patient.second_name  %></b>
               <div class="btn-group" style="float: right;">
