@@ -25,6 +25,7 @@
             <thead>
                <tr class = "tr-table">
       <th>Admin User</th>
+      <th>F Creación</th>
       <th>Nombre</th>
       <th>Telefono</th>
       <th>Email</th>
@@ -43,7 +44,7 @@
       <tr>
        <td><%= account.admin_user %></td>
         <td><%= account.name %></td>
-   
+        <td><%= get_date(account.created_at) %></td>
         <td><%= account.phone %></td>
         <td><%= account.email %></td>
         <td><%=image_tag account.logo_url , style: "width:100px;padding:10px;" if account.logo_url %></td>
