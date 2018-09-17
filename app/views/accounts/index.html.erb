@@ -31,6 +31,7 @@
       <th>Email</th>
       <th>Logo</th>
       <th>Usuarios</th>
+      <th>Historias</th>
       <th>Cantidad Usuarios</th>
       <th>Almacenamiento</th>
       <th>Pacientes</th>
@@ -52,6 +53,25 @@
               <%=user.email%> ,
           <%end%>
         </td>
+        <td>
+        <table style="width: 1000px;"><% ClinicHistory.where(admin_user: account.admin_user).each do |ch|%>
+              
+            
+                  <tr>
+                    <td><%=ch.id%></td>
+                    <td><%=ch.first_contact_state%>-<%= get_date(ch.first_contact_created_at)%> </td>
+                    <td><%=ch.first_child_state%>-<%=get_date(ch.child_first_created_at)%></td>
+                    <td><%=ch.second_child_state%>-<%=get_date(ch.second_child_created_at)%> </td>
+                    <td><%=ch.third_child_state%>-<%=get_date(ch.third_child_created_at)%> </td>
+                    <td><%=ch.four_child_state%>-<%=get_date(ch.four_child_created_at)%> </td>
+                    <td><%=ch.desenlace_first%>-<%=get_date(ch.desenlace_created_at)%> </td>
+                  </tr>
+             
+              
+          <%end%>
+          </table>
+        </td>
+
         <td><%= account.users_quantity %></td>
         <td><%= account.file_size %></td>
         <td class="text-center"><%= Patient.where(admin_user: account.admin_user).count %></td>

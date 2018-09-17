@@ -4,6 +4,9 @@
       <%if @clinic_history != nil%>
       <div class="">
          <div class="row">
+         <div class="col-md-12">
+            <%= link_to "Cerrar Historia Clinica", close_clinic_history_path(@clinic_history.id) %>
+         </div>
             <div class="col-md-5
                ">
                <div class="panel panel-default">

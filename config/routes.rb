@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   #actualizar datos por ajax cuando escribe
   post "actualizar_hc", to: "clinic_histories#actualizar_hc"
   
+   
+  get 'closeclinichistory/:id', to: 'clinic_histories#close_clinic_history', as: 'close_clinic_history' 
+
 
   post "crear_firma_paciente" , to: "patients#crear_firma_paciente" , as: "crear_firma_paciente"
   post "crear_firma_padre" , to: "patients#crear_firma_padre" , as: "crear_firma_padre"

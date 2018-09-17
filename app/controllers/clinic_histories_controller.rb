@@ -478,6 +478,15 @@ puts @fields_create
 
 end
 
+def close_clinic_history
+
+  @clinic_history = ClinicHistory.find(param[:id])
+  @clinic_history.first_contact_state = true
+  @clinic_history.first_contact_created_at = Time.now()
+  @clinic_history.save
+  
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
