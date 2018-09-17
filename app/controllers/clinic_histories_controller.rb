@@ -478,11 +478,30 @@ puts @fields_create
 
 end
 
+
+
 def close_clinic_history
 
-  @clinic_history = ClinicHistory.find(param[:id])
+  @clinic_history = ClinicHistory.find(params[:id])
   @clinic_history.first_contact_state = true
   @clinic_history.first_contact_created_at = Time.now()
+
+  @clinic_history.first_child_state = true
+  @clinic_history.child_first_created_at = Time.now()
+
+  @clinic_history.second_child_state = true
+  @clinic_history.second_child_created_at = Time.now()
+
+  @clinic_history.third_child_state = true
+  @clinic_history.third_child_created_at = Time.now()
+
+  @clinic_history.four_child_state = true
+  @clinic_history.four_child_created_at = Time.now()
+
+  @clinic_history.desenlace_first = true
+  @clinic_history.desenlace_created_at = Time.now()
+  
+
   @clinic_history.save
   
 end

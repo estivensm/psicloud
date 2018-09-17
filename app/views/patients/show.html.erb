@@ -4,8 +4,28 @@
       <%if @clinic_history != nil%>
       <div class="">
          <div class="row">
-         <div class="col-md-12">
-            <%= link_to "Cerrar Historia Clinica", close_clinic_history_path(@clinic_history.id) %>
+         <div class="col-md-12" style="display:none">
+          <% display = "none" 
+           display = @clinic_history.first_contact_state && @clinic_history.desenlace_first ? "block" : "none" %>
+           <div class="alert-warning ch-close" style="display:<%=display%>;padding:10px;margin-bottom:10px;">
+                  Historia Clinica cerrada, puede subir Herramientas de Evaluacion hacer Seguimientos y crear citas 
+            </div>
+         <%if !(@clinic_history.first_contact_state && @clinic_history.desenlace_first)%>            
+           <div class="alert-warning msg-history" style="padding:10px;">
+            Si ya completaste el Primer Contacto y el Diagnostico y tratamiento puedes cerrar la Historia Clinica ya no podras modificarla, pero aun podras ingresar Herramientas de Evaluacion, Crear Seguimientos y crear Citas <br><br>
+                  <%= link_to "Cerrar Historia Clinica", close_clinic_history_path(@clinic_history.id),remote:true , data: {
+              confirm: '¿Estas seguro de Cerrar la Historia Clinica?',
+              'confirm-button-text': 'Cerrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+
+               text: 'Recuerda que ya no podras modificarla',
+
+              'image-url': ''}, class: "btnl btn-warning" %>  
+           </div>
+         <%end%>
+
+            <br>
          </div>
             <div class="col-md-5
                ">
