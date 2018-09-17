@@ -22,7 +22,7 @@
       <th>Patient</th>
       
 
-      <th colspan="3"></th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -45,7 +45,12 @@
         <td><%= clinic_history.user.email %></td>
         <td><%= clinic_history.patient_id %></td>
        
-        
+         <td><%=clinic_history.first_contact_state%>-<%= get_date(clinic_history.first_contact_created_at)%> </td>
+                    <td><%=clinic_history.first_child_state%>-<%=get_date(clinic_history.child_first_created_at)%></td>
+                    <td><%=clinic_history.second_child_state%>-<%=get_date(clinic_history.second_child_created_at)%> </td>
+                    <td><%=clinic_history.third_child_state%>-<%=get_date(clinic_history.third_child_created_at)%> </td>
+                    <td><%=clinic_history.four_child_state%>-<%=get_date(clinic_history.four_child_created_at)%> </td>
+                    <td><%=clinic_history.desenlace_first%>-<%=get_date(clinic_history.desenlace_created_at)%> </td>
 
       </tr>
     <% end %>
