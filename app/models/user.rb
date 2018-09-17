@@ -56,6 +56,7 @@ class User < ApplicationRecord
      has_many :create_fields
      has_many :consents
      has_one :clinichistory_config
+     has_many :clinic_histories
      devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable,
        :omniauthable, :omniauth_providers => [:google_oauth2]

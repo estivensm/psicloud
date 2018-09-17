@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   post 'cambiar/:id/:estado', to: 'appointments#state', as: 'cambiar' 
 
-
+  get 'clinic_histories_all', to: 'clinic_histories#clinic_histories_all'
   #actualizar datos por ajax cuando escribe
   post "actualizar_hc", to: "clinic_histories#actualizar_hc"
   

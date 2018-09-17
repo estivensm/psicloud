@@ -507,6 +507,13 @@ def close_clinic_history
 end
 
 
+def clinic_histories_all
+
+  @clinic_histories = ClinicHistory.all
+  
+end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clinic_history

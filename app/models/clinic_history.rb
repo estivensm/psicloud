@@ -45,6 +45,7 @@
 
 class ClinicHistory < ApplicationRecord
 	belongs_to :patient
+    belongs_to :user
     belongs_to :consult_reason, optional: true
 	has_one  :child_general_date, dependent: :destroy
     has_one  :personal_history, dependent: :destroy
