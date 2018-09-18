@@ -41,7 +41,7 @@
                :use_short_month => true,
                :order => [:day, :month, :year]},
                {:class => 'year form-control line1 required',
-               :id => 'event_date_event' , :title => "Es un Campo Obligatorio" , disabled: false}
+               :id => 'event_date_event' , :title => "Es un Campo Obligatorio" , disabled: @clinic_history.first_contact_state}
                %>
          </div>
       </div>
@@ -61,20 +61,20 @@
    <h3 style="padding-left: 0px; margin-left: 0px;">Descripción</h3>
    <br>
    <div class="form-group">
-      <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area required", :title => "Es un Campo Obligatorio"%>
+      <%= form.text_area :consultation_reason, id: :clinic_history_consultation_reason, class: "form form-control area required", :title => "Es un Campo Obligatorio",disabled: @clinic_history.first_contact_state%>
    </div>
    <hr>
    <br>
    <h3  style="padding-left: 0px; margin-left: 0px;"> Estado Actual</h3>
    <br>
    <div class="form-group">
-      <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: false, wrap:"hard" %>
+      <%= form.text_area :actual_state, id: :clinic_history_actual_state, class: "form form-control area required", :title => "Es un Campo Obligatorio", disabled: false, wrap:"hard" ,disabled: @clinic_history.first_contact_state%>
    </div>
    <br>
    <h3 style="padding-left: 0px; margin-left: 0px;"> Dinámica Familiar</h3>
    <br>
    <div class="form-group">
-      <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area required", :title => "Es un Campo Obligatorio" , disabled: false%>
+      <%= form.text_area :family_dinamic, id: :clinic_history_family_dinamic, class: "form form-control area required", :title => "Es un Campo Obligatorio" ,disabled: @clinic_history.first_contact_state%>
    </div>
 
 
@@ -92,17 +92,17 @@
                       <% end %>
                     </span>
                     <%=contact.hidden_field :id, class: "items"%>
-                    <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"]), {},{:class => 'form form-control select'}%>
+                    <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"]), {},{:class => 'form form-control select' ,disabled: @clinic_history.first_contact_state}%>
                 </div>
             </div>
                 <div class="pdd"  style="width: 400px; padding-right: 10px;" >
                    <%= contact.label "Descripción" %>
-                   <%= contact.text_area :description, :class => 'form-control' %>
+                   <%= contact.text_area :description, :class => 'form-control',disabled: @clinic_history.first_contact_state %>
                 </div>
 
                 <div class="pdd"  style="width: 300px;" >
                    <%= contact.label "Adjuntar" %>
-                   <%= contact.file_field :attachment, :class => 'form-control' %>
+                   <%= contact.file_field :attachment, :class => 'form-control',disabled: @clinic_history.first_contact_state %>
                 </div>
 
                   <%if action_name == "new"%>
@@ -135,18 +135,18 @@
                       <% end %>
                     </span>
                     <%=contact.hidden_field :id, class: "items1"%>
-                   <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"]), {},{:class => 'form form-control select'}%>
+                   <%= contact.select 'type_background', options_for_select(["Psicologico", "Psiquiatrico", "Toxico", "Medico"]), {},{:class => 'form form-control select',disabled: @clinic_history.first_contact_state}%>
                   </div>
                 </div>
 
             </div>
                <div class="pdd"  style="width: 400px; padding-right: 10px;" >
                <%= contact.label "Descripción" %>
-               <%= contact.text_area :description, :class => 'form-control' %>
+               <%= contact.text_area :description, :class => 'form-control' ,disabled: @clinic_history.first_contact_state%>
             </div>
                <div class="pdd"  style="width: 300px;" >
                <%= contact.label "Adjuntar" %>
-               <%= contact.file_field :attachement, :class => 'form-control' %>
+               <%= contact.file_field :attachement, :class => 'form-control ' ,disabled: @clinic_history.first_contact_state%>
             </div>  
         
 
@@ -181,9 +181,9 @@
           
          <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any? %>
          
-         <%= text_area_tag "#{field.name}", nil , class: "form-control area" %>
+         <%= text_area_tag "#{field.name}", nil , class: "form-control area",disabled: @clinic_history.first_contact_state %>
          <%else%>
-         <%= text_area_tag "#{field.name}", field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content , class: "form-control area" %>      
+         <%= text_area_tag "#{field.name}", field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content , class: "form-control area",disabled: @clinic_history.first_contact_state %>      
          <%end%>
    
          <%else%>
@@ -191,9 +191,9 @@
      
          <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any? %>
           <div class="form-group">
-         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>nil}), {:multiple => false,class: 'form-control' , style: "width:50%"}%>
+         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>nil}), {:multiple => false,class: 'form-control' , style: "width:50%",disabled: @clinic_history.first_contact_state}%>
          <%else%>
-         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control', style: "width:50%"}%>
+         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control', style: "width:50%",disabled: @clinic_history.first_contact_state}%>
          
          <%end%>
       
@@ -494,4 +494,15 @@ $( ".items1" ).each(function( index ) {
    //Fin de las funciones para guardar mientras se copia
    
      })
+
+
+
+
+    <%if @clinic_history.first_contact_state%>
+   
+      $(':submit').hide();
+     <%end%>
 </script>
+
+
+

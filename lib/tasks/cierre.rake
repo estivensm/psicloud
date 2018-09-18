@@ -66,6 +66,23 @@ namespace :cierre do
 
 
        end
+
+
+        Tracing.all.each do |tr|
+
+          if tr.tracing_created_at != nil
+
+            if tr.tracing_created_at < Date.today() && !tr.tracing_state
+                        
+                tr.tracing_state = true
+                tr.save
+
+           end   
+
+          end 
+            
+
+        end  
         
     end
   end

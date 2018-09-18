@@ -15,7 +15,7 @@
     </div>
   <% end %>
 
-<div class="row">
+<div class="row input-change">
 <h3 style="margin:0px 0px 20px 20px;color:gray" class="title-formulario"><%=get_open(@clinic_history.first_child_state).html_safe%> HISTORIA FAMILIAR</h3>
 
 <br><div class="col-md-6"> 
@@ -37,7 +37,7 @@
   </div>
     </div>
    </div>
-    <div class="row">
+    <div class="row input-change">
       <div class="col-md-8">
    <div class="form-group acc1">
                <label for="">Relación con el Padre</label><br>
@@ -75,7 +75,7 @@
   <br>
  <hr style="    border-top: 3px solid #cfcfcf;">
 <br>
- <div class="row">
+ <div class="row input-change">
 
 <div class="col-md-6">
   <div class="form-group">
@@ -98,7 +98,7 @@
   </div>
     </div>
       </div>
-<div class="row">
+<div class="row input-change">
   <div class="col-md-8">
    <div class="form-group acc1">
                <label for="">Relación con la Madre</label><br>
@@ -143,7 +143,7 @@
 
   
 
-  <div class="row">
+  <div class="row input-change">
   <div class="col-md-8">
   
 
@@ -182,7 +182,7 @@
 </div>
 <br> <hr style="    border-top: 3px solid #cfcfcf;">
 <br>
-   <div class="row">
+   <div class="row input-change">
  <div class="col-md-8">
   <div class="field">
     <%= form.label "Reacción de los padres ante el problema del Paciente" %>
@@ -194,7 +194,7 @@
 <h2 class = "" style = "margin :0px 0px 5px 0; color:gray; padding: 0px; ">Hermanos</h2>
    <br>
       <%= form.fields_for :child_brothers do |contact|  %>
-          <div class="col-md-3" style="padding: 0px;" >
+          <div class="col-md-3 input-change" style="padding: 0px;" >
              <%= contact.label "Nombre"%>
               <div class="input-group">
                 <span class="input-group-btn">
@@ -202,23 +202,23 @@
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   <% end %>
                 </span>
-               <%= contact.text_field :name, :class => 'form-control', :placeholder => "Nombre" %>
+               <%= contact.text_field :name, :class => 'form-control', :placeholder => "Nombre" , disabled: @clinic_history.first_child_state%>
             </div>
           </div>
-          <div class="col-md-3 cb" >
+          <div class="col-md-3 cb input-change" >
             <div class="form">
               <%= contact.label "Género"%>
                <%=contact.hidden_field :id, class: "items"%>
-              <%= contact.select 'sexo', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select'}%>
+              <%= contact.select 'sexo', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select', disabled: @clinic_history.first_child_state}%>
             </div>
           </div>
-              <div class="col-md-2" >
+              <div class="col-md-2 input-change" >
                <%= contact.label "Edad" %>
-               <%= contact.text_field :edad, :class => 'form-control', :maxlength => 2, :placeholder => "Edad" %>
+               <%= contact.text_field :edad, :class => 'form-control', :maxlength => 2, :placeholder => "Edad", disabled: @clinic_history.first_child_state %>
             </div>
           <div class="col-md-3">
-              <%= contact.label "Relación" %>
-                <%= contact.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicacion", "Poca Comunicacion", "Ninguna Comunicacion"]), {},{:class => 'form form-control select'}%>
+              <%= contact.label "Relación input-change" %>
+                <%= contact.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicacion", "Poca Comunicacion", "Ninguna Comunicacion"]), {},{:class => 'form form-control select', disabled: @clinic_history.first_child_state}%>
                 <br><br>
           </div>  
             <%= contact.hidden_field :child_general_date_id, :value=> @child_general_date.id %>
@@ -236,34 +236,34 @@
     <%= form.fields_for :children do |boy|  %>
       <div class="col-md-3" style="padding: 0px; margin-top: 1px;">
         <%= boy.label "Nombre"%>
-           <div class="input-group">  
+           <div class="input-group input-change">  
              <span class="input-group-btn">
               <%= boy.link_to_remove class: "btn btn-danger" do %>
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 <% end %>
               </span>
-            <%= boy.text_field :name, class: "form form-control", :placeholder => "Nombre" %>
+            <%= boy.text_field :name, class: "form form-control", :placeholder => "Nombre" , disabled: @clinic_history.first_child_state%>
           </div>
       </div>
-        <div class="col-md-3 b">
+        <div class="col-md-3 b input-change">
           <div class="form">
             <%= boy.label "Género"%>
             <%= boy.hidden_field :id, class: "items1"%>
-             <%= boy.select 'genero', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select'}%>
+             <%= boy.select 'genero', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select', disabled: @clinic_history.first_child_state}%>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 input-change">
           <div class="form">
             <%= boy.label "Edad"%>
-            <%= boy.text_field :age, class: "form form-control", :maxlength => 2, :placeholder => "Edad"%>
+            <%= boy.text_field :age, class: "form form-control", :maxlength => 2, :placeholder => "Edad" , disabled: @clinic_history.first_child_state%>
 
           </div>
         </div>
         
-        <div class="col-md-3">
+        <div class="col-md-3 input-change">
           <div class="form">
           <%= boy.label "Relación"%>
-           <%= boy.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicación", "Poca Comunicación ", "Ninguna Comunicación"]), {},{:class => 'form form-control select'}%>
+           <%= boy.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicación", "Poca Comunicación ", "Ninguna Comunicación"]), {},{:class => 'form form-control select', disabled: @clinic_history.first_child_state}%>
           </div>
           <br><br>
         </div>
@@ -402,4 +402,12 @@ $( ".items" ).each(function( index ) {
 
 
 
+</script>
+
+<script>
+  <%if @clinic_history.first_child_state%>
+     $('.input-change input').attr('disabled', true);
+      $('.input-change textarea').attr('disabled', true);
+      $(':submit').hide();
+     <%end%>
 </script>

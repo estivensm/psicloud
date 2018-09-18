@@ -21,11 +21,11 @@
          <div class="col-md-12">
             <div class="form-group">
                <%=label_tag "Descripción" %>
-               <%= text_area_tag :diagnostic_hypothesis, @clinic_history.diagnostic_hypothesis , class: "form-control area" %>
+               <%= text_area_tag :diagnostic_hypothesis, @clinic_history.diagnostic_hypothesis , class: "form-control area input-change" %>
             </div>
             <div class="form-group">
                <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">DSMV</span>       
-               <%= select_tag 'diagnostic_ids', options_for_select(get_diagnostic.collect{ |u| ["#{u.count} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
+               <%= select_tag 'diagnostic_ids', options_for_select(get_diagnostic.collect{ |u| ["#{u.count} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostic_ids}), {:multiple => true,class: 'form-control chosen-select1 input-change'}%>
             </div>
   
 
@@ -37,12 +37,12 @@
 
              <div class="form-group">
                <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnósticos Principales (CIE10)</span>  <br>   
-               <%= select_tag 'first_diagnostico_ids', options_for_select(get_first_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.first_diagnostico_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
+               <%= select_tag 'first_diagnostico_ids', options_for_select(get_first_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.first_diagnostico_ids}), {:multiple => true,class: 'form-control chosen-select1 input-change'}%>
             </div>
 
             <div class="form-group">
                <%=label_tag "" %> <span style="color:#888888  !important;font-weight: bold">Diagnósticos Secundarios (CIE10)</span>  <br>   
-               <%= select_tag 'diagnostico_ids', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostico_ids}), {:multiple => true,class: 'form-control chosen-select1'}%>
+               <%= select_tag 'diagnostico_ids', options_for_select(get_diagnostico.collect{ |u| ["#{u.codigo} - #{u.name}", u.id] },{:selected=>@clinic_history.diagnostico_ids}), {:multiple => true,class: 'form-control chosen-select1 input-change'}%>
             </div>
 
            
@@ -54,7 +54,7 @@
             <h3 style="padding-left: 0px; margin-left: 0px;">Objetivo Terapéutico</h3>
             <br>
             <div class="form-group">
-               <%= text_area_tag :therapeutic_goal, @clinic_history.therapeutic_goal , class: "form-control area" %>
+               <%= text_area_tag :therapeutic_goal, @clinic_history.therapeutic_goal , class: "form-control area input-change" %>
             </div>
          </div>
 
@@ -64,7 +64,7 @@
             <h3 style="padding-left: 0px; margin-left: 0px;">Tipo de Tratamiento</h3>
             <br>
             <div class="form-group">
-               <%= text_area_tag :type_of_treatment, @clinic_history.type_of_treatment , class: "form-control area" %>
+               <%= text_area_tag :type_of_treatment, @clinic_history.type_of_treatment , class: "form-control area input-change" %>
             </div>
          </div>
 
@@ -78,9 +78,9 @@
             <%if field.type_field == "Textarea"%>
             <div class="form-group">
               <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any? %>
-               <%= text_area_tag "#{field.name}", nil , class: "form-control area" %>
+               <%= text_area_tag "#{field.name}", nil , class: "form-control area input-change" %>
               <%else%>
-               <%= text_area_tag "#{field.name}", field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content , class: "form-control area" %>      
+               <%= text_area_tag "#{field.name}", field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content , class: "form-control area input-change" %>      
 
               <%end%>
                </div>
@@ -91,7 +91,7 @@
               <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any? %>
                  <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>nil}), {:multiple => false,class: 'form-control', style: "width:50%"}%>
               <%else%>
-                 <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control', style: "width:50%"}%>
+                 <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control input-change', style: "width:50%"}%>
       
                 
 
@@ -130,3 +130,9 @@
    </div>
 </div>
 
+<script>
+  <%if @clinic_history.desenlace_first%>
+    $('.input-change').attr('disabled', true);
+    $(':submit').hide();
+    <%end%>
+</script>

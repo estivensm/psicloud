@@ -245,3 +245,11 @@
 <% end %>
 </div>
   
+<script>
+  <%if @clinic_history.third_child_state%>
+     $('input').attr('disabled', true);
+      $('textarea').attr('disabled', true);
+       $('select').attr('disabled', true);
+      $(':submit').hide();
+     <%end%>
+</script>

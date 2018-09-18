@@ -236,3 +236,14 @@
   </div>
 <% end %>
   </div>  
+
+
+
+
+<script>
+  <%if @clinic_history.four_child_state%>
+      $('input').attr('disabled', true);
+      $('textarea').attr('disabled', true);
+      $(':submit').hide();
+     <%end%>
+</script>

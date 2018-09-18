@@ -180,3 +180,11 @@
 
 </div>
   
+
+  <script>
+  <%if @clinic_history.second_child_state%>
+     $('input').attr('disabled', true);
+      $('input').attr('disabled', true);
+      $(':submit').hide();
+     <%end%>
+</script>

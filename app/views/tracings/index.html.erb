@@ -1,148 +1,109 @@
 <%if @clinic_history.tracings.count != 0%>
+<div class="row" style = "padding: 10px 45px;">
+   <div class = "row title-table" >
+      <div class = "col-md-9">
+         <p>
+            SEGUIMIENTOS <span class="label label-primary"><%=@tracings.count%></span> 
+            <span style = "font-size:12px;margin-left:20px;">
+               <!-- <%= page_entries_info @tracings, :entry_name => 'Seguimientos' %>-->
+            </span>
+         </p>
+      </div>
+      <div class = "col-md-3">
+         <%= link_to 'Nuevo Seguimiento', new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), class: "btn btn-primary"  %>
+      </div>
+      <div class = "col-md-12 paginate text-left title-table1">
+         <%= will_paginate @tracings%>
+      </div>
+   </div>
+   <% @clinic_history.tracings.each do |tracing| %>
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <div class="row">
+            <div class="col-md-6" style="    color: #5bc0de;
+               font-size: 18px;">
+               <%= tracing.tracing_date %>
+            </div>
+            <div class="col-md-6 text-right">
+            
+              <%if tracing.tracing_state == false %>  
+               <%= link_to  edit_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing) ,class:"icon" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
+              <%end%>
 
-        <div class="row" style = "padding: 10px 45px;">
-      <div class = "row title-table" >
-         <div class = "col-md-9">
-            <p>SEGUIMIENTOS <span class="label label-primary"><%=@tracings.count%></span> <span style = "font-size:12px;margin-left:20px;"><!-- <%= page_entries_info @tracings, :entry_name => 'Seguimientos' %>--></span> </p>
-         </div>
-        
-         <div class = "col-md-3">
-            <%= link_to 'Nuevo Seguimiento', new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), class: "btn btn-primary"  %>
-         </div>
-          <div class = "col-md-12 paginate text-left title-table1">
-            <%= will_paginate @tracings%>
+               <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: {
+                  confirm: '¿Estas Seguro?',
+                  'confirm-button-text': 'Borrar',
+                  'cancel-button-text': 'Cancelar',
+                  'confirm-button-color': '#CC0000',
+                   text: 'Recuerda que el registro se borrara permanentemente',
+                  'image-url': ''}, class:"icon" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i><%end%>
+            </div>
          </div>
       </div>
-
-   
-        
-
-
-    <% @clinic_history.tracings.each do |tracing| %>
-         
-
-            <div class="panel panel-default">
-                        <div class="panel-heading">
-                                   <div class="row">
-
-              <div class="col-md-6" style="    color: #5bc0de;
-    font-size: 18px;">
-                    <%= tracing.tracing_date %>
-              </div>
-              
-
-              <div class="col-md-6 text-right">
-          
-                        <%= link_to  edit_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing) ,class:"icon" do %>
-        <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
-                    <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: {
-              confirm: '¿Estas Seguro?',
-              'confirm-button-text': 'Borrar',
-              'cancel-button-text': 'Cancelar',
-              'confirm-button-color': '#CC0000',
-               text: 'Recuerda que el registro se borrara permanentemente',
-              'image-url': ''}, class:"icon" do %>
-        <i class="fa fa-trash" aria-hidden="true"></i><%end%>
-              </div>
-           
-            
-            
-          </div>
-                        </div>
-                        <div class="panel-body">
-                     
-                     <strong>Descripción:</strong> <%=tracing.description%><
- <hr>
-   <% if @field_default.observation_tracing_state  == true%>
-     <strong>Observaciones:</strong> <%=tracing.observation%>
-  <hr>
-   <% end -%>
-
-   <% if @field_default.evolution_tracing_state  == true %>
-    <strong>Evolucion:</strong> <%=tracing.evolution%>
-
- <hr>
-   <% end -%>
-  
-    <% @clinic_history.crete_fields.where(tracing_id: tracing.id).order(id: :asc).each do |field| %>
-  
- 
-   <%if field.field.form == "Seguimiento" && field.field.state %>
-    
-    <strong><%=field.field.name%>: </strong> <%=field.content%>
-    
- <hr>
-      <%end%>
-   
-   
-  
-
-<%end%>
-
-
-   
-                            <%if tracing.attachment_url%>
-                   <%= link_to  tracing.attachment_url, class: "", style:"margin-right:10px;" do  %>
-                          <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
-                   <%end%>  
-                   <%end%>
-
-                    <% tracing.general_files.each do |file|%>
-                      <%if file.file_url%>
-                   <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
-                          <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
-                   <%end%>  
-                   <%end%>
-                   <%end%>
-                        </div>
-                      </div>
-    <% end %>
-
-
-            </div>
-
-
+      <div class="panel-body">
+         <strong>Descripción:</strong> <%=tracing.description%>
+         <hr>
+         <% if @field_default.observation_tracing_state  == true%>
+         <strong>Observaciones:</strong> <%=tracing.observation%>
+         <hr>
+         <% end -%>
+         <% if @field_default.evolution_tracing_state  == true %>
+         <strong>Evolucion:</strong> <%=tracing.evolution%>
+         <hr>
+         <% end -%>
+         <% @clinic_history.crete_fields.where(tracing_id: tracing.id).order(id: :asc).each do |field| %>
+         <%if field.field.form == "Seguimiento" && field.field.state %>
+         <strong><%=field.field.name%>: </strong> <%=field.content%>
+         <hr>
+         <%end%>
+         <%end%>
+         <%if tracing.attachment_url%>
+         <%= link_to  tracing.attachment_url, class: "", style:"margin-right:10px;" do  %>
+         <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+         <%end%>  
+         <%end%>
+         <% tracing.general_files.each do |file|%>
+         <%if file.file_url%>
+         <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+         <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+         <%end%>  
+         <%end%>
+         <%end%>
+      </div>
+   </div>
+   <% end %>
+</div>
 <%else%>
- <div class="row">
-        <div class="col-md-12 np">
-
-
-        <h3>! AÚN NO HAY SEGUIMIENTOS ¡</h3>
-        
-        <%= link_to "CREA EL PRIMERO", new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), class: "btn btn-primary"   %>
-        
-        </div>
-      
-    </div>
+<div class="row">
+   <div class="col-md-12 np">
+      <h3>! AÚN NO HAY SEGUIMIENTOS ¡</h3>
+      <%= link_to "CREA EL PRIMERO", new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), class: "btn btn-primary"   %>
+   </div>
+</div>
 <%end%>
 <style>
-.panel-body strong
-{
-  margin-bottom: 5px
-}
-  .np
-
-{
-    text-align: center;
-    color: gray;
-    background: #f4f4f4;
-    font-size: 40px;
-    padding: 30px 0px;
-
-
-}
-.np h3
-{ 
-  
-    font-size: 30px;
-    margin-bottom: 30px;
-  
-
-}
-.crear_paciente
-{
-  font-size: 20px;
-  padding: 20px;
- 
-}
+   .panel-body strong
+   {
+   margin-bottom: 5px
+   }
+   .np
+   {
+   text-align: center;
+   color: gray;
+   background: #f4f4f4;
+   font-size: 40px;
+   padding: 30px 0px;
+   }
+   .np h3
+   { 
+   font-size: 30px;
+   margin-bottom: 30px;
+   }
+   .crear_paciente
+   {
+   font-size: 20px;
+   padding: 20px;
+   }
 </style>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180912172515) do
+ActiveRecord::Schema.define(version: 20180918025911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -556,6 +556,8 @@ ActiveRecord::Schema.define(version: 20180912172515) do
     t.date "tracing_date"
     t.text "observation"
     t.text "evolution"
+    t.boolean "tracing_state"
+    t.datetime "tracing_created_at"
   end
 
   create_table "two_child_histories", force: :cascade do |t|

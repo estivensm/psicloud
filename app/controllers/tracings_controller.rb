@@ -51,6 +51,8 @@ class TracingsController < ApplicationController
   # POST /tracings.json
   def create
     @tracing = Tracing.new(tracing_params)
+    @tracing.tracing_state = false
+    @tracing.tracing_created_at = Time.now
     @clinic_history = @tracing.clinic_history
     respond_to do |format|
       if @tracing.save
@@ -63,7 +65,8 @@ class TracingsController < ApplicationController
 
 
         end
-        
+      
+
 
         format.html { redirect_to patient_clinic_history_tracings_path(params[:patient_id],params[:clinic_history_id]), notice: 'Tracing was successfully created.' }
         format.json { render :show, status: :created, location: @tracing }
@@ -127,6 +130,6 @@ class TracingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tracing_params
-      params.require(:tracing).permit(:admin_user, :user_id, :patient_id, :clinic_history_id, :evolution, :observation, :description, :attachment, :tracing_type, :tracing_date,:remove_attachment, general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
+      params.require(:tracing).permit(:admin_user, :user_id, :patient_id, :clinic_history_id, :evolution, :observation, :description,:tracing_state,:tracing_created_at, :attachment, :tracing_type, :tracing_date,:remove_attachment, general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
     end
 end
