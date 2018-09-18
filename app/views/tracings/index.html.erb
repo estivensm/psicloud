@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-6 text-right">
             
-              <%if tracing.tracing_state == false %>  
+              <% if tracing.tracing_state != true %>  
                <%= link_to  edit_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing) ,class:"icon" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
               <%end%>
