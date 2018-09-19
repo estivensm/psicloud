@@ -3,7 +3,7 @@
       <ul>
         <li><%= link_to "Inicio", root_path%></li> 
         <li><%= link_to "Pacientes", patients_path%></li> 
-        <li><%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patients_path%></li>
+        <li><%= link_to "#{@patient.first_name} #{@patient.first_last_name}", patient_path(@patient.id)%></li>
         <li class="active"><%= link_to "Editar Paciente"%></label><li>
 
       </ul>
