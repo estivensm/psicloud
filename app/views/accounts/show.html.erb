@@ -20,10 +20,10 @@
     <div class="w3-third" style="width: 320px;">
     
       <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container" >
+        <div class="w3-display-container" style="text-align:center;padding-top: 17px;" >
           <% if @account.logo? %>
         
-            <%= image_tag(@account.logo_url(:medium))%>
+            <%= image_tag @account.logo_url, style: "width:200px"%>
           <%else%>
             <%= image_tag "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/247/no-imagen.jpg", style: "width:200px"  %>
 
