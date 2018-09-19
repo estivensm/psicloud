@@ -36,7 +36,7 @@
         <div class="form-group">
                      <%val1 = "" 
                         action_name == "edit" ? val1 = @field.type_field : val1 = "" %>
-                     <%= form.label "Tipo del Formulario" %><br>
+                     <%= form.label "Tipo del Campo" %><br>
            
                      <%= form.select 'type_field', options_for_select([["Cuadro de Texto", "Textarea"], ["Seleccion", "Seleccion Multiple"]], val1), {},{:class => 'form form-control select'}%>
                   </div>
