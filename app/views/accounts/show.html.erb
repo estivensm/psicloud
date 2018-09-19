@@ -25,7 +25,7 @@
         
             <%= image_tag(@account.logo_url(:medium))%>
           <%else%>
-            <%= image_tag "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/247/no-imagen.jpg", style: "width:294px"  %>
+            <%= image_tag "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/247/no-imagen.jpg", style: "width:200px"  %>
 
         <%end%>
         </div>
@@ -68,7 +68,7 @@
                      <i class="fa fa-database" aria-hidden="true" style=""></i> Plan
                  </div>
                  <div class="panel-body">
-                      <p style="text-align: center"><span class="" style="    color: #46b8da;font-size:25px;">Psicologo</span></p>
+                      <p style="text-align: center"><span class="" style="    color: #46b8da;font-size:25px;">Psicólogo</span></p>
                  </div>
               </div>
                 
@@ -79,7 +79,7 @@
                      <i class="fa fa-database" aria-hidden="true" style=""></i> Pacientes Atendidos
                  </div>
                  <div class="panel-body">
-                      <p style="text-align: center"><span class="badge" style="font-size:32px;"><%=Patient.where(admin_user: current_user.admin_user).count%>11</span></p>
+                      <p style="text-align: center"><span class="badge" style="font-size:32px;"><%=Patient.where(admin_user: current_user.admin_user).count%></span></p>
                  </div>
               </div>
                 
