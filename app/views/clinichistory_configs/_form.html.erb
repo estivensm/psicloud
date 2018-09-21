@@ -37,14 +37,14 @@
            <hr>
           <div class="field">
     <%= form.label :header_text %>
-    <%= form.text_area :header_text, id: :clinichistory_config_header_text , id: "mytextarea", :class => "tinymce" , :rows => 8, :cols => 10 %>
+    <%= form.text_area :header_text, id: :clinichistory_config_header_text , :class => "tinymce" , :rows => 8, :cols => 10 %>
   </div>
 
 
 
   <div class="field">
     <%= form.label :footer_text %>
-    <%= form.text_area :footer_text, id: :clinichistory_config_footer_text , id: "mytextarea1", :class => "tinymce" , :rows => 8, :cols => 10 %>
+    <%= form.text_area :footer_text, id: :clinichistory_config_footer_text , :class => "tinymce" , :rows => 8, :cols => 10 %>
   </div>
     </div>
 
@@ -79,55 +79,6 @@
 
 
 
-
-<script>
-
- $(document).on('turbolinks:load',function() { 
-
-    tinymce.init({
- 
-      selector: "#mytextarea2",  // change this value according to your HTML
-      plugins: "spellchecker",
-      plugins: "table",
-      menubar: "tools",
-      toolbar: 'fontsizeselect',
-      language: 'es',
-      forced_root_block_attrs: { "style": "margin: 0px 0px;" },
-      setup: function (editor) {
-            editor.on('change', function () {
-                editor.save();
-            });
-
-        }
-  });
-
-     tinymce.init({
- 
-      selector: "#mytextarea1",  // change this value according to your HTML
-      plugins: "spellchecker",
-      plugins: "table",
-      menubar: "tools",
-      toolbar: 'fontsizeselect',
-      language: 'es',
-      forced_root_block_attrs: { "style": "margin: 0px 0px;" },
-      setup: function (editor) {
-            editor.on('change', function () {
-                editor.save();
-            });
-
-        }
-  });
-
-
-
-
-
-});    
-
-
-
-
-</script>
 
 
 

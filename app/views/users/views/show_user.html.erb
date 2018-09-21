@@ -55,7 +55,7 @@
                 <span >Editar Usuario</span>
               <% end %>
                   
-               <%= link_to  firma_psicologo_path(@user.id), :class => "btn btn-default pull-right" do %>
+               <%= link_to  firma_psicologo_path(@user.id), data: { turbolinks: false }, :class => "btn btn-default pull-right" do %>
                 <i class="fas fa-quidditch"></i>
               <span >Editar Firma</span>
               <% end %>

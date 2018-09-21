@@ -13,7 +13,7 @@
 
          <div class="col-md-12">
            <span class="span_firma"><%= radio_button_tag :tipo_firma, "Adjunta" , @adjunta, class: "radio_firma"  %>Adjunta</span>
-              <span class="span_firma"><%= radio_button_tag :tipo_firma, "Firma Digital"  , @digital ,class: "radio_firma"  %>Firma Digital  </span>
+              <span class="span_firma"><%= radio_button_tag :tipo_firma, "Firma Digital"  , @digital ,class: "radio_firma"  %>Firma Digintal  </span>
              <span class="span_firma"> <%= radio_button_tag :tipo_firma, "Ninguna" ,  @sinfirma,class: "radio_firma" %> Sin Firma </span>
             <hr>
          </div>
@@ -29,7 +29,7 @@
              <%= form_tag crear_formato_path, multipart: true , method: :post, class: "" do %>
               <div class="form-group">
 
-               <%= text_area_tag :signature_format, @user.signature_format, id: "mytextarea", :class => "tinymce" , :rows => 8, :cols => 10%>
+               <%= text_area_tag :signature_format, @user.signature_format, :class => "tinymce" , :rows => 8, :cols => 10%>
                <%= tinymce %>
                 
                   <%= hidden_field_tag :user_id, @user.id, id: "firma_adjunta "%>
@@ -149,8 +149,35 @@
     margin: 0px 0 0 !important;
 }
 </style>
+
+<script>
+
+
+$(document).on('turbolinks:request-end', function() {
+  if (tinyMCE) { tinyMCE.remove(); }
+});
+
+</script>
+
+
 <script>
    $(document).on('turbolinks:load',function() {
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
 
      $('.radio_firma').on("change",function(){
 
@@ -162,22 +189,6 @@
 
 
      });
-
-    tinymce.init({
- 
-  selector: "#mytextarea",  // change this value according to your HTML
-  plugins: "spellchecker",
-  menubar: "tools",
-  toolbar: 'fontsizeselect',
-  language: 'es',
-  forced_root_block_attrs: { "style": "margin: 0px 0px;" },
-  setup: function (editor) {
-        editor.on('change', function () {
-            editor.save();
-        });
-
-}
-});
 
 
      var canvas = document.getElementById('signature-pad');
@@ -243,7 +254,6 @@
                    });
 
 
- 
 
 
 
@@ -254,3 +264,4 @@
 
            
 </script>
+

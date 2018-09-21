@@ -29,7 +29,7 @@
         <td><%= clinichistory_config.user.email %></td>
         <td><%= clinichistory_config.user_id %></td>
         <td><%= link_to 'Show', clinichistory_config %></td>
-        <td><%= link_to 'Edit', edit_clinichistory_config_path(clinichistory_config) %></td>
+        <td><%= link_to 'Edit', edit_clinichistory_config_path(clinichistory_config), data: { turbolinks: false } %></td>
         <td><%= link_to 'Destroy', clinichistory_config, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
