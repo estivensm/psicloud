@@ -28,14 +28,14 @@ class PatientsController < ApplicationController
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                    
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb'
+                     
                   }
                },
         :show_as_html => params[:debug].present?
@@ -89,14 +89,14 @@ end
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                     
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb'
+                     
                   }
                },
         :show_as_html => params[:debug].present?

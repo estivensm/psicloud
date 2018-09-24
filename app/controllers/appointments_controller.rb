@@ -121,14 +121,14 @@ class AppointmentsController < ApplicationController
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                    
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb',
+                     
                      :right => 'Page [page] of [topage]',
                      :font_size => 7
                   }
@@ -182,14 +182,14 @@ def citas_historico
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                     
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb',
+                     
                      :right => 'Page [page] of [topage]',
                      :font_size => 7
                   }
@@ -242,14 +242,14 @@ def citas_historico
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                     
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb',
+                     
                      :right => 'Page [page] of [topage]',
                      :font_size => 7
                   }
@@ -304,14 +304,14 @@ end
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                    
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb',
+                    
                      :right => 'Page [page] of [topage]',
                      :font_size => 7
                   }
@@ -348,14 +348,14 @@ end
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                    
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb',
+                    
                      :right => 'Page [page] of [topage]',
                      :font_size => 7
                   }
@@ -409,14 +409,14 @@ end
         :header => {
                   :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_header.html'
+                     
                   },
 
                   },
                   :footer => {
                     :spacing => 5,
                   :html => {
-                     :template => 'layouts/pdf_footer.html.erb',
+                    
                      :right => 'Page [page] of [topage]',
                      :font_size => 7
                   }
