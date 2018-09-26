@@ -252,7 +252,76 @@
                   <%end%>
                      </div>
 </div>
-<div class="col-md-2" style="padding-left:0px !important;padding-right: 0px !important;">
+<br>
+<!-- ############################### MOVIL MENU ######################################### -->
+
+<div class="col-md-2  hidden-md hidden-lg contenido" style="padding-right: 0px !important; padding-left: 0px;">
+
+      <div class="col-md-2" style="padding: 0px;">
+         <%= link_to  patient_path(@patient.id) , class: "btn btn-primary #{menu_patient[6]} btn1 ", style: "width: 194px; text-align: left; padding-left: 5px;" do %>
+          <i class="fa fa-address-card  hidden-xs hidden-sm " style = "font-size:20px;" aria-hidden="true"></i> Información General
+         <%end%>
+        <%if (@clinic_history != nil && (action_name != "new" || controller_name == "tracings")) %>
+          <%= link_to  edit_patient_clinic_history_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[5]} btn4", style: "float: right; width: 175px; padding-right: 4px;     text-align: left;" do %>
+          <i class="fa fa-file  hidden-xs hidden-sm" style = "font-size: 18px; padding-right: 0px !important; margin-right: 15px;" aria-hidden="true"></i>
+          Primer Contacto <span style="float:right;display:none"><%=state_history(@clinic_history.id).html_safe%></span>
+         <%end%>
+
+       </div>
+
+
+
+
+
+        
+        <!-- <%= link_to  patient_clinic_history_backgrounds_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[0]}" do %>
+          <i class="fa fa-undo" style = "font-size:20px;" aria-hidden="true"></i>
+          Antecedentes <span class="span-num"><%=@clinic_history.backgrounds.count + @clinic_history.personal_backgrounds.count %></span>
+         <%end%>-->
+         <div class="col-md-2" style="padding: 0px;">
+        <%= link_to  patient_clinic_history_tool_tests_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[1]} btn2", style: "width: 194px;  padding-left: 5px; text-align: left;" do %>
+          <i class="fa fa-wrench  hidden-xs hidden-sm" style = "font-size:20px;" aria-hidden="true"></i>
+          Htas de Evaluación <span class="span-num" style="margin-left: 10px;"> <%=@clinic_history.tool_tests.count%></span>
+         <%end%>
+          <%= link_to  patient_appointments_path(@patient.id), class: "btn btn-primary #{menu_patient[2]} btn5", style: "float: right; width: 175px; padding-right: 4px;     text-align: left;" do %>
+          <i class="fa fa-calendar  hidden-xs hidden-sm" style = "font-size:18px; position: relative; left: -38px;" aria-hidden="true"></i>
+          Citas <span class="span-num"><%=@patient.appointments.count%></span>
+         <%end%>
+         </div>
+
+         <%= link_to  patient_step3_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[7]} btn3" , style: "width: 194px; padding-left: 5px; text-align: left; padding-bottom: 9px;" do %>
+          <i class="fa fa-file  hidden-xs hidden-sm" style = "font-size:20px;" aria-hidden="true"></i>
+          Diagnóstico y Tratamiento <span style="float:right;display:none"><%=state_history_desenlace(@clinic_history.id).html_safe%></span>
+         <%end%>
+       <%end%> 
+
+
+         
+       
+      
+            
+            <%if (@clinic_history != nil && (action_name != "new" || controller_name == "tracings")) %>
+         <%= link_to   patient_clinic_history_tracings_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[3]} btn6", style: "float: right; width: 175px; padding-right: 4px;text-align: left;
+             padding-bottom: 3px;" do %>
+          
+           <span class="glyphicon glyphicon-edit  hidden-xs hidden-sm" style = "font-size:18px; margin-right: 10px;"></span>
+          Seguimientos <span class="span-num"><%=@clinic_history.tracings.count%></span>
+         <%end%>
+         
+
+        <!-- <%= link_to  patient_tasks_path(@patient.id) , class: "btn btn-primary #{menu_patient[4]}" do %>
+          <i class="fa fa-tasks" style = "font-size:20px;" aria-hidden="true"></i>
+          Tareas <span class="span-num"><%=@patient.tasks.count%></span>
+         <%end%>
+            <%end%>--> 
+        
+   </div>
+  </div>
+
+<!-- ################################################################################### -->
+
+
+<div class="col-md-2  hidden-xs hidden-sm" style="padding-left:0px !important;padding-right: 0px !important;">
 
 
 
@@ -324,12 +393,12 @@
             
 
        
-            <div class="col-md-8">
+            <div class="col-md-8 title-panel">
                
          
-            <h3 class="panel-title imagen-title" style="font-size: 20px;font-weight: bold;color:#5bc0de !important"> <span style="margin-right:10px">   <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></span> <%= @patient.first_name.upcase %> <%= @patient.second_name.upcase %>  <%= @patient.first_last_name.upcase %>  <%= @patient.second_last_name.upcase %></h3>
+            <h3 class="panel-title imagen-title" id="title" style="font-size: 20px;font-weight: bold;color:#5bc0de !important"> <span style="margin-right:10px">   <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></span> <%= @patient.first_name.upcase %> <%= @patient.second_name.upcase %>  <%= @patient.first_last_name.upcase %>  <%= @patient.second_last_name.upcase %></h3>
             </div>
-             <div class="col-md-4 text-right">
+             <div class="col-md-4 text-right buttoms">
             <%= link_to  edit_patient_path(@patient.id), class: "btn btn-warning btg" , title:"Editar Paciente" do%>
             <i class="fas fa-edit" style = "font-size:20px"  aria-hidden="true"></i> 
             <%end%>
@@ -368,6 +437,7 @@
             </div>
             </div>  
          </div>
+
          <div class="panel-body" style="padding-top: 10px;">
             <div class="row img">
           
@@ -484,6 +554,63 @@
    </div>
 </div>
 <style>
+
+  @media only screen and (max-width: 600px) { 
+
+    #title{
+      font-size: 10px!important ;
+
+    }
+    .buttoms{
+      margin-top: 14px;
+    }
+    .title-panel{
+      padding: 0px;
+    }
+
+    .contenido{
+      padding-left: 12px;
+    }
+
+    .btn1{
+      background: red;
+    }
+
+    .btn2{
+      background: red;
+    }
+
+    .btn3{
+      background: red;
+    }
+
+    .btn4{
+      background: red;
+    }
+
+    .btn5{
+      background: red;
+    }
+
+    .btn6{
+      background: red;
+    }
+
+  } 
+
+
+
+  @media only screen and (max-width: 900px) {
+
+  } 
+
+
+  @media only screen and (max-width: 1000px) {
+    #title{
+      font-size: 11px;
+
+    }
+  }
 
 #change_citas
 {

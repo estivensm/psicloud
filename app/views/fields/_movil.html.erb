@@ -2,36 +2,35 @@
     <br>
       <div class="row">
         <ul class="list-group">
-          <li class="list-group-item active" style="padding-bottom: 19px;">Convenios  
+          <li class="list-group-item active" style="padding-bottom: 19px;">Campos Creados
 
-              <%= link_to  new_agreement_path,remote:true, class: "btn btn-primary new" do %>
+              <%= link_to  new_field_path, remote: true, style: "float: right;", class: "btn btn-primary new" do %>
                 <i class="fas fa-plus-circle" style="color: #fff;"></i>
               <% end -%>
 
           </li> 
 
-       <% @agreements.each do |agreement| %>
-            <li class="list-group-item" style="padding: 10px 8px;">
-              <b><%= agreement.name %> </b><br> 
-              <p><%= agreement.description %></p>
-        
-            <div class="btn-group ">
+        <% @fields.each do |field| %>
+            <li class="list-group-item" style="padding: 10px 8px; ">
+              <strong>Nombre: </strong><%= field.name %><br>
+              <div class="btn-group ">
 
             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
                     
             </button>
 
            
-              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 92px;"  >
+              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 94px;"  >
                  <ul style="padding: 0px;">
+                
                     
-                  <ol style="padding-left: 5px;"><%= link_to edit_agreement_path(agreement),remote: true do %>
+                  <ol style="padding-left: 5px;"><%= link_to edit_field_path(field),remote: true do %>
                     <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar
                     <% end -%>
                   </ol>
 
                   
-                      <ol style="padding-left: 5px;"><%= link_to  agreement, method: :delete, data: {
+                      <ol style="padding-left: 5px;"> <%= link_to field, method: :delete,data: {
               confirm: '¿Estas Seguro?',
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
@@ -41,9 +40,12 @@
                       <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar
                       <% end -%></ol>
                 </ul>
-              <% end -%>
+              
               </div>
             </div>
+              <strong>De Tipo:</strong><%= field.type_field%><br> 
+              <strong>Para el Formulario:</strong><%= field.form%>
+      <% end -%>
           </li>
         </ul>
       </div>
@@ -52,25 +54,26 @@
 
     @media only screen and (max-width: 600px) {
 
-      .new{
-        float: right;
-      }
 
       .movil{
         margin-left: 10px;
         margin-right: 10px;
+
       }
 
 
-      b{
-        margin-right: 25px;
+      strong{
+        margin-right: 9px;
         text-transform: capitalize;
+        white-space: pre-wrap !important;
       }
 
-      .btn-group{
-        position: absolute;
-        right:10px !important;
-        top: 10px !important;
+      .name{
+        margin-right: 10px;
+      }
+
+      .btn-group{ 
+        float: right;
 
 
       }

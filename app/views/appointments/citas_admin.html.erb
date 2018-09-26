@@ -9,7 +9,7 @@
       </ul>
     </div>
    </div>
-   <div class="col-md-2">
+   <div class="col-md-2 hidden-xs hidden-sm">
        <%= link_to "Crear Cita", new_calendar_path(Time.now), remote:true , class:"btn btn-primary"%></li>
    </div>
 </div>
@@ -40,7 +40,7 @@
             <p>Citas <span class="label label-primary"><%=@appointments.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span></p>
           
          </div>
-          <div class="col-md-1" style="right: -207px;">
+          <div class="col-md-1 hidden-xs hidden-sm" style="right: -207px;">
              <%= link_to citas_pdf_admin_path(@params, @params1,"abiertas", :format => "pdf" )  , class: "" ,target: :_blank do%><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/243/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="">
       <%end%>
           </div>
@@ -61,7 +61,7 @@
                       :id => 'patient_birth_date' , :title => "Es un Campo Obligatorio" }
                       %>
                       <span class="input-group-btn">
-                        <%= button_tag class: "btn btn-info" do%>
+                        <%= button_tag class: "btn btn-info", id: "btnsub" do%>
                           <i class="fas fa-search"></i>
                         <% end -%>
                     </span>
@@ -73,7 +73,7 @@
       <hr class="hr">
 
       <div class = "row ">
-         <table class="table">
+         <table class="table hidden-xs hidden-sm">
             <thead>
                <tr class = "tr-table">
       
@@ -152,6 +152,7 @@
                <%end%>
             </tbody>
          </table>
+         <%= render "admin_movil"%>
             <div class = "col-md-4 paginate text-left title-table1">
               <%= will_paginate @appointments%>  
             </div>
@@ -165,3 +166,66 @@
   </div>
 </div>
 </div>
+
+<style>
+
+  @media only screen and (max-width: 600px) {
+    #search{
+      width: 100%;
+      margin-left: -159px;
+      margin-top: 24px;
+    }
+
+    #patient_birth_date{
+      width: 1565%;
+      margin-left: -153px;
+      margin-top: 24px;
+    }
+
+    #btnsub{
+      margin-top: 24px;
+      margin-left: 126px;
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    #search{
+      width: 100%;
+      margin-left: -159px;
+      margin-top: 24px;
+    }
+
+    #patient_birth_date{
+      width: 1565%;
+      margin-left: -153px;
+      margin-top: 24px;
+    }
+
+    #btnsub{
+      margin-top: 24px;
+      margin-left: 126px;
+    }
+  } 
+
+
+  @media only screen and (max-width: 1000px) {
+    #search{
+      width: 100%;
+      margin-left: -159px;
+      margin-top: 24px;
+    }
+
+    #patient_birth_date{
+      width: 1565%;
+      margin-left: -156px;
+      margin-top: 24px;
+    }
+
+    #btnsub{
+      margin-top: 24px;
+      margin-left: 73px;
+    }
+    
+  }
+
+</style>

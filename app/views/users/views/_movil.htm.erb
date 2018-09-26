@@ -2,16 +2,16 @@
     <br>
       <div class="row">
         <ul class="list-group">
-          <li class="list-group-item active">Usuarios  
+          <li class="list-group-item active" style="    padding-bottom: 19px;">Usuarios  
 
-              <%= link_to  new_user_path, remote: true, class: "btn btn-primary new" do %>
+              <%= link_to  new_user_path, remote: true, style: "float: right;", class: "btn btn-primary new" do %>
                 <i class="fas fa-plus-circle" style="color: #fff;"></i>
               <% end -%>
 
           </li> 
 
         <% @users.each do |user|%>
-            <li class="list-group-item" style="padding: 10px 8px;">
+            <li class="list-group-item" style="padding: 10px 8px; ">
               <b><%=user.names%> <%=user.last_names%></b> <p class="name"><%=user.rol.name%></p> <p><%=user.email%></p>
         
             <div class="btn-group ">
@@ -56,17 +56,11 @@
 
     @media only screen and (max-width: 600px) {
 
-      .new{
-
-        margin-left: 196px;
-        position: absolute;
-        top: 3px;
-        left: 70px;
-      }
 
       .movil{
         margin-left: 10px;
         margin-right: 10px;
+
       }
 
 

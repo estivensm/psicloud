@@ -46,7 +46,7 @@
    
   <%= text_field_tag :search, params[:search], placeholder: "Nombre, Apellido, Documento", class: "form-control search", id: "search2", :required => true  %>
         <div class="col-md-4" style="padding: 0px;width: 30%;">
-         <%=select_tag 'search1', options_for_select(get_users.collect{ |u| ["#{u.names}", u.id, ] }),{:class => "form-control search psi", include_blank: "Psicólogo" , placeholder: "hola"}%>
+         <%=select_tag 'search1', options_for_select(get_users.collect{ |u| ["#{u.names}", u.id, ] }),{:class => "form-control search psi", include_blank: "Psicólogo"}%>
        </div>
 
   
@@ -138,7 +138,7 @@
    </div>
 </div>
 
-<%= render "movil.htm.erb"%>
+<%= render "movil"%>
 
     <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">
@@ -186,6 +186,11 @@
           margin-bottom: 10px;
           background-color: red;
       }
+
+      .lista{
+        font-size: 10px !important;
+      }
+
 
       h5{
         text-align: center;

@@ -18,14 +18,14 @@
             <p class="title-h2" style="margin-left: 10px;">Campos Creados   <span class="label label-primary"><%=@fields.count%></span> <span style = "font-size:12px;margin-left:20px;"></span> </p>
          </div>
 
-         <div class = "col-md-6 text-right">
+         <div class = "col-md-6 text-right hidden-xs hidden-sm">
           <%= link_to 'Nuevo Campo', new_field_path, remote: true, class: "btn btn-info" %>
         </div>
       </div>
     </div>
 
     <hr>
-      <table class="table">
+      <table class="table hidden-xs hidden-sm">
         <thead style="background-color: #306C95; color: #f1f1f1">
           <tr>
             <th>Nombre</th>
@@ -74,14 +74,18 @@
           <% end %>
         </tbody>
       </table>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      asdhgasdgajshdgj
+
+      <%= render "movil"%>
     </div>
   </div>
 </div>
 
 <style type="text/css">
+  @media only screen and (max-width: 600px) {
+    .title-h2{
+        margin-left: 10px;
+    }
+  }
   .glyphicon-remove{
     color: red;
   }

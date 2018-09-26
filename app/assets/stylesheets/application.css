@@ -16,18 +16,22 @@
 
 */
 
+
 body
 {
   font-family: 'Poppins' , sans-serif !important;
 }
-.application
-{
 
+.application{
 
-   background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
+ background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
  url('https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/178/hcp_retocada_2.jpg')no-repeat center top;
-  background-size: cover;
+ background-size: cover;
 
+  /*background: url('https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/178/hcp_retocada_2.jpg');
+  background-position: center fixed;
+  background-repeat: no-repeat;
+  background-size: cover;*/
 
 }
 label

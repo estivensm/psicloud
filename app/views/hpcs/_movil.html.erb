@@ -2,9 +2,9 @@
     <br>
       <div class="row">
         <ul class="list-group">
-          <li class="list-group-item active">Usuarios  
+          <li class="list-group-item active" style="padding-bottom: 19px;">EPS  
 
-              <%= link_to  new_hpc_path, remote: true, class: "btn btn-primary new" do %>
+              <%= link_to  new_hpc_path, remote: true, style: "float: right;", class: "btn btn-primary new" do %>
                 <i class="fas fa-plus-circle" style="color: #fff;"></i>
               <% end -%>
 
@@ -22,11 +22,11 @@
             </button>
 
            
-              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 149px;"  >
+              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 95px;"  >
                  <ul style="padding: 0px;">
                     
                   <ol style="padding-left: 5px;"><%= link_to edit_hpc_path(hpc),remote: true do %>
-                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar Usuario
+                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar 
                     <% end -%>
                   </ol>
 
@@ -38,7 +38,7 @@
               'confirm-button-color': '#CC0000',
                text: 'Recuerda que el registro se borrara permanentemente',
               'image-url': ''} do %>
-                      <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar Usuario
+                      <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar 
                       <% end -%></ol>
                 </ul>
               <% end -%>
@@ -52,13 +52,6 @@
 
     @media only screen and (max-width: 600px) {
 
-      .new{
-
-        margin-left: 209px;
-        position: absolute;
-        top: 3px;
-        left: 70px;
-      }
 
       .movil{
         margin-left: 10px;

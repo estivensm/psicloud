@@ -1,5 +1,4 @@
-
-<div class="row margin-top-40" >
+<div class="row margin-top-40">
   
    <div class="col-md-10" style="padding-left: 10px;">
     <div id='cssmenu'>
@@ -41,15 +40,17 @@
             <p>Citas <span class="label label-primary"><%=@appointments.count%></span> <span id="cont" style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @appointments, :entry_name => 'Citas' %></span></p>
           
          </div>
-          <div class="col-md-1" style="right: -207px;">
-             <%= link_to citas_pdf_path(@params, @params1, "abiertas" , :format => "pdf" )  , style: "" ,target: :_blank do%><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/243/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="" class="hidden-xs hidden-sm">
-      <%end%>
+         <br>
+          <div class="col-md-1" style="padding: 0px;width: 35px;">
+             <%= link_to citas_pdf_path(@params, @params1, "abiertas" , :format => "pdf" )  , style: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="" class="hidden-xs hidden-sm">
+            <%end%>
           </div>
             <%= form_tag  citas_path, :method => 'get' do%>
-              <div class="col-md-2" style=" right: -162px;">
+              <div class="col-md-2" style="padding: 0px; padding-right: 10px;">
                 <%= select_tag 'search', options_for_select(get_patient.collect{ |u| ["#{u.first_name} #{u.second_name}", u.id] },{}), {:multiple => false,class: 'form-control', include_blank: "Paciente", id: "search1"}%>
               </div>
-                <div class="input-group" style="width: 10px; right: -172px;">
+              <br>
+                <div class="input-group" style="margin-bottom: 10px;">
                   <%= date_field_tag "search1",{
                       :start_year =>
                       Time.now.year,
@@ -72,7 +73,7 @@
       </div>
 
       
-<hr class="hr">
+<hr class="hr  hidden-xs hidden-sm">
   <div class = "row hidden-xs hidden-sm" >
     <table class="table">
 
@@ -92,40 +93,39 @@
      <% @appointments.each do |appointment| %>
       <tr>
         <td><%= get_only_date(appointment.start_datetime) %><br><%= get_date_hora_only(appointment.start_datetime) %></td>
-               <td><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></td>
+        <td><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></td>
         <td><%= appointment.patient.hpc.name %></td>
         <td><%= appointment.patient.agreement.name %></td>
-         <td><%= appointment.observations %></td>
-      <td><%= appointment.state %>
-                     <%if appointment.state == "Cancelada"%>
-                <button type="button" class="btn btn-danger btn-lg" style="padding: 0px 6px;font-size: 15px;" data-toggle="modal" data-target="#myModal<%=appointment.id%>">
-  ?
-</button>
+        <td><%= appointment.observations %></td>
+        <td><%= appointment.state %>
+        <%if appointment.state == "Cancelada"%>
+        <button type="button" class="btn btn-danger btn-lg" style="padding: 0px 6px;font-size: 15px;" data-toggle="modal" data-target="#myModal<%=appointment.id%>">?
+        </button>
 
-<div class="modal fade" id="myModal<%=appointment.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Razon de Cancelacion</h4>
-      </div>
-      <div class="modal-body">
-        <%=appointment.reason_cancel%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-     
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal fade" id="myModal<%=appointment.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Razon de Cancelacion</h4>
+              </div>
+              <div class="modal-body">
+                <%=appointment.reason_cancel%>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+             
+              </div>
+            </div>
+          </div>
+        </div>
              <%end%>
 
 
       </td>
    <td>
 
-        <%if current_user.rol.show_cita %>
+      <%if current_user.rol.show_cita %>
        <%= link_to  patient_appointment_path(appointment.patient_id, appointment), class: "btnl btn-primary" do%>
              <i class="fa fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
              <%end%>
@@ -153,27 +153,9 @@
          </table>
 </div>
 </div>
-<br>
-  <div class="container hidden-md hidden-lg movil">
-    <br>
-      <div class="row">
-        <ul class="list-group">
-          <li class="list-group-item active">Citas   
-              <%= link_to citas_pdf_path(@params, @params1, "abiertas" , :format => "pdf" )  , style: "" ,target: :_blank do%><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/243/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="" class="new">
-              <% end -%>  
-              <%= link_to  new_calendar_path(Time.now), remote:true , class: "btn btn-primary" do%>
-                <i class="fas fa-plus-circle" style="color: #fff;"></i>
-              <% end -%>
-          </li> 
 
-          <% @appointments.each do |appointment| %>
-            <li class="list-group-item">
-            <b><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></b>
-            <%= get_only_date(appointment.start_datetime) %> <%= get_date_hora_only(appointment.start_datetime) %>
-          </li>
-        <% end -%>
-      </ul>
-    </div>
+
+<%= render "movil"%>
 
             <div class = "col-md-4 paginate text-left title-table1">
               <%= will_paginate @appointments%>  
@@ -186,43 +168,65 @@
   </div>
 </div>
 </div>
+
 <style type="text/css">
+#patient_birth_date{
+  top: -20px;
+}
 
-     @media only screen and (max-width: 600px) {
+#buscar{
+  top: -20px;
+}
 
-      .new{
-          margin-left: 173px;
-      }
-
-      .movil{
-        margin-left: 10px;
-        margin-right: 10px;
-      }
+  @media only screen and (max-width: 600px) {
 
       #patient_birth_date{
-        left: -180px;
-        width: 283px;
-      }
-
-      #search1{
-        position: absolute;
-        bottom: -80px;
-        left: -169px;
-        width: 314px;
+       margin-top: 10px !important;
       }
 
       #buscar{
-        margin-left: -188px;
+        margin-top: 10px !important;
       }
 
-      p{
-        margin-left: -11px;
-        margin-bottom: 16px;
-        padding-left: 4px;
+      #search1{
+        width: 103% !important;
       }
 
-      #cont{
-        margin-left: 51px !important;
+
+
+  }
+
+@media only screen and (max-width: 900px) {
+
+      #patient_birth_date{
+       margin-top: 10px !important;
       }
+
+      #buscar{
+        margin-top: 10px !important;
+      }
+
+      #search1{
+        width: 101%;
+      }
+
+} 
+
+
+@media only screen and (max-width: 1000px) {
+
+      #patient_birth_date{
+       margin-top: 10px !important;
+      }
+
+      #buscar{
+        margin-top: 10px !important;
+      }
+
+      #search1{
+        width: 101%;
+      }
+
 }
+
 </style>

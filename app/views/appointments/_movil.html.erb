@@ -1,0 +1,79 @@
+<div class="container hidden-md hidden-lg ">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="thumbnail" style="padding: 0px;">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6" style="padding: 0px;">
+             <li class="list-group-item active" style="padding-bottom: 21px;">Citas
+ 
+              <button style="float: right; margin-left: 10px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-download" aria-hidden="true"></i>
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+
+                <li>
+                  <%= link_to citas_pdf_path(@params, @params1, "abiertas" , :format => "pdf" )  , style: "" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="" class="new">
+                </li>
+              </ul>
+
+
+               <%= link_to new_calendar_path(Time.now), remote:true , class: "btn btn-primary", :style => "float: right;" do%>
+                <i class="fas fa-plus-circle" style="color: #fff;"></i>
+              <% end -%>
+
+           </li>
+          <% @appointments.each do |appointment| %>
+            <li class="list-group-item">
+              <b><%= appointment.patient.first_name %> <%= appointment.patient.first_last_name %></b>              <div class="btn-group" style="float: right;">
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
+                   
+            </button>
+           
+              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 91px;"  >
+                 <ul style="padding: 0px;">
+
+                  <%if current_user.rol.show_cita %>
+                  <ol style="padding-left: 5px;">
+                     <%= link_to  patient_appointment_path(appointment.patient_id, appointment), style: "width: 20px !important;" do%>
+                    <i class="fa fa-eye"style="padding-left: 5px; color: #306C95;" aria-hidden="true"></i> Ver 
+
+                    <% end -%>
+                  </ol>
+                <% end -%>
+
+                  <%if current_user.rol.edit_cita%>
+                    <ol style="padding-left: 5px;"><%= link_to  edit_patient_appointment_path(appointment.patient_id, appointment), remote:true do%>
+                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar
+                    <% end -%></ol>
+                <% end -%>
+
+                   <%if current_user.rol.delete_cita%>
+                      <ol style="padding-left: 5px;"><%= link_to  patient_appointment_path(appointment.patient_id, appointment), method: :delete, data: {
+                          confirm: '¿Estas Seguro?',
+                          'confirm-button-text': 'Borrar',
+                          'cancel-button-text': 'Cancelar',
+                          'confirm-button-color': '#CC0000',
+                           text: 'Recuerda que el registro se borrara permanentemente',
+                          'image-url': ''} do %>
+                        <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar
+                        <% end -%>
+                      </ol>
+                    <% end -%>
+
+                    </ul>
+                  </div>
+                </div> <br>
+              <%= get_only_date(appointment.start_datetime) %> <%= get_date_hora_only(appointment.start_datetime) %>
+
+                
+                </li>
+              <% end -%>       
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end -%>
