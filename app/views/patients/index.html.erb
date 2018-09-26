@@ -59,6 +59,7 @@
             <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
 
 
+
          </div>
       </div>
       <hr>
@@ -75,7 +76,6 @@
       </div>
    </div>
   
-
       <div class = "row"> 
         <div class="col-md-12 hidden-xs hidden-sm">
          <table class="table">
@@ -165,106 +165,7 @@
 
 
   </div>
-
-<div class="container hidden-md hidden-lg ">
-  <div class="row">
-    <div class="col-md-10">
-      <div class="thumbnail">
-        <div class="row" style="margin-top: 10px;">
-            <h5 align="center" style="font-size: 25px;">Pacientes</h5>
-            <hr>
-        </div>
-        <br>
-
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-6">
-          <% @patients.each do |patient| %>
-            <li class="list-group-item">
-              <% imagen = !patient.avatar.blank? ? patient.avatar_url : "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/242/default-user-300x300.png" %>
-              <%= image_tag imagen, style: "border-radius: 60px;width:50px" %>
-              <b><%= patient.first_name %> <%= patient.second_name  %></b>
-              <div class="btn-group" style="float: right;">
-              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>  <i class="fas fa-sort-down" style="font-size: 19px;"></i>
-                   
-            </button>
-           
-              <div class="dropdown-menu dropdown-menu-right" style="font-size: 14px; min-width: 230px;"  >
-                 <ul style="padding: 0px;">
-
-                  <ol style="padding-left: 5px; padding-top: 4px;"><%= link_to patient, style: "width: 20px !important;" do%>
-                  <i class="fas fa-address-card" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Gestionar Historia Clinica
-
-                  <% end -%>
-                  </ol>
-
-                  <%if patient.clinic_histories.any? %>
-                  <ol style="padding-left: 5px;"><%= link_to patient_clinic_history_path(patient.id, patient.clinic_histories.first.id), style: "width: 20px !important;" do%>
-                  <i class="fas fa-address-book" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Ver Historia Clinica
-                  <% end -%>
-                  </ol>
-                  <%end%>
-
-
-                  <%if current_user.rol.edit_patient%>
-                    <ol style="padding-left: 5px;"><%= link_to edit_patient_path(patient) do %>
-                    <i class="fas fa-user-edit" style="padding-left: 5px; color: #306C95;"></i> Editar Paciente
-                    <% end -%></ol>
-                  <% end -%>
-
-                  <%if current_user.rol.delete_patient %>
-                      <ol style="padding-left: 5px;"><%= link_to patient, method: :delete, data: {
-              confirm: '¿Estas Seguro?',
-              'confirm-button-text': 'Borrar',
-              'cancel-button-text': 'Cancelar',
-              'confirm-button-color': '#CC0000',
-               text: 'Recuerda que el registro se borrara permanentemente',
-              'image-url': ''} do %>
-                      <i class="fas fa-trash-alt" style="padding-left: 5px; color: #306C95; padding-right: 4px;"></i> Eliminar Paciente
-                      <% end -%></ol>
-                  <% end -%>
-
-                 </ul>
-              </div>
-             </div><br><br>
-              <b style="margin-right: 5px;"><%= patient.document_type%>:</b> <%= patient.document%>
-            </li>
-          <% end -%>       
-        </div>
-
-        <div class="row">
-          <hr>
-            <div class="col-md-12" style="padding: 0px; margin-bottom: 10px;">
-
-            <%= link_to "Nuevo Paciente",new_patient_path, class: "btn btn-primary new" %>
-              <div class="dropdown" style="display:inline-block">
-              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-download" aria-hidden="true"></i> Exportar
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <% if action_name == "index" %>
-                <li><%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png") + " ", patients_csv_path(format: "csv"), class: "icon-export"%></li>
-
-                <li><%= link_to image_tag("https://www.codot.gov/business/civilrights/ada/assets/adobe-pdf-icon.png/image_preview")+ "", patients_path(:format => "pdf"), target:"_blank", class: "icon-export"%></li>
-                <%end%>
-
-                <% if action_name == "all_patients" %>
-                <li><%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-4-1/100/file_formats_4_csv-512.png")+ " Excel" , patients_csv_all_path(format: "csv"), class: "icon-export"%></li>
-
-                <li><%= link_to image_tag("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/243/52ff0e80b07d28b590bbc4b30befde52.png"), all_patients_path(:format => "pdf")+ " PDF", target:"_blank", class: "icon-export"%></li>
-                <%end%>  
-              </ul>
-            </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+    <%= render "index_movil" %>
 
        <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">
@@ -277,15 +178,35 @@
 
 
 @media only screen and (max-width: 600px) {
+  .search{
+   width:250px !important;
+   height: 34px!important;
+   display:inline-block !important;
+   margin-left: 20px !important;
 
+  }
 }
 
 @media only screen and (max-width: 900px) {
-
+  .search{
+   width:250px !important;
+   height: 34px!important;
+   display:inline-block !important;
+   /*margin-left: 194px !important;*/
+   
+  }
 } 
 
 
 @media only screen and (max-width: 1000px) {
+
+  .search{
+   width:250px !important;
+   height: 34px!important;
+   display:inline-block !important;
+   margin-left: 194px;
+   
+  }
   
 }
 
