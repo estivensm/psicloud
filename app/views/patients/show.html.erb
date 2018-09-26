@@ -27,8 +27,7 @@
 
             <br>
          </div>
-            <div class="col-md-5
-               ">
+            <div class="col-md-5 info" >
                <div class="panel panel-default">
                   <div class="panel-heading" ><strong><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i><span> PRÓXIMA CITA </strong></span>
                   </div>
@@ -69,8 +68,7 @@
                   </div>
                </div>
             </div>
-            <div class="col-md-7
-               ">
+            <div class="col-md-7 info">
                <div class="panel panel-default">
                   <div class="panel-heading"> <span class="glyphicon glyphicon-edit"></span> <strong>ULTIMO SEGUIMIENTO </strong></div>
                   <div class="panel-body" style="min-height: 100px;">
@@ -110,3 +108,28 @@
 <%= render "form_send_history", patient: @patient%>
 
 
+<style>
+  @media only screen and (max-width: 600px) { 
+
+    .info{
+      width: 119%;
+      padding: 0px;
+      margin-left: -25px;
+    }
+
+  } 
+
+
+
+  @media only screen and (max-width: 900px) {
+
+  } 
+
+
+  @media only screen and (max-width: 1000px) {
+    #title{
+      font-size: 11px;
+
+    }
+  }
+</style>
