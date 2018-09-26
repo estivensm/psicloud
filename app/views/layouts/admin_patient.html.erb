@@ -232,7 +232,7 @@
 <div class="row" style="margin-top:30px">
   
 
- <div class="col-md-6" style=" margin-left: -4px; ">
+ <div class="col-md-6 " style="padding: 0px;">
     <div id='cssmenu'>
       <ul>
         <li><%= link_to "Inicio", root_path%></li> 
@@ -242,7 +242,9 @@
     </div>
  </div>
 
-   <div class="col-md-6 text-right">
+
+
+   <div class="col-md-6 text-right aciones">
          <%if (@clinic_history != nil && action_name != "new") %>
                         <%= link_to  patient_clinic_history_path(@patient.id,@clinic_history), class: "btnl btn-primary" do%>
                         <i class="fa fa-eye" style = "font-size:30px;"  aria-hidden="true"></i> Ver Historia Completa
@@ -570,7 +572,7 @@
     }
 
     .contenido{
-      padding-left: 12px;
+      padding-top: 10px;
     }
 
     .btn1{
@@ -598,9 +600,30 @@
     }
 
     .toppad{
-      width: 119%;
+      width: 121%;
       padding: 0px;
-      margin-left: -25px;
+      margin-left: -31px;
+    }
+
+    #cssmenu{
+      font-size: 19px;
+      padding: 0px;
+      padding-left: 17px;
+    }
+
+    #cssmenu ul li a {
+      font-size: 11px;
+      margin-left: 16px;
+    }
+
+    #cssmenu ul li a:before{
+      border-right: none !important;
+      content: none !important;
+    }
+
+    .aciones{
+      text-align: center;
+      margin-top: 10px;
     }
 
   } 
@@ -935,6 +958,7 @@ border-radius: 50%;
   margin: 0;
   padding: 3px;
 }
+
 
 </style>
 
