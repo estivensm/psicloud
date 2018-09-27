@@ -60,7 +60,7 @@
   </div>
 
      <label class="radio-inline" style="padding-left:0px!important">
-                   <input v-model="checked" @click="checkForm1()" type="checkbox" value="1" name="user[legal]" id="user_legal"> Conozco y acepto la   <a  class="" data-toggle="modal" data-target="#exampleModal">
+                   <input v-model="checked" @click="checkForm1()" type="checkbox" value="1" name="user[legal]" id="user_legal"> Conozco y acepto la   <a  class="" data-toggle="modal" data-target="#exampleModal" style="color:#2497b3;">
   Política para el tratamiento de datos personales
 </a>
  de PSICLOUD</span>
@@ -76,7 +76,7 @@
 <% end %>
 
 <div class="col-md-10 col-md-offset-1 text-center color-gray" style="margin-top:10px;">
-Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name), class:"linka" %><br />
+Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name), class:"linka", style: "color:#2497b3" %><br />
 </div>
   </div>  </div>
 
