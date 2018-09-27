@@ -1,291 +1,254 @@
-
-
-
-
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Generar PFD</h4>
-      </div>
-     <%= form_tag generar_hc_path, method: :get, target: "_blank", id: "form-tag" do%>
-      <div class="modal-body">
-         
-         
-          <div class=" row">
-            <div class="col-md-8">
-                <h3>Motivo de Consulta</h3>
-            </div>
-            <div class="col-md-4">
-                <%= check_box_tag :motivo_de_consulta, true   %></span>
-            </div>
-          </div>  
-             <div class=" row">
-            <div class="col-md-8">
-                <h3>Estado Actual</h3>
-            </div>
-            <div class="col-md-4">
-                  <%= check_box_tag :estado_actual, true %></span>
-            </div>
-            </div>
-            <div class=" row">
-            <div class="col-md-8">
-                <h3>Dinámica Familiar</h3>
-            </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :dinamica_familiar, true  %></span>
-            </div>
-          </div>
-
-
-          <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
-            <%if field.field.form == "Primer Contacto" && field.field.state %>
-              <div class=" row">
-              <div class="col-md-8">
-                <h3><%=field.field.name%></h3>
-            </div>
-            <div class="col-md-4">
-                <%= check_box_tag "pr#{field.id}" , true   %></span>
-            </div>
-            </div>  
-            
-           <%end%>
-           <%end%>
-
-            <div class=" row">
-             <div class="col-md-8">
-                <h3>Historia Familiar</h3>
-            </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :historia_familiar, true  %></span>
-            </div>
-         </div>  
-
-         <% if @clinic_history.child_history %>
-         <div class=" row">
-             <div class="col-md-8">
-                <h3>Historia Personal</h3>
-            </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :historia_personal, true  %></span>
-            </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Generar PFD</h4>
          </div>
-         <%end%>   
-
-        <div class=" row">
-            <div class="col-md-8">
-                <h3>Antecedentes</h3>
+         <%= form_tag generar_hc_path, method: :get, target: "_blank", id: "form-tag" do%>
+         <div class="modal-body funkyradio">
+            <div class="funkyradio-info">
+               <%= check_box_tag :motivo_de_consulta, true, checked: "checked" %></span>
+               <label for="motivo_de_consulta">Motivo de Consulta</label>
             </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :antecedentes , true  %></span>
+            <div class="funkyradio-info">
+               <%= check_box_tag :estado_actual, true ,checked: "checked" %></span>
+               <label for="estado_actual">Estado Actual</label>
             </div>
-          </div>  
-         <div class=" row">
-            <div class="col-md-8">
-                <h3>Herramientas de Evaluación</h3>
+            <div class="funkyradio-info">
+               <%= check_box_tag :dinamica_familiar, true , checked: "checked"%></span>
+               <label for="dinamica_familiar">Dinámica Familiar</label>
             </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :herramientas_evaluacion , true  %></span>
-            </div>
-
-          </div>  
-         <div class=" row">
-            <div class="col-md-8">
-                <h3>Hipótesis Diagnóstica</h3>
-            </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :hipotesis_diagnostica , true  %></span>
-            </div>
-          </div>  
-         <div class=" row">
-            <div class="col-md-8">
-                <h3>Objetivo Terapéutico</h3>
-            </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :objetivo_terapeoutico , true  %></span>
-            </div>
-          </div>
-           <div class=" row">
-             <div class="col-md-8">
-                <h3>Tipo de Tratamiento</h3>
-            </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :tipo_tratamiento , true  %></span>
-            </div>
-           </div>
-
-          <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
-            <%if field.field.form == "Diagnostico y Tratamiento" && field.field.state %>
-              <div class=" row">
-              <div class="col-md-8">
-                <h3><%=field.field.name%></h3>
-            </div>
-            <div class="col-md-4">
-                <%= check_box_tag "dt#{field.id}" , true   %></span>
-            </div>
-            </div>  
-            
-           <%end%>
-           <%end%>
-
-
-
-
-
-            <div class=" row"> 
-             <div class="col-md-8">
-                <h3>Seguimientos</h3>
-            </div>
-            <div class="col-md-4">
-                 <%= check_box_tag :seguimientos , true  %></span>
-            </div>
-          
-          </div>
-
-
-
-             
-          
-          <%=hidden_field_tag :patient_id, patient.id%>
-          <%=hidden_field_tag :clinic_history, clinic_history.id%>
-        
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-         <%= submit_tag "Crear", class:"btn btn-default" %>
-      </div>
-      <%end%>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
- 
-</div><!-- /.modal -->
-
- <script>
-   $(document).on('turbolinks:load',function() {
-
-       $('#motivo_de_consulta').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-      $('#estado_actual').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-       $('#dinamica_familiar').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-        $('#historia_familiar').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
-        $('#historia_personal').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
- $('#antecedentes').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
- $('#herramientas_evaluacion').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
- $('#hipotesis_diagnostica').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
- $('#objetivo_terapeoutico').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
- $('#tipo_tratamiento').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
- $('#seguimientos').bootstrapToggle({
-            on: 'Si',
-            off: 'No'
-          });
-
-
-         <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+            <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
             <%if field.field.form == "Primer Contacto" && field.field.state %>
-                  
-                  $('#pr<%=field.id%>').bootstrapToggle({
-                           on: 'Si',
-                           off: 'No'
-                      });
-
-                  $('#pr<%=field.id%>').bootstrapToggle('on');
-           <%end%>
-           <%end%>
-
-           <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+            <div class="funkyradio-info">
+               <%= check_box_tag "pr#{field.id}", true , checked: "checked" %></span>
+               <label for="pr<%=field.id%>"><%=field.field.name%></label>
+            </div>
+            <%end%>
+            <%end%>
+            <div class="funkyradio-info">
+               <%= check_box_tag :historia_familiar, true , checked: "checked"%></span>
+               <label for="historia_familiar">Historia Familiar</label>
+            </div>
+            <% if @clinic_history.child_history %>
+            <div class="funkyradio-info">
+               <%= check_box_tag :historia_personal, true , checked: "checked"%></span>
+               <label for="historia_personal">Historia Personal</label>
+            </div>
+            <%end%>   
+            <div class="funkyradio-info">
+               <%= check_box_tag :antecedentes, true , checked: "checked"%></span>
+               <label for="antecedentes">Antecedentes</label>
+            </div>
+            <div class="funkyradio-info">
+               <%= check_box_tag :herramientas_evaluacion, true , checked: "checked"%></span>
+               <label for="herramientas_evaluacion">Herramientas de Evaluación</label>
+            </div>
+            <div class="funkyradio-info">
+               <%= check_box_tag :hipotesis_diagnostica, true , checked: "checked"%></span>
+               <label for="hipotesis_diagnostica">Hipótesis Diagnóstica</label>
+            </div>
+            <div class="funkyradio-info">
+               <%= check_box_tag :objetivo_terapeoutico, true , checked: "checked"%></span>
+               <label for="objetivo_terapeoutico">Objetivo Terapéutico</label>
+            </div>
+            <div class="funkyradio-info">
+               <%= check_box_tag :tipo_tratamiento, true , checked: "checked"%></span>
+               <label for="tipo_tratamiento">Tipo de Tratamiento</label>
+            </div>
+            <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
             <%if field.field.form == "Diagnostico y Tratamiento" && field.field.state %>
-                  
-                  $('#dt<%=field.id%>').bootstrapToggle({
-                           on: 'Si',
-                           off: 'No'
-                      });
-
-                  $('#dt<%=field.id%>').bootstrapToggle('on');
-           <%end%>
-           <%end%>
-
-
-  
-
-$("#motivo_de_consulta").bootstrapToggle('on');
-$("#estado_actual").bootstrapToggle('on');
-$("#dinamica_familiar").bootstrapToggle('on');
-
-$("#historia_familiar").bootstrapToggle('on');
-$("#historia_personal").bootstrapToggle('on');
-
-$("#antecedentes").bootstrapToggle('on');
-$("#herramientas_evaluacion").bootstrapToggle('on');
-
-$("#hipotesis_diagnostica").bootstrapToggle('on');
-$("#objetivo_terapeoutico").bootstrapToggle('on');
-$("#tipo_tratamiento").bootstrapToggle('on');
-
-$("#seguimientos").bootstrapToggle('on');
-
-  });
-
-$('#form-tag').on('submit', function(e) {
+            <div class="funkyradio-info">
+               <%= check_box_tag "dt#{field.id}", true , checked: "checked" %></span>
+               <label for="dt<%=field.id%>"><%=field.field.name%></label>
+            </div>
+            <%end%>
+            <%end%>
+            <div class="funkyradio-info">
+               <%= check_box_tag :seguimientos, true , checked: "checked"%></span>
+               <label for="seguimientos">Seguimientos</label>
+            </div>
+            <%=hidden_field_tag :patient_id, patient.id%>
+            <%=hidden_field_tag :clinic_history, clinic_history.id%>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <%= submit_tag "Crear", class:"btn btn-default" %>
+         </div>
+         <%end%>
+      </div>
+      <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+   /* $(document).on('turbolinks:load',function() {
+   
      
-     setTimeout(function(){
-        window.location.reload(true);
-      }, 1000)
- 
-});
-
-
-     </script>
-
-
+   
+      <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+           <%if field.field.form == "Primer Contacto" && field.field.state %>
+                 
+                 $('#pr<%=field.id%>').bootstrapToggle({
+                          on: 'Si',
+                          off: 'No'
+                     });
+   
+                 $('#pr<%=field.id%>').bootstrapToggle('on');
+          <%end%>
+          <%end%>
+   
+          <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+           <%if field.field.form == "Diagnostico y Tratamiento" && field.field.state %>
+                 
+                 $('#dt<%=field.id%>').bootstrapToggle({
+                          on: 'Si',
+                          off: 'No'
+                     });
+   
+                 $('#dt<%=field.id%>').bootstrapToggle('on');
+          <%end%>
+          <%end%>
+   
+   
+   
+   
+   $("#motivo_de_consulta").bootstrapToggle('on');
+   $("#estado_actual").bootstrapToggle('on');
+   $("#dinamica_familiar").bootstrapToggle('on');
+   
+   $("#historia_familiar").bootstrapToggle('on');
+   $("#historia_personal").bootstrapToggle('on');
+   
+   $("#antecedentes").bootstrapToggle('on');
+   $("#herramientas_evaluacion").bootstrapToggle('on');
+   
+   $("#hipotesis_diagnostica").bootstrapToggle('on');
+   $("#objetivo_terapeoutico").bootstrapToggle('on');
+   $("#tipo_tratamiento").bootstrapToggle('on');
+   
+   $("#seguimientos").bootstrapToggle('on');
+   
+   });*/
+   
+   $('#form-tag').on('submit', function(e) {
+    
+    setTimeout(function(){
+       window.location.reload(true);
+     }, 1000)
+   
+   });
+   
+   
+    
+</script>
 <style>
-.modal-body .row
-{
-  background: whitesmoke;
-  margin-bottom: 3px;
-  padding-top: 8px;
-}
-.modal-body h3
-{
-    color: gray !important;
-    font-size: 18px !important;
-}
-       
-     </style>     
+   .modal-body .row
+   {
+   background: whitesmoke;
+   margin-bottom: 3px;
+   padding-top: 8px;
+   }
+   .modal-body h3
+   {
+   color: gray !important;
+   font-size: 18px !important;
+   }
+</style>
+<style type="text/css" media="screen">
+   .funkyradio div {
+   overflow: hidden;
+   }
+   .funkyradio label {
+   width: 100%;
+   background: #ebebeb;
+   border-radius: 3px;
+   border: 1px solid #D1D3D4;
+   font-weight: normal;
+   }
+   .funkyradio input[type="radio"]:empty,
+   .funkyradio input[type="checkbox"]:empty {
+   display: none;
+   }
+   .funkyradio input[type="radio"]:empty ~ label,
+   .funkyradio input[type="checkbox"]:empty ~ label {
+   position: relative;
+   line-height: 2.5em;
+   text-indent: 3.25em;
+   margin-top: 5px;
+   cursor: pointer;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .funkyradio input[type="radio"]:empty ~ label:before,
+   .funkyradio input[type="checkbox"]:empty ~ label:before {
+   position: absolute;
+   display: block;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   content: '';
+   width: 2.5em;
+   background: #D1D3D4;
+   border-radius: 3px 0 0 3px;
+   }
+   .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+   .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+   color: #888;
+   }
+   .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+   .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+   content: '\2714';
+   text-indent: .9em;
+   color: #C2C2C2;
+   }
+   .funkyradio input[type="radio"]:checked ~ label,
+   .funkyradio input[type="checkbox"]:checked ~ label {
+   color: #777;
+   }
+   .funkyradio input[type="radio"]:checked ~ label:before,
+   .funkyradio input[type="checkbox"]:checked ~ label:before {
+   content: '\2714';
+   text-indent: .9em;
+   color: #333;
+   background-color: #ccc;
+   }
+   .funkyradio input[type="radio"]:focus ~ label:before,
+   .funkyradio input[type="checkbox"]:focus ~ label:before {
+   box-shadow: 0 0 0 3px #999;
+   }
+   .funkyradio-default input[type="radio"]:checked ~ label:before,
+   .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+   color: #333;
+   background-color: #ccc;
+   }
+   .funkyradio-primary input[type="radio"]:checked ~ label:before,
+   .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #337ab7;
+   }
+   .funkyradio-success input[type="radio"]:checked ~ label:before,
+   .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #5cb85c;
+   }
+   .funkyradio-danger input[type="radio"]:checked ~ label:before,
+   .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #d9534f;
+   }
+   .funkyradio-warning input[type="radio"]:checked ~ label:before,
+   .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #f0ad4e;
+   }
+   .funkyradio-info input[type="radio"]:checked ~ label:before,
+   .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #5bc0de;
+   }
+</style>
