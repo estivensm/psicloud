@@ -20,5 +20,6 @@ class CreteField < ApplicationRecord
 	belongs_to :field
 	belongs_to :clinic_history
 	belongs_to :tracing, optional: true
+	belongs_to :child_general_dates, optional: true
 	belongs_to :user
 end

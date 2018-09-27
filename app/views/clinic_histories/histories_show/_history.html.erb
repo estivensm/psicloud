@@ -208,9 +208,28 @@
         <td colspan="2"><strong>Relación :</strong><br><%=son.relationship if son.relationship%></td>
       </tr>
     <%end%>
+
+    <% @clinic_history.crete_fields.order(id: :asc).each do |field| %>
+    
+ 
+   <%if field.field.form == "Historia Familiar" && field.field.state %>
+    <tr>
+        <td><strong><%=field.field.name%></td>
+        <td colspan="4"><%=field.content%></td>
+      </tr>
+
+        <%end%>
+  
+  
+    <%end%>
   </table>
 
 </div>
+
+
+
+
+
 <%end%>
 
   <% if  @clinic_history.child_history %>

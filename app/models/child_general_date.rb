@@ -31,6 +31,7 @@ class ChildGeneralDate < ApplicationRecord
         
 
 	belongs_to :clinic_history
+    has_many :create_fields
     has_many :child_brothers , inverse_of: :child_general_date, dependent: :destroy
     accepts_nested_attributes_for :child_brothers, :allow_destroy => true
     has_many :children , inverse_of: :child_general_date, dependent: :destroy

@@ -279,7 +279,37 @@
 
 
 
-
+  <!-- inicio de los campos adicionales -->
+   <% Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Historia Familiar").order(id: :asc).each do |field| %>
+   <br><br>
+      <h3  style="padding-left: 0px; margin-left: 0px; color: gray" > <%= field.name%></h3>
+      <div class="form-group">
+      <%if field.type_field == "Textarea"%>
+          
+         <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).where(child_general_date_id: @child_general_date.id).any? %>
+         
+         <%= text_area_tag "#{field.name}", nil , class: "form-control area" %>
+         <%else%>
+         <%= text_area_tag "#{field.name}", field.crete_fields.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).where(child_general_date_id: @child_general_date.id).last.content , class: "form-control area" %>      
+         <%end%>
+   
+         <%else%>
+      
+     
+         <% if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).where(child_general_date_id: @child_general_date.id).any? %>
+          <div class="form-group">
+         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>nil}), {:multiple => false,class: 'form-control' , style: "width:50%"}%>
+         <%else%>
+         <%= select_tag field.name, options_for_select(field.fieldselects.collect{ |u| ["#{u.option}", u.option] },{:selected=>field.crete_fields.where(clinic_history_id: @clinic_history.id).where(child_general_date_id: @child_general_date.id).where(field_id: field.id).last.content }), {:multiple => false,class: 'form-control', style: "width:50%"}%>
+         
+         <%end%>
+      
+      <%end%>  
+      <br>
+      </div>
+   
+   <%end%>  
+   <!-- Fin de los campos adicionales -->
 
 
 

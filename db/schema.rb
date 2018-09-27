@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180918025911) do
+ActiveRecord::Schema.define(version: 20180927024814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(version: 20180918025911) do
     t.string "text_field"
     t.string "select_field"
     t.integer "tracing_id"
+    t.integer "child_general_date_id"
   end
 
   create_table "diagnosticos", force: :cascade do |t|

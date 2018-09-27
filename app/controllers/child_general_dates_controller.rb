@@ -61,6 +61,23 @@ class ChildGeneralDatesController < ApplicationController
     respond_to do |format|
       if @child_general_date.update(child_general_date_params)
 
+
+
+      Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Historia Familiar").order(id: :asc).each do |field|
+                  
+                 if !CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).any?
+                  CreteField.create(content: params[:"#{field.name}"], user_id: current_user.id, admin_user:current_user.id, field_id: field.id, clinic_history_id: @clinic_history.id, child_general_date_id: @child_general_date.id)
+                 else
+                   CreteField.where(clinic_history_id: @clinic_history.id).where(field_id: field.id).last.update(content: params[:"#{field.name}"])
+
+                 end
+
+
+        end
+
+
+
+
           
         format.html { 
         
