@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
  
+  resources :created_formats
   resources :clinichistory_configs
   resources :field_defaults
   resources :consents
@@ -29,7 +30,8 @@ Rails.application.routes.draw do
   get 'clinic_histories_all', to: 'clinic_histories#clinic_histories_all'
   #actualizar datos por ajax cuando escribe
   post "actualizar_hc", to: "clinic_histories#actualizar_hc"
-  
+
+  get "formato_pdf/:id", to: "patients#formato", as: "formato_pdf"
    
   get 'closeclinichistory/:id', to: 'clinic_histories#close_clinic_history', as: 'close_clinic_history' 
 
@@ -118,6 +120,7 @@ Rails.application.routes.draw do
      
      end
      
+     get "formato_pdf/:id", to: "patients#formato", as: "formato_pdf"
      patch "update_step3/:id", to: "clinic_histories#update_step3", as: "update_step3"
      get "step3/:id", to: "clinic_histories#step3", as: "step3"
      get 'consentimiento_informado_menores', to: "patients#consentimiento_informado_menores", as: "consentimiento_informado_menores"

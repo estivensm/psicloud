@@ -1,0 +1,79 @@
+
+   <div id='cssmenu' style="margin-left: -2px; margin-top: 4%;">
+      <ul>
+         <li><%= link_to "inicio", root_path%></li>
+         <li><%= link_to "Formatos", documents_path%></li>
+         <li class="active" ><%=link_to "Formatos Creados", created_formats_path%></li>
+      </ul>
+   </div>
+    <br><br>
+<div class="container">
+   <div class="row" >
+        <ul class="nav nav-tabs">
+
+      <li class=""><%=link_to "Formatos", documents_path, style: "cursor: pointer;" %></li>
+      <li class="active" ><%=link_to "Formatos Creados", created_formats_path, style: "cursor: pointer;" %></li>
+
+    </ul>
+    <br>
+    <div class = "row title-table">
+
+       <div class = "col-md-6"  style="padding-left: 20px;">
+          <p>Formatos Creados <span class="label label-primary"><%= @created_formats.count%></span> <span style = "font-size:12px;margin-left:20px;"><%= page_create_format @created_formats, :entry_name => 'Formatos' %></span> </p>
+       </div>
+
+
+         <div class = "col-md-4 paginate text-left title-table1">
+           
+         </div>
+
+
+       <div class = "col-md-2">
+          <%= link_to 'Nuevo', new_created_format_path, data: { turbolinks: false } , class: "btn btn-primary", style: "float: right;" %>
+       </div>
+    </div><br>
+
+<div class = "row hidden-xs hidden-sm"> 
+  <div class="col-md-12">
+    <table class="table" style="margin-left: 10px;">
+      <thead>
+        <tr class = "tr-table">
+          <th>Nombre</th>
+          <th style="width: 153px; text-align: center;">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @created_formats.each do |created_format| %>
+          <tr>
+            <td><%= created_format.name %></td>
+
+            <td><%= link_to created_format_path(created_format.id, format: :pdf)  , style: "margin-right: 10px" ,target: :_blank do%><img src="http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png" width="30px" alt="" class="hidden-xs hidden-sm">
+            <%end%>
+
+            <%= link_to  edit_created_format_path(created_format), data: { turbolinks: false } , class: "btn btn-primary" do%>
+                <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
+            <% end -%>
+
+            <%= link_to  created_format, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''}, class: "btn btn-danger" do %>
+              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
+              <% end -%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+  </div>
+</div>
+
+<br>
+
+
+

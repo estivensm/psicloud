@@ -2,15 +2,23 @@
    <div id='cssmenu' style="margin-left: 10px;">
       <ul>
          <li><%= link_to "inicio", root_path%></li>
-         <li class="active"><%= link_to "Formatos", @documents_path%></li>
+         <li class="active"><%= link_to "Formatos", documents_path%></li>
       </ul>
    </div>
    <br>
    <br>
 </div>
+
 <%if @documents.count != 0%>
 <div class="container">
    <div class="row" >
+    <ul class="nav nav-tabs">
+
+      <li class="active"><%=link_to "Formatos", documents_path, style: "cursor: pointer;" %></li>
+      <li ><%=link_to "Formatos Creados", created_formats_path %></li>
+
+    </ul>
+<br>
       <div class = "row title-table">
          <div class = "col-md-6">
             <p class="title-h2">Formatos <span class="label label-primary"><%=@documents.count%></span> <span style = "font-size:12px;margin-left:20px;"><%= link_to  new_document_path, remote: true, class: "btn btn-primary  hidden-md hidden-lg new" do%>

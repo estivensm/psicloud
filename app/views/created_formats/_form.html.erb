@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <%= tinymce_assets %>
+
+    <%= form_with(model: created_format, local: true) do |form| %>
+      <% if created_format.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(created_format.errors.count, "error") %> prohibited this created_format from being saved:</h2>
+
+          <ul>
+          <% created_format.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+  
+      <div class="col-md-10 col-md-offset-1">
+            <div class="field">
+        <%= form.label "Nombre" %><br>
+        <%= form.text_field :name, id: :created_format_name %><br><br>
+      </div>
+
+      <div class="field">
+        <%= form.label "Formato" %><br>
+        <%= form.text_area :format, id: :created_format_format, class: "tinymce" , :rows => 12%>
+      </div>
+
+
+
+      <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+      <%= form.hidden_field :user_id ,:value =>  current_user.id %> 
+
+
+      <%= tinymce %>
+      <br>
+      <div class="actions">
+        <%= form.submit "Guardar", class: "btn btn-info" %>
+        <%= link_to "Volver", created_formats_path, class: "btn btn-info" %>
+      </div>
+      <br>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

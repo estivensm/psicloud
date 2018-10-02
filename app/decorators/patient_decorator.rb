@@ -105,4 +105,20 @@ module PatientDecorator
 
     ]
   end
+
+  def  full_name
+    
+    "#{first_name} #{second_name} #{first_last_name} #{first_last_name}"
+
+  end
+
+  def  partial_full_name
+    
+    "#{first_name} #{first_last_name}"
+
+  end
+
+
+
+
 end

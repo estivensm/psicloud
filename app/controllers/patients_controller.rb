@@ -1,7 +1,18 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy, :send_history]
   before_action :authenticate_user!
+  before_action :is_account, only: [:show, :edit, :update, :destroy, :send_history]
 
+
+ def  is_account
+   
+   if @patient.admin_user != current_user.admin_user
+       
+       redirect_to patients_path
+  
+   end 
+   
+ end
   
   # GET /patients
   # GET /patients.json
@@ -111,6 +122,7 @@ end
   def show
       
         @field_default = FieldDefault.where(admin_user: current_user.admin_user).first
+        @created_formats = CreatedFormat.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
         @clinic_history = @patient.clinic_histories.first
@@ -302,7 +314,7 @@ end
 
 
 
-  def consentimiento_informado_adolescentes
+def consentimiento_informado_adolescentes
 
 @patient = Patient.find(params[:patient_id])
       respond_to do |format|
@@ -333,6 +345,25 @@ end
     end
     
   end
+
+def formato
+  @patient = Patient.find(params[:patient_id])
+  @created_format = CreatedFormat.find(params[:id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "Formatos",
+        header: { right: '[page] of [topage]' },
+        :template => 'patients/pdfs/formatos.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 15
+                     },
+
+        :show_as_html => params[:debug].present?
+    end
+  end  
+end
 
 
 def consentimiento_informado_menores

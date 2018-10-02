@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @created_format.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @created_format.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @created_format.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @created_format.admin_user %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @created_format.format %>
+</p>
+
+<%= link_to 'Edit', edit_created_format_path(@created_format) %> |
+<%= link_to 'Back', created_formats_path %>
