@@ -353,7 +353,6 @@ def formato
       format.html
       format.pdf do
         render :pdf => "Formatos",
-        header: { right: '[page] of [topage]' },
         :template => 'patients/pdfs/formatos.pdf.erb',
         :layout => 'pdf.html.erb',
         margin: {
