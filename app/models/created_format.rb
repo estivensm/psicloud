@@ -1,0 +1,2 @@
+class CreatedFormat < ApplicationRecord
+end

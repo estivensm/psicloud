@@ -94,6 +94,21 @@
 
                </div>
             </div>
+
+            <div class="col-md-7 info">
+               <div class="panel panel-default">
+                  <div class="panel-heading"> <span class="glyphicon glyphicon-file"></span> <strong>FORMATOS CREADOS </strong></div>
+                  <div class="panel-body" style="min-height: 100px;">
+                     <ul style="padding-left: 19px;"> 
+                      <% @created_formats.each do |formato| %>
+<li style="padding-left: 0px;"><%= link_to "Formato #{formato.name}", patient_formato_pdf_path(@patient.id, formato.id, format: :pdf),target: :_blank%></li>
+                      <% end -%>
+                     </ul>  
+                  </div>
+               </div>
+            </div>
+
+
          </div>
   
       <%else%>

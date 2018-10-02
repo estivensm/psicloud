@@ -31,7 +31,7 @@
    <h3 style="padding-left: 0px; margin-left: 0px;" >Fecha de Creación</h3>
    <br>
    <div class="row">
-      <div class="col-md-6" style="padding-left: 0px;">
+      <div class="col-md-6" style="padding-left: 14px;">
          <div class="form-group date_select">
             <%= form.date_select :created_date,{
                :start_year =>
@@ -78,9 +78,9 @@
    </div>
 
 
-<div class="col-md-12">
+<div class="col-md-12" style="padding: 0px;">
   <div class="row">
-    <div class="col-md-12" style="background: #f7f7f7;" >
+    <div class="col-md-12" style="background: #f7f7f7; padding: 0px;" >
       <h3 class = "" style = "margin-top: 20px; margin-bottom: 10px; color:gray; padding: 0px;" >Antecedentes Familiares </h3>
           <%= form.fields_for :backgrounds do |contact|  %>
             <div class="col-md-3 fb" >
@@ -121,7 +121,7 @@
 
 
 <div class="row">
-  <div class="col-md-12" style="background: #f7f7f7;" >
+  <div class="col-md-12" style="background: #f7f7f7; padding: 0px;" >
      <h3 class = ""style = "margin-top: 20px; color:gray; padding: 0px;">Antecedentes Personales</h3>
      <br>
       <%= form.fields_for :personal_backgrounds do |contact|  %>
@@ -172,7 +172,7 @@
 
 <hr>
 
- <div class="col-md-12"> 
+ <div class="col-md-12" style="padding: 0px;"> 
   <!-- inicio de los campos adicionales -->
    <% Field.where(admin_user: current_user.admin_user).where(state: true).where(form: "Primer Contacto").order(id: :asc).each do |field| %>
       <h3  style="padding-left: 0px; margin-left: 0px; color: gray" > <%= field.name%></h3>
