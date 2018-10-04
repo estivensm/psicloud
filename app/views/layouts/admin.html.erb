@@ -106,6 +106,12 @@
                          
                           <%if current_user.super_admin%>
                           <li><%= link_to  clinichistory_configs_path , style: "color:gray !important" do %>
+                          <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> configuracion de historia clinica admin
+                          <% end -%>
+                          </li>
+                          <%end%>
+                          <%if account.account_type != "Psicologo" || current_user.super_admin %>
+                          <li><%= link_to  edit_clinichistory_config_path(ClinichistoryConfig.where(admin_user: current_user.admin_user).first.id) , data: { turbolinks: false }  , style: "color:gray !important" do %>
                           <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> configuracion de historia clinica
                           <% end -%>
                           </li>

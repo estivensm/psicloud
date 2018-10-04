@@ -217,7 +217,7 @@
                <%= contact.text_field :edad, :class => 'form-control', :maxlength => 2, :placeholder => "Edad", disabled: @clinic_history.first_child_state %>
             </div>
           <div class="col-md-3">
-              <%= contact.label "Relación input-change" %>
+              <%= contact.label "Relación" %>
                 <%= contact.select 'relationship', options_for_select(["Estable", "Inestable", "Conflictiva", "Mucha Comunicacion", "Poca Comunicacion", "Ninguna Comunicacion"]), {},{:class => 'form form-control select', disabled: @clinic_history.first_child_state}%>
                 <br><br>
           </div>  
