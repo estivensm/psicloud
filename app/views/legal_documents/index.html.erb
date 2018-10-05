@@ -1,9 +1,10 @@
     <ul class="nav nav-tabs">
-      <li><%=link_to "Herramientas De Evaluacion",patient_clinic_history_tool_tests_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
+      <li><%=link_to "Herramientas De Evaluación",patient_clinic_history_tool_tests_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
       <li class="active"><%= link_to "Documentos Legales", patient_clinic_history_legal_documents_path(@clinic_history.patient_id), style: "cursor: pointer;"%></li>
-      <li class="link2"><%= link_to "Ayuda Diagnostico", patient_clinic_history_diagnostic_helps_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
+      <li class="link2"><%= link_to "Ayuda Diagnósticas", patient_clinic_history_diagnostic_helps_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
 
     </ul>
+    <br>
 <% if @legal_documents.any?%>
 <br>
 <div class = "row title-table">

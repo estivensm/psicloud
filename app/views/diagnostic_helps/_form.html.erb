@@ -8,9 +8,9 @@
             <div class="container-fluid" style="padding-left: 5px;">
               <div class="col-md-9" style="padding-left: 5px;">
                   <% if action_name == "edit"%>
-                    <h4 class="modal-title">Editar Diagnostico de Ayuda</h4>
+                    <h4 class="modal-title">Editar Ayuda Diagnóstica</h4>
                   <%else%>
-                    <h4 class="modal-title">Crear Nuevo Diagnostico de Ayuda</h4>
+                    <h4 class="modal-title">Crear Nueva Ayuda Diagnóstica </h4>
                   <% end -%>
               </div>    
             </div>
@@ -37,13 +37,13 @@
   <br>
 
   <div class="field">
-    <%= form.label "Tipo de Docuemnto" %><br>
+    <%= form.label "Tipo de Documento" %><br>
     <%= form.text_field :type_document, id: :diagnostic_help_type_document, class: "form form-control" %>
   </div>
   <br>
 
   <div class="field">
-    <%= form.label "Descripcion" %><br>
+    <%= form.label "Descripción" %><br>
     <%= form.text_area :description, id: :diagnostic_help_description, class: "form form-control", style: "height: 191px; resize: none;"  %>
   </div>
 <%if action_name == "edit"%>
@@ -68,7 +68,7 @@
    <%= form.fields_for :general_files do |file|  %>
   <div class="clearfix">
 
-  <div class="col-md-12" style="padding: 0px; padding-left: 15px;" >  
+  <div class="col-md-12" style="padding: 0px; padding-left: 10px;" >  
     <div class="col-md-5" style="padding: 0px;" >
         <div class="input-group">
           <span class="input-group-btn">

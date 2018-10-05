@@ -1,19 +1,19 @@
     
     <ul class="nav nav-tabs">
-      <li><%=link_to "Herramientas De Evaluacion",patient_clinic_history_tool_tests_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
+      <li><%=link_to "Herramientas De Evaluación",patient_clinic_history_tool_tests_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
       <li class=""><%= link_to "Documentos Legales", patient_clinic_history_legal_documents_path(@clinic_history.patient_id), style: "cursor: pointer;"%></li>
-      <li class="active"><%= link_to "Ayuda Diagnostico", patient_clinic_history_diagnostic_helps_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
+      <li class="active"><%= link_to "Ayudas Diagnósticas", patient_clinic_history_diagnostic_helps_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
     </ul>
-
+<br>
 <% if @diagnostic_helps.any?%>
 <br>
 <div class = "row title-table">
   <div class = "col-md-8">
-    <p>Ayuda Diagnostico <span class="label label-primary"><%= @diagnostic_helps.count%></span>  </p>
+    <p>Ayudas Diagnósticas <span class="label label-primary"><%= @diagnostic_helps.count%></span>  </p>
   </div>
       
   <div class = "col-md-4 text-right">
-  <%= link_to 'Nuevo Ayuda Diagnostico', new_patient_clinic_history_diagnostic_help_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
+  <%= link_to 'Nueva Ayuda Diagnóstica', new_patient_clinic_history_diagnostic_help_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
   </div>
 </div>
 
@@ -66,9 +66,9 @@
         <div class="col-md-12 np">
 
 
-        <h3>! AÚN NO HAY DIAGNOSTICOS DE AYUDA ¡</h3>
+        <h3>! AÚN NO HAY AYUDAS DIAGNÓSTICAS ¡</h3>
 
-        <%= link_to 'CREA EL PRIMERO', new_patient_clinic_history_diagnostic_help_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
+        <%= link_to 'CREA LA PRIMERA', new_patient_clinic_history_diagnostic_help_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
         
         
         </div>
