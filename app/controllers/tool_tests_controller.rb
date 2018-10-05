@@ -5,7 +5,7 @@ class ToolTestsController < ApplicationController
 
   def index
   	 @patient = Patient.find(params[:patient_id])
-    @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+      @clinic_history = ClinicHistory.find(params[:clinic_history_id])
   end
 
 def create
@@ -75,7 +75,7 @@ end
     end
   
    def tool_test_params
-      params.require(:tool_test).permit(:user_id, :admin_user, :patient_id, :clinic_history_id,:attachment,:description,:type_tool ,general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
+      params.require(:tool_test).permit(:user_id, :admin_user, :patient_id, :clinic_history_id,:attachment, :description,:type_tool , general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
     end
 
    

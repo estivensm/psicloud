@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @diagnostic_help.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @diagnostic_help.description %>
+</p>
+
+<p>
+  <strong>Type document:</strong>
+  <%= @diagnostic_help.type_document %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @diagnostic_help.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @diagnostic_help.admin_user %>
+</p>
+
+<p>
+  <strong>Clinic history:</strong>
+  <%= @diagnostic_help.clinic_history_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @diagnostic_help.patient_id %>
+</p>
+
+<%= link_to 'Edit', edit_diagnostic_help_path(@diagnostic_help) %> |
+<%= link_to 'Back', diagnostic_helps_path %>

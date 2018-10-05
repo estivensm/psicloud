@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
- 
+
   resources :created_formats
   resources :clinichistory_configs
   resources :field_defaults
@@ -92,6 +92,9 @@ Rails.application.routes.draw do
         resources :three_child_histories
         resources :tracings
         resources :tool_tests
+        
+        resources :diagnostic_helps
+        resources :legal_documents
 
         
         get "pdf_completo", to: "clinic_histories#pdf_completo", as: "pdf_completo"

@@ -1,0 +1,95 @@
+    <ul class="nav nav-tabs">
+      <li><%=link_to "Herramientas De Evaluacion",patient_clinic_history_tool_tests_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
+      <li class="active"><%= link_to "Documentos Legales", patient_clinic_history_legal_documents_path(@clinic_history.patient_id), style: "cursor: pointer;"%></li>
+      <li class="link2"><%= link_to "Ayuda Diagnostico", patient_clinic_history_diagnostic_helps_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
+
+    </ul>
+<% if @legal_documents.any?%>
+<br>
+<div class = "row title-table">
+  <div class = "col-md-8">
+    <p>Documentos Legales <span class="label label-primary"><%=@legal_documents.count%></span>  </p>
+  </div>
+      
+  <div class = "col-md-4 text-right">
+  <%= link_to 'Nuevo Documento legal', new_patient_clinic_history_legal_document_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary"  %>
+  </div>
+</div>
+
+<br>
+<% @legal_documents.each do |legal_document| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-6" style="color: #5bc0de;font-size: 18px;">
+          <%= legal_document.name %></span>
+        </div>
+              
+        <div class="col-md-6 text-right">
+
+          <%= link_to edit_patient_clinic_history_legal_document_path(@clinic_history.patient_id,@clinic_history.id,  legal_document.id), remote: true, class: "icon" do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+          <% end -%>
+
+          <%= link_to  patient_clinic_history_legal_document_path(@clinic_history.patient_id,@clinic_history.id,  legal_document.id),method: :delete, data: {
+                confirm: '¿Estas Seguro?',
+                'confirm-button-text': 'Borrar',
+                'cancel-button-text': 'Cancelar',
+                'confirm-button-color': '#CC0000',
+                 text: 'Recuerda que el registro se borrara permanentemente',
+                'image-url': ''}, class: "icon" do %>
+             <i class="fa fa-trash" aria-hidden="true"></i>
+          <% end -%>
+        </div>            
+      </div>
+    </div>
+      <div class="panel-body">
+        <%= legal_document.description %><br>
+                        <%if legal_document.attachment_url%>
+                   <%= link_to  legal_document.attachment_url, class: "btn btn-primary", style:"margin-right:10px;margin-top:10px" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> <%=legal_document.attachment.legal_document.filename%>
+                   <%end%>  
+                   <%end%>
+                      <% legal_document.general_files.each do |file|%>
+                      <%if file.file_url%>
+                   <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                          <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                   <%end%>  
+                   <%end%>
+                   <%end%>
+      </div>
+    </div>
+  <% end -%>
+</div>
+<% else %>
+ <div class="row">
+        <div class="col-md-12 np">
+
+
+        <h3>! AÚN NO HAY DOCUMENTOS LEGALES ¡</h3>
+
+        <%= link_to 'CREA EL PRIMERO', new_patient_clinic_history_legal_document_path(@clinic_history.patient_id, @clinic_history.id), remote: true, class: "btn btn-primary"  %>
+        
+        
+        </div>
+      
+    </div>
+<% end -%>
+<br>
+
+<style>
+    .np
+{
+    text-align: center;
+    color: #3b84a7;
+    background: #f4f4f4;
+    font-size: 40px;
+    padding: 30px 0px;
+    margin-left: 15px;
+    width: 97%;
+
+
+
+}
+</style>
+

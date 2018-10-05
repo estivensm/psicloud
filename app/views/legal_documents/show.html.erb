@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @legal_document.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @legal_document.description %>
+</p>
+
+<p>
+  <strong>Type document:</strong>
+  <%= @legal_document.type_document %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @legal_document.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @legal_document.admin_user %>
+</p>
+
+<p>
+  <strong>Clinic history:</strong>
+  <%= @legal_document.clinic_history_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @legal_document.patient_id %>
+</p>
+
+<%= link_to 'Edit', edit_legal_document_path(@legal_document) %> |
+<%= link_to 'Back', legal_documents_path %>

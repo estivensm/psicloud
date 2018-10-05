@@ -1,0 +1,116 @@
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left: 5px;">
+    
+            <div class="container-fluid" style="padding-left: 5px;">
+              <div class="col-md-9" style="padding-left: 5px;">
+                  <% if action_name == "edit"%>
+                    <h4 class="modal-title">Editar Diagnostico de Ayuda</h4>
+                  <%else%>
+                    <h4 class="modal-title">Crear Nuevo Diagnostico de Ayuda</h4>
+                  <% end -%>
+              </div>    
+            </div>
+        </div>
+
+<%= nested_form_for([@patient, @clinic_history, @diagnostic_help]) do |form| %>
+ <div class="modal-body">
+  <% if diagnostic_help.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(diagnostic_help.errors.count, "error") %> prohibited this diagnostic_help from being saved:</h2>
+
+      <ul>
+      <% diagnostic_help.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Nombre" %><br>
+    <%= form.text_field :name, id: :diagnostic_help_name, class: "form form-control" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= form.label "Tipo de Docuemnto" %><br>
+    <%= form.text_field :type_document, id: :diagnostic_help_type_document, class: "form form-control" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= form.label "Descripcion" %><br>
+    <%= form.text_area :description, id: :diagnostic_help_description, class: "form form-control", style: "height: 191px; resize: none;"  %>
+  </div>
+<%if action_name == "edit"%>
+
+ <%if !@diagnostic_help.attachment.blank? %>
+<div class="field">
+     <%= form.label "Adjunto" %>
+    <%= form.file_field :attachment,  class: "form-control inputfile", id: 'file' %>
+    <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
+
+ <span class="levidencia" style = "margin-right:10px;"><%= @diagnostic_help.attachment.blank? != true ? "#{@diagnostic_help.attachment.file.filename}" : "Evidencia" %> </span> <%if @diagnostic_help.attachment.blank?   != true %><br>
+<%= check_box_tag :remove_attachment %> 
+   <%= label_tag "Eliminar", "Eliminar", style: "color:red!important" %></label>
+<%end%>
+ 
+
+   </div>
+     <%end%>
+<%end%>
+  <br>
+  <div class="row">
+   <%= form.fields_for :general_files do |file|  %>
+  <div class="clearfix">
+
+  <div class="col-md-12" style="padding: 0px; padding-left: 15px;" >  
+    <div class="col-md-5" style="padding: 0px;" >
+        <div class="input-group">
+          <span class="input-group-btn">
+             <%= file.link_to_remove class: "btn btn-danger" do %>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
+          </span>
+        <%= file.text_field :name, :class => 'name form form-control', :placeholder => "Nombre" %>
+    </div>
+  </div>
+    <div class="col-md-7">    
+      <%= file.file_field :file, :class => 'file form form-control archivo', style: "" %>
+      <%= file.hidden_field :id, class:"items" if action_name == "edit"%>
+      <span></span>
+      <br>
+    </div>
+
+    <br>
+    <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
+    <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
+   
+
+    <br>
+  </div> </div> <%end%>
+  <div class="col-md-12"> <%= form.link_to_add "Agregar Archivo", :general_files, :class => 'btn btn-primary top10'  %></div>
+   
+ 
+  </div>
+
+
+
+  <%= form.hidden_field :user_id ,:value =>  current_user.id %>
+  <%= form.hidden_field :admin_user ,:value =>  current_user.admin_user %>
+  <%= form.hidden_field :patient_id ,:value =>  @patient.id %>
+  <%= form.hidden_field :clinic_history_id ,:value =>  @clinic_history.id %>
+
+      </div> 
+        <div class="modal-footer"">
+
+           <%= form.submit "Guardar", class: "btn btn-info", id: "btn3" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+    </div>
+  </div>
+</div>
+<% end -%>
