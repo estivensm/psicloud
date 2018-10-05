@@ -18,6 +18,11 @@
 
 class GeneralFile < ApplicationRecord
 	belongs_to :tool_test , inverse_of: :general_files , optional: true
+
+	belongs_to :diagnostic_help , inverse_of: :general_files , optional: true
+	belongs_to :legal_document , inverse_of: :general_files , optional: true
+
+
 	belongs_to :tracing , inverse_of: :general_files, optional: true
 	belongs_to :document , inverse_of: :general_files, optional: true
     mount_uploader :file, FileToolUploader  

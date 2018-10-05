@@ -1,10 +1,10 @@
+    <ul class="nav nav-tabs">
+      <li class="active"><%=link_to "Herramientas De Evaluacion",  patient_clinic_history_tool_tests_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
+      <li class="link2"><%= link_to "Documentos Legales", patient_clinic_history_legal_documents_path(@clinic_history.patient_id), style: "cursor: pointer;"%></li>
+      <li class="link2"><%= link_to "Ayuda Diagnostico", patient_clinic_history_diagnostic_helps_path(@clinic_history.patient_id), style: "cursor: pointer;" %></li>
 
+    </ul>
 <%if @clinic_history.tool_tests.count != 0%>
-   
-
-
-  <div class="row" style = "padding: 10px 45px;">
-
  <div class = "row title-table">
          <div class = "col-md-8">
             <p>HERRAMIENTAS DE EVALUACIÓN <span class="label label-primary"><%=@clinic_history.tool_tests.count%></span>  </p>
@@ -17,7 +17,6 @@
 
 
 <br><br>
-
 <% @clinic_history.tool_tests.each do |tool|%>
       <div class="panel panel-default">
                         <div class="panel-heading">
@@ -69,11 +68,11 @@
 
 </div>
 <%else%>
+
  <div class="row">
         <div class="col-md-12 np">
 
-
-        <h3>! AÚN NO HAY HERRAMIENTAS DE EVALUACIÓN ¡</h3>
+        <h4>! AÚN NO HAY HERRAMIENTAS DE EVALUACIÓN ¡</h4>
         
         <%= link_to "CREA LA PRIMERA", new_patient_clinic_history_tool_test_path(@clinic_history.patient_id,@clinic_history.id), remote: true, class: "btn btn-primary" %>
         
@@ -82,16 +81,39 @@
     </div>
 <%end%>
 <style>
-  .np
+    .np
 {
     text-align: center;
-    color: gray;
+    color: #3b84a7;
     background: #f4f4f4;
     font-size: 40px;
     padding: 30px 0px;
-
+    margin-left: 15px;
+    width: 97%;
 
 }
+
+.link2{
+  background: #fff;
+}
+
+/*
+.nav-tabs>li>a {
+  background: #fff !important;
+  border-bottom: none !important;
+  color: black !important;
+  border: 1px solid #dddddd !important;
+}
+
+.nav-tabs>li>a:hover {
+  background: #fff !important;
+  border-bottom: none !important;
+  color: black !important;
+  border: 1px solid #dddddd !important;
+}
+
+*/
+
 .np h3
 { 
   
