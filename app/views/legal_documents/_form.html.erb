@@ -8,9 +8,9 @@
             <div class="container-fluid" style="padding-left: 5px;">
               <div class="col-md-9" style="padding-left: 5px;">
                   <% if action_name == "edit"%>
-                    <h4 class="modal-title">Editar Docuemto legal</h4>
+                    <h4 class="modal-title">Editar Documento legal</h4>
                   <%else%>
-                    <h4 class="modal-title">Crear Nuevo Docuemto Legal</h4>
+                    <h4 class="modal-title">Crear Nuevo Documento Legal</h4>
                   <% end -%>
               </div>    
             </div>
@@ -44,7 +44,7 @@
   <br>
 
   <div class="field">
-    <%= form.label "Descripcion" %><br>
+    <%= form.label "Descripción" %><br>
     <%= form.text_area :description, id: :legal_document_description, class: "form form-control", style: "height: 191px;  resize: none;" %>
   </div>
 
@@ -70,7 +70,7 @@
    <%= form.fields_for :general_files do |file|  %>
   <div class="clearfix">
 
-  <div class="col-md-12" style="padding: 0px;  padding-left: 15px;" >  
+  <div class="col-md-12" style="padding: 0px; padding-left: 10px;" >  
     <div class="col-md-5" style="padding: 0px;" >
         <div class="input-group">
           <span class="input-group-btn">
