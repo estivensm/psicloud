@@ -89,7 +89,7 @@
                <%= form.label "Documento (Registrar sin puntos)" %> *
                <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-id-card" style = "color: #f1f1f1;" ></i></span>
-               <%= form.text_field :document, id: :patient_document , class: "form-control", :title => "Es un Campo Obligatorio", id: "cambio4" %>
+               <%= form.text_field :document, id: :patient_document , class: "form-control required", :title => "Es un Campo Obligatorio", id: "cambio4" %>
              </div>
             </div>
          </div>
@@ -106,7 +106,7 @@
                   :use_short_month => true,
                   :order => [:day, :month, :year],
                   :prompt => {:month => 'Mes', :day => 'Día', :year => 'Año'}},
-                  {:class => 'year form-control line1',
+                  {:class => 'year form-control line1 required',
                   :id => 'patient_birth_date' , :title => "Es un Campo Obligatorio" }
                   %>
                 </div>

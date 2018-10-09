@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181001170920) do
+ActiveRecord::Schema.define(version: 20181005004639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,6 +267,18 @@ ActiveRecord::Schema.define(version: 20181001170920) do
     t.integer "child_general_date_id"
   end
 
+  create_table "diagnostic_helps", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "type_document"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "clinic_history_id"
+    t.integer "patient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "diagnosticos", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -354,6 +366,8 @@ ActiveRecord::Schema.define(version: 20181001170920) do
     t.integer "document_id"
     t.integer "personal_background_id"
     t.integer "background_id"
+    t.integer "diagnostic_help_id"
+    t.integer "legal_document_id"
   end
 
   create_table "hpcs", force: :cascade do |t|
@@ -361,6 +375,18 @@ ActiveRecord::Schema.define(version: 20181001170920) do
     t.string "description"
     t.integer "user_id"
     t.integer "admin_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "legal_documents", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "type_document"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.integer "clinic_history_id"
+    t.integer "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
