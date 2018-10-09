@@ -75,7 +75,7 @@
                   <li class="dropdown <%=@menu[4]%> "  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i>Configuración <span class="caret"></span></a>
 
-                      <ul class="dropdown-menu" style="width: 164% !important;">
+                      <ul class="dropdown-menu" style="width: 177% !important;">
                         <li ><%= link_to  users_index_path, style: "color:gray !important" do %>
                         <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Usuarios
                         <% end -%>
@@ -112,7 +112,7 @@
                         </li>
                         <%if current_user.super_admin%>
 
-                         <li><%= link_to  accounts_path, style: "color:gray !important; display: none;" do  %>
+                         <li><%= link_to  accounts_path, style: "color:gray !important; " do  %>
                            <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Cuentas
                          <% end -%>
                          </li>

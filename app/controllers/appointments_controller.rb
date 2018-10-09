@@ -527,9 +527,10 @@ end
             @appointment.save
 
     end
-
+             
+       if !@patient.email.blank?                                                 
         CitaMailer.programacion_cita(@patient,@appointment).deliver
-
+       end
 
         format.html { redirect_to patient_appointments_path(@patient.id), notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
