@@ -610,62 +610,54 @@
 
 
 
-<table  style="text-align: justify;font-size: 20px;padding: 20px 50px;width: 100%;margin-left: 50px;margin-top: 0px">
-
-<thead>
-
+<
  <%if @patient.user.tipo_firma == "Adjunta" %>
-      <tr>
-      <th>
+    <div class="row">
+              <%= wicked_pdf_image_tag @patient.user.firma_adjunta_url , style: "width:400px" if @patient.user.firma_adjunta_url %>
+    </div>
      
-      <%= wicked_pdf_image_tag @patient.user.firma_adjunta_url , style: "width:400px" if @patient.user.firma_adjunta_url %></th>
+
      
 
      
    
       
 
-      </th>
-    </tr>
 
-
-    <tr>
 
     <%if @patient.user.signature_format != nil%>
-      <td class="formato_firma">
+      <div class="row formato_firma">
       <% b = @patient.user.signature_format.gsub('{CEDULA}', @patient.user.document)
          c = b.gsub('{REGISTRO_MEDICO}', @patient.user.medical_record)
          d = c.gsub('{TARJETA_PROFESIONAL}', @patient.user.professional_card)%>
          
         <%== d %>
 
-      </td>
-
+          
+      </div>
       <%end%>
-    </tr>
+    
 
 
 
 
  <%elsif @patient.user.tipo_firma == "Firma Digital" %>
     
- <tr>
-      <td class="formato_firma">
+  <div class="row formato_firma">
            <img style="width:300px"  src="<%=@patient.user.firma_psicologo%>" alt="">
-      </td>
-    </tr>
+  </div>
+
      
 
-    <tr>
-      <td class="formato_firma">
+    <div class="row formato_firma">
       <% b = @patient.user.signature_format.gsub('{CEDULA}', @patient.user.document)
          c = b.gsub('{REGISTRO_MEDICO}', @patient.user.medical_record)
          d = c.gsub('{TARJETA_PROFESIONAL}', @patient.user.professional_card)%>
          
         <%== d %>
 
-      </td>
-    </tr>
+          
+      </div>
 
     <!--<tr>
      
@@ -685,13 +677,6 @@
       <%else%>
 
       <%end%>
-
-      
-    
-  </thead>
-  
-</table>
-
 
  
   
