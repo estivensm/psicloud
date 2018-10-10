@@ -1,18 +1,18 @@
 class ClinicHistoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_clinic_history, only: [:show, :edit, :update, :destroy]
-  before_action :is_account
+  #before_action :is_account
  
  
- def  is_account
-    @patient = Patient.find(params[:patient_id])
-   if @patient.admin_user != current_user.admin_user
+ #def  is_account
+    #@patient = Patient.find(params[:patient_id])
+   #if @patient.admin_user != current_user.admin_user
        
-       redirect_to patients_path
+       #redirect_to patients_path
   
-   end 
+   #end 
    
- end
+ #end
   # GET /clinic_histories
   # GET /clinic_histories.json
   def index
