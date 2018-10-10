@@ -352,7 +352,7 @@
          <%end%>-->
               <%= link_to  patient_clinic_history_tool_tests_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[1]}" do %>
           <i class="fa fa-wrench" style = "font-size:20px;" aria-hidden="true"></i>
-          Htas de Evaluación <span class="span-num"><%=@clinic_history.tool_tests.count%></span>
+         Gestion Documental<span class="span-num"><%=@clinic_history.tool_tests.count%></span>
          <%end%>
          <%= link_to  patient_step3_path(@patient.id,@clinic_history.id) , class: "btn btn-primary #{menu_patient[7]}" do %>
           <i class="fa fa-file" style = "font-size:20px;" aria-hidden="true"></i>
