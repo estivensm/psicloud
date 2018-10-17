@@ -1,18 +1,18 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy, :send_history]
   before_action :authenticate_user!
-  before_action :is_account, only: [:show, :edit, :update, :destroy, :send_history]
+  #before_action :is_account, only: [:show, :edit, :update, :destroy, :send_history]
 
 
- def  is_account
+ #def  is_account
    
-   if @patient.admin_user != current_user.admin_user
+   #if @patient.admin_user != current_user.admin_user
        
-       redirect_to patients_path
+       #redirect_to patients_path
   
-   end 
+   3end 
    
- end
+ #end
   
   # GET /patients
   # GET /patients.json
