@@ -10,7 +10,7 @@ class PatientsController < ApplicationController
        
        #redirect_to patients_path
   
-   3end 
+   #end 
    
  #end
   
