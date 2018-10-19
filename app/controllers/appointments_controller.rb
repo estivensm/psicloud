@@ -526,6 +526,8 @@ end
                                     :body => JSON.dump(@event),
                                     :headers => {'Content-Type' => 'application/json'})
             @appointment.google_event_id = @set_event.data.id
+            puts "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            puts @set_event.data.htmlLink
             @appointment.save
 
     end
