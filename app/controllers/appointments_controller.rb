@@ -514,13 +514,16 @@ end
             'location' => @appointment.place,
             'start' => { 'dateTime' => startdate },
             'end' => {'dateTime' => enddate  },
-            'attendees' => [ { "email" => current_user.email } ] }
+            'attendees' => [ { "email" => current_user.email } ] ,
+            'conferenceData' => { "createRequest" => { "requestId" => "7qxalsvy0e"} }
+
+          }
             client = Google::APIClient.new
             client.authorization.refresh_token = current_user.refresh_token_if_expired
             client.authorization.access_token = current_user.token
             service = client.discovered_api('calendar', 'v3')
             @set_event = client.execute(:api_method => service.events.insert,
-                                    :parameters => {'calendarId' => current_user.email, 'sendNotifications' => true, "conferenceDataVersion" => 1},
+                                    :parameters => {'calendarId' => current_user.email, 'sendNotifications' => true},
                                     :body => JSON.dump(@event),
                                     :headers => {'Content-Type' => 'application/json'})
             @appointment.google_event_id = @set_event.data.id
