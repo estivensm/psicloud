@@ -497,8 +497,7 @@ end
 
 
 
-
-       if current_user.token != nil
+ if current_user.token != nil
 
             t = @appointment.start_datetime
             t.min < 10 ? min = "0" : min = ""
@@ -523,7 +522,7 @@ end
             client.authorization.access_token = current_user.token
             service = client.discovered_api('calendar', 'v3')
             @set_event = client.execute(:api_method => service.events.insert,
-                                    :parameters => {'calendarId' => current_user.email, 'sendNotifications' => true},
+                                    :parameters => {'calendarId' => current_user.email, 'sendNotifications' => true, "conferenceDataVersion" => 1},
                                     :body => JSON.dump(@event),
                                     :headers => {'Content-Type' => 'application/json'})
             @appointment.google_event_id = @set_event.data.id
