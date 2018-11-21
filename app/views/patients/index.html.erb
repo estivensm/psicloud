@@ -28,16 +28,18 @@
 
       <div class = "row title-table hidden-xs hidden-sm" >
          <div class = "col-md-6">
-            <p class="title-h2"><%=@type%>PACIENTES   <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
+            <p class="title-h2"><%=@type%>PACIENTES  <%= "INACTIVOS" if action_name == "inactive"%> <span class="label label-primary"><%=@patients.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @patients, :entry_name => 'Pacientes' %></span> </p>
          </div>
        <!--  <div class = "col-md-4 paginate text-left title-table1">
             <%= will_paginate @patients%>
          </div>-->
          <div class = "col-md-6 text-right">
-           
-            
-   
-
+                      <%if action_name == "index"%>
+                        <%= link_to 'Inactivos', inactive_path, class: "btn btn-primary" %>
+                      <%else%>
+                           <%= link_to 'Activos', patients_path, class: "btn btn-primary"  %>
+                      <%end%>
+                <%if action_name == "index"%>        
             <div class="dropdown" style="display:inline-block">
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-download" aria-hidden="true"></i> Exportar
               <span class="caret"></span></button>
@@ -58,7 +60,7 @@
 
             <%= link_to 'Nuevo Paciente', new_patient_path, class: "btn btn-primary" if current_user.rol.create_patient  %>
 
-
+            <%end%>
 
          </div>
       </div>

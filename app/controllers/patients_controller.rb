@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
     @ip =  request.env['REMOTE_ADDR']
     @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
-    @patients = Patient.where(user_id: current_user.id).searchp(params[:search]).paginate(page: params[:page],:per_page => 20)
+    @patients = Patient.where(user_id: current_user.id).activos.searchp(params[:search]).paginate(page: params[:page],:per_page => 20)
     @patientspdf = Patient.where(user_id: current_user.id)
     @route = patients_path
   
@@ -52,6 +52,19 @@ class PatientsController < ApplicationController
         :show_as_html => params[:debug].present?
       end
     end
+  end
+
+  def inactive
+
+    puts request.ip
+    @ip =  request.env['REMOTE_ADDR']
+    @hpcs = Hpc.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @agreements = Agreement.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @patients = Patient.where(user_id: current_user.id).inactivos.searchp(params[:search]).paginate(page: params[:page],:per_page => 20)
+    @patientspdf = Patient.where(user_id: current_user.id)
+    @route = patients_path
+    
+    render 'index'
   end
 
   def csv

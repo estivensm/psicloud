@@ -324,7 +324,7 @@
 <!-- ################################################################################### -->
 
 
-<div class="col-md-2  hidden-xs hidden-sm" style="padding-left:0px !important;padding-right: 0px !important;">
+<div class="col-md-2  hidden-xs hidden-sm" style="<%='display:none;' if !@patient.state %>padding-left:0px !important;padding-right: 0px !important;">
 
 
 
@@ -396,12 +396,13 @@
             
 
        
-            <div class="col-md-8 title-panel">
+            <div class="col-md-7 title-panel">
                
          
             <h3 class="panel-title imagen-title" id="title" style="font-size: 20px;font-weight: bold;color:#5bc0de !important"> <span style="margin-right:10px">   <%= @patient.avatar? ? image_tag(@patient.avatar_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></span> <%= @patient.first_name.upcase %> <%= @patient.second_name.upcase %>  <%= @patient.first_last_name.upcase %>  <%= @patient.second_last_name.upcase %></h3>
             </div>
-             <div class="col-md-4 text-right buttoms">
+             <div class="col-md-5  buttoms">
+              <div class="col-md-6">
             <%= link_to  edit_patient_path(@patient.id), class: "btn btn-warning btg" , title:"Editar Paciente" do%>
             <i class="fas fa-edit" style = "font-size:20px"  aria-hidden="true"></i> 
             <%end%>
@@ -432,11 +433,21 @@
 
                   <%end%>
                 <%end%>
-
-
+                 </div>
+                <div class="col-md-6">
                   <%if controller_name == "patients"%>
-              <input type="checkbox" id="toggle-1"  >
+             <!-- <input type="checkbox" id="toggle-1"  >-->
+                 <div class="funkyradio" style="display: inline-block;">
+            <div class="funkyradio-info">
+
+               <input type="checkbox" name="state" id="state" value="<%=@patient.state %>" <%='checked="checked"' if @patient.state %>>
+               <label for="state" class = "state_l" style="    margin-top: 0px;"><%= @patient.state ? "Activo" : "Inactivo"%></label>
+            </div>
+
+
+
               <%end%>
+            </div>
             </div>
             </div>  
          </div>
@@ -1136,41 +1147,135 @@ border-radius: 50%;
    }
 </style>
 <script>
-   $(document).on('turbolinks:load',function() {
+
     
   
    
    
-       if (<%=@patient.state%> == true)
-       {
-          $('#toggle-1').bootstrapToggle('on')
-       }
-       else
-       {
-           $('#toggle-1').bootstrapToggle('off')
-       }
      
-     $('#toggle-1').change(function() {
-         if ( $(this).prop('checked') == true )
+
+          $('.state_l').click(function() {
+
+         if ( $(this).prev().prop('checked') == false )
          {
            $.get("change_state/true/" + <%=@patient.id%>, function(data) {
-           
+                $('.state_l').text("Activo");
            })
          }
          else
          {
            $.get("change_state/false/" + <%=@patient.id%>, function(data) {
+                $('.state_l').text("Inactivo");
            })
          }
    
        })
-     });
+  /*  */
    
+   
+
 </script>
 
 
 
-
+<style type="text/css" media="screen">
+   .funkyradio div {
+   overflow: hidden;
+   display: inline-block;
+    width: 125px;
+   }
+   .funkyradio label {
+    text-align: left;
+   width: 100%;
+   background: #ebebeb;
+   border-radius: 3px;
+   border: 1px solid #D1D3D4;
+   font-weight: normal;
+   }
+   .funkyradio input[type="radio"]:empty,
+   .funkyradio input[type="checkbox"]:empty {
+   display: none;
+   }
+   .funkyradio input[type="radio"]:empty ~ label,
+   .funkyradio input[type="checkbox"]:empty ~ label {
+   position: relative;
+   line-height: 2.5em;
+   text-indent: 3.25em;
+   margin-top: 5px;
+   cursor: pointer;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .funkyradio input[type="radio"]:empty ~ label:before,
+   .funkyradio input[type="checkbox"]:empty ~ label:before {
+   position: absolute;
+   display: block;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   content: '';
+   width: 2.5em;
+   background: #D1D3D4;
+   border-radius: 3px 0 0 3px;
+   }
+   .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+   .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+   color: #888;
+   }
+   .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+   .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+   content: '\2714';
+   text-indent: .9em;
+   color: #C2C2C2;
+   }
+   .funkyradio input[type="radio"]:checked ~ label,
+   .funkyradio input[type="checkbox"]:checked ~ label {
+   color: #777;
+   }
+   .funkyradio input[type="radio"]:checked ~ label:before,
+   .funkyradio input[type="checkbox"]:checked ~ label:before {
+   content: '\2714';
+   text-indent: .9em;
+   color: #333;
+   background-color: #ccc;
+   }
+   .funkyradio input[type="radio"]:focus ~ label:before,
+   .funkyradio input[type="checkbox"]:focus ~ label:before {
+   box-shadow: 0 0 0 3px #999;
+   }
+   .funkyradio-default input[type="radio"]:checked ~ label:before,
+   .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+   color: #333;
+   background-color: #ccc;
+   }
+   .funkyradio-primary input[type="radio"]:checked ~ label:before,
+   .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #337ab7;
+   }
+   .funkyradio-success input[type="radio"]:checked ~ label:before,
+   .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #5cb85c;
+   }
+   .funkyradio-danger input[type="radio"]:checked ~ label:before,
+   .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #d9534f;
+   }
+   .funkyradio-warning input[type="radio"]:checked ~ label:before,
+   .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #f0ad4e;
+   }
+   .funkyradio-info input[type="radio"]:checked ~ label:before,
+   .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #5bc0de;
+   }
+</style>
 
 
 

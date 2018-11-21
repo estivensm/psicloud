@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   get 'cambiar_state/:estado/:id/:field', to: 'field_defaults#cambiar_state', as: 'cambiar_state' 
 
   get "all_patients", to: "patients#all_patients", as: "all_patients"
+  get "inactive", to: "patients#inactive", as: "inactive"
   
 
   get '/child_get/:id', to: 'child_general_dates#child_get' 
@@ -139,7 +140,7 @@ Rails.application.routes.draw do
 
   #User
   devise_for :users,
-:controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+      :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   devise_scope :user do 
     get "users/index", to: "users/views#index", as: "users_index"
     get '/users/new', to: 'users/views#new_user', as: "new_user"

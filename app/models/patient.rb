@@ -55,7 +55,12 @@ class Patient < ApplicationRecord
      has_many :tasks
      mount_uploader :avatar, AvatarPatientUploader 
      after_create :crear_historia
+  
 
+     scope :activos, -> { where(state: true) }
+     scope :inactivos, -> { where(state: false) }
+
+ 
 
   def crear_historia
   

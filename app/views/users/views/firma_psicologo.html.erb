@@ -22,8 +22,68 @@
            <hr>
 
 
-           <div class="row">
-           <div class="col-md-12">
+         
+         <div class="col-md-12">
+            <div  class= "clase_form row" >
+               <div class="col-md-9"> 
+                 <div class="wrapper">
+                  <canvas id="signature-pad" class="signature-pad" width=400 height=150 ></canvas>
+                 </div>
+
+               </div>
+                <div class="col-md-3"> 
+                 <div>
+                    <%=form_tag crear_firma_psicologo_path, remote: true, class: "form_firma" do %>
+                      <%= hidden_field_tag :firma_psicologo, nil, id: "firma_paciente"%>
+                      <%= hidden_field_tag :user_id, @user.id, id: "firma_paciente"%>
+                      <%= submit_tag "Confirmar", class: "btn btn-primary", id: "save-png"%>
+                    <%end%> <br>
+                     <br>
+                    <button id="clear"  class = "btn btn-default">Limpiar</button>
+                    <div class="alert alert-success" style="display:none;    padding: 4px;" role="alert">¡ Guardada !</div>
+                </div>
+
+
+                </div>
+               <br>
+              
+            </div>
+           </div>   
+          <div class="col-md-12">
+
+               <div class="clase_img text-center" >
+                  <hr>
+               <img style="width: 250px" src="<%=@user.firma_psicologo%>" alt=""><br>
+               <br>
+             
+            </div>
+          </div>    
+             
+
+          
+         </div>
+         <div class="col-md-6 ">
+           <h3 style="text-align:center">Firma Adjunta</h3>
+           <hr>
+           <br>
+
+          <%= form_tag crear_firma_adjunta_path, multipart: true , method: :post, class: "form-inline" do %>
+              <div class="form-group">
+                  <%= file_field_tag :firma_adjunta %>
+                  <%= hidden_field_tag :user_id, @user.id, id: "firma_adjunta"%>
+               </div>
+               <div class="form-group">
+                  <%= submit_tag "Subir firma", class: "btn btn-primary"%>
+              </div>
+              
+          <%end%>
+          <br>
+          <%= image_tag @user.firma_adjunta_url, style: "width:300px" if @user.firma_adjunta_url%>
+         </div>
+      </div>
+      <hr>
+       <div class="row">
+           <div class="col-md-6">
              
            
              <%= form_tag crear_formato_path, multipart: true , method: :post, class: "" do %>
@@ -39,48 +99,18 @@
               </div>
               <%end%>
               </div>
-                </div> 
-            <div class="clase_img text-left" >
-               <img style="width: 250px" src="<%=@user.firma_psicologo%>" alt=""><br>
-               <br>
-               <p>Firma del Psicólogo </p>
-            </div>
-            <div  class= "clase_form" >
-               <div class="wrapper">
-                  <canvas id="signature-pad" class="signature-pad" width=400 height=200 ></canvas>
-               </div>
-               <br>
-               <div>
-                  <%=form_tag crear_firma_psicologo_path, remote: true, class: "form_firma" do %>
-                  <%= hidden_field_tag :firma_psicologo, nil, id: "firma_paciente"%>
-                  <%= hidden_field_tag :user_id, @user.id, id: "firma_paciente"%>
-                  <%= submit_tag "Confirmar", id: "save-png"%>
-                  <%end%> 
-                  <button id="clear">Limpiar</button>
-                  <div class="alert alert-success" style="display:none;    padding: 4px;" role="alert">¡ Guardada !</div>
-               </div>
-            </div>
 
-          
-         </div>
-         <div class="col-md-6 ">
-           <h3 style="text-align:center">Firma Adjunta</h3>
-           <hr>
-           <br>
-          <%= form_tag crear_firma_adjunta_path, multipart: true , method: :post, class: "form-inline" do %>
-              <div class="form-group">
-                  <%= file_field_tag :firma_adjunta %>
-                  <%= hidden_field_tag :user_id, @user.id, id: "firma_adjunta"%>
-               </div>
-               <div class="form-group">
-                  <%= submit_tag "Subir firma", class: "btn btn-primary"%>
-              </div>
-              
-          <%end%>
-          <br>
-          <%= image_tag @user.firma_adjunta_url, style: "width:300px" if @user.firma_adjunta_url%>
-         </div>
-      </div>
+                <div class="col-md-6">
+                      <div class="row formato_firma">
+                          <% b = @patient.user.signature_format.gsub('{CEDULA}', @patient.user.document)
+                          c = b.gsub('{REGISTRO_MEDICO}', @patient.user.medical_record)
+                          d = c.gsub('{TARJETA_PROFESIONAL}', @patient.user.professional_card)%>
+                          <%== d %>
+                </div>
+
+           </div>
+      </div> 
+      
       <style>
          .form-inline
          {
@@ -94,7 +124,7 @@
          h5
          {
          text-align: center;
-         margin: 50px 20px 50px 20px;
+         margin: 10px 20px 20px 20px;
          background: #5bc0de;
          color: white;
          padding: 12px;
@@ -126,19 +156,20 @@
    .wrapper {
    position: relative;
    width: 400px;
-   height: 200px;
+   height: 170px;
    -moz-user-select: none;
    -webkit-user-select: none;
    -ms-user-select: none;
    user-select: none;
+   
    }
    .signature-pad {
    position: absolute;
    left: 0;
    top: 0;
    width:400px;
-   height:200px;
-   border:1px solid whitesmoke;
+   height:170px;
+   border:1px solid gray;
    }
    .tinymce_p
    {
