@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Clinic Histories</h1>
-
-<table class="table">
+<div style="overflow: scroll;">
+<table  >
   <thead>
     <tr>
       <th>id</th>
 
-      <th>Motivo de Consulta</th>
+      <th >Motivo de Consulta</th>
       <th>Estado Actual</th>
-      <td>Dinamica Familiar</td>
+      <th>Dinamica Familiar</th>
       
 
       <th>Hipotesis Diagnostica</th>
@@ -19,6 +19,7 @@
 
 
       <th>Admin user</th>
+       <th>Admin</th>
       <th>Patient</th>
       
 
@@ -27,34 +28,46 @@
   </thead>
 
   <tbody>
-    <% @clinic_histories.each do |clinic_history| %>
+    <% @clinic_histories.order(admin_user: :desc).each do |clinic_history| %>
       <tr>
-        <td><%= clinic_history.id %></td>
+        <td ><div>  <%= clinic_history.id %></div></td>
 
-        <td><%= clinic_history.consultation_reason %></td>
-        <td><%= clinic_history.actual_state %></td>
-        <td><%= clinic_history.family_dinamic %></td>
+        <td><div class="info"><%= clinic_history.consultation_reason %></div></td>
+        <td><div class="info"><%= clinic_history.actual_state %></div></td>
+        <td><div class="info"><%= clinic_history.family_dinamic %></div></td>
 
 
 
-        <td><%= clinic_history.diagnostic_hypothesis %></td>
-        <td><%= clinic_history.therapeutic_goal %></td>
-        <td><%= clinic_history.type_of_treatment%></td>
+        <td><div class="info"><%= clinic_history.diagnostic_hypothesis %></div></td>
+        <td><div class="info"><%= clinic_history.therapeutic_goal %></div></td>
+        <td><div class="info"><%= clinic_history.type_of_treatment%></div></td>
  
 
-        <td><%= clinic_history.user.email %></td>
-        <td><%= clinic_history.patient_id %></td>
+        <td ><div class="info"><%= clinic_history.user.email %></div></td>
+         <td><div class="info"><%= clinic_history.user.id %></div></td>
+       <td><div class="info"><%= clinic_history.patient_id %></div></td>
        
-         <td><%=clinic_history.first_contact_state%>-<%= get_date(clinic_history.first_contact_created_at)%> </td>
-                    <td><%=clinic_history.first_child_state%>-<%=get_date(clinic_history.child_first_created_at)%></td>
-                    <td><%=clinic_history.second_child_state%>-<%=get_date(clinic_history.second_child_created_at)%> </td>
-                    <td><%=clinic_history.third_child_state%>-<%=get_date(clinic_history.third_child_created_at)%> </td>
-                    <td><%=clinic_history.four_child_state%>-<%=get_date(clinic_history.four_child_created_at)%> </td>
-                    <td><%=clinic_history.desenlace_first%>-<%=get_date(clinic_history.desenlace_created_at)%> </td>
+         <td ><div class="info"><%=clinic_history.first_contact_state%>-<%= get_date(clinic_history.first_contact_created_at)%> </div></td>
+                   <td><div class="info"><%=clinic_history.first_child_state%>-<%=get_date(clinic_history.child_first_created_at)%></div></td>
+                   <td ><div class="info"><%=clinic_history.second_child_state%>-<%=get_date(clinic_history.second_child_created_at)%> </div></td>
+                    <td ><div class="info"><%=clinic_history.third_child_state%>-<%=get_date(clinic_history.third_child_created_at)%></div> </td>
+                    <td ><div class="info"><%=clinic_history.four_child_state%>-<%=get_date(clinic_history.four_child_created_at)%> </div></td>
+                   <td ><div class="info"><%=clinic_history.desenlace_first%>-<%=get_date(clinic_history.desenlace_created_at)%> </div></td>
 
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
+ 
+
+ <style>
+   .info
+   {
+    width: 200px;
+    height: 80px;
+    overflow: hidden;
+    max-height: 80px;
+   }
+ </style>
