@@ -43,7 +43,7 @@ gem 'momentjs-rails', '~> 2.20', '>= 2.20.1'
 #gem para acceder a los servicios de google
 gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 gem "brakeman", :require => false
-
+gem 'toastr_rails'
 #gem para el manejo de usuarios
 gem 'devise', '~> 4.3'
 gem 'newrelic_rpm'
