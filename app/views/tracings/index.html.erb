@@ -32,14 +32,7 @@
                <i class="fa fa-pencil" aria-hidden="true"></i><%end%>
               <%end%>
 
-               <%= link_to  patient_clinic_history_tracing_path(@patient.id, @clinic_history.id, tracing), method: :delete, data: {
-                  confirm: '¿Estas Seguro?',
-                  'confirm-button-text': 'Borrar',
-                  'cancel-button-text': 'Cancelar',
-                  'confirm-button-color': '#CC0000',
-                   text: 'Recuerda que el registro se borrara permanentemente',
-                  'image-url': ''}, class:"icon" do %>
-               <i class="fa fa-trash" aria-hidden="true"></i><%end%>
+              
             </div>
          </div>
       </div>
