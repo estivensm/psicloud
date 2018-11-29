@@ -24,6 +24,7 @@
 //= require chosen-jquery
 //= require ckeditor-jquery
 //= require config
+//= require toastr_rails
 //= require Chart.min
 //= require jquery.datetimepicker
 //= require jquery.validate.additional-methods
@@ -409,3 +410,23 @@ Q.test(a[l])&&(a[l]=a[l].replace(Q,""));"."===a[0].charAt(0)&&k&&(l=k.slice(0,k.
 
 });
 
+
+
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}

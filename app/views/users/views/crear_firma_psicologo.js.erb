@@ -1,11 +1,13 @@
  <% if @state %>
-
+var mensaje = toastr["success"]("La Firma se Guardo con <b>exito!</b>")
  $('.clase_img img').attr("src" ,"<%=@user.firma_psicologo%>");
  $('#firma_paciente').val("");
- $('.alert-success').css("display", "inline-block");
-    setTimeout(function() {
-         $('.alert-success').fadeOut();
-    }, 2000);
+$(mensaje).fadeIn();
+  setTimeout(function(){
+  	$(mensaje).fadeOut();
+
+      }, 3000);
+
 
 <%end%>    
 

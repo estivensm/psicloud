@@ -27,7 +27,7 @@
 
             <br>
          </div>
-            <div class="col-md-5 info" >
+            <div class="col-md-5 info" style="padding: 0px;" >
                <div class="panel panel-default">
                   <div class="panel-heading" ><strong><i class="fa fa-calendar" style = "font-size:20px;" aria-hidden="true"></i><span> PRÓXIMA CITA </strong></span>
                   </div>
@@ -68,7 +68,7 @@
                   </div>
                </div>
             </div>
-            <div class="col-md-7 info">
+            <div class="col-md-7 info" style="padding-right: 0px;">
                <div class="panel panel-default">
                   <div class="panel-heading"> <span class="glyphicon glyphicon-edit"></span> <strong>ULTIMO SEGUIMIENTO </strong></div>
                   <div class="panel-body" style="min-height: 100px;">
@@ -95,7 +95,7 @@
                </div>
             </div>
 
-            <div class="col-md-7 info">
+            <div class="col-md-7 info"  style="padding-right: 0px;">
                <div class="panel panel-default">
                   <div class="panel-heading"> <span class="glyphicon glyphicon-file"></span> <strong>FORMATOS CREADOS </strong></div>
                   <div class="panel-body" style="min-height: 100px;">
@@ -124,12 +124,11 @@
 
 
 <style>
+
   @media only screen and (max-width: 600px) { 
 
-    .info{
-      width: 121%;
-      padding: 0px;
-      margin-left: -31px;
+    .panel > .panel-info{
+      margin-left: 28px;
     }
 
   } 
@@ -137,7 +136,14 @@
 
 
   @media only screen and (max-width: 900px) {
+    .info{
+      padding: 0px;
+    }
 
+    .ñ{
+      padding: 0px;
+      float: right;
+    }
   } 
 
 
