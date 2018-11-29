@@ -97,12 +97,12 @@
 
               <div class="col-md-6">
                 <div class="row formato_firma">
-                <% if  @user.signature_format != nil %>
+               
                   <% b = @user.signature_format.gsub('{CEDULA}', @user.document)
                     c = b.gsub('{REGISTRO_MEDICO}', @user.medical_record)
                     d = c.gsub('{TARJETA_PROFESIONAL}', @user.professional_card)%>
                   <%== d %>
-                <% end -%>
+            
                 </div>
               </div>
             <% end %>
