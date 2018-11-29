@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>id</th>
-
+      <th >Seguimientos</th>    
       <th >Motivo de Consulta</th>
       <th>Estado Actual</th>
       <th>Dinamica Familiar</th>
@@ -30,6 +30,7 @@
   <tbody>
     <% @clinic_histories.order(admin_user: :desc).each do |clinic_history| %>
       <tr>
+        <td ><div>  <%= clinic_history.tracings %></div></td>
         <td ><div>  <%= clinic_history.id %></div></td>
 
         <td><div class="info"><%= clinic_history.consultation_reason %></div></td>
