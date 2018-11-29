@@ -57,6 +57,11 @@ end
 def firma_psicologo
 
       @user = User.find(params[:id])
+      if @user.signature_format == nil
+
+          @user.signature_format == ""
+          @user.save
+      end  
       if @user.tipo_firma == "Adjunta"
          puts "adjuntaaa"
          @adjunta = true
