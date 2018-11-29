@@ -99,5 +99,15 @@
    {
    font-size: 20px;
    padding: 20px;
+   width: 
    }
 </style>
+
+<script type="text/javascript">
+var mensaje = toastr["success"](" <%= notice %>")
+$(mensaje).fadeIn();
+  setTimeout(function(){
+   $(mensaje).fadeOut();
+
+      }, 3000);
+</script>
