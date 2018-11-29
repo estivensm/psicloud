@@ -58,8 +58,22 @@ def firma_psicologo
 
       @user = User.find(params[:id])
       if @user.signature_format.nil?
-          puts "signatureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
           @user.signature_format = ""
+          @user.save
+      end  
+
+      if @user.professional_card.nil?
+          @user.professional_card = ""
+          @user.save
+      end  
+
+      if @user.medical_record.nil?
+          @user.medical_record = ""
+          @user.save
+      end  
+
+       if @user.document.nil?
+          @user.document = ""
           @user.save
       end  
 
