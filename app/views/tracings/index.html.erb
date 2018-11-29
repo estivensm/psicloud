@@ -10,7 +10,7 @@
          </p>
       </div>
       <div class = "col-md-3">
-         <%= link_to 'Nuevo Seguimiento', new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), class: "btn btn-primary"  %>
+         <%= link_to 'Nuevo Seguimiento', new_patient_clinic_history_tracing_path(@patient.id, @clinic_history.id), class: "btn btn-primary", style: "float: right;"  %>
       </div>
       <div class = "col-md-12 paginate text-left title-table1">
          <%= will_paginate @tracings%>
@@ -104,6 +104,7 @@
 </style>
 
 <script type="text/javascript">
+   <%= 'display:none;' if notice.nil? %>
 var mensaje = toastr["success"](" <%= notice %>")
 $(mensaje).fadeIn();
   setTimeout(function(){
