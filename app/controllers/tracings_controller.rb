@@ -70,6 +70,7 @@ class TracingsController < ApplicationController
 
         format.html { redirect_to patient_clinic_history_tracings_path(params[:patient_id],params[:clinic_history_id]), notice: 'El Seguimiento se Creo con exito!' }
         format.json { render :show, status: :created, location: @tracing }
+         flash[:partial] = 'El Seguimiento se Creo con exito!'
       else
         format.html { redirect_to root_path }
         format.json { render json: @tracing.errors, status: :unprocessable_entity }

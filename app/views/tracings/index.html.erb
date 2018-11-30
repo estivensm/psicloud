@@ -1,3 +1,4 @@
+
 <%if @clinic_history.tracings.count != 0%>
 <div class="row" style = "padding: 10px 45px;">
    <div class = "row title-table" >
@@ -103,12 +104,15 @@
    }
 </style>
 
-<script type="text/javascript">
-   <%= 'display:none;' if notice.nil? %>
-var mensaje = toastr["success"](" <%= notice %>")
-$(mensaje).fadeIn();
-  setTimeout(function(){
-   $(mensaje).fadeOut();
 
-      }, 3000);
+
+<script type="text/javascript">
+<% if flash[:partial] %>
+      var mensaje = toastr["success"](" <%= flash[:partial] %>")
+      $(mensaje).fadeIn();
+        setTimeout(function(){
+         $(mensaje).fadeOut();
+
+            }, 3000);
+<% end -%>
 </script>
