@@ -445,24 +445,6 @@ end%>
 
 
 
-<div class = "fields_history" style="display:<%=@antecedentes%>">
-  
-   <h3 class= "color-gray">Antecedentes</h3>
-   <h4><strong>Personales</strong></h4>
-   <%@clinic_history.personal_backgrounds.each do |ch|%>  
-   <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
-  
-   <br><strong>Descripción:</strong> <%=ch.description%><br><br>
-   <%end%>
-   <h4><strong>Familiares</strong></h4>
-   <%@clinic_history.backgrounds.each do |ch|%>  
-   <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
-
-   <br><strong>Descripción:</strong> <%=ch.description%><br><br>
-   <%end%>
-    <hr>
-</div>
-
 
 
 
@@ -506,6 +488,24 @@ end%>
 
 
 <%end%>
+
+<div class = "fields_history" style="display:<%=@antecedentes%>">
+  
+   <h3 class= "color-gray">Antecedentes</h3>
+   <h4><strong>Personales</strong></h4>
+   <%@clinic_history.personal_backgrounds.each do |ch|%>  
+   <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
+  
+   <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+   <%end%>
+   <h4><strong>Familiares</strong></h4>
+   <%@clinic_history.backgrounds.each do |ch|%>  
+   <strong>Tipo:</strong> <%=ch.type_background %> &nbsp;
+
+   <br><strong>Descripción:</strong> <%=ch.description%><br><br>
+   <%end%>
+    <hr>
+</div>
 
 
 
