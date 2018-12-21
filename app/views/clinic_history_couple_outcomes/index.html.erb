@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Clinic History Couple Outcomes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clinic history family</th>
+      <th>Clinic history couple</th>
+      <th>Diagnostic description</th>
+      <th>Therapeutic goal</th>
+      <th>Type of treatment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clinic_history_couple_outcomes.each do |clinic_history_couple_outcome| %>
+      <tr>
+        <td><%= clinic_history_couple_outcome.clinic_history_family_id %></td>
+        <td><%= clinic_history_couple_outcome.clinic_history_couple_id %></td>
+        <td><%= clinic_history_couple_outcome.diagnostic_description %></td>
+        <td><%= clinic_history_couple_outcome.therapeutic_goal %></td>
+        <td><%= clinic_history_couple_outcome.type_of_treatment %></td>
+        <td><%= link_to 'Show', clinic_history_couple_outcome %></td>
+        <td><%= link_to 'Edit', edit_clinic_history_couple_outcome_path(clinic_history_couple_outcome) %></td>
+        <td><%= link_to 'Destroy', clinic_history_couple_outcome, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Clinic History Couple Outcome', new_clinic_history_couple_outcome_path %>

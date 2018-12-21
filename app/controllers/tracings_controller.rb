@@ -125,8 +125,13 @@ class TracingsController < ApplicationController
     end
 
     def set_tracing_info
-      @patient = Patient.find(params[:patient_id])
-      @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+      
+      if controller_name == "clinic_history_couples"
+        @clinic_history_couple = ClinicHistoryCouple.find(params[:clinic_history_couple_id])
+      else
+        @clinic_history = ClinicHistory.find(params[:clinic_history_id])
+        @patient = Patient.find(params[:patient_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

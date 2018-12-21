@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Clinic history couple:</strong>
+  <%= @tracing_couple_family.clinic_history_couple_id %>
+</p>
+
+<p>
+  <strong>Clinic history family:</strong>
+  <%= @tracing_couple_family.clinic_history_family_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @tracing_couple_family.admin_user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tracing_couple_family.user_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tracing_couple_family.description %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @tracing_couple_family.attachment %>
+</p>
+
+<p>
+  <strong>Tracing type:</strong>
+  <%= @tracing_couple_family.tracing_type %>
+</p>
+
+<p>
+  <strong>Tracing date:</strong>
+  <%= @tracing_couple_family.tracing_date %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @tracing_couple_family.observation %>
+</p>
+
+<p>
+  <strong>Evolution:</strong>
+  <%= @tracing_couple_family.evolution %>
+</p>
+
+<p>
+  <strong>Tracing state:</strong>
+  <%= @tracing_couple_family.tracing_state %>
+</p>
+
+<%= link_to 'Edit', edit_tracing_couple_family_path(@tracing_couple_family) %> |
+<%= link_to 'Back', tracing_couple_families_path %>

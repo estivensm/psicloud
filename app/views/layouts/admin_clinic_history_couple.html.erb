@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+   <head>
+
+    <title>Psicloud</title>
+
+ 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= favicon_link_tag 'https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/192/Sin-t_tulo-1.png' %>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
+    <%= javascript_include_tag 'https://unpkg.com/axios/dist/axios.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   </head>
+   
+ <body class="admin">
+	<% menu %>
+    <nav class="navbar navbar-default first-navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" style = "background:white" href="#"><img src="https://farm5.staticflickr.com/4539/38260696042_45b37e8f87_n.jpg" alt=""></a>
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+        </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">         
+               </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <%if current_user.rol.configuracion%>
+                  <li class="dropdown <%=@menu[4]%> "  >
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i>Configuración <span class="caret"></span></a>
+
+                     <ul class="dropdown-menu" style="width: 177% !important;">
+                      
+                         <% account = Account.where(admin_user: current_user.admin_user).first %>
+                        <%if account.account_type != "Psicologo" || current_user.super_admin %>
+
+                        <li ><%= link_to  users_index_path, style: "color:gray !important" do %>
+                        <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Usuarios
+                        <% end -%>
+                        </li>
+
+                        <li><%= link_to rols_path, style: "color:gray !important" do %>
+                        <i class="fas fa-briefcase" style="padding-left: 4px; color: #306C95;"></i> Roles
+                        <% end -%>
+                        </li>
+                        <% end -%>
+                     
+
+                          <li><%= link_to hpcs_path , style: "color:gray !important" do%>
+                           <i class="fas fa-heart" style="padding-left: 4px; color: #306C95;"></i>  Eps
+                          <% end -%>
+                          </li>
+
+                          <li><%= link_to  agreements_path , style: "color:gray !important" do %>
+                          <i class="fas fa-building" style="padding-left: 4px; color: #306C95;"></i> Convenio
+                          <% end -%>
+                          </li>
+          
+                          <li><%= link_to account_path(get_account), style: "color:gray !important" do %>
+                          <i class="fa fa-cog color-gray" style="padding-left: 4px; color: #306C95;"></i> Configuración de Cuenta
+                          <% end -%>
+                          </li>
+
+                          <li><%= link_to fields_path , style: "color:gray !important" do %>
+                          <i class="fas fa-clipboard" style="padding-left: 4px; color: #306C95;"></i> Configuración de Formularios
+                          <% end -%>
+                          </li>
+
+                          <li><%= link_to  consents_path , style: "color:gray !important" do %>
+                          <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> Configuración de Consentimiento
+                          <% end -%>
+                          </li>
+                         
+                          <%if current_user.super_admin%>
+                          <li><%= link_to  clinichistory_configs_path , style: "color:gray !important" do %>
+                          <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> configuracion de historia clinica admin
+                          <% end -%>
+                          </li>
+                          <%end%>
+                          <%if account.account_type == "Psicologo" || current_user.super_admin %>
+                          <li><%= link_to  edit_clinichistory_config_path(ClinichistoryConfig.where(admin_user: current_user.admin_user).first.id) , data: { turbolinks: false }  , style: "color:gray !important" do %>
+                          <i class="far fa-address-book" style="padding-left: 4px; color: #306C95;"></i> configuracion de historia clinica
+                          <% end -%>
+                          </li>
+                          <%end%>
+
+                     
+
+                        <%if current_user.super_admin%>
+
+                         <li><%= link_to  accounts_path, style: "color:gray !important;" do  %>
+                           <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Cuentas
+                         <% end -%>
+                         </li>
+                  
+                        <%end%>
+
+                     </ul>
+                  
+                  <%end%>
+
+<li class="hidden-xs hidden-sm" style = "height: 51px;margin-left: 20px;margin-right: 15px;" class="l1"> <%= (image_tag Account.where(admin_user: current_user.admin_user).first.logo_url , style: "width:150px;height:60px") if Account.where(admin_user: current_user.admin_user).first.logo? %></li>
+      <li class="dropdown">
+         <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=""> <i class="fa fa-user"  style = "font-size:20px;" color-gray icon" aria-hidden="true"></i> <%=current_user.names  %> <span class="caret"></span></a>
+         
+         <ul class="dropdown-menu" style="padding: 5px 5px 5px 5px; min-width: 145px !important;">
+
+                        <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
+                           <i class="fas fa-pencil-alt color-gray icon" style="font-size: 14px !important; color: #306C95;" aria-hidden="true"></i>
+                           <span class = "color-gray">Editar</span>
+                           <% end %>
+                        </li>
+                        
+
+                        <li> <%= link_to show_user_path(current_user.id), :class => "indicadores" do %>
+                           <i class="far fa-eye color-gray icon"  style="font-size: 14px !important; color: #306C95;"  aria-hidden="true"></i>
+                           <span class = "color-gray">Ver Usuario</span>
+                           <% end %>
+                        </li>
+
+                        <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
+                           <i class="fas fa-sign-out-alt color-gray icon"  style="font-size: 14px !important; color: #306C95;"  aria-hidden="true"></i>
+                           <span class = "color-gray">Cerrar Sesion</span>
+                           <% end %>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<% menu %>
+
+  <div id='menu1'>
+    <ul>
+
+      <li class="<%=@menu[0]%>"><%= link_to root_path do %>
+        <i class="fa fa-home color-gray icon" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm" " ">Inicio</span>
+        <% end %>
+      </li>
+
+      <li  class="<%=@menu[2]%>"><%= link_to patients_path do %>
+        <i class="fas fa-address-card icon" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Pacientes</span>
+        <% end %>
+      </li>
+
+      <li class="has-sub <%=@menu[7]%>"><a style="user-select: none;">
+        <i class="fa fa-users color-gray icon" style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Pareja Y Familia</span>
+        </a>
+        <ul style="max-width: 190px;">
+
+          <li ><%= link_to  clinic_history_families_path, style: "color:gray !important" do%>
+              <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Familia
+          <% end -%>
+          </li>
+          
+
+          <li><%= link_to clinic_history_couples_path , style: "color:gray !important" do%>
+              <i class="fas fa-calendar-alt" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Pareja
+          <% end -%>
+          </li>
+        
+        </ul>
+      </li>
+
+
+      <li class="<%=@menu[3]%>"><%= link_to citas_path do %>
+        <i class="fas fa-calendar-check" style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Citas</span>
+        <% end %>
+      </li>
+
+      <li  class="<%=@menu[5]%>"><%= link_to documents_path do %>
+        <i class="fas fa-file-alt"  style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm"> Formatos</span>
+        <% end %>
+       </li>
+
+      <li  class="<%=@menu[6]%>"><%= link_to stats_path do %>
+        <i class="fa fa-bar-chart-o icon"  style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm"> Estadísticas</span>
+        <% end %>
+      </li>
+<% account = Account.where(admin_user: current_user.admin_user).first %>
+  <%if account.account_type != "Psicologo" || current_user.super_admin %>
+    <%if current_user.rol.configuracion%>
+
+      <li class="has-sub"><a style="user-select: none;">
+        <i class="fa fa-list color-gray icon" style = "font-size:20px;" aria-hidden="true"></i>
+        <span class = "color-gray hidden-xs hidden-sm">Información General</span>
+        </a>
+        <ul>
+
+          <li ><%= link_to all_patients_path , style: "color:gray !important" do%>
+              <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Todos los Pacientes 
+          <% end -%>
+          </li>
+          
+
+          <li><%= link_to citas_admin_path , style: "color:gray !important" do%>
+              <i class="fas fa-calendar-alt" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Todas las Citas
+          <% end -%>
+          </li>
+          
+          <li><%= link_to general_stats_path , style: "color:gray !important" do%>
+              <i class="fas fa-chart-bar" style="padding-left: 4px; color: #306C95; padding-right: 6px;"></i> Estadísticas Generales
+          <% end -%>
+          </li>
+
+        </ul>
+      </li>
+      <% end -%>
+    <% end -%>
+
+    </ul>
+  </div>
+
+  <div id='cssmenu' style="margin-left: -5px; margin-top: 10px;">
+    <ul>
+          <li><%= link_to "Inicio", root_path%></li> 
+          <li><%= link_to "Historial de Parejas ", clinic_history_couples_path%></li>
+
+          <% if controller_name == "tracing_couple_families" || controller_name == "document_couple_families" || controller_name == "clinic_history_families"%>
+              <li class="active"><%= link_to "Nuevo Seguimiento ", new_tracing_couple_family_path %></li>
+          <% else %>
+              <li class="active"><%= link_to "#{@clinic_history_couple.patient.first_name } #{@clinic_history_couple.patient.second_name }", clinic_history_couples_path(@clinic_history_couple.id)%></li>
+          <% end -%>
+    </ul>
+  </div>
+
+  <div class="col-md-5" style="float: right;  margin-top: 10px; padding-right: 26px;">
+     <%= link_to "Volver", clinic_history_couples_path, class: "btn btn-primary btn1", style: "float: right;"%>
+  </div>
+<% menu_clinic %>
+<div class="container-fluid">
+  <div class="row content">
+    <br>
+    <div class="col-sm-2 sidenav hidden-xs">
+      <ul class="nav nav-pills nav-stacked">
+
+        <li class="<%= @menu_clinic_history[0] %>">
+          <%= link_to clinic_history_couples_path(@clinic_history_couple) do %>
+              <i class="fas fa-user-friends"></i> Pareja
+          <% end -%>
+        </li>
+
+        <% if controller_name == "tracing_couple_families" || controller_name == "document_couple_families"  || controller_name == "clinic_history_families" %>
+
+          <li class="<%= @menu_clinic_history[0] %>">
+              <%= link_to clinic_history_couples_path(@clinic_history_couple) do %>
+                <i class="fas fa-user-friends"></i> Pareja
+              <% end -%>
+          </li>
+
+        <% else %>
+
+          <li class="<%= @menu_clinic_history[1] %>">
+            <%= link_to edit_clinic_history_couple_clinic_history_couple_outcome_path(@clinic_history_couple.id, @clinic_history_couple_outcome.id) do %>
+              <i class="fas fa-user-friends"></i> Desenlace
+            <% end -%>
+          </li>
+        <% end -%>
+
+        <li class="<%= @menu_clinic_history[2] %>">
+          <%= link_to tracing_couple_families_path do %>
+              <i class="fas fa-user-friends"></i> Seguimientos  <span class="badge">2</span>
+          <% end -%>
+        </li>
+
+        <li class="<%= @menu_clinic_history[3] %>">
+          <%= link_to document_couple_families_path do %>
+              <i class="fas fa-file-signature"></i> Gestion Documental </span>
+          <% end -%>
+        </li>
+
+        <li class="<%= @menu_clinic_history[4] %>">
+          <%= link_to clinic_history_families_path do %>
+              <i class="fas fa-file-signature"></i> Historial Clinico Familiar </span>
+          <% end -%>
+        </li>
+
+      </ul>
+    </div>
+	 <%= yield %>
+  </div>
+</div>
+
+</body>
+</html>
+
+<style>
+
+.nav-tabs>li.active>a{
+  background: #5bbbe1 !important;
+  color: #fff;
+}
+
+.nav-tabs>li>a:hover{
+  background: #5bbbe1 !important;
+  color: #fff;
+}
+
+.nav-tabs{
+  border-bottom: 3px solid #5bbbe1;
+}
+
+.icon{
+   font-size:20px !important;
+   margin-right: 5px !important;
+}
+
+.navbar-brand {
+  height: 58px !important;
+}
+
+.navbar-brand img{
+  margin-top: 10px;
+}
+
+.stats{
+  width:145px;
+}
+
+@media (max-width: 900px) {
+
+  .li{
+    text-align: left !important;
+    display: inline-block !important;
+    width: auto !important;
+  }
+
+  .stats{
+    width:auto !important;
+  }
+
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+ul > a:h{
+  background-color: red;
+}
+
+.dropdown-menu > li > a {
+    padding: 4px 4px;
+    padding-left: 3px !important;
+}
+
+.dropdown-menu > li > a:hover {
+    background: #e0e0e0 !important;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+#menu1,
+#menu1 ul,
+#menu1 ul li,
+#menu1 ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#menu1:after,
+#menu1 > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#menu1 {
+  width: auto;
+  border-bottom: 3px solid #5bbbe1;
+  font-family: Raleway, sans-serif;
+  line-height: 1;
+}
+#menu1 ul {
+  background: #F5F5F5;
+}
+#menu1 > ul > li {
+  float: left;
+}
+#menu1.align-center > ul {
+  font-size: 0;
+  text-align: center;
+}
+#menu1.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+#menu1.align-right > ul > li {
+  float: right;
+}
+#menu1.align-right > ul > li > a {
+  margin-right: 0;
+  margin-left: -4px;
+}
+#menu1 > ul > li > a {
+  z-index: 2;
+  padding: 18px 25px 12px 25px;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #444444;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  margin-right: -4px;
+}
+#menu1 > ul > li.active > a,
+#menu1 > ul > li:hover > a,
+#menu1 > ul > li > a:hover {
+  color: #f1f1f1 !important;
+}
+#menu1 > ul > li > a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 120%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  content: "";
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: perspective(5px) rotateX(2deg);
+  -webkit-transform-origin: bottom;
+  -moz-transform: perspective(5px) rotateX(2deg);
+  -moz-transform-origin: bottom;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom;
+}
+#menu1 > ul > li.active > a:after,
+#menu1 > ul > li:hover > a:after,
+#menu1 > ul > li > a:hover:after {
+  background: #5bc0de;
+}
+
+/*Dropbox*/
+
+#menu1 li {
+  margin: 0 5px;
+  padding: 0 0 8px;
+  float: left;
+  position: relative;
+  list-style: none;
+}
+
+/*Dropbox*/
+
+#menu1 a,
+#menu1 a:link {
+  color: #787878 !important;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+
+}
+
+
+
+/*Dropbox*/
+
+#menu1 a:hover {
+  color: #fff !important;
+
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul li:hover a,
+#menu1 li:hover li a {
+  background: none;
+  border: none;
+  color: #666;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+
+}
+
+/*Dropbox*/
+
+#menu1 ul ul a:hover {
+  background: #F5F5F5 url() repeat-x 0 -100px !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+}
+
+/*Dropbox*/
+#menu1 ul ul a{
+  margin-top: 3px !important;
+  margin-bottom: 3px !important;
+
+}
+
+/*Dropbox*/
+
+#menu1 li:hover > ul {
+  display: block;
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul {
+  z-index: 1000;
+  display: none;
+  margin: 0;
+  padding: 10px 10px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 220px !important;
+  background: #ffffff url() repeat-x 0 0;
+  border: solid 1px #b4b4b4;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/*Dropbox*/
+
+#menu1 ul ul li {
+  float: none;
+  margin: 0;
+  padding: 3px;
+}
+
+ /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #46b7d9;
+      height: auto;
+      margin-left: 6px;
+      padding: 2px;
+    }
+
+    .panel-prin{
+      margin-top: -22px; 
+      width: 82%;
+
+    }
+
+    .no-padding-right{
+      padding-right: 0px;
+    }
+
+    .no-padding-left{
+      padding-left: 0px;
+    }
+
+    .nav-pills>li>a{
+      background: #2e7dab;
+      color: #fff;
+    }
+
+    .nav>li>a:hover{
+      background:  #5bc0de;
+      color: #fff;
+    }
+
+    .badge{
+      background: #fff;
+      color: #2e7dab;
+      float: right;
+    }
+
+    .nav-pills>li.active>a{
+      background: #5bc0de;
+    }
+
+
+    .nav-pills>li>a{
+      border-radius: 0px;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+
+
+html, body{
+  padding: 0px!important;
+}
+
+.admin .modal-open{
+  padding: 0px !important;
+}
+</style>

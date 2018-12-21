@@ -1,5 +1,6 @@
 class DiagnosticHelpsController < ApplicationController
   before_action :set_diagnostic_help, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   layout 'admin_patient'
 
   # GET /diagnostic_helps

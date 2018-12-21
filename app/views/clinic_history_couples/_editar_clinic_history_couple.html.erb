@@ -1,0 +1,264 @@
+      <div class="col-md-5 text-center paciente1" style="margin-right: 144px; margin-left: 27px;">
+
+        <div class="col-md-3 imagen1">
+          <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+        </div>
+
+        <div class="col-md-7 info">
+          <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+          <h5 align="left" >Documento: </h5>
+          <p><%= @clinic_history_couple.patient.document %></p>
+
+          <h5 align="left" >Edad: <p style="display: contents;"><%= @clinic_history_couple.patient.age %></p> </h5>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-5 text-center paciente elements">
+
+        <div class="col-md-3 imagen1">
+          <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+        </div>
+
+        <div class="col-md-7 info">
+          <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+          <h5 align="left" >Documento: </h5>
+          <p><%= @clinic_history_couple.patient.document %></p>
+
+          <h5 align="left" >Edad:  <p style="display: contents;"><%= @clinic_history_couple.patient.age %></p> </h5>
+        </div>
+
+      </div>
+
+      <div class="col-md-5 show-card2" >
+
+          <div class="col-md-12">
+
+            <div class="col-md-6 no-padding">
+              <%= form.label "Numero de Previas Uniones del Paciente" %><br>
+              <%= form.number_field :previous_unions_patient, id: :clinic_history_couple_previous_unions_patient, class: "form form-control required", :title => "Es un Campo Obligatorio" %>
+            </div>
+
+            <div class="col-md-6" style="padding-right: 0px;">
+              <%= form.label "Numero de Uniones Anteriores de Pareja" %><br>
+              <%= form.number_field :previous_unions_couple, id: :clinic_history_couple_previous_unions_couple, class: "form form-control required" , :title => "Es un Campo Obligatorio" %>
+            </div>
+
+            <div class="field padding-top">
+              <%= form.label "Conducta Problematica del Paciente" %><br>
+              <%= form.text_area :problematic_conduct_patient, id: :clinic_history_couple_problematic_conduct_patient, class: "form form-control required"  ,:rows => 5,  :cols =>25, :title => "Es un Campo Obligatorio" %>
+            </div>
+
+          </div>  
+
+      </div>
+
+
+      <div class="col-md-5 show-card" style="margin-left: 28px;" >
+
+          <div class="col-md-12">
+
+            <div class="col-md-6 no-padding">
+              <%= form.label "Numero de hijos de anteriores relaciones" %><br>
+              <%= form.number_field :previous_children_patient, id: :clinic_history_couple_previous_children_patient, class: "form form-control required", :title => "Es un Campo Obligatorio" %>
+            </div>
+            
+            <div class="col-md-6" style="padding-right: 0px;">
+              <%= form.label "Numero de hijos de anteriores relaciones"%><br>
+              <%= form.number_field :previous_children_couple, id: :clinic_history_couple_previous_children_couple, class: "form form-control required", :title => "Es un Campo Obligatorio" %>
+            </div>
+            <br>
+
+             <div class="field padding-top1">
+                <%= form.label "Conducta problemática en la pareja" %><br>
+                <%= form.text_area :problematic_conduct_couple, id: :clinic_history_couple_problematic_conduct_couple, class: "form form-control required" ,:rows => 5,  :cols =>25, :title => "Es un Campo Obligatorio" %>
+             </div>
+
+          </div>  
+
+      </div>
+
+
+
+        <div class="col-md-12" style="margin-top: 30px;">
+
+          <div class="field">
+            <%= form.label :Razón_de_Consulta %><br>
+            <%= form.text_area :consultation_reason, id: :clinic_history_couple_consultation_reason, class: "form form-control required"  ,:rows => 5,  :cols =>25, :title => "Es un Campo Obligatorio" %>
+          </div>
+          <br>
+
+          <div class="field">
+            <%= form.label :Observaciones_Generales %><br>
+            <%= form.text_area :general_observations, id: :clinic_history_couple_general_observations, class: "form form-control required"  ,:rows => 5,  :cols =>25, :title => "Es un Campo Obligatorio" %>
+          </div>
+          <br>
+
+          <div class="field">
+            <%= form.label :Situacion_Actual %><br>
+            <%= form.text_area :actual_situations, id: :clinic_history_couple_actual_situations, class: "from form-control required",:rows => 5,  :cols =>25, :title => "Es un Campo Obligatorio" %>
+          </div>
+
+        </div>
+
+
+<style type="text/css">
+
+  .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .info{
+    margin-left: 39px;
+  }
+
+  p{
+    text-align: left;
+  }
+
+  .no-padding{
+    padding: 0px;
+  }
+
+  .margin1{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .padding-top{
+    padding-top: 77px;
+  }
+
+  .padding-top1{
+    padding-top: 51px;
+  }
+
+  .show-card{
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+  }
+
+
+  label{
+    color: #867f7f!important;
+    font-weight: normal;
+  }
+
+  .show-card2{
+    margin-right: 22px;
+    margin-top: 10px; 
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+      @media only screen and (max-width: 600px) { 
+
+    .show-card2{
+      float: none;
+      margin-left: 29px;
+      margin-right: 30px;
+    }
+
+    .show-card2 .container-fluid{
+      padding: 0px;
+    }
+
+    .show-card{
+      margin-right: 31px;
+    }
+
+    .show-card .container-fluid{
+      padding: 0px;
+    }
+
+    .paciente{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .paciente1{
+      width: 353px;
+      margin-bottom: 25px;
+    }
+
+    .formulario{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .formulario .campo{
+      padding: 0px;
+      margin-top: 10px;
+    }
+
+    .campo1{
+      padding-right: 0px !important;
+    }
+
+    .alinear{
+      text-align: center;
+    }
+
+
+  } 
+
+
+  /*table asdasd*/
+  @media (min-width: 768px) and (max-width: 1024px) {
+
+    .show-card2{
+      float: none;
+      margin-left: 29px;
+      margin-right: 30px;
+    }
+
+    .show-card2 .container-fluid{
+      padding: 0px;
+    }
+
+    .show-card{
+      margin-right: 31px;
+    }
+
+    .show-card .container-fluid{
+      padding: 0px;
+    }
+
+    .paciente{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .paciente1{
+      width: 695px;
+      margin-bottom: 25px;
+    }
+
+    .formulario{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .formulario .campo{
+      padding: 0px;
+      margin-top: 10px;
+    }
+
+    .campo1{
+      padding-right: 0px !important;
+    }
+
+    .alinear{
+      text-align: center;
+    }
+  }
+
+</style>

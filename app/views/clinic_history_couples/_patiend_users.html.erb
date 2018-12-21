@@ -1,0 +1,29 @@
+    <br>
+      <div class="col-md-5 text-center paciente1" style="margin-right: 144px; margin-left: 27px;">
+
+        <div class="col-md-3 imagen1">
+          <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+        </div>
+
+        <div class="col-md-7 info">
+          <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+          <h5 align="left" >Documento:  <p style="display: contents;"><%= @clinic_history_couple.patient.document %></p> </h5>
+          <h5 align="left" >Edad: <p style="display: contents;"><%= @clinic_history_couple.patient.age %></p> </h5>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-5 text-center paciente elements">
+
+        <div class="col-md-3 imagen1">
+          <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+        </div>
+
+        <div class="col-md-7 info">
+          <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+          <h5 align="left" >Documento: <p style="display: contents;"><%= @clinic_history_couple.patient.document %></p></h5>
+          <h5 align="left" >Edad:  <p style="display: contents;"><%= @clinic_history_couple.patient.age %></p> </h5>
+        </div>
+
+      </div>

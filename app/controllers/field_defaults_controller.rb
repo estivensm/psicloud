@@ -1,5 +1,6 @@
 class FieldDefaultsController < ApplicationController
   before_action :set_field_default, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /field_defaults
   # GET /field_defaults.json

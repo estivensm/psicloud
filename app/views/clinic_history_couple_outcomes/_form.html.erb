@@ -1,0 +1,278 @@
+<div class="col-sm-9 col-md-offset-1 panel-prin">
+      <div class="row">
+        <%= form_for([@clinic_history_couple, clinic_history_couple_outcome]) do |form| %>
+          <% if clinic_history_couple_outcome.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(clinic_history_couple_outcome.errors.count, "error") %> prohibited this clinic_history_couple_outcome from being saved:</h2>
+
+              <ul>
+              <% clinic_history_couple_outcome.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="col-md-5" style="background: #f5f5f5; margin-right: 51px; width: 47%; margin-top: 18px; ">
+
+          <div class="col-sm-3 imagen1">
+            <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+          </div>
+
+          <div class="col-md-7 info" style="margin-left: 28px;">
+            <h3 align="center"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+            <h5 align="left" >Documento: <p  style="display: contents;"><%= @clinic_history_couple.patient.document %></p> </h5>
+            <h5 align="left" >Edad: <p style="display: contents;"><%= @clinic_history_couple.patient.age %></p> </h5>
+          </div>
+
+        </div>
+
+        <div class="col-md-5" style="background: #f5f5f5; width: 47%; padding-right: 0px; margin-top: 18px;">
+
+          <div class="col-sm-3 imagen1">
+            <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+          </div>
+
+          <div class="col-md-7 info" style="margin-left: 28px;">
+              <h3 align="center"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+              <h5 align="left" >Documento: <p  style="display: contents;"><%= @clinic_history_couple.patient.document %></p> </h5>
+              <h5 align="left" >Edad: <p style="display: contents;"><%= @clinic_history_couple.patient.age %></p> </h5>
+          </div>
+
+        </div>
+
+
+  <div class="col-md-12 no-padding margin-top formulario">
+    <!--
+    <div class="field">
+      <%= form.label :clinic_history_family_id %><br>
+      <%= form.number_field :clinic_history_family_id, id: :clinic_history_couple_outcome_clinic_history_family_id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :clinic_history_couple_id %><br>
+      <%= form.number_field :clinic_history_couple_id, id: :clinic_history_couple_outcome_clinic_history_couple_id %>
+    </div>
+    <br>    
+    -->
+    <div class="field">
+      <%= form.label :Descripcion_de_Diagnostico %><br>
+      <%= form.text_area :diagnostic_description, id: :clinic_history_couple_outcome_diagnostic_description, class: "form form-control no-resize",:rows => 5,  :cols =>25 %>
+    </div>
+    <br>
+
+    <div class="field">
+      <%= form.label :Objetivo_Terapéutico %><br>
+      <%= form.text_area :therapeutic_goal, id: :clinic_history_couple_outcome_therapeutic_goal, class: "form form-control no-resize",:rows => 5,  :cols =>25 %>
+    </div>
+    <br>
+
+    <div class="field">
+      <%= form.label :Tipo_de_Tratamiento %><br>
+      <%= form.text_area :type_of_treatment, id: :clinic_history_couple_outcome_type_of_treatment, class: "form form-control no-resize",:rows => 5,  :cols =>25 %>
+    </div>
+    <br>
+
+    <div class="col-md-6 campo1" style="padding-left: 0px;">
+      <%= form.label :DESM %><br>
+      <%= form.select :diagnostic_ids, get_diagnostic.collect {|c| ["#{c.name}", c.id]}, {prompt: false}, {:multiple => true, class: 'form-control chosen-select1 input-change'} %>
+    </div>
+
+    <div class="col-md-6 campo">
+      <%= form.label :CIE10 %><br>
+      <%= form.select :first_diagnostico_ids, get_first_diagnostico.collect {|c| ["#{c.name}", c.id]}, {prompt: false}, {:multiple => true, class: 'form-control chosen-select1 input-change'} %>
+    </div>
+
+  </div>
+
+  <div class="col-md-12 no-padding alinear">
+      <br>
+        <%= form.submit "Guardar", class: "btn btn-primary" %>
+        <a href="/clinic_history_couples/<%= @clinic_history_couple.id %>"><button title="" class="btn btn-primary"  >Volver</button> </a>
+
+      <br><br>
+  </div>
+
+<% end %>
+</div>
+</div>
+
+
+<style type="text/css" media="screen">
+
+  .no-padding{
+      padding: 0px;
+  } 
+
+  .no-resize{
+    resize: none;
+  }
+
+  .show-card{
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #f5f5f5;
+
+  }
+
+  .btn1{
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+
+  label{
+    color: #867f7f!important;
+    font-weight: normal;
+  }
+
+  .margin-top{
+    margin-top: 20px;
+  }
+
+  .title{
+    color: #ffffff;
+    background: #5bc0de;
+    padding: 6px;
+  }
+
+  .show-card2{
+    margin-right: 22px;
+    margin-top: 10px; 
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #f5f5f5;
+  } 
+
+  p{
+    text-align: left;
+  }
+
+  #paciente1{
+    width: 341px !important;
+  }
+
+  .paciente1{
+    padding: 10px 10px;
+    border: 1px solid #5bc0de;
+  }
+
+  .paciente{
+    padding: 10px 10px;
+    border: 1px solid #5bc0de;
+  }
+
+  .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+    @media only screen and (max-width: 600px) { 
+
+    .show-card2{
+      float: none;
+      margin-left: 29px;
+      margin-right: 30px;
+    }
+
+    .show-card2 .container-fluid{
+      padding: 0px;
+    }
+
+    .show-card{
+      margin-right: 31px;
+    }
+
+    .show-card .container-fluid{
+      padding: 0px;
+    }
+
+    .paciente{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .paciente1{
+      width: 353px;
+      margin-bottom: 25px;
+    }
+
+    .formulario{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .formulario .campo{
+      padding: 0px;
+      margin-top: 10px;
+    }
+
+    .campo1{
+      padding-right: 0px !important;
+    }
+
+    .alinear{
+      text-align: center;
+    }
+
+
+  } 
+
+
+  /*table asdasd*/
+  @media (min-width: 768px) and (max-width: 1024px) {
+
+    .show-card2{
+      float: none;
+      margin-left: 29px;
+      margin-right: 30px;
+    }
+
+    .show-card2 .container-fluid{
+      padding: 0px;
+    }
+
+    .show-card{
+      margin-right: 31px;
+    }
+
+    .show-card .container-fluid{
+      padding: 0px;
+    }
+
+    .paciente{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .paciente1{
+      width: 695px;
+      margin-bottom: 25px;
+    }
+
+    .formulario{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .formulario .campo{
+      padding: 0px;
+      margin-top: 10px;
+    }
+
+    .campo1{
+      padding-right: 0px !important;
+    }
+
+    .alinear{
+      text-align: center;
+    }
+  }
+
+</style>
+
+</style>

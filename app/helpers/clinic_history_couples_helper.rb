@@ -1,0 +1,2 @@
+module ClinicHistoryCouplesHelper
+end
