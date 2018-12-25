@@ -17,7 +17,7 @@
          <%= will_paginate @tracings%>
       </div>
    </div>
-   <% @clinic_history.tracings.each do |tracing| %>
+   <% @clinic_history.tracings.order(tracing_date: :desc).each do |tracing| %>
    <div class="panel panel-default">
       <div class="panel-heading">
          <div class="row">

@@ -508,7 +508,7 @@
 <div class = "fields_history">
 
    <h3 class= "color-gray"> Seguimientos y observaciones</h3>
-   <%@clinic_history.tracings.each do |tr|%> 
+   <%@clinic_history.tracings.order(tracing_date: :desc).each do |tr|%> 
    <div class="row">
    <div class="col-md-12">
      
