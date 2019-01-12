@@ -49,12 +49,14 @@
 class Patient < ApplicationRecord
      has_many :clinic_histories  , dependent: :destroy
      has_many :appointments , dependent: :destroy
+     has_many :clinic_history_couple
      belongs_to :hpc
      belongs_to :agreement
      belongs_to :user
      has_many :tasks
      mount_uploader :avatar, AvatarPatientUploader 
      after_create :crear_historia
+     has_and_belongs_to_many :clinic_history_family
   
 
      scope :activos, -> { where(state: true) }

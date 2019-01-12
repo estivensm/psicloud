@@ -1,0 +1,271 @@
+
+    <%= form_with(model: clinic_history_couple, local: true, id: "form-classification") do |form| %>
+      <% if clinic_history_couple.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(clinic_history_couple.errors.count, "error") %> prohibited this clinic_history_couple from being saved:</h2>
+
+          <ul>
+          <% clinic_history_couple.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+<% if action_name == "new"%>
+      <div class="col-md-5 text-center paciente" style="margin-right: 144px; margin-left: 27px;">
+        <h3>Paciente 1</h3>
+        <select class="form-control sel pri chosen-select2 mg1" name="clinic_history_couple[patient_id]" id="paciente">
+          <% @patients.each do  |paciente|%>
+             <%if action_name == "edit"%>
+                  <%if paciente.id == @clinic_history_couple.patient_id%>
+                      <option selected="selected" value="<%=paciente.id%>"><%= paciente.first_name%></option>
+                  <%else%>
+                      <option value="<%=paciente.id%>"><%= paciente.first_name%></option>
+                  <%end%>
+             <%else%>
+                  <option value="<%=paciente.id%>"><%= paciente.first_name%></option>
+              <%end%> 
+          <%end%>
+        </select>
+      </div>
+
+      <div class="col-md-5 text-center paciente elements">
+         <h3>Paciente 2</h3>
+          <select class="form-control sel pri chosen-select3 mg1" name="clinic_history_couple[couple_patient_id]" id="paciente1">
+            <% @patients.each do  |paciente|%>
+               <%if action_name == "edit"%>
+                    <%if paciente.id == @clinic_history_couple.couple_patient_id%>
+                        <option selected="selected" value="<%=paciente.id%>"><%= paciente.first_name%></option>
+                    <%else%>
+                        <option value="<%=paciente.id%>"><%= paciente.first_name%></option>
+                    <%end%>
+               <%else%>
+                    <option value="<%=paciente.id%>"><%= paciente.first_name%></option>
+                <%end%> 
+            <%end%>
+         </select>
+      </div>
+
+      <div class="col-md-5 show2" style="display: none;" >
+
+          <div class="col-md-12 imagen text-center">
+              <img id="imagen-profile1" src="https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg">
+          </div>
+
+          <div class="col-md-12 text-center">
+            <b>Nombre</b><br>
+            <P id="name1"></P>
+            <b>Cedula</b><br>
+            <p id="adress1"></p>
+          </div>  
+
+      </div>
+
+
+      <div class="col-md-5 show1" style="display: none;" >
+
+          <div class="col-md-12 imagen text-center" >
+              <img id="imagen-profile" src="https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg">
+          </div>
+
+          <div class="col-md-12 text-center">
+            <b>Nombre</b><br>
+            <P id="name"></P>
+            <b>Cedula</b><br>
+            <p id="adress"></p>
+          </div>  
+
+      </div>
+  <% else %>
+  <%= render 'editar_clinic_history_couple', clinic_history_couple: @clinic_history_couple , form: form %>
+<% end -%>
+<!--
+        <%= form.hidden_field :patient_id ,:value =>  @patient_id %>
+
+      <div class="field">
+        <%= form.label :previous_unions_patient %>
+        <%= form.number_field :previous_unions_patient, id: :clinic_history_couple_previous_unions_patient %>
+      </div>
+
+      <div class="field">
+        <%= form.label :previous_unions_couple %>
+        <%= form.number_field :previous_unions_couple, id: :clinic_history_couple_previous_unions_couple %>
+      </div>
+
+      <div class="field">
+        <%= form.label :previous_children_patient %>
+        <%= form.number_field :previous_children_patient, id: :clinic_history_couple_previous_children_patient %>
+      </div>
+
+      <div class="field">
+        <%= form.label :previous_children_couple %>
+        <%= form.number_field :previous_children_couple, id: :clinic_history_couple_previous_children_couple %>
+      </div>
+
+      <div class="field">
+        <%= form.label :problematic_conduct_patient %>
+        <%= form.text_area :problematic_conduct_patient, id: :clinic_history_couple_problematic_conduct_patient %>
+      </div>
+
+      <div class="field">
+        <%= form.label :problematic_conduct_couple %>
+        <%= form.text_area :problematic_conduct_couple, id: :clinic_history_couple_problematic_conduct_couple %>
+      </div>
+
+      <div class="field">
+        <%= form.label :consultation_reason %>
+        <%= form.text_area :consultation_reason, id: :clinic_history_couple_consultation_reason %>
+      </div>
+
+      <div class="field">
+        <%= form.label :general_observations %>
+        <%= form.text_area :general_observations, id: :clinic_history_couple_general_observations %>
+      </div>
+
+      <div class="field">
+        <%= form.label :actual_situations %>
+        <%= form.text_area :actual_situations, id: :clinic_history_couple_actual_situations %>
+      </div>
+
+      <div class="field">
+        <%= form.label :couple_patient_id %>
+        <%= form.number_field :couple_patient_id, id: :clinic_history_couple_couple_patient_id %>
+      </div>
+-->
+      <div class="col-md-12 margin">
+        <%= form.submit "Guardar", class: "btn btn-info" %>
+        <%= link_to "Volver", clinic_history_couples_path, class: "btn btn-info" %>
+      </div>
+    <% end %>
+
+
+<script>
+   $(document).ready(function(){
+     $('#form-classification').validate();
+    });
+</script>
+
+
+<style type="text/css">
+
+  .float{
+    float: right;
+  }
+
+ .error{color: red !important;}
+
+  #paciente1{
+    width: 341px !important;
+  }
+
+  .paciente{
+    padding: 10px 10px;
+    border: 1px solid #5bc0de;
+  }
+
+  .paciente1{
+    padding: 10px 10px;
+    border: 1px solid #5bc0de;
+  }
+
+  .margin{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  #paciente_chosen{
+    width: 341px !important;
+  }
+
+  .imagen img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 142px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+
+  .show1{
+    margin-top: 10px;
+    background: #F5F5F5;
+
+  }
+
+  .show2{
+    margin-right: 22px;
+    margin-top: 10px; 
+    background: #F5F5F5;
+    float: right;
+  }
+
+</style>
+
+
+
+<script type="text/javascript">
+$(document).on('turbolinks:load',function() {
+  $('.chosen-select2').chosen(
+         {
+   
+           allow_single_deselect: true,
+           no_results_text: 'No hay resultados',
+           placeholder_text_single: "Seleccione una opción",
+           placeholder_text_multiple: "Seleccione una varias opciones",
+  });
+
+    $('.chosen-select3').chosen(
+         {
+   
+           allow_single_deselect: true,
+           no_results_text: 'No hay resultados',
+           placeholder_text_single: "Seleccione una opción",
+           placeholder_text_multiple: "Seleccione una varias opciones"
+  })
+
+    $("#paciente").change(function(event) {
+      var cambio =  $(this).val();
+      $.get("/paciente/" + cambio, function(data, status){
+
+        if (data.avatar.url == null) {
+          document.getElementById("imagen-profile").src = "https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg"
+        } else {
+          document.getElementById("imagen-profile").src = data.avatar.url
+        }
+
+        $(".show1").fadeIn()
+        $(".margin").fadeIn()
+        $(".show1").css({'margin-left':'29px'});
+        $("#name").html(data.first_name)
+        $("#adress").html(data.document)
+
+          
+      });
+
+    });
+
+    $("#paciente1").change(function(event) {
+      var cambio =  $(this).val();
+      $.get("/paciente/" + cambio, function(data, status){
+
+        if (data.avatar.url == null) {
+          document.getElementById("imagen-profile1").src = "https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg"
+        } else {
+          document.getElementById("imagen-profile1").src = data.avatar.url
+        }
+
+        $(".show2").fadeIn()
+        $(".margin").fadeIn()
+        $("#name1").html(data.first_name)
+        $("#adress1").html(data.document)
+
+          
+      });
+
+    });
+
+});
+
+</script>

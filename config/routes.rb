@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
  
-
+  resources :clinic_history_families
+  get "diagnostic_documets", to: "document_couple_families#diagnostic_documets", as: "diagnostic_documets"
+  get "legan_documents", to: "document_couple_families#legan_documents", as: "legan_documents"
+  resources :document_couple_families
+  resources :tracing_couple_families
+  resources :clinic_history_couples do
+      resources :clinic_history_couple_outcomes, only: [:edit, :update, :destroy] 
+  end
+  
   resources :created_formats
   resources :clinichistory_configs
   resources :field_defaults
@@ -11,6 +19,10 @@ Rails.application.routes.draw do
   get 'general_stats', to: 'stats#general_stats' , as: 'general_stats'
   
   get 'general_files/:id', to: 'tool_tests#general_files' , as: 'general_files'
+
+  get "paciente2/:id", to: "clinic_history_families#paciente", as: "paciente2"
+
+  get "paciente/:id", to: "clinic_history_couples#paciente", as: "paciente"
 
   get 'patients/change_state/:value/:id', to: "patients#change_state", as: "change_state"
   resources :account_types

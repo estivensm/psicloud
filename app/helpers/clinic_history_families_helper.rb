@@ -1,0 +1,2 @@
+module ClinicHistoryFamiliesHelper
+end

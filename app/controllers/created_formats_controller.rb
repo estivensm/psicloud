@@ -1,5 +1,6 @@
 class CreatedFormatsController < ApplicationController
   before_action :set_created_format, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /created_formats
   # GET /created_formats.json

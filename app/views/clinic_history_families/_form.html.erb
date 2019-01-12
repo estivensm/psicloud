@@ -1,0 +1,208 @@
+    <%= nested_form_for(@clinic_history_family, local: true) do |form| %>
+        <% if clinic_history_family.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(clinic_history_family.errors.count, "error") %> prohibited this clinic_history_family from being saved:</h2>
+
+            <ul>
+            <% clinic_history_family.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="col-md-6" style="padding: 0px;">
+          <%= form.label "Pacientes" %><br>
+          <%= form.select :patient_ids, get_patient.collect {|c| ["#{c.first_name}", c.id]}, {prompt: false}, {:multiple => true, class: 'form-control chosen-select1 input-change'} %>
+          <br><br>
+        </div>
+
+        <div class="col-md-1 imagen" style="display: none;">
+          <img src="" alt="" id="imagen-profile">
+        </div>
+
+        <div class="col-md-2 cabeza">
+            <p id="name1"></p>
+            <p id="name2"></p>
+        </div>
+
+      <% if action_name == "edit"%>
+        <div class="col-md-12">
+          <%= form.label "Razon de Consulta" %>
+          <%= form.text_area :reason_consultation, id: :clinic_history_family_reason_consultation, class: "form form-control text-resize", :rows => 4,  :cols =>25 %>
+          <br>
+        </div>
+
+        <div class="col-md-12">
+          <%= form.label "Antecendente del Problema" %>
+          <%= form.text_area :antecedent_problem, id: :clinic_history_family_antecedent_problem, class: "form form-control text-resize", :rows => 4,  :cols =>25 %>
+          <br>
+        </div>
+
+
+        <div class="col-md-12">
+          <%= form.label "Problema Familiar" %>
+          <%= form.text_area :family_problem, id: :clinic_history_family_family_problem, class: "form form-control text-resize", :rows => 4,  :cols =>25 %>
+          <br>
+        </div>
+      <% end -%> 
+
+        <div class="row"> 
+          <%= form.fields_for :family_group do |file|  %>
+            <div class="col-md-12 no-padding" style="padding: 0px;" >  
+                <div class="col-md-3 no-padding" style="padding: 0px;" >
+                  <label>Nombre</label>
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                         <%= file.link_to_remove class: "btn btn-danger" do %>
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        <% end %>
+                      </span>
+                    <%= file.text_field :name, :class => 'name form form-control', :placeholder => "Nombre" %>
+                  </div>
+               </div>
+
+               <div class="col-md-3">
+                   <label>Apellidio</label>
+                   <%= file.text_field :last_name, class: "form form-control" %>
+               </div>
+
+                <div class="col-md-3">
+                   <label>Documento</label>
+                   <%= file.text_field :document_number, class: "form form-control" %>
+               </div>
+
+
+               <div class="col-md-3 padding-left">
+                   <label>Edad</label>
+                   <%= file.number_field :age, class: "form form-control" %>
+                  <br>
+               </div>
+
+                <div class="col-md-3 padding-left">
+                   <label>Sexo</label>
+                   <%= file.select 'sex', options_for_select(["Masculino", "Femenino", "Transexual"]), {},{:class => 'form form-control select'}%>
+               </div>
+
+                <div class="col-md-3">
+                   <label>Estado Civil</label>
+                   <%= file.select 'civil_status', options_for_select(["Soltero", "Casado", "Union Libre", "Divorciado", "Viud@", "N/A"]), {},{:class => 'form form-control select'}%>
+               </div>
+
+                <div class="col-md-3 padding-left" >
+                   <label>Ocpacion</label>
+                   <%= file.text_field :occupation, class: "form form-control" %>
+               </div>
+
+                <div class="col-md-3">
+                   <label>Parentesco</label>
+                   <%= file.text_field :relationship, class: "form form-control" %>
+                   <br>
+               </div>
+
+            </div> 
+          <% end %>
+            <div class="col-md-12"> 
+              <%= form.link_to_add "Agregar Registro", :family_group, :class => 'btn btn-info'  %>     
+            </div>  
+        </div>
+
+      </div>
+      <div class="modal-footer">
+           <%= form.submit "Guardar", class: "btn btn-info", id: "btn3" %>
+     </div>
+<% end %>
+
+
+<style type="text/css" media="screen">
+
+  .text-resize{
+    resize: none;
+  }
+
+  .no-padding{
+    padding: 0px;
+  }
+
+  .padding-left{
+    padding-left: 0px;
+  }
+
+  .modal-footer{
+    border: none;
+  }
+
+  .imagen img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 48px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  #show-patien{
+	background: #46b8da;
+    padding: 4px;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+
+</style>
+
+<script type="text/javascript">
+
+      $("#clinic_history_family_patient_ids").change(function(event) {
+      var cambio =  $(this).val();
+      console.log(cambio)
+      if (cambio != null)
+      {
+
+      $.get("/paciente2/" + cambio, function(data, status){
+      console.log(data)
+      var valor = data
+      var text = "";
+      var i;
+      $("#name2").html("");
+      for (i = 0; i < valor.length; i++) {
+        text += valor[i];
+        console.log(valor[i].first_name)
+        $(".imagen").fadeIn();
+        $("#name2").append("<b id='show-patien'>" + valor[i].first_name + "</b>");
+
+        /*
+        if (valor[i].avatar.url == null) {
+          document.getElementById("imagen-profile").src = "https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg"
+          console.log('no hay imagen')
+        } else {
+          $("#imagen-profile").prepend('<img src="' + valor[i].avatar.url + '">')	
+          console.log("hay imagen");
+        }
+        */
+
+        if (valor[i].avatar.url == null) {
+          document.getElementById("imagen-profile").src = "https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg"
+        } else {
+          document.getElementById("imagen-profile").src = valor[i].avatar.url
+        }
+
+
+
+      }
+
+      
+
+
+          
+      });
+
+    }else
+    { 
+      $(".imagen").fadeOut();
+      $("#name2").html("")
+    }
+
+
+
+    });
+</script>

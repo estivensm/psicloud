@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reason consultation:</strong>
+  <%= @clinic_history_family.reason_consultation %>
+</p>
+
+<p>
+  <strong>Antecedent problem:</strong>
+  <%= @clinic_history_family.antecedent_problem %>
+</p>
+
+<p>
+  <strong>Family problem:</strong>
+  <%= @clinic_history_family.family_problem %>
+</p>
+
+<%= link_to 'Edit', edit_clinic_history_family_path(@clinic_history_family) %> |
+<%= link_to 'Back', clinic_history_families_path %>

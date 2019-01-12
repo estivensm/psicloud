@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Clinic history family:</strong>
+  <%= @clinic_history_couple_outcome.clinic_history_family_id %>
+</p>
+
+<p>
+  <strong>Clinic history couple:</strong>
+  <%= @clinic_history_couple_outcome.clinic_history_couple_id %>
+</p>
+
+<p>
+  <strong>Diagnostic description:</strong>
+  <%= @clinic_history_couple_outcome.diagnostic_description %>
+</p>
+
+<p>
+  <strong>Therapeutic goal:</strong>
+  <%= @clinic_history_couple_outcome.therapeutic_goal %>
+</p>
+
+<p>
+  <strong>Type of treatment:</strong>
+  <%= @clinic_history_couple_outcome.type_of_treatment %>
+</p>
+
+<%= link_to 'Edit', edit_clinic_history_couple_outcome_path(@clinic_history_couple_outcome) %> |
+<%= link_to 'Back', clinic_history_couple_outcomes_path %>

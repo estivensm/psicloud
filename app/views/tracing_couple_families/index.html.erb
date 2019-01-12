@@ -1,0 +1,184 @@
+<div class="col-sm-9 panel-prin">
+      <div class="row">
+
+        <div class="col-md-5" style="background: #f5f5f5; margin-right: 10px; margin-left: 15px; width: 47%; margin-bottom: 15px; margin-top: 22px;">
+
+          <div class="col-sm-3 imagen1">
+            <%= image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+          </div>
+
+          <div class="col-md-7 info">
+            <h3 align="center">Prueban Cristian</h3>
+            <h5 align="left" >Documento: <p  style="display: contents;">1212121212</p> </h5>
+            <h5 align="left" >Edad: <p style="display: contents;">12</p> </h5>
+          </div>
+
+        </div>
+
+        <div class="col-md-5" style="background: #f5f5f5; margin-left: 21px;margin-right: 10px;width: 47%; padding-right: 0px; margin-bottom: 15px; margin-top: 22px;">
+
+          <div class="col-sm-3 imagen1">
+            <%= image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+          </div>
+
+          <div class="col-md-7 info">
+              <h3 align="center">Prueban Cristian</h3>
+              <h5 align="left" >Documento: <p  style="display: contents;">1212121212</p> </h5>
+              <h5 align="left" >Edad: <p style="display: contents;">12</p> </h5>
+          </div>
+
+        </div>
+          <% if @tracing_couple_families.any? %>
+          <div class="row" style = "padding: 0px 28px;">
+             <div class = "row title-table" style="margin-top: 10px;">
+                <div class = "col-md-7">
+                   <p>
+                      SEGUIMIENTOS <span class="label label-primary"><%= @tracing_couple_families.count %></span> 
+                      <span style = "font-size:12px;margin-left:20px;">
+                      </span>
+                   </p>
+                </div>
+                <div class = "col-md-2" style="float: right; padding-right: 8px;">
+                   <%= link_to 'Nuevo Seguimiento', new_tracing_couple_family_path, class: "btn btn-primary", style: "float: right;"  %>
+                </div>
+             </div>
+             <% @tracing_couple_families.each do |tracing_couple_family| %>
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                   <div class="row">
+                      <div class="col-md-6" style="    color: #5bc0de;
+                         font-size: 18px;">
+                         <%= tracing_couple_family.tracing_date %>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <%= link_to edit_tracing_couple_family_path(tracing_couple_family) do %>
+                            <i class="fas fa-pencil-alt"></i>
+                        <% end -%>
+                        <%= link_to tracing_couple_family, method: :delete, data: {
+                          confirm: '¿Estas Seguro?',
+                          'confirm-button-text': 'Borrar',
+                          'cancel-button-text': 'Cancelar',
+                          'confirm-button-color': '#CC0000',
+                           text: 'Recuerda que el registro se borrara permanentemente',
+                          'image-url': ''} do %>
+                          <i class="fas fa-trash-alt" style = "font-size:15px; color: red;" aria-hidden="true"></i>
+                          <% end -%>
+
+
+                        
+                      </div>
+                   </div>
+                </div>
+                <div class="panel-body"> 
+                   <strong>Descripción:</strong> <%= tracing_couple_family.description %>
+                   <hr>
+
+
+                   <% if tracing_couple_family.attachment %>
+                      <%= link_to  tracing_couple_family.attachment_url, class: "", style:"margin-right:10px;" do  %>
+                        <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                      <% end %>  
+                   <% end %>
+
+                   <% tracing_couple_family.general_files.each do |file|%>
+                     <% if file.file_url%>
+                       <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                       <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                       <% end %>  
+                     <% end %>
+                   <% end %>
+
+                </div>
+             </div>
+            <% end %>
+          </div>
+
+      <div class = "col-md-12 paginate text-left title-table1">
+         <%= will_paginate @tracing_couple_families %>
+      </div>
+  </div>
+</div>
+<% else %>
+
+<div class="row">
+   <div class="col-md-9 np">
+      <h4>! AÚN NO HAY SEGUIMIENTOS ¡</h4>
+      <%= link_to "CREA EL PRIMERO", new_tracing_couple_family_path, class: "btn btn-primary"   %>
+   </div>
+</div>
+
+<% end %>
+
+<style>
+
+   .panel-body strong{
+      margin-bottom: 5px
+   }
+
+   .np{
+     text-align: center;
+     color: gray;
+     background: #f4f4f4;
+     font-size: 40px;
+     padding: 16px 0px;
+     margin-left: 27px;
+   }
+
+   .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+</style>
+<!--
+
+<h1>Tracing Couple Families</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clinic history couple</th>
+      <th>Clinic history family</th>
+      <th>Admin user</th>
+      <th>User</th>
+      <th>Description</th>
+      <th>Attachment</th>
+      <th>Tracing type</th>
+      <th>Tracing date</th>
+      <th>Observation</th>
+      <th>Evolution</th>
+      <th>Tracing state</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tracing_couple_families.each do |tracing_couple_family| %>
+      <tr>
+        <td><%= tracing_couple_family.clinic_history_couple_id %></td>
+        <td><%= tracing_couple_family.clinic_history_family_id %></td>
+        <td><%= tracing_couple_family.admin_user %></td>
+        <td><%= tracing_couple_family.user_id %></td>
+        <td><%= tracing_couple_family.description %></td>
+        <td><%= tracing_couple_family.attachment %></td>
+        <td><%= tracing_couple_family.tracing_type %></td>
+        <td><%= tracing_couple_family.tracing_date %></td>
+        <td><%= tracing_couple_family.observation %></td>
+        <td><%= tracing_couple_family.evolution %></td>
+        <td><%= tracing_couple_family.tracing_state %></td>
+        <td><%= link_to 'Show', tracing_couple_family %></td>
+        <td><%= link_to 'Edit', edit_tracing_couple_family_path(tracing_couple_family) %></td>
+        <td><%= link_to 'Destroy', tracing_couple_family, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tracing Couple Family', new_tracing_couple_family_path %>
+
+-->

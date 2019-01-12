@@ -1,5 +1,6 @@
 class ConsentsController < ApplicationController
   before_action :set_consent, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /consents
   # GET /consents.json

@@ -1,0 +1,87 @@
+<div class="col-sm-9 panel-prin">
+  <div class="row margin-top" >
+    <div class = "row title-table">
+
+       <div class = "col-md-8"  style="padding-left: 20px;">
+          <p>Historial clinico Familiar <span class="label label-primary"><%= @clinic_history_families.count%></span> <span style = "font-size:12px;margin-left:20px;"><%= page_history_families @clinic_history_families, :entry_name => 'Historia Clinica de Familias' %></span> </p>
+       </div>
+
+
+       <div class = "col-md-2" style= "float: right; padding-right: 10px;">
+          <%= link_to 'Nuevo', new_clinic_history_family_path, class: "btn btn-primary", style: "float: right;" %>
+       </div>
+    </div><br>
+
+  <div class="content-table">
+    <table class="table">
+      <thead>
+        <tr class="tr-table">
+          <th>Razon de consulta</th>
+          <th>Antecedentes del problema</th>
+          <th>Problema Familiar</th>
+          <th colspan="3">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @clinic_history_families.each do |clinic_history_family| %>
+          <tr>
+            <td><%= clinic_history_family.reason_consultation %></td>
+            <td><%= clinic_history_family.antecedent_problem %></td>
+            <td><%= clinic_history_family.family_problem %></td>
+            <td><%= link_to 'Show', clinic_history_family %></td>
+            <td><%= link_to 'Edit', edit_clinic_history_family_path(clinic_history_family) %></td>
+            <td><%= link_to clinic_history_family, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''}, class: "btn btn-danger" do %>
+              <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
+              <% end -%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+   </div>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+
+  .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .show2{
+    background: #f5f5f5; 
+    margin-left: 21px;
+    margin-right: 10px;
+    width: 47%; 
+    padding-right: 0px; 
+    margin-bottom: 15px;
+  }
+
+  .show1{
+    background: #f5f5f5; 
+    margin-left: 21px;
+    margin-right: 10px;
+    width: 47%; 
+    padding-right: 0px; 
+    margin-bottom: 15px;
+  }
+
+  .margin-top{
+    margin-top: 7px;
+  }
+
+  .content-table{
+    margin-left: 10px;
+  }
+
+</style>
