@@ -196,6 +196,55 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.index ["first_diagnostico_id"], name: "first_diagnostico"
   end
 
+  create_table "clinic_history_couple_outcomes", force: :cascade do |t|
+    t.integer "clinic_history_family_id"
+    t.integer "clinic_history_couple_id"
+    t.text "diagnostic_description"
+    t.text "therapeutic_goal"
+    t.text "type_of_treatment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clinic_history_couple_outcomes_diagnostics", id: false, force: :cascade do |t|
+    t.bigint "clinic_history_couple_outcome_id", null: false
+    t.bigint "diagnostic_id", null: false
+  end
+
+  create_table "clinic_history_couple_outcomes_first_diagnosticos", id: false, force: :cascade do |t|
+    t.bigint "clinic_history_couple_outcome_id", null: false
+    t.bigint "first_diagnostico_id", null: false
+  end
+
+  create_table "clinic_history_couples", force: :cascade do |t|
+    t.integer "couple_patient_id"
+    t.integer "previous_unions_patient"
+    t.integer "previous_unions_couple"
+    t.integer "previous_children_patient"
+    t.integer "previous_children_couple"
+    t.text "problematic_conduct_patient"
+    t.text "problematic_conduct_couple"
+    t.text "consultation_reason"
+    t.text "general_observations"
+    t.text "actual_situations"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "patient_id"
+  end
+
+  create_table "clinic_history_families", force: :cascade do |t|
+    t.text "reason_consultation"
+    t.text "antecedent_problem"
+    t.text "family_problem"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clinic_history_families_patients", id: false, force: :cascade do |t|
+    t.bigint "patient_id", null: false
+    t.bigint "clinic_history_family_id", null: false
+  end
+
   create_table "clinichistory_configs", force: :cascade do |t|
     t.string "header_image"
     t.string "footer_image"
@@ -300,6 +349,17 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "document_couple_families", force: :cascade do |t|
+    t.string "tool_type"
+    t.text "descripcion"
+    t.string "document_type"
+    t.string "name"
+    t.integer "clinic_history_couple_id"
+    t.integer "clinic_history_family_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string "name"
     t.string "file"
@@ -307,6 +367,20 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.boolean "state"
     t.integer "user_id"
     t.integer "admin_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "family_groups", force: :cascade do |t|
+    t.string "name"
+    t.string "last_name"
+    t.integer "document_number"
+    t.integer "age"
+    t.string "sex"
+    t.string "civil_status"
+    t.string "occupation"
+    t.string "relationship"
+    t.integer "clinic_history_family_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -368,6 +442,8 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.integer "background_id"
     t.integer "diagnostic_help_id"
     t.integer "legal_document_id"
+    t.integer "tracing_couple_family_id"
+    t.integer "document_couple_family_id"
   end
 
   create_table "hpcs", force: :cascade do |t|
@@ -580,6 +656,22 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tracing_couple_families", force: :cascade do |t|
+    t.integer "clinic_history_couple_id"
+    t.integer "clinic_history_family_id"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.text "description"
+    t.string "attachment"
+    t.string "tracing_type"
+    t.date "tracing_date"
+    t.text "observation"
+    t.text "evolution"
+    t.boolean "tracing_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tracings", force: :cascade do |t|
     t.integer "admin_user"
     t.integer "user_id"
@@ -596,6 +688,7 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.boolean "tracing_state"
     t.datetime "tracing_created_at"
     t.boolean "state"
+    t.integer "clinic_history_couple_id"
   end
 
   create_table "two_child_histories", force: :cascade do |t|

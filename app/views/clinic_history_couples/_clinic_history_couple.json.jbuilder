@@ -1,0 +1,2 @@
+json.extract! clinic_history_couple, :id, :patiend_id, :previous_unions_patient, :previous_unions_couple, :previous_children_patient, :previous_children_couple, :problematic_conduct_patient, :problematic_conduct_couple, :consultation_reason, :general_observations, :actual_situations, :couple_patient_id, :created_at, :updated_at
+json.url clinic_history_couple_url(clinic_history_couple, format: :json)

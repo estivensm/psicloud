@@ -1,0 +1,156 @@
+<div class="row"><div class="col-md-12">
+      <h1 class="titulo" align="center">INFORMACION GENERAL</h1>
+    </div>
+
+      <div class="row">
+<div class="col-md-6 text-center paciente2" style="border-right: 1px solid #e7e7e7">
+   <div class="col-md-3 imagen1">
+      <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+   </div>
+   <div class="col-md-7 info">
+      <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+      <p align="left"><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
+      <p style="display: contents;" align="left"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
+   </div>
+  
+</div>
+<div class="col-md-6 text-center paciente2 elements">
+   <div class="col-md-3 imagen1">
+      <%=  @clinic_history_couple.couple_patient.avatar? ? image_tag(@clinic_history_couple.couple_patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+   </div>
+   <div class="col-md-7 info">
+      <h3 align="left"><%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name%></h3>
+      <p align="left"><strong> Documento: </strong><%= @clinic_history_couple.couple_patient.document %></p>
+      <p style="display: contents;" align="left"><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
+   </div>
+ 
+</div>
+
+</div>
+
+  <br>
+
+          <% if @tracing_couple_families.any? %>
+          <div class="row" style = "padding: 0px 28px;">
+             <div class = "row title-table" style="margin-top: 10px;">
+                <div class = "col-md-7">
+                   <p>
+                      SEGUIMIENTOS <span class="label label-primary"><%= @tracing_couple_families.count %></span> 
+                      <span style = "font-size:12px;margin-left:20px;">
+                      </span>
+                   </p>
+                </div>
+                <div class = "col-md-2" style="float: right; padding-right: 8px;">
+                   <%= link_to 'Nuevo Seguimiento',  new_clinic_history_couple_tracing_couple_family_path(@clinic_history_couple.id), class: "btn btn-primary", style: "float: right;"  %>
+                </div>
+             </div>
+             <% @tracing_couple_families.each do |tracing_couple_family| %>
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                   <div class="row">
+                      <div class="col-md-6" style="    color: #5bc0de;
+                         font-size: 18px;">
+                         <%= tracing_couple_family.tracing_date %>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <%= link_to edit_clinic_history_couple_tracing_couple_family_path(@clinic_history_couple.id, tracing_couple_family) do %>
+                            <i class="fas fa-pencil-alt"></i>
+                        <% end -%>
+                        <%= link_to clinic_history_couple_tracing_couple_family_path(@clinic_history_couple.id, tracing_couple_family), method: :delete, data: {
+                          confirm: '¿Estas Seguro?',
+                          'confirm-button-text': 'Borrar',
+                          'cancel-button-text': 'Cancelar',
+                          'confirm-button-color': '#CC0000',
+                           text: 'Recuerda que el registro se borrara permanentemente',
+                          'image-url': ''} do %>
+                          <i class="fas fa-trash-alt" style = "font-size:15px; color: red;" aria-hidden="true"></i>
+                          <% end -%>
+
+
+                        
+                      </div>
+                   </div>
+                </div>
+                <div class="panel-body"> 
+                   <strong>Descripción:</strong> <%= tracing_couple_family.description %>
+                   <hr>
+
+
+                   <% if tracing_couple_family.attachment %>
+                      <%= link_to  tracing_couple_family.attachment_url, class: "", style:"margin-right:10px;" do  %>
+                        <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                      <% end %>  
+                   <% end %>
+
+                   <% tracing_couple_family.general_files.each do |file|%>
+                     <% if file.file_url%>
+                       <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                       <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                       <% end %>  
+                     <% end %>
+                   <% end %>
+
+                </div>
+             </div>
+            <% end %>
+          </div>
+
+      <div class = "col-md-12 paginate text-left title-table1">
+         <%= will_paginate @tracing_couple_families %>
+      </div>
+  </div>
+
+<% else %>
+
+<div class="row" style="padding: 0px 20px;">
+   <div class="col-md-12 np">
+      <h4>! AÚN NO HAY SEGUIMIENTOS ¡</h4>
+      <%= link_to "CREA EL PRIMERO", new_clinic_history_couple_tracing_couple_family_path(@clinic_history_couple.id), class: "btn btn-primary"   %>
+   </div>
+</div>
+
+<% end %>
+
+<style>
+  .paciente2{
+    padding: 10px 10px;
+    border: none;
+    color: #46b8da
+  }
+
+
+  .titulo{
+
+    background: #46b8da;
+    color: white !important;
+    padding: 10px 6px;
+    margin-top: 0px;
+      margin-bottom: 18px;
+        font-weight: bold
+      margin-left: 16px;
+  }
+   .panel-body strong{
+      margin-bottom: 5px
+   }
+
+   .np{
+     text-align: center;
+     color: gray;
+     background: #f4f4f4;
+     font-size: 40px;
+     padding: 16px 0px;
+    
+   }
+
+   .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+</style>
+
+
+

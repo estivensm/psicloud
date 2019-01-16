@@ -55,6 +55,7 @@ class User < ApplicationRecord
      has_many :patients
      has_many :create_fields
      has_many :consents
+     has_many :tracing_couple_family
      has_one :clinichistory_config
      has_many :clinic_histories
      devise :database_authenticatable, :registerable,

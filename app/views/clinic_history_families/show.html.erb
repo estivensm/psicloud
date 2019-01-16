@@ -1,0 +1,45 @@
+
+      <div class="row">
+		<div class="col-md-12 titulo">
+			<h2 align="center">INFORMACIÓN GENERAL</h2>
+		</div>
+        <div class="row">
+      <% @clinic_history_family.patients.each do |patient| %>
+		
+      	        
+      	          <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
+      	          </div>
+				
+		
+
+       <%end%>
+
+
+
+	</div>
+</div>
+
+<style type="text/css" media="screen">
+
+	.titulo{
+
+		background: #46b8da;
+		color: white !important;
+		padding: 10px 6px;
+
+   		margin-bottom: 18px;
+   		font-weight: bold
+	}
+	.paciente2 img
+	{
+		width: 80px;
+	}
+
+</style>
+
+
+
+
+
+
+

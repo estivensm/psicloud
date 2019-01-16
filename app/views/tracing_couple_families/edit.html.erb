@@ -1,0 +1,70 @@
+
+     
+<div class="row" style="padding: 0px 20px;"><div class="col-md-12">
+      <h1 class="titulo" align="center">CREAR SEGUIMIENTO</h1>
+    </div>
+
+      <div class="row">
+<div class="col-md-6 text-center paciente2" style="border-right: 1px solid #e7e7e7">
+   <div class="col-md-3 imagen1">
+      <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+   </div>
+   <div class="col-md-7 info">
+      <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+      <p align="left"><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
+      <p style="display: contents;" align="left"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
+   </div>
+  
+</div>
+<div class="col-md-6 text-center paciente2 elements">
+   <div class="col-md-3 imagen1">
+      <%=  @clinic_history_couple.couple_patient.avatar? ? image_tag(@clinic_history_couple.couple_patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+   </div>
+   <div class="col-md-7 info">
+      <h3 align="left"><%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name%></h3>
+      <p align="left"><strong> Documento: </strong><%= @clinic_history_couple.couple_patient.document %></p>
+      <p style="display: contents;" align="left"><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
+   </div>
+ 
+</div>
+
+</div>
+
+<hr>
+<br>
+
+		<%= render 'form', tracing_couple_family: @tracing_couple_family %>
+		
+	</div>
+</div>
+
+
+
+
+<style type="text/css" media="screen">
+
+  .paciente2{
+    padding: 10px 10px;
+    border: none;
+    color: #46b8da
+  }
+
+
+  .titulo{
+
+    background: #46b8da;
+    color: white !important;
+    padding: 10px 6px;
+    margin-top: 0px;
+      margin-bottom: 18px;
+        font-weight: bold
+      margin-left: 16px;
+  }
+	  .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+</style>

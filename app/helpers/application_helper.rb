@@ -70,6 +70,45 @@ def bootstrap_class_for flash_type
     end
     nil
   end
+  
+  def page_history_couple(collection, options = {})
+      entry_name = options[:entry_name] || (collection.empty?? 'Historia Clinica de Parejas' :
+        collection.first.class.name.split('::').last.titleize)
+    if collection.total_pages < 2
+      case collection.size
+      when 0; "No hay #{entry_name.pluralize} registrados"
+      else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
+        collection.length ,
+        collection.total_entries
+      ]
+      end
+    else
+      %{Mostrando %d de %d #{entry_name.pluralize}} % [
+        collection.length ,
+        collection.total_entries
+      ]
+    end
+  end
+
+  def page_history_families(collection, options = {})
+      entry_name = options[:entry_name] || (collection.empty?? 'Historia Clinica Familiar' :
+        collection.first.class.name.split('::').last.titleize)
+    if collection.total_pages < 2
+      case collection.size
+      when 0; "No hay #{entry_name.pluralize} registrados"
+      else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
+        collection.length ,
+        collection.total_entries
+      ]
+      end
+    else
+      %{Mostrando %d de %d #{entry_name.pluralize}} % [
+        collection.length ,
+        collection.total_entries
+      ]
+    end
+  end
+
 
 
   def page_entries_info(collection, options = {})
@@ -135,6 +174,10 @@ def get_diagnostico
   
 end
 
+def get_diagnostic
+  Diagnostic.all
+end
+
 def get_first_diagnostico
 
   
@@ -146,6 +189,11 @@ end
 def get_patient
   
   Patient.where(admin_user: current_user.admin_user)
+  
+end
+
+def get_tool_type
+  ToolTest.all
   
 end
 
@@ -176,7 +224,20 @@ def select_relacion
         ['Nada', 'Nada']
 
     ]
-  end
+end
+
+def select_tools
+    [
+      ['Entrevista Clinica', 'Entrevista Clinica'],
+      ['Observación', 'Observación'],
+      ['Test proyectivo', 'Test proyectivo'],
+      ['Test Objetivo', 'Test Objetivo'],
+      ['Escalas de evaluación o inventarios', 'Escalas de evaluación o inventarios'],
+      ['Cuestionarios', 'Cuestionarios'],
+      ['Genograma', 'Genograma']
+    ]
+end
+
   def select_relacion_parents
     [
       ['Buena', 'Buena'],
@@ -214,7 +275,7 @@ end
 
 def menu
           
-  @menu = ["","","","",""]
+  @menu = ["","","","","",""]
   if  controller.controller_name == "home" 
         @menu = ["active","na","na","na","na","na", "na","na"]
      elsif controller.controller_name == "views"
@@ -230,14 +291,45 @@ def menu
       elsif controller.controller_name == "stats" && action_name == "index"
         @menu = ["na","na","na","na","na", "na", "active","na"]  
       elsif (controller.controller_name == "patients" && action_name == "all_patients") || (action_name == "citas_admin") || (action_name == "general_stats")
-        @menu = ["na","na","na","na","na", "na","na", "active"]    
+        @menu = ["na","na","na","na","na", "na","na", "active"] 
+      elsif controller.controller_name == "clinic_history_couples" || controller_name == "clinic_history_couple_outcomes"
+        @menu = ["na","na","na","na","na", "na", "na","active"]  
      else
-        @menu = ["na","na","na","na","active"]
+        @menu = ["na","na","na","na","na","active"]
   end
 
   return @menu
 
 end
+
+
+def menu_clinic
+          
+  @menu_clinic_history = ["","","", "", "",""]
+  if  controller.controller_name == "clinic_history_couples" && action_name == "show"
+        @menu_clinic_history = ["active","na","na"]
+         elsif  controller.controller_name == "clinic_history_couples" && action_name == "edit"
+        @menu_clinic_history = ["na","na","na", "na", "na","active"]  
+        
+     elsif controller.controller_name == "clinic_history_couples" || controller.controller_name == "clinic_history_couple_outcomes" 
+        @menu_clinic_history = ["na","active","na"]
+     elsif controller.controller_name == "tracing_couple_families"
+        @menu_clinic_history = ["na","na","active"]
+      elsif controller.controller_name == "document_couple_families"
+        @menu_clinic_history = ["na","na","na", "active"]
+
+      elsif controller.controller_name == "clinic_history_families"
+        @menu_clinic_history = ["na","na","na", "na", "active"]
+
+ 
+  end
+
+  return @menu_clinic_history
+
+end
+
+
+
 
 
 

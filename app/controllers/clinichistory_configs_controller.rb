@@ -1,5 +1,6 @@
 class ClinichistoryConfigsController < ApplicationController
   before_action :set_clinichistory_config, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /clinichistory_configs
   # GET /clinichistory_configs.json

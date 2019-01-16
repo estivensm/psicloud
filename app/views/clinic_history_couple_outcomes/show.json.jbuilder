@@ -1,0 +1,1 @@
+json.partial! "clinic_history_couple_outcomes/clinic_history_couple_outcome", clinic_history_couple_outcome: @clinic_history_couple_outcome

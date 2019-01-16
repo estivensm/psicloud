@@ -1,0 +1,194 @@
+<div class="row" style="padding: 0px 20px;">
+
+  <div class="col-md-12">
+      <h1 class="titulo" align="center">AYUDAS DIAGNOSTICAS</h1>
+    </div>
+
+      <div class="row">
+<div class="col-md-6 text-center paciente2" style="border-right: 1px solid #e7e7e7">
+   <div class="col-md-3 imagen1">
+      <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+   </div>
+   <div class="col-md-7 info">
+      <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+      <p align="left"><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
+      <p style="display: contents;" align="left"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
+   </div>
+  
+</div>
+<div class="col-md-6 text-center paciente2 elements">
+   <div class="col-md-3 imagen1">
+      <%=  @clinic_history_couple.couple_patient.avatar? ? image_tag(@clinic_history_couple.couple_patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
+   </div>
+   <div class="col-md-7 info">
+      <h3 align="left"><%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name%></h3>
+      <p align="left"><strong> Documento: </strong><%= @clinic_history_couple.couple_patient.document %></p>
+      <p style="display: contents;" align="left"><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
+   </div>
+ 
+</div>
+
+</div>
+
+  <br>
+<ul class="nav nav-tabs" style="margin-left: 14px;">
+      <li class="link2"><%=link_to "Gestion Documental Familiar", clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
+      <li class="active"><%= link_to "Gestion Diagnostico", clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), style: "cursor: pointer;"%></li>
+      <li class="link2"><%= link_to "Gestion Legal", clinic_history_couple_legan_documents_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
+    </ul>
+  <% if @document_couple_families.any?%>
+     <div class = "row title-table" style="margin-top: 13px;">
+         <div class = "col-md-7 padding-left">
+            <p>GESTION DIAGNOSTICO FAMILIAR <span class="label label-primary"><%=@document_couple_families.count%></span>  </p>
+         </div>
+      
+         <div class = "col-md-5 text-right">
+          <%= link_to 'Crear Nueva Gestion De Diagnostico Familiar', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id)  + "?params=diagnostic", remote: true, class: "btn btn-primary"  %>
+         </div>
+      </div>
+
+    <div class="col-md-12" style="padding-right: 0px;">
+      <br>
+      <% @document_couple_families.each do |document_couple_family| %>
+        <div class="panel panel-default">
+
+          <div class="col-md-1 float-top">
+
+              <%= link_to edit_document_couple_family_path(document_couple_family) do %>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              <% end -%>
+
+              <%= link_to  document_couple_family, method: :delete, data: {
+                confirm: '¿Estas Seguro?',
+                'confirm-button-text': 'Borrar',
+                'cancel-button-text': 'Cancelar',
+                'confirm-button-color': '#CC0000',
+                 text: 'Recuerda que el registro se borrara permanentemente',
+                'image-url': ''} do %>
+                 <i class="fa fa-trash" aria-hidden="true"></i>
+              <% end %>
+
+          </div>
+
+          <div class="panel-heading">
+            <%= document_couple_family.tool_type %>
+          </div>
+
+          <div class="panel-body">
+            <p><%= document_couple_family.descripcion %></p>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-md-12" style="padding-left: 24px; margin-bottom: 16px;">
+              <% document_couple_family.general_files.each do |file|%>
+                <% if file.file_url%>
+                    <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                      <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                    <% end %>  
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+        </div> 
+      <% end -%> 
+
+    </div>
+
+    <% else %>
+
+    <div class="jumbotron">
+        <h3>! AÚN NO HAS CREADO GESTION DIAGNOSTICO FAMILIAR ¡ </h3>
+         <%= link_to 'Crear Nueva Gestion De Diagnostico Familiar', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=diagnostic", remote: true,  class: "btn btn-primary"  %>
+    </div>
+
+    <% end -%>
+
+ <!--
+    <table>
+      <thead>
+        <tr>
+          <th>Tool type</th>
+          <th>Descripcion</th>
+          <th>Document type</th>
+          <th>Name</th>
+          <th>Clinic history couple</th>
+          <th>Clinic history family</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @document_couple_families.each do |document_couple_family| %>
+          <tr>
+            <td><%= document_couple_family.tool_type %></td>
+            <td><%= document_couple_family.descripcion %></td>
+            <td><%= document_couple_family.document_type %></td>
+            <td><%= document_couple_family.name %></td>
+            <td><%= document_couple_family.clinic_history_couple_id %></td>
+            <td><%= document_couple_family.clinic_history_family_id %></td>
+            <td><%= link_to 'Show', document_couple_family %></td>
+            <td><%= link_to 'Edit', edit_document_couple_family_path(document_couple_family) %></td>
+            <td><%= link_to 'Destroy', document_couple_family, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+-->
+<style type="text/css">
+  
+  .paciente2{
+    padding: 10px 10px;
+    border: none;
+    color: #46b8da
+  }
+
+
+  .titulo{
+
+    background: #46b8da;
+    color: white !important;
+    padding: 10px 6px;
+    margin-top: 0px;
+      margin-bottom: 18px;
+        font-weight: bold
+      margin-left: 16px;
+  }
+  .margin-top{
+        margin-top: 22px;
+  }
+
+  .padding-left{
+    padding-left: 20px;
+  }
+
+  .float-top{
+    float: right;
+    margin-top: 9px;
+  }
+
+  .jumbotron{
+    background-color: #eee !important;
+    margin-left: 14px;
+    text-align: center;
+  }
+
+  .jumbotron h3{
+    padding-top: 30px;
+    color: #3b84a7;
+    font-size: 17px;
+  }
+
+  .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+</style>
