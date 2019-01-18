@@ -18,6 +18,7 @@
 #  tracing_state            :boolean
 #  tracing_created_at       :datetime
 #  clinic_history_couple_id :integer
+#  state                    :boolean
 #
 
 class Tracing < ApplicationRecord

@@ -13,7 +13,19 @@
 class ClinicHistoryFamily < ApplicationRecord
 	has_and_belongs_to_many :patients
     has_many :tracing_couple_families
+
+    has_many :tracing_families
+    has_many :outcome_families
+    has_many :document_families
+
 	has_many :family_group, inverse_of: :clinic_history_family, dependent: :destroy
  	accepts_nested_attributes_for :family_group, :allow_destroy => true
+
+ 	#after_create :create_outcome
+
+
+	#def create_outcome
+		#OutcomeFamily.create(outcome_family_id: self.id )
+	#end
 
 end

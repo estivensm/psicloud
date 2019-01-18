@@ -1,0 +1,2 @@
+module DocumentFamiliesHelper
+end

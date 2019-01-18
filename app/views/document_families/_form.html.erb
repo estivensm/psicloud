@@ -1,0 +1,118 @@
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left: 5px;">
+    
+            <div class="container-fluid" style="padding-left: 5px;">
+              <div class="col-md-9" style="padding-left: 5px;">
+                  <% if action_name == "edit"%>
+                    <h4 class="modal-title">Editar Gestion Documental Familiar</h4>
+                  <%else%>
+                    <h4 class="modal-title">Crear Nueva Gestion Documental Familiar</h4>
+                  <% end -%>
+              </div>    
+            </div>
+        </div>
+<%= nested_form_for([@clinic_history_family, @document_family], local: true) do |form| %>
+ <div class="modal-body">
+  <% if document_family.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document_family.errors.count, "error") %> prohibited this document_family from being saved:</h2>
+
+      <ul>
+          <% document_family.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="c">
+    <%= form.label "Tipo de documento" %>
+     <%= form.select 'tool_type', options_for_select(select_tools), {},{:class => 'form-control'}%>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= form.label "Descripcion" %>
+    <%= form.text_area :descripcion, id: :document_couple_family_descripcion, class: "form form-control text-area" ,:rows => 8,  :cols =>25  %>
+  </div>
+  <br>
+  <% if params[:params] == "tool"%>
+    <%= form.hidden_field :document_type, :value => "tool"%>
+
+  <% elsif  params[:params] == "diagnostic"%>
+    <%= form.hidden_field :document_type, :value => "diagnostic"%>
+
+  <% elsif  params[:params] == "legal"%>
+    <%= form.hidden_field :document_type, :value => "legal"%>
+
+  <% end -%>     
+<!--
+  <div class="col-md-12">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :document_couple_family_name, class: "form form-control" %>
+  </div>
+-->
+
+  
+    <%= form.hidden_field :clinic_history_family_id, :value => @clinic_history_family.id  %>
+
+  
+
+  <%= form.fields_for :general_files do |file|  %>
+    <div class="clearfix">
+      <div class="col-md-12" style="padding: 0px;" >  
+        <div class="col-md-6" style="padding: 0px;" >
+           <div class="input-group">
+              <span class="input-group-btn">
+                <%= file.link_to_remove class: "btn btn-danger" do %>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+              </span>
+          <%= file.text_field :name, :class => 'name form form-control', :placeholder => "Nombre" %>
+          </div>
+        </div>
+
+        <div class="col-md-5 pdd" >    
+          <%= file.file_field :file, :class => 'file form form-control archivo', style: "" %>
+          <%= file.hidden_field :id, class:"items" if action_name == "edit"%>
+          <br>
+        </div>
+
+        <br>
+          <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
+          <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
+
+        <br>
+
+      </div> 
+    </div> 
+  </div>
+<% end %>
+
+        <div class="col-md-12" style="padding: 0px;">
+                <%= form.link_to_add "Agregar Archivo", :general_files, :class => 'btn btn-primary'  %>
+        </div>
+
+        <div class="modal-footer"">
+           <%= form.submit "Guardar", class: "btn btn-info", id: "btn3" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<style type="text/css" media="screen">
+
+  .text-area{
+    resize: none;
+  }
+
+</style>
+
+

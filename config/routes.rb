@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
  
-  resources :clinic_history_families
+  resources :clinic_history_families do
+    resources :outcome_families, only: [:edit, :update, :destroy] 
+    resources :document_families
+    resources :tracing_families
+    get "diagnostic_documets", to: "document_families#diagnostic_documets", as: "diagnostic_documets"
+    get "legan_documents", to: "document_families#legan_documents", as: "legan_documents"
+  end
+
+  get "history_families/:id", to: "clinic_history_families#history_families", as: "history_families"
  
   resources :document_couple_families
  
@@ -12,6 +20,8 @@ Rails.application.routes.draw do
       get "legan_documents", to: "document_couple_families#legan_documents", as: "legan_documents"
 
   end
+
+  get "history_couple/:id", to: "clinic_history_couples#history_couple", as: "history_couple"
   
   resources :created_formats
   resources :clinichistory_configs

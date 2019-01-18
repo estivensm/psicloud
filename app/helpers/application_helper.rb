@@ -149,6 +149,64 @@ def page_create_format(collection, options = {})
   end
 end
 
+def page_familias_families(collection, options = {})
+  entry_name = options[:entry_name] || (collection.empty?? 'Resultados Familiares' :
+      collection.first.class.name.split('::').last.titleize)
+  if collection.total_pages < 2
+    case collection.size
+    when 0; "No hay #{entry_name.pluralize} registrados"
+    else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+    end
+  else
+    %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+  end
+end
+
+def page_document_families(collection, options = {})
+  entry_name = options[:entry_name] || (collection.empty?? 'Docuemntos Familiares' :
+      collection.first.class.name.split('::').last.titleize)
+  if collection.total_pages < 2
+    case collection.size
+    when 0; "No hay #{entry_name.pluralize} registrados"
+    else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+    end
+  else
+    %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+  end
+end
+
+def page_tracing_families(collection, options = {})
+  entry_name = options[:entry_name] || (collection.empty?? 'Familiar' :
+      collection.first.class.name.split('::').last.titleize)
+  if collection.total_pages < 2
+    case collection.size
+    when 0; "No hay #{entry_name.pluralize} registrados"
+    else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+    end
+  else
+    %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+  end
+end
+
+
 def get_account
 
   Account.where(admin_user: current_user.admin_user).first.id

@@ -1,5 +1,5 @@
 class ClinicHistoryFamiliesController < ApplicationController
-  before_action :set_clinic_history_family, only: [:show, :edit, :update, :destroy]
+  before_action :set_clinic_history_family, only: [:show, :edit, :update, :destroy, :history_families]
   before_action :authenticate_user!
   layout "admin", only: [:index, :new]
   # GET /clinic_history_families
@@ -11,9 +11,7 @@ class ClinicHistoryFamiliesController < ApplicationController
   # GET /clinic_history_families/1
   # GET /clinic_history_families/1.json
   def show
-
-         render :layout => "admin_clinic_history_family"
-
+    render :layout => "admin_clinic_history_family"
   end
 
   def paciente
@@ -40,6 +38,23 @@ class ClinicHistoryFamiliesController < ApplicationController
   def edit
          render :layout => "admin_clinic_history_family"
 
+  end
+
+  def history_families
+    @seguimientos = TracingFamily.where(clinic_history_family_id: @clinic_history_family.id)
+    @documentos_tool = DocumentFamily.where(document_type: "tool").where(clinic_history_family_id: @clinic_history_family.id)
+    @documentos_diagnostic = DocumentFamily.where(document_type: "diagnostic").where(clinic_history_family_id: @clinic_history_family.id)
+    @documentos_legal = DocumentFamily.where(document_type: "legal").where(clinic_history_family_id: @clinic_history_family.id)
+
+    respond_to do |format|
+        format.html
+        format.pdf do
+          render :pdf => "formatos1",
+          :template => 'clinic_history_families/pdfs/history_families.pdf.erb',
+          :layout => 'pdf.html.erb',
+          :show_as_html => params[:debug].present?
+      end
+    end 
   end
 
   # POST /clinic_history_families

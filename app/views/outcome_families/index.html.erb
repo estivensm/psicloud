@@ -1,0 +1,71 @@
+<div id='cssmenu' style="margin-left: -2px; margin-top: 1%;">
+      <ul>
+         <li><%= link_to "inicio", root_path%></li>
+         <li class="active" ><%=link_to "Resultados Familiares", created_formats_path%></li>
+      </ul>
+</div>
+    <br>
+<div class="container">
+   <div class="row" >
+    <br>
+    <div class = "row title-table">
+
+       <div class = "col-md-8"  style="padding-left: 20px;">
+          <p>Resultados Familiares <span class="label label-primary"><%= @outcome_families.count%></span> <span style = "font-size:12px;margin-left:20px;"><%= page_familias_families @outcome_families, :entry_name => 'Documentos Familiares' %></span> </p>
+       </div>
+
+
+       <div class = "col-md-2" style= "float: right; padding-right: 10px;">
+          <%= link_to 'Nuevo', new_document_couple_family_path, class: "btn btn-primary", style: "float: right;" %>
+       </div>
+    </div><br>
+
+<div class="content-table">
+  <table class="table">
+    <tr class="tr-table">
+      <th>Clinic history family</th>
+      <th>Clinic history couple</th>
+      <th>Diagnostic description</th>
+      <th>Therapeutic goal</th>
+      <th>Type of treatment</th>
+      <th colspan="3">Acciones</th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <% @outcome_families.each do |outcome_family| %>
+        <tr>
+          <td><%= outcome_family.clinic_history_family_id %></td>
+          <td><%= outcome_family.clinic_history_couple_id %></td>
+          <td><%= outcome_family.diagnostic_description %></td>
+          <td><%= outcome_family.therapeutic_goal %></td>
+          <td><%= outcome_family.type_of_treatment %></td>
+
+          <td>
+
+            <%= link_to outcome_family, class: "btn btn-primary" do%>
+                <i class="fas fa-eye" style = "font-size:20px;" aria-hidden="true"></i>
+            <% end -%>
+
+            <%= link_to edit_outcome_family_path(outcome_family), class: "btn btn-primary" do%>
+                <i class="fas fa-edit" style = "font-size:20px;" aria-hidden="true"></i>
+            <% end -%>
+            
+            <%= link_to outcome_family, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''}, class: "btn btn-danger" do %>
+                <i class="fa fa-trash" style = "font-size:20px;" aria-hidden="true"></i>
+              <% end -%>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

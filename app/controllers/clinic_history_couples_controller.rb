@@ -1,6 +1,6 @@
 class ClinicHistoryCouplesController < ApplicationController
-  before_action :set_clinic_history_couple, only: [:show, :edit, :update, :destroy]
-  before_action :all_patient, only: [:show, :new, :create, :edit]
+  before_action :set_clinic_history_couple, only: [:show, :edit, :update, :destroy, :history_couple]
+  before_action :all_patient, only: [:show, :new, :create, :edit, :history_couple]
   before_action :authenticate_user!
   layout "admin", only: [:index, :new, :edit]
   # GET /clinic_history_couples
@@ -19,6 +19,26 @@ class ClinicHistoryCouplesController < ApplicationController
   # GET /clinic_history_couples/new
   def new
     @clinic_history_couple = ClinicHistoryCouple.new
+  end
+
+
+
+  def history_couple
+    @clinic_history_couple_outcome = ClinicHistoryCoupleOutcome.where(clinic_history_couple_id: @clinic_history_couple.id ).first
+    @seguimientos = TracingFamily.where(clinic_history_family_id: @clinic_history_couple.id)
+    @documentos_tool = DocumentFamily.where(document_type: "tool").where(clinic_history_family_id: @clinic_history_couple.id)
+    @documentos_diagnostic = DocumentFamily.where(document_type: "diagnostic").where(clinic_history_family_id: @clinic_history_couple.id)
+    @documentos_legal = DocumentFamily.where(document_type: "legal").where(clinic_history_family_id: @clinic_history_couple.id)
+
+    respond_to do |format|
+        format.html
+        format.pdf do
+          render :pdf => "formatos1",
+          :template => 'clinic_history_couples/pdfs/history_couple.pdf.erb',
+          :layout => 'pdf.html.erb',
+          :show_as_html => params[:debug].present?
+      end
+    end 
   end
 
 

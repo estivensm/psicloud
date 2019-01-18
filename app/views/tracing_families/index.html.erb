@@ -1,0 +1,154 @@
+<div class="row">
+    <div class="col-md-11 titulo">
+      <h2 align="center">INFORMACIÓN GENERAL</h2>
+    </div>
+    <div class="row">
+      <% @clinic_history_family.patients.each do |patient| %>  
+            <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo), id: "patient") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", id: "patient")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
+              <br><br>
+            </div>        
+      <% end %>
+    </div>
+          <% if @tracing_families.any? %>
+          <div class="row" style = "padding: 0px 28px;">
+             <div class = "row title-table" style="margin-top: 10px; width: 1027px;">
+                <div class = "col-md-7">
+                   <p>
+                      SEGUIMIENTOS <span class="label label-primary"><%= @tracing_families.count %></span> 
+                      <span style = "font-size:12px;margin-left:20px;">
+                      </span>
+                   </p>
+                </div>
+                <div class = "col-md-2" style="float: right; padding-right: 8px;">
+                   <%= link_to 'Nuevo Seguimiento',  new_clinic_history_family_tracing_family_path(@clinic_history_family.id), class: "btn btn-primary", style: "float: right;"  %>
+                </div>
+             </div>
+            <% @tracing_families.each do |tracing_family| %>
+             <div class="panel panel-default" style="width: 96%;">
+                <div class="panel-heading">
+                   <div class="row">
+                      <div class="col-md-6" style="    color: #5bc0de;
+                         font-size: 18px;">
+                         <%= tracing_family.tracing_date %>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <%= link_to edit_clinic_history_family_tracing_family_path(@clinic_history_family.id, tracing_family) do %>
+                            <i class="fas fa-pencil-alt"></i>
+                        <% end -%>
+                        <%= link_to clinic_history_family_tracing_family_path(@clinic_history_family.id, tracing_family), method: :delete, data: {
+                          confirm: '¿Estas Seguro?',
+                          'confirm-button-text': 'Borrar',
+                          'cancel-button-text': 'Cancelar',
+                          'confirm-button-color': '#CC0000',
+                           text: 'Recuerda que el registro se borrara permanentemente',
+                          'image-url': ''} do %>
+                          <i class="fas fa-trash-alt" style = "font-size:15px; color: red;" aria-hidden="true"></i>
+                          <% end -%>
+
+
+                        
+                      </div>
+                   </div>
+                </div>
+                <div class="panel-body"> 
+                   <strong>Descripción:</strong> <%= tracing_family.description %>
+                   <hr>
+
+
+                   <% if tracing_family.attachment %>
+                      <%= link_to  tracing_family.attachment_url, class: "", style:"margin-right:10px;" do  %>
+                        <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
+                      <% end %>  
+                   <% end %>
+
+                   <% tracing_family.general_files.each do |file|%>
+                     <% if file.file_url%>
+                       <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                       <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
+                       <% end %>  
+                     <% end %>
+                   <% end %>
+
+                </div>
+             </div>
+            <% end %>
+          </div>
+
+      <div class = "col-md-12 paginate text-left title-table1">
+         <%= will_paginate @tracing_families %>
+      </div>
+  </div>
+
+<% else %>
+
+<div class="row" style="padding: 0px 20px;">
+   <div class="col-md-12 np">
+      <h4>! AÚN NO HAY SEGUIMIENTOS ¡</h4>
+      <%= link_to "CREA EL PRIMERO", new_clinic_history_family_tracing_family_path(@clinic_history_family.id), class: "btn btn-primary"   %>
+   </div>
+</div>
+
+<% end %>
+</div>
+<style>
+  .paciente2{
+    padding: 10px 10px;
+    border: none;
+    color: #46b8da
+  }
+
+
+   .panel-body strong{
+      margin-bottom: 5px
+   }
+
+   .np{
+     text-align: center;
+     color: gray;
+     background: #f4f4f4;
+     font-size: 40px;
+     padding: 16px 0px;
+    
+   }
+
+   .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .titulo{
+    background: #46b8da;
+    color: white !important;
+    padding: 5px 5px;
+      margin-bottom: 18px;
+      font-weight: bold;
+      margin-left: 10px;
+          width: 96%;
+  }
+
+  .paciente2 img{
+    width: 80px;
+  }
+
+  #patient{
+    border-radius: 50%;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  #show-patien{
+    background: #46b8da;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+    margin-top: 10px;
+  }
+
+</style>
+
+
+
+
