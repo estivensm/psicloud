@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Clinic history couple:</strong>
+  <%= @tracing_family.clinic_history_couple_id %>
+</p>
+
+<p>
+  <strong>Clinic history family:</strong>
+  <%= @tracing_family.clinic_history_family_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @tracing_family.admin_user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tracing_family.user_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tracing_family.description %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @tracing_family.attachment %>
+</p>
+
+<p>
+  <strong>Tracing type:</strong>
+  <%= @tracing_family.tracing_type %>
+</p>
+
+<p>
+  <strong>Tracing date:</strong>
+  <%= @tracing_family.tracing_date %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @tracing_family.observation %>
+</p>
+
+<p>
+  <strong>Evolution:</strong>
+  <%= @tracing_family.evolution %>
+</p>
+
+<p>
+  <strong>Tracing state:</strong>
+  <%= @tracing_family.tracing_state %>
+</p>
+
+<%= link_to 'Edit', edit_tracing_family_path(@tracing_family) %> |
+<%= link_to 'Back', tracing_families_path %>

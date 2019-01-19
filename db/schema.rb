@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181221162118) do
+ActiveRecord::Schema.define(version: 20190117205804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -360,6 +360,17 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "document_families", force: :cascade do |t|
+    t.string "tool_type"
+    t.text "descripcion"
+    t.string "document_type"
+    t.string "name"
+    t.string "string"
+    t.integer "clinic_history_family_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string "name"
     t.string "file"
@@ -444,6 +455,8 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.integer "legal_document_id"
     t.integer "tracing_couple_family_id"
     t.integer "document_couple_family_id"
+    t.integer "tracing_family_id"
+    t.integer "document_family_id"
   end
 
   create_table "hpcs", force: :cascade do |t|
@@ -463,6 +476,16 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.integer "admin_user"
     t.integer "clinic_history_id"
     t.integer "patient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "outcome_families", force: :cascade do |t|
+    t.integer "clinic_history_family_id"
+    t.integer "clinic_history_couple_id"
+    t.text "diagnostic_description"
+    t.integer "therapeutic_goal"
+    t.integer "type_of_treatment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -672,6 +695,21 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tracing_families", force: :cascade do |t|
+    t.integer "clinic_history_family_id"
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.text "description"
+    t.string "attachment"
+    t.string "tracing_type"
+    t.date "tracing_date"
+    t.text "observation"
+    t.text "evolution"
+    t.boolean "tracing_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tracings", force: :cascade do |t|
     t.integer "admin_user"
     t.integer "user_id"
@@ -687,8 +725,8 @@ ActiveRecord::Schema.define(version: 20181221162118) do
     t.text "evolution"
     t.boolean "tracing_state"
     t.datetime "tracing_created_at"
-    t.boolean "state"
     t.integer "clinic_history_couple_id"
+    t.boolean "state"
   end
 
   create_table "two_child_histories", force: :cascade do |t|

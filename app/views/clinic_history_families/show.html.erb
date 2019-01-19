@@ -1,38 +1,243 @@
 
       <div class="row">
-		<div class="col-md-12 titulo">
+		<div class="col-md-11 titulo">
 			<h2 align="center">INFORMACIÓN GENERAL</h2>
 		</div>
         <div class="row">
-      <% @clinic_history_family.patients.each do |patient| %>
-		
-      	        
-      	          <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
-      	          </div>
-				
-		
+      <% @clinic_history_family.patients.each do |patient| %>  
+      	    <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo), id: "patient") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", id: "patient")%><br><span id='show-patien'  data-toggle="modal" data-target="#paciente<%= patient.id %>"><%= patient.first_name + " " + patient.first_last_name %></span>
+      	    	<br><br>
+      	    </div>
 
-       <%end%>
+      	     <div class="modal fade" id="paciente<%= patient.id %>" role="dialog">
+			    <div class="modal-dialog modal-lg">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Modal Header</h4>
+			        </div>
+			        <div class="modal-body">
+			          	<table class="table table-responsive" style="width: 99% !important;">
+						   <tr>
+						   	 <h3 class="h3" style="width: 99%;">Nombre: <%= patient.first_name %> <%= patient.first_last_name %> </h3>
+						      <td> <strong> Nombres</strong><br> <%= patient.first_name %> <%= patient.second_name %> </td>
+						      <td> <strong>Apellidos</strong><br> <%= patient.first_last_name%> <%= patient.second_last_name %> </td>
+						      <td> <strong>Documento</strong><br> <%=  type_document(patient.document_type) %> -  <%=patient.document %> </td>
+						      <td> <strong>Fecha de Nacimiento:</strong><br> <%= patient.birth_date %> </td>
+						   </tr>
 
+						    <tr>
+						      <% year = patient.age == 1 ? "Año" : " Años"
+						         month = patient.birthdate_month == 1 ? " Mes" : " Meses"
+						         day =  patient.birthdate_day == 1 ?  " Día" : " Días"
+						         %>
+						      <td> <strong>Edad:</strong> <br><%= patient.age.to_s + year  %> <%= patient.birthdate_month.to_s + month   %> <%= patient.birthdate_day.to_s +  day %></td>
+						      <td> <strong>Ciudad:</strong> <br><%= patient.city %> </td>
+						      <td> <strong>Dirección de Residencia</strong> <br><%= patient.address %> </td>
+						      <td> <strong>Teléfono fijo:</strong><br> <%= patient.phone %> </td>
+						   </tr>
+
+						    <tr>
+					      	  <td> <strong>Teléfono Móvil:</strong> <br><%= patient.movil %> </td>
+						      <td> <strong>Email</strong><br> <%= patient.email %> </td>
+						      <td> <strong>Ocupación:</strong><br> <%= patient.occupation %> </td>
+						      <td> <strong>Profesión:</strong> <br><%= patient.profession %> </td>
+						   </tr>
+
+							<tr>
+						      <td> <strong>Género:</strong> <br><%= patient.gender %> </td>
+						      <td> <strong>Estado Civil</strong><br> <%= patient.civil_status %> </td>
+						      <td> <strong>Grupo sanguíneo:</strong><br> <%= patient.blood_type %> </td>
+						      <td> <strong>Grupo Étnico:</strong> <br><%= patient.ethnic_group %> </td>
+						   </tr>
+
+						    <tr>
+						      <td> <strong>Eps:</strong> <br><%= patient.hpc.name if patient.hpc %>  </td>
+						      <td> <strong>Convenio</strong><br><%= patient.agreement.name if patient.agreement %> </td>
+						      <td> <strong>Nombre Contacto:</strong> <br><%= patient.contact_name %> </td>
+						      <td> <strong>Teléfono Contacto</strong> <br> <%= patient.contact_phone %> </td>
+						   </tr>
+
+
+						</table>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+
+
+
+      <% end %>
 
 
 	</div>
+	      <hr class="hr-paciente">
+
+<div class="container1">
+
+
+<% if !@clinic_history_family.family_group.any? %>
+
+<% else %>
+	<h3 class="h3">Familiares que no han sido ingresados como pacientes </h3>
+		<% @clinic_history_family.family_group.each do |familia| %>
+			<table class="table table-responsive">
+
+			    <tr>
+		      	  <td> <strong>Nombre: </strong> <br><%= familia.name %> </td>
+			      <td> <strong>Apellido: </strong><br> <%= familia.last_name %> </td>
+			      <td> <strong>Documento: </strong><br> <%= familia.document_number %> </td>
+			      <td> <strong>Edad: </strong> <br><%= familia.age %> </td>
+			   </tr>
+
+			   	<tr>
+		      	  <td> <strong>Sexo: </strong> <br><%= familia.sex %> </td>
+			      <td> <strong>Estado Civil: </strong><br> <%= familia.civil_status %> </td>
+			      <td> <strong>Ocpacion: </strong><br> <%= familia.occupation %> </td>
+			      <td> <strong>Parentesco: </strong> <br><%= familia.relationship %> </td>
+			   </tr>
+
+			</table>
+		<% end -%>
+<% end -%>
+
+
+
+<h3 class="h3">Gestion Documental Familiar</h3>
+
+	<% DocumentFamily.where(document_type: "tool").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
+		<table class="table table-responsive">
+
+			   <tr>
+				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
+		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
+			  </tr>
+
+		</table>
+	<% end -%>
+
+
+
+	<h3 class="h3">Gestion Diagnostico Familiar</h3>
+
+	<% DocumentFamily.where(document_type: "diagnostic").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
+		<table class="table table-responsive">
+
+			   <tr>
+				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
+		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
+			  </tr>
+
+		</table>
+	<% end -%>
+
+
+
+<h3 class="h3">Gestion Legal Familiar</h3>
+
+	<%  DocumentFamily.where(document_type: "legal").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
+		<table class="table table-responsive">
+
+			   <tr>
+				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
+		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
+			  </tr>
+
+		</table>
+	<% end -%>
+
+	<h3 class="h3">Seguimientos</h3>
+	
+	<% TracingFamily.where(clinic_history_family_id: @clinic_history_family.id).each do |seguimientos| %>
+		<table class="table table-responsive">
+
+			   <tr>
+				 <td> <strong>Fecha del Seguimiento: </strong> <br><%= seguimientos.tracing_date %> </td>   	
+		      	 <td> <strong>Descripcion: </strong> <br><%= seguimientos.description %> </td>
+			     <td> <strong>Observaciones: </strong><br> <%= seguimientos.observation %> </td>
+			     <td> <strong>Evolucion: </strong><br> <%= seguimientos.evolution %> </td>
+			  </tr>
+
+		</table>
+	<% end -%>
+
+
+
 </div>
 
 <style type="text/css" media="screen">
 
-	.titulo{
+.table1{
+   border-collapse: collapse;
+   color: #7a7a7a;
+   border:1px solid #0000;
+   font-size:16px !important;
+   width: 1100px;
+}   
+.table1 td{
+   padding: 6px 20px;
+   width:25%;
+   border:1px solid #cecece;
+   font-size:18px !important;
+}
 
+.table1 th{
+   padding: 6px 20px;
+   width:25%;
+   border:1px solid #cecece;
+}
+
+.h3{
+   color: #ffffff;
+   width: 80%;
+   background: #5bc0de;
+   padding: 6px;
+   width: 1100px;
+   
+}
+
+	.titulo{
 		background: #46b8da;
 		color: white !important;
-		padding: 10px 6px;
-
+		padding: 5px 5px;
    		margin-bottom: 18px;
-   		font-weight: bold
+   		font-weight: bold;
+   		margin-left: 10px;
 	}
-	.paciente2 img
-	{
+
+	.hr-paciente{
+		    width: 91%;
+	}
+
+	.paciente2 img{
 		width: 80px;
+	}
+
+	#patient{
+		border-radius: 50%;
+		height: 100px;
+		margin-bottom: 10px;
+	}
+
+	#show-patien{
+		background: #46b8da;
+		padding: 5px;
+		border-radius: 4px;
+		color: #fff;
+		margin-top: 10px;
+		cursor: pointer;
+	}
+
+	.container1{
+		padding: 0px;
+    	margin: 0px;
+	}
+
+	table{
+		width: 92% !important;
 	}
 
 </style>

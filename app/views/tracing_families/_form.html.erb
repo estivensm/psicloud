@@ -1,0 +1,115 @@
+    <%= nested_form_for([@clinic_history_family, tracing_family]) do |form| %>
+      <% if tracing_family.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(tracing_family.errors.count, "error") %> prohibited this tracing_family from being saved:</h2>
+
+          <ul>
+          <% tracing_family.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="col-md-12 no_padding_left">
+         <label>Fecha de Seguimiento</label>
+
+          <div class="form-group date_select">
+
+              <%= form.date_select :tracing_date,{
+                :start_year =>
+                Time.now.year + 1,
+                :end_year => 1900,
+                :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+                :use_short_month => true,
+                :order => [:day, :month, :year]},
+                {:class => 'year form-control line1 required',
+                :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }%>
+          </div>
+
+     </div>
+
+      <div class="col-md-12 no_padding_left">
+        <%= form.label "Descripcion" %>
+        <%= form.text_area :description, id: :tracing_family_description, class: "form-control", :rows => 10,  :cols => 30  %>
+        <br>
+      </div>
+
+      <div class="col-md-12 no_padding_left">
+        <%= form.label "Observacion" %>
+        <%= form.text_area :observation, id: :tracing_family_observation, class: "form-control", :rows => 10,  :cols => 40 %>
+        <br>
+      </div>
+
+      <div class="col-md-12 no_padding_left">
+        <%= form.label "Evolucion" %>
+        <%= form.text_area :evolution, id: :tracing_family_evolution, class: "form-control", :rows => 10,  :cols => 40 %>
+        <br>
+      </div>
+
+  <% if action_name == "new"%>
+    <%= form.hidden_field :admin_user , :value => current_user.admin_user %>
+    <%= form.hidden_field :user_id , :value =>  current_user.id %>
+    <%= form.hidden_field :clinic_history_family_id , :value =>  @clinic_history_family.id %>
+  <% end %>
+
+<div class="form-group">
+  <%= form.fields_for :general_files do |file|  %>
+      <div class="clearfix">
+        <div class="col-md-12" style="padding: 0px;" >  
+          <div class="col-md-6" style="padding: 0px;" >
+             <div class="input-group">
+                <span class="input-group-btn">
+                  <%= file.link_to_remove class: "btn btn-danger" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  <% end %>
+                </span>
+            <%= file.text_field :name, :class => 'name form form-control', :placeholder => "Nombre" %>
+            </div>
+          </div>
+
+          <div class="col-md-5 pdd" >    
+            <%= file.file_field :file, :class => 'file form form-control archivo', style: "" %>
+            <%= file.hidden_field :id, class: "items" if action_name == "edit"%>
+            <br>
+          </div>
+
+          <br>
+            <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
+            <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
+
+          <br>
+
+        </div> 
+      </div> 
+  <% end %>
+
+    <div class="col-md-12" style="padding: 0px; margin-bottom: 12px;">
+            <%= form.link_to_add "Agregar Archivo", :general_files, :class => 'btn btn-primary'  %>
+    </div>
+</div>
+
+
+
+      <div class="modal-footer col-md-12">
+        <%= form.submit "Guardar", class: "btn btn-primary" %>
+        <%= link_to "Volver", :back, class: "btn btn-light" %>
+      </div>
+    <% end %>
+
+
+<style type="text/css" media="screen">
+
+  .no_padding_left{
+    padding-left: 0px;
+  }
+
+</style>
+
+<!--
+    <% if action_name == "new" %>
+      Nuevo Seguimiento Familiar
+      <% else %>
+        Editar Seguimiento Familiar
+    <% end -%>
+    -->

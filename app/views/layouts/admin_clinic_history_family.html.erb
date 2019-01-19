@@ -254,14 +254,11 @@
   <div id='cssmenu' style="margin-left: -5px; margin-top: 10px;">
     <ul>
           <li><%= link_to "Inicio", root_path%></li> 
-          <li><%= link_to "Historial de Parejas ", clinic_history_couples_path%></li>
-
-       
-       
+          <li class="active"><%= link_to "Historial de Parejas ", clinic_history_couples_path%> </li>       
     </ul>
   </div>
 
-  <div class="col-md-5" style="float: right;  margin-top: 10px; padding-right: 26px;">
+  <div class="col-md-1" style="float: right;  margin-top: 10px; padding-right: 26px;">
      <%= link_to "Volver", clinic_history_couples_path, class: "btn btn-primary btn1", style: "float: right;"%>
   </div>
 <% menu_clinic %>
@@ -270,6 +267,7 @@
     <br>
     <div class="col-sm-2 sidenav hidden-xs">
       <ul class="nav nav-pills nav-stacked">
+
 
         <li class="<%= @menu_clinic_history[0] %>">
           <%= link_to clinic_history_family_path(@clinic_history_family) do %>
@@ -282,7 +280,27 @@
               <i class="fas fa-user-friends"></i> Primer Contacto
           <% end -%>
         </li>
-    
+
+
+        <li class="<%= @menu_clinic_history[6] %>">
+          <%= link_to clinic_history_family_tracing_families_path(@clinic_history_family) do %>
+              <i class="fas fa-user-friends"></i> Seguimientos
+          <% end -%>
+        </li>
+
+        <li class="<%= @menu_clinic_history[7] %>">
+          <%= link_to clinic_history_family_document_families_path(@clinic_history_family) do %>
+              <i class="fas fa-file-signature"></i> Gestion Documental
+          <% end -%>
+        </li>
+
+        <li class="label-succes">
+            <%= link_to history_families_path(@clinic_history_family.id, :format => "pdf"), target:"_blank", class: "btn-pdf" do %>
+              <i class="fas fa-file-pdf ipdf"></i> Generar PDF
+            <% end -%>
+        </li>
+
+
 
       </ul>
     </div>
@@ -296,6 +314,38 @@
 </html>
 
 <style>
+
+
+  .ipdf{
+    margin-right: 7px;
+  }
+
+  legend {
+  color:#0481b1;
+  font-size:16px;
+  padding:0 10px;
+  background:#fff;
+  -moz-border-radius:4px;
+  box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+  padding:5px 10px;
+  text-transform:uppercase;
+  font-family:Helvetica, sans-serif;
+  font-weight:bold; 
+  width: auto;
+}
+
+fieldset {
+
+  border-radius:4px;
+  background: #fff; 
+  background: -moz-linear-gradient(#fff, #f9fdff);
+  background: -o-linear-gradient(#fff, #f9fdff);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#f9fdff));
+  background: -webkit-linear-gradient(#fff, #f9fdff);
+  padding: 20px;
+  border: 1px solid rgba(4, 129, 177, 0.4);
+      margin-bottom: 10px;
+}
 
 .nav-tabs>li.active>a{
   background: #5bbbe1 !important;
@@ -599,6 +649,10 @@ ul > a:h{
 
     .nav-pills>li.active>a{
       background: #5bc0de;
+    }
+
+    .padding-bottom{
+      padding-bottom: 0px;
     }
 
 

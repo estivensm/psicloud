@@ -35,18 +35,17 @@
       <hr>
         <div class="row"> 
             <h4 class="text-center">FAMILIARES QUE NO HAN SIDO INGRESADOS COMO PACIENTES</h4> <br> 
+
           <%= form.fields_for :family_group do |file|  %>
-            <div class="col-md-12 no-padding no-patient" >  
-                <div class="col-md-3 no-padding" style="padding: 0px;" >
-                  <label>Nombre</label>
-                  <div class="input-group">
-                      <span class="input-group-btn">
-                         <%= file.link_to_remove class: "btn btn-danger" do %>
-                          <i class="fa fa-trash" aria-hidden="true"></i>
-                        <% end %>
-                      </span>
+            <div class="col-md-12 no-padding no-patient" > 
+
+                <%= file.link_to_remove class: "btn btn-danger icon-delete" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %> 
+
+               <div class="col-md-3" >
+                    <label>Nombre</label>
                     <%= file.text_field :name, :class => 'name form form-control', :placeholder => "Nombre" %>
-                  </div>
                </div>
 
                <div class="col-md-3">
@@ -63,7 +62,7 @@
                <div class="col-md-3 ">
                    <label>Edad</label>
                    <%= file.number_field :age, class: "form form-control" %>
-                
+                  <br>
                </div>
 
                 <div class="col-md-3 ">
@@ -82,7 +81,7 @@
                </div>
 
                 <div class="col-md-3">
-                   <label>Parentesco</label>
+                   <label>Pareco</label>
                    <%= file.text_field :relationship, class: "form form-control" %>
                    <br>
                </div>
@@ -130,13 +129,19 @@
 
 
 <style type="text/css" media="screen">
-   
+  .icon-delete{
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    float: right;
+    border-radius: inherit;
+  }
   
    .no-patient
    {
-    padding: 0px;
+    padding: 15px !important;
     background: whitesmoke;
-    border-bottom: 1px solid #c1c1c1;
+    border: 1px solid #c1c1c1;
     padding-top: 10px;
     margin-bottom: 10px;
    }
@@ -173,6 +178,12 @@
     color: #fff;
     border-radius: 4px;
     margin-right: 5px;
+  }
+
+
+  #name2 .text-center img{
+    margin-bottom: 11px;
+    border-radius: 50%;
   }
 
 </style>

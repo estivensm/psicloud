@@ -1,0 +1,2 @@
+module OutcomeFamiliesHelper
+end

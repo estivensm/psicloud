@@ -307,6 +307,12 @@
           <% end -%>
         </li>
 
+        <li class="label-succes">
+            <%= link_to history_couple_path(@clinic_history_couple.id, :format => "pdf"), target:"_blank", class: "btn-pdf" do %>
+              <i class="fas fa-file-pdf ipdf"></i> Generar PDF
+            <% end -%>
+        </li>
+
     
 
       </ul>
@@ -321,6 +327,33 @@
 </html>
 
 <style>
+
+legend {
+  color:#0481b1;
+  font-size:16px;
+  padding:0 10px;
+  background:#fff;
+  -moz-border-radius:4px;
+  box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+  padding:5px 10px;
+  text-transform:uppercase;
+  font-family:Helvetica, sans-serif;
+  font-weight:bold; 
+  width: auto;
+}
+
+fieldset {
+
+  border-radius:4px;
+  background: #fff; 
+  background: -moz-linear-gradient(#fff, #f9fdff);
+  background: -o-linear-gradient(#fff, #f9fdff);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#f9fdff));
+  background: -webkit-linear-gradient(#fff, #f9fdff);
+  padding: 20px;
+  border: 1px solid rgba(4, 129, 177, 0.4);
+      margin-bottom: 10px;
+}
 
 .nav-tabs>li.active>a{
   background: #5bbbe1 !important;

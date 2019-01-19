@@ -103,6 +103,6 @@ class DocumentCoupleFamiliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_couple_family_params
-      params.require(:document_couple_family).permit(:tool_type, :descripcion, :document_type, :name, :clinic_history_couple_id, :clinic_history_family_id,  general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
+      params.require(:document_couple_family).permit(:tool_type, :descripcion, :document_type, :name, :clinic_history_cuple_id, :clinic_history_family_id,  general_files_attributes: [:id, :name, :file,:user_id,:admin_user,:tool_test_id,:_destroy])
     end
 end

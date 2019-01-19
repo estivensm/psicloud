@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tool type:</strong>
+  <%= @document_family.tool_type %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @document_family.descripcion %>
+</p>
+
+<p>
+  <strong>Document type:</strong>
+  <%= @document_family.document_type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @document_family.name %>
+</p>
+
+<p>
+  <strong>Clinic history couple:</strong>
+  <%= @document_family.clinic_history_couple_id %>
+</p>
+
+<p>
+  <strong>String:</strong>
+  <%= @document_family.string %>
+</p>
+
+<p>
+  <strong>Clinic history family:</strong>
+  <%= @document_family.clinic_history_family_id %>
+</p>
+
+<%= link_to 'Edit', edit_document_family_path(@document_family) %> |
+<%= link_to 'Back', document_families_path %>

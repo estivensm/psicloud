@@ -8,10 +8,69 @@
       <%=  @clinic_history_couple.patient.avatar? ? image_tag(@clinic_history_couple.patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
    </div>
    <div class="col-md-7 info">
-      <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
+      <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%> </h3>
       <p><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
-      <p style="display: contents;"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
+      <p><strong>Edad: </strong><%= @clinic_history_couple.patient.age %>  <span class="fas fa-eye icon-showi" data-toggle="modal" data-target="#modal<%= @clinic_history_couple.patient.id %>"></span> </p>
    </div>
+
+  <div class="modal fade" id="modal<%= @clinic_history_couple.patient.id %>" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-responsive" style="width: 99% !important;">
+               <tr>
+                 <h3 class="h3" style="width: 99%;">Nombre: <%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name %> </h3>
+                  <td> <strong> Nombres</strong><br> <%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name %> </td>
+                  <td> <strong>Apellidos</strong><br> <%= @clinic_history_couple.patient.first_last_name%> <%= @clinic_history_couple.patient.second_last_name %> </td>
+                  <td> <strong>Documento</strong><br> <%=  type_document(@clinic_history_couple.patient.document_type) %> -  <%=@clinic_history_couple.patient.document %> </td>
+                  <td> <strong>Fecha de Nacimiento:</strong><br> <%= @clinic_history_couple.patient.birth_date %> </td>
+               </tr>
+
+                <tr>
+                  <% year = @clinic_history_couple.patient.age == 1 ? "Año" : " Años"
+                     month = @clinic_history_couple.patient.birthdate_month == 1 ? " Mes" : " Meses"
+                     day =  @clinic_history_couple.patient.birthdate_day == 1 ?  " Día" : " Días"
+                     %>
+                  <td> <strong>Edad:</strong> <br><%= @clinic_history_couple.patient.age.to_s + year  %> <%= @clinic_history_couple.patient.birthdate_month.to_s + month   %> <%= @clinic_history_couple.patient.birthdate_day.to_s +  day %></td>
+                  <td> <strong>Ciudad:</strong> <br><%= @clinic_history_couple.patient.city %> </td>
+                  <td> <strong>Dirección de Residencia</strong> <br><%= @clinic_history_couple.patient.address %> </td>
+                  <td> <strong>Teléfono fijo:</strong><br> <%=@clinic_history_couple.patient.phone %> </td>
+               </tr>
+
+                <tr>
+                    <td> <strong>Teléfono Móvil:</strong> <br><%= @clinic_history_couple.patient.movil %> </td>
+                  <td> <strong>Email</strong><br> <%= @clinic_history_couple.patient.email %> </td>
+                  <td> <strong>Ocupación:</strong><br> <%= @clinic_history_couple.patient.occupation %> </td>
+                  <td> <strong>Profesión:</strong> <br><%= @clinic_history_couple.patient.profession %> </td>
+               </tr>
+
+              <tr>
+                  <td> <strong>Género:</strong> <br><%= @clinic_history_couple.patient.gender %> </td>
+                  <td> <strong>Estado Civil</strong><br> <%= @clinic_history_couple.patient.civil_status %> </td>
+                  <td> <strong>Grupo sanguíneo:</strong><br> <%= @clinic_history_couple.patient.blood_type %> </td>
+                  <td> <strong>Grupo Étnico:</strong> <br><%= @clinic_history_couple.patient.ethnic_group %> </td>
+               </tr>
+
+                <tr>
+                  <td> <strong>Eps:</strong> <br><%= @clinic_history_couple.patient.hpc.name if @clinic_history_couple.patient.hpc %>  </td>
+                  <td> <strong>Convenio</strong><br><%= @clinic_history_couple.patient.agreement.name if @clinic_history_couple.patient.agreement %> </td>
+                  <td> <strong>Nombre Contacto:</strong> <br><%= @clinic_history_couple.patient.contact_name %> </td>
+                  <td> <strong>Teléfono Contacto</strong> <br> <%= @clinic_history_couple.patient.contact_phone %> </td>
+               </tr>
+
+
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 </div>
 <div class="col-md-6 text-center paciente2 elements">
@@ -19,10 +78,70 @@
       <%=  @clinic_history_couple.couple_patient.avatar? ? image_tag(@clinic_history_couple.couple_patient.avatar_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>
    </div>
    <div class="col-md-7 info">
-      <h3 align="left"><%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name%></h3>
+      <h3 align="left"><%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name %></h3>
       <p><strong> Documento: </strong><%= @clinic_history_couple.couple_patient.document %></p>
-      <p style="display: contents;"><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
+      <p><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %> <span class="fas fa-eye icon-showi" data-toggle="modal" data-target="#modal<%=@clinic_history_couple.couple_patient.id %>"></span></p>
    </div>
+
+  <div class="modal fade" id="modal<%= @clinic_history_couple.couple_patient.id %>" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+
+          <table class="table table-responsive" style="width: 99% !important;">
+               <tr>
+                 <h3 class="h3" style="width: 99%;">Nombre: <%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name %> </h3>
+                  <td> <strong> Nombres</strong><br> <%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name %> </td>
+                  <td> <strong>Apellidos</strong><br> <%= @clinic_history_couple.couple_patient.first_last_name%> <%= @clinic_history_couple.couple_patient.second_last_name %> </td>
+                  <td> <strong>Documento</strong><br> <%=  type_document(@clinic_history_couple.couple_patient.document_type) %> -  <%=@clinic_history_couple.couple_patient.document %> </td>
+                  <td> <strong>Fecha de Nacimiento:</strong><br> <%= @clinic_history_couple.couple_patient.birth_date %> </td>
+               </tr>
+
+                <tr>
+                  <% year = @clinic_history_couple.couple_patient.age == 1 ? "Año" : " Años"
+                     month = @clinic_history_couple.couple_patient.birthdate_month == 1 ? " Mes" : " Meses"
+                     day =  @clinic_history_couple.couple_patient.birthdate_day == 1 ?  " Día" : " Días"
+                     %>
+                  <td> <strong>Edad:</strong> <br><%= @clinic_history_couple.couple_patient.age.to_s + year  %> <%= @clinic_history_couple.couple_patient.birthdate_month.to_s + month   %> <%= @clinic_history_couple.couple_patient.birthdate_day.to_s +  day %></td>
+                  <td> <strong>Ciudad:</strong> <br><%= @clinic_history_couple.couple_patient.city %> </td>
+                  <td> <strong>Dirección de Residencia</strong> <br><%= @clinic_history_couple.couple_patient.address %> </td>
+                  <td> <strong>Teléfono fijo:</strong><br> <%=@clinic_history_couple.couple_patient.phone %> </td>
+               </tr>
+
+                <tr>
+                    <td> <strong>Teléfono Móvil:</strong> <br><%= @clinic_history_couple.couple_patient.movil %> </td>
+                  <td> <strong>Email</strong><br> <%= @clinic_history_couple.couple_patient.email %> </td>
+                  <td> <strong>Ocupación:</strong><br> <%= @clinic_history_couple.couple_patient.occupation %> </td>
+                  <td> <strong>Profesión:</strong> <br><%= @clinic_history_couple.couple_patient.profession %> </td>
+               </tr>
+
+              <tr>
+                  <td> <strong>Género:</strong> <br><%= @clinic_history_couple.couple_patient.gender %> </td>
+                  <td> <strong>Estado Civil</strong><br> <%=@clinic_history_couple.couple_patient.civil_status %> </td>
+                  <td> <strong>Grupo sanguíneo:</strong><br> <%= @clinic_history_couple.couple_patient.blood_type %> </td>
+                  <td> <strong>Grupo Étnico:</strong> <br><%= @clinic_history_couple.couple_patient.ethnic_group %> </td>
+               </tr>
+
+                <tr>
+                  <td> <strong>Eps:</strong> <br><%= @clinic_history_couple.couple_patient.hpc.name if @clinic_history_couple.couple_patient.hpc %>  </td>
+                  <td> <strong>Convenio</strong><br><%= @clinic_history_couple.couple_patient.agreement.name if @clinic_history_couple.couple_patient.agreement %> </td>
+                  <td> <strong>Nombre Contacto:</strong> <br><%= @clinic_history_couple.couple_patient.contact_name %> </td>
+                  <td> <strong>Teléfono Contacto</strong> <br> <%= @clinic_history_couple.couple_patient.contact_phone %> </td>
+               </tr>
+
+
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
  
 </div>
 
@@ -87,7 +206,7 @@
             <p> 
               <% @clinic_history_couple_outcome.diagnostic.each do |diagnostico| %>
              
-               <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%=diagnostico.name%></div>
+               <div class="diagnostico" style="margin-bottom: 5px;display: inline-block"><%= diagnostico.name%></div>
               <% end -%>
             </p>
         </div>
@@ -137,6 +256,23 @@
     padding: 10px 10px;
     border: none;
     color: #46b8da
+  }
+
+.modal-body{
+  text-align: left !important;
+}
+
+.h3{
+   color: #ffffff;
+   width: 80%;
+   background: #5bc0de;
+   padding: 6px;
+   width: 1100px;
+   
+}
+
+  table{
+    width: 92% !important;
   }
 
 
@@ -189,6 +325,14 @@
 
   p{
     text-align: left;
+  }
+
+  .icon-showi{
+    background: #5bc0de;
+    color: #fff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
   }
 
   #paciente1{
