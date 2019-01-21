@@ -9,8 +9,8 @@
    </div>
    <div class="col-md-7 info">
       <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%> </h3>
-      <p><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
-      <p><strong>Edad: </strong><%= @clinic_history_couple.patient.age %>  <span class="fas fa-eye icon-showi" data-toggle="modal" data-target="#modal<%= @clinic_history_couple.patient.id %>"></span> </p>
+      <p align="left"><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
+      <p align="left"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %>  <span class="fas fa-eye icon-showi" data-toggle="modal" data-target="#modal<%= @clinic_history_couple.patient.id %>"></span> </p>
    </div>
 
   <div class="modal fade" id="modal<%= @clinic_history_couple.patient.id %>" role="dialog">
@@ -18,7 +18,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Informacion del Paciente </h4>
         </div>
         <div class="modal-body">
           <table class="table table-responsive" style="width: 99% !important;">
@@ -66,7 +66,7 @@
             </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
@@ -163,7 +163,7 @@
       
 
         <div class="col-sm-6">
-            <h4 class="title">Previas Uniones del Paciente</h4>
+            <h4 class="title">Numero de uniones anteriores</h4>
             <p><%= @clinic_history_couple.previous_unions_couple %> Uniones</p>
 
             <h4 class="title">Numero de hijos de anteriores relaciones</h4>

@@ -21,11 +21,11 @@ class ClinicHistoryFamily < ApplicationRecord
 	has_many :family_group, inverse_of: :clinic_history_family, dependent: :destroy
  	accepts_nested_attributes_for :family_group, :allow_destroy => true
 
- 	#after_create :create_outcome
+ 	after_create :create_outcome
 
 
-	#def create_outcome
-		#OutcomeFamily.create(outcome_family_id: self.id )
-	#end
+	def create_outcome
+		OutcomeFamily.create(clinic_history_family_id: self.id )
+	end
 
 end

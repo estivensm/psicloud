@@ -45,7 +45,7 @@
                             <i class="fas fa-pencil-alt"></i>
                         <% end -%>
 
-                         <%= link_to clinic_history_family_document_family_path(@clinic_history_family.id, document_family)   + "?params=tool", method: :delete, data: {
+                         <%= link_to clinic_history_family_document_family_path(@clinic_history_family.id, document_family), method: :delete, data: {
                           confirm: '¿Estas Seguro?',
                           'confirm-button-text': 'Borrar',
                           'cancel-button-text': 'Cancelar',
@@ -66,7 +66,7 @@
 
                    <% document_family.general_files.each do |file|%>
                      <% if file.file_url%>
-                       <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                       <%= link_to  file.file_url, class: "btn btn-primary file", target: "_blank" do  %>
                        <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
                        <% end %>  
                      <% end %>
@@ -99,6 +99,13 @@
     border: none;
     color: #46b8da
   }
+
+  
+        .file{
+    margin-right:10px;
+    margin-top:10px;
+  }
+
 
 
      .width{
