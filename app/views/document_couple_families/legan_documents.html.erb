@@ -12,7 +12,7 @@
    <div class="col-md-7 info">
       <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
       <p align="left"><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
-      <p style="display: contents;" align="left"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
+      <p align="left"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
    </div>
   
 </div>
@@ -23,7 +23,7 @@
    <div class="col-md-7 info">
       <h3 align="left"><%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name%></h3>
       <p align="left"><strong> Documento: </strong><%= @clinic_history_couple.couple_patient.document %></p>
-      <p style="display: contents;" align="left"><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
+      <p align="left"><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
    </div>
  
 </div>
@@ -33,18 +33,18 @@
   <br>
 
     <ul class="nav nav-tabs" style="margin-left: 14px;">
-      <li class="link2"><%=link_to "Gestion Documental Familiar", clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
-      <li class="link2"><%= link_to "Gestion Diagnostico", clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), style: "cursor: pointer;"%></li>
-      <li class="active"><%= link_to "Gestion Legal", clinic_history_couple_legan_documents_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
+      <li class="link2"><%=link_to "Heramientas de Evolucion", clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
+      <li class="link2"><%= link_to "Ayudas Diagnosticas", clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), style: "cursor: pointer;"%></li>
+      <li class="active"><%= link_to "Documentos Legales", clinic_history_couple_legan_documents_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
     </ul>
   <% if @document_couple_families.any?%>
      <div class = "row title-table" style="margin-top: 13px;">
          <div class = "col-md-7 padding-left">
-            <p>GESTION LEGAL FAMILIAR <span class="label label-primary"><%=@document_couple_families.count%></span>  </p>
+            <p>DOCUMENTOS LEGALES <span class="label label-primary"><%=@document_couple_families.count%></span>  </p>
          </div>
       
          <div class = "col-md-5 text-right">
-          <%= link_to 'Crear Nueva Gestion Legal Familiar', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=legal", remote: true, class: "btn btn-primary"  %>
+          <%= link_to 'Crear Nuevo Documento Legale', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=legal", remote: true, class: "btn btn-primary"  %>
          </div>
       </div>
 
@@ -55,24 +55,24 @@
 
           <div class="col-md-1 float-top">
 
-              <%= link_to edit_document_couple_family_path(document_couple_family) do %>
+              <%= link_to edit_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id, document_couple_family) + "?params=legal", remote: true do %>
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               <% end -%>
 
-              <%= link_to  document_couple_family, method: :delete, data: {
+              <%= link_to  clinic_history_couple_document_couple_family_path(@clinic_history_couple.id, document_couple_family)  + "?params=legal", method: :delete, data: {
                 confirm: '¿Estas Seguro?',
                 'confirm-button-text': 'Borrar',
                 'cancel-button-text': 'Cancelar',
                 'confirm-button-color': '#CC0000',
                  text: 'Recuerda que el registro se borrara permanentemente',
                 'image-url': ''} do %>
-                 <i class="fa fa-trash" aria-hidden="true"></i>
+                 <i class="fa fa-trash color" aria-hidden="true"></i>
               <% end %>
 
           </div>
 
           <div class="panel-heading">
-            <%= document_couple_family.tool_type %>
+            <%= document_couple_family.name %>
           </div>
 
           <div class="panel-body">
@@ -102,8 +102,8 @@
     <% else %>
 
     <div class="jumbotron">
-        <h3>! AÚN NO HAS CREADO GESTION LEGAL FAMILIAR ¡ </h3>
-         <%= link_to 'Crear Nueva Gestion Legal Familiar', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=legal", remote: true, class: "btn btn-primary"  %>
+        <h3>! AÚN NO HAS CREADO DOCUMENTOS LEGALES ¡ </h3>
+         <%= link_to 'Crear Nuevo Docuemento Legal', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=legal", remote: true, class: "btn btn-primary"  %>
     </div>
 
     <% end -%>
@@ -146,6 +146,10 @@
     padding: 10px 10px;
     border: none;
     color: #46b8da
+  }
+
+  .color{
+    color: red;
   }
 
 

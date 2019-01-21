@@ -64,56 +64,61 @@
 
 </table>
 
-<h3 class="h3">Consulta</h3>
+<h3 class="h3">Motivo de Consulta</h3>
 
 <table class="table table-responsive">
 
 	<tr>
-	   <td> <strong>Motivo de Consulta: </strong> <br><%= @clinic_history_couple.consultation_reason%> </td>   	
-	   <td> <strong>Obsevaciones Generales: </strong> <br><%= @clinic_history_couple.general_observations %> </td>
-	   <td> <strong>Situacion Actual: </strong><br> <%= @clinic_history_couple.actual_situations %> </td>
+	   <td> <strong>Motivo de Consulta: </strong> <br><%= @clinic_history_couple.consultation_reason %> </td>   	
 	</tr>
 
 </table>
 
-<h3 class="h3">Diagnostico</h3>
+<h3 class="h3">Obsevaciones Generales</h3>
+
+<table class="table table-responsive">
+		<tr>
+			<td><%= @clinic_history_couple.general_observations %> </td>
+		</tr>
+</table>
+
+
+<h3 class="h3">Situacion Actual</h3>
 
 <table class="table table-responsive">
 
 	<tr>
-	   <td> <strong>Descripcion: </strong> <br><%= @clinic_history_couple_outcome.diagnostic_description %> </td>   	
+	   <td> <%= @clinic_history_couple.actual_situations %> </td>   	
 	</tr>
 
 </table>
 
 
-	<h3 class="h3">DESM</h3>
-	<% @clinic_history_couple_outcome.diagnostic.each do |diagnostico| %>
-		<table class="table table-responsive">
+<h3 class="h3">Diagnosticos</h3>
 
 
-			<tr>
-			   <td> <strong>Descripcion: </strong> <br><%= diagnostico.name %> </td>   	
-			</tr>
+<table class="table table-responsive">
 
-		</table>
-	<% end -%>
+	<tr>
 
+	   <td><strong>Descripcion: </strong><br> <%= @clinic_history_couple_outcome.diagnostic_description %> </td>   	
 
+	    <td><strong>DESM: </strong><br>
+	    	<% @clinic_history_couple_outcome.diagnostic.each do |diagnostico| %>
+	    		<%= diagnostico.name %>
+	    	<% end -%>
+		</td>   
 
+	    <td><strong>CIE10: </strong><br>
+	   		<% @clinic_history_couple_outcome.first_diagnostico.each do |diagnostico1| %>
+	   			<%= diagnostico1.codigo %> - <%= diagnostico1.name %> 
+	   		<% end -%>
+	    </td>  
 
+	</tr>
 
-	<h3 class="h3">CIE10</h3>
-	<% @clinic_history_couple_outcome.first_diagnostico.each do |diagnostico1| %>
-		<table class="table table-responsive">
+</table>
 
-
-			<tr>
-			   <td> <strong>Descripcion: </strong> <br><%= diagnostico1.codigo %> - <%= diagnostico1.name %>  </td>   	
-			</tr>
-
-		</table>
-	<% end -%>
 
 
 <h3 class="h3">Objetivo terapeutico</h3>
@@ -135,9 +140,7 @@
 
 	</table>
 
-<% if !@seguimientos.any? %>
 
-<% else %>
 <h3 class="h3">Seguimientos</h3>
 	
 	<% @seguimientos.each do |seguimientos| %>
@@ -152,7 +155,7 @@
 
 		</table>
 	<% end -%>
-<% end -%>
+
 
 
 <% if !@documentos_tool.any? %>
@@ -172,9 +175,7 @@
 	<% end -%>
 <% end -%>
 
-<% if !@documentos_diagnostic.any? %>
 
-<% else %>
 	<h3 class="h3">Gestion Diagnostico Familiar</h3>
 
 	<% @documentos_diagnostic.each do |documentos| %>
@@ -187,11 +188,9 @@
 
 		</table>
 	<% end -%>
-<% end -%>
 
-<% if !@documentos_legal.any? %>
 
-<% else %>
+
 <h3 class="h3">Gestion Legal Familiar</h3>
 
 	<% @documentos_legal.each do |documentos| %>
@@ -204,7 +203,7 @@
 
 		</table>
 	<% end -%>
-<% end -%>
+
 
 
 <style type="text/css" media="screen">
