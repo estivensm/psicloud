@@ -87,7 +87,7 @@
         </div>
 
         <div class="col-md-5 pdd" >    
-          <%= file.file_field :file, :class => 'file form form-control archivo', style: "" %>
+          <%= file.file_field :file, :class => 'form form-control archivo', style: "" %>
           <%= file.hidden_field :id, class:"items" if action_name == "edit"%>
           <br>
         </div>
@@ -108,13 +108,7 @@
         </div>
 
         <div class="modal-footer"">
-            <% if params[:params] == "tool"%>
-               <%= form.submit "Guardar Herramienta", class: "btn btn-info", id: "btn3" %>
-            <% elsif  params[:params] == "diagnostic"%>
-               <%= form.submit "Guardar Ayuda Diagnostica", class: "btn btn-info", id: "btn3" %>
-            <% elsif  params[:params] == "legal"%>
-               <%= form.submit "Guardar Documento Legal", class: "btn btn-info", id: "btn3" %>
-            <% end -%>   
+               <%= form.submit "Guardar", class: "btn btn-info", id: "btn3" %>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
         </div>
 

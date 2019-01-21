@@ -66,7 +66,7 @@
 
                    <% document_family.general_files.each do |file|%>
                      <% if file.file_url%>
-                       <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                       <%= link_to  file.file_url, class: "btn btn-primary file1", target: "_blank" do  %>
                        <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
                        <% end %>  
                      <% end %>
@@ -97,6 +97,12 @@
     border: none;
     color: #46b8da
   }
+
+          .file1{
+    margin-right:10px;
+    margin-top:10px;
+  }
+
 
 
    .panel-body strong{

@@ -101,6 +101,7 @@ class ClinicHistoryFamiliesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_clinic_history_family
       @clinic_history_family = ClinicHistoryFamily.find(params[:id])
+      @outcome_family = @clinic_history_family.outcome_families.first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,7 +1,7 @@
 <div class="row" style="padding: 0px 20px;">
 
   <div class="col-md-12">
-      <h1 class="titulo" align="center">INFORMACION GENERAL</h1>
+      <h1 class="titulo" align="center">HERRAMIENTAS DE EVALUACION</h1>
     </div>
 
       <div class="row">
@@ -37,7 +37,7 @@
   
 
     <ul class="nav nav-tabs" style="margin-left: 14px;">
-      <li class="active"><%=link_to "Heramientas de Evolucion", clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
+      <li class="active"><%=link_to "Heramientas de Evaluacion", clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
       <li class="link2"><%= link_to "Ayudas Diagnosticas", clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), style: "cursor: pointer;"%></li>
       <li class="link2"><%= link_to "Documentos Legales", clinic_history_couple_legan_documents_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
     </ul>
@@ -48,7 +48,7 @@
          </div>
       
          <div class = "col-md-5 text-right">
-          <%= link_to 'Crear Nueva Herramienta De Evolucion', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=tool", class: "btn btn-primary", remote: true %>
+          <%= link_to 'Crear Nueva Herramienta De Evaluacion', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=tool", class: "btn btn-primary", remote: true %>
          </div>
       </div>
 
@@ -89,7 +89,7 @@
             <div class="col-md-12" style="padding-left: 24px; margin-bottom: 16px;">
               <% document_couple_family.general_files.each do |file|%>
                 <% if file.file_url%>
-                    <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                    <%= link_to  file.file_url, class: "btn btn-primary file", target: "_blank" do  %>
                       <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
                     <% end %>  
                 <% end %>
@@ -105,7 +105,7 @@
 
 <div class="jumbotron">
     <h3>! AÚN NO HAS CREADO HERRAMIENTAS DE EVOLUCION ¡ </h3>
-     <%= link_to 'Crear Nueva Herramientas De Evolucion', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=tool" , remote: true,  class: "btn btn-primary"  %>
+     <%= link_to 'Crear Nueva Herramientas De Evaluacion', new_clinic_history_couple_document_couple_family_path(@clinic_history_couple.id) + "?params=tool" , remote: true,  class: "btn btn-primary"  %>
 </div>
 
     <% end -%>
@@ -152,6 +152,11 @@
 
   .color{
     color: red;
+  }
+
+    .file{
+    margin-right:10px;
+    margin-top:10px;
   }
 
 

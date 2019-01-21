@@ -1,5 +1,4 @@
-<fieldset class="col-md-0 col-sm-12 padding-bottom">
-  <legend class="text-change">Editar Desenlace Familiar</legend>
+
       <%= form_for([@clinic_history_family, outcome_family]) do |form| %>
         <% if outcome_family.errors.any? %>
           <div id="error_explanation">
@@ -14,12 +13,12 @@
         <% end %>
         <div class="col-md-4 no-padding-left">
           <%= form.label "Objetivo terapéutico" %>
-          <%= form.number_field :therapeutic_goal, id: :outcome_family_therapeutic_goal, class: "form-control" %>
+          <%= form.text_area :therapeutic_goal, id: :outcome_family_therapeutic_goal, :rows => 10,  :cols => 70, class: "form form-control"%>
         </div>
 
         <div class="col-md-4 no-padding-left">
           <%= form.label "Tipo de Tratamiento" %>
-          <%= form.number_field :type_of_treatment, id: :outcome_family_type_of_treatment, class: "form-control" %>
+          <%= form.text_area :type_of_treatment, id: :outcome_family_type_of_treatment, :rows => 10,  :cols => 70, class: "form form-control"  %>
           <br>
         </div>
 
@@ -28,7 +27,7 @@
 
         <div class="col-md-12 no-padding-left">
           <%= form.label "Descripcion del Diagnostico" %><br>
-          <%= form.text_area :diagnostic_description, id: :outcome_family_diagnostic_description,:rows => 10,  :cols => 70 %>
+          <%= form.text_area :diagnostic_description, id: :outcome_family_diagnostic_description, :rows => 10,  :cols => 70, class: "form form-control" %>
 
         </div>
 
@@ -37,11 +36,5 @@
         <%= form.submit "Guardar", class: "btn btn-primary" %>
         <%= link_to "Volver", :back, class: "btn btn-light" %>
       </div>
-      <% end %>
-</fieldset>
 
-<style type="text/css" media="screen">
-  .no-padding-left{
-    padding-left: 0px;
-  }
-</style>
+      <% end %>

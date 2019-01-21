@@ -5,7 +5,7 @@
    <div class="col-md-7 info">
       <h3 align="left"><%= @clinic_history_couple.patient.first_name %> <%= @clinic_history_couple.patient.second_name%></h3>
       <p><strong>Documento:</strong> <%= @clinic_history_couple.patient.document %></p>
-      <p style="display: contents;"><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
+      <p><strong>Edad: </strong><%= @clinic_history_couple.patient.age %></p>
    </div>
    <div class="col-md-12">
       <hr>
@@ -33,7 +33,7 @@
    <div class="col-md-7 info">
       <h3 align="left"><%= @clinic_history_couple.couple_patient.first_name %> <%= @clinic_history_couple.couple_patient.second_name%></h3>
       <p><strong> Documento: </strong><%= @clinic_history_couple.couple_patient.document %></p>
-      <p style="display: contents;"><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
+      <p><strong>Edad: </strong> <%= @clinic_history_couple.couple_patient.age %></p>
    </div>
    <div class="col-md-12">
       <hr>
@@ -49,7 +49,7 @@
       </div>
       <br>
       <div class="field padding-top">
-         <%= form.label "Conducta problemática en la pareja" %><br>
+         <%= form.label "Conducta Problematica del Paciente" %><br>
          <%= form.text_area :problematic_conduct_couple, id: :clinic_history_couple_problematic_conduct_couple, class: "form form-control required" ,:rows => 5,  :cols =>25, :title => "Es un Campo Obligatorio" %>
       </div>
    </div>
@@ -69,7 +69,7 @@
    </div>
    <br>
    <div class="field">
-      <%= form.label :Situacion_Actual %><br>
+      <%= form.label :Situación_Actual %><br>
       <%= form.text_area :actual_situations, id: :clinic_history_couple_actual_situations, class: "from form-control required",:rows => 5,  :cols =>25, :title => "Es un Campo Obligatorio" %>
    </div>
 </div>
