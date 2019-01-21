@@ -47,7 +47,8 @@ class ClinicHistoryCoupleOutcomesController < ApplicationController
     @clinic_history_couple = ClinicHistoryCouple.find(params[:clinic_history_couple_id])
     respond_to do |format|
       if @clinic_history_couple_outcome.update(clinic_history_couple_outcome_params)
-        format.html { redirect_to clinic_history_couples_path, notice: 'Clinic history couple outcome was successfully updated.' }
+        flash[:success] = "El Desenlace se Actualizo con exito!"
+        format.html { redirect_to clinic_history_couple_path(@clinic_history_couple.id), notice: 'Clinic history couple outcome was successfully updated.' }
         format.json { render :show, status: :ok, location: @clinic_history_couple_outcome }
       else
         format.html { render :edit }

@@ -285,8 +285,7 @@
               <i class="fas fa-user-friends"></i> Primer Contacto
           <% end -%>
         </li>
-   
-      
+    
           <li class="<%= @menu_clinic_history[1] %>">
             <%= link_to edit_clinic_history_couple_clinic_history_couple_outcome_path(@clinic_history_couple.id, @clinic_history_couple_outcome.id) do %>
               <i class="fas fa-user-friends"></i> Desenlace
@@ -677,4 +676,11 @@ html, body{
 .admin .modal-open{
   padding: 0px !important;
 }
+
+  .turbolinks-progress-bar{
+    background: #46b8da !important;
+    padding: 5px 5px;
+  }
+
 </style>
+

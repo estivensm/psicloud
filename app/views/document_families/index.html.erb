@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="col-md-11 titulo">
-      <h2 align="center">INFORMACIÓN GENERAL</h2>
+      <h2 align="center">HERRAMIENTA DE EVOLUCION</h2>
     </div>
     <div class="row">
       <% @clinic_history_family.patients.each do |patient| %>  
@@ -11,10 +11,10 @@
       <% end %>
     </div>
 
-    <ul class="nav nav-tabs" style="margin-left: 14px; width: 96%;">
-      <li class="active"><%=link_to "Gestion Documental Familiar" ,clinic_history_family_document_families_path(@clinic_history_family.id), style: "cursor: pointer;" %></li>
-      <li class="link2"><%= link_to "Gestion Diagnostico", clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), style: "cursor: pointer;"%></li>
-      <li class="link2"><%= link_to "Gestion Legal", clinic_history_family_legan_documents_path(@clinic_history_family.id), style: "cursor: pointer;" %></li>
+    <ul class="nav nav-tabs" style="width: 97%;">
+      <li class="active"><%=link_to "Heramientas de Evolucion" ,clinic_history_family_document_families_path(@clinic_history_family.id), style: "cursor: pointer;" %></li>
+      <li class="link2"><%= link_to "Ayudas Diagnosticas", clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), style: "cursor: pointer;"%></li>
+      <li class="link2"><%= link_to "Documentos Legales", clinic_history_family_legan_documents_path(@clinic_history_family.id), style: "cursor: pointer;" %></li>
     </ul>
   <% if @document_families.any? %>
     <div class="container">
@@ -32,12 +32,12 @@
       </div>
 
         <% @document_families.each do |document_family| %>
-             <div class="panel panel-default" style="width: 96%;">
+             <div class="panel panel-default width">
                 <div class="panel-heading">
-                   <div class="row">
+                   <div class="row width">
                       <div class="col-md-6" style="color: #5bc0de;
                          font-size: 18px;">
-                         <%= document_family.descripcion %>
+                         <%= document_family.tool_type %>
                       </div>
 
                       <div class="col-md-6 text-right">
@@ -45,7 +45,7 @@
                             <i class="fas fa-pencil-alt"></i>
                         <% end -%>
 
-                         <%= link_to clinic_history_family_document_family_path(@clinic_history_family.id, document_family), method: :delete, data: {
+                         <%= link_to clinic_history_family_document_family_path(@clinic_history_family.id, document_family)   + "?params=tool", method: :delete, data: {
                           confirm: '¿Estas Seguro?',
                           'confirm-button-text': 'Borrar',
                           'cancel-button-text': 'Cancelar',
@@ -61,7 +61,6 @@
                    </div>
                 </div>
                 <div class="panel-body"> 
-                   <strong>Tipo de Herramienta: </strong> <%= document_family.tool_type %><br><br>
                    <strong>Descripción: </strong> <%= document_family.descripcion %>
                    <hr>
 
@@ -88,7 +87,7 @@
 <div class="row" style="padding: 0px 20px;">
   <div class="jumbotron">
       <h3>! AÚN NO HAS CREADO GESTION DOCUMENTAL FAMILIAR ¡ </h3>
-       <%= link_to 'Gestion Documental Familiar', new_clinic_history_family_document_family_path + "?params=tool" , remote: true,  class: "btn btn-primary"  %>
+       <%= link_to 'Nueva Heramientas de Evolucion', new_clinic_history_family_document_family_path + "?params=tool" , remote: true,  class: "btn btn-primary"  %>
   </div>
 </div>
 
@@ -99,6 +98,11 @@
     padding: 10px 10px;
     border: none;
     color: #46b8da
+  }
+
+
+     .width{
+       width: 89% !important;
   }
 
 
@@ -151,10 +155,10 @@
     margin-top: 10px;
   }
 
-  .jumbotron{
+
+    .jumbotron{
     background-color: #eee !important;
-    margin-left: 14px;
-    width: 96%;
+    width: 97%;
     text-align: center;
   }
 

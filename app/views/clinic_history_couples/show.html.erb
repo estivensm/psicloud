@@ -424,3 +424,9 @@
   }
 
 </style>
+
+<script type="text/javascript">
+  <% if flash[:success] %>
+     toastr["success"](" <%= flash[:success] %>")
+  <% end -%>
+</script>
