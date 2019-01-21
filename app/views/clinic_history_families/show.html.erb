@@ -14,7 +14,7 @@
 			      <div class="modal-content">
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          <h4 class="modal-title">Modal Header</h4>
+			          <h4 class="modal-title"><strong>Usuario: </strong> <%= patient.first_name %> <%= patient.first_last_name %> </h4>
 			        </div>
 			        <div class="modal-body">
 			          	<table class="table table-responsive" style="width: 99% !important;">
@@ -82,7 +82,7 @@
 <% if !@clinic_history_family.family_group.any? %>
 
 <% else %>
-	<h3 class="h3">Familiares que no han sido ingresados como pacientes </h3>
+	<h3 class="h31">Familiares que no han sido ingresados como pacientes </h3>
 		<% @clinic_history_family.family_group.each do |familia| %>
 			<table class="table table-responsive">
 
@@ -106,7 +106,7 @@
 
 
 
-<h3 class="h3">Gestion Documental Familiar</h3>
+<h3 class="h31">Gestion Documental Familiar</h3>
 
 	<% DocumentFamily.where(document_type: "tool").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
 		<table class="table table-responsive">
@@ -121,7 +121,7 @@
 
 
 
-	<h3 class="h3">Gestion Diagnostico Familiar</h3>
+	<h3 class="h31">Gestion Diagnostico Familiar</h3>
 
 	<% DocumentFamily.where(document_type: "diagnostic").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
 		<table class="table table-responsive">
@@ -136,7 +136,7 @@
 
 
 
-<h3 class="h3">Gestion Legal Familiar</h3>
+<h3 class="h31">Gestion Legal Familiar</h3>
 
 	<%  DocumentFamily.where(document_type: "legal").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
 		<table class="table table-responsive">
@@ -149,7 +149,7 @@
 		</table>
 	<% end -%>
 
-	<h3 class="h3">Seguimientos</h3>
+	<h3 class="h31">Seguimientos</h3>
 	
 	<% TracingFamily.where(clinic_history_family_id: @clinic_history_family.id).each do |seguimientos| %>
 		<table class="table table-responsive">
@@ -190,15 +190,21 @@
    border:1px solid #cecece;
 }
 
-.h3{
+.h31{
    color: #ffffff;
-   width: 80%;
    background: #5bc0de;
    padding: 6px;
-   width: 1100px;
+   width: 984px !important;
    
 }
 
+.h3{
+   color: #ffffff;
+   background: #5bc0de;
+   padding: 6px;
+   width: 852px !important;
+   
+}
 	.titulo{
 		background: #46b8da;
 		color: white !important;

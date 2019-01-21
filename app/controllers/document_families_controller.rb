@@ -35,21 +35,49 @@ class DocumentFamiliesController < ApplicationController
   def create
     @document_family = DocumentFamily.new(document_family_params)
 
-    respond_to do |format|
-      if @document_family.save
-        format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
-        format.json { render :show, status: :created, location: @document_family }
-      else
-        format.html { render :new }
-        format.json { render json: @document_family.errors, status: :unprocessable_entity }
-      end
+    if params[:commit] == "Guardar Herramienta"
+      respond_to do |format|
+        if @document_family.save
+          format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
+          format.json { render :show, status: :created, location: @document_family }
+        else
+          format.html { render :new }
+          format.json { render json: @document_family.errors, status: :unprocessable_entity }
+        end
+      end      
+    end
+
+    if params[:commit] == "Guardar Ayuda Diagnostica"
+      respond_to do |format|
+        if @document_family.save
+          format.html { redirect_to clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
+          format.json { render :show, status: :created, location: @document_family }
+        else
+          format.html { render :new }
+          format.json { render json: @document_family.errors, status: :unprocessable_entity }
+        end
+      end      
+    end
+
+    if params[:commit] == "Guardar Documento Legal"
+      respond_to do |format|
+        if @document_family.save
+          format.html { redirect_to clinic_history_family_legan_documents_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
+          format.json { render :show, status: :created, location: @document_family }
+        else
+          format.html { render :new }
+          format.json { render json: @document_family.errors, status: :unprocessable_entity }
+        end
+      end      
     end
   end
 
   # PATCH/PUT /document_families/1
   # PATCH/PUT /document_families/1.json
   def update
-    respond_to do |format|
+
+    if params[:commit] == "Guardar Herramienta"
+      respond_to do |format|
       if @document_family.update(document_family_params)
         format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully updated.' }
         format.json { render :show, status: :ok, location: @document_family }
@@ -58,16 +86,64 @@ class DocumentFamiliesController < ApplicationController
         format.json { render json: @document_family.errors, status: :unprocessable_entity }
       end
     end
+      
+    end
+
+    if params[:commit] == "Guardar Ayuda Diagnostica"
+      respond_to do |format|
+      if @document_family.update(document_family_params)
+        format.html { redirect_to clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), notice: 'Document family was successfully updated.' }
+        format.json { render :show, status: :ok, location: @document_family }
+      else
+        format.html { render :edit }
+        format.json { render json: @document_family.errors, status: :unprocessable_entity }
+      end
+    end
+      
+    end
+
+    if params[:commit] == "Guardar Documento Legal"
+      respond_to do |format|
+      if @document_family.update(document_family_params)
+        format.html { redirect_to clinic_history_family_legan_documents_path(@clinic_history_family.id), notice: 'Document family was successfully updated.' }
+        format.json { render :show, status: :ok, location: @document_family }
+      else
+        format.html { render :edit }
+        format.json { render json: @document_family.errors, status: :unprocessable_entity }
+      end
+    end
+      
+    end
   end
 
   # DELETE /document_families/1
   # DELETE /document_families/1.json
   def destroy
-    @document_family.destroy
-    respond_to do |format|
-      format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully destroyed.' }
-      format.json { head :no_content }
+
+    if params[:params] == "tool"
+      @document_family.destroy
+      respond_to do |format|
+        format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+
+    if params[:params] == "diagnostic"
+    @document_family.destroy
+      respond_to do |format|
+        format.html { redirect_to clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), notice: 'Document family was successfully destroyed.' }
+        format.json { head :no_content }
+      end   
+    end
+
+    if params[:params] == "legal"
+      @document_family.destroy
+      respond_to do |format|
+        format.html { redirect_to clinic_history_family_legan_documents_path(@clinic_history_family.id), notice: 'Document family was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
+
   end
 
   private

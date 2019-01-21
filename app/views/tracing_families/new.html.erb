@@ -1,4 +1,14 @@
-<div class="container">
+<div class="container" style="width: 1057px !important;">
+	<div class="col-md-11 titulo">
+      <h2 align="center">INFORMACIÓN GENERAL</h2>
+    </div>
+    <div class="row">
+      <% @clinic_history_family.patients.each do |patient| %>  
+            <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo), id: "patient") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", id: "patient")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
+              <br><br>
+            </div>        
+      <% end %>
+    </div>
 	<%= render 'form', tracing_family: @tracing_family %>			
 </div>
 

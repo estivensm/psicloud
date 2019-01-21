@@ -30,8 +30,18 @@
   <% end %>
 
   <div class="c">
-    <%= form.label "Tipo de documento" %>
-     <%= form.select 'tool_type', options_for_select(select_tools), {},{:class => 'form-control'}%>
+      <% if params[:params] == "tool"%>
+
+      <%= form.label "Tipo de documento" %>
+               <%val1 = "" 
+                  action_name == "edit" ? val1 = @document_family.tool_type : val1 = "" %>
+     <%= form.select 'tool_type', options_for_select(select_tools, val1), {},{:class => 'form-control'}%>
+
+  <% elsif params[:params] == "diagnostic" || params[:params] == "legal" %>
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, class: "form form-control" %>
+
+  <% end -%>
   </div>
   <br>
 
@@ -98,7 +108,13 @@
         </div>
 
         <div class="modal-footer"">
-           <%= form.submit "Guardar", class: "btn btn-info", id: "btn3" %>
+            <% if params[:params] == "tool"%>
+               <%= form.submit "Guardar Herramienta", class: "btn btn-info", id: "btn3" %>
+            <% elsif  params[:params] == "diagnostic"%>
+               <%= form.submit "Guardar Ayuda Diagnostica", class: "btn btn-info", id: "btn3" %>
+            <% elsif  params[:params] == "legal"%>
+               <%= form.submit "Guardar Documento Legal", class: "btn btn-info", id: "btn3" %>
+            <% end -%>   
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
         </div>
 
