@@ -68,8 +68,8 @@
   </div>
 -->
 
-    <%= form.hidden_field :clinic_history_couple_id, value: @clinic_history_couple.id %>
-    
+    <%= form.hidden_field :clinic_history_couple_id, :value => @clinic_history_couple.id %>
+
 
 
   <%= form.fields_for :general_files do |file|  %>
@@ -94,7 +94,8 @@
 
         <br>
           <%= file.hidden_field :admin_user , :value => current_user.admin_user %>
-          <%= file.hidden_field :user_id ,:value =>  current_user.id %>   
+          <%= file.hidden_field :user_id ,:value =>  current_user.id %>  
+
 
         <br>
 
@@ -108,13 +109,9 @@
         </div>
 
         <div class="modal-footer"">
-            <% if params[:params] == "tool"%>
-               <%= form.submit "Guardar Herramienta", class: "btn btn-info", id: "btn3" %>
-            <% elsif  params[:params] == "diagnostic"%>
-               <%= form.submit "Guardar Ayuda Diagnostica", class: "btn btn-info", id: "btn3" %>
-            <% elsif  params[:params] == "legal"%>
-               <%= form.submit "Guardar Documento Legal", class: "btn btn-info", id: "btn3" %>
-            <% end -%>     
+        
+               <%= form.submit "Guardar", class: "btn btn-info", id: "btn3" %>
+             
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
         </div>
 
