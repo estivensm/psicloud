@@ -35,7 +35,7 @@ class DocumentFamiliesController < ApplicationController
   def create
     @document_family = DocumentFamily.new(document_family_params)
 
-    if params[:commit] == "Guardar Herramienta"
+  
       respond_to do |format|
         if @document_family.save
           format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
@@ -45,31 +45,8 @@ class DocumentFamiliesController < ApplicationController
           format.json { render json: @document_family.errors, status: :unprocessable_entity }
         end
       end      
-    end
+    
 
-    if params[:commit] == "Guardar Ayuda Diagnostica"
-      respond_to do |format|
-        if @document_family.save
-          format.html { redirect_to clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
-          format.json { render :show, status: :created, location: @document_family }
-        else
-          format.html { render :new }
-          format.json { render json: @document_family.errors, status: :unprocessable_entity }
-        end
-      end      
-    end
-
-    if params[:commit] == "Guardar Documento Legal"
-      respond_to do |format|
-        if @document_family.save
-          format.html { redirect_to clinic_history_family_legan_documents_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
-          format.json { render :show, status: :created, location: @document_family }
-        else
-          format.html { render :new }
-          format.json { render json: @document_family.errors, status: :unprocessable_entity }
-        end
-      end      
-    end
   end
 
   # PATCH/PUT /document_families/1
@@ -107,7 +84,7 @@ class DocumentFamiliesController < ApplicationController
 
     def set_history_family
       @clinic_history_family = ClinicHistoryFamily.find(params[:clinic_history_family_id])
-      @outcome_family = @clinic_history_family.outcome_family
+      @outcome_family = @clinic_history_family.outcome_families.first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

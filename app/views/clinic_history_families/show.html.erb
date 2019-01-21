@@ -78,7 +78,6 @@
 
 <div class="container1">
 
-
 <% if !@clinic_history_family.family_group.any? %>
 
 <% else %>
@@ -105,49 +104,38 @@
 <% end -%>
 
 
-
-<h3 class="h31">Gestion Documental Familiar</h3>
-
-	<% DocumentFamily.where(document_type: "tool").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
+<h3 class="h31">Razon de Consulta</h3>
 		<table class="table table-responsive">
 
 			   <tr>
-				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
-		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
+				 <td><%= @clinic_history_family.reason_consultation %> </td>   	
 			  </tr>
 
 		</table>
-	<% end -%>
 
 
 
-	<h3 class="h31">Gestion Diagnostico Familiar</h3>
-
-	<% DocumentFamily.where(document_type: "diagnostic").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
+<h3 class="h31">Antecendente del Problema</h3>
 		<table class="table table-responsive">
 
 			   <tr>
-				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
-		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
+				 <td><%= @clinic_history_family.antecedent_problem %> </td>   	
 			  </tr>
 
 		</table>
-	<% end -%>
 
 
 
-<h3 class="h31">Gestion Legal Familiar</h3>
-
-	<%  DocumentFamily.where(document_type: "legal").where(clinic_history_family_id: @clinic_history_family).each do |documentos| %>
+<h3 class="h31">Problema Familiar</h3>
 		<table class="table table-responsive">
 
 			   <tr>
-				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
-		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
+				 <td><%= @clinic_history_family.family_problem %> </td>   	
 			  </tr>
 
-		</table>
-	<% end -%>
+		</table>		
+
+
 
 	<h3 class="h31">Seguimientos</h3>
 	
@@ -163,6 +151,7 @@
 
 		</table>
 	<% end -%>
+
 
 
 
@@ -191,8 +180,8 @@
 }
 
 .h31{
-   color: #ffffff;
-   background: #5bc0de;
+   color: #5bc0de;
+   background: #f5f5f5;
    padding: 6px;
    width: 984px !important;
    
