@@ -7,17 +7,15 @@ class DocumentCoupleFamiliesController < ApplicationController
   # GET /document_couple_families
   # GET /document_couple_families.json
   def index
-    @document_couple_families = DocumentCoupleFamily.where(document_type: "tool")
-    @tracing_couple_families = TracingCoupleFamily.count
-    @clinic_history_couples = ClinicHistoryCouple.all
+    @document_couple_families = DocumentCoupleFamily.where(document_type: "tool").where(clinic_history_couple_id: @clinic_history_couple.id).paginate(page: params[:page],:per_page => 10)
   end
 
   def diagnostic_documets
-    @document_couple_families = DocumentCoupleFamily.where(document_type: "diagnostic")
+    @document_couple_families = DocumentCoupleFamily.where(document_type: "diagnostic").where(clinic_history_couple_id: @clinic_history_couple.id).paginate(page: params[:page],:per_page => 10)
   end
 
   def legan_documents
-    @document_couple_families = DocumentCoupleFamily.where(document_type: "legal")
+    @document_couple_families = DocumentCoupleFamily.where(document_type: "legal").where(clinic_history_couple_id: @clinic_history_couple.id).paginate(page: params[:page],:per_page => 10)
   end
 
   # GET /document_couple_families/1
@@ -49,24 +47,14 @@ class DocumentCoupleFamiliesController < ApplicationController
       if @document_couple_family.save
         format.html { 
         
-        if @document_couple_family.document_type   == "diagnostic"       
- 
+        if @document_couple_family.document_type == "diagnostic"       
           redirect_to clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
-
-        elsif @document_couple_family.document_type    == "legal" 
-
+        elsif @document_couple_family.document_type == "legal" 
           redirect_to clinic_history_couple_legan_documents_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
-
-
         else
-
          redirect_to clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
-
-
         end  
           
-
-
         }
         format.json { render :show, status: :created, location: @document_couple_family }
       else
@@ -82,74 +70,36 @@ class DocumentCoupleFamiliesController < ApplicationController
   # PATCH/PUT /document_couple_families/1
   # PATCH/PUT /document_couple_families/1.json
   def update
-
-    if params[:commit] == "Guardar Herramienta"
       respond_to do |format|
         if @document_couple_family.update(document_couple_family_params)
-          format.html { redirect_to clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), notice: 'Document couple family was successfully updated.' }
+          format.html {
+
+            if @document_couple_family.document_type == "diagnostic"       
+              redirect_to clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
+            elsif @document_couple_family.document_type == "legal" 
+              redirect_to clinic_history_couple_legan_documents_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
+            else
+             redirect_to clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
+            end  
+
+           }
+           
           format.json { render :show, status: :ok, location: @document_couple_family }
         else
           format.html { render :edit }
           format.json { render json: @document_couple_family.errors, status: :unprocessable_entity }
         end
       end
-    end
-
-
-    if params[:commit] == "Guardar Ayuda Diagnostica"
-      respond_to do |format|
-        if @document_couple_family.update(document_couple_family_params)
-          format.html { redirect_to clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), notice: 'Document couple family was successfully updated.' }
-          format.json { render :show, status: :ok, location: @document_couple_family }
-        else
-          format.html { render :edit }
-          format.json { render json: @document_couple_family.errors, status: :unprocessable_entity }
-        end      
-      end
-    end
-
-    if params[:commit] == "Guardar Documento Legal"
-      respond_to do |format|
-        if @document_couple_family.update(document_couple_family_params)
-          format.html { redirect_to clinic_history_couple_legan_documents_path(@clinic_history_couple.id), notice: 'Document couple family was successfully updated.' }
-          format.json { render :show, status: :ok, location: @document_couple_family }
-        else
-          format.html { render :edit }
-          format.json { render json: @document_couple_family.errors, status: :unprocessable_entity }
-        end      
-      end
-    end
-
   end
 
   # DELETE /document_couple_families/1
   # DELETE /document_couple_families/1.json
   def destroy
-
-    if params[:document_type] == "tool"
-      @document_couple_family.destroy
-      respond_to do |format|
-        format.html { redirect_to clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), notice: 'Document couple family was successfully destroyed.' }
-        format.json { head :no_content }
-      end
-    end
-
-    if params[:document_type] == "diagnostic"
-      @document_couple_family.destroy
-      respond_to do |format|
-        format.html { redirect_to clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), notice: 'Document couple family was successfully destroyed.' }
-        format.json { head :no_content }
-      end
-    end
-
-    if params[:document_type] == "legal"
       @document_couple_family.destroy
       respond_to do |format|
         format.html { redirect_to clinic_history_couple_legan_documents_path(@clinic_history_couple.id), notice: 'Document couple family was successfully destroyed.' }
         format.json { head :no_content }
       end
-    end
-
   end
 
   private

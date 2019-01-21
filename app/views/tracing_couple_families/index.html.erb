@@ -72,21 +72,21 @@
                    </div>
                 </div>
                 <div class="panel-body"> 
-                   <strong>Ovservaciones: </strong> <%= tracing_couple_family.observation %><br><br>
+                   <strong>Descripcion: </strong> <%= tracing_couple_family.description %><br><br>
 
                    <strong>Evolucion: </strong> <%= tracing_couple_family.evolution %>
                    <hr>
 
 
                    <% if tracing_couple_family.attachment %>
-                      <%= link_to  tracing_couple_family.attachment_url, class: "", style:"margin-right:10px;" do  %>
+                      <%= link_to  tracing_couple_family.attachment_url, class: "file", target: "_blank"  do  %>
                         <i class="fa fa-download" aria-hidden="true"></i> Descargar Adjunto
                       <% end %>  
                    <% end %>
 
                    <% tracing_couple_family.general_files.each do |file|%>
                      <% if file.file_url%>
-                       <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                       <%= link_to  file.file_url, class: "btn btn-primary file", target: "_blank" do  %>
                        <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
                        <% end %>  
                      <% end %>
@@ -119,6 +119,12 @@
     border: none;
     color: #46b8da
   }
+
+      .file{
+    margin-right:10px;
+    margin-top:10px;
+  }
+
 
 
   .titulo{

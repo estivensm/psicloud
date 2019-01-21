@@ -71,6 +71,7 @@ class OutcomeFamiliesController < ApplicationController
 
     def set_history_family
       @clinic_history_family = ClinicHistoryFamily.find(params[:clinic_history_family_id])
+      @outcome_family = @clinic_history_family.outcome_families
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

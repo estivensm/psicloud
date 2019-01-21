@@ -33,7 +33,7 @@
   <br>
 
     <ul class="nav nav-tabs" style="margin-left: 14px;">
-      <li class="link2"><%=link_to "Heramientas de Evolucion", clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
+      <li class="link2"><%=link_to "Heramientas de Evaluacion", clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
       <li class="link2"><%= link_to "Ayudas Diagnosticas", clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), style: "cursor: pointer;"%></li>
       <li class="active"><%= link_to "Documentos Legales", clinic_history_couple_legan_documents_path(@clinic_history_couple.id), style: "cursor: pointer;" %></li>
     </ul>
@@ -59,7 +59,7 @@
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               <% end -%>
 
-              <%= link_to  clinic_history_couple_document_couple_family_path(@clinic_history_couple.id, document_couple_family)  + "?params=legal", method: :delete, data: {
+              <%= link_to  clinic_history_couple_document_couple_family_path(@clinic_history_couple.id, document_couple_family), method: :delete, data: {
                 confirm: '¿Estas Seguro?',
                 'confirm-button-text': 'Borrar',
                 'cancel-button-text': 'Cancelar',
@@ -85,7 +85,7 @@
             <div class="col-md-12" style="padding-left: 24px; margin-bottom: 16px;">
               <% document_couple_family.general_files.each do |file|%>
                 <% if file.file_url%>
-                    <%= link_to  file.file_url, class: "btn btn-primary", style:"margin-right:10px;;margin-top:10px" do  %>
+                    <%= link_to  file.file_url, class: "btn btn-primary file", target: "_blank" do  %>
                       <i class="fa fa-download" aria-hidden="true"></i> <%=file.name%>
                     <% end %>  
                 <% end %>
@@ -150,6 +150,11 @@
 
   .color{
     color: red;
+  }
+
+  .file{
+    margin-right:10px;
+    margin-top:10px;
   }
 
 
