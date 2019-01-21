@@ -117,11 +117,20 @@
                           </li>
                           <%end%>
 
-                     
+                      
 
                         <%if current_user.super_admin%>
 
                          <li><%= link_to  accounts_path, style: "color:gray !important;" do  %>
+                           <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Cuentas
+                         <% end -%>
+                         </li>
+                  
+                        <%end%>
+
+                            <%if current_user.super_admin%>
+
+                         <li><%= link_to  first_rips_path, style: "color:gray !important;" do  %>
                            <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Cuentas
                          <% end -%>
                          </li>

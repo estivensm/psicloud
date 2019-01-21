@@ -1,0 +1,87 @@
+<%= form_with(model: first_rip, local: true) do |form| %>
+  <% if first_rip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(first_rip.errors.count, "error") %> prohibited this first_rip from being saved:</h2>
+
+      <ul>
+      <% first_rip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tipo_identificacion %>
+    <%= form.text_field :tipo_identificacion, id: :first_rip_tipo_identificacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_identificacion %>
+    <%= form.text_field :numero_identificacion, id: :first_rip_numero_identificacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_entidad_admin %>
+    <%= form.text_field :codigo_entidad_admin, id: :first_rip_codigo_entidad_admin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_usuario %>
+    <%= form.text_field :tipo_usuario, id: :first_rip_tipo_usuario %>
+  </div>
+
+  <div class="field">
+    <%= form.label :primer_apellido %>
+    <%= form.text_field :primer_apellido, id: :first_rip_primer_apellido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :segundo_apellido %>
+    <%= form.text_field :segundo_apellido, id: :first_rip_segundo_apellido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :primer_nombre %>
+    <%= form.text_field :primer_nombre, id: :first_rip_primer_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :segundo_nombre %>
+    <%= form.text_field :segundo_nombre, id: :first_rip_segundo_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edad %>
+    <%= form.text_field :edad, id: :first_rip_edad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unidad_medida_edad %>
+    <%= form.text_field :unidad_medida_edad, id: :first_rip_unidad_medida_edad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sexo %>
+    <%= form.text_field :sexo, id: :first_rip_sexo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_dpto %>
+    <%= form.text_field :codigo_dpto, id: :first_rip_codigo_dpto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_municipio %>
+    <%= form.text_field :codigo_municipio, id: :first_rip_codigo_municipio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zona_residencial %>
+    <%= form.text_field :zona_residencial, id: :first_rip_zona_residencial %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

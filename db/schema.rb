@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190117205804) do
+ActiveRecord::Schema.define(version: 20190121212226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -435,6 +435,25 @@ ActiveRecord::Schema.define(version: 20190117205804) do
     t.integer "user_id"
     t.integer "count"
     t.string "codigo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "first_rips", force: :cascade do |t|
+    t.string "tipo_identificacion"
+    t.string "numero_identificacion"
+    t.string "codigo_entidad_admin"
+    t.string "tipo_usuario"
+    t.string "primer_apellido"
+    t.string "segundo_apellido"
+    t.string "primer_nombre"
+    t.string "segundo_nombre"
+    t.string "edad"
+    t.string "unidad_medida_edad"
+    t.string "sexo"
+    t.string "codigo_dpto"
+    t.string "codigo_municipio"
+    t.string "zona_residencial"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

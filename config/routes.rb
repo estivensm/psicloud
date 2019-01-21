@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
- 
+  
+  get 'first_rips/csv_all'
+  resources :first_rips
+  
   resources :clinic_history_families do
     resources :outcome_families, only: [:edit, :update, :destroy] 
     resources :document_families
