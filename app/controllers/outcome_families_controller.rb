@@ -17,10 +17,12 @@ class OutcomeFamiliesController < ApplicationController
   # GET /outcome_families/new
   def new
     @outcome_family = OutcomeFamily.new
+     @outcome_family = @clinic_history_family.outcome_families.first
   end
 
   # GET /outcome_families/1/edit
   def edit
+      @outcome_family = @clinic_history_family.outcome_families.first
   end
 
   # POST /outcome_families

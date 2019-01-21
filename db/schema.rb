@@ -501,9 +501,10 @@ ActiveRecord::Schema.define(version: 20190121212226) do
 
   create_table "outcome_families", force: :cascade do |t|
     t.integer "clinic_history_family_id"
+    t.integer "clinic_history_couple_id"
     t.text "diagnostic_description"
-    t.text "therapeutic_goal"
-    t.text "type_of_treatment"
+    t.integer "therapeutic_goal"
+    t.integer "type_of_treatment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -743,8 +744,8 @@ ActiveRecord::Schema.define(version: 20190121212226) do
     t.text "evolution"
     t.boolean "tracing_state"
     t.datetime "tracing_created_at"
-    t.integer "clinic_history_couple_id"
     t.boolean "state"
+    t.integer "clinic_history_couple_id"
   end
 
   create_table "two_child_histories", force: :cascade do |t|

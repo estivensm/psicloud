@@ -1,5 +1,5 @@
 
-      <%= form_for([@clinic_history_family, outcome_family]) do |form| %>
+      <%= form_for([@clinic_history_family, @outcome_family]) do |form| %>
         <% if outcome_family.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(outcome_family.errors.count, "error") %> prohibited this outcome_family from being saved:</h2>
