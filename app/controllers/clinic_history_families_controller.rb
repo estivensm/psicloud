@@ -64,7 +64,7 @@ class ClinicHistoryFamiliesController < ApplicationController
 
     respond_to do |format|
       if @clinic_history_family.save
-        format.html { redirect_to @clinic_history_family, notice: 'Clinic history family was successfully created.' }
+        format.html { redirect_to edit_clinic_history_family_path(@clinic_history_family.id), notice: 'Clinic history family was successfully created.' }
         format.json { render :show, status: :created, location: @clinic_history_family }
       else
         format.html { render :new }

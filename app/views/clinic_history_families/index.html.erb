@@ -11,7 +11,7 @@
     <div class = "row title-table">
 
        <div class = "col-md-8"  style="padding-left: 20px;">
-          <p>Historial clinico Familiar <span class="label label-primary"><%= @clinic_history_families.count%></span> <span style = "font-size:12px;margin-left:20px;"><%= page_history_families @clinic_history_families, :entry_name => 'Historia Clinica de Familias' %></span> </p>
+          <p>Historial de Familia clinico <span class="label label-primary"><%= @clinic_history_families.count%></span> <span style = "font-size:12px;margin-left:20px;"><%= page_history_families @clinic_history_families, :entry_name => 'Historia Clinica de Familias' %></span> </p>
        </div>
 
 
@@ -25,7 +25,6 @@
       <thead>
         <tr class="tr-table">
           <th>Pacientes</th>
-          <th>Razon de Consulta</th>
           <th class="actions">Acciones</th>
         </tr>
       </thead>
@@ -38,7 +37,6 @@
                 <%= patient.first_name + " " + patient.first_last_name + " , " %> 
               <% end -%>
               </td>
-            <td><%= clinic_history_family.reason_consultation %></td>
             <td>
 
             <%= link_to clinic_history_family, class: "btn btn-primary" do%>

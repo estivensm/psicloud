@@ -4,13 +4,33 @@
       <h2 align="center">DESENLACE</h2>
     </div>
     <div class="row">
-      <% @clinic_history_family.patients.each do |patient| %>  
-            <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo), id: "patient") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", id: "patient")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
-              <br><br>
-            </div>        
-      <% end %>
-    </div> 
-    <hr>
+      <table class="table table-responsive row1">
+        <tr style="background: #46b8da; color: #fff;">
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Documento</th>
+          <th>Edad</th>
+          <th>Sexo</th>
+          <th>Estado Civil</th>
+          <th>Parentesco</th>
+        </tr>
+      </thead>
+
+        <tbody>
+          <% @clinic_history_family.patients.each do |patient| %>  
+            <tr>
+              <td><%= patient.first_name %></td>
+              <td><%= patient.first_last_name %></td>
+              <td><%= patient.document %></td>
+              <td><%= patient.age %></td>
+              <td><%= patient.gender %></td>
+              <td><%= patient.civil_status %></td>
+              <td> Con la <%= patient.contact_relationship %></td>
+            </tr>
+            <% end -%>
+          </tbody>
+        </table>
+    </div>
 	  <%= render 'form', outcome_family: @outcome_family %>
 	</div>
 </div>
@@ -22,7 +42,12 @@
     padding-left: 0px;
   }
 
-  <style>
+  .row1{
+    width: 93%;
+    margin-bottom: 17px !important;
+    margin-left: 25px;
+  }
+
   .paciente2{
     padding: 10px 10px;
     border: none;
