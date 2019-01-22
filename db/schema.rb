@@ -753,8 +753,8 @@ ActiveRecord::Schema.define(version: 20190122025721) do
     t.text "evolution"
     t.boolean "tracing_state"
     t.datetime "tracing_created_at"
-    t.integer "clinic_history_couple_id"
     t.boolean "state"
+    t.integer "clinic_history_couple_id"
   end
 
   create_table "two_child_histories", force: :cascade do |t|
