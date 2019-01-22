@@ -59,7 +59,7 @@
 <% else %>
 	<h3 class="h3">Familiares que no han sido ingresados como pacientes </h3>
 		<% @clinic_history_family.family_group.each do |familia| %>
-			<table class="table table-responsive">
+			<table class="table table-responsive" style="margin-bottom: 10px !important;">
 
 			    <tr>
 		      	  <td> <strong>Nombre: </strong> <br><%= familia.name %> </td>
