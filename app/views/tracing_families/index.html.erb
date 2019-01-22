@@ -3,59 +3,56 @@
       <h2 align="center">SEGUIMIENTOS</h2>
     </div>
 
-  <table class="table table-responsive row1">
-    <tr style="background: #46b8da; color: #fff;">
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Documento</th>
-      <th>Edad</th>
-      <th>Sexo</th>
-      <th>Estado Civil</th>
-      <th>Parentesco</th>
-    </tr>
-  </thead>
-
-    <tbody>
-      <% @clinic_history_family.patients.each do |patient| %>  
-        <tr>
-          <td><%= patient.first_name %></td>
-          <td><%= patient.first_last_name %></td>
-          <td><%= patient.document %></td>
-          <td><%= patient.age %></td>
-          <td><%= patient.gender %></td>
-          <td><%= patient.civil_status %></td>
-          <td><%= patient.contact_relationship %></td>
+      <div class="row">
+        <table class="table table-responsive row1" style="margin-bottom: 0px !important;">
+        <tr style="background: #46b8da; color: #fff; text-align: center;">
+          <th>Pacientes</th>
         </tr>
-        <% end -%>
-      </tbody>
+      </table>
+      <table class="table table-responsive row1">
+        <tr style="color: #46b8da;">
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Documento</th>
+          <th>Edad</th>
+          <th>Sexo</th>
+          <th>Ocupacion</th>
+          <th>Estado Civil</th>
+          <th>Parentesco</th>
+        </tr>
+      </thead>
+
+        <tbody>
+          <% @clinic_history_family.patients.each do |patient| %>  
+            <tr>
+              <td><%= patient.first_name %></td>
+              <td><%= patient.first_last_name %></td>
+              <td><%= patient.document %></td>
+              <td><%= patient.age %></td>
+              <td><%= patient.gender %></td>
+              <td><%= patient.occupation %></td>
+              <td><%= patient.civil_status %></td>
+              <td> Con la <%= patient.contact_relationship %></td>
+            </tr>
+            <% end -%>
+
+          <% @clinic_history_family.family_group.each do |familia| %>  
+            <tr>
+              <td><%= familia.name %></td>
+              <td><%= familia.last_name %></td>
+              <td><%= familia.document_number %></td>
+              <td><%= familia.age %></td>
+              <td><%= familia.sex %></td>
+              <td><%= familia.occupation %></td>
+              <td><%= familia.civil_status %></td>
+              <td> Con la <%= familia.relationship %></td>
+            </tr>
+            <% end -%>
+          </tbody>
     </table>
-    
 
-<% if !@clinic_history_family.family_group.any? %>
-
-  <% else %>
-    <h3 class="col-md-11 titulo1">Familiares que no han sido ingresados como pacientes </h3>
-      <% @clinic_history_family.family_group.each do |familia| %>
-        <table class="table table-responsive row1">
-
-            <tr>
-              <td> <strong>Nombre: </strong> <br><%= familia.name %> </td>
-              <td> <strong>Apellido: </strong><br> <%= familia.last_name %> </td>
-              <td> <strong>Documento: </strong><br> <%= familia.document_number %> </td>
-              <td> <strong>Edad: </strong> <br><%= familia.age %> </td>
-           </tr>
-
-            <tr>
-              <td> <strong>Sexo: </strong> <br><%= familia.sex %> </td>
-              <td> <strong>Estado Civil: </strong><br> <%= familia.civil_status %> </td>
-              <td> <strong>Ocpacion: </strong><br> <%= familia.occupation %> </td>
-              <td> <strong>Parentesco: </strong> <br><%= familia.relationship %> </td>
-           </tr>
-
-        </table>
-      <% end -%>
-  <% end -%>
     </div>
+    <br>
           <% if @tracing_families.any? %>
           <div class="row">
              <div class = "row title-table" style="margin-top: 10px; width: 1027px;">
@@ -140,6 +137,15 @@
 <% end %>
 </div>
 <style>
+
+    .row2{
+    width: 96%;
+    margin-bottom: 17px !important;
+    margin-left: 11px;
+    border: 1px solid #d7d7d7;
+  }
+
+
   .paciente2{
     padding: 10px 10px;
     border: none;
@@ -201,7 +207,7 @@
   .row1{
     width: 93%;
     margin-bottom: 17px !important;
-    margin-left: 25px;
+    margin-left: 26px !important;
   }
 
 

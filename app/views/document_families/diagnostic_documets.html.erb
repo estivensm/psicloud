@@ -3,15 +3,20 @@
     <div class="col-md-11 titulo">
       <h2 align="center">AYUDA DIAGNOSTICAS</h2>
     </div>
-
-    <div class="row">
+  <div class="row">
+        <table class="table table-responsive row1" style="margin-bottom: 0px !important;">
+        <tr style="background: #46b8da; color: #fff; text-align: center;">
+          <th>Pacientes</th>
+        </tr>
+      </table>
       <table class="table table-responsive row1">
-        <tr style="background: #46b8da; color: #fff;">
+        <tr style="color: #46b8da;">
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Documento</th>
           <th>Edad</th>
           <th>Sexo</th>
+          <th>Ocupacion</th>
           <th>Estado Civil</th>
           <th>Parentesco</th>
         </tr>
@@ -25,13 +30,29 @@
               <td><%= patient.document %></td>
               <td><%= patient.age %></td>
               <td><%= patient.gender %></td>
+              <td><%= patient.occupation %></td>
               <td><%= patient.civil_status %></td>
               <td> Con la <%= patient.contact_relationship %></td>
             </tr>
             <% end -%>
+
+          <% @clinic_history_family.family_group.each do |familia| %>  
+            <tr>
+              <td><%= familia.name %></td>
+              <td><%= familia.last_name %></td>
+              <td><%= familia.document_number %></td>
+              <td><%= familia.age %></td>
+              <td><%= familia.sex %></td>
+              <td><%= familia.occupation %></td>
+              <td><%= familia.civil_status %></td>
+              <td> Con la <%= familia.relationship %></td>
+            </tr>
+            <% end -%>
           </tbody>
-        </table>
+    </table>
+
     </div>
+    <br>
 
     <ul class="nav nav-tabs tab">
       <li class="link2"><%=link_to "Heramientas de Evolucion" ,clinic_history_family_document_families_path(@clinic_history_family.id), style: "cursor: pointer;" %></li>
@@ -143,6 +164,15 @@
      padding: 16px 0px;
     
    }
+
+    .titulo1{
+    background: #46b8da;
+    color: white !important;
+    padding: 5px 5px;
+    margin-bottom: 18px;
+    margin-left: 25px !important;
+    width: 93% !important;
+  }
 
    .imagen1 img{
     border-radius: 50%;
