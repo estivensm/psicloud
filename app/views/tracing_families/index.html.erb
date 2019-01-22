@@ -1,16 +1,63 @@
 <div class="row">
     <div class="col-md-11 titulo">
-      <h2 align="center">INFORMACIÓN GENERAL</h2>
+      <h2 align="center">SEGUIMIENTOS</h2>
     </div>
-    <div class="row">
+
+  <table class="table table-responsive row1">
+    <tr style="background: #46b8da; color: #fff;">
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Documento</th>
+      <th>Edad</th>
+      <th>Sexo</th>
+      <th>Estado Civil</th>
+      <th>Parentesco</th>
+    </tr>
+  </thead>
+
+    <tbody>
       <% @clinic_history_family.patients.each do |patient| %>  
-            <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo), id: "patient") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", id: "patient")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
-              <br><br>
-            </div>        
-      <% end %>
+        <tr>
+          <td><%= patient.first_name %></td>
+          <td><%= patient.first_last_name %></td>
+          <td><%= patient.document %></td>
+          <td><%= patient.age %></td>
+          <td><%= patient.gender %></td>
+          <td><%= patient.civil_status %></td>
+          <td><%= patient.contact_relationship %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+    </table>
+    
+
+<% if !@clinic_history_family.family_group.any? %>
+
+  <% else %>
+    <h3 class="col-md-11 titulo1">Familiares que no han sido ingresados como pacientes </h3>
+      <% @clinic_history_family.family_group.each do |familia| %>
+        <table class="table table-responsive row1">
+
+            <tr>
+              <td> <strong>Nombre: </strong> <br><%= familia.name %> </td>
+              <td> <strong>Apellido: </strong><br> <%= familia.last_name %> </td>
+              <td> <strong>Documento: </strong><br> <%= familia.document_number %> </td>
+              <td> <strong>Edad: </strong> <br><%= familia.age %> </td>
+           </tr>
+
+            <tr>
+              <td> <strong>Sexo: </strong> <br><%= familia.sex %> </td>
+              <td> <strong>Estado Civil: </strong><br> <%= familia.civil_status %> </td>
+              <td> <strong>Ocpacion: </strong><br> <%= familia.occupation %> </td>
+              <td> <strong>Parentesco: </strong> <br><%= familia.relationship %> </td>
+           </tr>
+
+        </table>
+      <% end -%>
+  <% end -%>
     </div>
           <% if @tracing_families.any? %>
-          <div class="row" style = "padding: 0px 28px;">
+          <div class="row">
              <div class = "row title-table" style="margin-top: 10px; width: 1027px;">
                 <div class = "col-md-7">
                    <p>
@@ -24,7 +71,7 @@
                 </div>
              </div>
             <% @tracing_families.each do |tracing_family| %>
-             <div class="panel panel-default" style="width: 96%;">
+             <div class="panel panel-default" style="width: 97%;">
                 <div class="panel-heading">
                    <div class="row">
                       <div class="col-md-6" style="    color: #5bc0de;
@@ -51,7 +98,9 @@
                    </div>
                 </div>
                 <div class="panel-body"> 
-                   <strong>Descripción:</strong> <%= tracing_family.description %>
+                   <strong>Descripción:</strong> <%= tracing_family.description %><br><br>
+                   <strong>Observacion:</strong> <%= tracing_family.observation %><br><br>
+                   <strong>Evolucion:</strong> <%= tracing_family.evolution %>
                    <hr>
 
 
@@ -82,12 +131,12 @@
 <% else %>
 
 <div class="row" style="padding: 0px 20px;">
-   <div class="col-md-12 np">
+   <div class="col-md-11 np">
       <h4>! AÚN NO HAY SEGUIMIENTOS ¡</h4>
       <%= link_to "CREA EL PRIMERO", new_clinic_history_family_tracing_family_path(@clinic_history_family.id), class: "btn btn-primary"   %>
    </div>
 </div>
-
+   <br><br>
 <% end %>
 </div>
 <style>
@@ -113,6 +162,7 @@
      color: gray;
      background: #f4f4f4;
      font-size: 40px;
+     width: 97%;
      padding: 16px 0px;
     
    }
@@ -129,11 +179,32 @@
     background: #46b8da;
     color: white !important;
     padding: 5px 5px;
-      margin-bottom: 18px;
-      font-weight: bold;
-      margin-left: 10px;
-          width: 96%;
+    margin-bottom: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    width: 96%;
   }
+
+  .titulo1{
+    background: #46b8da;
+    color: white !important;
+    padding: 5px 5px;
+    margin-bottom: 18px;
+    margin-left: 12px;
+    width: 96%;
+  }
+
+  .tab{
+        margin-left: 10px;
+        width: 1023px;
+  }
+  .row1{
+    width: 93%;
+    margin-bottom: 17px !important;
+    margin-left: 25px;
+  }
+
+
 
   .paciente2 img{
     width: 80px;

@@ -4,26 +4,47 @@
       <h2 align="center">HERRAMIENTA DE EVOLUCION</h2>
     </div>
     <div class="row">
-      <% @clinic_history_family.patients.each do |patient| %>  
-            <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo), id: "patient") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", id: "patient")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
-              <br><br><br>
-            </div>        
-      <% end %>
+      <table class="table table-responsive row1">
+        <tr style="background: #46b8da; color: #fff;">
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Documento</th>
+          <th>Edad</th>
+          <th>Sexo</th>
+          <th>Estado Civil</th>
+          <th>Parentesco</th>
+        </tr>
+      </thead>
+
+        <tbody>
+          <% @clinic_history_family.patients.each do |patient| %>  
+            <tr>
+              <td><%= patient.first_name %></td>
+              <td><%= patient.first_last_name %></td>
+              <td><%= patient.document %></td>
+              <td><%= patient.age %></td>
+              <td><%= patient.gender %></td>
+              <td><%= patient.civil_status %></td>
+              <td> Con la <%= patient.contact_relationship %></td>
+            </tr>
+            <% end -%>
+          </tbody>
+        </table>
     </div>
 
-    <ul class="nav nav-tabs" style="width: 97%;">
+    <ul class="nav nav-tabs tab">
       <li class="active"><%=link_to "Heramientas de Evolucion" ,clinic_history_family_document_families_path(@clinic_history_family.id), style: "cursor: pointer;" %></li>
       <li class="link2"><%= link_to "Ayudas Diagnosticas", clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), style: "cursor: pointer;"%></li>
       <li class="link2"><%= link_to "Documentos Legales", clinic_history_family_legan_documents_path(@clinic_history_family.id), style: "cursor: pointer;" %></li>
     </ul>
   <% if @document_families.any? %>
     <div class="container">
-       <div class="row" >
+       <div class="row" style="margin-left: -2px;" >
         <br>
         <div class = "row title-table">
 
-           <div class = "col-md-4"  style="padding-left: 20px;">
-              <p>Documentos Familiares <span class="label label-primary"><%= @document_families.count%></span>
+           <div class = "col-md-5"  style="padding-left: 20px;">
+              <p>Heramientas de Evolucion <span class="label label-primary"><%= @document_families.count%></span>
            </div>
 
             <div class = "col-md-2" style= "float: right; padding-right: 10px; margin-right: 27px;">
@@ -99,17 +120,16 @@
     border: none;
     color: #46b8da
   }
-
   
-        .file{
+  .file{
     margin-right:10px;
     margin-top:10px;
   }
 
 
 
-     .width{
-       width: 89% !important;
+  .width{
+    width: 89% !important;
   }
 
 
@@ -138,10 +158,10 @@
     background: #46b8da;
     color: white !important;
     padding: 5px 5px;
-      margin-bottom: 18px;
-      font-weight: bold;
-      margin-left: 10px;
-          width: 96%;
+    margin-bottom: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    width: 96%;
   }
 
   .paciente2 img{
@@ -166,6 +186,7 @@
     .jumbotron{
     background-color: #eee !important;
     width: 97%;
+    margin-left: 7px;
     text-align: center;
   }
 
@@ -174,5 +195,17 @@
     color: #3b84a7;
     font-size: 17px;
   }
+
+  .tab{
+        margin-left: 10px;
+        width: 1023px;
+  }
+  .row1{
+    width: 93%;
+    margin-bottom: 17px !important;
+    margin-left: 25px;
+  }
+
+
 
 </style>

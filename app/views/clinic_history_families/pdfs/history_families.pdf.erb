@@ -8,9 +8,6 @@
 	</tbody>
 </table>
 
-<h3 class="h3">Datos de los Pacientes (<% @clinic_history_family.patients.each do |patient| %>  
-           <%= patient.first_name + " " + patient.first_last_name + "," %>
-          <% end %>)</h3>
 <% @clinic_history_family.patients.each do |patient| %>
 	<table class="table table-responsive">
 	   <tr>
@@ -62,7 +59,7 @@
 <% else %>
 	<h3 class="h3">Familiares que no han sido ingresados como pacientes </h3>
 		<% @clinic_history_family.family_group.each do |familia| %>
-			<table class="table table-responsive">
+			<table class="table table-responsive" style="margin-bottom: 10px !important;">
 
 			    <tr>
 		      	  <td> <strong>Nombre: </strong> <br><%= familia.name %> </td>
@@ -83,42 +80,6 @@
 <% end -%>
 
 
-<% if !@seguimientos.any? %>
-
-<% else %>
-<h3 class="h3">Seguimientos</h3>
-	
-	<% @seguimientos.each do |seguimientos| %>
-		<table class="table table-responsive">
-
-			   <tr>
-				 <td> <strong>Fecha del Seguimiento: </strong> <br><%= seguimientos.tracing_date %> </td>   	
-		      	 <td> <strong>Descripcion: </strong> <br><%= seguimientos.description %> </td>
-			     <td> <strong>Observaciones: </strong><br> <%= seguimientos.observation %> </td>
-			     <td> <strong>Evolucion: </strong><br> <%= seguimientos.evolution %> </td>
-			  </tr>
-
-		</table>
-	<% end -%>
-<% end -%>
-
-
-<% if !@documentos_tool.any? %>
-
-<% else %>
-<h3 class="h3">Gestion Documental Familiar</h3>
-
-	<% @documentos_tool.each do |documentos| %>
-		<table class="table table-responsive">
-
-			   <tr>
-				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
-		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
-			  </tr>
-
-		</table>
-	<% end -%>
-<% end -%>
 
 <h3 class="h3">Diagnosticos</h3>
 
@@ -148,41 +109,33 @@
 
 </table>
 
-
-<% if !@documentos_diagnostic.any? %>
+<% if !@seguimientos.any? %>
 
 <% else %>
-	<h3 class="h3">Gestion Diagnostico Familiar</h3>
-
-	<% @documentos_diagnostic.each do |documentos| %>
+<h3 class="h3">Seguimientos</h3>
+	
+	<% @seguimientos.each do |seguimientos| %>
 		<table class="table table-responsive">
 
-			   <tr>
-				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
-		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
+			  <tr>
+				 <td> <strong>Fecha del Seguimiento: </strong> <br><%= seguimientos.tracing_date %> </td>   	
+			  </tr>
+
+			  <tr>
+			  		<td> <strong>Descripcion: </strong> <br><%= seguimientos.description %> </td>
+			  </tr>
+
+			  <tr>
+			  	    <td> <strong>Observaciones: </strong><br> <%= seguimientos.observation %> </td>
+			  </tr>
+
+			  <tr>
+			  	    <td> <strong>Evolucion: </strong><br> <%= seguimientos.evolution %> </td>
 			  </tr>
 
 		</table>
 	<% end -%>
 <% end -%>
-
-<% if !@documentos_legal.any? %>
-
-<% else %>
-<h3 class="h3">Gestion Legal Familiar</h3>
-
-	<% @documentos_legal.each do |documentos| %>
-		<table class="table table-responsive">
-
-			   <tr>
-				 <td> <strong>Tipo de Herramienta: </strong> <br><%= documentos.tool_type %> </td>   	
-		      	 <td> <strong>Descripcion: </strong> <br><%= documentos.descripcion %> </td>
-			  </tr>
-
-		</table>
-	<% end -%>
-<% end -%>
-
 
 <style type="text/css" media="screen">
 
