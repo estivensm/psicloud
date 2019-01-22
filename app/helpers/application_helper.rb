@@ -389,17 +389,19 @@ end
 
 def menu_history
           
-  @menu_history_families = ["","","", "", ""]
+  @menu_history_families = ["","","", "", "", ""]
     if controller.controller_name == "clinic_history_families" && action_name == "show"
-      @menu_history_families = ["active","","", "", ""]
+      @menu_history_families = ["active","","", "", "", ""]
     elsif  controller.controller_name == "clinic_history_families" && action_name == "edit"
-      @menu_history_families = ["na","active","na", "na", "na"]  
+      @menu_history_families = ["na","active","na", "na", "na", "na"]  
     elsif controller.controller_name == "tracing_families"
-      @menu_history_families = ["na","na","active", "na"]
+      @menu_history_families = ["na","na","active", "na", "na"]
     elsif controller.controller_name == "document_families"
-      @menu_history_families = ["na","na","na", "active","na"]
+      @menu_history_families = ["na","na","na", "active","na", "na"]
     elsif controller.controller_name == "clinic_history_families"
-      @menu_history_families = ["na","na","na", "na", "active"]
+      @menu_history_families = ["na","na","na", "na", "active", "na"]
+    elsif controller.controller_name == "outcome_families"  && action_name == "edit"
+      @menu_history_families = ["na","na","na", "na", "na", "active"]
   end
 
   return @menu_history_families

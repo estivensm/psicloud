@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190121212226) do
+ActiveRecord::Schema.define(version: 20190122025721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -349,6 +349,11 @@ ActiveRecord::Schema.define(version: 20190121212226) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "diagnostics_outcome_families", id: false, force: :cascade do |t|
+    t.bigint "outcome_family_id", null: false
+    t.bigint "diagnostic_id", null: false
+  end
+
   create_table "document_couple_families", force: :cascade do |t|
     t.string "tool_type"
     t.text "descripcion"
@@ -439,6 +444,11 @@ ActiveRecord::Schema.define(version: 20190121212226) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "first_diagnosticos_outcome_families", id: false, force: :cascade do |t|
+    t.bigint "outcome_family_id", null: false
+    t.bigint "first_diagnostico_id", null: false
+  end
+
   create_table "first_rips", force: :cascade do |t|
     t.string "tipo_identificacion"
     t.string "numero_identificacion"
@@ -501,10 +511,9 @@ ActiveRecord::Schema.define(version: 20190121212226) do
 
   create_table "outcome_families", force: :cascade do |t|
     t.integer "clinic_history_family_id"
-    t.integer "clinic_history_couple_id"
     t.text "diagnostic_description"
-    t.integer "therapeutic_goal"
-    t.integer "type_of_treatment"
+    t.text "therapeutic_goal"
+    t.text "type_of_treatment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -744,8 +753,8 @@ ActiveRecord::Schema.define(version: 20190121212226) do
     t.text "evolution"
     t.boolean "tracing_state"
     t.datetime "tracing_created_at"
-    t.boolean "state"
     t.integer "clinic_history_couple_id"
+    t.boolean "state"
   end
 
   create_table "two_child_histories", force: :cascade do |t|

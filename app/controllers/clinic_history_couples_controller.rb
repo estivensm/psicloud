@@ -73,7 +73,10 @@ class ClinicHistoryCouplesController < ApplicationController
   def update
     respond_to do |format|
       if @clinic_history_couple.update(clinic_history_couple_params)
-        format.html { redirect_to @clinic_history_couple, notice: 'Clinic history couple was successfully updated.' }
+        format.html { r
+          edirect_to @clinic_history_couple, notice: 'Clinic history couple was successfully updated.'
+
+          }
         format.json { render :show, status: :ok, location: @clinic_history_couple }
       else
         format.html { render :edit }
