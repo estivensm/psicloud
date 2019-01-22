@@ -1,5 +1,82 @@
 <div class="container">
-	<div class="row" style="width: 91%;"> 
+	<div class="row" style="width: 91%;">
+	    <div class="col-md-11 titulo">
+      <h2 align="center">DESENLACE</h2>
+    </div>
+    <div class="row">
+      <% @clinic_history_family.patients.each do |patient| %>  
+            <div class="col-md-3 text-center" style="margin-top: 15px"><%= patient.avatar? ? image_tag(patient.avatar_url(:logo), id: "patient") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", id: "patient")%><br><span id='show-patien'><%= patient.first_name + " " + patient.first_last_name %></span>
+              <br><br>
+            </div>        
+      <% end %>
+    </div> 
+    <hr>
 	  <%= render 'form', outcome_family: @outcome_family %>
 	</div>
 </div>
+
+
+<style type="text/css" media="screen">
+
+  .no_padding_left{
+    padding-left: 0px;
+  }
+
+  <style>
+  .paciente2{
+    padding: 10px 10px;
+    border: none;
+    color: #46b8da
+  }
+
+
+   .panel-body strong{
+      margin-bottom: 5px
+   }
+
+   .np{
+     text-align: center;
+     color: gray;
+     background: #f4f4f4;
+     font-size: 40px;
+     padding: 16px 0px;
+    
+   }
+
+   .imagen1 img{
+    border-radius: 50%;
+    margin-top: 10px;
+    height: 102px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .titulo{
+    background: #46b8da;
+    color: white !important;
+    padding: 5px 5px;
+      margin-bottom: 18px;
+      font-weight: bold;
+      margin-left: 10px;
+          width: 96%;
+  }
+
+  .paciente2 img{
+    width: 80px;
+  }
+
+  #patient{
+    border-radius: 50%;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  #show-patien{
+    background: #46b8da;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+    margin-top: 10px;
+  }
+
+</style>

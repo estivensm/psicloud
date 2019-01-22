@@ -17,12 +17,10 @@ class OutcomeFamiliesController < ApplicationController
   # GET /outcome_families/new
   def new
     @outcome_family = OutcomeFamily.new
-     @outcome_family = @clinic_history_family.outcome_families.first
   end
 
   # GET /outcome_families/1/edit
   def edit
-      @outcome_family = @clinic_history_family.outcome_families.first
   end
 
   # POST /outcome_families
@@ -32,7 +30,7 @@ class OutcomeFamiliesController < ApplicationController
 
     respond_to do |format|
       if @outcome_family.save
-        format.html { redirect_to @outcome_family, notice: 'Outcome family was successfully created.' }
+        format.html { redirect_to clinic_history_family_path(@clinic_history_family.id), notice: 'Outcome family was successfully created.' }
         format.json { render :show, status: :created, location: @outcome_family }
       else
         format.html { render :new }
@@ -46,7 +44,7 @@ class OutcomeFamiliesController < ApplicationController
   def update
     respond_to do |format|
       if @outcome_family.update(outcome_family_params)
-        format.html { redirect_to @outcome_family, notice: 'Outcome family was successfully updated.' }
+        format.html { redirect_to clinic_history_family_path(@clinic_history_family.id), notice: 'Outcome family was successfully updated.' }
         format.json { render :show, status: :ok, location: @outcome_family }
       else
         format.html { render :edit }
@@ -73,11 +71,11 @@ class OutcomeFamiliesController < ApplicationController
 
     def set_history_family
       @clinic_history_family = ClinicHistoryFamily.find(params[:clinic_history_family_id])
-      @outcome_family = @clinic_history_family.outcome_families
+      @outcome_family = @clinic_history_family.outcome_families.first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outcome_family_params
-      params.require(:outcome_family).permit(:clinic_history_family_id, :clinic_history_couple_id, :diagnostic_description, :therapeutic_goal, :type_of_treatment)
+      params.require(:outcome_family).permit(:clinic_history_family_id, :diagnostic_description, :therapeutic_goal, :type_of_treatment, :diagnostic_ids => [] , :first_diagnostico_ids => [])
     end
 end

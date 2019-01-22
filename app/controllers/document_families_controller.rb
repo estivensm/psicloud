@@ -38,7 +38,17 @@ class DocumentFamiliesController < ApplicationController
   
       respond_to do |format|
         if @document_family.save
-          format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully created.' }
+          format.html { 
+
+            if @document_family.document_type == "diagnostic"       
+              redirect_to clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            elsif @document_family.document_type == "legal" 
+              redirect_to clinic_history_family_legan_documents_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            else
+             redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            end  
+          
+          }
           format.json { render :show, status: :created, location: @document_family }
         else
           format.html { render :new }
@@ -53,17 +63,23 @@ class DocumentFamiliesController < ApplicationController
   # PATCH/PUT /document_families/1.json
   def update
 
-    if params[:commit] == "Guardar Herramienta"
         respond_to do |format|
         if @document_family.update(document_family_params)
-        format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully updated.' }
+        format.html { 
+             if @document_family.document_type == "diagnostic"       
+              redirect_to clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            elsif @document_family.document_type == "legal" 
+              redirect_to clinic_history_family_legan_documents_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            else
+             redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            end
+        }
         format.json { render :show, status: :ok, location: @document_family }
         else
         format.html { render :edit }
         format.json { render json: @document_family.errors, status: :unprocessable_entity }
         end
       end
-    end
   end
 
   # DELETE /document_families/1
@@ -71,7 +87,15 @@ class DocumentFamiliesController < ApplicationController
   def destroy
       @document_family.destroy
       respond_to do |format|
-        format.html { redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document family was successfully destroyed.' }
+        format.html { 
+            if @document_family.document_type == "diagnostic"       
+              redirect_to clinic_history_family_diagnostic_documets_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            elsif @document_family.document_type == "legal" 
+              redirect_to clinic_history_family_legan_documents_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            else
+             redirect_to clinic_history_family_document_families_path(@clinic_history_family.id), notice: 'Document couple family was successfully created.' 
+            end
+        }
         format.json { head :no_content }
       end
   end

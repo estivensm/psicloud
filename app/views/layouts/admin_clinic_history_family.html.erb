@@ -282,14 +282,12 @@
           <% end -%>
         </li>
 
-        <li class="<%= @menu_history_families[1] %>">
+        <li class="<%= @menu_history_families[5] %>">
           <%= link_to edit_clinic_history_family_outcome_family_path(@clinic_history_family.id, @outcome_family.id) do %>
               <i class="fas fa-user-friends"></i> Desenlace
           <% end -%>
         </li>
 
-
-        
         <li class="<%= @menu_history_families[2] %>">
           <%= link_to clinic_history_family_tracing_families_path(@clinic_history_family) do %>
               <i class="fas fa-user-friends"></i> Seguimientos

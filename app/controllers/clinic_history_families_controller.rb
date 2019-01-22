@@ -45,7 +45,7 @@ class ClinicHistoryFamiliesController < ApplicationController
     @documentos_tool = DocumentFamily.where(document_type: "tool").where(clinic_history_family_id: @clinic_history_family.id)
     @documentos_diagnostic = DocumentFamily.where(document_type: "diagnostic").where(clinic_history_family_id: @clinic_history_family.id)
     @documentos_legal = DocumentFamily.where(document_type: "legal").where(clinic_history_family_id: @clinic_history_family.id)
-
+    @outcome_families = OutcomeFamily.where(clinic_history_family_id: @clinic_history_family.id).first
     respond_to do |format|
         format.html
         format.pdf do

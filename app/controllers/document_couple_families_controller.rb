@@ -97,7 +97,15 @@ class DocumentCoupleFamiliesController < ApplicationController
   def destroy
       @document_couple_family.destroy
       respond_to do |format|
-        format.html { redirect_to clinic_history_couple_legan_documents_path(@clinic_history_couple.id), notice: 'Document couple family was successfully destroyed.' }
+        format.html { 
+            if @document_couple_family.document_type == "diagnostic"       
+              redirect_to clinic_history_couple_diagnostic_documets_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
+            elsif @document_couple_family.document_type == "legal" 
+              redirect_to clinic_history_couple_legan_documents_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
+            else
+             redirect_to clinic_history_couple_document_couple_families_path(@clinic_history_couple.id), notice: 'Document couple family was successfully created.' 
+            end
+        }
         format.json { head :no_content }
       end
   end

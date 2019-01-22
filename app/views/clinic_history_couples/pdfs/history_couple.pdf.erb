@@ -102,14 +102,18 @@
 	<tr>
 
 	   <td><strong>Descripcion: </strong><br> <%= @clinic_history_couple_outcome.diagnostic_description %> </td>   	
-
-	    <td><strong>DESM: </strong><br>
+	</tr>
+	
+	<tr>
+		<td><strong>DESM: </strong><br>
 	    	<% @clinic_history_couple_outcome.diagnostic.each do |diagnostico| %>
 	    		<%= diagnostico.name %>
 	    	<% end -%>
 		</td>   
+	</tr>
 
-	    <td><strong>CIE10: </strong><br>
+	<tr>
+	<td><strong>CIE10: </strong><br>
 	   		<% @clinic_history_couple_outcome.first_diagnostico.each do |diagnostico1| %>
 	   			<%= diagnostico1.codigo %> - <%= diagnostico1.name %> 
 	   		<% end -%>

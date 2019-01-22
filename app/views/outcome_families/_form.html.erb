@@ -1,4 +1,5 @@
 
+
       <%= form_for([@clinic_history_family, @outcome_family]) do |form| %>
         <% if outcome_family.errors.any? %>
           <div id="error_explanation">
@@ -11,30 +12,64 @@
             </ul>
           </div>
         <% end %>
-        <div class="col-md-4 no-padding-left">
-          <%= form.label "Objetivo terapéutico" %>
-          <%= form.text_area :therapeutic_goal, id: :outcome_family_therapeutic_goal, :rows => 10,  :cols => 70, class: "form form-control"%>
+
+        <div class="col-md-12 no-padding-left">
+          <%= form.label "Descripcion del Diagnostico" %><br>
+          <%= form.text_area :diagnostic_description, id: :outcome_family_diagnostic_description, :rows => 5,  :cols => 70, class: "form form-control" %>
+          <br>
         </div>
 
-        <div class="col-md-4 no-padding-left">
+        <div class="field campo1" style="padding-left: 0px;">
+          <%= form.label "DSM" %><br>
+          <%= form.select :diagnostic_ids, get_diagnostic.collect {|c| ["#{c.count} - #{c.name}", c.id]}, {prompt: false}, {:multiple => true, class: 'form-control chosen-select1 input-change'} %>
+        </div>
+        <br>
+
+        <div class="field campo">
+          <%= form.label :CIE10 %><br>
+          <%= form.select :first_diagnostico_ids, get_first_diagnostico.collect {|c| ["#{c.codigo} - #{c.name}", c.id]}, {prompt: false}, {:multiple => true, class: 'form-control chosen-select1 input-change'} %>
+        </div>
+        <br>
+
+        <div class="col-md-12 no-padding-left">
+          <%= form.label "Objetivo terapéutico" %>
+          <%= form.text_area :therapeutic_goal, id: :outcome_family_therapeutic_goal, :rows => 5,  :cols => 70, class: "form form-control"%>
+          <br>
+        </div>
+
+        <div class="col-md-12 no-padding-left">
           <%= form.label "Tipo de Tratamiento" %>
-          <%= form.text_area :type_of_treatment, id: :outcome_family_type_of_treatment, :rows => 10,  :cols => 70, class: "form form-control"  %>
+          <%= form.text_area :type_of_treatment, id: :outcome_family_type_of_treatment, :rows => 5,  :cols => 70, class: "form form-control"  %>
           <br>
         </div>
 
 
         <%= form.hidden_field :clinic_history_family_id, id: :outcome_family_clinic_history_family_id, :value => @clinic_history_family.id %>
 
-        <div class="col-md-12 no-padding-left">
-          <%= form.label "Descripcion del Diagnostico" %><br>
-          <%= form.text_area :diagnostic_description, id: :outcome_family_diagnostic_description, :rows => 10,  :cols => 70, class: "form form-control" %>
-
-        </div>
 
 
-      <div class="modal-footer col-md-12">
+      <div class="col-md-12 no-padding-left">
         <%= form.submit "Guardar", class: "btn btn-primary" %>
         <%= link_to "Volver", :back, class: "btn btn-light" %>
+        <br><br>
       </div>
 
       <% end %>
+
+<script type="text/javascript">
+     
+   $(document).ready(function(){
+     $('.chosen-select1').chosen(
+           {
+   
+             allow_single_deselect: true,
+             no_results_text: 'No hay resultados',
+             width: '1022px',
+             height: '50px',
+             placeholder_text_single: "Seleccione una opción",
+             placeholder_text_multiple: "Seleccione una varias opciones"
+   
+           });
+   
+   })
+</script>
