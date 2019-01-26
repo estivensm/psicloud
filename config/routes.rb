@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
   get 'first_rips/csv_all'
+  post 'generate_rips' , to: 'first_rips#generate_rips', as: 'generate_rips' 
+  get 'generate_rips_view' , to: 'first_rips#generate_rips_view', as: 'generate_rips_view' 
+
+
   resources :first_rips
   
   resources :clinic_history_families do

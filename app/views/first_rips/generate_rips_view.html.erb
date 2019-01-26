@@ -1,0 +1,44 @@
+
+
+
+
+
+
+
+
+
+<div class="row " style="margin: 20px 0px">
+   <div class="col-md-5 col-md-offset-4 form-rips">
+         <h1 class="text-center" style="color:#5bc0de" >GENERAR</h1>
+<br>
+    <%= form_tag generate_rips_path, :method => :post, :id => "signup"  do  %>
+       <div class="row">
+        <div class="col-md-6">
+          <label>Fecha Desde</label><br>
+        <%= date_field_tag :fecha1 , nil,class: "form form-control" %>
+        </div>
+        
+      <div class="col-md-6">
+          <label>Fecha Desde</label><br>
+        <%= date_field_tag :fecha2 , nil ,class: "form form-control"%>
+        </div>
+        </div>
+      <br><br>
+      <div class="col-md-12 text-center">
+      <%= submit_tag "Generar" , class: "btn btn-primary btn btn-lg"%>
+      </div>
+    <%end%>
+   </div>
+   
+</div>
+
+<style>
+  
+  .form-rips
+  {
+    background: #ebebeb;
+    padding: 45px;
+    margin-top: 32px;
+    border-radius: 10px;
+  }
+</style>

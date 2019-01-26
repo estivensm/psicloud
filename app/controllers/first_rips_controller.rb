@@ -69,6 +69,21 @@ class FirstRipsController < ApplicationController
     end
   end
 
+  
+  def generate_rips
+
+    redirect_to first_rips_path
+    
+  end
+
+
+  def generate_rips_view
+
+
+    
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_first_rip

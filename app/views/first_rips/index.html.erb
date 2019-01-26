@@ -1,52 +1,47 @@
-<p id="notice"><%= notice %></p>
+  
+<div class="row" style="margin-top: 20px;padding: 20px;">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
 
+    <li><a data-toggle="tab" href="#menu2">Rips 2</a></li>
+    <li><a data-toggle="tab" href="#menu3">RIps 3</a></li>
+  </ul>
 
-<div class="row" style="margin: 20px 0px">
-   <div class="col-md-5 col-md-offset-4 forms">
-         <h1 class="text-center" style="color:#5bc0de" >GENERAR RIPS</h1>
-
-    <%= form_tag( {:action =>
-              'csv_all', :format => :csv}, :method => :get, :target => '_blank', :id => "signup")  do  %>
-       <div class="row">
-        <div class="col-md-6">
-          <label>Fecha Desde</label><br>
-        <%= date_field_tag :fecha1 , nil,class: "form form-control" %>
-        </div>
-        
-      <div class="col-md-6">
-          <label>Fecha Desde</label><br>
-        <%= date_field_tag :fecha2 , nil ,class: "form form-control"%>
-        </div>
-        </div>
-      <br><br>
-      <%= submit_tag "Descargar" , class: "btn btn-primary"%>
-    <%end%>
-   </div>
-   
 </div>
 
+  <div class="tab-content">
+    
+
+
+
+    <div id="home" class="tab-pane fade in active">
+      
 
 
 
 
 
+  <div class="content">
+
+
+  <%= link_to  "Descargar",  first_rips_csv_all_path(format: "csv"), class: "btn btn-primary"%>
 <table class="table">
   <thead>
     <tr>
       <th>Tipo identificacion</th>
-      <th>Numero identificacion</th>
-      <th>Codigo entidad admin</th>
-      <th>Tipo usuario</th>
-      <th>Primer apellido</th>
-      <th>Segundo apellido</th>
-      <th>Primer nombre</th>
-      <th>Segundo nombre</th>
+      <th>Numero Identificacion</th>
+      <th>Codigo entidad administradora</th>
+      <th>Tipo Usuario</th>
+      <th>Primer Apellido</th>
+      <th>Segundo Apellido</th>
+      <th>Primer Nombre</th>
+      <th>Segundo Nombre</th>
       <th>Edad</th>
-      <th>Unidad medida edad</th>
+      <th>Unidad Medida Edad</th>
       <th>Sexo</th>
-      <th>Codigo dpto</th>
-      <th>Codigo municipio</th>
-      <th>Zona residencial</th>
+      <th>Codigo Dpto</th>
+      <th>Codigo Municipio</th>
+      <th>Zona Residencial</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -75,8 +70,87 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="menu3" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p id="notice"><%= notice %></p>
+
+
 
 <% link_to 'New First Rip', new_first_rip_path %>
 
@@ -94,4 +168,22 @@
   {
     width: 50px;
   }
+
+  .content
+{
+  max-height: 400px; 
+  height: 400px; 
+  max-width: 100%;
+  overflow: scroll;
+  padding: 10px 30px;
+  
+  
+
+}
+
+.content table
+{
+  width: 2000px;
+    
+}
 </style>
