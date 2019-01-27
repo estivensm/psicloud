@@ -11,7 +11,7 @@
 <% @clinic_history_family.patients.each do |patient| %>
 	<table class="table table-responsive">
 	   <tr>
-	   	 <h3 class="h3">Nombre: <%= patient.first_name %> <%= patient.first_last_name %> </h3>
+	   	 <h3 class="h3 margin">Nombre: <%= patient.first_name %> <%= patient.first_last_name %> </h3>
 	      <td> <strong> Nombres</strong><br> <%= patient.first_name %> <%= patient.second_name %> </td>
 	      <td> <strong>Apellidos</strong><br> <%= patient.first_last_name%> <%= patient.second_last_name %> </td>
 	      <td> <strong>Documento</strong><br> <%=  type_document(patient.document_type) %> -  <%=patient.document %> </td>
@@ -57,7 +57,7 @@
 <% if !@clinic_history_family.family_group.any? %>
 
 <% else %>
-	<h3 class="h3">Familiares que no han sido ingresados como pacientes </h3>
+	<h3 class="h3 margin">Familiares que no han sido ingresados como pacientes </h3>
 		<% @clinic_history_family.family_group.each do |familia| %>
 			<table class="table table-responsive" style="margin-bottom: 10px !important;">
 
@@ -81,7 +81,7 @@
 
 
 
-<h3 class="h3">Diagnosticos</h3>
+<h3 class="h3 margin">Diagnosticos</h3>
 
 
 <table class="table table-responsive">
@@ -112,7 +112,7 @@
 <% if !@seguimientos.any? %>
 
 <% else %>
-<h3 class="h3">Seguimientos</h3>
+<h3 class="h3 margin">Seguimientos</h3>
 	
 	<% @seguimientos.each do |seguimientos| %>
 		<table class="table table-responsive">
@@ -136,6 +136,48 @@
 		</table>
 	<% end -%>
 <% end -%>
+
+<h3 class="h3 margin">Razon de Consulta</h3>
+<table class="table table-responsive">
+
+	<tr>
+		<td><%= @clinic_history_family.reason_consultation %> </td>   	
+	</tr>
+</table>
+
+
+<h3 class="h3 margin">Antecendente del Problema</h3>
+<table class="table table-responsive">
+
+	<tr>
+		<td><%=  @clinic_history_family.antecedent_problem %> </td>   	
+	</tr>
+</table>
+
+<h3 class="h3 margin">Tipo de Tratamiento</h3>
+<table class="table table-responsive">
+
+	<tr>
+		<td><%= @outcome_family.type_of_treatment %> </td>   	
+	</tr>
+</table>
+
+<h3 class="h3 margin">Objetivo terapeutico</h3>
+<table class="table table-responsive">
+
+	<tr>
+		<td><%= @outcome_family.therapeutic_goal %> </td>   	
+	</tr>
+</table>
+
+<h3 class="h3 margin">Problema Familiar</h3>
+<table class="table table-responsive">
+
+	<tr>
+		<td><%= @clinic_history_family.family_problem %> </td>   	
+	</tr>
+</table>
+
 
 <style type="text/css" media="screen">
 
@@ -166,6 +208,10 @@
    padding: 6px;
    width: 1100px;
    
+}
+
+.margin{
+	margin-bottom: 0px !important;
 }
 
 </style>
