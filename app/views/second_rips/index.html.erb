@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Second Rips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Codigo prestador</th>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Tipo identificacion</th>
+      <th>Numero identificacion</th>
+      <th>Numero factura</th>
+      <th>Fecha expedicion factura</th>
+      <th>Fecha inicio</th>
+      <th>Fecha final</th>
+      <th>Codigo entidad administradora</th>
+      <th>Nombre entidad </th>
+      <th>Administradora</th>
+      <th>Numero contrato</th>
+      <th>Plan beneficiados</th>
+      <th>Numero poliza</th>
+      <th>Valor pago compartido</th>
+      <th>Valor comision</th>
+      <th>Valor total descuentos</th>
+      <th>Valor pagar entidad</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @second_rips.each do |second_rip| %>
+      <tr>
+        <td><%= second_rip.codigo_prestador %></td>
+        <td><%= second_rip.user_id %></td>
+        <td><%= second_rip.admin_user %></td>
+        <td><%= second_rip.tipo_identificacion %></td>
+        <td><%= second_rip.numero_identificacion %></td>
+        <td><%= second_rip.numero_factura %></td>
+        <td><%= second_rip.fecha_expedicion_factura %></td>
+        <td><%= second_rip.fecha_inicio %></td>
+        <td><%= second_rip.fecha_final %></td>
+        <td><%= second_rip.codigo_entidad_administradora %></td>
+        <td><%= second_rip.nombre_entidad_ %></td>
+        <td><%= second_rip.administradora %></td>
+        <td><%= second_rip.numero_contrato %></td>
+        <td><%= second_rip.plan_beneficiados %></td>
+        <td><%= second_rip.numero_poliza %></td>
+        <td><%= second_rip.valor_pago_compartido %></td>
+        <td><%= second_rip.valor_comision %></td>
+        <td><%= second_rip.valor_total_descuentos %></td>
+        <td><%= second_rip.valor_pagar_entidad %></td>
+        <td><%= link_to 'Show', second_rip %></td>
+        <td><%= link_to 'Edit', edit_second_rip_path(second_rip) %></td>
+        <td><%= link_to 'Destroy', second_rip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Second Rip', new_second_rip_path %>

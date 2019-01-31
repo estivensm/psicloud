@@ -131,7 +131,12 @@
                             <%if current_user.super_admin%>
 
                          <li><%= link_to  generate_rips_view_path, style: "color:gray !important;" do  %>
-                           <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  rips
+                           <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i>  Generar rips
+                         <% end -%>
+                         </li>
+
+                            <li><%= link_to  first_rips_path, style: "color:gray !important;" do  %>
+                           <i class="fas fa-users" style="padding-left: 4px; color: #306C95;"></i> Rips Generados
                          <% end -%>
                          </li>
                   

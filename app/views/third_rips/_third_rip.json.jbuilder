@@ -1,0 +1,2 @@
+json.extract! third_rip, :id, :user_id, :admin_user, :numero_factura, :codigo_prestador, :tipo_identificacion_usuario, :numero_identificacion_usuario, :fecha_consulta, :numero_autorizacion, :codigo_consulta, :finalidad_consulta, :causa_externa, :codigo_diagnostico, :codigo_diagnostico_uno, :codigo_diagnostico_dos, :codigo_diagnostico_tres, :tipo_diagnostico_principal, :valor_consulta, :valor_cuota_moderadora, :valor_neto_pagar, :created_at, :updated_at
+json.url third_rip_url(third_rip, format: :json)

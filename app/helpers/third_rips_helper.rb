@@ -1,0 +1,2 @@
+module ThirdRipsHelper
+end

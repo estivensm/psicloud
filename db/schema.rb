@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190122025721) do
+ActiveRecord::Schema.define(version: 20190126212255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -466,6 +466,8 @@ ActiveRecord::Schema.define(version: 20190122025721) do
     t.string "zona_residencial"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "admin_user"
   end
 
   create_table "general_files", force: :cascade do |t|
@@ -646,6 +648,30 @@ ActiveRecord::Schema.define(version: 20190122025721) do
     t.boolean "show_all_rol"
   end
 
+  create_table "second_rips", force: :cascade do |t|
+    t.string "codigo_prestador"
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.string "tipo_identificacion"
+    t.string "numero_identificacion"
+    t.string "numero_factura"
+    t.string "fecha_expedicion_factura"
+    t.string "fecha_inicio"
+    t.string "fecha_final"
+    t.string "codigo_entidad_administradora"
+    t.string "nombre_entidad_"
+    t.string "administradora"
+    t.string "numero_contrato"
+    t.string "plan_beneficiados"
+    t.string "numero_poliza"
+    t.string "valor_pago_compartido"
+    t.string "valor_comision"
+    t.string "valor_total_descuentos"
+    t.string "valor_pagar_entidad"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "admin_user"
@@ -657,6 +683,30 @@ ActiveRecord::Schema.define(version: 20190122025721) do
     t.date "fecha_entrega"
     t.boolean "cumplimiento"
     t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "third_rips", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.string "numero_factura"
+    t.string "codigo_prestador"
+    t.string "tipo_identificacion_usuario"
+    t.string "numero_identificacion_usuario"
+    t.string "fecha_consulta"
+    t.string "numero_autorizacion"
+    t.string "codigo_consulta"
+    t.string "finalidad_consulta"
+    t.string "causa_externa"
+    t.string "codigo_diagnostico"
+    t.string "codigo_diagnostico_uno"
+    t.string "codigo_diagnostico_dos"
+    t.string "codigo_diagnostico_tres"
+    t.string "tipo_diagnostico_principal"
+    t.string "valor_consulta"
+    t.string "valor_cuota_moderadora"
+    t.string "valor_neto_pagar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

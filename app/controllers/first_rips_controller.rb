@@ -5,6 +5,9 @@ class FirstRipsController < ApplicationController
   # GET /first_rips.json
   def index
     @first_rips = FirstRip.all
+    @second_rips = SecondRip.all
+    @third_rips = ThirdRip.all
+
   end
   
 

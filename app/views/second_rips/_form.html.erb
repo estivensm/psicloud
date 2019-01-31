@@ -1,0 +1,112 @@
+<%= form_with(model: second_rip, local: true) do |form| %>
+  <% if second_rip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(second_rip.errors.count, "error") %> prohibited this second_rip from being saved:</h2>
+
+      <ul>
+      <% second_rip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :codigo_prestador %>
+    <%= form.text_field :codigo_prestador, id: :second_rip_codigo_prestador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :second_rip_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_user %>
+    <%= form.number_field :admin_user, id: :second_rip_admin_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_identificacion %>
+    <%= form.text_field :tipo_identificacion, id: :second_rip_tipo_identificacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_identificacion %>
+    <%= form.text_field :numero_identificacion, id: :second_rip_numero_identificacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_factura %>
+    <%= form.text_field :numero_factura, id: :second_rip_numero_factura %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_expedicion_factura %>
+    <%= form.text_field :fecha_expedicion_factura, id: :second_rip_fecha_expedicion_factura %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_inicio %>
+    <%= form.text_field :fecha_inicio, id: :second_rip_fecha_inicio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_final %>
+    <%= form.text_field :fecha_final, id: :second_rip_fecha_final %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_entidad_administradora %>
+    <%= form.text_field :codigo_entidad_administradora, id: :second_rip_codigo_entidad_administradora %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_entidad_ %>
+    <%= form.text_field :nombre_entidad_, id: :second_rip_nombre_entidad_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :administradora %>
+    <%= form.text_field :administradora, id: :second_rip_administradora %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_contrato %>
+    <%= form.text_field :numero_contrato, id: :second_rip_numero_contrato %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plan_beneficiados %>
+    <%= form.text_area :plan_beneficiados, id: :second_rip_plan_beneficiados %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_poliza %>
+    <%= form.text_field :numero_poliza, id: :second_rip_numero_poliza %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_pago_compartido %>
+    <%= form.text_field :valor_pago_compartido, id: :second_rip_valor_pago_compartido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_comision %>
+    <%= form.text_field :valor_comision, id: :second_rip_valor_comision %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_total_descuentos %>
+    <%= form.text_field :valor_total_descuentos, id: :second_rip_valor_total_descuentos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_pagar_entidad %>
+    <%= form.text_field :valor_pagar_entidad, id: :second_rip_valor_pagar_entidad %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

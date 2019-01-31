@@ -1,0 +1,2 @@
+json.extract! second_rip, :id, :codigo_prestador, :user_id, :admin_user, :tipo_identificacion, :numero_identificacion, :numero_factura, :fecha_expedicion_factura, :fecha_inicio, :fecha_final, :codigo_entidad_administradora, :nombre_entidad_, :administradora, :numero_contrato, :plan_beneficiados, :numero_poliza, :valor_pago_compartido, :valor_comision, :valor_total_descuentos, :valor_pagar_entidad, :created_at, :updated_at
+json.url second_rip_url(second_rip, format: :json)

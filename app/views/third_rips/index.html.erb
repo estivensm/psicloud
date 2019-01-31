@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Third Rips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Numero factura</th>
+      <th>Codigo prestador</th>
+      <th>Tipo identificacion usuario</th>
+      <th>Numero identificacion usuario</th>
+      <th>Fecha consulta</th>
+      <th>Numero autorizacion</th>
+      <th>Codigo consulta</th>
+      <th>Finalidad consulta</th>
+      <th>Causa externa</th>
+      <th>Codigo diagnostico</th>
+      <th>Codigo diagnostico uno</th>
+      <th>Codigo diagnostico dos</th>
+      <th>Codigo diagnostico tres</th>
+      <th>Tipo diagnostico principal</th>
+      <th>Valor consulta</th>
+      <th>Valor cuota moderadora</th>
+      <th>Valor neto pagar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @third_rips.each do |third_rip| %>
+      <tr>
+        <td><%= third_rip.user_id %></td>
+        <td><%= third_rip.admin_user %></td>
+        <td><%= third_rip.numero_factura %></td>
+        <td><%= third_rip.codigo_prestador %></td>
+        <td><%= third_rip.tipo_identificacion_usuario %></td>
+        <td><%= third_rip.numero_identificacion_usuario %></td>
+        <td><%= third_rip.fecha_consulta %></td>
+        <td><%= third_rip.numero_autorizacion %></td>
+        <td><%= third_rip.codigo_consulta %></td>
+        <td><%= third_rip.finalidad_consulta %></td>
+        <td><%= third_rip.causa_externa %></td>
+        <td><%= third_rip.codigo_diagnostico %></td>
+        <td><%= third_rip.codigo_diagnostico_uno %></td>
+        <td><%= third_rip.codigo_diagnostico_dos %></td>
+        <td><%= third_rip.codigo_diagnostico_tres %></td>
+        <td><%= third_rip.tipo_diagnostico_principal %></td>
+        <td><%= third_rip.valor_consulta %></td>
+        <td><%= third_rip.valor_cuota_moderadora %></td>
+        <td><%= third_rip.valor_neto_pagar %></td>
+        <td><%= link_to 'Show', third_rip %></td>
+        <td><%= link_to 'Edit', edit_third_rip_path(third_rip) %></td>
+        <td><%= link_to 'Destroy', third_rip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Third Rip', new_third_rip_path %>

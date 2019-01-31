@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo_prestador: MyString
+  user_id: 1
+  admin_user: 1
+  tipo_identificacion: MyString
+  numero_identificacion: MyString
+  numero_factura: MyString
+  fecha_expedicion_factura: MyString
+  fecha_inicio: MyString
+  fecha_final: MyString
+  codigo_entidad_administradora: MyString
+  nombre_entidad_: MyString
+  administradora: MyString
+  numero_contrato: MyString
+  plan_beneficiados: MyText
+  numero_poliza: MyString
+  valor_pago_compartido: MyString
+  valor_comision: MyString
+  valor_total_descuentos: MyString
+  valor_pagar_entidad: MyString
+
+two:
+  codigo_prestador: MyString
+  user_id: 1
+  admin_user: 1
+  tipo_identificacion: MyString
+  numero_identificacion: MyString
+  numero_factura: MyString
+  fecha_expedicion_factura: MyString
+  fecha_inicio: MyString
+  fecha_final: MyString
+  codigo_entidad_administradora: MyString
+  nombre_entidad_: MyString
+  administradora: MyString
+  numero_contrato: MyString
+  plan_beneficiados: MyText
+  numero_poliza: MyString
+  valor_pago_compartido: MyString
+  valor_comision: MyString
+  valor_total_descuentos: MyString
+  valor_pagar_entidad: MyString

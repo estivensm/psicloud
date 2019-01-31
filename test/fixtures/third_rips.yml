@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  numero_factura: MyString
+  codigo_prestador: MyString
+  tipo_identificacion_usuario: MyString
+  numero_identificacion_usuario: MyString
+  fecha_consulta: MyString
+  numero_autorizacion: MyString
+  codigo_consulta: MyString
+  finalidad_consulta: MyString
+  causa_externa: MyString
+  codigo_diagnostico: MyString
+  codigo_diagnostico_uno: MyString
+  codigo_diagnostico_dos: MyString
+  codigo_diagnostico_tres: MyString
+  tipo_diagnostico_principal: MyString
+  valor_consulta: MyString
+  valor_cuota_moderadora: MyString
+  valor_neto_pagar: MyString
+
+two:
+  user_id: 1
+  admin_user: 1
+  numero_factura: MyString
+  codigo_prestador: MyString
+  tipo_identificacion_usuario: MyString
+  numero_identificacion_usuario: MyString
+  fecha_consulta: MyString
+  numero_autorizacion: MyString
+  codigo_consulta: MyString
+  finalidad_consulta: MyString
+  causa_externa: MyString
+  codigo_diagnostico: MyString
+  codigo_diagnostico_uno: MyString
+  codigo_diagnostico_dos: MyString
+  codigo_diagnostico_tres: MyString
+  tipo_diagnostico_principal: MyString
+  valor_consulta: MyString
+  valor_cuota_moderadora: MyString
+  valor_neto_pagar: MyString

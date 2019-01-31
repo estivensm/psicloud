@@ -1,0 +1,112 @@
+<%= form_with(model: third_rip, local: true) do |form| %>
+  <% if third_rip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(third_rip.errors.count, "error") %> prohibited this third_rip from being saved:</h2>
+
+      <ul>
+      <% third_rip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :third_rip_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_user %>
+    <%= form.number_field :admin_user, id: :third_rip_admin_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_factura %>
+    <%= form.text_field :numero_factura, id: :third_rip_numero_factura %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_prestador %>
+    <%= form.text_field :codigo_prestador, id: :third_rip_codigo_prestador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_identificacion_usuario %>
+    <%= form.text_field :tipo_identificacion_usuario, id: :third_rip_tipo_identificacion_usuario %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_identificacion_usuario %>
+    <%= form.text_field :numero_identificacion_usuario, id: :third_rip_numero_identificacion_usuario %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_consulta %>
+    <%= form.text_field :fecha_consulta, id: :third_rip_fecha_consulta %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_autorizacion %>
+    <%= form.text_field :numero_autorizacion, id: :third_rip_numero_autorizacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_consulta %>
+    <%= form.text_field :codigo_consulta, id: :third_rip_codigo_consulta %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finalidad_consulta %>
+    <%= form.text_field :finalidad_consulta, id: :third_rip_finalidad_consulta %>
+  </div>
+
+  <div class="field">
+    <%= form.label :causa_externa %>
+    <%= form.text_field :causa_externa, id: :third_rip_causa_externa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_diagnostico %>
+    <%= form.text_field :codigo_diagnostico, id: :third_rip_codigo_diagnostico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_diagnostico_uno %>
+    <%= form.text_field :codigo_diagnostico_uno, id: :third_rip_codigo_diagnostico_uno %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_diagnostico_dos %>
+    <%= form.text_field :codigo_diagnostico_dos, id: :third_rip_codigo_diagnostico_dos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_diagnostico_tres %>
+    <%= form.text_field :codigo_diagnostico_tres, id: :third_rip_codigo_diagnostico_tres %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_diagnostico_principal %>
+    <%= form.text_field :tipo_diagnostico_principal, id: :third_rip_tipo_diagnostico_principal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_consulta %>
+    <%= form.text_field :valor_consulta, id: :third_rip_valor_consulta %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_cuota_moderadora %>
+    <%= form.text_field :valor_cuota_moderadora, id: :third_rip_valor_cuota_moderadora %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_neto_pagar %>
+    <%= form.text_field :valor_neto_pagar, id: :third_rip_valor_neto_pagar %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
