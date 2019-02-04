@@ -40,7 +40,6 @@ class InvoiceConsultationsController < ApplicationController
     respond_to do |format|
       if @invoice.update(invoice_params)
         format.js
-        puts "actualizooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
       else
         format.html { render :new }
       end
@@ -53,7 +52,6 @@ class InvoiceConsultationsController < ApplicationController
     respond_to do |format|
       if @invoice.destroy
           format.js
-          puts "actualizooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
         else
           format.html { render :new }
       end

@@ -346,6 +346,9 @@ end
     @clinic_history = ClinicHistory.find(params[:clinic_history_id])
     @clinic_history.update(patient_id: params[:patient_id],frequency_appointment:params[:frequency_appointment],quantity_appointment: params[:quantity_appointment])
     @clinic_history.save
+    respond_to do |format|
+      format.js
+    end
   end
 
 

@@ -24,7 +24,7 @@ class Appointment < ApplicationRecord
 	belongs_to :patient
     has_many :tasks
     before_save :end_date
-    has_one :invoice_consultation
+    has_one :invoice_consultation, dependent: :destroy
     
 
     scope :abiertas, -> { where('state=? OR state=?', 'Vigente', 'Vencida') }
