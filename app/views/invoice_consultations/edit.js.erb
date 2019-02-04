@@ -1,0 +1,4 @@
+$('<%= j render "form_update", invoice: @invoice %>').on('hidden.bs.modal', function (e) {
+$(this).remove();
+$('.modal-backdrop').remove();
+}).modal();

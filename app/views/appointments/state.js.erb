@@ -1,3 +1,11 @@
+<% if params[:estado] == "Cancelada" %>
+	toastr["error"]("La cita se cancelo con <b> Exito!</b>");
+<% elsif params[:estado] == "Realizada" %>
+	toastr["success"]("la cita fue Actualizada con <b> Exito!</b>");
+<% elsif params[:estado] == "No Asistio" %>
+	toastr["warning"]("la cita fue Actualizada con <b> Exito!</b>");
+<% end %>
+
 $(".alerta").fadeIn();
 
     

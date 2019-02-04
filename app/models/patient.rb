@@ -44,6 +44,8 @@
 #  firma_padre          :text
 #  children             :string
 #  number_children      :integer
+#  city_id              :integer
+#  department_id        :integer
 #
 
 class Patient < ApplicationRecord

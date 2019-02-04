@@ -41,6 +41,7 @@
 #  four_child_created_at    :datetime
 #  diagnostico_id           :integer
 #  first_contact_created_at :datetime
+#  appointment_id           :integer
 #
 
 class ClinicHistory < ApplicationRecord

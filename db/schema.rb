@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190126212255) do
+ActiveRecord::Schema.define(version: 20190131211327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,14 @@ ActiveRecord::Schema.define(version: 20190126212255) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.integer "department_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "clinic_histories", force: :cascade do |t|
     t.integer "clinic_history_id"
     t.integer "count"
@@ -173,6 +181,7 @@ ActiveRecord::Schema.define(version: 20190126212255) do
     t.datetime "four_child_created_at"
     t.integer "diagnostico_id"
     t.datetime "first_contact_created_at"
+    t.integer "appointment_id"
   end
 
   create_table "clinic_histories_diagnosticos", id: false, force: :cascade do |t|
@@ -314,6 +323,13 @@ ActiveRecord::Schema.define(version: 20190126212255) do
     t.string "select_field"
     t.integer "tracing_id"
     t.integer "child_general_date_id"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "diagnostic_helps", force: :cascade do |t|
@@ -499,6 +515,18 @@ ActiveRecord::Schema.define(version: 20190126212255) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invoice_consultations", force: :cascade do |t|
+    t.date "invoice_date"
+    t.string "invoice_number"
+    t.float "consultation_value"
+    t.float "discount_value"
+    t.float "total_value"
+    t.text "comment"
+    t.integer "appointment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "legal_documents", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -562,6 +590,8 @@ ActiveRecord::Schema.define(version: 20190126212255) do
     t.text "firma_padre"
     t.string "children"
     t.integer "number_children"
+    t.integer "city_id"
+    t.integer "department_id"
   end
 
   create_table "personal_backgrounds", force: :cascade do |t|
@@ -803,8 +833,9 @@ ActiveRecord::Schema.define(version: 20190126212255) do
     t.text "evolution"
     t.boolean "tracing_state"
     t.datetime "tracing_created_at"
-    t.boolean "state"
     t.integer "clinic_history_couple_id"
+    t.boolean "state"
+    t.integer "appointment_id"
   end
 
   create_table "two_child_histories", force: :cascade do |t|

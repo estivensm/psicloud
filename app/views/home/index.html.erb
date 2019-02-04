@@ -74,11 +74,11 @@
 <div class="row info">
 <div class="col-md-12">
 
-<p style = "margin-top:30px;font-size:20px;">   <i class="fa fa-calendar icon" color-gray icon" aria-hidden="true"></i> Próximas Citas </p>
+<p style = "margin-top:30px;font-size:20px;">   <i class="fa fa-calendar icon" color-gray icon aria-hidden="true"></i> Próximas Citas </p>
 <% @citas.where(state: "Vigente").last(4).each do |cita|%>
 <div class="col-md-6">
  <div class="alert alert-info" role="alert" id="cambio<%= cita.id%>">
-    <span style="font-size:18px;margin-left:10px;"><%=cita.patient.first_name%> <%=cita.patient.first_last_name%></span> <%=get_date_hora(cita.start_datetime)%>
+    <span style="font-size:18px;margin-left:10px;"><%= cita.patient.first_name %> <%= cita.patient.first_last_name %></span> <%= get_date_hora(cita.start_datetime) %>
     <br>
     <br>
   <div>
@@ -199,11 +199,15 @@
   $(".btn2").click(function(event) {
     $(this).parent().parent().hide();
 
-  });
+  })
 
   $(".btn3").click(function(event) {
     $(this).parent().parent().hide();
-
   });
+
+  $(".btn1").click(function(event) {
+    $(this).parent().parent().hide();
+  });
+
 </script>
 

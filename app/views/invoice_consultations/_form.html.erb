@@ -1,0 +1,76 @@
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left: 5px;">
+    
+            <div class="container-fluid" style="padding-left: 5px;">
+              <div class="col-md-9" style="padding-left: 5px;">
+                    <h4 class="modal-title">Crear Nueva Factura</h4>
+              </div>    
+            </div>
+        </div>
+
+		<div class="modal-body">  
+
+			<%= form_tag invoice_consultation_path, remote: true do %>
+
+			<div class="col-md-6">
+			    <label>Fecha de Factura</label>
+				<%= date_field_tag :invoice_date, nil, class: "form form-control"%>
+			</div>
+
+			<div class="col-md-6">
+			    <label>Numero de Factura</label>
+				<%= text_field_tag :invoice_number, nil, class: "form form-control"%>
+				<br>
+			</div>
+
+			<div class="col-md-6">
+			    <label>Valor de Consulta</label>
+				<%= text_field_tag :consultation_value, nil, class: "form form-control"%>
+				<br>
+			</div>
+
+			<div class="col-md-6">
+			    <label>Valor del Descuento </label>
+				<%= text_field_tag :discount_value, nil, class: "form form-control"%>
+				<br>
+			</div>
+
+			<div class="col-md-12">
+			    <label>Valor Neto a pagar</label>
+				<%= text_field_tag :total_value, nil, class: "form form-control"%>
+				<br>
+			</div>
+
+			<div class="col-md-12">
+			    <label>Comentarios</label>
+				<%= text_area_tag :comment, nil, class: "form form-control", :rows => 8 %>
+				<br>
+			</div>
+
+			<% if action_name == "new" %>
+				<%= hidden_field_tag :appointment_id, nil, :value => @cita.id %>
+			<% end -%>
+
+
+		  <div class="modal-footer">
+           	  <%= submit_tag "Guardar", class: "btn btn-primary" %>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+	      </div>
+
+	      <% end -%>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+
+	.modal-footer{
+		border-top: none;
+	}
+
+</style>

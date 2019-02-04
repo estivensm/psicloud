@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: first_rips
+#
+#  id                    :integer          not null, primary key
+#  tipo_identificacion   :string
+#  numero_identificacion :string
+#  codigo_entidad_admin  :string
+#  tipo_usuario          :string
+#  primer_apellido       :string
+#  segundo_apellido      :string
+#  primer_nombre         :string
+#  segundo_nombre        :string
+#  edad                  :string
+#  unidad_medida_edad    :string
+#  sexo                  :string
+#  codigo_dpto           :string
+#  codigo_municipio      :string
+#  zona_residencial      :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  user_id               :integer
+#  admin_user            :integer
+#
+
 class FirstRip < ApplicationRecord
 
 	 def self.to_csv()

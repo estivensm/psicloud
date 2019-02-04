@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   
   
+  get 'invoice_consultations/create'
+
+  post "invoice_consultation", to: "invoice_consultations#create", as: "invoice_consultation"
+  get "new_invoice", to: "invoice_consultations#new", as: "new_invoice"
+  patch "edit_invoice/:id", to: "invoice_consultations#edit", as: "edit_invoice"
+  post "update_invoice", to: "invoice_consultations#update_invoice", as: "update_invoice"
+  delete "delete_invoice/:id", to: "invoice_consultations#destroy", as: "delete_invoice"
+
   get 'first_rips/csv_all'
   get 'second_rips/csv_all'
   get 'third_rips/csv_all'

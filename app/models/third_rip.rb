@@ -1,3 +1,31 @@
+# == Schema Information
+#
+# Table name: third_rips
+#
+#  id                            :integer          not null, primary key
+#  user_id                       :integer
+#  admin_user                    :integer
+#  numero_factura                :string
+#  codigo_prestador              :string
+#  tipo_identificacion_usuario   :string
+#  numero_identificacion_usuario :string
+#  fecha_consulta                :string
+#  numero_autorizacion           :string
+#  codigo_consulta               :string
+#  finalidad_consulta            :string
+#  causa_externa                 :string
+#  codigo_diagnostico            :string
+#  codigo_diagnostico_uno        :string
+#  codigo_diagnostico_dos        :string
+#  codigo_diagnostico_tres       :string
+#  tipo_diagnostico_principal    :string
+#  valor_consulta                :string
+#  valor_cuota_moderadora        :string
+#  valor_neto_pagar              :string
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#
+
 class ThirdRip < ApplicationRecord
 
 			 def self.to_csv()

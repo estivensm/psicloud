@@ -54,7 +54,6 @@ class AppointmentsController < ApplicationController
   def index
 
       @patient = Patient.find(params[:patient_id])
-
       @appointments = @patient.appointments.page(params[:page]).per_page(20).order(start_datetime: :desc)
       @clinic_history = @patient.clinic_histories.first
       @appointments.where(state: "Vigente").or(@appointments.where(state:"Vencida")).each do |app|

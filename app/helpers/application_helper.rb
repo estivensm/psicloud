@@ -1,5 +1,8 @@
 module ApplicationHelper
 	
+def get_invoice
+  Appointment.all
+end
 
 def get_state(state)
 

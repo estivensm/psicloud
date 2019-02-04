@@ -1,0 +1,16 @@
+                              <strong>Valor Total: </strong>  <%= factura.total_value %>
+                              <hr>
+
+                              <%= link_to edit_invoice_path(:id => factura.id), remote: true, method: :patch, class: "btnedit" , title: "Editar Factura" do %>
+                                 <i class="fas fa-pencil-alt"></i>
+                              <% end -%>
+
+                              <%= link_to  delete_invoice_path(:id => factura.id), method: :delete , title: "Eliminar" ,remote: true, data: {
+                                 confirm: '¿Estas Seguro?',
+                                 'confirm-button-text': 'Borrar',
+                                 'cancel-button-text': 'Cancelar',
+                                 'confirm-button-color': '#CC0000',
+                                  text: 'Recuerda que el registro se borrara permanentemente',
+                                 'image-url': ''}, class: "btndele" do%>
+                                 <i class="fas fa-trash-alt"></i>
+                              <% end %>

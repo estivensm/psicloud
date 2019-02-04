@@ -58,6 +58,17 @@
          %>
    </div>
    <br>
+
+
+   <div class="col-md-12" style="padding-left: 0px;">
+
+      <div class="col-md-5" style="padding-left: 0px;"> 
+        <label>Pertenece A la Cita</label>
+         <%= select_tag 'appointment_id', options_for_select(get_invoice.collect{ |u| [get_only_date(u.start_datetime) ,u.id] },{}), {:multiple => false, class: 'form-control', include_blank: false, :prompt => ""}%> 
+         <br>
+      </div>
+   </div>
+
    <h3 style="padding-left: 0px; margin-left: 0px;">Descripción</h3>
    <br>
    <div class="form-group">
